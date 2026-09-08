@@ -1,0 +1,101 @@
+{
+  "attention": {
+    "activation_bits": 8,
+    "group": 32,
+    "physical_rows": 8,
+    "projection_dsp48e2": 2240,
+    "waves_per_cohort": 2,
+    "weight_bits": 8
+  },
+  "board_measured": false,
+  "clock_hz": 100000000,
+  "cohort": {
+    "active_rows": 32,
+    "inflight_cohorts": 2,
+    "logical_rows": 16
+  },
+  "ddr_roofline": {
+    "aggregate_peak_gbps": 38.4,
+    "targets": [
+      {
+        "cohorts_per_second": 3.75,
+        "peak_fraction": 0.4063232,
+        "tokens_per_second": 60,
+        "useful_gbps": 15.60281088
+      },
+      {
+        "cohorts_per_second": 4.0625,
+        "peak_fraction": 0.44018346666666675,
+        "tokens_per_second": 65,
+        "useful_gbps": 16.90304512
+      },
+      {
+        "cohorts_per_second": 4.375,
+        "peak_fraction": 0.47404373333333333,
+        "tokens_per_second": 70,
+        "useful_gbps": 18.20327936
+      }
+    ],
+    "useful_matrix_bytes_per_cohort": 4160749568
+  },
+  "hidden": 4096,
+  "host_turnaround_p95_ms": {
+    "engineering_65_tokens_per_second": 1.5,
+    "hard_60_tokens_per_second": 2.0,
+    "stretch_70_tokens_per_second": 1.2
+  },
+  "intermediate": 14336,
+  "layers": 32,
+  "mlp": {
+    "activation_bits": 8,
+    "branches": 2,
+    "columns": 12,
+    "external_columns": 16,
+    "group": 32,
+    "kernel_dsp48e2": 3072,
+    "local_repack": "3x16-to-4x12",
+    "rows_per_branch": 8,
+    "weight_bits": 4
+  },
+  "model": "Llama-3.1-8B",
+  "platform": "VCU118 xcvu9p-flga2104-2L-e",
+  "schema": "hap_attention_mlp_architecture_model_v2",
+  "throughput": {
+    "attention_stage": {
+      "cycles_32layer_cohort16": 22668478,
+      "evidence": "historical Attention-only cycles scaled to cohort16",
+      "seconds_32layer_cohort16": 0.22668478,
+      "tokens_per_second": 70.58259491440052
+    },
+    "dual_cohort_pipeline": {
+      "cycles_32layer_cohort16": 22668478,
+      "evidence": "ideal model; not board measured",
+      "seconds_32layer_cohort16": 0.22668478,
+      "tokens_per_second": 70.58259491440052
+    },
+    "mlp_stage": {
+      "cycles_32layer_cohort16": 16873472,
+      "evidence": "V5 full-shape analytical schedule",
+      "seconds_32layer_cohort16": 0.16873472,
+      "tokens_per_second": 94.82340089816725
+    },
+    "serial_diagnostic": {
+      "cycles_32layer_cohort16": 39541950,
+      "evidence": "analytical; not target dataflow",
+      "seconds_32layer_cohort16": 0.3954195,
+      "tokens_per_second": 40.4633560054575
+    }
+  },
+  "weights": {
+    "all_matrix_payload_resident": true,
+    "attention_matrix_bytes_32layer": 1342177280,
+    "attention_matrix_bytes_per_layer": 41943040,
+    "external_ddr_format_changed": false,
+    "matrix_bytes_32layer": 4160749568,
+    "matrix_headroom_bytes": 134217728,
+    "metadata_policy": "current-layer local A/B; prefetch next layer",
+    "mlp_matrix_bytes_32layer": 2818572288,
+    "mlp_matrix_bytes_per_layer": 88080384,
+    "visible_ddr_bytes": 4294967296
+  }
+}

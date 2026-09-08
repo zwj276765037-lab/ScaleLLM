@@ -1,0 +1,48 @@
+{
+  "model": "Llama-3.1-8B-Instruct",
+  "checkpoint": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+  "samples": 8,
+  "max_length": 128,
+  "trace_contract": "BF16 checkpoint projection inputs; Hadamard32 normalized; include-zero asymmetric A8; ScaleCode code8/shift",
+  "per_op": {
+    "down_proj": {
+      "layers": 32,
+      "tokens": 32096,
+      "activation_groups": 14379008,
+      "activation_shift_min": 8,
+      "activation_shift_max": 27,
+      "weight_shift_min": 12,
+      "weight_shift_max": 18,
+      "conservative_total_shift_min": 21,
+      "conservative_total_shift_max": 44,
+      "hadamard_abs_max": 83.79527282714844,
+      "zero_code_count": 0
+    },
+    "gate_proj": {
+      "layers": 32,
+      "tokens": 32096,
+      "activation_groups": 4108288,
+      "activation_shift_min": 13,
+      "activation_shift_max": 22,
+      "weight_shift_min": 11,
+      "weight_shift_max": 18,
+      "conservative_total_shift_min": 24,
+      "conservative_total_shift_max": 40,
+      "hadamard_abs_max": 2.7788407802581787,
+      "zero_code_count": 0
+    },
+    "up_proj": {
+      "layers": 32,
+      "tokens": 32096,
+      "activation_groups": 4108288,
+      "activation_shift_min": 13,
+      "activation_shift_max": 22,
+      "weight_shift_min": 12,
+      "weight_shift_max": 18,
+      "conservative_total_shift_min": 25,
+      "conservative_total_shift_max": 40,
+      "hadamard_abs_max": 2.7788407802581787,
+      "zero_code_count": 0
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "files": {
+    "mlp_silu_expected_s32.mem": {
+      "bytes": 4608,
+      "sha256": "56d74ae01d724d81362ca7e0f1eba288a09740f0dbf0e2e44aac042add5790a8"
+    },
+    "mlp_silu_gate_s24.mem": {
+      "bytes": 3584,
+      "sha256": "2cc7ed2d69ac5f3df9ea575b59e40a0ec759c83ff54b0a3573afb35624d0f1cc"
+    },
+    "mlp_silu_q16.mem": {
+      "bytes": 57344,
+      "sha256": "8263e8981b637b00143c6dfd6674f2397a73c85c6ed8934f0ee839f76db6ea67"
+    },
+    "mlp_silu_up_s24.mem": {
+      "bytes": 3584,
+      "sha256": "196d932b047d5dd75f7f09cfa69d5b275dc69a62f61053178b04d0acb36b36f7"
+    }
+  },
+  "input": "S24 Q8.16",
+  "lut_range": [
+    -16.0,
+    16.0
+  ],
+  "lut_step": 0.00390625,
+  "mathematical_lut_entries": 8193,
+  "max_absolute_error": 0.0021453137445650583,
+  "max_relative_error_abs_reference_gt_0_1": 0.01002175040218652,
+  "minimum": {
+    "index": 3766,
+    "q16": -18249,
+    "x": -1.2890625
+  },
+  "positive_endpoint_q16_constant": 1048576,
+  "product_output": "S32 Q16.16",
+  "schema": "hap_mlp_silu_artifact_v1",
+  "shape_left_nonincreasing": true,
+  "shape_pass": true,
+  "shape_right_nondecreasing": true,
+  "silu_output": "S24 Q8.16",
+  "stored_rom_entries": 8192,
+  "vectors": 512
+}
