@@ -5,6 +5,20 @@ repository contains the reproducible hardware source tree, bit-exact models,
 testbenches, host-side runtime scaffolding, and Vivado build scripts for the
 current V5 Attention+MLP architecture.
 
+## Source Snapshot Update: 2026-10-02
+
+This update publishes the current ScaleLLM working tree, including software
+experiments, module comparisons, quantization corrections, and hardware/Host
+source changes. It is a research snapshot, not a qualified board release.
+The resource, clock, timing, and throughput figures below describe the
+historical snapshot explicitly dated in Current Status; they do not certify
+all source changes in this update or the separate active hardware workspace.
+
+Large raw implementation/power evidence, waveforms, and generated full-shape
+Down/trace datasets remain local. Their generators and experiment instructions
+are included; summaries that reference excluded raw files are not a complete
+independently reproducible evidence archive on their own.
+
 ## Architecture
 
 - Platform: AMD/Xilinx VCU118, `xcvu9p-flga2104-2L-e`
@@ -69,6 +83,9 @@ tests/                Python contract and unit tests
 host/                 XDMA runtime, memory layout, and cohort scheduling
 data/                 Deterministic ROMs, manifests, and compact test vectors
 docs/                 Source provenance notes
+0_Software/           Software evaluation, corrections, and result summaries
+ModularExperiment/    Module comparison sources, tests, and result summaries
+introduction/         Algorithm descriptions and correction handoffs
 vivado/constraints/   OOC, production, and VCU118 constraints
 vivado/manifests/     Canonical source graphs
 vivado/scripts/       Simulation, synthesis, implementation, and board flows

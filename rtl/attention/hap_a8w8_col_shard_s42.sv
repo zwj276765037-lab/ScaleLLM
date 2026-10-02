@@ -13,7 +13,9 @@ module hap_a8w8_col_shard_s42 #(
     parameter integer GLOBAL_COL_BASE = 0,
     parameter integer ACTIVE_ROWS = 8,
     parameter integer GROUP_SIZE = 32,
-    parameter integer DUAL_CONTEXT = 0
+    parameter integer DUAL_CONTEXT = 0,
+    parameter integer SPLIT_DUAL_ACCUMULATOR = 0,
+    parameter integer BUFFER_DUAL_ACCUMULATOR = 0
 ) (
     input  wire                                      clk,
     input  wire                                      rst_n,
@@ -184,7 +186,11 @@ module hap_a8w8_col_shard_s42 #(
 
     generate
         if (DUAL_CONTEXT != 0) begin : g_dual_accumulator
-            hap_linear_tile_accum_dual_s42 #(.LANES(LANES)) u_accumulator (
+            hap_linear_tile_accum_dual_s42 #(
+                .LANES(LANES),
+                .PHYSICAL_SPLIT(SPLIT_DUAL_ACCUMULATOR),
+                .INPUT_BUFFER(BUFFER_DUAL_ACCUMULATOR)
+            ) u_accumulator (
                 .clk(clk), .rst_n(rst_n), .clear(accumulator_clear),
                 .in_valid(guard_commit), .in_ready(accum_ready),
                 .in_wave(guard_wave),
@@ -261,8 +267,7 @@ module hap_a8w8_col_shard_s42 #(
             // production wrappers.  Detect a local refusal here so remote
             // ready/valid signals never need to return combinationally to the
             // cross-SLR owner solely for diagnostics.
-            if ((capture_valid && !capture_ready) ||
-                (launch && !launch_ready) ||
+            if ((launch && !launch_ready) ||
                 (lane_in_ready != {LANES{owner_in_ready}}) ||
                 (lane_out_valid != {LANES{owner_out_valid}}) ||
                 (guard_commit && (!guard_valid || !accum_ready)) ||
@@ -276,6 +281,17 @@ module hap_a8w8_col_shard_s42 #(
             $error("hap_a8w8_col_shard_s42 production row/group shape is fixed");
         if (DUAL_CONTEXT != 0 && DUAL_CONTEXT != 1)
             $error("hap_a8w8_col_shard_s42 DUAL_CONTEXT must be 0 or 1");
+        if (SPLIT_DUAL_ACCUMULATOR != 0 &&
+            SPLIT_DUAL_ACCUMULATOR != 1)
+            $error("hap_a8w8_col_shard_s42 split selector must be 0 or 1");
+        if (SPLIT_DUAL_ACCUMULATOR != 0 && COLS != 4)
+            $error("hap_a8w8_col_shard_s42 split requires four columns");
+        if (BUFFER_DUAL_ACCUMULATOR != 0 &&
+            BUFFER_DUAL_ACCUMULATOR != 1)
+            $error("hap_a8w8_col_shard_s42 buffer selector must be 0 or 1");
+        if (BUFFER_DUAL_ACCUMULATOR != 0 &&
+            SPLIT_DUAL_ACCUMULATOR == 0)
+            $error("hap_a8w8_col_shard_s42 buffer requires split accumulator");
         if (!(((COLS == 2) && (ACT_REGIONS == 1) &&
                ((GLOBAL_COL_BASE == 0) || (GLOBAL_COL_BASE == 2) ||
                 (GLOBAL_COL_BASE == 12) || (GLOBAL_COL_BASE == 14))) ||

@@ -17,7 +17,7 @@ from fixbit_v2 import (
     a8w8_group32_guard_s42,
     hadamard32_normalized,
     pack_lanes,
-    robust_a8_quantize,
+    minmax_a8_quantize,
     round_sat_guard_s42_to_s24,
     self_test,
 )
@@ -60,7 +60,7 @@ def main() -> None:
                     transformed = hadamard32_normalized(source)
                     input_saturation += transformed.saturation_count
                     activation_rows.append(
-                        robust_a8_quantize(transformed.values))
+                        minmax_a8_quantize(transformed.values))
                 activations[wave][group] = activation_rows
                 flat_source = [value for row in source_rows for value in row]
                 input_file.write(f"{pack_lanes(flat_source, 24):01536x}\n")

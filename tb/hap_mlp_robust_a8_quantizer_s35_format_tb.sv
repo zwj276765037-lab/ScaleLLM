@@ -36,19 +36,25 @@ module hap_mlp_robust_a8_quantizer_s35_format_tb;
     always @(posedge clk) begin
         if (rst_n) begin
             cycle <= cycle+1;
-            if (error) begin
-                if (format_error_count == 1 && out_valid &&
-                    out_u8 == 256'd0 && out_meta == 24'd0)
-                    $display("PASS: MLP Robust A8 S35 rejected unencodable ScaleCode range format_errors=1 cycles=%0d",
+            if (out_valid) begin
+                if (!error && format_error_count == 1 &&
+                        out_meta == 24'h00ff80) begin
+                    for (lane=0; lane<32; lane=lane+1)
+                        if (out_u8[lane*8 +: 8] !==
+                                (lane[0] ? 8'd0 : 8'd255))
+                            $fatal(1, "FAIL: S35 full-range U8 lane=%0d got=%0d",
+                                lane, out_u8[lane*8 +: 8]);
+                    $display("PASS: MLP MinMax A8 S35 saturated ScaleCode metadata while preserving ideal U8 format_events=1 cycles=%0d",
                         cycle);
-                else
-                    $display("FAIL: malformed format error state count=%0d out_valid=%0d q=%h meta=%h",
-                        format_error_count, out_valid, out_u8, out_meta);
-                $finish;
+                    $finish;
+                end else begin
+                    $fatal(1, "FAIL: malformed format saturation state count=%0d error=%0d q=%h meta=%h",
+                        format_error_count, error, out_u8, out_meta);
+                end
             end
             if (cycle>500) begin
-                $display("FAIL: format error timeout state=%0d diff=%0d",
-                    dut.state_r, dut.diff_r); $finish;
+                $fatal(1, "FAIL: format saturation timeout state=%0d diff=%0d",
+                    dut.state_r, dut.diff_r);
             end
         end
     end

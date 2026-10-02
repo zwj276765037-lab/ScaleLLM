@@ -14,10 +14,10 @@ export HAP_JOBS="${HAP_JOBS:-32}"
     printf 'SwiGLU OOC report directory exists: %s\n' "$HAP_REPORT_DIR" >&2
     exit 2
 }
-mapfile -t active_batch < <(pgrep -af \
+mapfile -t active_batch < <(pgrep -u "$(id -u)" -af \
     '[u]nwrapped/lnx64.o/vivado .*[-]mode batch' || true)
 if [[ "${#active_batch[@]}" -ne 0 ]]; then
-    printf 'another batch Vivado is active; SwiGLU OOC not started:\n' >&2
+    printf 'another project-user batch Vivado is active; SwiGLU OOC not started:\n' >&2
     printf '  %s\n' "${active_batch[@]}" >&2
     exit 75
 fi
@@ -70,7 +70,13 @@ fi
 for literal in jobs=32 clock_mhz=100 clock_period_ns=10.000 \
     source_proxy_ff=6150 sink_proxy_ff=4611 dut_dsp48e2=68 \
     swiglu_hadamard_dsp48e2=64 swiglu_silu_dsp48e2=4 \
-    dut_ramb36e2=12 dut_ramb18e2=0 dut_uram288=0 \
+    swiglu_quantizer_dsp48e2=0 \
+    dut_ramb36e2=40 post_synth_dut_ramb36e2=44 \
+    post_synth_row_ring_ramb36e2=32 \
+    post_synth_non_row_ring_ramb36e2=12 \
+    post_route_dut_ramb36e2=40 post_route_row_ring_ramb36e2=28 \
+    post_route_non_row_ring_ramb36e2=12 \
+    dut_ramb18e2=0 dut_uram288=0 \
     swiglu_local_clear_ff=8 swiglu_local_clear_protected_ff=8 \
     swiglu_control_clear_ff=1 swiglu_hadamard_clear_ff=1 \
     swiglu_quantizer_clear_ff=4 swiglu_row_clear_ff=2 \

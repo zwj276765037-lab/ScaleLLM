@@ -1,0 +1,167 @@
+{
+  "schema": "scalellm_literature_aligned_worker_v1",
+  "created_at": "2026-09-17T00:50:48.889655+00:00",
+  "pid": 1620036,
+  "cuda_visible_devices": "1",
+  "device": "cuda:0",
+  "gpu_name": "NVIDIA RTX A6000",
+  "model": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+  "model_spec": {
+    "name": "Llama-3.1-8B-Instruct",
+    "directory": "Llama-3.1-8B-Instruct",
+    "model_type": "llama",
+    "architecture": "LlamaForCausalLM",
+    "layers": 32,
+    "expected_per_op": {
+      "q_proj": 32,
+      "k_proj": 32,
+      "v_proj": 32,
+      "o_proj": 32,
+      "gate_proj": 32,
+      "up_proj": 32,
+      "down_proj": 32
+    },
+    "expected_module_count": 224,
+    "expected_weight_bits": {
+      "q_proj": 8,
+      "k_proj": 8,
+      "v_proj": 8,
+      "o_proj": 8,
+      "gate_proj": 4,
+      "up_proj": 4,
+      "down_proj": 4
+    }
+  },
+  "model_identity": null,
+  "case": "v5",
+  "protocol": {
+    "protocol": "hardware_128",
+    "context_length": 128,
+    "case": "v5",
+    "zero_shot": true,
+    "full_split": true,
+    "literature_comparable": false,
+    "hardware_constrained": true,
+    "overlength_continuation_policy": "rolling_windows_score_all_choice_tokens"
+  },
+  "tasks": [
+    "wikitext2"
+  ],
+  "limit": null,
+  "versions": {
+    "python": "3.10.19",
+    "torch": "2.10.0+cu128",
+    "transformers": "5.3.0",
+    "datasets": "4.8.4",
+    "lm_eval": "0.4.11",
+    "accelerate": "1.13.0",
+    "triton": "3.6.0"
+  },
+  "seed": 20260913,
+  "runtime_args": {
+    "batch_size": 8,
+    "ppl_batch_size": 1,
+    "allow_format_errors": false,
+    "node_trace_layers": "",
+    "node_trace_max_calls": 1
+  },
+  "tokenizer_boundary_policy": {
+    "name": "fixed_context_independent_continuation_fallback_v1",
+    "stock_lm_eval_path_when_prefix_stable": true,
+    "fallback_add_special_tokens": false,
+    "applied_to_cases": [
+      "bf16",
+      "a8w8_fp32",
+      "a8w4_fp32",
+      "a8w4_fp16",
+      "reference_qdq",
+      "v5_attention",
+      "v5",
+      "v5_algorithm"
+    ]
+  },
+  "status": "complete",
+  "hardware_contract_status": "valid",
+  "elapsed_sec": 5168.839734315872,
+  "method": {
+    "case": "v5_production_fullchain",
+    "manifest": "vivado/manifests/attention_mlp_production_v5_cohort16_sources.list",
+    "attention_format_id": "0x48384103",
+    "mlp_full_format_id": "0x48384603",
+    "layers": 32,
+    "max_context": 128,
+    "cohort_rows": 16,
+    "attention_weight_bits": 8,
+    "mlp_weight_bits": 4,
+    "activation_bits": 8,
+    "kv_bits": 12,
+    "host_residual_rmsnorm": "FP32",
+    "lm_head": "FP32 host",
+    "strict_total_shift": true,
+    "total_shift_policy": "strict_rtl",
+    "software_reference_not_hardware": false,
+    "node_trace_layers": [],
+    "mlp_total_shift_range": [
+      20,
+      44
+    ],
+    "mlp_group_guard_compute_width": 37,
+    "mlp_gate_up_accumulator_compute_width": 44,
+    "mlp_down_accumulator_compute_width": 46,
+    "transformers_5_api_adapter": {
+      "geometry_aliases_only": true,
+      "attention_return_arity": "3_to_2",
+      "numeric_path_changed": false
+    }
+  },
+  "data": [
+    {
+      "task": "wikitext2",
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/wikitext-2-raw-v1/test-00000-of-00001.jsonl",
+      "split": "test",
+      "source_id": "Salesforce/wikitext:wikitext-2-raw-v1",
+      "sha256": "69d7ab3cc73d4e17e6ad44fe2f99e7734a51d5a321dc38af095fd02b398ca0b8"
+    }
+  ],
+  "truncation_audit": {},
+  "hardware_audit": {
+    "activation_elements": 75732353024,
+    "fp_to_fixed_saturation": 0,
+    "hadamard_saturation": 0,
+    "activation_scale_format_error": 0,
+    "linear_total_shift_format_error": 0,
+    "linear_group_guard_overflow_s37": 0,
+    "linear_software_group_guard_overflow": 0,
+    "linear_accumulator_overflow": 0,
+    "linear_software_accumulator_overflow": 0,
+    "linear_output_saturation": 18044,
+    "rope_output_saturation": 0,
+    "kv12_clip": 0,
+    "qk_score_clip": 56599419,
+    "pv_output_saturation": 0,
+    "swiglu_output_overflow": 0
+  },
+  "node_trace": null,
+  "results": [
+    {
+      "task": "wikitext2",
+      "kind": "ppl",
+      "primary_metric": "token_perplexity",
+      "value": 27.63994383052315,
+      "avg_nll": 3.319261966716621,
+      "raw_token_count": 288936,
+      "block_size": 128,
+      "available_complete_blocks": 2257,
+      "evaluated_blocks": 2257,
+      "tokens_in_evaluated_blocks": 288896,
+      "scoring_tokens": 286639,
+      "discarded_tail_tokens": 40,
+      "unscored_block_initial_tokens": 2257,
+      "elapsed_sec": 4673.102221250534,
+      "full_stream": true,
+      "non_overlapping": true,
+      "tail_policy": "drop_incomplete_block"
+    }
+  ],
+  "lm_eval_raw": null
+}

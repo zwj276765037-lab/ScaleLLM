@@ -111,6 +111,15 @@ class ScaleCodeArtifactManifestTests(unittest.TestCase):
         self.assertEqual(sum(region.size for region, _ in loads),
                          2 * MATRIX_BYTES_PER_CHANNEL)
 
+    def test_rejects_pre_s37_mlp_artifacts(self):
+        raw = copy.deepcopy(self.raw)
+        raw["mlp_format_id"] = 0x4838_4602
+        with self.assertRaisesRegex(RuntimeContractError, "MLP format ID mismatch"):
+            ScaleCodeArtifactManifest.load(
+                self.write_manifest(raw, "old_mlp_format.json"),
+                verify_hashes=False,
+            )
+
     def test_rejects_non_integer_numeric_contract_fields(self):
         mutations = (
             lambda raw: raw.__setitem__("schema_version", True),

@@ -1,0 +1,110 @@
+{
+  "common_input": "Gate S24 Q8.16 and Up S24 Q8.16",
+  "common_output": "signed S32 Q16.16 SwiGLU product",
+  "coverage": {
+    "gate_above_silu_lut": 1149,
+    "gate_below_silu_lut": 1166,
+    "negative_gate_records": 3090,
+    "positive_gate_records": 3053,
+    "s24_endpoint_records": 8,
+    "zero_gate_records": 1
+  },
+  "files": {
+    "expected_fp16_s32.mem": {
+      "hex_digits": 8,
+      "records": 6144,
+      "sha256": "744ab7f42de3b7f14b5a74b19df1033f532aa55cb4f8aeac91d3d334c429d770"
+    },
+    "expected_fp32_s32.mem": {
+      "hex_digits": 8,
+      "records": 6144,
+      "sha256": "f52c09e4b10ca08a202d8c1798f37e3ea69c19addc8995951610c7b9c0e82cb1"
+    },
+    "expected_sc_s32.mem": {
+      "hex_digits": 8,
+      "records": 6144,
+      "sha256": "66b9fe4420244b9b7f3e9de9ebb5a1344a3ddf49e2f97ce5e5f0a5c0f7d0a7f2"
+    },
+    "gate_fp16.mem": {
+      "hex_digits": 4,
+      "records": 6144,
+      "sha256": "969ece72bb01fe9d98d2472637b85f6c0a5e50e1c046213641dcf8fc92d9167b"
+    },
+    "gate_fp32.mem": {
+      "hex_digits": 8,
+      "records": 6144,
+      "sha256": "55e2761e8ff9aa40ab259479ac0d229f8366753bd72187f7dc3a7ae96eac671e"
+    },
+    "gate_s24.mem": {
+      "hex_digits": 6,
+      "records": 6144,
+      "sha256": "3debb99b2daf7defc1b6c6bbb9b2da343445c8c5de7e78e2f2b4951a654b0d05"
+    },
+    "up_fp16.mem": {
+      "hex_digits": 4,
+      "records": 6144,
+      "sha256": "83c236c7143f41e958bb4f46166383a68fcc07abee274d83f7687461748b552e"
+    },
+    "up_fp32.mem": {
+      "hex_digits": 8,
+      "records": 6144,
+      "sha256": "caefc6c9e9305c199e12934e8b23013b92ffa0265c3004b560160e6afaa2e36a"
+    },
+    "up_s24.mem": {
+      "hex_digits": 6,
+      "records": 6144,
+      "sha256": "ea15a3350462a462292c57bba8098ba4147a87db8707771189012bbf90a8bc7f"
+    }
+  },
+  "generator_sha256": "dce094971857c0b47c9ed9807de992a99144ca96e414e290b977686691d27665",
+  "input_cadence_target": "two independent lanes, one element per lane per cycle",
+  "numeric_models": {
+    "fp16": "fixed-to-FP16 then exp/add/div/multiply in native FP16",
+    "fp32": "fixed-to-FP32 then exp/add/div/multiply in native FP32",
+    "reference": "stable FP64 SiLU(gate)*up",
+    "sc": "production 8192-entry SiLU LUT and round-away-zero product"
+  },
+  "production_model": "/home/user/EDA-202/zhuowenjun/ScaleLLM/model/mlp_fixed.py",
+  "production_model_sha256": "919af25d6c7c1742b58bceb77893334351bd922722b6574b0fead4127f337673",
+  "saturation_counts": {
+    "fp16": 0,
+    "fp32": 0
+  },
+  "schema": "scalellm_modular_silu_boundary_inclusive_v1",
+  "seeds": [
+    2026091201,
+    2026091202,
+    2026091203,
+    2026091204,
+    2026091205,
+    2026091206,
+    2026091207,
+    2026091208,
+    2026091209,
+    2026091210,
+    2026091211,
+    2026091212
+  ],
+  "software_accuracy_vs_fp64": {
+    "fp16": {
+      "cosine_similarity": 0.9999999703304091,
+      "max_abs_error": 1.7698704982176423,
+      "mean_abs_error": 0.0418188295399313,
+      "rmse": 0.11364612379833794
+    },
+    "fp32": {
+      "cosine_similarity": 0.999999999999997,
+      "max_abs_error": 0.00011106602778454544,
+      "mean_abs_error": 5.788315367448224e-06,
+      "rmse": 9.908790548186718e-06
+    },
+    "sc": {
+      "cosine_similarity": 0.9999999995111258,
+      "max_abs_error": 0.1189772750371958,
+      "mean_abs_error": 0.005731460744135934,
+      "rmse": 0.014572631365807713
+    }
+  },
+  "vectors": 6144,
+  "vectors_per_seed": 512
+}

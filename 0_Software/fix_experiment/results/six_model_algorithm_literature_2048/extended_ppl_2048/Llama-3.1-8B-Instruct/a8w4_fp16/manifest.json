@@ -1,0 +1,621 @@
+{
+  "schema": "scalellm_extended_ppl_worker_v1",
+  "created_at": "2026-09-16T11:21:03.812281+00:00",
+  "pid": 991894,
+  "cuda_visible_devices": "0",
+  "device": "cuda:0",
+  "model": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+  "model_spec": {
+    "name": "Llama-3.1-8B-Instruct",
+    "directory": "Llama-3.1-8B-Instruct",
+    "model_type": "llama",
+    "architecture": "LlamaForCausalLM",
+    "layers": 32,
+    "expected_per_op": {
+      "q_proj": 32,
+      "k_proj": 32,
+      "v_proj": 32,
+      "o_proj": 32,
+      "gate_proj": 32,
+      "up_proj": 32,
+      "down_proj": 32
+    },
+    "expected_module_count": 224,
+    "expected_weight_bits": {
+      "q_proj": 8,
+      "k_proj": 8,
+      "v_proj": 8,
+      "o_proj": 8,
+      "gate_proj": 4,
+      "up_proj": 4,
+      "down_proj": 4
+    }
+  },
+  "model_identity": {
+    "schema": "scalellm_checkpoint_identity_v1",
+    "created_at": "2026-09-15T00:10:47.814343+00:00",
+    "checkpoint_name": "Llama-3.1-8B-Instruct",
+    "resolved_path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+    "fingerprint_sha256": "f32c0adabc4443d374a0ebac6dcb0c5425b2e88aa84c54420ae040117794efe6",
+    "total_bytes": 16069773869,
+    "file_count": 14,
+    "files": [
+      {
+        "name": ".gitattributes",
+        "bytes": 1519,
+        "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+      },
+      {
+        "name": "LICENSE",
+        "bytes": 7627,
+        "sha256": "64e1b2889b7892e6bbe7a7ed5bfe6ff793c61f9d584345f8f41cf9f5cb30a369"
+      },
+      {
+        "name": "README.md",
+        "bytes": 41844,
+        "sha256": "ebf2d72071c75f9c9c089b66acd85a566f253c96941def6cd7800ffc4b4fe588"
+      },
+      {
+        "name": "USE_POLICY.md",
+        "bytes": 4691,
+        "sha256": "a568f2ebc73cec3fd74ba2afd992d4e945a8c7a9d851f9b66163aac834b7b859"
+      },
+      {
+        "name": "config.json",
+        "bytes": 855,
+        "sha256": "29e4c210b0d6ac178b16b2a255a568bdb23b581e50ca1ef6a6d071dd85704e6e"
+      },
+      {
+        "name": "generation_config.json",
+        "bytes": 184,
+        "sha256": "189fb0c0d7fd8a527db217c0a60a0e013f0394cd8800f9697a666a9e75e5f7fd"
+      },
+      {
+        "name": "model-00001-of-00004.safetensors",
+        "bytes": 4976698672,
+        "sha256": "2b1879f356aed350030bb40eb45ad362c89d9891096f79a3ab323d3ba5607668"
+      },
+      {
+        "name": "model-00002-of-00004.safetensors",
+        "bytes": 4999802720,
+        "sha256": "09d433f650646834a83c580877bd60c6d1f88f7755305c12576b5c7058f9af15"
+      },
+      {
+        "name": "model-00003-of-00004.safetensors",
+        "bytes": 4915916176,
+        "sha256": "fc1cdddd6bfa91128d6e94ee73d0ce62bfcdb7af29e978ddcab30c66ae9ea7fa"
+      },
+      {
+        "name": "model-00004-of-00004.safetensors",
+        "bytes": 1168138808,
+        "sha256": "92ecfe1a2414458b4821ac8c13cf8cb70aed66b5eea8dc5ad9eeb4ff309d6d7b"
+      },
+      {
+        "name": "model.safetensors.index.json",
+        "bytes": 23950,
+        "sha256": "146776fce3f6db1103aa6f249e65ee5544c5923ce6f971b092eee79aa6e5d37b"
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 296,
+        "sha256": "6f38c73729248f6c127296386e3cdde96e254636cc58b4169d3fd32328d9a8ec"
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 9085657,
+        "sha256": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4"
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 50870,
+        "sha256": "24e8a6dc2547164b7002e3125f10b415105644fcf02bf9ad8b674c87b1eaaed6"
+      }
+    ],
+    "model_spec": {
+      "name": "Llama-3.1-8B-Instruct",
+      "directory": "Llama-3.1-8B-Instruct",
+      "model_type": "llama",
+      "architecture": "LlamaForCausalLM",
+      "layers": 32,
+      "expected_per_op": {
+        "q_proj": 32,
+        "k_proj": 32,
+        "v_proj": 32,
+        "o_proj": 32,
+        "gate_proj": 32,
+        "up_proj": 32,
+        "down_proj": 32
+      },
+      "expected_module_count": 224,
+      "expected_weight_bits": {
+        "q_proj": 8,
+        "k_proj": 8,
+        "v_proj": 8,
+        "o_proj": 8,
+        "gate_proj": 4,
+        "up_proj": 4,
+        "down_proj": 4
+      }
+    }
+  },
+  "case": "a8w4_fp16",
+  "tasks": [
+    "ptb_ppl",
+    "c4_fixed_ppl",
+    "lambada_full_ppl",
+    "imdb_ppl",
+    "ag_news_ppl"
+  ],
+  "pending_tasks": [
+    "ptb_ppl",
+    "c4_fixed_ppl",
+    "lambada_full_ppl",
+    "imdb_ppl",
+    "ag_news_ppl"
+  ],
+  "block_size": 2048,
+  "ppl_batch_size": 8,
+  "limit_blocks": null,
+  "full_split": true,
+  "seed": 20260913,
+  "data_manifest": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/manifest.json",
+  "data_manifest_sha256": "78ed03a06b24644d6633dbb084ee122c8a557cd47b324e97f248e4869ae6bcf2",
+  "sources": {
+    "ptb_ppl": {
+      "asset_id": "ptb_test",
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/ptb_text_only/ptb.test.txt",
+      "sha256": "dd65dff31e70846b2a6030a87482edcd5d199130cdcfa1f3dccbb033728deee0",
+      "rows": 3761,
+      "split": "test",
+      "separator": "none",
+      "description": "Penn Treebank legacy text-only test"
+    },
+    "c4_fixed_ppl": {
+      "asset_id": "c4_official_validation_first10000",
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/c4_official/validation_first10000.jsonl",
+      "sha256": "bfa37449879c7cb9f871ba8910f016235c6be4508bcf32884c5bc3adffec1d13",
+      "rows": 10000,
+      "split": "validation, shard 0, source rows [0, 10000)",
+      "separator": "none",
+      "description": "C4-en validation shard-0 fixed rows [0,10000)"
+    },
+    "lambada_full_ppl": {
+      "asset_id": "lambada_test",
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/lambada_openai/test.parquet",
+      "sha256": "99d8a9e54cda761c6340ddd4fa6feda7f846ffb0e716afa52968dea75495eea7",
+      "rows": 5153,
+      "split": "test",
+      "separator": "none",
+      "description": "LAMBADA OpenAI full-text token PPL"
+    },
+    "imdb_ppl": {
+      "asset_id": "imdb_test",
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/imdb/test.parquet",
+      "sha256": "b52e26e2f872d282ffac460bf9770b25ac6f102cda0e6ca7158df98c94e8b3da",
+      "rows": 25000,
+      "split": "test",
+      "separator": "none",
+      "description": "IMDB test full-text domain-stress PPL"
+    },
+    "ag_news_ppl": {
+      "asset_id": "ag_news_test",
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/ag_news/test.parquet",
+      "sha256": "71de87ec66bc5737752a2502204dfa6d7fe9856ade3ea444dc6317789a4f13fb",
+      "rows": 7600,
+      "split": "test",
+      "separator": "none",
+      "description": "AG News test full-text domain-stress PPL"
+    }
+  },
+  "status": "complete",
+  "completed_at": "2026-09-16T12:50:39.190003+00:00",
+  "elapsed_sec": 5375.340149402618,
+  "method": {
+    "case": "iah_fp16_scale_mlp_w4_qdq_reference",
+    "target_scope": "q/k/v/o remain IA-H A8W8 with FP16 scale; MLP gate/up/down remain IA-H A8W4 with FP16 scale; GLM fused gate_up_proj is treated as MLP; lm_head excluded",
+    "module_count": 224,
+    "per_op": {
+      "q_proj": 32,
+      "k_proj": 32,
+      "v_proj": 32,
+      "o_proj": 32,
+      "gate_proj": 32,
+      "up_proj": 32,
+      "down_proj": 32
+    },
+    "per_op_weight_bits": {
+      "q_proj": 8,
+      "k_proj": 8,
+      "v_proj": 8,
+      "o_proj": 8,
+      "gate_proj": 4,
+      "up_proj": 4,
+      "down_proj": 4
+    },
+    "hadamard_block": 32,
+    "group_size": 32,
+    "act_bits": 8,
+    "attention_weight_bits": 8,
+    "mlp_weight_bits": 4,
+    "scale_code_bits": 0,
+    "payload_format": "float16 scale payload for activation and folded-weight scales; scales are floored at FP16 min subnormal (5.960e-08) and QDQ uses the decoded FP16 scale",
+    "invariant": "Same IA-H A8/W8 attention and A8/W4 MLP quantization as the selected control; only the scale payload is FP16 instead of ScaleCode.",
+    "evaluation_role": "algorithm_quality_reference",
+    "evaluation_case": "a8w4_fp16",
+    "native_attention_rope_kv": true,
+    "hardware_fixed_point_frontend": false,
+    "hardware_numeric_contract": "not_applicable"
+  },
+  "hardware_audit": null,
+  "versions": {
+    "python": "3.10.19",
+    "torch": "2.10.0+cu128",
+    "transformers": "5.3.0",
+    "datasets": "4.8.4",
+    "lm_eval": "0.4.11",
+    "accelerate": "1.13.0",
+    "triton": "3.6.0"
+  },
+  "results": [
+    {
+      "schema": "scalellm_extended_ppl_result_v1",
+      "status": "complete",
+      "created_at": "2026-09-16T11:21:53.821108+00:00",
+      "model": "Llama-3.1-8B-Instruct",
+      "model_fingerprint_sha256": "f32c0adabc4443d374a0ebac6dcb0c5425b2e88aa84c54420ae040117794efe6",
+      "case": "a8w4_fp16",
+      "full_split": true,
+      "source": {
+        "asset_id": "ptb_test",
+        "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/ptb_text_only/ptb.test.txt",
+        "sha256": "dd65dff31e70846b2a6030a87482edcd5d199130cdcfa1f3dccbb033728deee0",
+        "rows": 3761,
+        "split": "test",
+        "separator": "none",
+        "description": "Penn Treebank legacy text-only test"
+      },
+      "method": {
+        "case": "iah_fp16_scale_mlp_w4_qdq_reference",
+        "target_scope": "q/k/v/o remain IA-H A8W8 with FP16 scale; MLP gate/up/down remain IA-H A8W4 with FP16 scale; GLM fused gate_up_proj is treated as MLP; lm_head excluded",
+        "module_count": 224,
+        "per_op": {
+          "q_proj": 32,
+          "k_proj": 32,
+          "v_proj": 32,
+          "o_proj": 32,
+          "gate_proj": 32,
+          "up_proj": 32,
+          "down_proj": 32
+        },
+        "per_op_weight_bits": {
+          "q_proj": 8,
+          "k_proj": 8,
+          "v_proj": 8,
+          "o_proj": 8,
+          "gate_proj": 4,
+          "up_proj": 4,
+          "down_proj": 4
+        },
+        "hadamard_block": 32,
+        "group_size": 32,
+        "act_bits": 8,
+        "attention_weight_bits": 8,
+        "mlp_weight_bits": 4,
+        "scale_code_bits": 0,
+        "payload_format": "float16 scale payload for activation and folded-weight scales; scales are floored at FP16 min subnormal (5.960e-08) and QDQ uses the decoded FP16 scale",
+        "invariant": "Same IA-H A8/W8 attention and A8/W4 MLP quantization as the selected control; only the scale payload is FP16 instead of ScaleCode.",
+        "evaluation_role": "algorithm_quality_reference",
+        "evaluation_case": "a8w4_fp16",
+        "native_attention_rope_kv": true,
+        "hardware_fixed_point_frontend": false,
+        "hardware_numeric_contract": "not_applicable"
+      },
+      "task": "ptb_ppl",
+      "kind": "ppl",
+      "primary_metric": "token_perplexity",
+      "value": 12.221379890620975,
+      "avg_nll": 2.5031868680411375,
+      "total_nll": 245953.12890625,
+      "raw_token_count": 98829,
+      "block_size": 2048,
+      "available_complete_blocks": 48,
+      "evaluated_blocks": 48,
+      "tokens_in_evaluated_blocks": 98304,
+      "scoring_tokens": 98256,
+      "discarded_tail_tokens": 525,
+      "unscored_block_initial_tokens": 48,
+      "elapsed_sec": 41.493133783340454,
+      "non_overlapping": true,
+      "tail_policy": "drop_incomplete_block",
+      "add_special_tokens": false
+    },
+    {
+      "schema": "scalellm_extended_ppl_result_v1",
+      "status": "complete",
+      "created_at": "2026-09-16T11:54:13.539378+00:00",
+      "model": "Llama-3.1-8B-Instruct",
+      "model_fingerprint_sha256": "f32c0adabc4443d374a0ebac6dcb0c5425b2e88aa84c54420ae040117794efe6",
+      "case": "a8w4_fp16",
+      "full_split": true,
+      "source": {
+        "asset_id": "c4_official_validation_first10000",
+        "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/c4_official/validation_first10000.jsonl",
+        "sha256": "bfa37449879c7cb9f871ba8910f016235c6be4508bcf32884c5bc3adffec1d13",
+        "rows": 10000,
+        "split": "validation, shard 0, source rows [0, 10000)",
+        "separator": "none",
+        "description": "C4-en validation shard-0 fixed rows [0,10000)"
+      },
+      "method": {
+        "case": "iah_fp16_scale_mlp_w4_qdq_reference",
+        "target_scope": "q/k/v/o remain IA-H A8W8 with FP16 scale; MLP gate/up/down remain IA-H A8W4 with FP16 scale; GLM fused gate_up_proj is treated as MLP; lm_head excluded",
+        "module_count": 224,
+        "per_op": {
+          "q_proj": 32,
+          "k_proj": 32,
+          "v_proj": 32,
+          "o_proj": 32,
+          "gate_proj": 32,
+          "up_proj": 32,
+          "down_proj": 32
+        },
+        "per_op_weight_bits": {
+          "q_proj": 8,
+          "k_proj": 8,
+          "v_proj": 8,
+          "o_proj": 8,
+          "gate_proj": 4,
+          "up_proj": 4,
+          "down_proj": 4
+        },
+        "hadamard_block": 32,
+        "group_size": 32,
+        "act_bits": 8,
+        "attention_weight_bits": 8,
+        "mlp_weight_bits": 4,
+        "scale_code_bits": 0,
+        "payload_format": "float16 scale payload for activation and folded-weight scales; scales are floored at FP16 min subnormal (5.960e-08) and QDQ uses the decoded FP16 scale",
+        "invariant": "Same IA-H A8/W8 attention and A8/W4 MLP quantization as the selected control; only the scale payload is FP16 instead of ScaleCode.",
+        "evaluation_role": "algorithm_quality_reference",
+        "evaluation_case": "a8w4_fp16",
+        "native_attention_rope_kv": true,
+        "hardware_fixed_point_frontend": false,
+        "hardware_numeric_contract": "not_applicable"
+      },
+      "task": "c4_fixed_ppl",
+      "kind": "ppl",
+      "primary_metric": "token_perplexity",
+      "value": 12.45619197883679,
+      "avg_nll": 2.5222178469720764,
+      "total_nll": 11570238.029296875,
+      "raw_token_count": 4589671,
+      "block_size": 2048,
+      "available_complete_blocks": 2241,
+      "evaluated_blocks": 2241,
+      "tokens_in_evaluated_blocks": 4589568,
+      "scoring_tokens": 4587327,
+      "discarded_tail_tokens": 103,
+      "unscored_block_initial_tokens": 2241,
+      "elapsed_sec": 1939.6450827121735,
+      "non_overlapping": true,
+      "tail_policy": "drop_incomplete_block",
+      "add_special_tokens": false
+    },
+    {
+      "schema": "scalellm_extended_ppl_result_v1",
+      "status": "complete",
+      "created_at": "2026-09-16T11:56:57.764081+00:00",
+      "model": "Llama-3.1-8B-Instruct",
+      "model_fingerprint_sha256": "f32c0adabc4443d374a0ebac6dcb0c5425b2e88aa84c54420ae040117794efe6",
+      "case": "a8w4_fp16",
+      "full_split": true,
+      "source": {
+        "asset_id": "lambada_test",
+        "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/lambada_openai/test.parquet",
+        "sha256": "99d8a9e54cda761c6340ddd4fa6feda7f846ffb0e716afa52968dea75495eea7",
+        "rows": 5153,
+        "split": "test",
+        "separator": "none",
+        "description": "LAMBADA OpenAI full-text token PPL"
+      },
+      "method": {
+        "case": "iah_fp16_scale_mlp_w4_qdq_reference",
+        "target_scope": "q/k/v/o remain IA-H A8W8 with FP16 scale; MLP gate/up/down remain IA-H A8W4 with FP16 scale; GLM fused gate_up_proj is treated as MLP; lm_head excluded",
+        "module_count": 224,
+        "per_op": {
+          "q_proj": 32,
+          "k_proj": 32,
+          "v_proj": 32,
+          "o_proj": 32,
+          "gate_proj": 32,
+          "up_proj": 32,
+          "down_proj": 32
+        },
+        "per_op_weight_bits": {
+          "q_proj": 8,
+          "k_proj": 8,
+          "v_proj": 8,
+          "o_proj": 8,
+          "gate_proj": 4,
+          "up_proj": 4,
+          "down_proj": 4
+        },
+        "hadamard_block": 32,
+        "group_size": 32,
+        "act_bits": 8,
+        "attention_weight_bits": 8,
+        "mlp_weight_bits": 4,
+        "scale_code_bits": 0,
+        "payload_format": "float16 scale payload for activation and folded-weight scales; scales are floored at FP16 min subnormal (5.960e-08) and QDQ uses the decoded FP16 scale",
+        "invariant": "Same IA-H A8/W8 attention and A8/W4 MLP quantization as the selected control; only the scale payload is FP16 instead of ScaleCode.",
+        "evaluation_role": "algorithm_quality_reference",
+        "evaluation_case": "a8w4_fp16",
+        "native_attention_rope_kv": true,
+        "hardware_fixed_point_frontend": false,
+        "hardware_numeric_contract": "not_applicable"
+      },
+      "task": "lambada_full_ppl",
+      "kind": "ppl",
+      "primary_metric": "token_perplexity",
+      "value": 23.060980556983203,
+      "avg_nll": 3.138142035922274,
+      "total_nll": 1220517.58203125,
+      "raw_token_count": 391147,
+      "block_size": 2048,
+      "available_complete_blocks": 190,
+      "evaluated_blocks": 190,
+      "tokens_in_evaluated_blocks": 389120,
+      "scoring_tokens": 388930,
+      "discarded_tail_tokens": 2027,
+      "unscored_block_initial_tokens": 190,
+      "elapsed_sec": 164.2195827960968,
+      "non_overlapping": true,
+      "tail_policy": "drop_incomplete_block",
+      "add_special_tokens": false
+    },
+    {
+      "schema": "scalellm_extended_ppl_result_v1",
+      "status": "complete",
+      "created_at": "2026-09-16T12:47:58.529599+00:00",
+      "model": "Llama-3.1-8B-Instruct",
+      "model_fingerprint_sha256": "f32c0adabc4443d374a0ebac6dcb0c5425b2e88aa84c54420ae040117794efe6",
+      "case": "a8w4_fp16",
+      "full_split": true,
+      "source": {
+        "asset_id": "imdb_test",
+        "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/imdb/test.parquet",
+        "sha256": "b52e26e2f872d282ffac460bf9770b25ac6f102cda0e6ca7158df98c94e8b3da",
+        "rows": 25000,
+        "split": "test",
+        "separator": "none",
+        "description": "IMDB test full-text domain-stress PPL"
+      },
+      "method": {
+        "case": "iah_fp16_scale_mlp_w4_qdq_reference",
+        "target_scope": "q/k/v/o remain IA-H A8W8 with FP16 scale; MLP gate/up/down remain IA-H A8W4 with FP16 scale; GLM fused gate_up_proj is treated as MLP; lm_head excluded",
+        "module_count": 224,
+        "per_op": {
+          "q_proj": 32,
+          "k_proj": 32,
+          "v_proj": 32,
+          "o_proj": 32,
+          "gate_proj": 32,
+          "up_proj": 32,
+          "down_proj": 32
+        },
+        "per_op_weight_bits": {
+          "q_proj": 8,
+          "k_proj": 8,
+          "v_proj": 8,
+          "o_proj": 8,
+          "gate_proj": 4,
+          "up_proj": 4,
+          "down_proj": 4
+        },
+        "hadamard_block": 32,
+        "group_size": 32,
+        "act_bits": 8,
+        "attention_weight_bits": 8,
+        "mlp_weight_bits": 4,
+        "scale_code_bits": 0,
+        "payload_format": "float16 scale payload for activation and folded-weight scales; scales are floored at FP16 min subnormal (5.960e-08) and QDQ uses the decoded FP16 scale",
+        "invariant": "Same IA-H A8/W8 attention and A8/W4 MLP quantization as the selected control; only the scale payload is FP16 instead of ScaleCode.",
+        "evaluation_role": "algorithm_quality_reference",
+        "evaluation_case": "a8w4_fp16",
+        "native_attention_rope_kv": true,
+        "hardware_fixed_point_frontend": false,
+        "hardware_numeric_contract": "not_applicable"
+      },
+      "task": "imdb_ppl",
+      "kind": "ppl",
+      "primary_metric": "token_perplexity",
+      "value": 16.53639944747057,
+      "avg_nll": 2.8055639783208117,
+      "total_nll": 20301467.75390625,
+      "raw_token_count": 7241286,
+      "block_size": 2048,
+      "available_complete_blocks": 3535,
+      "evaluated_blocks": 3535,
+      "tokens_in_evaluated_blocks": 7239680,
+      "scoring_tokens": 7236145,
+      "discarded_tail_tokens": 1606,
+      "unscored_block_initial_tokens": 3535,
+      "elapsed_sec": 3060.7287175655365,
+      "non_overlapping": true,
+      "tail_policy": "drop_incomplete_block",
+      "add_special_tokens": false
+    },
+    {
+      "schema": "scalellm_extended_ppl_result_v1",
+      "status": "complete",
+      "created_at": "2026-09-16T12:50:39.188735+00:00",
+      "model": "Llama-3.1-8B-Instruct",
+      "model_fingerprint_sha256": "f32c0adabc4443d374a0ebac6dcb0c5425b2e88aa84c54420ae040117794efe6",
+      "case": "a8w4_fp16",
+      "full_split": true,
+      "source": {
+        "asset_id": "ag_news_test",
+        "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/ag_news/test.parquet",
+        "sha256": "71de87ec66bc5737752a2502204dfa6d7fe9856ade3ea444dc6317789a4f13fb",
+        "rows": 7600,
+        "split": "test",
+        "separator": "none",
+        "description": "AG News test full-text domain-stress PPL"
+      },
+      "method": {
+        "case": "iah_fp16_scale_mlp_w4_qdq_reference",
+        "target_scope": "q/k/v/o remain IA-H A8W8 with FP16 scale; MLP gate/up/down remain IA-H A8W4 with FP16 scale; GLM fused gate_up_proj is treated as MLP; lm_head excluded",
+        "module_count": 224,
+        "per_op": {
+          "q_proj": 32,
+          "k_proj": 32,
+          "v_proj": 32,
+          "o_proj": 32,
+          "gate_proj": 32,
+          "up_proj": 32,
+          "down_proj": 32
+        },
+        "per_op_weight_bits": {
+          "q_proj": 8,
+          "k_proj": 8,
+          "v_proj": 8,
+          "o_proj": 8,
+          "gate_proj": 4,
+          "up_proj": 4,
+          "down_proj": 4
+        },
+        "hadamard_block": 32,
+        "group_size": 32,
+        "act_bits": 8,
+        "attention_weight_bits": 8,
+        "mlp_weight_bits": 4,
+        "scale_code_bits": 0,
+        "payload_format": "float16 scale payload for activation and folded-weight scales; scales are floored at FP16 min subnormal (5.960e-08) and QDQ uses the decoded FP16 scale",
+        "invariant": "Same IA-H A8/W8 attention and A8/W4 MLP quantization as the selected control; only the scale payload is FP16 instead of ScaleCode.",
+        "evaluation_role": "algorithm_quality_reference",
+        "evaluation_case": "a8w4_fp16",
+        "native_attention_rope_kv": true,
+        "hardware_fixed_point_frontend": false,
+        "hardware_numeric_contract": "not_applicable"
+      },
+      "task": "ag_news_ppl",
+      "kind": "ppl",
+      "primary_metric": "token_perplexity",
+      "value": 13.513762077412819,
+      "avg_nll": 2.6037085793373533,
+      "total_nll": 991341.2119140625,
+      "raw_token_count": 382057,
+      "block_size": 2048,
+      "available_complete_blocks": 186,
+      "evaluated_blocks": 186,
+      "tokens_in_evaluated_blocks": 380928,
+      "scoring_tokens": 380742,
+      "discarded_tail_tokens": 1129,
+      "unscored_block_initial_tokens": 186,
+      "elapsed_sec": 160.65526723861694,
+      "non_overlapping": true,
+      "tail_policy": "drop_incomplete_block",
+      "add_special_tokens": false
+    }
+  ]
+}

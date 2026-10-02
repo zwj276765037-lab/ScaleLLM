@@ -21,9 +21,16 @@ INTERMEDIATE = 14336
 HIDDEN_GROUPS = HIDDEN // 32
 INTERMEDIATE_GROUPS = INTERMEDIATE // 32
 COHORT = 16
-CORE_HZ = 150_000_000
+CORE_HZ = 100_000_000
 LAYERS = 32
-PRODUCT_FRONTEND_CYCLES_PER_GROUP = 835
+# Mission 0191 fixed-vector evidence covers the two-divider S35 design.  The
+# current product interval comes from Mission 0193's bit-exact BRAM row-ring
+# XSIM; its synchronous read adds two cycles without changing steady-state II.
+# These are measured evidence values, not architectural timing assumptions.
+S35_DIVIDERS_PER_QUANTIZER = 2
+S35_XSIM_MAX_GROUP_CYCLES = 308
+SWIGLU_XSIM_MAX_GROUP_INTERVAL = 1213
+PRODUCT_FRONTEND_CYCLES_PER_GROUP = 1213
 BYTES_PER_SOURCE_RECORD = SOURCE_COLUMNS * 32 * 4 // 8
 
 T = TypeVar("T")

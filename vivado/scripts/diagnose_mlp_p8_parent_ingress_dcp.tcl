@@ -68,8 +68,8 @@ proc p8_write_names {handle label objects} {
 }
 
 open_checkpoint $dcp
-set shared [p8_cells_of_module hap_mlp_shared_dual_slice16x12_s43_s45]
-set branches [p8_cells_of_module hap_mlp_shared_local_slice8x12_s43_s45]
+set shared [p8_cells_of_module hap_mlp_shared_dual_slice16x12_s44_s46]
+set branches [p8_cells_of_module hap_mlp_shared_local_slice8x12_s44_s46]
 if {[llength $shared] != 1 || [llength $branches] != 2} {
     error "unexpected P8 hierarchy: shared=[llength $shared] branches=[llength $branches]"
 }

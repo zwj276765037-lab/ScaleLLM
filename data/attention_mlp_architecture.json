@@ -50,16 +50,37 @@
     "activation_bits": 8,
     "branches": 2,
     "columns": 12,
+    "compact_input_dsp48e2": 8,
+    "down_accumulator_width": 54,
+    "down_group_guard_width": 45,
+    "down_legal_total_shift": [
+      12,
+      44
+    ],
+    "down_output_fraction_bits": 16,
+    "down_output_width": 32,
     "external_columns": 16,
+    "full_format_id": 1211647493,
+    "gate_up_accumulator_width": 44,
+    "gate_up_group_guard_width": 37,
+    "gate_up_legal_total_shift": [
+      20,
+      44
+    ],
     "group": 32,
+    "internal_format_id": 1211649285,
     "kernel_dsp48e2": 3072,
     "local_repack": "3x16-to-4x12",
+    "raw_s33_abs_max": 4244832000,
     "rows_per_branch": 8,
+    "s35_dividers_per_quantizer": 2,
+    "s35_xsim_max_group_cycles": 308,
+    "swiglu_xsim_max_group_interval": 1213,
     "weight_bits": 4
   },
   "model": "Llama-3.1-8B",
   "platform": "VCU118 xcvu9p-flga2104-2L-e",
-  "schema": "hap_attention_mlp_architecture_model_v2",
+  "schema": "hap_attention_mlp_architecture_model_v3",
   "throughput": {
     "attention_stage": {
       "cycles_32layer_cohort16": 22668478,
@@ -74,16 +95,16 @@
       "tokens_per_second": 70.58259491440052
     },
     "mlp_stage": {
-      "cycles_32layer_cohort16": 16873472,
-      "evidence": "V5 full-shape analytical schedule",
-      "seconds_32layer_cohort16": 0.16873472,
-      "tokens_per_second": 94.82340089816725
+      "cycles_32layer_cohort16": 22292480,
+      "evidence": "V5 full-shape analytical schedule using divider2 BRAM-row-ring XSIM interval",
+      "seconds_32layer_cohort16": 0.2229248,
+      "tokens_per_second": 71.773082223243
     },
     "serial_diagnostic": {
-      "cycles_32layer_cohort16": 39541950,
+      "cycles_32layer_cohort16": 44960958,
       "evidence": "analytical; not target dataflow",
-      "seconds_32layer_cohort16": 0.3954195,
-      "tokens_per_second": 40.4633560054575
+      "seconds_32layer_cohort16": 0.44960958,
+      "tokens_per_second": 35.58643034252073
     }
   },
   "weights": {

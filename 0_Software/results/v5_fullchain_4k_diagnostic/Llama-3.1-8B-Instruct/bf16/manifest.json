@@ -1,0 +1,61 @@
+{
+  "schema": "scalellm_v5_fullchain_quality_v1",
+  "case": "bf16",
+  "status": "complete",
+  "hardware_contract_status": "valid",
+  "created_at": "2026-09-13T02:32:51.110137+00:00",
+  "elapsed_sec": 11.970301628112793,
+  "model": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+  "args": {
+    "case": "bf16",
+    "model": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+    "wikitext": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/wikitext-2-raw-v1/test-00000-of-00001.jsonl",
+    "output": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/v5_fullchain_4k_diagnostic/Llama-3.1-8B-Instruct",
+    "device": "cuda:0",
+    "tasks": "wikitext2",
+    "max_mcqa_samples": 0,
+    "mcqa_batch_size": 16,
+    "max_length": 128,
+    "wikitext_max_tokens": 4096,
+    "wikitext_block_size": 128,
+    "wikitext_stride": 127,
+    "wikitext_batch_size": 16,
+    "seed": 20260913,
+    "allow_format_errors": false
+  },
+  "reproducibility": {
+    "seed": 20260913,
+    "deterministic": true,
+    "allow_tf32": false,
+    "pythonhashseed": "20260913",
+    "cublas_workspace_config": ":4096:8",
+    "torch_initial_seed": 20260913,
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true
+  },
+  "method": {
+    "case": "bf16_matched_context128",
+    "max_context": 128,
+    "dtype": "bfloat16"
+  },
+  "audit": null,
+  "results": [
+    {
+      "case": "bf16",
+      "task": "wikitext2",
+      "task_label": "WikiText2",
+      "samples": 33,
+      "records_complete": true,
+      "ppl": 19.871498461433056,
+      "avg_nll": 2.9892864669781174,
+      "token_accuracy": 0.44078144078144077,
+      "scoring_tokens": 4095,
+      "status": "pass",
+      "elapsed_sec": 2.392914295196533,
+      "context_length": 128,
+      "stride": 127,
+      "hardware_contract_status": "valid_so_far"
+    }
+  ]
+}

@@ -9,7 +9,7 @@ from pathlib import Path
 from mlp_fixed import (
     build_silu_lut,
     hadamard32_product_normalized,
-    robust_a8_quantize_s35,
+    minmax_a8_quantize_s35,
     swiglu_product_s32,
 )
 
@@ -67,7 +67,7 @@ def main() -> None:
                                            up[row][column], table)
                        for column in range(COLS)]
             hadamard = hadamard32_product_normalized(product)
-            quant = robust_a8_quantize_s35(hadamard.values)
+            quant = minmax_a8_quantize_s35(hadamard.values)
             quantized.extend(quant.values)
             metadata.append(quant.metadata)
         quant_payload = sum(value << (index * 8)

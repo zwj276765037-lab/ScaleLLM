@@ -476,7 +476,7 @@ set all_design_primitives [hap_v5_fine19::pblockable \
 set uncovered_primitives [hap_v5_floorplan::list_subtract \
     $all_design_primitives $all_member_cells]
 
-set mlp_roots [hap_v5_floorplan::module_cells hap_mlp_full_command16_s45]
+set mlp_roots [hap_v5_floorplan::module_cells hap_mlp_full_command16_s46]
 set attention_compute_roots [hap_v5_floorplan::module_cells \
     hap_attention_compute_cohort16_top]
 set attention_board_roots [hap_v5_floorplan::module_cells \

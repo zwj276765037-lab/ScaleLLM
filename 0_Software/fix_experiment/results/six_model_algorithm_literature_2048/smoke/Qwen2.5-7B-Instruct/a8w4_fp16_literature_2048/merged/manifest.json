@@ -1,0 +1,498 @@
+{
+  "schema": "scalellm_literature_aligned_eval_v1",
+  "created_at": "2026-09-15T00:15:47.320622+00:00",
+  "status": "complete",
+  "hardware_contract_status": "not_applicable_algorithm_reference",
+  "software_reference_numeric_status": null,
+  "hardware_audit_total": null,
+  "model": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Qwen2.5-7B-Instruct",
+  "model_spec": {
+    "name": "Qwen2.5-7B-Instruct",
+    "directory": "Qwen2.5-7B-Instruct",
+    "model_type": "qwen2",
+    "architecture": "Qwen2ForCausalLM",
+    "layers": 28,
+    "expected_per_op": {
+      "q_proj": 28,
+      "k_proj": 28,
+      "v_proj": 28,
+      "o_proj": 28,
+      "gate_proj": 28,
+      "up_proj": 28,
+      "down_proj": 28
+    },
+    "expected_module_count": 196,
+    "expected_weight_bits": {
+      "q_proj": 8,
+      "k_proj": 8,
+      "v_proj": 8,
+      "o_proj": 8,
+      "gate_proj": 4,
+      "up_proj": 4,
+      "down_proj": 4
+    }
+  },
+  "model_identity": {
+    "schema": "scalellm_checkpoint_identity_v1",
+    "created_at": "2026-09-15T00:11:37.705392+00:00",
+    "checkpoint_name": "Qwen2.5-7B-Instruct",
+    "resolved_path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Qwen2.5-7B-Instruct",
+    "fingerprint_sha256": "60dced2d4ebd88994c767aebb72a30e3e81260579ca08989c82232651a4c3f81",
+    "total_bytes": 15242807270,
+    "file_count": 14,
+    "files": [
+      {
+        "name": ".gitattributes",
+        "bytes": 1519,
+        "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+      },
+      {
+        "name": "LICENSE",
+        "bytes": 11343,
+        "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+      },
+      {
+        "name": "README.md",
+        "bytes": 6240,
+        "sha256": "f366f33bbf6bcadbb7d87f0a21a7b65584a56b8d58b0743c77c88bee625b93a6"
+      },
+      {
+        "name": "config.json",
+        "bytes": 663,
+        "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c"
+      },
+      {
+        "name": "generation_config.json",
+        "bytes": 243,
+        "sha256": "3a8f9087e486054c8a4a08dae2e5a3ba62e23da212b5b8c08bc42cb983c3459f"
+      },
+      {
+        "name": "merges.txt",
+        "bytes": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+      },
+      {
+        "name": "model-00001-of-00004.safetensors",
+        "bytes": 3945441440,
+        "sha256": "a1333e6293854747c481288ea83b348226af178dd565c49b6f9495ba1966aba7"
+      },
+      {
+        "name": "model-00002-of-00004.safetensors",
+        "bytes": 3864726352,
+        "sha256": "f5d25a2772cb825164a2a2c0fb6d51a87e282abf21e4dd75bc5cfb3cd0ea6185"
+      },
+      {
+        "name": "model-00003-of-00004.safetensors",
+        "bytes": 3864726424,
+        "sha256": "8efdec4c1bc12317ae1a38dc42b595ce777738a64deea3fcb8a0a91381bcdfd5"
+      },
+      {
+        "name": "model-00004-of-00004.safetensors",
+        "bytes": 3556377672,
+        "sha256": "1a72d403cdf0c1ec3cb7f289f17b394a01e64394c2e9b3c0f94dbce3faf879bd"
+      },
+      {
+        "name": "model.safetensors.index.json",
+        "bytes": 27752,
+        "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028"
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 7031645,
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 7305,
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+      },
+      {
+        "name": "vocab.json",
+        "bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      }
+    ],
+    "model_spec": {
+      "name": "Qwen2.5-7B-Instruct",
+      "directory": "Qwen2.5-7B-Instruct",
+      "model_type": "qwen2",
+      "architecture": "Qwen2ForCausalLM",
+      "layers": 28,
+      "expected_per_op": {
+        "q_proj": 28,
+        "k_proj": 28,
+        "v_proj": 28,
+        "o_proj": 28,
+        "gate_proj": 28,
+        "up_proj": 28,
+        "down_proj": 28
+      },
+      "expected_module_count": 196,
+      "expected_weight_bits": {
+        "q_proj": 8,
+        "k_proj": 8,
+        "v_proj": 8,
+        "o_proj": 8,
+        "gate_proj": 4,
+        "up_proj": 4,
+        "down_proj": 4
+      }
+    }
+  },
+  "case": "a8w4_fp16",
+  "method": {
+    "case": "iah_fp16_scale_mlp_w4_qdq_reference",
+    "target_scope": "q/k/v/o remain IA-H A8W8 with FP16 scale; MLP gate/up/down remain IA-H A8W4 with FP16 scale; GLM fused gate_up_proj is treated as MLP; lm_head excluded",
+    "module_count": 196,
+    "per_op": {
+      "q_proj": 28,
+      "k_proj": 28,
+      "v_proj": 28,
+      "o_proj": 28,
+      "gate_proj": 28,
+      "up_proj": 28,
+      "down_proj": 28
+    },
+    "per_op_weight_bits": {
+      "q_proj": 8,
+      "k_proj": 8,
+      "v_proj": 8,
+      "o_proj": 8,
+      "gate_proj": 4,
+      "up_proj": 4,
+      "down_proj": 4
+    },
+    "hadamard_block": 32,
+    "group_size": 32,
+    "act_bits": 8,
+    "attention_weight_bits": 8,
+    "mlp_weight_bits": 4,
+    "scale_code_bits": 0,
+    "payload_format": "float16 scale payload for activation and folded-weight scales; scales are floored at FP16 min subnormal (5.960e-08) and QDQ uses the decoded FP16 scale",
+    "invariant": "Same IA-H A8/W8 attention and A8/W4 MLP quantization as the selected control; only the scale payload is FP16 instead of ScaleCode.",
+    "evaluation_role": "algorithm_quality_reference",
+    "evaluation_case": "a8w4_fp16",
+    "native_attention_rope_kv": true,
+    "hardware_fixed_point_frontend": false,
+    "hardware_numeric_contract": "not_applicable"
+  },
+  "protocol": {
+    "protocol": "literature_2048",
+    "context_length": 2048,
+    "case": "a8w4_fp16",
+    "zero_shot": true,
+    "full_split": false,
+    "literature_comparable": false,
+    "hardware_constrained": false,
+    "overlength_continuation_policy": "lm_eval_default"
+  },
+  "primary_metric_policy": {
+    "piqa": "acc_norm",
+    "arc_easy": "acc_norm",
+    "arc_challenge": "acc_norm",
+    "boolq": "acc",
+    "hellaswag": "acc_norm",
+    "winogrande": "acc"
+  },
+  "macro_accuracy": 0.5,
+  "macro_accuracy_unit": "fraction",
+  "ppl": 7.287499148691273,
+  "results": [
+    {
+      "task": "piqa",
+      "kind": "acc",
+      "primary_metric": "acc_norm",
+      "value": 1.0,
+      "stderr": null,
+      "samples": 1,
+      "truncated_documents": 0,
+      "truncated_document_fraction": 0.0,
+      "left_truncated_prompt_documents": 0,
+      "windowed_continuation_documents": 0,
+      "all_metrics": {
+        "alias": "piqa",
+        "acc,none": 1.0,
+        "acc_stderr,none": "N/A",
+        "acc_norm,none": 1.0,
+        "acc_norm_stderr,none": "N/A"
+      },
+      "case": "a8w4_fp16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "hardware_contract_status": "not_applicable_algorithm_reference"
+    },
+    {
+      "task": "arc_easy",
+      "kind": "acc",
+      "primary_metric": "acc_norm",
+      "value": 0.0,
+      "stderr": null,
+      "samples": 1,
+      "truncated_documents": 0,
+      "truncated_document_fraction": 0.0,
+      "left_truncated_prompt_documents": 0,
+      "windowed_continuation_documents": 0,
+      "all_metrics": {
+        "alias": "arc_easy",
+        "acc,none": 0.0,
+        "acc_stderr,none": "N/A",
+        "acc_norm,none": 0.0,
+        "acc_norm_stderr,none": "N/A"
+      },
+      "case": "a8w4_fp16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "hardware_contract_status": "not_applicable_algorithm_reference"
+    },
+    {
+      "task": "arc_challenge",
+      "kind": "acc",
+      "primary_metric": "acc_norm",
+      "value": 1.0,
+      "stderr": null,
+      "samples": 1,
+      "truncated_documents": 0,
+      "truncated_document_fraction": 0.0,
+      "left_truncated_prompt_documents": 0,
+      "windowed_continuation_documents": 0,
+      "all_metrics": {
+        "alias": "arc_challenge",
+        "acc,none": 1.0,
+        "acc_stderr,none": "N/A",
+        "acc_norm,none": 1.0,
+        "acc_norm_stderr,none": "N/A"
+      },
+      "case": "a8w4_fp16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "hardware_contract_status": "not_applicable_algorithm_reference"
+    },
+    {
+      "task": "boolq",
+      "kind": "acc",
+      "primary_metric": "acc",
+      "value": 0.0,
+      "stderr": null,
+      "samples": 1,
+      "truncated_documents": 0,
+      "truncated_document_fraction": 0.0,
+      "left_truncated_prompt_documents": 0,
+      "windowed_continuation_documents": 0,
+      "all_metrics": {
+        "alias": "boolq",
+        "acc,none": 0.0,
+        "acc_stderr,none": "N/A"
+      },
+      "case": "a8w4_fp16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "hardware_contract_status": "not_applicable_algorithm_reference"
+    },
+    {
+      "task": "hellaswag",
+      "kind": "acc",
+      "primary_metric": "acc_norm",
+      "value": 1.0,
+      "stderr": null,
+      "samples": 1,
+      "truncated_documents": 0,
+      "truncated_document_fraction": 0.0,
+      "left_truncated_prompt_documents": 0,
+      "windowed_continuation_documents": 0,
+      "all_metrics": {
+        "alias": "hellaswag",
+        "acc,none": 1.0,
+        "acc_stderr,none": "N/A",
+        "acc_norm,none": 1.0,
+        "acc_norm_stderr,none": "N/A"
+      },
+      "case": "a8w4_fp16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "hardware_contract_status": "not_applicable_algorithm_reference"
+    },
+    {
+      "task": "winogrande",
+      "kind": "acc",
+      "primary_metric": "acc",
+      "value": 0.0,
+      "stderr": null,
+      "samples": 1,
+      "truncated_documents": 0,
+      "truncated_document_fraction": 0.0,
+      "left_truncated_prompt_documents": 0,
+      "windowed_continuation_documents": 0,
+      "all_metrics": {
+        "alias": "winogrande",
+        "acc,none": 0.0,
+        "acc_stderr,none": "N/A"
+      },
+      "case": "a8w4_fp16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "hardware_contract_status": "not_applicable_algorithm_reference"
+    },
+    {
+      "task": "wikitext2",
+      "kind": "ppl",
+      "primary_metric": "token_perplexity",
+      "value": 7.287499148691273,
+      "avg_nll": 1.98616043485894,
+      "raw_token_count": 298938,
+      "block_size": 2048,
+      "available_complete_blocks": 145,
+      "evaluated_blocks": 1,
+      "tokens_in_evaluated_blocks": 2048,
+      "scoring_tokens": 2047,
+      "discarded_tail_tokens": 1978,
+      "unscored_block_initial_tokens": 1,
+      "elapsed_sec": 1.9466726779937744,
+      "full_stream": false,
+      "non_overlapping": true,
+      "tail_policy": "drop_incomplete_block",
+      "case": "a8w4_fp16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "hardware_contract_status": "not_applicable_algorithm_reference"
+    }
+  ],
+  "worker_manifests": [
+    {
+      "cuda_visible_devices": "1",
+      "gpu_name": "NVIDIA RTX A6000",
+      "tasks": [
+        "wikitext2",
+        "piqa",
+        "arc_easy",
+        "arc_challenge",
+        "boolq",
+        "hellaswag",
+        "winogrande"
+      ],
+      "status": "complete",
+      "elapsed_sec": 17.33810329437256,
+      "method": {
+        "case": "iah_fp16_scale_mlp_w4_qdq_reference",
+        "target_scope": "q/k/v/o remain IA-H A8W8 with FP16 scale; MLP gate/up/down remain IA-H A8W4 with FP16 scale; GLM fused gate_up_proj is treated as MLP; lm_head excluded",
+        "module_count": 196,
+        "per_op": {
+          "q_proj": 28,
+          "k_proj": 28,
+          "v_proj": 28,
+          "o_proj": 28,
+          "gate_proj": 28,
+          "up_proj": 28,
+          "down_proj": 28
+        },
+        "per_op_weight_bits": {
+          "q_proj": 8,
+          "k_proj": 8,
+          "v_proj": 8,
+          "o_proj": 8,
+          "gate_proj": 4,
+          "up_proj": 4,
+          "down_proj": 4
+        },
+        "hadamard_block": 32,
+        "group_size": 32,
+        "act_bits": 8,
+        "attention_weight_bits": 8,
+        "mlp_weight_bits": 4,
+        "scale_code_bits": 0,
+        "payload_format": "float16 scale payload for activation and folded-weight scales; scales are floored at FP16 min subnormal (5.960e-08) and QDQ uses the decoded FP16 scale",
+        "invariant": "Same IA-H A8/W8 attention and A8/W4 MLP quantization as the selected control; only the scale payload is FP16 instead of ScaleCode.",
+        "evaluation_role": "algorithm_quality_reference",
+        "evaluation_case": "a8w4_fp16",
+        "native_attention_rope_kv": true,
+        "hardware_fixed_point_frontend": false,
+        "hardware_numeric_contract": "not_applicable"
+      },
+      "hardware_audit": null,
+      "data": [
+        {
+          "task": "piqa",
+          "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/piqa/validation_full.jsonl",
+          "split": "validation",
+          "rows": 1838,
+          "expected_rows": 1838,
+          "source_id": "baber/piqa",
+          "source_revision": "local validation export",
+          "sha256": "e063f2cb457859c2764604d625ca4112fb9e706b666d7330f12f21a49a6dd9a1",
+          "primary_metric": "acc_norm"
+        },
+        {
+          "task": "arc_easy",
+          "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/lm_eval_standard/arc_easy_test.jsonl",
+          "split": "test",
+          "rows": 2376,
+          "expected_rows": 2376,
+          "source_id": "allenai/ai2_arc:ARC-Easy",
+          "source_revision": "210d026faf9955653af8916fad021475a3f00453",
+          "sha256": "09ab01ecb7493f88ebe45f4183360b102937d3879f566216e62f4ddeececdf56",
+          "primary_metric": "acc_norm"
+        },
+        {
+          "task": "arc_challenge",
+          "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/lm_eval_standard/arc_challenge_test.jsonl",
+          "split": "test",
+          "rows": 1172,
+          "expected_rows": 1172,
+          "source_id": "allenai/ai2_arc:ARC-Challenge",
+          "source_revision": "210d026faf9955653af8916fad021475a3f00453",
+          "sha256": "86ccaace4cd159b5c02b6b3339ebe8a7022a54f1b488e433c060b3bc38ac1f63",
+          "primary_metric": "acc_norm"
+        },
+        {
+          "task": "boolq",
+          "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/boolq/validation.parquet",
+          "split": "validation",
+          "rows": 3270,
+          "expected_rows": 3270,
+          "source_id": "aps/super_glue:boolq",
+          "source_revision": "local validation export",
+          "sha256": "52355d11524b4b874a9b9dcc278feb10f672d52c4f4eff9872e695ede59820f8",
+          "primary_metric": "acc"
+        },
+        {
+          "task": "hellaswag",
+          "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/hellaswag/hellaswag_val.jsonl",
+          "split": "validation",
+          "rows": 10042,
+          "expected_rows": 10042,
+          "source_id": "Rowan/hellaswag",
+          "source_revision": "local validation export",
+          "sha256": "0aa3b88843990f3f10a97b9575c94d7b71fb2205240ba04ae4884d9e9c992588",
+          "primary_metric": "acc_norm"
+        },
+        {
+          "task": "winogrande",
+          "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/winogrande/winogrande_1.1/winogrande_1.1/dev.jsonl",
+          "split": "validation",
+          "rows": 1267,
+          "expected_rows": 1267,
+          "source_id": "allenai/winogrande:winogrande_xl",
+          "source_revision": "winogrande_1.1 dev",
+          "sha256": "1aeac79cf46a3dcbe59a71ca7e5372a1490cde2b4ae2387dc56f00378104d2e8",
+          "primary_metric": "acc"
+        },
+        {
+          "task": "wikitext2",
+          "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/wikitext-2-raw-v1/test-00000-of-00001.jsonl",
+          "split": "test",
+          "source_id": "Salesforce/wikitext:wikitext-2-raw-v1",
+          "sha256": "69d7ab3cc73d4e17e6ad44fe2f99e7734a51d5a321dc38af095fd02b398ca0b8"
+        }
+      ],
+      "model_fingerprint_sha256": "60dced2d4ebd88994c767aebb72a30e3e81260579ca08989c82232651a4c3f81"
+    }
+  ],
+  "versions": {
+    "python": "3.10.19",
+    "torch": "2.10.0+cu128",
+    "transformers": "5.3.0",
+    "datasets": "4.8.4",
+    "lm_eval": "0.4.11",
+    "accelerate": "1.13.0",
+    "triton": "3.6.0"
+  }
+}

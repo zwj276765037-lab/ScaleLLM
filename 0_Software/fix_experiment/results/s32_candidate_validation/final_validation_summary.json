@@ -1,0 +1,64 @@
+{
+  "schema": "scalellm_mlp_final_candidate_summary_v1",
+  "created_at": "2026-09-18T01:30:00+08:00",
+  "model": "Llama-3.1-8B-Instruct",
+  "protocol": "hardware_128",
+  "final_format_id": "0x48384605",
+  "numeric_contract": {
+    "gate_up_total_shift": [20, 44],
+    "gate_up_group_guard": "S37/F24",
+    "gate_up_accumulator": "S44/F24",
+    "gate_up_output": "S24/F16",
+    "gate_up_consumer_sign_extension": "sign-extend each packed lane from bit 23",
+    "swiglu_product": "S32/F16 stored as int32",
+    "down_total_shift": [12, 44],
+    "down_group_guard": "S45/F24",
+    "down_accumulator": "S54/F24",
+    "down_output": "S32/F16"
+  },
+  "bf16": {
+    "ppl": 17.20850605912198,
+    "macro_acc": 0.753853079231591
+  },
+  "mlp_only_final_candidate": {
+    "ppl": 18.4527188174,
+    "relative_ppl_percent": 7.230,
+    "task_acc": {
+      "piqa": 0.8057671381936888,
+      "arc_easy": 0.7849326599326599,
+      "arc_challenge": 0.5452218430034129,
+      "boolq": 0.8146788990825689,
+      "hellaswag": 0.7870942043417646,
+      "winogrande_conservative": 0.7411207576953434,
+      "winogrande_redundant": 0.7434885556432518
+    },
+    "macro_acc_conservative": 0.7464692503749065,
+    "macro_delta_pp_conservative": -0.7383828856684427,
+    "acceptance_limit_pp": -1.0,
+    "format_guard_accumulator_output_errors": 0,
+    "status": "pass"
+  },
+  "full_v5_down_s32": {
+    "ppl": 18.5556555977,
+    "relative_ppl_percent": 7.828,
+    "task_acc": {
+      "piqa": 0.8035908596300326,
+      "arc_easy": 0.7815656565656566,
+      "arc_challenge": 0.5418088737201365,
+      "boolq": 0.8223241590214068,
+      "hellaswag": 0.786197968532165,
+      "winogrande": 0.7426992896606156
+    },
+    "macro_acc": 0.7463644678550021,
+    "macro_delta_pp": -0.748861137658885,
+    "acceptance_limit_pp": -1.5,
+    "format_guard_accumulator_output_errors": 0,
+    "status": "pass"
+  },
+  "software_status": "approved",
+  "hardware_status": {
+    "status": "hold",
+    "legacy_migration_audit": "4/15 PASS",
+    "reason": "RTL/Host still implements the pre-0x48384605 boundary; the audit must be extended for S45/S54, total_shift [12,44], and packed-S24 sign extension."
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://scalellm.local/schemas/modular-experiment-module-result.json",
+  "title": "ScaleLLM modular experiment result",
+  "type": "object",
+  "required": ["schema_version", "module", "status", "variants"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "module": {"type": "string", "pattern": "^[0-9]{2}_[a-z0-9_]+$"},
+    "status": {"enum": ["RUNNING", "DIAGNOSTIC", "COMPLETE", "FAILED"]},
+    "production_commit": {"type": "string"},
+    "part": {"const": "xcvu9p-flga2104-2L-e"},
+    "clock_mhz": {"const": 100.0},
+    "work_unit": {"type": "string"},
+    "variants": {
+      "type": "object",
+      "required": ["sc", "fp16", "fp32"],
+      "properties": {
+        "sc": {"$ref": "#/$defs/variant"},
+        "fp16": {"$ref": "#/$defs/variant"},
+        "fp32": {"$ref": "#/$defs/variant"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "variant": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["PENDING", "RUNNING", "DIAGNOSTIC", "VALID", "FAILED"]},
+        "scope": {"enum": ["operator-only", "boundary-inclusive"]},
+        "functional_pass": {"type": ["boolean", "null"]},
+        "samples": {"type": ["integer", "null"], "minimum": 0},
+        "latency_cycles": {"type": ["number", "null"], "minimum": 0},
+        "steady_state_ii": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "outputs_per_cycle": {"type": ["number", "null"], "minimum": 0},
+        "throughput_per_second_100mhz": {"type": ["number", "null"], "minimum": 0},
+        "post_route": {"$ref": "#/$defs/post_route"},
+        "evidence": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "post_route": {
+      "type": ["object", "null"],
+      "properties": {
+        "lut": {"type": "integer", "minimum": 0},
+        "ff": {"type": "integer", "minimum": 0},
+        "dsp48e2": {"type": "integer", "minimum": 0},
+        "bram18": {"type": "integer", "minimum": 0},
+        "bram36": {"type": "integer", "minimum": 0},
+        "uram288": {"type": "integer", "minimum": 0},
+        "wns_ns": {"type": "number"},
+        "whs_ns": {"type": "number"},
+        "drc_errors": {"type": "integer", "minimum": 0},
+        "unrouted_nets": {"type": "integer", "minimum": 0}
+      },
+      "required": ["lut", "ff", "dsp48e2", "wns_ns", "whs_ns", "drc_errors", "unrouted_nets"]
+    }
+  },
+  "additionalProperties": true
+}

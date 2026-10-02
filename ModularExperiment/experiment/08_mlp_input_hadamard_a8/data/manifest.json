@@ -1,0 +1,50 @@
+{
+  "accuracy_vs_hadamard_s27_real": {
+    "fp16": {
+      "cosine_similarity": 0.9999990878185655,
+      "max_abs_error": 0.4105987548828125,
+      "mean_abs_error": 0.03063425829168409,
+      "rmse": 0.07395344007456249
+    },
+    "fp32": {
+      "cosine_similarity": 0.9999990900780863,
+      "max_abs_error": 0.40991783142089844,
+      "mean_abs_error": 0.03009634518821258,
+      "rmse": 0.07352694688581993
+    },
+    "sc": {
+      "cosine_similarity": 0.9999988876180419,
+      "max_abs_error": 1.0937957763671875,
+      "mean_abs_error": 0.037186149740591645,
+      "rmse": 0.11141919282500222
+    }
+  },
+  "activation_quantization_contract": "raw group32 Min/Max including zero; ideal-scale U8/zp; round-to-nearest ties-to-even; no pre-quantization clipping",
+  "fp16_output": "16x32 U8 plus 16x(zp8 + IEEE FP16 scale)",
+  "fp32_output": "16x32 U8 plus 16x(zp8 + IEEE FP32 scale)",
+  "groups": 128,
+  "hadamard_reference": "/home/user/EDA-202/zhuowenjun/ScaleLLM/model/fixbit_v2.py",
+  "hadamard_reference_sha256": "fb4b34397edc9d14ed3ef4f0b46d60a61b545a52a7a47d15c2eec8ba7b6db271",
+  "hadamard_saturation_count": 0,
+  "input": "16 rows x 32 lanes signed S24 Q8.16",
+  "lanes": 32,
+  "minmax_reference": "/home/user/EDA-202/zhuowenjun/ScaleLLM/ModularExperiment/tools/model/minmax_a8.py",
+  "minmax_reference_sha256": "3ac29b4715e2e9338beeab62c6befc727898cab70518c251ed8a4af636ed8bbe",
+  "native_fp_scale": "round_even((high-low)*2^8/255) Q24, then fixed-to-float",
+  "native_fp_u8": "same ideal-Min/Max U8 as SC; independent of ScaleCode",
+  "production_model": "/home/user/EDA-202/zhuowenjun/ScaleLLM/model/generate_mlp_input_frontend16_cache_vectors.py",
+  "production_model_sha256": "7f29898fc4ace6aeb19dcf4d8294499c5398d1f575f0ab5296c0a07d03a72c6f",
+  "rows": 16,
+  "sc_output": "16x32 U8 plus 16x(meta24 zp/code/shift)",
+  "schema": "scalellm_modular_mlp_input_frontend_native_fp_v1",
+  "seed": "0x16cace",
+  "sha256": {
+    "expected_fp16_meta.mem": "a1da119b8704151cb096132c360fc3121baea169b61641fc87c75f9baa6f9eea",
+    "expected_fp32_meta.mem": "5b12cb06ca251d40685850e4a225b5d203b5f4ab4f355e397d6bf5214cd12599",
+    "expected_fp_u8.mem": "3a9f04405831126dbf996e21e917ae34fd43c8ba3b316e930189abc644b13ad8",
+    "expected_sc_meta.mem": "6e73df41b4a0044dbe25b2699d5d0a0d15ca7bf25fea44fdb50dd26b1cd531c3",
+    "expected_sc_u8.mem": "3a9f04405831126dbf996e21e917ae34fd43c8ba3b316e930189abc644b13ad8",
+    "input_s24.mem": "1d705badc04b9ab4c191e739ccd3f2d5a01c6ce334a1e237f0e10aa663918507"
+  },
+  "zero_diff_rows": 341
+}

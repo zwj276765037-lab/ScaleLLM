@@ -3,9 +3,9 @@
 // Cohort16 SwiGLU frontend with two row-local producers and one central
 // transform/quantization pipeline.  Each outer producer retains only its
 // 8x16 Gate/Up tile store and one SiLU lane.  Products cross the physical
-// boundary as a registered, tagged 32-bit stream.  A two-bank central row
-// ring assembles complete 16x32 groups before the unique 64-DSP Hadamard and
-// four robust quantizers consume them.
+// boundary as registered, tagged 32-bit streams.  The two deterministic
+// streams retire atomically into a two-bank, 32-column BRAM row ring before
+// the unique 64-DSP Hadamard and four robust quantizers consume each group.
 module hap_mlp_swiglu_product_frontend16_q4 #(
     parameter SILU_LUT_FILE = "data/mlp_silu_q16.mem"
 ) (
@@ -105,64 +105,70 @@ module hap_mlp_swiglu_product_frontend16_q4 #(
         end
     endgenerate
 
-    // Central two-bank group ring.  Payload has no reset; bank_valid and the
-    // scoreboards make stale bits unobservable after reset/clear.
-    reg signed [31:0] row_ring_s32_r [0:1][0:15][0:31];
+    // Central two-bank group ring.  Each column is a 64-bit-write/32-bit-read
+    // simple dual-port BRAM.  One write stores matching rows from both branch
+    // producers; the narrow port returns one complete 32-lane row per cycle.
+    // Payload has no reset; bank_valid and the scoreboards make stale bits
+    // unobservable after reset/clear.
+    wire [63:0] row_ring_write_s64 = {
+        branch_product_s32_stream[1], branch_product_s32_stream[0]};
+    wire [3:0] row_ring_write_addr = {
+        branch_row_tag[0], branch_group_seq_tag[0][0]};
+    wire [4:0] row_ring_read_addr;
+    wire signed [31:0] row_ring_read_s32 [0:31];
+    wire row_ring_read_issue;
     reg [15:0] row_complete_scoreboard_r [0:1];
     reg [11:0] bank_group_seq_r [0:1];
     reg [1:0] bank_valid_r;
     reg [1:0] bank_complete_r;
     reg [8:0] bank_branch_beat_count_r [0:1][0:1];
 
-    generate
-        for (row_branch = 0; row_branch < 2;
-             row_branch = row_branch + 1) begin : g_stream_credit
-            wire target_bank = branch_group_seq_tag[row_branch][0];
-            assign branch_stream_ready[row_branch] = rst_n &&
-                !control_clear_local_r &&
-                !bank_complete_r[target_bank] &&
-                (!bank_valid_r[target_bank] ||
-                 bank_group_seq_r[target_bank] ==
-                    branch_group_seq_tag[row_branch]);
-        end
-    endgenerate
+    wire branch_pair_valid = &branch_stream_valid;
+    wire branch_pair_tags_match =
+        branch_group_seq_tag[0] == branch_group_seq_tag[1] &&
+        branch_row_tag[0] == branch_row_tag[1] &&
+        branch_column_tag[0] == branch_column_tag[1];
+    wire pair_target_bank = branch_group_seq_tag[0][0];
+    wire branch_pair_ring_ready = rst_n && !control_clear_local_r &&
+        !bank_complete_r[pair_target_bank] &&
+        (!bank_valid_r[pair_target_bank] ||
+         bank_group_seq_r[pair_target_bank] == branch_group_seq_tag[0]);
 
+    // A branch may retire only with its peer.  This preserves both halves of
+    // the 64-bit BRAM word even if one producer reaches valid first.
+    assign branch_stream_ready[0] = branch_pair_ring_ready &&
+        branch_stream_valid[1] && branch_pair_tags_match;
+    assign branch_stream_ready[1] = branch_pair_ring_ready &&
+        branch_stream_valid[0] && branch_pair_tags_match;
     wire [1:0] branch_stream_fire =
         branch_stream_valid & branch_stream_ready;
-    wire fire_b0_bank0 = branch_stream_fire[0] &&
-        !branch_group_seq_tag[0][0];
-    wire fire_b1_bank0 = branch_stream_fire[1] &&
-        !branch_group_seq_tag[1][0];
-    wire fire_b0_bank1 = branch_stream_fire[0] &&
-        branch_group_seq_tag[0][0];
-    wire fire_b1_bank1 = branch_stream_fire[1] &&
-        branch_group_seq_tag[1][0];
-    wire bank0_allocate = fire_b0_bank0 || fire_b1_bank0;
-    wire bank1_allocate = fire_b0_bank1 || fire_b1_bank1;
+    wire branch_pair_fire = &branch_stream_fire;
+    wire pair_fire_bank0 = branch_pair_fire && !pair_target_bank;
+    wire pair_fire_bank1 = branch_pair_fire && pair_target_bank;
+    wire bank0_allocate = pair_fire_bank0;
+    wire bank1_allocate = pair_fire_bank1;
 
     wire [15:0] bank0_row_mask =
-        ((fire_b0_bank0 && branch_column_tag[0] == 5'd31) ?
-            (16'h0001 << branch_row_tag[0]) : 16'd0) |
-        ((fire_b1_bank0 && branch_column_tag[1] == 5'd31) ?
-            (16'h0100 << branch_row_tag[1]) : 16'd0);
+        (pair_fire_bank0 && branch_column_tag[0] == 5'd31) ?
+            ((16'h0001 << branch_row_tag[0]) |
+             (16'h0100 << branch_row_tag[0])) : 16'd0;
     wire [15:0] bank1_row_mask =
-        ((fire_b0_bank1 && branch_column_tag[0] == 5'd31) ?
-            (16'h0001 << branch_row_tag[0]) : 16'd0) |
-        ((fire_b1_bank1 && branch_column_tag[1] == 5'd31) ?
-            (16'h0100 << branch_row_tag[1]) : 16'd0);
+        (pair_fire_bank1 && branch_column_tag[0] == 5'd31) ?
+            ((16'h0001 << branch_row_tag[0]) |
+             (16'h0100 << branch_row_tag[0])) : 16'd0;
     wire [15:0] bank0_scoreboard_next =
         row_complete_scoreboard_r[0] | bank0_row_mask;
     wire [15:0] bank1_scoreboard_next =
         row_complete_scoreboard_r[1] | bank1_row_mask;
 
     wire [8:0] bank0_b0_count_next =
-        bank_branch_beat_count_r[0][0] + fire_b0_bank0;
+        bank_branch_beat_count_r[0][0] + pair_fire_bank0;
     wire [8:0] bank0_b1_count_next =
-        bank_branch_beat_count_r[0][1] + fire_b1_bank0;
+        bank_branch_beat_count_r[0][1] + pair_fire_bank0;
     wire [8:0] bank1_b0_count_next =
-        bank_branch_beat_count_r[1][0] + fire_b0_bank1;
+        bank_branch_beat_count_r[1][0] + pair_fire_bank1;
     wire [8:0] bank1_b1_count_next =
-        bank_branch_beat_count_r[1][1] + fire_b1_bank1;
+        bank_branch_beat_count_r[1][1] + pair_fire_bank1;
     wire bank0_complete_next = (bank_valid_r[0] || bank0_allocate) &&
         bank0_scoreboard_next == 16'hffff &&
         bank0_b0_count_next == 9'd256 &&
@@ -176,6 +182,58 @@ module hap_mlp_swiglu_product_frontend16_q4 #(
     wire bank1_complete_event = !bank_complete_r[1] &&
         bank1_complete_next;
 
+    genvar row_ring_column;
+    generate
+        for (row_ring_column = 0; row_ring_column < 32;
+             row_ring_column = row_ring_column + 1) begin : g_row_ring_column
+            wire row_ring_column_write = branch_pair_fire &&
+                branch_column_tag[0] == row_ring_column;
+            xpm_memory_sdpram #(
+                .ADDR_WIDTH_A(4),
+                .ADDR_WIDTH_B(5),
+                .AUTO_SLEEP_TIME(0),
+                .BYTE_WRITE_WIDTH_A(64),
+                .CASCADE_HEIGHT(0),
+                .CLOCKING_MODE("common_clock"),
+                .ECC_MODE("no_ecc"),
+                .MEMORY_INIT_FILE("none"),
+                .MEMORY_INIT_PARAM("0"),
+                .MEMORY_OPTIMIZATION("false"),
+                .MEMORY_PRIMITIVE("block"),
+                .MEMORY_SIZE(1024),
+                .MESSAGE_CONTROL(0),
+                .READ_DATA_WIDTH_B(32),
+                .READ_LATENCY_B(1),
+                .READ_RESET_VALUE_B("0"),
+                .RST_MODE_A("SYNC"),
+                .RST_MODE_B("SYNC"),
+                .SIM_ASSERT_CHK(0),
+                .USE_EMBEDDED_CONSTRAINT(0),
+                .USE_MEM_INIT(0),
+                .WAKEUP_TIME("disable_sleep"),
+                .WRITE_DATA_WIDTH_A(64),
+                .WRITE_MODE_B("no_change")
+            ) u_row_ring_bram (
+                .sleep(1'b0),
+                .clka(clk),
+                .ena(row_ring_column_write),
+                .wea(1'b1),
+                .addra(row_ring_write_addr),
+                .dina(row_ring_write_s64),
+                .injectsbiterra(1'b0),
+                .injectdbiterra(1'b0),
+                .clkb(clk),
+                .rstb(1'b0),
+                .enb(row_ring_read_issue),
+                .regceb(1'b1),
+                .addrb(row_ring_read_addr),
+                .doutb(row_ring_read_s32[row_ring_column]),
+                .sbiterrb(),
+                .dbiterrb()
+            );
+        end
+    endgenerate
+
     // One central consumer preserves the frozen arithmetic hierarchy.
     reg consume_active_r;
     reg consume_bank_r;
@@ -185,22 +243,26 @@ module hap_mlp_swiglu_product_frontend16_q4 #(
     reg [2:0] quant_output_wave_r [0:3];
     reg [5:0] completed_row_count_r;
     reg out_valid_r;
+    reg row_ring_read_valid_r;
     reg [16*32*8-1:0] activation_u8_r;
     reg [16*24-1:0] activation_meta_r;
 
-    wire hadamard_in_valid = consume_active_r && source_row_r < 16;
     wire hadamard_in_ready;
-    wire hadamard_in_fire = hadamard_in_valid && hadamard_in_ready;
+    wire row_ring_read_ready = !row_ring_read_valid_r || hadamard_in_ready;
     wire [3:0] selected_source_row = source_row_r < 16 ?
         source_row_r[3:0] : 4'd0;
+    assign row_ring_read_issue = consume_active_r && source_row_r < 16 &&
+        row_ring_read_ready;
+    assign row_ring_read_addr = {
+        selected_source_row[2:0], consume_bank_r, selected_source_row[3]};
+    wire hadamard_in_valid = row_ring_read_valid_r;
     wire [32*32-1:0] hadamard_in_s32;
     genvar hadamard_lane;
     generate
         for (hadamard_lane = 0; hadamard_lane < 32;
              hadamard_lane = hadamard_lane + 1) begin : g_hadamard_row_read
             assign hadamard_in_s32[hadamard_lane*32 +: 32] =
-                row_ring_s32_r[consume_bank_r]
-                    [selected_source_row][hadamard_lane];
+                row_ring_read_s32[hadamard_lane];
         end
     endgenerate
 
@@ -310,6 +372,7 @@ module hap_mlp_swiglu_product_frontend16_q4 #(
             dispatch_row_r <= 5'd0;
             completed_row_count_r <= 6'd0;
             out_valid_r <= 1'b0;
+            row_ring_read_valid_r <= 1'b0;
             for (bank_index = 0; bank_index < 2;
                  bank_index = bank_index + 1) begin
                 row_complete_scoreboard_r[bank_index] <= 16'd0;
@@ -337,6 +400,7 @@ module hap_mlp_swiglu_product_frontend16_q4 #(
             dispatch_row_r <= 5'd0;
             completed_row_count_r <= 6'd0;
             out_valid_r <= 1'b0;
+            row_ring_read_valid_r <= 1'b0;
             for (bank_index = 0; bank_index < 2;
                  bank_index = bank_index + 1) begin
                 row_complete_scoreboard_r[bank_index] <= 16'd0;
@@ -360,16 +424,12 @@ module hap_mlp_swiglu_product_frontend16_q4 #(
                 expected_input_phase_r <= expected_input_phase_r + 2'd1;
             end
 
-            if (branch_stream_valid[0] && branch_stream_valid[1] &&
-                branch_group_seq_tag[0] != branch_group_seq_tag[1])
+            if (branch_pair_valid && !branch_pair_tags_match)
                 sticky_error_r <= 1'b1;
 
-            // Each branch owns disjoint rows, so both narrow writes may
-            // retire in the same cycle without a multi-writer collision.
+            // The paired BRAM write itself is implemented by the generated
+            // memories; these checks protect the deterministic stream order.
             if (branch_stream_fire[0]) begin
-                row_ring_s32_r[branch_group_seq_tag[0][0]]
-                    [branch_row_tag[0]][branch_column_tag[0]] <=
-                        branch_product_s32_stream[0];
                 if (bank_branch_beat_count_r
                         [branch_group_seq_tag[0][0]][0] >= 9'd256 ||
                     branch_row_tag[0] != bank_branch_beat_count_r
@@ -382,9 +442,6 @@ module hap_mlp_swiglu_product_frontend16_q4 #(
                     sticky_error_r <= 1'b1;
             end
             if (branch_stream_fire[1]) begin
-                row_ring_s32_r[branch_group_seq_tag[1][0]]
-                    [8 + branch_row_tag[1]][branch_column_tag[1]] <=
-                        branch_product_s32_stream[1];
                 if (bank_branch_beat_count_r
                         [branch_group_seq_tag[1][0]][1] >= 9'd256 ||
                     branch_row_tag[1] != bank_branch_beat_count_r
@@ -400,13 +457,8 @@ module hap_mlp_swiglu_product_frontend16_q4 #(
             if (bank0_allocate) begin
                 if (!bank_valid_r[0]) begin
                     bank_valid_r[0] <= 1'b1;
-                    bank_group_seq_r[0] <= fire_b0_bank0 ?
-                        branch_group_seq_tag[0] :
-                        branch_group_seq_tag[1];
+                    bank_group_seq_r[0] <= branch_group_seq_tag[0];
                 end
-                if (fire_b0_bank0 && fire_b1_bank0 &&
-                    branch_group_seq_tag[0] != branch_group_seq_tag[1])
-                    sticky_error_r <= 1'b1;
                 row_complete_scoreboard_r[0] <= bank0_scoreboard_next;
                 bank_branch_beat_count_r[0][0] <= bank0_b0_count_next;
                 bank_branch_beat_count_r[0][1] <= bank0_b1_count_next;
@@ -416,13 +468,8 @@ module hap_mlp_swiglu_product_frontend16_q4 #(
             if (bank1_allocate) begin
                 if (!bank_valid_r[1]) begin
                     bank_valid_r[1] <= 1'b1;
-                    bank_group_seq_r[1] <= fire_b0_bank1 ?
-                        branch_group_seq_tag[0] :
-                        branch_group_seq_tag[1];
+                    bank_group_seq_r[1] <= branch_group_seq_tag[0];
                 end
-                if (fire_b0_bank1 && fire_b1_bank1 &&
-                    branch_group_seq_tag[0] != branch_group_seq_tag[1])
-                    sticky_error_r <= 1'b1;
                 row_complete_scoreboard_r[1] <= bank1_scoreboard_next;
                 bank_branch_beat_count_r[1][0] <= bank1_b0_count_next;
                 bank_branch_beat_count_r[1][1] <= bank1_b1_count_next;
@@ -447,7 +494,9 @@ module hap_mlp_swiglu_product_frontend16_q4 #(
                     quant_output_wave_r[q] <= 3'd0;
             end
 
-            if (hadamard_in_fire)
+            if (row_ring_read_ready)
+                row_ring_read_valid_r <= row_ring_read_issue;
+            if (row_ring_read_issue)
                 source_row_r <= source_row_r + 1'b1;
             if (hadamard_out_fire)
                 dispatch_row_r <= dispatch_row_r + 1'b1;
@@ -504,10 +553,13 @@ module hap_mlp_swiglu_product_frontend16_q4 #(
             if (in_valid && !input_tag_matches)
                 $display("ROWLOCAL_STICKY_REASON input_tag phase=%0d tag=%0d/%0d",
                     expected_input_phase_r, in_is_up, in_second_half);
-            if (branch_stream_valid[0] && branch_stream_valid[1] &&
-                branch_group_seq_tag[0] != branch_group_seq_tag[1])
-                $display("ROWLOCAL_STICKY_REASON branch_seq %0d/%0d",
-                    branch_group_seq_tag[0], branch_group_seq_tag[1]);
+            if (branch_pair_valid && !branch_pair_tags_match)
+                $display("ROWLOCAL_STICKY_REASON branch_tags seq=%0d/%0d row=%0d/%0d col=%0d/%0d",
+                    branch_group_seq_tag[0], branch_group_seq_tag[1],
+                    branch_row_tag[0], branch_row_tag[1],
+                    branch_column_tag[0], branch_column_tag[1]);
+            if (branch_stream_fire[0] != branch_stream_fire[1])
+                $error("row-local product streams retired non-atomically");
             if (branch_stream_fire[0] &&
                 (bank_branch_beat_count_r
                     [branch_group_seq_tag[0][0]][0] >= 9'd256 ||

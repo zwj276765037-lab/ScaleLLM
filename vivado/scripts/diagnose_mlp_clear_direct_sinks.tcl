@@ -22,7 +22,7 @@ proc cells_below_roots {roots candidates} {
 
 open_checkpoint $input_dcp
 set branches [lsort -dictionary \
-    [cells_of_module hap_mlp_shared_local_slice8x12_s43_s45]]
+    [cells_of_module hap_mlp_shared_local_slice8x12_s44_s46]]
 set central [get_cells -quiet -hierarchical -filter {
     NAME =~ */maintenance_soft_clear_pulse_r_reg && REF_NAME =~ FD*}]
 set q [get_pins -quiet -of_objects $central -filter {REF_PIN_NAME == Q}]

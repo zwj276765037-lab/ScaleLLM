@@ -4,7 +4,7 @@
 // banks accept alternating wave0/wave1 groups and retain independent S42
 // state, while completed outputs retire in deterministic wave0 then wave1
 // order.  No projection DSP lane is duplicated.
-module hap_linear_tile_accum_dual_s42 #(
+module hap_linear_tile_accum_dual_s42_bank #(
     parameter integer LANES = 16
 ) (
     input  wire                         clk,
@@ -453,9 +453,290 @@ module hap_linear_tile_accum_dual_s42 #(
 
     initial begin
         if (LANES != 16 && LANES != 32 && LANES != 96)
-            $error("hap_linear_tile_accum_dual_s42 illegal LANES");
+            $error("hap_linear_tile_accum_dual_s42_bank illegal LANES");
         if ((LANES % 8) != 0)
-            $error("hap_linear_tile_accum_dual_s42 LANES must divide by 8");
+            $error("hap_linear_tile_accum_dual_s42_bank LANES must divide by 8");
+    end
+
+endmodule
+
+// Preserve one logical dual-wave accumulator boundary while optionally
+// splitting its lane state into two physically independent banks.  The lower
+// bank owns the cycle-level handshake; both banks see identical events and a
+// sticky mismatch check makes any loss of lockstep fail loud.
+(* KEEP_HIERARCHY = "yes" *)
+module hap_linear_tile_accum_dual_s42 #(
+    parameter integer LANES = 16,
+    parameter integer PHYSICAL_SPLIT = 0,
+    parameter integer INPUT_BUFFER = 0
+) (
+    input  wire                         clk,
+    input  wire                         rst_n,
+    input  wire                         clear,
+    input  wire                         in_valid,
+    output wire                         in_ready,
+    input  wire                         in_wave,
+    input  wire                         in_first_group,
+    input  wire                         in_last_group,
+    input  wire signed [LANES*42-1:0]   in_guard_s42,
+    output wire                         out_valid,
+    input  wire                         out_ready,
+    output wire                         out_wave,
+    output wire [LANES*24-1:0]          out_s24,
+    output wire [31:0]                  input_group_count,
+    output wire [31:0]                  output_tile_count,
+    output wire [31:0]                  saturation_count,
+    output wire                         error
+);
+
+    // Kept as a named observation point for existing lockstep diagnostics.
+    wire in_fire = in_valid && in_ready;
+
+    generate
+        if (PHYSICAL_SPLIT == 0) begin : g_monolithic
+            hap_linear_tile_accum_dual_s42_bank #(.LANES(LANES)) u_bank (
+                .clk(clk), .rst_n(rst_n), .clear(clear),
+                .in_valid(in_valid), .in_ready(in_ready), .in_wave(in_wave),
+                .in_first_group(in_first_group),
+                .in_last_group(in_last_group), .in_guard_s42(in_guard_s42),
+                .out_valid(out_valid), .out_ready(out_ready),
+                .out_wave(out_wave), .out_s24(out_s24),
+                .input_group_count(input_group_count),
+                .output_tile_count(output_tile_count),
+                .saturation_count(saturation_count), .error(error)
+            );
+        end else begin : g_physical_split
+            localparam integer HALF_LANES = LANES / 2;
+            wire lower_in_ready, upper_in_ready;
+            wire lower_out_valid, upper_out_valid;
+            wire lower_out_wave, upper_out_wave;
+            wire [HALF_LANES*24-1:0] lower_out_s24, upper_out_s24;
+            wire [31:0] lower_input_count, upper_input_count;
+            wire [31:0] lower_output_count, upper_output_count;
+            wire [31:0] lower_saturation_count, upper_saturation_count;
+            wire lower_error, upper_error;
+            wire lower_bank_in_valid, upper_bank_in_valid;
+            wire lower_bank_in_wave, upper_bank_in_wave;
+            wire lower_bank_in_first, upper_bank_in_first;
+            wire lower_bank_in_last, upper_bank_in_last;
+            wire signed [HALF_LANES*42-1:0] lower_bank_guard_s42;
+            wire signed [HALF_LANES*42-1:0] upper_bank_guard_s42;
+            wire split_out_ready = out_ready && lower_out_valid &&
+                upper_out_valid;
+            wire lockstep_mismatch =
+                (lower_in_ready != upper_in_ready) ||
+                (lower_out_valid != upper_out_valid) ||
+                (lower_out_valid && upper_out_valid &&
+                 (lower_out_wave != upper_out_wave));
+            reg lockstep_error_r;
+
+            assign out_valid = lower_out_valid && upper_out_valid;
+            assign out_wave = lower_out_wave;
+            assign out_s24 = {upper_out_s24, lower_out_s24};
+            assign input_group_count = lower_input_count;
+            assign output_tile_count = lower_output_count;
+            assign saturation_count = lower_saturation_count +
+                upper_saturation_count;
+            assign error = lower_error || upper_error || lockstep_error_r;
+
+            always @(posedge clk or negedge rst_n) begin
+                if (!rst_n)
+                    lockstep_error_r <= 1'b0;
+                else if (clear)
+                    lockstep_error_r <= 1'b0;
+                else if (lockstep_mismatch)
+                    lockstep_error_r <= 1'b1;
+            end
+
+            if (INPUT_BUFFER == 0) begin : g_direct_input
+                wire split_in_valid = in_valid && lower_in_ready &&
+                    upper_in_ready;
+
+                assign in_ready = lower_in_ready && upper_in_ready;
+                assign lower_bank_in_valid = split_in_valid;
+                assign upper_bank_in_valid = split_in_valid;
+                assign lower_bank_in_wave = in_wave;
+                assign upper_bank_in_wave = in_wave;
+                assign lower_bank_in_first = in_first_group;
+                assign upper_bank_in_first = in_first_group;
+                assign lower_bank_in_last = in_last_group;
+                assign upper_bank_in_last = in_last_group;
+                assign lower_bank_guard_s42 =
+                    in_guard_s42[0 +: HALF_LANES*42];
+                assign upper_bank_guard_s42 =
+                    in_guard_s42[HALF_LANES*42 +: HALF_LANES*42];
+            end else begin : g_buffered_input
+                reg [1:0] buffer_count_r;
+                reg lower_head_wave_r, upper_head_wave_r;
+                reg lower_head_first_r, upper_head_first_r;
+                reg lower_head_last_r, upper_head_last_r;
+                reg lower_tail_wave_r, upper_tail_wave_r;
+                reg lower_tail_first_r, upper_tail_first_r;
+                reg lower_tail_last_r, upper_tail_last_r;
+                reg signed [HALF_LANES*42-1:0] lower_head_guard_s42_r;
+                reg signed [HALF_LANES*42-1:0] upper_head_guard_s42_r;
+                reg signed [HALF_LANES*42-1:0] lower_tail_guard_s42_r;
+                reg signed [HALF_LANES*42-1:0] upper_tail_guard_s42_r;
+                wire buffer_enqueue = in_valid && in_ready;
+                wire buffer_drain = (buffer_count_r != 0) && lower_in_ready &&
+                    upper_in_ready;
+
+                // Two no-bypass slots absorb both waves while either bank runs
+                // its four-cycle tile finalizer. The head remains a registered
+                // source for the hot S42 feedback adder and occupancy, rather
+                // than downstream ready, drives the upstream ready path.
+                assign in_ready = rst_n && !clear && (buffer_count_r != 2);
+                assign lower_bank_in_valid = buffer_drain;
+                assign upper_bank_in_valid = buffer_drain;
+                assign lower_bank_in_wave = lower_head_wave_r;
+                assign upper_bank_in_wave = upper_head_wave_r;
+                assign lower_bank_in_first = lower_head_first_r;
+                assign upper_bank_in_first = upper_head_first_r;
+                assign lower_bank_in_last = lower_head_last_r;
+                assign upper_bank_in_last = upper_head_last_r;
+                assign lower_bank_guard_s42 = lower_head_guard_s42_r;
+                assign upper_bank_guard_s42 = upper_head_guard_s42_r;
+
+                always @(posedge clk or negedge rst_n) begin
+                    if (!rst_n) begin
+                        buffer_count_r <= 2'd0;
+                    end else if (clear) begin
+                        buffer_count_r <= 2'd0;
+                    end else begin
+                        case ({buffer_enqueue, buffer_drain})
+                            2'b10: begin
+                                buffer_count_r <= buffer_count_r + 1'b1;
+                                if (buffer_count_r == 0) begin
+                                    lower_head_wave_r <= in_wave;
+                                    upper_head_wave_r <= in_wave;
+                                    lower_head_first_r <= in_first_group;
+                                    upper_head_first_r <= in_first_group;
+                                    lower_head_last_r <= in_last_group;
+                                    upper_head_last_r <= in_last_group;
+                                    lower_head_guard_s42_r <=
+                                        in_guard_s42[0 +: HALF_LANES*42];
+                                    upper_head_guard_s42_r <=
+                                        in_guard_s42[HALF_LANES*42 +:
+                                            HALF_LANES*42];
+                                end else begin
+                                    lower_tail_wave_r <= in_wave;
+                                    upper_tail_wave_r <= in_wave;
+                                    lower_tail_first_r <= in_first_group;
+                                    upper_tail_first_r <= in_first_group;
+                                    lower_tail_last_r <= in_last_group;
+                                    upper_tail_last_r <= in_last_group;
+                                    lower_tail_guard_s42_r <=
+                                        in_guard_s42[0 +: HALF_LANES*42];
+                                    upper_tail_guard_s42_r <=
+                                        in_guard_s42[HALF_LANES*42 +:
+                                            HALF_LANES*42];
+                                end
+                            end
+                            2'b01: begin
+                                buffer_count_r <= buffer_count_r - 1'b1;
+                                if (buffer_count_r == 2) begin
+                                    lower_head_wave_r <= lower_tail_wave_r;
+                                    upper_head_wave_r <= upper_tail_wave_r;
+                                    lower_head_first_r <= lower_tail_first_r;
+                                    upper_head_first_r <= upper_tail_first_r;
+                                    lower_head_last_r <= lower_tail_last_r;
+                                    upper_head_last_r <= upper_tail_last_r;
+                                    lower_head_guard_s42_r <=
+                                        lower_tail_guard_s42_r;
+                                    upper_head_guard_s42_r <=
+                                        upper_tail_guard_s42_r;
+                                end
+                            end
+                            2'b11: begin
+                                if (buffer_count_r == 1) begin
+                                    lower_head_wave_r <= in_wave;
+                                    upper_head_wave_r <= in_wave;
+                                    lower_head_first_r <= in_first_group;
+                                    upper_head_first_r <= in_first_group;
+                                    lower_head_last_r <= in_last_group;
+                                    upper_head_last_r <= in_last_group;
+                                    lower_head_guard_s42_r <=
+                                        in_guard_s42[0 +: HALF_LANES*42];
+                                    upper_head_guard_s42_r <=
+                                        in_guard_s42[HALF_LANES*42 +:
+                                            HALF_LANES*42];
+                                end else begin
+                                    lower_head_wave_r <= lower_tail_wave_r;
+                                    upper_head_wave_r <= upper_tail_wave_r;
+                                    lower_head_first_r <= lower_tail_first_r;
+                                    upper_head_first_r <= upper_tail_first_r;
+                                    lower_head_last_r <= lower_tail_last_r;
+                                    upper_head_last_r <= upper_tail_last_r;
+                                    lower_head_guard_s42_r <=
+                                        lower_tail_guard_s42_r;
+                                    upper_head_guard_s42_r <=
+                                        upper_tail_guard_s42_r;
+                                    lower_tail_wave_r <= in_wave;
+                                    upper_tail_wave_r <= in_wave;
+                                    lower_tail_first_r <= in_first_group;
+                                    upper_tail_first_r <= in_first_group;
+                                    lower_tail_last_r <= in_last_group;
+                                    upper_tail_last_r <= in_last_group;
+                                    lower_tail_guard_s42_r <=
+                                        in_guard_s42[0 +: HALF_LANES*42];
+                                    upper_tail_guard_s42_r <=
+                                        in_guard_s42[HALF_LANES*42 +:
+                                            HALF_LANES*42];
+                                end
+                            end
+                            default: buffer_count_r <= buffer_count_r;
+                        endcase
+                    end
+                end
+            end
+
+            (* KEEP_HIERARCHY = "yes" *)
+            hap_linear_tile_accum_dual_s42_bank #(
+                .LANES(HALF_LANES)
+            ) u_lower_bank (
+                .clk(clk), .rst_n(rst_n), .clear(clear),
+                .in_valid(lower_bank_in_valid), .in_ready(lower_in_ready),
+                .in_wave(lower_bank_in_wave),
+                .in_first_group(lower_bank_in_first),
+                .in_last_group(lower_bank_in_last),
+                .in_guard_s42(lower_bank_guard_s42),
+                .out_valid(lower_out_valid), .out_ready(split_out_ready),
+                .out_wave(lower_out_wave), .out_s24(lower_out_s24),
+                .input_group_count(lower_input_count),
+                .output_tile_count(lower_output_count),
+                .saturation_count(lower_saturation_count),
+                .error(lower_error)
+            );
+
+            (* KEEP_HIERARCHY = "yes" *)
+            hap_linear_tile_accum_dual_s42_bank #(
+                .LANES(HALF_LANES)
+            ) u_upper_bank (
+                .clk(clk), .rst_n(rst_n), .clear(clear),
+                .in_valid(upper_bank_in_valid), .in_ready(upper_in_ready),
+                .in_wave(upper_bank_in_wave),
+                .in_first_group(upper_bank_in_first),
+                .in_last_group(upper_bank_in_last),
+                .in_guard_s42(upper_bank_guard_s42),
+                .out_valid(upper_out_valid), .out_ready(split_out_ready),
+                .out_wave(upper_out_wave), .out_s24(upper_out_s24),
+                .input_group_count(upper_input_count),
+                .output_tile_count(upper_output_count),
+                .saturation_count(upper_saturation_count),
+                .error(upper_error)
+            );
+        end
+    endgenerate
+
+    initial begin
+        if (PHYSICAL_SPLIT != 0 && PHYSICAL_SPLIT != 1)
+            $error("hap_linear_tile_accum_dual_s42 PHYSICAL_SPLIT must be 0 or 1");
+        if (INPUT_BUFFER != 0 && INPUT_BUFFER != 1)
+            $error("hap_linear_tile_accum_dual_s42 INPUT_BUFFER must be 0 or 1");
+        if (PHYSICAL_SPLIT != 0 && LANES != 32)
+            $error("hap_linear_tile_accum_dual_s42 split requires 32 lanes");
+        if (INPUT_BUFFER != 0 && PHYSICAL_SPLIT == 0)
+            $error("hap_linear_tile_accum_dual_s42 input buffer requires split banks");
     end
 
 endmodule

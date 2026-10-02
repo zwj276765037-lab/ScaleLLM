@@ -1,0 +1,42 @@
+{
+  "schema": "scalellm_extended_ppl_result_v1",
+  "status": "complete",
+  "created_at": "2026-09-16T17:40:34.668936+00:00",
+  "model": "GLM-4-9B-0414",
+  "model_fingerprint_sha256": "3ade7125fb99b4bf8b26868d69aa20128539b4274cc28ee9753bf66c39bf80af",
+  "case": "bf16",
+  "full_split": true,
+  "source": {
+    "asset_id": "c4_official_validation_first10000",
+    "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/c4_official/validation_first10000.jsonl",
+    "sha256": "bfa37449879c7cb9f871ba8910f016235c6be4508bcf32884c5bc3adffec1d13",
+    "rows": 10000,
+    "split": "validation, shard 0, source rows [0, 10000)",
+    "separator": "none",
+    "description": "C4-en validation shard-0 fixed rows [0,10000)"
+  },
+  "method": {
+    "case": "bf16",
+    "dtype": "bfloat16",
+    "attention_implementation": "eager",
+    "use_cache": false
+  },
+  "task": "c4_fixed_ppl",
+  "kind": "ppl",
+  "primary_metric": "token_perplexity",
+  "value": 15.642180175334017,
+  "avg_nll": 2.7499711228021235,
+  "total_nll": 12631904.353515625,
+  "raw_token_count": 4595817,
+  "block_size": 2048,
+  "available_complete_blocks": 2244,
+  "evaluated_blocks": 2244,
+  "tokens_in_evaluated_blocks": 4595712,
+  "scoring_tokens": 4593468,
+  "discarded_tail_tokens": 105,
+  "unscored_block_initial_tokens": 2244,
+  "elapsed_sec": 1570.3658878803253,
+  "non_overlapping": true,
+  "tail_policy": "drop_incomplete_block",
+  "add_special_tokens": false
+}

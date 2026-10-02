@@ -59,7 +59,7 @@ proc p8_count_pin_connectivity {handle cell ref_pin_name} {
 
 open_checkpoint $dcp
 
-set shared [p8_count_cells_of_module hap_mlp_shared_dual_slice16x12_s43_s45]
+set shared [p8_count_cells_of_module hap_mlp_shared_dual_slice16x12_s44_s46]
 if {[llength $shared] != 1} {
     error "unexpected P8 shared hierarchy count: [llength $shared]"
 }

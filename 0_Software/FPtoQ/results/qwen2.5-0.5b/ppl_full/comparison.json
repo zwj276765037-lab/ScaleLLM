@@ -1,0 +1,52 @@
+{
+  "schema": "scalellm_fp_to_q_ppl_comparison_v1",
+  "baseline": "software",
+  "controlled_variable": "activation frontend; folded weights and all evaluation settings are unchanged",
+  "rows": [
+    {
+      "case": "software",
+      "activation_frontend": "archived software FP Hadamard32 + A8 ScaleCode",
+      "samples": 64,
+      "num_tokens": 65472,
+      "ppl": 17.93988145780752,
+      "ppl_delta_vs_software": 0.0,
+      "ppl_relative_delta_vs_software": 0.0,
+      "avg_nll": 2.8870262489057823,
+      "avg_nll_delta_vs_software": 0.0,
+      "token_accuracy": 0.4449382942326491,
+      "token_accuracy_delta_vs_software": 0.0,
+      "finite": true,
+      "status": "pass"
+    },
+    {
+      "case": "pre_q_only",
+      "activation_frontend": "S24 Q8.16 / S32 Q16.16 boundary inserted before archived software H32 and A8",
+      "samples": 64,
+      "num_tokens": 65472,
+      "ppl": 18.113119598867915,
+      "ppl_delta_vs_software": 0.17323814106039492,
+      "ppl_relative_delta_vs_software": 0.009656593409930192,
+      "avg_nll": 2.896636515418805,
+      "avg_nll_delta_vs_software": 0.009610266513022658,
+      "token_accuracy": 0.4441440615835777,
+      "token_accuracy_delta_vs_software": -0.000794232649071358,
+      "finite": true,
+      "status": "pass"
+    },
+    {
+      "case": "rtl_exact",
+      "activation_frontend": "production S24 Q8.16 / S32 Q16.16 input, integer H32 and MinMax A8",
+      "samples": 64,
+      "num_tokens": 65472,
+      "ppl": 18.130086944508477,
+      "ppl_delta_vs_software": 0.1902054867009575,
+      "ppl_relative_delta_vs_software": 0.010602382582532544,
+      "avg_nll": 2.897572820370731,
+      "avg_nll_delta_vs_software": 0.010546571464948862,
+      "token_accuracy": 0.44402187194525905,
+      "token_accuracy_delta_vs_software": -0.0009164222873900285,
+      "finite": true,
+      "status": "pass"
+    }
+  ]
+}

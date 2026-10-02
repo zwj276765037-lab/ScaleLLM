@@ -1,0 +1,41 @@
+{
+  "schema": "scalellm_fixedpoint_validation_pause_v1",
+  "paused_at": "2026-09-17T13:42:20+08:00",
+  "reason": "user_requested_stop_to_prioritize_mlp_hardware_fix",
+  "status": "paused_incomplete",
+  "processes_stopped": [
+    "v5_mlp_hellaswag_worker",
+    "v5_full_hellaswag_worker",
+    "balanced_acc_queue",
+    "gpu_regression_finalizer"
+  ],
+  "gpu_state_after_stop": {
+    "gpu0_utilization_percent": 0,
+    "gpu1_utilization_percent": 0
+  },
+  "workers": [
+    {
+      "case": "v5_mlp",
+      "task": "hellaswag",
+      "likelihood_requests_processed": 3907,
+      "likelihood_requests_total": 40168,
+      "progress_percent": 9.72614967187861,
+      "manifest_present": false,
+      "valid_accuracy_available": false,
+      "log": "full_acc_rtl_zero_guard_v3/v5_mlp/shard_hellaswag_gpu0/worker.log",
+      "log_sha256": "fcc75a087a9e3fcc93e1fe794e8f94e1f9e9cbbbd3528eef350b70786dde2769"
+    },
+    {
+      "case": "v5",
+      "task": "hellaswag",
+      "likelihood_requests_processed": 8775,
+      "likelihood_requests_total": 40168,
+      "progress_percent": 21.84574785998805,
+      "manifest_present": false,
+      "valid_accuracy_available": false,
+      "log": "full_acc_rtl_zero_guard_v3/v5/shard_hellaswag_gpu1/worker.log",
+      "log_sha256": "3c784a7956896a4e5409c12637316da6090b75e65ad93e6f4086c311a3f1caba"
+    }
+  ],
+  "interpretation": "The evaluator aggregates four likelihood choices per sample only after the task completes. Partial request progress is not an unbiased or reportable ACC result and is not resumable by the current worker."
+}

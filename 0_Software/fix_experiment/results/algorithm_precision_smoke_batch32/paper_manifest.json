@@ -1,0 +1,33 @@
+{
+  "schema": "scalellm_acc_ppl_plan_summary_v1",
+  "created_at": "2026-09-13T09:42:41.001357+00:00",
+  "rule": "Only compare BF16 and V5/V5-algorithm when protocol names and context lengths match. V5-algorithm is a software reference, not a hardware-valid result. Never compare hardware_128 PPL against literature_2048 PPL.",
+  "runs": [
+    {
+      "run_status": "complete",
+      "case": "v5_algorithm",
+      "protocol": "hardware_128",
+      "context_length": 128,
+      "full_split": false,
+      "protocol_literature_comparable": false,
+      "hardware_constrained": true,
+      "hardware_contract_status": "software_reference_not_hardware",
+      "software_reference_numeric_status": "valid_no_software_width_overflow",
+      "macro_accuracy": 0.625,
+      "ppl": 30.624843599135385,
+      "linear_total_shift_format_error": 8,
+      "linear_group_guard_overflow_s36": 0,
+      "linear_software_group_guard_overflow": 0,
+      "linear_accumulator_overflow": 0,
+      "linear_software_accumulator_overflow": 0,
+      "linear_output_saturation": 861,
+      "matched_bf16_delta_acc_pp": "",
+      "matched_bf16_delta_ppl_percent": "",
+      "cross_protocol_comparison_allowed": false,
+      "error": ""
+    }
+  ],
+  "source_manifests": [
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/fix_experiment/results/algorithm_precision_smoke_batch32/v5_algorithm_hardware_128/merged/manifest.json"
+  ]
+}

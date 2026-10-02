@@ -44,8 +44,19 @@ GOOD="$TMP/route_good"
 hap_v5_make_ooc_route_fixture "$GOOD"
 hap_v5_verify_ooc_route_artifact "$GOOD"
 
+P16_GOOD="$TMP/p16_good/route_good"
+hap_v5_make_ooc_route_fixture "$P16_GOOD" P16_NOCLIP
+hap_v5_verify_ooc_route_artifact "$P16_GOOD"
+
+P16_BAD_SIGNATURE="$TMP/p16_bad_signature/route_good"
+hap_v5_make_ooc_route_fixture "$P16_BAD_SIGNATURE" P16_NOCLIP
+printf 'mutation\n' >> \
+    "$TMP/p16_bad_signature/p16_post_opt_fixture/summary.txt"
+assert_rejected p16_post_opt_signature_drift \
+    hap_v5_verify_ooc_route_artifact "$P16_BAD_SIGNATURE"
+
 # A single forged PASS summary cannot authorize a build without the complete
-# exact 25-input/dynamically-complete output hash closure and physical reports.
+# exact 33-input/dynamically-complete output hash closure and physical reports.
 FORGED="$TMP/route_forged"
 mkdir "$FORGED"
 hap_v5_route_required_summary_lines > "$FORGED/summary.txt"
@@ -53,7 +64,7 @@ printf 'wns_ns=0.1\nwhs_ns=0.1\n' >> "$FORGED/summary.txt"
 assert_rejected summary_only hap_v5_verify_ooc_route_artifact "$FORGED"
 
 cp -a "$GOOD" "$TMP/route_bad_status"
-sed -i 's/status=V5_P10_P7_PRODUCTION_OOC_POST_ROUTE_PASS/status=FAIL/' \
+sed -i 's/status=V5_P10_P14_PRODUCTION_OOC_POST_ROUTE_PASS/status=FAIL/' \
     "$TMP/route_bad_status/summary.txt"
 mapfile -d '' outputs < <(find "$TMP/route_bad_status" -maxdepth 1 \
     -type f -size +0c ! -name OUTPUT_SHA256SUMS -print0 | sort -z)
@@ -84,6 +95,16 @@ sha256sum -- "${outputs[@]}" > \
     "$TMP/route_bad_boundaries/OUTPUT_SHA256SUMS"
 assert_rejected bad_architecture_boundaries \
     hap_v5_verify_ooc_route_artifact "$TMP/route_bad_boundaries"
+
+cp -a "$GOOD" "$TMP/route_bad_relief"
+sed -i 's/relief_placed=12345/relief_placed=68800/' \
+    "$TMP/route_bad_relief/p14_region2_relief_pblock_post_route.txt"
+mapfile -d '' outputs < <(find "$TMP/route_bad_relief" -maxdepth 1 \
+    -type f -size +0c ! -name OUTPUT_SHA256SUMS -print0 | sort -z)
+sha256sum -- "${outputs[@]}" > \
+    "$TMP/route_bad_relief/OUTPUT_SHA256SUMS"
+assert_rejected bad_relief_placed hap_v5_verify_ooc_route_artifact \
+    "$TMP/route_bad_relief"
 
 cp -a "$GOOD" "$TMP/route_bit_leak"
 printf 'not-a-real-bitstream\n' > "$TMP/route_bit_leak/leaked.bit"
@@ -145,6 +166,7 @@ assert_rejected bad_route_input_manifest_self_sha \
 printf 'V5_BOARD_BUILD_PROVENANCE_TEST_PASS\n'
 printf 'recursive_manifest_fixture=2\n'
 printf 'recursive_source_fixture=2\n'
-printf 'route_input_manifest_entries=25\n'
+printf 'route_input_manifest_entries=33\n'
+printf 'p16_noclip_positive=PASS\n'
 printf 'route_output_manifest_mode=dynamic_complete\n'
-printf 'negative_cases=15\n'
+printf 'negative_cases=17\n'

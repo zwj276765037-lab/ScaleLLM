@@ -1,0 +1,57 @@
+{
+  "schema": "scalellm_acc_ppl_plan_summary_v1",
+  "created_at": "2026-09-13T09:01:13.541320+00:00",
+  "rule": "Only compare BF16 and V5/V5-algorithm when protocol names and context lengths match. V5-algorithm is a software reference, not a hardware-valid result. Never compare hardware_128 PPL against literature_2048 PPL.",
+  "runs": [
+    {
+      "run_status": "complete",
+      "case": "bf16",
+      "protocol": "hardware_128",
+      "context_length": 128,
+      "full_split": false,
+      "protocol_literature_comparable": false,
+      "hardware_constrained": true,
+      "hardware_contract_status": "valid",
+      "software_reference_numeric_status": null,
+      "macro_accuracy": 0.8333333333333334,
+      "ppl": 12.005374758460826,
+      "linear_total_shift_format_error": "",
+      "linear_group_guard_overflow_s36": "",
+      "linear_software_group_guard_overflow": "",
+      "linear_accumulator_overflow": "",
+      "linear_software_accumulator_overflow": "",
+      "linear_output_saturation": "",
+      "matched_bf16_delta_acc_pp": "",
+      "matched_bf16_delta_ppl_percent": "",
+      "cross_protocol_comparison_allowed": false,
+      "error": ""
+    },
+    {
+      "run_status": "complete",
+      "case": "v5_algorithm",
+      "protocol": "hardware_128",
+      "context_length": 128,
+      "full_split": false,
+      "protocol_literature_comparable": false,
+      "hardware_constrained": true,
+      "hardware_contract_status": "software_reference_not_hardware",
+      "software_reference_numeric_status": "valid_no_software_width_overflow",
+      "macro_accuracy": 0.6666666666666666,
+      "ppl": 19.94793471975027,
+      "linear_total_shift_format_error": 0,
+      "linear_group_guard_overflow_s36": 0,
+      "linear_software_group_guard_overflow": "",
+      "linear_accumulator_overflow": 0,
+      "linear_software_accumulator_overflow": 0,
+      "linear_output_saturation": 109,
+      "matched_bf16_delta_acc_pp": -16.666666666666675,
+      "matched_bf16_delta_ppl_percent": 66.15836757358946,
+      "cross_protocol_comparison_allowed": true,
+      "error": ""
+    }
+  ],
+  "source_manifests": [
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/fix_experiment/results/algorithm_precision_smoke/bf16_hardware_128/merged/manifest.json",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/fix_experiment/results/algorithm_precision_smoke/v5_algorithm_hardware_128/merged/manifest.json"
+  ]
+}

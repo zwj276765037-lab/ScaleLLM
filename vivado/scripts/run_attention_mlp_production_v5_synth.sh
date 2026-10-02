@@ -19,6 +19,7 @@ export HAP_BUILD_DIR="$(readlink -m -- "$requested_build")"
 ROWLOCAL_STATIC_CHECKER="$ROOT/vivado/scripts/check_mlp_swiglu_rowlocal_unique_central_static.sh"
 COHORT16_STATIC_CHECKER="$ROOT/vivado/scripts/check_attention_mlp_production_v5_cohort16_static.sh"
 P5_STATIC_CHECKER="$ROOT/vivado/scripts/check_attention_mlp_production_v5_p10_p5_static.sh"
+FORMAT_V3_STATIC_CHECKER="$ROOT/vivado/scripts/check_mlp_v5_format_v3_static.sh"
 [[ -n "${HAP_SWIGLU_OOC_ARTIFACT:-}" ]] || {
     printf 'HAP_SWIGLU_OOC_ARTIFACT is required\n' >&2
     exit 2
@@ -78,10 +79,10 @@ verify_upstream_artifacts() {
         "$HAP_BUILD_DIR" >&2
     exit 2
 }
-mapfile -t active_batch < <(pgrep -af \
+mapfile -t active_batch < <(pgrep -u "$(id -u)" -af \
     '[u]nwrapped/lnx64.o/vivado .*[-]mode batch' || true)
 if [[ "${#active_batch[@]}" -ne 0 ]]; then
-    printf 'another batch Vivado is active; synthesis not started:\n' >&2
+    printf 'another project-user batch Vivado is active; synthesis not started:\n' >&2
     printf '  %s\n' "${active_batch[@]}" >&2
     exit 75
 fi
@@ -134,7 +135,8 @@ for evidence_input in \
     "$ROOT/vivado/scripts/synth_attention_mlp_production_v5.tcl" \
     "$ROWLOCAL_STATIC_CHECKER" \
     "$COHORT16_STATIC_CHECKER" \
-    "$P5_STATIC_CHECKER"; do
+    "$P5_STATIC_CHECKER" \
+    "$FORMAT_V3_STATIC_CHECKER"; do
     [[ -f "$evidence_input" ]] || {
         echo "Missing V5 production evidence input: $evidence_input" >&2
         exit 2
@@ -174,15 +176,20 @@ cohort16_static_rc=$?
 "$P5_STATIC_CHECKER" \
     > "$HAP_REPORT_DIR/p5_compact_static_check.txt" 2>&1
 p5_static_rc=$?
+"$FORMAT_V3_STATIC_CHECKER" \
+    > "$HAP_REPORT_DIR/mlp_format_v3_static_check.txt" 2>&1
+format_v3_static_rc=$?
 set -e
 if (( rowlocal_static_rc != 0 || cohort16_static_rc != 0 || \
-      p5_static_rc != 0 )) || \
+      p5_static_rc != 0 || format_v3_static_rc != 0 )) || \
    [[ "$(grep -Fxc 'MLP_SWIGLU_ROWLOCAL_UNIQUE_CENTRAL_STATIC_PASS' \
         "$HAP_REPORT_DIR/swiglu_rowlocal_static_check.txt")" -ne 1 ]] || \
    [[ "$(grep -Fxc 'V5_COHORT16_STATIC_CONTRACT_PASS' \
         "$HAP_REPORT_DIR/cohort16_production_static_check.txt")" -ne 1 ]] || \
    [[ "$(grep -Fxc 'V5_P10_P5_STATIC_PASS' \
-        "$HAP_REPORT_DIR/p5_compact_static_check.txt")" -ne 1 ]]; then
+        "$HAP_REPORT_DIR/p5_compact_static_check.txt")" -ne 1 ]] || \
+   [[ "$(grep -Fxc 'MLP_V5_FORMAT_V3_STATIC_PASS' \
+        "$HAP_REPORT_DIR/mlp_format_v3_static_check.txt")" -ne 1 ]]; then
     printf 'V5 synthesis static architecture gate failed; evidence: %s\n' \
         "$HAP_REPORT_DIR" >&2
     mapfile -d '' early_outputs < <(find "$HAP_REPORT_DIR" -maxdepth 1 \
@@ -241,6 +248,7 @@ for required in summary.txt post_synth.dcp post_opt.dcp \
         timing_post_opt.rpt swiglu_rowlocal_static_check.txt \
         cohort16_production_static_check.txt \
         p5_compact_static_check.txt \
+        mlp_format_v3_static_check.txt \
         upstream_artifacts.txt upstream_provenance_precheck.txt \
         upstream_provenance_postcheck.txt \
         vivado.log vivado.jou launcher_status.txt input_sha_postcheck.txt; do
@@ -290,6 +298,10 @@ for literal in \
     'attention_projection_dsp48e2=2240' \
     'attention_array_dsp48e2=2176' \
     'attention_frontend_dsp48e2=64' \
+    'attention_base_frontend_dsp48e2=64' \
+    'no_clip_s27_quantizer_instances=12' \
+    'attention_quantizer_instances=8' \
+    'attention_quantizer_dsp48e2=0' \
     'raw_weight_push_loads=37' \
     'weight_data_capture_contract=32x256' \
     'weight_data_capture_nets=32' \
@@ -307,13 +319,21 @@ for literal in \
     'generic_repack_instances=0' 'swiglu_frontend_instances=1' \
     'swiglu_row_leaf_instances=2' 'swiglu_unique_hadamard_instances=1' \
     'swiglu_fold2_hadamard_instances=0' 'swiglu_quantizer_instances=4' \
-    'swiglu_silu_instances=2' 'attention_col3_array_instances=1' \
+    'swiglu_silu_instances=2' 'swiglu_frontend_dsp48e2=72' \
+    'swiglu_hadamard_dsp48e2=64' 'swiglu_quantizer_dsp48e2=0' \
+    'swiglu_silu_dsp48e2=4' 'swiglu_frontend_ramb36e2=40' \
+    'swiglu_row_ring_ramb36e2=28' 'swiglu_silu_ramb36e2=12' \
+    'swiglu_other_ramb36e2=0' 'attention_col3_array_instances=1' \
     'attention_old_array_instances=0' 'attention_left2_shard_instances=1' \
     'attention_center12_shard_instances=1' \
     'attention_right2_shard_instances=1' \
     'attention_center_subshard_instances=4' \
     'attention_leaf_shard_instances=6' \
     'compact_input_frontend_instances=1' \
+    'compact_input_frontend_dsp48e2=8' \
+    'compact_input_base_frontend_dsp48e2=8' \
+    'compact_input_quantizer_instances=4' \
+    'compact_input_quantizer_dsp48e2=0' \
     'compact_input_capture_contract=48x256' \
     'compact_input_capture_ff=12288' \
     'compact_input_capture_controls=48' \
@@ -325,9 +345,9 @@ for literal in \
     'down_activation_capture_loads=280/280' \
     'gate_accum_instances=2' 'gate_accum_write_controls=16' \
     'gate_accum_finalize_owners=16' \
-    'down_accum_instances=2' 'down_guard_capture_contract=16x432' \
-    'down_guard_capture_controls=16' 'down_guard_capture_ff=6912' \
-    'down_guard_capture_loads=432/432' \
+    'down_accum_instances=2' 'down_guard_capture_contract=16x444' \
+    'down_guard_capture_controls=16' 'down_guard_capture_ff=7104' \
+    'down_guard_capture_loads=444/444' \
     'down_output_capture_contract=16x288' \
     'down_output_capture_controls=16' 'down_output_capture_ff=4608' \
     'down_output_capture_loads=288/288' \
@@ -348,9 +368,13 @@ for literal in \
     'branch0_capture_leaf_instances=816' \
     'branch1_capture_leaf_instances=816' \
     'branch0_capture_leaf_lut1=816' 'branch1_capture_leaf_lut1=816' \
-    'dsp48e2=5453' 'dsp_required=5453' 'uram288=752' \
+    'dsp48e2=5449' 'dsp_required=5449' 'uram288=752' \
+    'ramb36e2=829' 'ramb18e2=22' \
     'post_opt_data_bufg=0' 'hierarchy_ok=1' \
     'protected_structure_ok=1' 'post_opt_data_bufg_ok=1' \
+    'attention_projection_ok=1' 'compact_input_frontend_ok=1' \
+    'swiglu_frontend_ok=1' 'swiglu_bram_ok=1' \
+    'no_clip_quantizer_dsp_ok=1' \
     'attention_local_store_ok=1' 'hard_resource_ok=1' \
     'down_elastic2_instances=2'; do
     if [[ "$(grep -Fxc -- "$literal" "$HAP_REPORT_DIR/summary.txt")" -ne 1 ]]; then

@@ -363,9 +363,9 @@ proc hap_preplace_mlp_clear_boundary_audit {branches} {
 set compact_input_frontend [hap_preplace_cells_of_module \
     hap_mlp_input_frontend16_compact_cache]
 set down_elastic2 [hap_preplace_cells_of_module \
-    hap_mlp_down_branch_elastic2_s24]
+    hap_mlp_down_branch_elastic2_s24_v6]
 set mlp_local_branches [hap_preplace_cells_of_module \
-    hap_mlp_shared_local_slice8x12_s43_s45]
+    hap_mlp_shared_local_slice8x12_s44_s46]
 lassign [hap_preplace_mlp_local_clear_audit $mlp_local_branches] \
     mlp_local_clear_ff mlp_local_clear_protected_ff \
     branch0_local_clear_ff branch1_local_clear_ff

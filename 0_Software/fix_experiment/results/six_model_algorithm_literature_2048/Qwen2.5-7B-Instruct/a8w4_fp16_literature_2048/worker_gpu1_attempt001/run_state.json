@@ -1,0 +1,202 @@
+{
+  "schema": "scalellm_literature_aligned_worker_v1",
+  "created_at": "2026-09-15T04:26:21.825346+00:00",
+  "pid": 1249647,
+  "cuda_visible_devices": "1",
+  "device": "cuda:0",
+  "gpu_name": "NVIDIA RTX A6000",
+  "model": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Qwen2.5-7B-Instruct",
+  "model_spec": {
+    "name": "Qwen2.5-7B-Instruct",
+    "directory": "Qwen2.5-7B-Instruct",
+    "model_type": "qwen2",
+    "architecture": "Qwen2ForCausalLM",
+    "layers": 28,
+    "expected_per_op": {
+      "q_proj": 28,
+      "k_proj": 28,
+      "v_proj": 28,
+      "o_proj": 28,
+      "gate_proj": 28,
+      "up_proj": 28,
+      "down_proj": 28
+    },
+    "expected_module_count": 196,
+    "expected_weight_bits": {
+      "q_proj": 8,
+      "k_proj": 8,
+      "v_proj": 8,
+      "o_proj": 8,
+      "gate_proj": 4,
+      "up_proj": 4,
+      "down_proj": 4
+    }
+  },
+  "model_identity": {
+    "schema": "scalellm_checkpoint_identity_v1",
+    "created_at": "2026-09-15T00:11:37.705392+00:00",
+    "checkpoint_name": "Qwen2.5-7B-Instruct",
+    "resolved_path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Qwen2.5-7B-Instruct",
+    "fingerprint_sha256": "60dced2d4ebd88994c767aebb72a30e3e81260579ca08989c82232651a4c3f81",
+    "total_bytes": 15242807270,
+    "file_count": 14,
+    "files": [
+      {
+        "name": ".gitattributes",
+        "bytes": 1519,
+        "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+      },
+      {
+        "name": "LICENSE",
+        "bytes": 11343,
+        "sha256": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+      },
+      {
+        "name": "README.md",
+        "bytes": 6240,
+        "sha256": "f366f33bbf6bcadbb7d87f0a21a7b65584a56b8d58b0743c77c88bee625b93a6"
+      },
+      {
+        "name": "config.json",
+        "bytes": 663,
+        "sha256": "7463bb0ea78315365e6c6b74de4e73bbcc8359dfb0c5a737584e077d42c0b03c"
+      },
+      {
+        "name": "generation_config.json",
+        "bytes": 243,
+        "sha256": "3a8f9087e486054c8a4a08dae2e5a3ba62e23da212b5b8c08bc42cb983c3459f"
+      },
+      {
+        "name": "merges.txt",
+        "bytes": 1671839,
+        "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+      },
+      {
+        "name": "model-00001-of-00004.safetensors",
+        "bytes": 3945441440,
+        "sha256": "a1333e6293854747c481288ea83b348226af178dd565c49b6f9495ba1966aba7"
+      },
+      {
+        "name": "model-00002-of-00004.safetensors",
+        "bytes": 3864726352,
+        "sha256": "f5d25a2772cb825164a2a2c0fb6d51a87e282abf21e4dd75bc5cfb3cd0ea6185"
+      },
+      {
+        "name": "model-00003-of-00004.safetensors",
+        "bytes": 3864726424,
+        "sha256": "8efdec4c1bc12317ae1a38dc42b595ce777738a64deea3fcb8a0a91381bcdfd5"
+      },
+      {
+        "name": "model-00004-of-00004.safetensors",
+        "bytes": 3556377672,
+        "sha256": "1a72d403cdf0c1ec3cb7f289f17b394a01e64394c2e9b3c0f94dbce3faf879bd"
+      },
+      {
+        "name": "model.safetensors.index.json",
+        "bytes": 27752,
+        "sha256": "624bf7c47cd12468fdc16e38a47cf4f19e0415b859a223ba3c027eed2f0e1028"
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 7031645,
+        "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 7305,
+        "sha256": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583"
+      },
+      {
+        "name": "vocab.json",
+        "bytes": 2776833,
+        "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+      }
+    ],
+    "model_spec": {
+      "name": "Qwen2.5-7B-Instruct",
+      "directory": "Qwen2.5-7B-Instruct",
+      "model_type": "qwen2",
+      "architecture": "Qwen2ForCausalLM",
+      "layers": 28,
+      "expected_per_op": {
+        "q_proj": 28,
+        "k_proj": 28,
+        "v_proj": 28,
+        "o_proj": 28,
+        "gate_proj": 28,
+        "up_proj": 28,
+        "down_proj": 28
+      },
+      "expected_module_count": 196,
+      "expected_weight_bits": {
+        "q_proj": 8,
+        "k_proj": 8,
+        "v_proj": 8,
+        "o_proj": 8,
+        "gate_proj": 4,
+        "up_proj": 4,
+        "down_proj": 4
+      }
+    }
+  },
+  "case": "a8w4_fp16",
+  "protocol": {
+    "protocol": "literature_2048",
+    "context_length": 2048,
+    "case": "a8w4_fp16",
+    "zero_shot": true,
+    "full_split": true,
+    "literature_comparable": true,
+    "hardware_constrained": false,
+    "overlength_continuation_policy": "lm_eval_default"
+  },
+  "tasks": [
+    "wikitext2",
+    "piqa",
+    "arc_easy",
+    "arc_challenge",
+    "boolq",
+    "hellaswag",
+    "winogrande"
+  ],
+  "limit": null,
+  "versions": {
+    "python": "3.10.19",
+    "torch": "2.10.0+cu128",
+    "transformers": "5.3.0",
+    "datasets": "4.8.4",
+    "lm_eval": "0.4.11",
+    "accelerate": "1.13.0",
+    "triton": "3.6.0"
+  },
+  "seed": 20260913,
+  "runtime_args": {
+    "batch_size": 32,
+    "ppl_batch_size": 1,
+    "allow_format_errors": false
+  },
+  "tokenizer_boundary_policy": {
+    "name": "fixed_context_independent_continuation_fallback_v1",
+    "stock_lm_eval_path_when_prefix_stable": true,
+    "fallback_add_special_tokens": false,
+    "applied_to_cases": [
+      "bf16",
+      "a8w8_fp32",
+      "a8w4_fp32",
+      "a8w4_fp16",
+      "reference_qdq"
+    ]
+  },
+  "status": "complete",
+  "hardware_contract_status": "not_applicable_algorithm_reference",
+  "elapsed_sec": 1678.8436510562897,
+  "completed_tasks": [
+    "wikitext2",
+    "piqa",
+    "arc_easy",
+    "arc_challenge",
+    "boolq",
+    "hellaswag",
+    "winogrande"
+  ]
+}

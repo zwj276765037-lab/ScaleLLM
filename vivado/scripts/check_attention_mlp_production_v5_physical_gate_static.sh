@@ -826,9 +826,10 @@ for literal in \
     'set center_nonprojection_dsp \' \
     '[hap_v5_floorplan::list_subtract $center_dsp \' \
     '$center_projection_dsp]' \
-    '[expr {$p2_contract ? 149 : 161}]' \
+    '$p2_contract ? ($p16_noclip ? 145 : 149) : 161' \
     '$move0 != 16 || [llength $lanes_slr1] != 96 ||' \
-    '$move2 != 16 || $planned0 != 1862 || $planned1 != 1781 ||' \
+    '$move2 != 16 || $planned0 != 1862 ||' \
+    '$planned1 != $expected_p2_slr1 ||' \
     '$move2 != 16 || $planned0 != 1862 || $planned1 != 1793 ||' \
     '$planned2 != 1810' \
     '$move0 != 12 || [llength $lanes_slr1] != 101 ||' \
@@ -1233,46 +1234,71 @@ require_literal_count "$APPLY" \
     'hap_v5_floorplan::discover $base_contract' 1
 require_literal_count "$APPLY" 'hap_v5_floorplan::discover' 1
 
-# The board pre-place hook uses the same canonical, Attention-geometry, P5
-# input-locality and P6 postprocess layers as the accepted P7 production
-# placement and route contract.
+# The board pre-place hook uses the same canonical, Attention-geometry, P5,
+# P9 postprocess/quantizer and P14 region2-relief layers as the active
+# production placement and route contract.
 for literal in \
     'set ::hap_v5_floorplan::expected_top attention_mlp_vcu118_v5_bd_wrapper' \
     'set base_contract P2_COHORT16_COL2_12_2' \
     'set p5_contract P5_INPUT_HALF_LOCAL_8_8' \
-    'set p6_contract P6_POSTPROCESS_GROUP4_SPLIT_4_8_4' \
-    'set p7_contract P7_ATTN_REGION2_ROWS_Y5_Y6_Y6_Y8' \
-    'set region2_variant rowsplit_y5_y6_y6_y8' \
+    'set p9_postprocess_contract P9_POSTPROCESS_SPLIT_6_4_6' \
+    'set p9_quantizer3_contract P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6' \
+    'set p14_region2_relief_contract P14_ATTN_REGION2_SHARED_X0_X2' \
     'set plan [hap_v5_floorplan::discover $base_contract]' \
     'projection_core16x16_w8_reuse_ooc_floorplan.tcl' \
     'v5_production_p5_input_partition_floorplan.tcl' \
-    'v5_production_p6_postprocess_partition_floorplan.tcl' \
+    'v5_production_p9_postprocess_partition_floorplan.tcl' \
+    'v5_production_p9_quantizer3_locality_floorplan.tcl' \
+    'v5_production_p14_region2_x2_relief_floorplan.tcl' \
     'set geometry_plan [hap_projection_ooc_floorplan::discover $projection_root 1]' \
     'set p5_plan [hap_v5_p5_input_partition::discover $plan]' \
-    'set p6_plan [hap_v5_p6_postprocess_partition::discover $plan $p5_plan]' \
+    '[hap_v5_p9_postprocess_partition::discover $plan $p5_plan]' \
+    'set p9_quantizer3_plan [hap_v5_p9_quantizer3_locality::discover' \
+    '[hap_v5_p14_region2_relief::discover $geometry_plan]' \
     'hap_projection_ooc_floorplan::apply $geometry_plan $geometry_prefix 0' \
     'hap_v5_p5_input_partition::apply $p5_plan' \
-    'hap_v5_p6_postprocess_partition::apply $p6_plan' \
-    '[dict get $geometry_audit pblock_count] != 12' \
+    'hap_v5_p9_postprocess_partition::apply $p9_postprocess_plan' \
+    'hap_v5_p9_quantizer3_locality::apply $p9_quantizer3_plan' \
+    'hap_v5_p14_region2_relief::apply $p14_relief_plan' \
+    '[dict get $geometry_audit pblock_count] != 10' \
     'set base_audit [hap_v5_floorplan::audit_pblock_contract' \
     'set p5_audit [hap_v5_p5_input_partition::audit $p5_plan 0]' \
-    'set p6_audit [hap_v5_p6_postprocess_partition::audit $p6_plan 0]' \
+    '[hap_v5_p9_postprocess_partition::audit $p9_postprocess_plan 0]' \
+    '[hap_v5_p9_quantizer3_locality::audit $p9_quantizer3_plan 0]' \
+    '[hap_v5_p14_region2_relief::audit $p14_relief_plan 0]' \
     '[dict get $base_audit pblock_count] != 11' \
-    '[dict get $base_audit dsp_coverage] != 5453' \
+    '[dict get $base_audit dsp_coverage] != $expected_total_dsp' \
     '[dict get $base_audit uram_coverage] != 752' \
     '[dict get $p5_audit pblock_count] != 2' \
-    '[dict get $p6_audit pblock_count] != 2' \
-    '[llength [get_pblocks -quiet]] != 27' \
+    '[dict get $p9_postprocess_audit pblock_count] != 2' \
+    '[dict get $p9_quantizer3_plan primitive_count] !=' \
+    '$expected_quantizer3_primitives ||' \
+    '[dict get $p14_relief_plan primitive_count] !=' \
+    '$expected_region2_primitives ||' \
+    '[llength [dict get $p9_postprocess_plan slr0_rows]] != 16044' \
+    '[llength [dict get $p9_postprocess_plan center_rows]] != 10696' \
+    '[llength [dict get $p9_postprocess_plan slr2_rows]] != 16044' \
+    '[llength [get_pblocks -quiet]] != 26' \
     'V5_BOARD_FLOORPLAN_APPLIED' \
     'V5_BOARD_ATTENTION_GEOMETRY_PRE_PLACE_PASS' \
     'V5_BOARD_BASE_PBLOCK_PRE_PLACE_PASS' \
     'V5_BOARD_P5_INPUT_PLAN_PRE_PLACE_PASS' \
     'V5_BOARD_P5_INPUT_PBLOCK_PRE_PLACE_PASS' \
-    'V5_BOARD_P6_POSTPROCESS_PLAN_PRE_PLACE_PASS' \
-    'V5_BOARD_P6_POSTPROCESS_PBLOCK_PRE_PLACE_PASS'; do
+    'V5_BOARD_P9_POSTPROCESS_PLAN_PRE_PLACE_PASS' \
+    'V5_BOARD_P9_POSTPROCESS_PBLOCK_PRE_PLACE_PASS' \
+    'V5_BOARD_P9_QUANTIZER3_PLAN_PRE_PLACE_PASS' \
+    'V5_BOARD_P9_QUANTIZER3_PBLOCK_PRE_PLACE_PASS' \
+    'V5_BOARD_P14_REGION2_RELIEF_PLAN_PRE_PLACE_PASS' \
+    'V5_BOARD_P14_REGION2_RELIEF_PBLOCK_PRE_PLACE_PASS'; do
     require_literal "$APPLY" "$literal"
 done
 reject_literal "$APPLY" 'pb_board_v5_'
+for stale in \
+    'P6_POSTPROCESS_GROUP4_SPLIT_4_8_4' \
+    'P7_ATTN_REGION2_ROWS_Y5_Y6_Y6_Y8' \
+    'v5_production_p6_postprocess_partition_floorplan.tcl'; do
+    reject_literal "$APPLY" "$stale"
+done
 for literal in \
     'pblock_contract_variant [dict get $plan contract_variant]' \
     'attention_board_variant [dict get $plan attention_board_variant]' \
@@ -1733,9 +1759,15 @@ for literal in \
     '[cells_of_module hap_a8w8_col_shard_s42]' \
     '[cells_of_module hap_mlp_input_frontend16_compact_cache]' \
     '[cells_of_module hap_mlp_down_activation_cache16]' \
-    '[cells_of_module hap_mlp_tile_accum_s36]' \
-    '[cells_of_module hap_mlp_down_group_major_accum_s45]' \
-    '[cells_of_module hap_mlp_down_branch_elastic2_s24]' \
+    '[cells_of_module hap_mlp_tile_accum_s37]' \
+    '[cells_of_module hap_mlp_down_group_major_accum_s46]' \
+    '[cells_of_module hap_mlp_down_branch_elastic2_s24_v6]' \
+    'proc audit_attention_region2_elastic_fifo {region2 dual_accumulators}' \
+    'NAME =~ */u_center12/u_region2_cols8_11' \
+    '*g_buffered_input*guard_s42_r_reg*' \
+    '*g_buffered_input*buffer_count_r_reg*' \
+    'require_count attention_buffered_dual_accumulator' \
+    'require_count attention_region2_fifo_occupancy_ff $occupancy_ffs 2' \
     '&& [llength $attention_col3_array] == 1' \
     '&& [llength $attention_old_array] == 0' \
     '&& [llength $attention_left_shard] == 1' \
@@ -1760,12 +1792,22 @@ for literal in \
     'down_activation_capture_contract 16x280' \
     'gate_accum_write_controls $gate_write_controls' \
     'gate_accum_finalize_owners $gate_finalize_owners' \
-    'down_guard_capture_contract 16x432' \
+    'down_guard_capture_contract 16x444' \
     'down_output_capture_contract 16x288' \
+    'swiglu_metadata_address_dsp_r1 == 3' \
+    'swiglu_metadata_address_dsp_r2 == 1' \
+    '[llength $swiglu_metadata_address_dsp_unexpected] == 0' \
     'serial_reset_lut2_domains $serial_reset_domains' \
     'post_opt_data_bufg $data_bufg' \
     'protected_structure_ok $protected_structure_ok' \
     'post_opt_data_bufg_ok $post_opt_data_bufg_ok' \
+    'attention_region2_buffered_accumulator_instances' \
+    'attention_region2_g_buffered_input_present' \
+    'attention_region2_buffer_payload_ff' \
+    'attention_region2_buffer_tag_ff' \
+    'attention_region2_buffer_occupancy_ff' \
+    'attention_region2_buffer_partition_ok' \
+    'attention_region2_elastic_fifo_ok' \
     'down_elastic2_instances [llength $down_elastic2]'; do
     require_literal "$POST_OPT" "$literal"
 done
@@ -1784,12 +1826,27 @@ for literal in \
     'down_activation_capture_loads=280/280' \
     'gate_accum_write_controls=16' \
     'gate_accum_finalize_owners=16' \
-    'down_guard_capture_contract=16x432' \
-    'down_guard_capture_loads=432/432' \
+    'down_guard_capture_contract=16x444' \
+    'down_guard_capture_loads=444/444' \
     'down_output_capture_contract=16x288' \
     'down_output_capture_loads=288/288' \
+    'swiglu_metadata_address_dsp_r1=3' \
+    'swiglu_metadata_address_dsp_r2=1' \
+    'swiglu_metadata_address_dsp_unexpected=' \
+    'swiglu_metadata_address_dsp_identity_ok=1' \
     'serial_reset_lut2_domains=3' \
     'serial_reset_protected_domains=3' \
+    'attention_region2_instances=1' \
+    'attention_region2_dual_accumulator_instances=1' \
+    'attention_region2_buffered_accumulator_instances=1' \
+    'attention_region2_lower_bank_instances=1' \
+    'attention_region2_upper_bank_instances=1' \
+    'attention_region2_g_buffered_input_present=1' \
+    'attention_region2_buffer_occupancy_ff=2' \
+    'attention_region2_buffer_partition_ok=1' \
+    'attention_region2_elastic_fifo_ok=1' \
+    'attention_region2_buffer_payload_ff' \
+    'attention_region2_buffer_tag_ff' \
     'post_opt_data_bufg=0' \
     'protected_structure_ok=1' \
     'post_opt_data_bufg_ok=1' \

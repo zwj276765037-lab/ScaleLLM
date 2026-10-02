@@ -9,12 +9,15 @@ from host.scalellm_hardware import (
     MLP_COMPLETION_ACK,
     MLP_ABORT_STATUS,
     MLP_CONTROL,
+    MLP_DOWN_SATURATION_COUNT,
     MLP_DOWN_META_RECORDS,
     MLP_FORMAT_ID,
     MLP_GATE_META_RECORDS,
+    MLP_NUMERIC_STATUS,
     MLP_PAIRED_STATUS,
     MLP_TENSOR_INPUT_BEATS,
     MLP_TENSOR_INPUT_GROUPS,
+    MLP_TOTAL_SHIFT_FORMAT_ERROR_COUNT,
     ScaleLLMHardwareBackend,
 )
 from host.scalellm_runtime import (
@@ -178,6 +181,13 @@ class ScaleLLMHardwareTests(unittest.TestCase):
                 bad, FakeStager(), poll_interval_s=0
             ).initialize_shared_mode()
 
+        old_width_bitstream = FakeRegisterTransport()
+        old_width_bitstream.registers[0x100] = 0x4838_4602
+        with self.assertRaisesRegex(RuntimeContractError, "identity mismatch"):
+            ScaleLLMHardwareBackend(
+                old_width_bitstream, FakeStager(), poll_interval_s=0
+            ).initialize_shared_mode()
+
     def test_attention_programs_frozen_addresses_and_reuses_metadata(self):
         backend, transport, stager = self.make_backend()
         first = CommandIdentity(7, 1, 0, 0, 0, 0)
@@ -257,6 +267,27 @@ class ScaleLLMHardwareTests(unittest.TestCase):
                 self.assertEqual(
                     transport.registers[MLP_PAIRED_STATUS], 1 << 5
                 )
+                self.assertIn((MLP_COMPLETION_ACK, identity.command_id),
+                              transport.writes)
+
+    def test_mlp_numeric_telemetry_is_acknowledged_then_fails_closed(self):
+        cases = (
+            (MLP_DOWN_SATURATION_COUNT, 1, "down_output_saturation_count"),
+            (MLP_TOTAL_SHIFT_FORMAT_ERROR_COUNT, 2,
+             "total_shift_format_error_count"),
+            (MLP_NUMERIC_STATUS, 1, "guard_overflow"),
+            (MLP_NUMERIC_STATUS, 2, "accumulator_overflow"),
+            (MLP_NUMERIC_STATUS, 4, "format_error_status"),
+        )
+        for index, (offset, value, message) in enumerate(cases):
+            with self.subTest(message=message):
+                backend, transport, _ = self.make_backend()
+                transport.registers[offset] = value
+                identity = CommandIdentity(20 + index, 10 + index,
+                                           0, 0, index, 1)
+                with self.assertRaisesRegex(RuntimeContractError, message):
+                    backend.execute(Engine.MLP, identity)
+                self.assertEqual(transport.registers[0x29C], 0)
                 self.assertIn((MLP_COMPLETION_ACK, identity.command_id),
                               transport.writes)
 

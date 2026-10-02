@@ -13,8 +13,17 @@ from typing import Iterable
 
 MLP_FORMAT_ID_V1 = 0x4838_4D01
 FULL_FORMAT_ID_V1 = 0x4838_4601
-MLP_FORMAT_ID = 0x4838_4D02
-FULL_FORMAT_ID = 0x4838_4602
+MLP_FORMAT_ID = 0x4838_4D05
+FULL_FORMAT_ID = 0x4838_4605
+MLP_GATE_UP_TOTAL_SHIFT_MIN = 20
+MLP_DOWN_TOTAL_SHIFT_MIN = 12
+MLP_TOTAL_SHIFT_MAX = 44
+MLP_RAW_S33_ABS_MAX = 4_244_832_000
+MLP_GATE_UP_GUARD_WIDTH = 37
+MLP_DOWN_GUARD_WIDTH = 45
+MLP_GATE_UP_ACCUM_WIDTH = 44
+MLP_DOWN_ACCUM_WIDTH = 54
+MLP_DOWN_OUTPUT_WIDTH = 32
 ROWS = 8
 HIDDEN = 4096
 INTERMEDIATE = 14336
@@ -30,10 +39,8 @@ S32_MIN = -(1 << 31)
 S32_MAX = (1 << 31) - 1
 S35_MIN = -(1 << 34)
 S35_MAX = (1 << 34) - 1
-ABS_Q9999_Q16 = 65_333
-CLIP_Q001_Q16 = 2_032
-CLIP_Q999_Q16 = 63_504
-SCALE_SHIFT_LIMIT = 4_269_834_239
+SCALE_EXACT_LIMIT = 4_261_478_400
+SCALE_ROUND_LIMIT = 4_269_834_239
 SILU_LIMIT_Q16 = 16 << 16
 SILU_STEP_Q16 = 1 << 8
 SILU_LUT_ENTRIES = 8193
@@ -104,6 +111,28 @@ def round_shift_away_zero(value: int, shift: int) -> int:
     if value >= 0:
         return (int(value) + half) >> shift
     return -(((-int(value)) + half) >> shift)
+
+
+def mlp_recover_guard_s37(raw_s33: int, total_shift: int) -> int:
+    """Align one legal Gate/Up contribution to signed S37/F24."""
+    raw = require_signed(raw_s33, 33, "MLP raw contribution")
+    if not MLP_GATE_UP_TOTAL_SHIFT_MIN <= total_shift <= MLP_TOTAL_SHIFT_MAX:
+        raise ValueError("Gate/Up total_shift must be in [20,44]")
+    guard = raw << (24 - total_shift) if total_shift < 24 else \
+        raw >> (total_shift - 24)
+    return require_signed(guard, MLP_GATE_UP_GUARD_WIDTH,
+                          "Gate/Up Group32 guard")
+
+
+def mlp_recover_down_guard_s45(raw_s33: int, total_shift: int) -> int:
+    """Align one legal Down contribution to signed S45/F24."""
+    raw = require_signed(raw_s33, 33, "MLP raw contribution")
+    if not MLP_DOWN_TOTAL_SHIFT_MIN <= total_shift <= MLP_TOTAL_SHIFT_MAX:
+        raise ValueError("Down total_shift must be in [12,44]")
+    guard = raw << (24 - total_shift) if total_shift < 24 else \
+        raw >> (total_shift - 24)
+    return require_signed(guard, MLP_DOWN_GUARD_WIDTH,
+                          "Down Group32 guard")
 
 
 def require_signed(value: int, width: int, name: str = "value") -> int:
@@ -221,24 +250,15 @@ class A8S35Result:
             self.zero_point
 
 
-def _two_smallest(values: list[int]) -> tuple[int, int]:
-    first = second = None
-    for value in values:
-        if first is None or value <= first:
-            second, first = first, value
-        elif second is None or value < second:
-            second = value
-    assert first is not None and second is not None
-    return first, second
-
-
-def _two_largest(values: list[int]) -> tuple[int, int]:
-    first, second = _two_smallest([-value for value in values])
-    return -first, -second
-
-
-def _interp_floor(base: int, high: int, low: int, coefficient: int) -> int:
-    return base + (((high - low) * coefficient) >> 16)
+def round_div_even(numerator: int, denominator: int) -> int:
+    """Round a non-negative rational to nearest, with exact ties to even."""
+    if numerator < 0 or denominator <= 0:
+        raise ValueError("round_div_even requires numerator>=0 and denominator>0")
+    quotient, remainder = divmod(numerator, denominator)
+    doubled = remainder << 1
+    if doubled > denominator or (doubled == denominator and quotient & 1):
+        quotient += 1
+    return quotient
 
 
 def _encode_scale_from_diff(diff_q16: int) -> tuple[int, int]:
@@ -246,56 +266,44 @@ def _encode_scale_from_diff(diff_q16: int) -> tuple[int, int]:
         return 0, 0
     shifted = int(diff_q16)
     shift = 0
-    while shift < 63 and (shifted << 1) <= SCALE_SHIFT_LIMIT:
+    while shift < 63 and (shifted << 1) <= SCALE_EXACT_LIMIT:
         shifted <<= 1
         shift += 1
-    code = (shifted + (255 << 15)) // (255 << 16)
+    code = round_div_even(shifted, 255 << 16)
     return min(255, max(1, code)), shift
 
 
-def _encoded_ratio_magnitude(value_q16: int, code: int, shift: int) -> int:
-    if code <= 0:
-        return 0
-    magnitude = abs(int(value_q16))
-    adjusted = (magnitude << shift) + (code << 15)
-    if adjusted >= (code * 255 << 16):
-        return 255
-    return min(255, (adjusted >> 16) // code)
-
-
-def robust_a8_quantize_s35(values: Iterable[int]) -> A8S35Result:
+def minmax_a8_quantize_s35(values: Iterable[int]) -> A8S35Result:
+    """Raw Group32 asymmetric U8 Min/Max quantization after Hadamard."""
     source = [require_signed(int(value), 35, f"lane[{index}]")
               for index, value in enumerate(values)]
     if len(source) != GROUP_SIZE:
         raise ValueError(f"A8 group requires {GROUP_SIZE} values")
-    abs_max1, abs_max2 = _two_largest([abs(value) for value in source])
-    abs_threshold = _interp_floor(
-        abs_max2, abs_max1, abs_max2, ABS_Q9999_Q16)
-    clipped_abs = [max(-abs_threshold, min(abs_threshold, value))
-                   for value in source]
-    min1, min2 = _two_smallest(clipped_abs)
-    max1, max2 = _two_largest(clipped_abs)
-    clip_low = _interp_floor(min1, min2, min1, CLIP_Q001_Q16)
-    clip_high = _interp_floor(max2, max1, max2, CLIP_Q999_Q16)
-    diff = clip_high - clip_low
-    if diff <= 0:
+    low = min(min(source), 0)
+    high = max(max(source), 0)
+    diff = high - low
+    if diff == 0:
         return A8S35Result((0,) * GROUP_SIZE, 0, 0, 0,
-                           clip_low, clip_high)
-    if diff > SCALE_SHIFT_LIMIT:
-        raise ValueError(
-            f"S35 A8 diff_q16={diff} exceeds ScaleCode U8/shift6 range")
+                           low, high)
     code, shift = _encode_scale_from_diff(diff)
-    zero_point = 0 if clip_low >= 0 else min(
-        255, _encoded_ratio_magnitude(clip_low, code, shift))
+    zero_point = min(255, round_div_even((-low) * 255, diff))
     output = []
-    for value in clipped_abs:
-        value = max(clip_low, min(clip_high, value))
-        magnitude = _encoded_ratio_magnitude(value, code, shift)
-        quantized = zero_point-magnitude if value < 0 else \
-            zero_point+magnitude
-        output.append(max(0, min(255, quantized)))
+    for value in source:
+        affine_numerator = value * 255 + zero_point * diff
+        if affine_numerator <= 0:
+            quantized = 0
+        elif affine_numerator >= 255 * diff:
+            quantized = 255
+        else:
+            quantized = round_div_even(affine_numerator, diff)
+        output.append(quantized)
     return A8S35Result(tuple(output), code, shift, zero_point,
-                       clip_low, clip_high)
+                       low, high)
+
+
+def robust_a8_quantize_s35(values: Iterable[int]) -> A8S35Result:
+    """Compatibility alias for callers being migrated to Min/Max naming."""
+    return minmax_a8_quantize_s35(values)
 
 
 def twos_hex(value: int, width: int) -> str:
@@ -332,7 +340,7 @@ def capacity_model() -> CapacityModel:
 
 
 def architecture_summary() -> dict:
-    clock_hz = 150_000_000
+    clock_hz = 100_000_000
     cohort_rows = 16
     layers = 32
     mib = 1 << 20
@@ -341,7 +349,7 @@ def architecture_summary() -> dict:
     matrix_bytes = attention_matrix_bytes + mlp_matrix_bytes
     visible_ddr_bytes = 4 << 30
     attention_32_cycles = 22_668_478
-    mlp_32_cycles = 16_873_472
+    mlp_32_cycles = 22_292_480
     serial_32_cycles = attention_32_cycles + mlp_32_cycles
     pipeline_slot_cycles = max(attention_32_cycles, mlp_32_cycles)
 
@@ -354,7 +362,7 @@ def architecture_summary() -> dict:
         }
 
     ddr_targets = []
-    for tokens_per_second in (90, 95, 100):
+    for tokens_per_second in (60, 65, 70):
         useful_gbps = matrix_bytes * tokens_per_second / cohort_rows / 1e9
         ddr_targets.append({
             "tokens_per_second": tokens_per_second,
@@ -364,7 +372,7 @@ def architecture_summary() -> dict:
         })
 
     return {
-        "schema": "hap_attention_mlp_architecture_model_v2",
+        "schema": "hap_attention_mlp_architecture_model_v3",
         "model": "Llama-3.1-8B",
         "platform": "VCU118 xcvu9p-flga2104-2L-e",
         "hidden": HIDDEN,
@@ -385,6 +393,8 @@ def architecture_summary() -> dict:
             "projection_dsp48e2": 2_240,
         },
         "mlp": {
+            "full_format_id": FULL_FORMAT_ID,
+            "internal_format_id": MLP_FORMAT_ID,
             "activation_bits": 8,
             "weight_bits": 4,
             "branches": 2,
@@ -392,8 +402,23 @@ def architecture_summary() -> dict:
             "columns": 12,
             "group": 32,
             "kernel_dsp48e2": 3_072,
+            "compact_input_dsp48e2": 8,
+            "s35_dividers_per_quantizer": 2,
+            "s35_xsim_max_group_cycles": 308,
+            "swiglu_xsim_max_group_interval": 1_213,
             "external_columns": 16,
             "local_repack": "3x16-to-4x12",
+            "gate_up_legal_total_shift": [MLP_GATE_UP_TOTAL_SHIFT_MIN,
+                                            MLP_TOTAL_SHIFT_MAX],
+            "down_legal_total_shift": [MLP_DOWN_TOTAL_SHIFT_MIN,
+                                         MLP_TOTAL_SHIFT_MAX],
+            "raw_s33_abs_max": MLP_RAW_S33_ABS_MAX,
+            "gate_up_group_guard_width": MLP_GATE_UP_GUARD_WIDTH,
+            "down_group_guard_width": MLP_DOWN_GUARD_WIDTH,
+            "gate_up_accumulator_width": MLP_GATE_UP_ACCUM_WIDTH,
+            "down_accumulator_width": MLP_DOWN_ACCUM_WIDTH,
+            "down_output_width": MLP_DOWN_OUTPUT_WIDTH,
+            "down_output_fraction_bits": 16,
         },
         "weights": {
             "attention_matrix_bytes_per_layer":
@@ -413,7 +438,8 @@ def architecture_summary() -> dict:
                 attention_32_cycles,
                 "historical Attention-only cycles scaled to cohort16"),
             "mlp_stage": stage(
-                mlp_32_cycles, "V5 full-shape analytical schedule"),
+                mlp_32_cycles,
+                "V5 full-shape analytical schedule using divider2 BRAM-row-ring XSIM interval"),
             "serial_diagnostic": stage(
                 serial_32_cycles, "analytical; not target dataflow"),
             "dual_cohort_pipeline": stage(
@@ -425,9 +451,9 @@ def architecture_summary() -> dict:
             "targets": ddr_targets,
         },
         "host_turnaround_p95_ms": {
-            "hard_90_tokens_per_second": 2.0,
-            "engineering_95_tokens_per_second": 1.5,
-            "stretch_100_tokens_per_second": 1.2,
+            "hard_60_tokens_per_second": 2.0,
+            "engineering_65_tokens_per_second": 1.5,
+            "stretch_70_tokens_per_second": 1.2,
         },
         "board_measured": False,
     }

@@ -116,7 +116,7 @@ module hap_mlp_axil_control #(
     output wire          done_sticky,
     output wire          error_sticky
 );
-    localparam [31:0] FULL_FORMAT_ID = 32'h4838_4602;
+    localparam [31:0] FULL_FORMAT_ID = 32'h4838_4603;
     localparam [31:0] ABI_VERSION = 32'h0004_0003;
     localparam [1:0] OWNER_MLP = 2'd2;
     localparam [2:0] OP_ID_MLP = 3'd1;

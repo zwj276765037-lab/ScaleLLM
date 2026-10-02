@@ -77,7 +77,7 @@ module hap_mlp_axil_control_tb;
       end
       checks=checks+1;rready=1;tick();rready=0;end endtask
     initial begin telemetry[3*32+:32]=32'h12345678;repeat(4)tick();rst_n=1;tick();
-      rd(12'h100,32'h48384602);rd(12'h104,32'h00040003);
+      rd(12'h100,32'h48384603);rd(12'h104,32'h00040003);
       wr(12'h108,2,0);check(owner_pulses==1&&owner_request==2,"owner request");tick();
       owner_request_done=1;tick();owner_request_done=0;
       rd(12'h10c,32'h00000060);

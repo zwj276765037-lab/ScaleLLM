@@ -1,0 +1,44 @@
+{
+  "schema": "scalellm_v5_fullchain_quality_v1",
+  "case": "v5",
+  "status": "running",
+  "updated_at": "2026-09-13T03:43:47.143781+00:00",
+  "elapsed_sec": 3474.951513528824,
+  "completed_tasks": [
+    "wikitext2",
+    "piqa",
+    "arc_challenge",
+    "openbookqa"
+  ],
+  "method": {
+    "case": "v5_production_fullchain",
+    "manifest": "vivado/manifests/attention_mlp_production_v5_cohort16_sources.list",
+    "attention_format_id": "0x48384103",
+    "mlp_full_format_id": "0x48384602",
+    "layers": 32,
+    "max_context": 128,
+    "cohort_rows": 16,
+    "attention_weight_bits": 8,
+    "mlp_weight_bits": 4,
+    "activation_bits": 8,
+    "kv_bits": 12,
+    "host_residual_rmsnorm": "FP32",
+    "lm_head": "FP32 host",
+    "strict_total_shift": false
+  },
+  "audit": {
+    "activation_elements": 62259986432,
+    "fp_to_fixed_saturation": 0,
+    "hadamard_saturation": 0,
+    "activation_scale_format_error": 0,
+    "linear_total_shift_format_error": 517,
+    "linear_accumulator_overflow": 0,
+    "linear_output_saturation": 21765,
+    "rope_output_saturation": 0,
+    "kv12_clip": 0,
+    "qk_score_clip": 21981929,
+    "pv_output_saturation": 0,
+    "swiglu_output_overflow": 0
+  },
+  "hardware_contract_status": "invalid_format_error"
+}

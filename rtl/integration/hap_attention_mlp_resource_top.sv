@@ -146,7 +146,7 @@ module hap_attention_mlp_resource_top (
       g13,g12,g11,g10,g9,g8,g7,g6,g5,g4,g3,g2,g1,g0,c3,c2,c1,c0};
 
     wire mlp_engine_clear=engine_soft_clear||mlp_abort_clear;
-    hap_mlp_full_command16_s45 u_mlp(
+    hap_mlp_full_command16_s46 u_mlp(
       .core_clk(core_clk),.core_rst_n(core_rst_n),
       .core_clear(mlp_engine_clear),
       .command_pause(command_pause),

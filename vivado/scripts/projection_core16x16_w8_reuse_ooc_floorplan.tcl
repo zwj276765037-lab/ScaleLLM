@@ -4,6 +4,112 @@
 namespace eval hap_projection_ooc_floorplan {
     variable expected_part xcvu9p-flga2104-2L-e
     variable expected_top hap_projection_core16x16_w8_reuse_registered_ooc_harness
+    variable dsp_signature_source P14_LEGACY
+    variable expected_frontend_dsp 64
+    variable expected_slr_dsp {272 1696 272}
+    variable region2_signature_source P14_LEGACY
+    variable region2_residual_lut_removal_limit 0
+    variable region2_signature [dict create \
+        total_primitives 68799 total_lut 33883 total_ff 32032 total_dsp 544 \
+        lane_primitives 1675 lane_dsp 17 \
+        rows0_3_primitives 26800 rows0_3_lut 13504 \
+        rows0_3_ff 12112 rows0_3_dsp 272 \
+        rows4_7_primitives 26800 rows4_7_lut 13504 \
+        rows4_7_ff 12112 rows4_7_dsp 272 \
+        residual_primitives 15199 residual_lut 6875 \
+        residual_ff 7808 residual_dsp 0]
+}
+
+proc hap_projection_ooc_floorplan::configure_dsp_signature {
+        frontend_dsp slr_dsp source} {
+    variable dsp_signature_source
+    variable expected_frontend_dsp
+    variable expected_slr_dsp
+    if {$source eq "" || $source eq "P14_LEGACY"} {
+        error "fresh DSP signature requires non-legacy provenance"
+    }
+    if {![string is integer -strict $frontend_dsp] || $frontend_dsp <= 0} {
+        error "frontend DSP signature is not a positive integer: $frontend_dsp"
+    }
+    if {[llength $slr_dsp] != 3} {
+        error "SLR DSP signature must contain exactly three values"
+    }
+    foreach value $slr_dsp {
+        if {![string is integer -strict $value] || $value < 0} {
+            error "SLR DSP signature contains an invalid value: $value"
+        }
+    }
+    if {[lindex $slr_dsp 0] != 272 || [lindex $slr_dsp 2] != 272 ||
+        [lindex $slr_dsp 1] != 1632 + $frontend_dsp ||
+        [expr {[lindex $slr_dsp 0] + [lindex $slr_dsp 1] +
+            [lindex $slr_dsp 2]}] != 2176 + $frontend_dsp} {
+        error "DSP signature changes the frozen array/frontend topology"
+    }
+    set expected_frontend_dsp $frontend_dsp
+    set expected_slr_dsp $slr_dsp
+    set dsp_signature_source $source
+}
+
+proc hap_projection_ooc_floorplan::get_dsp_signature_source {} {
+    variable dsp_signature_source
+    return $dsp_signature_source
+}
+
+proc hap_projection_ooc_floorplan::configure_region2_signature {
+        signature source} {
+    variable region2_signature
+    variable region2_signature_source
+    set required [list total_primitives total_lut total_ff total_dsp \
+        lane_primitives lane_dsp rows0_3_primitives rows0_3_lut \
+        rows0_3_ff rows0_3_dsp rows4_7_primitives rows4_7_lut \
+        rows4_7_ff rows4_7_dsp residual_primitives residual_lut \
+        residual_ff residual_dsp]
+    if {$source eq "" || $source eq "P14_LEGACY"} {
+        error "fresh region2 signature requires non-legacy provenance"
+    }
+    foreach key $required {
+        if {![dict exists $signature $key]} {
+            error "region2 signature is missing '$key'"
+        }
+        set value [dict get $signature $key]
+        if {![string is integer -strict $value] || $value < 0} {
+            error "region2 signature '$key' is not a nonnegative integer: $value"
+        }
+    }
+    if {[dict size $signature] != [llength $required]} {
+        error "region2 signature contains unexpected fields"
+    }
+    foreach suffix {primitives lut ff dsp} {
+        set sum [expr {[dict get $signature rows0_3_$suffix] +
+            [dict get $signature rows4_7_$suffix] +
+            [dict get $signature residual_$suffix]}]
+        if {$sum != [dict get $signature total_$suffix]} {
+            error "region2 signature $suffix partition is not additive"
+        }
+    }
+    if {[dict get $signature rows0_3_dsp] != 272 ||
+        [dict get $signature rows4_7_dsp] != 272 ||
+        [dict get $signature residual_dsp] != 0 ||
+        [dict get $signature total_dsp] != 544 ||
+        [dict get $signature lane_dsp] != 17} {
+        error "region2 signature changes the frozen DSP architecture"
+    }
+    set region2_signature $signature
+    set region2_signature_source $source
+}
+
+proc hap_projection_ooc_floorplan::get_region2_signature_source {} {
+    variable region2_signature_source
+    return $region2_signature_source
+}
+
+proc hap_projection_ooc_floorplan::set_region2_residual_lut_removal_limit {
+        limit} {
+    variable region2_residual_lut_removal_limit
+    if {![string is integer -strict $limit] || $limit < 0 || $limit > 1} {
+        error "region2 residual LUT removal limit must be 0 or 1"
+    }
+    set region2_residual_lut_removal_limit $limit
 }
 
 proc hap_projection_ooc_floorplan::require_count {label values expected} {
@@ -545,6 +651,9 @@ proc hap_projection_ooc_floorplan::partition_region1_lanes {
 
 proc hap_projection_ooc_floorplan::partition_region2_rows {
         region2_root region2_primitives} {
+    variable region2_signature
+    variable region2_signature_source
+    variable region2_residual_lut_removal_limit
     set root_name [get_property NAME $region2_root]
     set root_prefix "${root_name}/"
     set lane_roots [lsort -dictionary -unique [get_cells -quiet \
@@ -619,8 +728,10 @@ proc hap_projection_ooc_floorplan::partition_region2_rows {
     set rows0_3_primitives [lsort -dictionary -unique $rows0_3_primitives]
     set rows4_7_primitives [lsort -dictionary -unique $rows4_7_primitives]
     foreach lane_name [dict keys $lane_group_by_name] {
-        if {[dict get $lane_primitive_counts $lane_name] != 1675 ||
-            [dict get $lane_dsp_counts $lane_name] != 17} {
+        if {[dict get $lane_primitive_counts $lane_name] !=
+                [dict get $region2_signature lane_primitives] ||
+            [dict get $lane_dsp_counts $lane_name] !=
+                [dict get $region2_signature lane_dsp]} {
             error "projection OOC region2 lane signature mismatch: lane=$lane_name primitives=[dict get $lane_primitive_counts $lane_name] dsp=[dict get $lane_dsp_counts $lane_name]"
         }
     }
@@ -629,15 +740,32 @@ proc hap_projection_ooc_floorplan::partition_region2_rows {
         $rows4_7_primitives]
     set residual_primitives [list_subtract $region2_primitives \
         $lane_primitives]
-    foreach {label cells expected_primitives expected_lut expected_ff \
-            expected_dsp} [list \
-            rows0_3 $rows0_3_primitives 26800 13504 12112 272 \
-            rows4_7 $rows4_7_primitives 26800 13504 12112 272 \
-            residual $residual_primitives 15199 6875 7808 0] {
-        if {[llength $cells] != $expected_primitives ||
-            [count_ref_glob $cells LUT*] != $expected_lut ||
-            [count_ref_glob $cells FD*] != $expected_ff ||
-            [count_ref $cells DSP48E2] != $expected_dsp} {
+    set residual_removed_lut 0
+    foreach {label cells} [list rows0_3 $rows0_3_primitives \
+            rows4_7 $rows4_7_primitives residual $residual_primitives] {
+        set expected_primitives [dict get $region2_signature \
+            ${label}_primitives]
+        set expected_lut [dict get $region2_signature ${label}_lut]
+        set expected_ff [dict get $region2_signature ${label}_ff]
+        set expected_dsp [dict get $region2_signature ${label}_dsp]
+        set actual_primitives [llength $cells]
+        set actual_lut [count_ref_glob $cells LUT*]
+        set actual_ff [count_ref_glob $cells FD*]
+        set actual_dsp [count_ref $cells DSP48E2]
+        set primitive_delta [expr {$expected_primitives - $actual_primitives}]
+        set lut_delta [expr {$expected_lut - $actual_lut}]
+        set signature_ok [expr {
+            $actual_ff == $expected_ff && $actual_dsp == $expected_dsp}]
+        if {$label eq "residual"} {
+            set signature_ok [expr {$signature_ok &&
+                $primitive_delta == $lut_delta && $primitive_delta >= 0 &&
+                $primitive_delta <= $region2_residual_lut_removal_limit}]
+            set residual_removed_lut $primitive_delta
+        } else {
+            set signature_ok [expr {$signature_ok &&
+                $primitive_delta == 0 && $lut_delta == 0}]
+        }
+        if {!$signature_ok} {
             error "projection OOC region2 row signature mismatch: group=$label primitives=[llength $cells] LUT=[count_ref_glob $cells LUT*] FF=[count_ref_glob $cells FD*] DSP=[count_ref $cells DSP48E2]"
         }
     }
@@ -653,17 +781,34 @@ proc hap_projection_ooc_floorplan::partition_region2_rows {
     if {[object_names $covered] ne [object_names $region2_primitives]} {
         error "projection OOC region2 row partition is not an exact cover"
     }
+    set total_primitive_delta [expr {
+        [dict get $region2_signature total_primitives] -
+        [llength $region2_primitives]}]
+    set total_lut_delta [expr {
+        [dict get $region2_signature total_lut] -
+        [count_ref_glob $region2_primitives LUT*]}]
+    if {$total_primitive_delta != $residual_removed_lut ||
+        $total_lut_delta != $residual_removed_lut ||
+        [count_ref_glob $region2_primitives FD*] !=
+            [dict get $region2_signature total_ff] ||
+        [count_ref $region2_primitives DSP48E2] !=
+            [dict get $region2_signature total_dsp]} {
+        error "projection OOC region2 total signature mismatch"
+    }
     return [dict create lane_roots $lane_roots \
         rows0_3_lane_roots $rows0_3_lane_roots \
         rows4_7_lane_roots $rows4_7_lane_roots \
         rows0_3_primitives $rows0_3_primitives \
         rows4_7_primitives $rows4_7_primitives \
-        residual_primitives $residual_primitives exact_cover 1]
+        residual_primitives $residual_primitives exact_cover 1 \
+        residual_removed_lut $residual_removed_lut \
+        signature_source $region2_signature_source]
 }
 
 proc hap_projection_ooc_floorplan::discover {{dut_path u_dut} \
         {allow_empty_center_wrapper 0}} {
     variable expected_part
+    variable expected_frontend_dsp
     set actual_part [get_property PART [current_project]]
     if {$actual_part ne $expected_part} {
         error "projection OOC floorplan part mismatch: $actual_part"
@@ -928,8 +1073,10 @@ proc hap_projection_ooc_floorplan::discover {{dut_path u_dut} \
             DSP48E2] 0
     require_count frontend_dsp_signature \
         [lsearch -all -inline -exact \
-            [get_property REF_NAME $frontend_primitives] DSP48E2] 64
-    if {[count_ref $center_region0_frontend_primitives DSP48E2] != 336} {
+            [get_property REF_NAME $frontend_primitives] DSP48E2] \
+        $expected_frontend_dsp
+    if {[count_ref $center_region0_frontend_primitives DSP48E2] !=
+            272 + $expected_frontend_dsp} {
         error "projection OOC region0/frontend DSP signature mismatch"
     }
     if {[count_ref $center_region1_cols4_5_dsp_primitives DSP48E2] != 272 ||
@@ -983,6 +1130,8 @@ proc hap_projection_ooc_floorplan::discover {{dut_path u_dut} \
             $center_region2_rows4_7_primitives \
         center_region2_residual_primitives \
             $center_region2_residual_primitives \
+        center_region2_residual_removed_lut \
+            [dict get $region2_partition residual_removed_lut] \
         center_region2_row_exact_cover \
             [dict get $region2_partition exact_cover] \
         center_region1_bisect_exact_cover \
@@ -1271,6 +1420,7 @@ proc hap_projection_ooc_floorplan::placed_ref_counts {cells ref_name} {
 }
 
 proc hap_projection_ooc_floorplan::audit_placement {plan} {
+    variable expected_slr_dsp
     set left [wrong_slr [dict get $plan left_primitives] 0]
     set center [wrong_slr [dict get $plan center_primitives] 1]
     set right [wrong_slr [dict get $plan right_primitives] 2]
@@ -1283,7 +1433,8 @@ proc hap_projection_ooc_floorplan::audit_placement {plan} {
         [dict get $center unplaced] + [dict get $right unplaced] +
         [dict get $owner unplaced] + [dict get $frontend unplaced]}]
     set dsp [placed_ref_counts [dict get $plan dut_primitives] DSP48E2]
-    set ok [expr {$wrong == 0 && $unplaced == 0 && $dsp eq {272 1696 272}}]
+    set ok [expr {$wrong == 0 && $unplaced == 0 &&
+        $dsp eq $expected_slr_dsp}]
     return [dict create left_wrong [dict get $left wrong] \
         center_wrong [dict get $center wrong] \
         right_wrong [dict get $right wrong] \
@@ -1343,6 +1494,7 @@ proc hap_projection_ooc_floorplan::write_plan {plan path marker} {
     puts $fp "center_region2_rows0_3_lane_roots=[llength [dict get $plan center_region2_rows0_3_lane_roots]]"
     puts $fp "center_region2_rows4_7_lane_roots=[llength [dict get $plan center_region2_rows4_7_lane_roots]]"
     puts $fp "center_region2_row_exact_cover=[dict get $plan center_region2_row_exact_cover]"
+    puts $fp "center_region2_residual_removed_lut=[dict get $plan center_region2_residual_removed_lut]"
     puts $fp "owner_region0_input_exact_cover=[dict get $plan owner_region0_input_exact_cover]"
     puts $fp "owner_region3_input_exact_cover=[dict get $plan owner_region3_input_exact_cover]"
     puts $fp "owner_region2_weight_exact_cover=[dict get $plan owner_region2_weight_exact_cover]"

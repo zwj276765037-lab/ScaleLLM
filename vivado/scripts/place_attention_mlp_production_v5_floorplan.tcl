@@ -97,7 +97,7 @@ proc hap_place_property_is_true {object property_name} {
 
 proc hap_place_mlp_local_clear_audit {require_placed} {
     set branches [lsort -dictionary [hap_place_cells_of_module \
-        hap_mlp_shared_local_slice8x12_s43_s45]]
+        hap_mlp_shared_local_slice8x12_s44_s46]]
     if {[llength $branches] != 2} {
         error "Expected two MLP local branches, got [llength $branches]"
     }
@@ -353,7 +353,7 @@ if {[dict get $composite_plan contract_variant] ne $contract_variant} {
 set compact_input_frontend [hap_place_cells_of_module \
     hap_mlp_input_frontend16_compact_cache]
 set down_elastic2 [hap_place_cells_of_module \
-    hap_mlp_down_branch_elastic2_s24]
+    hap_mlp_down_branch_elastic2_s24_v6]
 set pre_mlp_local_clear [hap_place_mlp_local_clear_audit 0]
 if {[llength $compact_input_frontend] != 1 ||
     [llength $down_elastic2] != 2 ||
@@ -423,7 +423,7 @@ set post_rediscovery_rc [catch {
     set post_compact_input_frontend [hap_place_cells_of_module \
         hap_mlp_input_frontend16_compact_cache]
     set post_down_elastic2 [hap_place_cells_of_module \
-        hap_mlp_down_branch_elastic2_s24]
+        hap_mlp_down_branch_elastic2_s24_v6]
     set post_mlp_local_clear [hap_place_mlp_local_clear_audit 1]
     if {[llength $post_compact_input_frontend] != 1 ||
         [llength $post_down_elastic2] != 2 ||

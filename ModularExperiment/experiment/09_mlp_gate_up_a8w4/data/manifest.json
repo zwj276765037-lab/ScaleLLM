@@ -1,0 +1,75 @@
+{
+  "accuracy": {
+    "fp16": {
+      "cosine": 0.9999999352367307,
+      "max_abs": 0.006453013047575951,
+      "mean_abs": 0.0008934557375933735,
+      "rmse": 0.001197152919997456
+    },
+    "fp32": {
+      "cosine": 0.9999999999982782,
+      "max_abs": 7.854774594306946e-06,
+      "mean_abs": 3.829974898948304e-06,
+      "rmse": 4.43728540319196e-06
+    },
+    "sc": {
+      "cosine": 0.9999999999979416,
+      "max_abs": 9.724870324134827e-06,
+      "mean_abs": 4.081905166047715e-06,
+      "rmse": 4.851149611536387e-06
+    }
+  },
+  "column_masks": [
+    4095,
+    4095,
+    255,
+    4095,
+    15,
+    4095,
+    4095,
+    255,
+    4095,
+    4095,
+    4095,
+    255
+  ],
+  "columns": 12,
+  "fp16_nonfinite_contributions": 0,
+  "fp16_zero_contributions": 41388,
+  "fp_accumulator": "AMD rate-1 extended accumulator, TLAST per 128 groups",
+  "group_size": 32,
+  "groups_per_tile": 128,
+  "reference": "exact integer dot times exact code/2^shift scales",
+  "rows": 16,
+  "schema": "scalellm_m09_gate_up_a8w4_v1",
+  "seeds": [
+    36929,
+    36930,
+    36931,
+    36932,
+    36933,
+    36934,
+    36935,
+    36936,
+    36937,
+    36938,
+    36939,
+    36940
+  ],
+  "sha256": {
+    "activation_meta_sc_u224.mem": "96ad56106353a0f9d310ecde9dd2ba7c614948b6c6124e514b2df4e1c55463a1",
+    "activation_s9x16x32.mem": "f8210232aa1e01f8636ec30c8dc9de881646f42ce67ab2f2f00754b89b76dc64",
+    "activation_scale_fp16x16.mem": "cb63d4e21fd8ea2a04b35776425209ed15e58f9c1eae9d7603f58e8ea1de71cb",
+    "activation_scale_fp32x16.mem": "ec6d1ee96cdc132803e30be67c7ee6565a78c5da2e9852157df302734636d2b1",
+    "column_mask_u12.mem": "05559a9d82019e9b3c6e1b816184200196c2564907fa1cee7cea007c872ab383",
+    "expected_fp16_s24x16x12.mem": "958896971d3a2a1757f60768c779fd15401e1a1f14661db2e2986449d52dbee2",
+    "expected_fp32_s24x16x12.mem": "4b7ca18397c09563da60cd63e02fbd1bef086e3377bc9699bf33447a6b9e6ad7",
+    "expected_sc_s24x16x12.mem": "ea4de6a0cadef3b2e6d1c14ae8ed7550e8d45f5963c088f200cf9414c9c2866a",
+    "weight_meta_sc_u168.mem": "d1a2e8ca81dcd11bfa98d426bdb41920d7d9c66d161c16083acdef92742106be",
+    "weight_scale_fp16x12.mem": "308c22dc5a07b634c5d6bac720e033378359c2609f322ef2ee857d477d10ff9e",
+    "weight_scale_fp32x12.mem": "3f68830aa43b6d3fe0c2cea875c84e7a027742a38a4a9bbec8c80c2e2701a3ea",
+    "weights_s4x12x32.mem": "ff3c72877b04654485596cf0759f35fb22f03b9b8b61429c8c00e742b7a4e5a5"
+  },
+  "tiles": 12,
+  "transactions": 1536
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "scalellm_acc_ppl_plan_summary_v1",
+  "created_at": "2026-09-13T07:50:24.732586+00:00",
+  "rule": "Only compare BF16 and V5 when protocol names and context lengths match. Never compare hardware_128 PPL against literature_2048 PPL.",
+  "runs": [
+    {
+      "run_status": "complete",
+      "case": "bf16",
+      "protocol": "hardware_128",
+      "context_length": 128,
+      "full_split": true,
+      "protocol_literature_comparable": false,
+      "hardware_constrained": true,
+      "hardware_contract_status": "valid",
+      "macro_accuracy": 0.754039915972994,
+      "ppl": 17.210341127395036,
+      "matched_bf16_delta_acc_pp": "",
+      "matched_bf16_delta_ppl_percent": "",
+      "cross_protocol_comparison_allowed": false,
+      "error": ""
+    },
+    {
+      "run_status": "complete",
+      "case": "bf16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "full_split": true,
+      "protocol_literature_comparable": true,
+      "hardware_constrained": false,
+      "hardware_contract_status": "valid",
+      "macro_accuracy": 0.757491495347114,
+      "ppl": 7.161428727566799,
+      "matched_bf16_delta_acc_pp": "",
+      "matched_bf16_delta_ppl_percent": "",
+      "cross_protocol_comparison_allowed": false,
+      "error": ""
+    },
+    {
+      "run_status": "failed",
+      "case": "v5",
+      "protocol": "hardware_128",
+      "context_length": 128,
+      "full_split": true,
+      "protocol_literature_comparable": false,
+      "hardware_constrained": true,
+      "hardware_contract_status": "strict_failure_before_metrics",
+      "macro_accuracy": "",
+      "ppl": "",
+      "matched_bf16_delta_acc_pp": "",
+      "matched_bf16_delta_ppl_percent": "",
+      "cross_protocol_comparison_allowed": false,
+      "error": "0: model.layers.31.mlp.down_proj.weight observed a production-invalid total shift: row=512 group=170 column=704 activation_shift=6 weight_shift=14 total=20 legal=[21,44] | 1: model.layers.31.mlp.down_proj.weight observed a production-invalid total shift: row=0 group=170 column=704 activation_shift=6 weight_shift=14 total=20 legal=[21,44]"
+    }
+  ],
+  "source_manifests": [
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/fix_experiment/results/paper_full_strict/bf16_hardware_128/merged/manifest.json",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/fix_experiment/results/paper_full_strict/bf16_literature_2048/merged/manifest.json"
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "schema": "scalellm_mlp_down_s32_migration_audit_v1",
+  "created_at": "2026-09-17T17:30:14.745958+00:00",
+  "status": "migration_incomplete",
+  "checks_passed": 4,
+  "checks_total": 15,
+  "target_format": {
+    "name": "S32/F16",
+    "range": [
+      -32768.0,
+      32767.99998474121
+    ],
+    "tile_bits": 8192,
+    "axi256_beats_per_tile": 32,
+    "cohort_output_bytes": 262144,
+    "format_id": "0x48384604"
+  },
+  "production_manifest": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/vivado/manifests/attention_mlp_production_v5_cohort16_sources.list",
+  "production_source_count": 90,
+  "checks": [
+    {
+      "check_id": "down_finalizer_s32_f16",
+      "component": "Down S46/F24 accumulator finalizer",
+      "pass": false,
+      "severity": "critical",
+      "expected": "round-away Q*.24→F16 followed by signed-32 saturation and LANES*32 output",
+      "observed": "current source still exports LANES*24 and saturate_s24",
+      "required_action": "Replace only the Down terminal S24 saturation/output with S32/F16; keep S46/F24 accumulation.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/rtl/mlp/hap_mlp_down_group_major_accum_s46.sv"
+      ],
+      "source_sha256": {
+        "accumulator": "94d5a049d154a90593e96c8e2f96dc0e801bb0a4d276a9a923aa5ce9c328fa26"
+      }
+    },
+    {
+      "check_id": "shared_gate_s24_preserved",
+      "component": "Shared Gate/Up result boundary",
+      "pass": true,
+      "severity": "high",
+      "expected": "Gate/Up remains 16x12x24 S24/F16",
+      "observed": "present",
+      "required_action": "Do not widen the Gate/Up path while migrating Down.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/rtl/mlp/hap_mlp_shared_dual_slice16x12_s44_s46.sv"
+      ],
+      "source_sha256": {
+        "shared": "fdcfc257910b9c87b2d8eb4a768d655b830a4a21d7ebb5b1af6073f2b57deb04"
+      }
+    },
+    {
+      "check_id": "shared_down_s32",
+      "component": "Shared Down result boundary",
+      "pass": false,
+      "severity": "critical",
+      "expected": "Down-only result is 16x12x32 S32/F16",
+      "observed": "current down_s24x16x12",
+      "required_action": "Widen the Down-only shared slice and its elastic/output queue to 32 bits per element.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/rtl/mlp/hap_mlp_shared_dual_slice16x12_s44_s46.sv"
+      ],
+      "source_sha256": {
+        "shared": "fdcfc257910b9c87b2d8eb4a768d655b830a4a21d7ebb5b1af6073f2b57deb04"
+      }
+    },
+    {
+      "check_id": "down_scheduler_repack_s32",
+      "component": "Down scheduler and 12→16 inverse repack",
+      "pass": false,
+      "severity": "critical",
+      "expected": "16x12x32 ingress, S32-specific repack, 16x16x32 egress",
+      "observed": "current scheduler/repack ports remain S24",
+      "required_action": "Add a Down-specific S32 repacker and keep the Gate/Up S24 repacker unchanged.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/rtl/mlp/hap_mlp_down_v5_scheduler16_s46.sv"
+      ],
+      "source_sha256": {
+        "scheduler": "6551f505f1bea426fed7000a5e4210668d48db929270802c82dfc39090d6c661"
+      }
+    },
+    {
+      "check_id": "serial_command_s32",
+      "component": "serial command",
+      "pass": false,
+      "severity": "critical",
+      "expected": "Down output port is 16x16x32 and explicitly named S32",
+      "observed": "current 16x16x24 S24 port",
+      "required_action": "Propagate the Down S32 payload through the serial command ABI.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/rtl/mlp/hap_mlp_serial_ddr_command16_v5_s46.sv"
+      ],
+      "source_sha256": {
+        "serial": "b8c453115e74fdd7917a49bcffbec42d4c0bd1daf0c33b8a7b387168975ca860"
+      }
+    },
+    {
+      "check_id": "full_command_s32",
+      "component": "full command",
+      "pass": false,
+      "severity": "critical",
+      "expected": "Down output port is 16x16x32 and explicitly named S32",
+      "observed": "current 16x16x24 S24 port",
+      "required_action": "Propagate the Down S32 payload through the full command ABI.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/rtl/mlp/hap_mlp_full_command16_v5_s46.sv"
+      ],
+      "source_sha256": {
+        "full": "55e81c7cff465c9e35d2fa3a86959ba809bfd40bd78ed2b041fc2aa8182b8c6a"
+      }
+    },
+    {
+      "check_id": "resource_top_s32",
+      "component": "resource top",
+      "pass": false,
+      "severity": "critical",
+      "expected": "Down output port is 16x16x32 and explicitly named S32",
+      "observed": "current 16x16x24 S24 port",
+      "required_action": "Propagate the Down S32 payload through the resource top ABI.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/rtl/integration/hap_attention_mlp_resource_top.sv"
+      ],
+      "source_sha256": {
+        "resource": "03de3a9096b1e3910b81389fe9771b7f02b04990ea1a3428d0033dc87b526639"
+      }
+    },
+    {
+      "check_id": "production_core_s32",
+      "component": "Production core wiring",
+      "pass": false,
+      "severity": "critical",
+      "expected": "8192-bit mlp_projection_s32x16x16 connects to DMA",
+      "observed": "current wire is 6144-bit S24",
+      "required_action": "Widen and rename the active production-core Down output net and DMA connection.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/rtl/integration/hap_attention_mlp_production_core.sv"
+      ],
+      "source_sha256": {
+        "production": "dff6cde17fb6d680abbef2a0c9c3766b598be76689190c90b8a76cb061c094b2"
+      }
+    },
+    {
+      "check_id": "tensor_dma_s32_payload",
+      "component": "MLP tensor DMA output",
+      "pass": false,
+      "severity": "critical",
+      "expected": "8192-bit tile; 32 AXI256 beats/tile; 32 banks; 6-bit issue counter",
+      "observed": "current 6144-bit tile and 24 beats/tile",
+      "required_action": "Change only output packing to 32 beats/tile and make every terminal count/bank/mask consistent.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/rtl/integration/hap_mlp_tensor_dma_bridge.sv"
+      ],
+      "source_sha256": {
+        "dma": "6ef8405eacf55b40aae382ce4e0ece1886269f3565e5e9f91264ab3cee21081e"
+      }
+    },
+    {
+      "check_id": "tensor_dma_input_s24_preserved",
+      "component": "MLP tensor DMA input",
+      "pass": true,
+      "severity": "high",
+      "expected": "S24/F16 input remains 12288 bits and 48 AXI256 beats/group",
+      "observed": "present",
+      "required_action": "Keep the proven post-RMSNorm input ABI unchanged.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/rtl/integration/hap_mlp_tensor_dma_bridge.sv"
+      ],
+      "source_sha256": {
+        "dma": "6ef8405eacf55b40aae382ce4e0ece1886269f3565e5e9f91264ab3cee21081e"
+      }
+    },
+    {
+      "check_id": "host_s32_output_boundary",
+      "component": "Host C2H MLP output boundary",
+      "pass": false,
+      "severity": "critical",
+      "expected": "256 KiB little-endian S32/F16 output buffer and dedicated unpack/read path",
+      "observed": "current shared 192 KiB S24 buffer and unpack_s24_q16 path",
+      "required_action": "Split H2C input and C2H output payload sizes; decode int32/2^16 before FP32 residual.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/host/scalellm_memory.py",
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/host/scalellm_hostops.py"
+      ],
+      "source_sha256": {
+        "memory": "d804d4b4a3061dfaa26129d36afc91daaae133b09e5062b6d95603d6bd51e5be",
+        "hostops": "d16003e3d7f18d12c3493a35fea90ff0f8276ca3be38f4187318ba0b3bd41687"
+      }
+    },
+    {
+      "check_id": "host_s24_input_preserved",
+      "component": "Host H2C post-RMSNorm input",
+      "pass": true,
+      "severity": "high",
+      "expected": "192 KiB packed S24/F16 H2C input remains available",
+      "observed": "present",
+      "required_action": "Keep S24/F16 input packing separate from the new S32/F16 output path.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/host/scalellm_memory.py",
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/host/scalellm_hostops.py"
+      ],
+      "source_sha256": {
+        "memory": "d804d4b4a3061dfaa26129d36afc91daaae133b09e5062b6d95603d6bd51e5be",
+        "hostops": "d16003e3d7f18d12c3493a35fea90ff0f8276ca3be38f4187318ba0b3bd41687"
+      }
+    },
+    {
+      "check_id": "format_id_v4_synchronized",
+      "component": "RTL/Host/artifact incompatible ABI identity",
+      "pass": false,
+      "severity": "critical",
+      "expected": "RTL, Host and artifact all use 0x48384604",
+      "observed": "rtl_04=False; host_04=False; artifact=0x48384602",
+      "required_action": "Bump all three identities together; never expose S32 output under format-v3 ID 0x48384603.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/rtl/integration/hap_mlp_axil_control.sv",
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/host/scalellm_hardware.py",
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/artifacts/llama31_8b_scalellm_v5/scalecode_manifest.json"
+      ],
+      "source_sha256": {
+        "axil": "eb0bc5b68054631c4b97e65cf58638fb23c0a7d665029781e6fa91c9c4fc1db9",
+        "hardware": "c3e458e9487e88af9453617a60c17f52d5d81477ce699b602c6cdc48f6837d63",
+        "artifact": "1412045fed220376a6106a4a6a8259d03e4a3e2fa20fc471c582cd12ff171755"
+      }
+    },
+    {
+      "check_id": "down_s32_saturation_telemetry",
+      "component": "Down S32 terminal saturation observability",
+      "pass": false,
+      "severity": "critical",
+      "expected": "down_output_saturation_count is exported by AXI-Lite and read by Host",
+      "observed": "no dedicated exported Down terminal saturation counter",
+      "required_action": "Export a dedicated counter and make non-zero saturation a fail-closed run status.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/rtl/integration/hap_mlp_axil_control.sv",
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/host/scalellm_hardware.py"
+      ],
+      "source_sha256": {
+        "axil": "eb0bc5b68054631c4b97e65cf58638fb23c0a7d665029781e6fa91c9c4fc1db9",
+        "hardware": "c3e458e9487e88af9453617a60c17f52d5d81477ce699b602c6cdc48f6837d63"
+      }
+    },
+    {
+      "check_id": "production_source_closure",
+      "component": "Active V5 production manifest",
+      "pass": true,
+      "severity": "critical",
+      "expected": "all audited Down/DMA integration sources are in active closure",
+      "observed": "8/8 required sources present",
+      "required_action": "Add every new S32 repack/adapter source to the active production manifest and rerun this audit.",
+      "sources": [
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/vivado/manifests/attention_mlp_production_v5_cohort16_sources.list"
+      ],
+      "source_sha256": {
+        "vivado/manifests/attention_mlp_production_v5_cohort16_sources.list": "3bdf0de8cd9858dca9e3e39d9c8af0363f295d3c47dbe1346eaedf2d3c1c301e"
+      }
+    }
+  ]
+}

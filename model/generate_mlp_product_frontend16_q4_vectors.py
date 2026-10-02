@@ -6,7 +6,7 @@ import json
 import random
 from pathlib import Path
 
-from mlp_fixed import hadamard32_product_normalized, robust_a8_quantize_s35
+from mlp_fixed import hadamard32_product_normalized, minmax_a8_quantize_s35
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,7 +41,7 @@ def main() -> None:
                 values = [rng.randint(-(64 << 16), (64 << 16)-1)
                           for _ in range(32)]
             hadamard = hadamard32_product_normalized(values)
-            quant = robust_a8_quantize_s35(hadamard.values)
+            quant = minmax_a8_quantize_s35(hadamard.values)
             products.extend(values)
             quantized.extend(quant.values)
             metadata.append(quant.metadata)

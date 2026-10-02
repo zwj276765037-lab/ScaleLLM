@@ -80,6 +80,7 @@ if [[ ! -e "$UPSTREAM_SUMMARY" ]]; then
     for recovery_signature in \
         'mlp_local_clear_protected_ff count mismatch: expected=2 actual=1' \
         'mlp_central_clear_branch_endpoints count mismatch: expected=2 actual=9530' \
+        'mlp_central_clear_branch_endpoints count mismatch: expected=2 actual=9528' \
         'swiglu_row_clear_ff_per_leaf count mismatch: expected=1 actual=0'; do
         signature_rows="$(grep -Fxc -- "$recovery_signature" \
             "$UPSTREAM_DIR/vivado.log" 2>/dev/null || true)"
@@ -148,6 +149,10 @@ validate_upstream_lineage() {
             'attention_projection_dsp48e2=2240' \
             'attention_array_dsp48e2=2176' \
             'attention_frontend_dsp48e2=64' \
+            'attention_base_frontend_dsp48e2=64' \
+            'no_clip_s27_quantizer_instances=12' \
+            'attention_quantizer_instances=8' \
+            'attention_quantizer_dsp48e2=0' \
             'raw_weight_push_loads=37' \
             'weight_data_capture_contract=32x256' \
             'weight_data_capture_nets=32' \
@@ -161,6 +166,10 @@ validate_upstream_lineage() {
             'projection_weight_capture_ok=1' \
             'attention_center_subshard_instances=4' \
             'attention_leaf_shard_instances=6' \
+            'compact_input_frontend_dsp48e2=8' \
+            'compact_input_base_frontend_dsp48e2=8' \
+            'compact_input_quantizer_instances=4' \
+            'compact_input_quantizer_dsp48e2=0' \
             'compact_input_capture_contract=48x256' \
             'compact_input_capture_ff=12288' \
             'compact_input_capture_controls=48' \
@@ -173,22 +182,37 @@ validate_upstream_lineage() {
             'gate_accum_write_controls=16' \
             'gate_accum_finalize_owners=16' \
             'down_accum_instances=2' \
-            'down_guard_capture_contract=16x432' \
+            'down_guard_capture_contract=16x444' \
             'down_guard_capture_controls=16' \
-            'down_guard_capture_ff=6912' \
-            'down_guard_capture_loads=432/432' \
+            'down_guard_capture_ff=7104' \
+            'down_guard_capture_loads=444/444' \
             'down_output_capture_contract=16x288' \
             'down_output_capture_controls=16' \
             'down_output_capture_ff=4608' \
             'down_output_capture_loads=288/288' \
             'serial_reset_lut2_domains=3' \
             'serial_reset_protected_domains=3' \
-            'dsp48e2=5453' \
-            'dsp_required=5453' \
+            'swiglu_frontend_dsp48e2=72' \
+            'swiglu_hadamard_dsp48e2=64' \
+            'swiglu_quantizer_dsp48e2=0' \
+            'swiglu_silu_dsp48e2=4' \
+            'swiglu_frontend_ramb36e2=40' \
+            'swiglu_row_ring_ramb36e2=28' \
+            'swiglu_silu_ramb36e2=12' \
+            'swiglu_other_ramb36e2=0' \
+            'dsp48e2=5449' \
+            'dsp_required=5449' \
             'uram288=752' \
+            'ramb36e2=829' \
+            'ramb18e2=22' \
             'post_opt_data_bufg=0' \
             'protected_structure_ok=1' \
             'post_opt_data_bufg_ok=1' \
+            'attention_projection_ok=1' \
+            'compact_input_frontend_ok=1' \
+            'swiglu_frontend_ok=1' \
+            'swiglu_bram_ok=1' \
+            'no_clip_quantizer_dsp_ok=1' \
             'attention_local_store_ok=1' \
             'hard_resource_ok=1'; do
             require_exact_line "$upstream_literal" "$UPSTREAM_SUMMARY" \
@@ -424,7 +448,7 @@ fail_pre_lineage() {
 
 # This audit is an independent reopen and must never share a Vivado process or
 # compete with a running batch implementation/query process.
-mapfile -t active_batch < <(pgrep -af \
+mapfile -t active_batch < <(pgrep -u "$(id -u)" -af \
     '[u]nwrapped/lnx64.o/vivado .*[-]mode batch' || true)
 if [[ "${#active_batch[@]}" -ne 0 ]]; then
     printf 'another batch Vivado is active; post-opt audit not started:\n' >&2
@@ -646,9 +670,22 @@ validate_pass_outputs() {
         'attention_lane_instances=128'
         'attention_dual_accumulator_instances=6'
         'attention_local_accumulator_contexts=12'
+        'attention_region2_instances=1'
+        'attention_region2_dual_accumulator_instances=1'
+        'attention_region2_buffered_accumulator_instances=1'
+        'attention_region2_lower_bank_instances=1'
+        'attention_region2_upper_bank_instances=1'
+        'attention_region2_g_buffered_input_present=1'
+        'attention_region2_buffer_occupancy_ff=2'
+        'attention_region2_buffer_partition_ok=1'
+        'attention_region2_elastic_fifo_ok=1'
         'attention_projection_dsp48e2=2240'
         'attention_array_dsp48e2=2176'
         'attention_frontend_dsp48e2=64'
+        'attention_base_frontend_dsp48e2=64'
+        'no_clip_s27_quantizer_instances=12'
+        'attention_quantizer_instances=8'
+        'attention_quantizer_dsp48e2=0'
         'raw_weight_push_loads=37'
         'weight_data_capture_contract=32x256'
         'weight_data_capture_nets=32'
@@ -674,6 +711,20 @@ validate_pass_outputs() {
         'swiglu_fold2_hadamard_instances=0'
         'swiglu_quantizer_instances=4'
         'swiglu_silu_instances=2'
+        'swiglu_frontend_dsp48e2=72'
+        'swiglu_hadamard_dsp48e2=64'
+        'swiglu_quantizer_dsp48e2=0'
+        'swiglu_silu_dsp48e2=4'
+        'swiglu_metadata_address_dsp48e2=4'
+        'swiglu_metadata_address_dsp_r1=3'
+        'swiglu_metadata_address_dsp_r2=1'
+        'swiglu_metadata_address_dsp_unexpected='
+        'swiglu_metadata_address_dsp_identity_ok=1'
+        'swiglu_other_dsp48e2=0'
+        'swiglu_frontend_ramb36e2=40'
+        'swiglu_row_ring_ramb36e2=28'
+        'swiglu_silu_ramb36e2=12'
+        'swiglu_other_ramb36e2=0'
         'attention_col3_array_instances=1'
         'attention_old_array_instances=0'
         'attention_left2_shard_instances=1'
@@ -682,6 +733,10 @@ validate_pass_outputs() {
         'attention_center_subshard_instances=4'
         'attention_leaf_shard_instances=6'
         'compact_input_frontend_instances=1'
+        'compact_input_frontend_dsp48e2=8'
+        'compact_input_base_frontend_dsp48e2=8'
+        'compact_input_quantizer_instances=4'
+        'compact_input_quantizer_dsp48e2=0'
         'compact_input_capture_contract=48x256'
         'compact_input_capture_ff=12288'
         'compact_input_capture_controls=48'
@@ -695,10 +750,10 @@ validate_pass_outputs() {
         'gate_accum_write_controls=16'
         'gate_accum_finalize_owners=16'
         'down_accum_instances=2'
-        'down_guard_capture_contract=16x432'
+        'down_guard_capture_contract=16x444'
         'down_guard_capture_controls=16'
-        'down_guard_capture_ff=6912'
-        'down_guard_capture_loads=432/432'
+        'down_guard_capture_ff=7104'
+        'down_guard_capture_loads=444/444'
         'down_output_capture_contract=16x288'
         'down_output_capture_controls=16'
         'down_output_capture_ff=4608'
@@ -734,11 +789,13 @@ validate_pass_outputs() {
         'kernel_dsp48e2=3072'
         'branch0_dsp48e2=1536'
         'branch1_dsp48e2=1536'
-        'dsp48e2=5453'
-        'dsp_required=5453'
+        'dsp48e2=5449'
+        'dsp_required=5449'
         'dsp_limit=5500'
         'uram288=752'
         'uram_required=752'
+        'ramb36e2=829'
+        'ramb18e2=22'
         'clb_lut_limit=1064016'
         'post_opt_data_bufg=0'
         'hierarchy_ok=1'
@@ -746,6 +803,10 @@ validate_pass_outputs() {
         'post_opt_data_bufg_ok=1'
         'kernel_ok=1'
         'attention_projection_ok=1'
+        'compact_input_frontend_ok=1'
+        'swiglu_frontend_ok=1'
+        'swiglu_bram_ok=1'
+        'no_clip_quantizer_dsp_ok=1'
         'attention_local_store_ok=1'
         'resource_ok=1'
         'checkpoint_written=0'
@@ -792,7 +853,12 @@ validate_pass_outputs() {
             attention_context_store_ff_primitives \
             attention_context_store_input_pins \
             attention_context_store_output_pins \
-            attention_context_store_boundary_nets; do
+            attention_context_store_boundary_nets \
+            attention_region2_buffer_primitives \
+            attention_region2_buffer_ff \
+            attention_region2_buffer_payload_ff \
+            attention_region2_buffer_tag_ff \
+            attention_region2_buffer_occupancy_ff; do
         mapfile -t field_rows < <(sed -n "s/^${numeric_field}=//p" "$summary")
         if [[ "${#field_rows[@]}" -ne 1 || ! "${field_rows[0]}" =~ ^[0-9]+$ ]]; then
             printf 'post-opt audit field is missing, duplicate, or non-numeric: %s\n' \
@@ -803,8 +869,8 @@ validate_pass_outputs() {
     done
     total_dsp="${numeric_values[dsp48e2]}"
     clb_lut="${numeric_values[clb_lut]}"
-    if (( total_dsp != 5453 )); then
-        printf 'post-opt audit DSP identity rejected: %s != 5453\n' \
+    if (( total_dsp != 5449 )); then
+        printf 'post-opt audit DSP identity rejected: %s != 5449\n' \
             "$total_dsp" >&2
         return 1
     fi
@@ -823,6 +889,33 @@ validate_pass_outputs() {
             return 1
         fi
     done
+    for numeric_field in attention_region2_buffer_primitives \
+            attention_region2_buffer_ff \
+            attention_region2_buffer_payload_ff \
+            attention_region2_buffer_tag_ff; do
+        if (( numeric_values[$numeric_field] <= 0 )); then
+            printf 'post-opt audit region2 FIFO state is empty: %s=%s\n' \
+                "$numeric_field" "${numeric_values[$numeric_field]}" >&2
+            return 1
+        fi
+    done
+    if (( numeric_values[attention_region2_buffer_occupancy_ff] != 2 )); then
+        printf 'post-opt audit region2 FIFO occupancy identity rejected: %s != 2\n' \
+            "${numeric_values[attention_region2_buffer_occupancy_ff]}" >&2
+        return 1
+    fi
+    if (( numeric_values[attention_region2_buffer_ff] !=
+          numeric_values[attention_region2_buffer_payload_ff] +
+          numeric_values[attention_region2_buffer_tag_ff] +
+          numeric_values[attention_region2_buffer_occupancy_ff] )); then
+        printf 'post-opt audit region2 FIFO FF partition is inconsistent\n' >&2
+        return 1
+    fi
+    if (( numeric_values[attention_region2_buffer_primitives] <
+          numeric_values[attention_region2_buffer_ff] )); then
+        printf 'post-opt audit region2 FIFO primitive count is inconsistent\n' >&2
+        return 1
+    fi
     if (( clb_lut > 1064016 )); then
         printf 'post-opt audit CLB LUT limit exceeded: %s > 1064016\n' \
             "$clb_lut" >&2

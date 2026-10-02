@@ -186,6 +186,26 @@ proc hap_v5_floorplan::require_variant {variant} {
     return $variant
 }
 
+proc hap_v5_floorplan::rtl_resource_variant {} {
+    set variants {}
+    foreach name {HAP_PREPLACE_RTL_VARIANT HAP_PLACE_RTL_VARIANT
+            HAP_ROUTE_RTL_VARIANT HAP_BOARD_RTL_VARIANT} {
+        if {[info exists ::env($name)] && $::env($name) ne ""} {
+            lappend variants $::env($name)
+        }
+    }
+    set variants [lsort -unique $variants]
+    if {[llength $variants] > 1} {
+        error "Conflicting V5 RTL resource variants: $variants"
+    }
+    if {[llength $variants] == 0} {return P14_LEGACY}
+    set variant [lindex $variants 0]
+    if {$variant ni {P14_LEGACY P16_NOCLIP}} {
+        error "Unsupported V5 RTL resource variant: $variant"
+    }
+    return $variant
+}
+
 proc hap_v5_floorplan::choose_lane_split {total_dsp fixed0_dsp \
         fixed2_dsp lane_dsp lane_count} {
     variable slr_dsp_limit
@@ -250,6 +270,11 @@ proc hap_v5_floorplan::discover {variant} {
     set p1_contract [expr {$variant eq "P1_ATTN_COL2_12_2"}]
     set p2_contract [expr {$variant eq "P2_COHORT16_COL2_12_2"}]
     set col3_contract [expr {$p1_contract || $p2_contract}]
+    set rtl_resource_variant [hap_v5_floorplan::rtl_resource_variant]
+    set p16_noclip [expr {$rtl_resource_variant eq "P16_NOCLIP"}]
+    if {$p16_noclip && !$p2_contract} {
+        error "P16 no-clip resources require the P2 cohort16 contract"
+    }
 
     set actual_part [get_property PART [current_design]]
     set actual_top [get_property TOP [current_design]]
@@ -258,15 +283,15 @@ proc hap_v5_floorplan::discover {variant} {
     }
 
     set v5_serial [hap_v5_floorplan::module_cells \
-        hap_mlp_serial_ddr_command16_v5_s45]
+        hap_mlp_serial_ddr_command16_v5_s46]
     set old_serial [hap_v5_floorplan::module_cells \
         hap_mlp_serial_ddr_command16_s45]
     set shared [hap_v5_floorplan::module_cells \
-        hap_mlp_shared_dual_slice16x12_s43_s45]
+        hap_mlp_shared_dual_slice16x12_s44_s46]
     set branches [hap_v5_floorplan::module_cells \
-        hap_mlp_shared_local_slice8x12_s43_s45]
+        hap_mlp_shared_local_slice8x12_s44_s46]
     set kernels [hap_v5_floorplan::module_cells \
-        hap_a8w4_slice8x12_group_s36]
+        hap_a8w4_slice8x12_group_s37]
     set old_kernels [hap_v5_floorplan::module_cells \
         hap_a8w4_slice8x16_group_s36]
     set history2 [hap_v5_floorplan::module_cells \
@@ -646,7 +671,8 @@ proc hap_v5_floorplan::discover {variant} {
         [get_cells -quiet -hierarchical -filter {REF_NAME == URAM288}]]
     set total_dsp [llength $all_dsp]
     set total_uram [llength $all_uram]
-    if {$total_dsp <= 0 || $total_dsp > 5500 || $total_uram != 752} {
+    set expected_total_dsp [expr {$p16_noclip ? 5449 : 5453}]
+    if {$total_dsp != $expected_total_dsp || $total_uram != 752} {
         error "V5 hard-resource contract failed: DSP=$total_dsp URAM=$total_uram"
     }
 
@@ -666,6 +692,9 @@ proc hap_v5_floorplan::discover {variant} {
     set row_leaf1_ramb18 {}
     set row_leaf0_uram {}
     set row_leaf1_uram {}
+    set swiglu_frontend_ramb36 {}
+    set swiglu_leaf_ramb36 {}
+    set swiglu_central_ramb36 {}
     set outer0_primitives $compute_branch0_primitives
     set outer2_primitives $compute_branch2_primitives
     if {$fresh_contract} {
@@ -704,6 +733,21 @@ proc hap_v5_floorplan::discover {variant} {
             [llength $row_leaf0_uram] != 0 ||
             [llength $row_leaf1_uram] != 0} {
             error "V5 row-leaf hard-resource signature mismatch: DSP=[llength $row_leaf0_dsp]/[llength $row_leaf1_dsp] RAMB36=[llength $row_leaf0_ramb36]/[llength $row_leaf1_ramb36] RAMB18=[llength $row_leaf0_ramb18]/[llength $row_leaf1_ramb18] URAM=[llength $row_leaf0_uram]/[llength $row_leaf1_uram]"
+        }
+        set swiglu_frontend_ramb36 \
+            [hap_v5_floorplan::primitive_descendants_of_ref \
+                $swiglu_frontend RAMB36E2]
+        set swiglu_leaf_ramb36 [hap_v5_floorplan::list_union \
+            $row_leaf0_ramb36 $row_leaf1_ramb36]
+        set swiglu_central_ramb36 [hap_v5_floorplan::list_subtract \
+            $swiglu_frontend_ramb36 $swiglu_leaf_ramb36]
+        set expected_swiglu_central_ramb36 [expr {$p16_noclip ? 28 : 0}]
+        if {[llength $swiglu_leaf_ramb36] != 12 ||
+            [llength $swiglu_central_ramb36] !=
+                $expected_swiglu_central_ramb36 ||
+            [llength $swiglu_frontend_ramb36] !=
+                12 + $expected_swiglu_central_ramb36} {
+            error "V5 SwiGLU BRAM ownership mismatch: frontend=[llength $swiglu_frontend_ramb36] leaf=[llength $swiglu_leaf_ramb36] central=[llength $swiglu_central_ramb36]"
         }
         set central_hadamard_primitives \
             [hap_v5_floorplan::collect_primitives $central_hadamards]
@@ -848,8 +892,10 @@ proc hap_v5_floorplan::discover {variant} {
         set center_nonprojection_dsp \
             [hap_v5_floorplan::list_subtract $center_dsp \
                 $center_projection_dsp]
-        set expected_center_nonprojection_dsp \
-            [expr {$p2_contract ? 149 : 161}]
+        # P16 removes the four no-clip quantizer DSPs from the P2 center
+        # remainder.  The legacy P2 and P1 signatures remain unchanged.
+        set expected_center_nonprojection_dsp [expr {
+            $p2_contract ? ($p16_noclip ? 145 : 149) : 161}]
         if {[llength $center_projection_dsp] != 1632 ||
             [llength $center_nonprojection_dsp] !=
                 $expected_center_nonprojection_dsp ||
@@ -858,9 +904,11 @@ proc hap_v5_floorplan::discover {variant} {
             error "$variant center projection/nonprojection DSP signature mismatch: projection=[llength $center_projection_dsp] nonprojection=[llength $center_nonprojection_dsp]"
         }
         set center_primitives [hap_v5_floorplan::list_union \
-            $center_shard_primitives $center_nonprojection_dsp]
+            $center_shard_primitives $center_nonprojection_dsp \
+            $swiglu_central_ramb36]
     } else {
-        set center_primitives $center_dsp
+        set center_primitives [hap_v5_floorplan::list_union \
+            $center_dsp $swiglu_central_ramb36]
     }
 
     set gate0 [lindex $gate_leaves 0]
@@ -891,8 +939,10 @@ proc hap_v5_floorplan::discover {variant} {
     set legacy_planned1 $planned1
     set legacy_planned2 $planned2
     if {$p2_contract} {
+        set expected_p2_slr1 [expr {$p16_noclip ? 1777 : 1781}]
         if {$move0 != 16 || [llength $lanes_slr1] != 96 ||
-            $move2 != 16 || $planned0 != 1862 || $planned1 != 1781 ||
+            $move2 != 16 || $planned0 != 1862 ||
+            $planned1 != $expected_p2_slr1 ||
             $planned2 != 1810} {
             error "P2 cohort16 column-shard split drifted: lanes=$move0/[llength $lanes_slr1]/$move2 plan=$planned0/$planned1/$planned2"
         }
@@ -986,6 +1036,7 @@ proc hap_v5_floorplan::discover {variant} {
 
     return [dict create \
         part $actual_part top $actual_top contract_variant $variant \
+        rtl_resource_variant $rtl_resource_variant \
         total_dsp $total_dsp total_uram $total_uram \
         history2_count [llength $history2] generic_repack_count 0 \
         v5_serial [lindex $v5_serial 0] shared [lindex $shared 0] \
@@ -1000,6 +1051,10 @@ proc hap_v5_floorplan::discover {variant} {
         fold2_count [llength $fold2_hadamards] \
         quantizer_count [llength $central_quantizers] \
         silu_count [llength $silu_units] \
+        swiglu_frontend_ramb36 [llength $swiglu_frontend_ramb36] \
+        swiglu_leaf_ramb36 [llength $swiglu_leaf_ramb36] \
+        swiglu_central_ramb36 [llength $swiglu_central_ramb36] \
+        swiglu_central_ramb36_primitives $swiglu_central_ramb36 \
         leaf0 $row_leaf0 leaf1 $row_leaf1 \
         leaf0_primitives $row_leaf0_primitives \
         leaf1_primitives $row_leaf1_primitives \
@@ -1085,10 +1140,13 @@ proc hap_v5_floorplan::discover {variant} {
 
 proc hap_v5_floorplan::write_discovery {plan path status} {
     set fp [open $path w]
-    foreach key {part top contract_variant total_dsp total_uram history2_count
+    foreach key {part top contract_variant rtl_resource_variant total_dsp
+        total_uram history2_count
         generic_repack_count v5_serial shared branch0 branch2 branch0_dsp
         branch2_dsp swiglu_frontend_count row_leaf_count
         unique_hadamard_count fold2_count quantizer_count silu_count
+        swiglu_frontend_ramb36 swiglu_leaf_ramb36
+        swiglu_central_ramb36
         leaf0 leaf1 leaf0_dsp leaf1_dsp leaf0_ramb36 leaf1_ramb36
         outer0_dsp outer2_dsp outer0_ramb36 outer2_ramb36
         kernel_count kernel_dsp attention_root attention_board_variant
@@ -1644,7 +1702,8 @@ proc hap_v5_floorplan::pblock_specs {live_plan {variant P0_11}} {
             ramb36 0 ramb18 0] \
         [dict create name $center_pblock target 1 \
             key $center_key dsp $center_dsp \
-            uram 0 ramb36 0 ramb18 0] \
+            uram 0 ramb36 [dict get $live_plan swiglu_central_ramb36] \
+            ramb18 0] \
         [dict create name pb_v5_meta_gate_slr0 target 0 \
             key gate0_primitives dsp 0 uram 224] \
         [dict create name pb_v5_meta_gate_slr2 target 2 \

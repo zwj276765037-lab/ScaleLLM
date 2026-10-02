@@ -39,7 +39,7 @@ TCL_FIXTURE="$TMP/tcl_manifest_self"
 mkdir -p "$TCL_FIXTURE/route" "$TCL_FIXTURE/out"
 printf 'mutable project fixture\n' > "$TCL_FIXTURE/project.xpr"
 inputs=("$TCL_FIXTURE/project.xpr")
-for index in $(seq -w 1 122); do
+for index in $(seq -w 1 133); do
     printf 'immutable fixture %s\n' "$index" > "$TCL_FIXTURE/input_$index"
     inputs+=("$TCL_FIXTURE/input_$index")
 done
@@ -117,7 +117,7 @@ HAP_OOC_ROUTE_AUTHORIZATION_SHA_MANIFEST="$TCL_FIXTURE/input_004" \
 HAP_BUILD_TCL="$BUILD_TCL" HAP_OPEN_MARKER="$TCL_FIXTURE/open.marker" \
     tclsh "$TCL_FIXTURE/runner.tcl"
 
-# A complete P7 route fixture and exact 123-file board input closure must pass
+# A complete P14 route fixture and exact 134-file board input closure must pass
 # both duplicated Tcl provenance gates and reach, but never execute beyond, a
 # mocked open_project boundary.
 P6_TCL_FIXTURE="$TMP/tcl_p6_route"
@@ -148,8 +148,16 @@ P6_ROUTE_AUTH=(
     "$P6_ROUTE_FIXTURE/base_pblocks_post_route.txt"
     "$P6_ROUTE_FIXTURE/p5_input_plan_post_route.txt"
     "$P6_ROUTE_FIXTURE/p5_input_pblocks_post_route.txt"
-    "$P6_ROUTE_FIXTURE/p6_postprocess_plan_post_route.txt"
-    "$P6_ROUTE_FIXTURE/p6_postprocess_pblocks_post_route.txt"
+    "$P6_ROUTE_FIXTURE/p9_postprocess_plan_post_route.txt"
+    "$P6_ROUTE_FIXTURE/p9_postprocess_pblocks_post_route.txt"
+    "$P6_ROUTE_FIXTURE/p9_quantizer3_plan_post_route.txt"
+    "$P6_ROUTE_FIXTURE/p9_quantizer3_pblock_post_route.txt"
+    "$P6_ROUTE_FIXTURE/p14_region2_relief_plan_post_route.txt"
+    "$P6_ROUTE_FIXTURE/p14_region2_relief_pblock_post_route.txt"
+    "$P6_ROUTE_FIXTURE/p8_parent_ingress_boundary_input.txt"
+    "$P6_ROUTE_FIXTURE/p8_parent_ingress_boundary_post_route.txt"
+    "$P6_ROUTE_FIXTURE/architecture_boundaries_input.txt"
+    "$P6_ROUTE_FIXTURE/architecture_boundaries_post_route.txt"
     "$P6_ROUTE_FIXTURE/launcher_status.txt"
     "$P6_ROUTE_FIXTURE/INPUT_FILES"
     "$P6_ROUTE_FIXTURE/INPUT_SHA256SUMS"
@@ -173,7 +181,10 @@ P6_INPUTS=(
     "$ROOT/vivado/scripts/v5_production_floorplan_selectors.tcl"
     "$ROOT/vivado/scripts/projection_core16x16_w8_reuse_ooc_floorplan.tcl"
     "$ROOT/vivado/scripts/v5_production_p5_input_partition_floorplan.tcl"
-    "$ROOT/vivado/scripts/v5_production_p6_postprocess_partition_floorplan.tcl"
+    "$ROOT/vivado/scripts/v5_production_p9_postprocess_partition_floorplan.tcl"
+    "$ROOT/vivado/scripts/v5_production_p9_quantizer3_locality_floorplan.tcl"
+    "$ROOT/vivado/scripts/v5_production_p14_region2_x2_relief_floorplan.tcl"
+    "$ROOT/vivado/scripts/audit_mlp_p8_parent_ingress_boundary_replica_aware.tcl"
     "$PROVENANCE"
     "$P6_OUT/RECURSIVE_SOURCE_MANIFEST_FILES"
     "$P6_OUT/RECURSIVE_RTL_SOURCE_FILES"
@@ -184,7 +195,7 @@ P6_INPUTS=(
     "${P6_SOURCE_CLOSURE[@]}"
     "${P6_ROUTE_AUTH[@]}"
 )
-[[ "${#P6_INPUTS[@]}" -eq 123 ]]
+[[ "${#P6_INPUTS[@]}" -eq 134 ]]
 printf '%s\n' "${P6_INPUTS[@]}" > "$P6_OUT/INPUT_FILES"
 sha256sum "${P6_INPUTS[@]}" > "$P6_OUT/INPUT_SHA256SUMS"
 P6_IMMUTABLE=("${P6_INPUTS[@]:1}")
@@ -202,15 +213,15 @@ proc open_project {args} {
     set fp [open $::env(HAP_OPEN_MARKER) w]
     puts $fp reached
     close $fp
-    error P6_PROVENANCE_REACHED_OPEN_PROJECT
+    error P14_PROVENANCE_REACHED_OPEN_PROJECT
 }
 if {![catch {source $::env(HAP_BUILD_TCL)} message]} {
     puts stderr "build Tcl unexpectedly ran past mock open_project"
     exit 1
 }
 if {![file exists $::env(HAP_OPEN_MARKER)] ||
-    [string first P6_PROVENANCE_REACHED_OPEN_PROJECT $message] < 0} {
-    puts stderr "P6 provenance did not reach open_project: $message"
+    [string first P14_PROVENANCE_REACHED_OPEN_PROJECT $message] < 0} {
+    puts stderr "P14 provenance did not reach open_project: $message"
     exit 2
 }
 TCL
@@ -228,7 +239,7 @@ HAP_RECURSIVE_SOURCE_MANIFEST_SHA256="$(sha256sum "$P6_OUT/RECURSIVE_SOURCE_SHA2
 HAP_OOC_ROUTE_AUTHORIZATION_MANIFEST_SHA256="$(sha256sum "$P6_OUT/OOC_ROUTE_AUTHORIZATION_SHA256SUMS" | awk '{print $1}')" \
 HAP_RECURSIVE_SOURCE_SHA_MANIFEST="$P6_OUT/RECURSIVE_SOURCE_SHA256SUMS" \
 HAP_OOC_ROUTE_AUTHORIZATION_SHA_MANIFEST="$P6_OUT/OOC_ROUTE_AUTHORIZATION_SHA256SUMS" \
-HAP_BOARD_INPUT_COUNT=123 HAP_BOARD_IMMUTABLE_INPUT_COUNT=122 \
+HAP_BOARD_INPUT_COUNT=134 HAP_BOARD_IMMUTABLE_INPUT_COUNT=133 \
 HAP_BOARD_SOURCE_MANIFEST_COUNT=3 HAP_BOARD_RTL_SOURCE_COUNT=87 \
 HAP_BOARD_SOURCE_CLOSURE_COUNT=90 HAP_JOBS=32 \
 HAP_BUILD_TCL="$BUILD_TCL" HAP_OPEN_MARKER="$P6_TCL_FIXTURE/open.marker" \
@@ -279,7 +290,7 @@ if [[ "$launcher_rc" -ne 95 ]]; then
 fi
 for exact in status=FAIL final_exit_code=95 vivado_exit_code=0 \
         vivado_invoked=1 complete_input_manifest_sha_match=1 \
-        immutable_input_count=122 immutable_input_manifest_sha_match=1 \
+        immutable_input_count=133 immutable_input_manifest_sha_match=1 \
         immutable_input_postcheck=0 project_file_postcheck_exempt=1 \
         bitstream_generated=0; do
     grep -Fqx -- "$exact" "$TMP/board_failure/launcher_status.txt" ||
@@ -305,6 +316,6 @@ esac
 
 printf 'V5_BOARD_BITSTREAM_PROVENANCE_TEST_PASS\n'
 printf 'manifest_self_synchronized_mutation_negative=PASS\n'
-printf 'p7_route_to_open_project_positive=PASS\n'
+printf 'p14_route_to_open_project_positive=PASS\n'
 printf 'immutable_post_tool_mutation_negative=PASS\n'
 printf 'failure_dynamic_archive=PASS\n'

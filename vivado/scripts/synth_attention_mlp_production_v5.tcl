@@ -237,10 +237,17 @@ proc audit_swiglu_local_clear {frontends row_leaves} {
     require_count swiglu_control_clear_ff $control 1
     require_count swiglu_hadamard_clear_ff $hadamard 1
     require_count swiglu_quantizer_clear_ff $quantizer 4
+    set row_candidates [get_cells -quiet -hierarchical -filter {
+        NAME =~ */clear_local_r_reg* && REF_NAME =~ FD*}]
     set row_clear {}
     foreach leaf [lsort -dictionary $row_leaves] {
-        set local [named_descendants_of_glob [list $leaf] FD* \
-            clear_local_r_reg*]
+        set prefix "[get_property NAME $leaf]/"
+        set local {}
+        foreach cell $row_candidates {
+            if {[string first $prefix [get_property NAME $cell]] == 0} {
+                lappend local $cell
+            }
+        }
         require_count swiglu_row_clear_ff_per_leaf $local 1
         set row_clear [concat $row_clear $local]
     }
@@ -609,7 +616,7 @@ create_project production_v5_synth $build -part $part -force
 set_property target_language Verilog [current_project]
 set_property verilog_define {
     HAP_BOARD_BUILD
-    HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s45
+    HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s46
     HAP_ATTENTION_BOARD_MODULE=hap_attention_board_cohort16_core
 } [get_filesets sources_1]
 add_manifest $root $manifest
@@ -647,24 +654,24 @@ set all_ramb18 [get_cells -quiet -hierarchical -filter \
     {REF_NAME == RAMB18E2}]
 set all_bufg [get_cells -quiet -hierarchical -filter {REF_NAME =~ BUFG*}]
 set v5_kernels [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_a8w4_slice8x12_group_s36 ||
-    REF_NAME == hap_a8w4_slice8x12_group_s36
+    ORIG_REF_NAME == hap_a8w4_slice8x12_group_s37 ||
+    REF_NAME == hap_a8w4_slice8x12_group_s37
 }]
 set v4_kernels [get_cells -quiet -hierarchical -filter {
     ORIG_REF_NAME == hap_a8w4_slice8x16_group_s36 ||
     REF_NAME == hap_a8w4_slice8x16_group_s36
 }]
 set v5_branches [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_mlp_shared_local_slice8x12_s43_s45 ||
-    REF_NAME == hap_mlp_shared_local_slice8x12_s43_s45
+    ORIG_REF_NAME == hap_mlp_shared_local_slice8x12_s44_s46 ||
+    REF_NAME == hap_mlp_shared_local_slice8x12_s44_s46
 }]
 set v5_shared [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_mlp_shared_dual_slice16x12_s43_s45 ||
-    REF_NAME == hap_mlp_shared_dual_slice16x12_s43_s45
+    ORIG_REF_NAME == hap_mlp_shared_dual_slice16x12_s44_s46 ||
+    REF_NAME == hap_mlp_shared_dual_slice16x12_s44_s46
 }]
 set v5_serial [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_mlp_serial_ddr_command16_v5_s45 ||
-    REF_NAME == hap_mlp_serial_ddr_command16_v5_s45
+    ORIG_REF_NAME == hap_mlp_serial_ddr_command16_v5_s46 ||
+    REF_NAME == hap_mlp_serial_ddr_command16_v5_s46
 }]
 set old_serial [get_cells -quiet -hierarchical -filter {
     ORIG_REF_NAME == hap_mlp_serial_ddr_command16_s45 ||
@@ -789,16 +796,16 @@ set down_activation_cache [get_cells -quiet -hierarchical -filter {
     REF_NAME == hap_mlp_down_activation_cache16
 }]
 set gate_accums [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_mlp_tile_accum_s36 ||
-    REF_NAME == hap_mlp_tile_accum_s36
+    ORIG_REF_NAME == hap_mlp_tile_accum_s37 ||
+    REF_NAME == hap_mlp_tile_accum_s37
 }]
 set down_accums [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_mlp_down_group_major_accum_s45 ||
-    REF_NAME == hap_mlp_down_group_major_accum_s45
+    ORIG_REF_NAME == hap_mlp_down_group_major_accum_s46 ||
+    REF_NAME == hap_mlp_down_group_major_accum_s46
 }]
 set down_elastic2 [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_mlp_down_branch_elastic2_s24 ||
-    REF_NAME == hap_mlp_down_branch_elastic2_s24
+    ORIG_REF_NAME == hap_mlp_down_branch_elastic2_s24_v6 ||
+    REF_NAME == hap_mlp_down_branch_elastic2_s24_v6
 }]
 
 set attention_center_subshards \
@@ -820,7 +827,7 @@ lassign [audit_gate_accum_controls $gate_accums] \
     gate_write_controls gate_write_min gate_write_max \
     gate_finalize_owners gate_finalize_min gate_finalize_max
 lassign [audit_protected_capture_banks $down_accums \
-    *u_guard_capture_enable 432 6912 down_guard_capture] \
+    *u_guard_capture_enable 444 7104 down_guard_capture] \
     down_guard_controls down_guard_ff down_guard_min down_guard_max
 lassign [audit_protected_capture_banks $down_accums \
     *u_output_capture_enable 288 4608 down_output_capture] \
@@ -856,6 +863,44 @@ set attention_array_dsp [llength \
     [descendants_of_type $attention_col3_array DSP48E2]]
 set attention_frontend_dsp [llength \
     [descendants_of_type $attention_frontend DSP48E2]]
+set s27_quantizers [get_cells -quiet -hierarchical -filter {
+    ORIG_REF_NAME == hap_robust_a8_quantizer ||
+    REF_NAME == hap_robust_a8_quantizer}]
+set attention_s27_quantizers \
+    [cells_below_roots $attention_frontend $s27_quantizers]
+set compact_s27_quantizers \
+    [cells_below_roots $compact_input_frontend $s27_quantizers]
+set attention_quantizer_dsp [llength \
+    [descendants_of_type $attention_s27_quantizers DSP48E2]]
+set attention_base_frontend_dsp \
+    [expr {$attention_frontend_dsp - $attention_quantizer_dsp}]
+set compact_input_frontend_dsp [llength \
+    [descendants_of_type $compact_input_frontend DSP48E2]]
+set compact_input_quantizer_dsp [llength \
+    [descendants_of_type $compact_s27_quantizers DSP48E2]]
+set compact_input_base_frontend_dsp \
+    [expr {$compact_input_frontend_dsp - $compact_input_quantizer_dsp}]
+set swiglu_frontend_dsp [llength \
+    [descendants_of_type $swiglu_frontend DSP48E2]]
+set swiglu_hadamard_dsp [llength \
+    [descendants_of_type $swiglu_hadamard DSP48E2]]
+set swiglu_quantizer_dsp [llength \
+    [descendants_of_type $swiglu_quantizer DSP48E2]]
+set swiglu_silu_dsp [llength \
+    [descendants_of_type $swiglu_silu DSP48E2]]
+set swiglu_frontend_ramb36_cells \
+    [descendants_of_type $swiglu_frontend RAMB36E2]
+set swiglu_row_ring_ramb36_cells [named_descendants_of_glob \
+    $swiglu_frontend RAMB36E2 *g_row_ring_column*]
+set swiglu_silu_ramb36_cells \
+    [descendants_of_type $swiglu_silu RAMB36E2]
+set swiglu_recognized_ramb36_cells [lsort -dictionary -unique \
+    [concat $swiglu_row_ring_ramb36_cells $swiglu_silu_ramb36_cells]]
+set swiglu_frontend_ramb36 [llength $swiglu_frontend_ramb36_cells]
+set swiglu_row_ring_ramb36 [llength $swiglu_row_ring_ramb36_cells]
+set swiglu_silu_ramb36 [llength $swiglu_silu_ramb36_cells]
+set swiglu_other_ramb36 [expr {$swiglu_frontend_ramb36 -
+    [llength $swiglu_recognized_ramb36_cells]}]
 set attention_context_ramb36 [llength \
     [descendants_of_type $attention_context_store RAMB36E2]]
 set attention_context_ramb18 [llength \
@@ -969,6 +1014,9 @@ set hierarchy_ok [expr {
     [llength $attention_right_leaf_shards] == 1 &&
     [llength $attention_leaf_shards] == 6 &&
     [llength $compact_input_frontend] == 1 &&
+    [llength $s27_quantizers] == 12 &&
+    [llength $attention_s27_quantizers] == 8 &&
+    [llength $compact_s27_quantizers] == 4 &&
     [llength $down_activation_cache] == 1 &&
     [llength $gate_accums] == 2 &&
     [llength $down_accums] == 2 &&
@@ -994,8 +1042,8 @@ set protected_structure_ok [expr {
     $down_activation_capture_min == 280 &&
     $down_activation_capture_max == 280 &&
     $gate_write_controls == 16 && $gate_finalize_owners == 16 &&
-    $down_guard_controls == 16 && $down_guard_ff == 6912 &&
-    $down_guard_min == 432 && $down_guard_max == 432 &&
+    $down_guard_controls == 16 && $down_guard_ff == 7104 &&
+    $down_guard_min == 444 && $down_guard_max == 444 &&
     $down_output_controls == 16 && $down_output_ff == 4608 &&
     $down_output_min == 288 && $down_output_max == 288 &&
     $serial_reset_domains == 3 && $serial_reset_protected == 3 &&
@@ -1026,7 +1074,34 @@ set kernel_ok [expr {
 set attention_projection_ok [expr {
     $attention_projection_dsp == 2240 &&
     $attention_array_dsp == 2176 &&
-    $attention_frontend_dsp == 64
+    $attention_frontend_dsp == 64 &&
+    $attention_base_frontend_dsp == 64 &&
+    $attention_quantizer_dsp == 0
+}]
+set compact_input_frontend_ok [expr {
+    $compact_input_frontend_dsp == 8 &&
+    $compact_input_base_frontend_dsp == 8 &&
+    $compact_input_quantizer_dsp == 0
+}]
+set swiglu_frontend_ok [expr {
+    $swiglu_frontend_dsp == 72 &&
+    $swiglu_hadamard_dsp == 64 &&
+    $swiglu_quantizer_dsp == 0 &&
+    $swiglu_silu_dsp == 4
+}]
+set swiglu_bram_ok [expr {
+    $swiglu_frontend_ramb36 == 40 &&
+    $swiglu_row_ring_ramb36 == 28 &&
+    $swiglu_silu_ramb36 == 12 &&
+    $swiglu_other_ramb36 == 0
+}]
+set no_clip_quantizer_dsp_ok [expr {
+    [llength $s27_quantizers] == 12 &&
+    [llength $attention_s27_quantizers] == 8 &&
+    [llength $compact_s27_quantizers] == 4 &&
+    $attention_quantizer_dsp == 0 &&
+    $compact_input_quantizer_dsp == 0 &&
+    $swiglu_quantizer_dsp == 0
 }]
 set attention_local_store_ok [expr {
     [llength $attention_query_store] == 1 &&
@@ -1040,7 +1115,8 @@ set attention_local_store_ok [expr {
     $attention_context_uram == 0
 }]
 set hard_resource_ok [expr {
-    $dsp == 5453 && $uram == 752
+    $dsp == 5449 && $uram == 752 &&
+    $ramb36 == 829 && $ramb18 == 22
 }]
 
 # Keep at least ten percent of the VU9P CLB LUT fabric free before placement.
@@ -1055,7 +1131,9 @@ set all_ff_primitives [get_cells -quiet -hierarchical -filter \
     {REF_NAME =~ FD*}]
 set status [expr {
     $hierarchy_ok && $protected_structure_ok && $post_opt_data_bufg_ok &&
-    $kernel_ok && $attention_projection_ok && $attention_local_store_ok &&
+    $kernel_ok && $attention_projection_ok &&
+    $compact_input_frontend_ok && $swiglu_frontend_ok && $swiglu_bram_ok &&
+    $no_clip_quantizer_dsp_ok && $attention_local_store_ok &&
     $hard_resource_ok &&
     $clb_headroom_ok ?
     "V5_PRODUCTION_RESOURCE_PASS" : "FAIL"
@@ -1091,6 +1169,10 @@ foreach {key value} [list \
     attention_projection_dsp48e2 $attention_projection_dsp \
     attention_array_dsp48e2 $attention_array_dsp \
     attention_frontend_dsp48e2 $attention_frontend_dsp \
+    attention_base_frontend_dsp48e2 $attention_base_frontend_dsp \
+    no_clip_s27_quantizer_instances [llength $s27_quantizers] \
+    attention_quantizer_instances [llength $attention_s27_quantizers] \
+    attention_quantizer_dsp48e2 $attention_quantizer_dsp \
     raw_weight_push_loads [dict get $projection_weight_capture raw_loads] \
     weight_data_capture_contract 32x256 \
     weight_data_capture_nets [dict get $projection_weight_capture data_nets] \
@@ -1127,6 +1209,11 @@ foreach {key value} [list \
     attention_center_subshard_instances [llength $attention_center_subshards] \
     attention_leaf_shard_instances [llength $attention_leaf_shards] \
     compact_input_frontend_instances [llength $compact_input_frontend] \
+    compact_input_frontend_dsp48e2 $compact_input_frontend_dsp \
+    compact_input_base_frontend_dsp48e2 \
+        $compact_input_base_frontend_dsp \
+    compact_input_quantizer_instances [llength $compact_s27_quantizers] \
+    compact_input_quantizer_dsp48e2 $compact_input_quantizer_dsp \
     compact_input_capture_contract 48x256 \
     compact_input_capture_ff $compact_capture_ff \
     compact_input_capture_controls $compact_capture_controls \
@@ -1143,7 +1230,7 @@ foreach {key value} [list \
     gate_accum_write_loads $gate_write_min/$gate_write_max \
     gate_accum_finalize_loads $gate_finalize_min/$gate_finalize_max \
     down_accum_instances [llength $down_accums] \
-    down_guard_capture_contract 16x432 \
+    down_guard_capture_contract 16x444 \
     down_guard_capture_controls $down_guard_controls \
     down_guard_capture_ff $down_guard_ff \
     down_guard_capture_loads $down_guard_min/$down_guard_max \
@@ -1165,6 +1252,14 @@ foreach {key value} [list \
     swiglu_row_clear_ff $swiglu_row_clear_ff \
     swiglu_clear_input_nets $swiglu_clear_input_nets \
     swiglu_direct_clear_bypass_state $swiglu_direct_clear_bypass_state \
+    swiglu_frontend_dsp48e2 $swiglu_frontend_dsp \
+    swiglu_hadamard_dsp48e2 $swiglu_hadamard_dsp \
+    swiglu_quantizer_dsp48e2 $swiglu_quantizer_dsp \
+    swiglu_silu_dsp48e2 $swiglu_silu_dsp \
+    swiglu_frontend_ramb36e2 $swiglu_frontend_ramb36 \
+    swiglu_row_ring_ramb36e2 $swiglu_row_ring_ramb36 \
+    swiglu_silu_ramb36e2 $swiglu_silu_ramb36 \
+    swiglu_other_ramb36e2 $swiglu_other_ramb36 \
     mlp_central_clear_ff $mlp_central_clear_ff \
     mlp_central_clear_branch_endpoints \
         $mlp_central_clear_branch_endpoints \
@@ -1190,7 +1285,7 @@ foreach {key value} [list \
     branch0_ramb36e2 $branch0_ramb36 branch1_ramb36e2 $branch1_ramb36 \
     branch0_ramb18e2 $branch0_ramb18 branch1_ramb18e2 $branch1_ramb18 \
     branch0_uram288 $branch0_uram branch1_uram288 $branch1_uram \
-    dsp48e2 $dsp dsp_required 5453 dsp_limit 5500 \
+    dsp48e2 $dsp dsp_required 5449 dsp_limit 5500 \
     uram288 $uram uram_required 752 \
     ramb36e2 $ramb36 ramb18e2 $ramb18 bufg $bufg \
     post_opt_clock_bufg $clock_bufg post_opt_data_bufg $data_bufg \
@@ -1203,6 +1298,9 @@ foreach {key value} [list \
     hierarchy_ok $hierarchy_ok protected_structure_ok $protected_structure_ok \
     post_opt_data_bufg_ok $post_opt_data_bufg_ok kernel_ok $kernel_ok \
     attention_projection_ok $attention_projection_ok \
+    compact_input_frontend_ok $compact_input_frontend_ok \
+    swiglu_frontend_ok $swiglu_frontend_ok swiglu_bram_ok $swiglu_bram_ok \
+    no_clip_quantizer_dsp_ok $no_clip_quantizer_dsp_ok \
     attention_local_store_ok $attention_local_store_ok \
     hard_resource_ok $hard_resource_ok clb_headroom_ok $clb_headroom_ok \
     status $status] {
@@ -1210,7 +1308,7 @@ foreach {key value} [list \
 }
 close $fp
 
-puts "V5_PRODUCTION_RESOURCE DSP=$dsp KERNEL_DSP=$kernel_dsp BRANCH_DSP=$branch0_dsp/$branch1_dsp URAM=$uram LUT=$clb_lut FF=$clb_ff ATTN_LEAF=[llength $attention_center_subshards]/[llength $attention_leaf_shards] ATTN_LOCAL_STORE=[llength $attention_query_store]/[llength $attention_postprocess_store]/[llength $attention_context_store]:$attention_context_ramb36/[llength $attention_context_lutram] ATTN_WEIGHT_CAPTURE=[dict get $projection_weight_capture raw_loads]:[dict get $projection_weight_capture data_nets]x[dict get $projection_weight_capture data_min]:[dict get $projection_weight_capture meta_nets]x[dict get $projection_weight_capture meta_min]:[dict get $projection_weight_capture group_nets]x[dict get $projection_weight_capture group_min] CAPTURE=$compact_capture_controls:$compact_capture_min/$compact_capture_max,$down_activation_capture_owners:$down_activation_capture_min/$down_activation_capture_max GATE_CTRL=$gate_write_controls/$gate_finalize_owners DOWN_CTRL=$down_guard_controls/$down_output_controls RESET=$serial_reset_domains LOCAL_CLEAR=$mlp_local_clear_ff/$mlp_local_clear_protected_ff SWIGLU_CLEAR=$swiglu_local_clear_ff/$swiglu_direct_clear_bypass_state DATA_BUFG=$data_bufg STATUS=$status"
+puts "V5_PRODUCTION_RESOURCE DSP=$dsp KERNEL_DSP=$kernel_dsp BRANCH_DSP=$branch0_dsp/$branch1_dsp URAM=$uram LUT=$clb_lut FF=$clb_ff ATTN_LEAF=[llength $attention_center_subshards]/[llength $attention_leaf_shards] ATTN_LOCAL_STORE=[llength $attention_query_store]/[llength $attention_postprocess_store]/[llength $attention_context_store]:$attention_context_ramb36/[llength $attention_context_lutram] ATTN_WEIGHT_CAPTURE=[dict get $projection_weight_capture raw_loads]:[dict get $projection_weight_capture data_nets]x[dict get $projection_weight_capture data_min]:[dict get $projection_weight_capture meta_nets]x[dict get $projection_weight_capture meta_min]:[dict get $projection_weight_capture group_nets]x[dict get $projection_weight_capture group_min] CAPTURE=$compact_capture_controls:$compact_capture_min/$compact_capture_max,$down_activation_capture_owners:$down_activation_capture_min/$down_activation_capture_max GATE_CTRL=$gate_write_controls/$gate_finalize_owners DOWN_CTRL=$down_guard_controls/$down_output_controls RESET=$serial_reset_domains LOCAL_CLEAR=$mlp_local_clear_ff/$mlp_local_clear_protected_ff SWIGLU_CLEAR=$swiglu_local_clear_ff/$swiglu_direct_clear_bypass_state SWIGLU_BRAM=$swiglu_frontend_ramb36:$swiglu_row_ring_ramb36/$swiglu_silu_ramb36/$swiglu_other_ramb36 DATA_BUFG=$data_bufg STATUS=$status"
 if {$status ne "V5_PRODUCTION_RESOURCE_PASS"} {
     error "V5 production resource gate failed"
 }

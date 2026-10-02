@@ -16,8 +16,8 @@ proc property_is_true {object property_name} {
 
 open_checkpoint $input_dcp
 set branches [lsort -dictionary [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_mlp_shared_local_slice8x12_s43_s45 ||
-    REF_NAME == hap_mlp_shared_local_slice8x12_s43_s45
+    ORIG_REF_NAME == hap_mlp_shared_local_slice8x12_s44_s46 ||
+    REF_NAME == hap_mlp_shared_local_slice8x12_s44_s46
 }]]
 set clear_cells {}
 set records {}

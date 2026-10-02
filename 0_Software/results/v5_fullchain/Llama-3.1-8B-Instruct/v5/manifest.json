@@ -1,0 +1,220 @@
+{
+  "schema": "scalellm_v5_fullchain_quality_v1",
+  "case": "v5",
+  "status": "complete_invalid_format_error",
+  "hardware_contract_status": "invalid_format_error",
+  "created_at": "2026-09-13T04:13:42.464560+00:00",
+  "task_elapsed_sec_sum": 4203.719439506531,
+  "method": {
+    "case": "v5_production_fullchain",
+    "manifest": "vivado/manifests/attention_mlp_production_v5_cohort16_sources.list",
+    "attention_format_id": "0x48384103",
+    "mlp_full_format_id": "0x48384602",
+    "layers": 32,
+    "max_context": 128,
+    "cohort_rows": 16,
+    "attention_weight_bits": 8,
+    "mlp_weight_bits": 4,
+    "activation_bits": 8,
+    "kv_bits": 12,
+    "host_residual_rmsnorm": "FP32",
+    "lm_head": "FP32 host",
+    "strict_total_shift": false
+  },
+  "reproducibility": {
+    "seed": 20260913,
+    "deterministic": true,
+    "allow_tf32": false,
+    "pythonhashseed": "20260913",
+    "cublas_workspace_config": ":4096:8",
+    "torch_initial_seed": 20260913,
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true
+  },
+  "merge_provenance": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/v5_fullchain/Llama-3.1-8B-Instruct/v5",
+      "state_file": "run_state.json",
+      "completed_tasks": [
+        "arc_challenge",
+        "openbookqa",
+        "piqa",
+        "wikitext2"
+      ],
+      "audit": {
+        "activation_elements": 62259986432,
+        "fp_to_fixed_saturation": 0,
+        "hadamard_saturation": 0,
+        "activation_scale_format_error": 0,
+        "linear_total_shift_format_error": 517,
+        "linear_accumulator_overflow": 0,
+        "linear_output_saturation": 21765,
+        "rope_output_saturation": 0,
+        "kv12_clip": 0,
+        "qk_score_clip": 21981929,
+        "pv_output_saturation": 0,
+        "swiglu_output_overflow": 0
+      }
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/v5_fullchain_shard_hella/Llama-3.1-8B-Instruct/v5",
+      "state_file": "manifest.json",
+      "completed_tasks": [
+        "hellaswag"
+      ],
+      "audit": {
+        "activation_elements": 20115881984,
+        "fp_to_fixed_saturation": 0,
+        "hadamard_saturation": 0,
+        "activation_scale_format_error": 0,
+        "linear_total_shift_format_error": 0,
+        "linear_accumulator_overflow": 0,
+        "linear_output_saturation": 8568,
+        "rope_output_saturation": 0,
+        "kv12_clip": 0,
+        "qk_score_clip": 4865560,
+        "pv_output_saturation": 0,
+        "swiglu_output_overflow": 0
+      }
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/v5_fullchain_shard_wino/Llama-3.1-8B-Instruct/v5",
+      "state_file": "manifest.json",
+      "completed_tasks": [
+        "winogrande"
+      ],
+      "audit": {
+        "activation_elements": 4496293888,
+        "fp_to_fixed_saturation": 0,
+        "hadamard_saturation": 0,
+        "activation_scale_format_error": 0,
+        "linear_total_shift_format_error": 0,
+        "linear_accumulator_overflow": 0,
+        "linear_output_saturation": 3906,
+        "rope_output_saturation": 0,
+        "kv12_clip": 0,
+        "qk_score_clip": 449765,
+        "pv_output_saturation": 0,
+        "swiglu_output_overflow": 0
+      }
+    }
+  ],
+  "audit": {
+    "activation_elements": 86872162304,
+    "activation_scale_format_error": 0,
+    "fp_to_fixed_saturation": 0,
+    "hadamard_saturation": 0,
+    "kv12_clip": 0,
+    "linear_accumulator_overflow": 0,
+    "linear_output_saturation": 34239,
+    "linear_total_shift_format_error": 517,
+    "pv_output_saturation": 0,
+    "qk_score_clip": 27297254,
+    "rope_output_saturation": 0,
+    "swiglu_output_overflow": 0
+  },
+  "results": [
+    {
+      "case": "v5",
+      "task": "wikitext2",
+      "task_label": "WikiText2",
+      "samples": 517,
+      "records_complete": true,
+      "ppl": 28.180850472875722,
+      "avg_nll": 3.338642686032008,
+      "token_accuracy": 0.395223926146334,
+      "scoring_tokens": 65535,
+      "status": "pass",
+      "elapsed_sec": 843.4418697357178,
+      "context_length": 128,
+      "stride": 127,
+      "hardware_contract_status": "invalid_format_error"
+    },
+    {
+      "case": "v5",
+      "task": "piqa",
+      "task_label": "PIQA",
+      "samples": 300,
+      "records_complete": true,
+      "status": "pass",
+      "elapsed_sec": 670.2395308017731,
+      "hardware_contract_status": "invalid_format_error",
+      "dataset": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/piqa/validation_full.jsonl",
+      "primary_metric": "score_char_norm",
+      "primary_accuracy": 0.8066666666666666,
+      "accuracy_score_sum": 0.7633333333333333,
+      "accuracy_score_mean": 0.7933333333333333,
+      "accuracy_score_char_norm": 0.8066666666666666,
+      "max_length": 128
+    },
+    {
+      "case": "v5",
+      "task": "arc_challenge",
+      "task_label": "ARC-c",
+      "samples": 299,
+      "records_complete": true,
+      "status": "pass",
+      "elapsed_sec": 968.099280834198,
+      "hardware_contract_status": "invalid_format_error",
+      "dataset": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/arc_challenge/validation_full.jsonl",
+      "primary_metric": "score_char_norm",
+      "primary_accuracy": 0.5117056856187291,
+      "accuracy_score_sum": 0.4682274247491639,
+      "accuracy_score_mean": 0.4916387959866221,
+      "accuracy_score_char_norm": 0.5117056856187291,
+      "max_length": 128
+    },
+    {
+      "case": "v5",
+      "task": "openbookqa",
+      "task_label": "OpenBookQA",
+      "samples": 300,
+      "records_complete": true,
+      "status": "pass",
+      "elapsed_sec": 558.5480499267578,
+      "hardware_contract_status": "invalid_format_error",
+      "dataset": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/openbookqa/validation_full.jsonl",
+      "primary_metric": "score_char_norm",
+      "primary_accuracy": 0.4533333333333333,
+      "accuracy_score_sum": 0.37,
+      "accuracy_score_mean": 0.47,
+      "accuracy_score_char_norm": 0.4533333333333333,
+      "max_length": 128
+    },
+    {
+      "case": "v5",
+      "task": "hellaswag",
+      "task_label": "HellaSwag",
+      "dataset": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/hellaswag/hellaswag_val.jsonl",
+      "samples": 300,
+      "records_complete": true,
+      "primary_metric": "score_char_norm",
+      "primary_accuracy": 0.6166666666666667,
+      "accuracy_score_sum": 0.47,
+      "accuracy_score_mean": 0.5733333333333334,
+      "accuracy_score_char_norm": 0.6166666666666667,
+      "status": "pass",
+      "elapsed_sec": 946.8010010719299,
+      "max_length": 128,
+      "hardware_contract_status": "invalid_format_error"
+    },
+    {
+      "case": "v5",
+      "task": "winogrande",
+      "task_label": "WinoGrande",
+      "dataset": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/winogrande/winogrande_1.1/winogrande_1.1/dev.jsonl",
+      "samples": 300,
+      "records_complete": true,
+      "primary_metric": "score_sum",
+      "primary_accuracy": 0.6966666666666667,
+      "accuracy_score_sum": 0.6966666666666667,
+      "accuracy_score_mean": 0.68,
+      "accuracy_score_char_norm": 0.6466666666666666,
+      "status": "pass",
+      "elapsed_sec": 216.58970713615417,
+      "max_length": 128,
+      "hardware_contract_status": "invalid_format_error"
+    }
+  ]
+}

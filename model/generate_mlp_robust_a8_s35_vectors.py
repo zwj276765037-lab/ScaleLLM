@@ -8,7 +8,7 @@ from pathlib import Path
 import random
 
 from mlp_fixed import (
-    GROUP_SIZE, S35_MAX, S35_MIN, robust_a8_quantize_s35, sha256_file,
+    GROUP_SIZE, S35_MAX, S35_MIN, minmax_a8_quantize_s35, sha256_file,
 )
 
 
@@ -59,7 +59,7 @@ def main() -> None:
     input_path = OUT / "input_s35.mem"
     q_path = OUT / "expected_u8.mem"
     meta_path = OUT / "expected_meta.mem"
-    results = [robust_a8_quantize_s35(values) for values in vectors]
+    results = [minmax_a8_quantize_s35(values) for values in vectors]
     input_path.write_text("\n".join(pack_signed(v, 35) for v in vectors)+"\n")
     q_path.write_text("\n".join(pack_signed(list(r.values), 8)
                                  for r in results)+"\n")

@@ -1,0 +1,42 @@
+{
+  "schema": "scalellm_extended_ppl_result_v1",
+  "status": "complete",
+  "created_at": "2026-09-16T19:55:42.070859+00:00",
+  "model": "Qwen2.5-7B-Instruct",
+  "model_fingerprint_sha256": "60dced2d4ebd88994c767aebb72a30e3e81260579ca08989c82232651a4c3f81",
+  "case": "bf16",
+  "full_split": true,
+  "source": {
+    "asset_id": "lambada_test",
+    "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/lambada_openai/test.parquet",
+    "sha256": "99d8a9e54cda761c6340ddd4fa6feda7f846ffb0e716afa52968dea75495eea7",
+    "rows": 5153,
+    "split": "test",
+    "separator": "none",
+    "description": "LAMBADA OpenAI full-text token PPL"
+  },
+  "method": {
+    "case": "bf16",
+    "dtype": "bfloat16",
+    "attention_implementation": "eager",
+    "use_cache": false
+  },
+  "task": "lambada_full_ppl",
+  "kind": "ppl",
+  "primary_metric": "token_perplexity",
+  "value": 28.553574854352817,
+  "avg_nll": 3.3517821420761322,
+  "total_nll": 1310469.7265625,
+  "raw_token_count": 391399,
+  "block_size": 2048,
+  "available_complete_blocks": 191,
+  "evaluated_blocks": 191,
+  "tokens_in_evaluated_blocks": 391168,
+  "scoring_tokens": 390977,
+  "discarded_tail_tokens": 231,
+  "unscored_block_initial_tokens": 191,
+  "elapsed_sec": 92.31619191169739,
+  "non_overlapping": true,
+  "tail_policy": "drop_incomplete_block",
+  "add_special_tokens": false
+}

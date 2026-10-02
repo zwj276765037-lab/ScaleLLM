@@ -47,7 +47,7 @@ proc hap_probe_slr_detail {sites} {
 }
 
 set roots [hap_v5_floorplan::module_cells \
-    hap_mlp_shared_local_slice8x12_s43_s45]
+    hap_mlp_shared_local_slice8x12_s44_s46]
 hap_v5_floorplan::require_count v5_probe_branches $roots 2
 set branch0 [lindex $roots 0]
 set primitives [hap_v5_floorplan::primitive_descendants $branch0]

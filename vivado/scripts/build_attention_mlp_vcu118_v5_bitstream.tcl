@@ -26,9 +26,91 @@ set place_directive [expr {[info exists ::env(HAP_BOARD_PLACE_DIRECTIVE)] ?
     $::env(HAP_BOARD_PLACE_DIRECTIVE) : "SSI_SpreadLogic_high"}]
 set route_directive [expr {[info exists ::env(HAP_BOARD_ROUTE_DIRECTIVE)] ?
     $::env(HAP_BOARD_ROUTE_DIRECTIVE) : "AggressiveExplore"}]
+set rtl_variant [expr {[info exists ::env(HAP_BOARD_RTL_VARIANT)] ?
+    $::env(HAP_BOARD_RTL_VARIANT) : "P14_LEGACY"}]
+set place_input_manifest_entries 14
+set expected_quantizer3_primitives 11178
+set expected_relief_primitives 68799
+set expected_total_dsp 5453
+set expected_slr_dsp {1862 1781 1810}
+set p16_post_opt_summary ""
+set expected_p16_post_opt_summary_sha ""
+set p16_production_region2_summary ""
+set expected_p16_production_region2_summary_sha ""
+set expected_p16_production_dcp_sha ""
+set expected_board_input_count 134
+set expected_board_immutable_input_count 133
+set expected_ooc_route_input_count 33
+if {$rtl_variant eq "P16_NOCLIP"} {
+    foreach variable {HAP_BOARD_EXPECTED_QUANTIZER3_PRIMITIVES
+            HAP_BOARD_EXPECTED_RELIEF_PRIMITIVES HAP_P16_POST_OPT_SUMMARY
+            HAP_P16_POST_OPT_SUMMARY_SHA256
+            HAP_P16_PRODUCTION_REGION2_SUMMARY
+            HAP_P16_PRODUCTION_REGION2_SUMMARY_SHA256
+            HAP_P16_PRODUCTION_DCP_SHA256} {
+        if {![info exists ::env($variable)] || $::env($variable) eq ""} {
+            error "P16 no-clip board build requires $variable"
+        }
+    }
+    set place_input_manifest_entries 20
+    set expected_quantizer3_primitives \
+        $::env(HAP_BOARD_EXPECTED_QUANTIZER3_PRIMITIVES)
+    set expected_relief_primitives \
+        $::env(HAP_BOARD_EXPECTED_RELIEF_PRIMITIVES)
+    set p16_post_opt_summary [file normalize \
+        $::env(HAP_P16_POST_OPT_SUMMARY)]
+    set expected_p16_post_opt_summary_sha \
+        $::env(HAP_P16_POST_OPT_SUMMARY_SHA256)
+    set p16_production_region2_summary [file normalize \
+        $::env(HAP_P16_PRODUCTION_REGION2_SUMMARY)]
+    set expected_p16_production_region2_summary_sha \
+        $::env(HAP_P16_PRODUCTION_REGION2_SUMMARY_SHA256)
+    set expected_p16_production_dcp_sha \
+        $::env(HAP_P16_PRODUCTION_DCP_SHA256)
+    set expected_board_input_count 140
+    set expected_board_immutable_input_count 139
+    set expected_ooc_route_input_count 39
+    set expected_total_dsp 5449
+    set expected_slr_dsp {1862 1777 1810}
+}
 file mkdir $out
 if {![string is integer -strict $jobs] || $jobs < 1 || $jobs > 32} {
     error "HAP_JOBS must be an integer in 1..32: $jobs"
+}
+if {$rtl_variant ni {P14_LEGACY P16_NOCLIP} ||
+    ![string is integer -strict $expected_quantizer3_primitives] ||
+    $expected_quantizer3_primitives <= 0 ||
+    ![string is integer -strict $expected_relief_primitives] ||
+    $expected_relief_primitives <= 0} {
+    error "invalid V5 board RTL variant or primitive contract"
+}
+if {$rtl_variant eq "P16_NOCLIP"} {
+    if {![file exists $p16_post_opt_summary] ||
+        ![file isfile $p16_post_opt_summary] ||
+        [file size $p16_post_opt_summary] == 0} {
+        error "P16 no-clip board post-opt summary is missing"
+    }
+    set actual_p16_post_opt_summary_sha \
+        [lindex [exec sha256sum -- $p16_post_opt_summary] 0]
+    if {![regexp {^[0-9a-f]{64}$} $expected_p16_post_opt_summary_sha] ||
+        $actual_p16_post_opt_summary_sha ne
+            $expected_p16_post_opt_summary_sha} {
+        error "P16 no-clip board post-opt summary binding failed"
+    }
+    if {![file exists $p16_production_region2_summary] ||
+        ![file isfile $p16_production_region2_summary] ||
+        [file size $p16_production_region2_summary] == 0} {
+        error "P16 production region2 summary is missing"
+    }
+    set actual_p16_production_region2_summary_sha \
+        [lindex [exec sha256sum -- $p16_production_region2_summary] 0]
+    if {![regexp {^[0-9a-f]{64}$} \
+            $expected_p16_production_region2_summary_sha] ||
+        ![regexp {^[0-9a-f]{64}$} $expected_p16_production_dcp_sha] ||
+        $actual_p16_production_region2_summary_sha ne
+            $expected_p16_production_region2_summary_sha} {
+        error "P16 production region2 summary binding failed"
+    }
 }
 set_param general.maxThreads $jobs
 
@@ -127,23 +209,50 @@ if {![file exists $ooc_route_artifact] ||
 # build/gate Tcl or opening the mutable Vivado project.  INPUT_FILES is an
 # independent exact-path witness.  The project .xpr is the sole member omitted
 # from the immutable post-build set.
-set complete_paths [hap_board_read_path_list $input_files 123 \
+set complete_paths [hap_board_read_path_list $input_files \
+    $expected_board_input_count \
     "complete INPUT_FILES"]
 set complete_inputs [hap_board_verify_sha_manifest $input_sha_manifest \
-    $expected_input_manifest_sha 123 "complete INPUT_SHA256SUMS"]
+    $expected_input_manifest_sha $expected_board_input_count \
+    "complete INPUT_SHA256SUMS"]
 hap_board_require_same_paths $complete_paths $complete_inputs \
     "complete board input"
-set immutable_paths [hap_board_read_path_list $immutable_input_files 122 \
+if {$rtl_variant eq "P16_NOCLIP"} {
+    foreach required [list $p16_post_opt_summary \
+            $p16_production_region2_summary \
+            [file join $script_dir \
+                projection_core16x16_w8_reuse_ooc_p16_bound_floorplan.tcl] \
+            [file join $script_dir \
+                projection_core16x16_w8_reuse_ooc_p16_floorplan.tcl] \
+            [file join $script_dir \
+                projection_core16x16_w8_reuse_ooc_floorplan.tcl] \
+            [file join $script_dir \
+                v5_production_p16_noclip_quantizer3_locality_floorplan.tcl] \
+            [file join $script_dir \
+                v5_production_p9_quantizer3_locality_floorplan.tcl] \
+            [file join $script_dir \
+                v5_production_p16_noclip_region2_x2_relief_floorplan.tcl] \
+            [file join $script_dir \
+                v5_production_p14_region2_x2_relief_floorplan.tcl]] {
+        set required [file normalize $required]
+        if {![dict exists $complete_paths $required]} {
+            error "P16 no-clip board input closure is missing: $required"
+        }
+    }
+}
+set immutable_paths [hap_board_read_path_list $immutable_input_files \
+    $expected_board_immutable_input_count \
     "immutable INPUT_FILES"]
 set immutable_inputs [hap_board_verify_sha_manifest \
     $immutable_input_sha_manifest \
-    $expected_immutable_input_manifest_sha 122 \
+    $expected_immutable_input_manifest_sha \
+    $expected_board_immutable_input_count \
     "immutable INPUT_SHA256SUMS"]
 hap_board_require_same_paths $immutable_paths $immutable_inputs \
     "immutable board input"
 set expected_immutable [dict remove $complete_paths $project_file]
 if {![dict exists $complete_paths $project_file] ||
-    [dict size $expected_immutable] != 122} {
+    [dict size $expected_immutable] != $expected_board_immutable_input_count} {
     error "Complete board input does not contain exactly one mutable project file"
 }
 hap_board_require_same_paths $expected_immutable $immutable_inputs \
@@ -155,12 +264,27 @@ foreach {label path expected_sha expected_count} [list \
         recursive_source $source_sha_manifest \
             $expected_recursive_source_manifest_sha 90 \
         ooc_route_authorization $ooc_route_sha_manifest \
-            $expected_ooc_authorization_manifest_sha 14] {
+            $expected_ooc_authorization_manifest_sha 22] {
     hap_board_verify_sha_manifest $path $expected_sha $expected_count \
         "$label SHA256SUMS"
 }
 
 source [file join $script_dir attention_mlp_vcu118_v5_post_route_gate.tcl]
+set expected_region2_signature \
+    $::hap_projection_ooc_floorplan::region2_signature
+set expected_region2_rows0_3_primitives \
+    [dict get $expected_region2_signature rows0_3_primitives]
+set expected_region2_rows4_7_primitives \
+    [dict get $expected_region2_signature rows4_7_primitives]
+set expected_region2_residual_primitives \
+    [dict get $expected_region2_signature residual_primitives]
+if {[dict get $expected_region2_signature total_primitives] !=
+        $expected_relief_primitives ||
+    [dict get $expected_region2_signature rows0_3_dsp] != 272 ||
+    [dict get $expected_region2_signature rows4_7_dsp] != 272 ||
+    [dict get $expected_region2_signature residual_dsp] != 0} {
+    error "V5 board bound region2 signature is inconsistent"
+}
 foreach {label path} [list complete_input_sha $input_sha_manifest \
         recursive_source_sha $source_sha_manifest \
         ooc_route_authorization_sha $ooc_route_sha_manifest] {
@@ -187,8 +311,9 @@ foreach {label path} [list \
         if {[string trim $row] ne ""} {incr row_count}
     }
     close $fh
-    if {$label eq "ooc_route_input_sha" && $row_count != 25} {
-        error "$label manifest cardinality mismatch: expected=25 actual=$row_count"
+    if {$label eq "ooc_route_input_sha" &&
+        $row_count != $expected_ooc_route_input_count} {
+        error "$label manifest cardinality mismatch: expected=$expected_ooc_route_input_count actual=$row_count"
     }
     if {$label eq "ooc_route_output_sha" && $row_count < 1} {
         error "$label manifest is empty"
@@ -231,13 +356,12 @@ if {[lsort -dictionary [dict keys $manifested_route_outputs]] ne
     [lsort -dictionary [dict keys $current_route_outputs]]} {
     error "OOC route output manifest is not the complete current nonempty file set"
 }
-foreach {name expected} {
-    HAP_BOARD_INPUT_COUNT 123
-    HAP_BOARD_IMMUTABLE_INPUT_COUNT 122
-    HAP_BOARD_SOURCE_MANIFEST_COUNT 3
-    HAP_BOARD_RTL_SOURCE_COUNT 87
-    HAP_BOARD_SOURCE_CLOSURE_COUNT 90
-} {
+foreach {name expected} [list \
+    HAP_BOARD_INPUT_COUNT $expected_board_input_count \
+    HAP_BOARD_IMMUTABLE_INPUT_COUNT $expected_board_immutable_input_count \
+    HAP_BOARD_SOURCE_MANIFEST_COUNT 3 \
+    HAP_BOARD_RTL_SOURCE_COUNT 87 \
+    HAP_BOARD_SOURCE_CLOSURE_COUNT 90] {
     if {![info exists ::env($name)] || $::env($name) ne $expected} {
         set actual [expr {[info exists ::env($name)] ?
             $::env($name) : "MISSING"}]
@@ -275,55 +399,78 @@ set ooc_route_p5_plan [file join $ooc_route_artifact \
     p5_input_plan_post_route.txt]
 set ooc_route_p5_pblocks [file join $ooc_route_artifact \
     p5_input_pblocks_post_route.txt]
-set ooc_route_p6_plan [file join $ooc_route_artifact \
-    p6_postprocess_plan_post_route.txt]
-set ooc_route_p6_pblocks [file join $ooc_route_artifact \
-    p6_postprocess_pblocks_post_route.txt]
+set ooc_route_p9_postprocess_plan [file join $ooc_route_artifact \
+    p9_postprocess_plan_post_route.txt]
+set ooc_route_p9_postprocess_pblocks [file join $ooc_route_artifact \
+    p9_postprocess_pblocks_post_route.txt]
+set ooc_route_p9_quantizer3_plan [file join $ooc_route_artifact \
+    p9_quantizer3_plan_post_route.txt]
+set ooc_route_p9_quantizer3_pblock [file join $ooc_route_artifact \
+    p9_quantizer3_pblock_post_route.txt]
+set ooc_route_p14_relief_plan [file join $ooc_route_artifact \
+    p14_region2_relief_plan_post_route.txt]
+set ooc_route_p14_relief_pblock [file join $ooc_route_artifact \
+    p14_region2_relief_pblock_post_route.txt]
+set ooc_route_p8_parent_input [file join $ooc_route_artifact \
+    p8_parent_ingress_boundary_input.txt]
+set ooc_route_p8_parent_final [file join $ooc_route_artifact \
+    p8_parent_ingress_boundary_post_route.txt]
 set ooc_route_input_boundaries [file join $ooc_route_artifact \
     architecture_boundaries_input.txt]
 set ooc_route_final_boundaries [file join $ooc_route_artifact \
     architecture_boundaries_post_route.txt]
 set ooc_route_launcher [file join $ooc_route_artifact launcher_status.txt]
 foreach literal {
-    status=V5_P10_P7_PRODUCTION_OOC_POST_ROUTE_PASS
-    evidence_class=P7_PRODUCTION_CORE_OOC_POST_ROUTE
+    status=V5_P10_P14_PRODUCTION_OOC_POST_ROUTE_PASS
+    evidence_class=P14_PRODUCTION_CORE_OOC_POST_ROUTE
     base_contract_variant=P2_COHORT16_COL2_12_2
     p5_contract=P5_INPUT_HALF_LOCAL_8_8
-    p6_contract=P6_POSTPROCESS_GROUP4_SPLIT_4_8_4
-    p7_contract=P7_ATTN_REGION2_ROWS_Y5_Y6_Y6_Y8
-    region2_variant=rowsplit_y5_y6_y6_y8
-    place_input_manifest_entries=11
-    route_input_manifest_entries=25
-    dsp48e2=5453
+    p9_postprocess_contract=P9_POSTPROCESS_SPLIT_6_4_6
+    p9_quantizer3_contract=P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6
+    p14_region2_relief_contract=P14_ATTN_REGION2_SHARED_X0_X2
     uram288=752
     mlp_kernel_dsp48e2=3072
     metadata_local_write_protected_ff=970
     mlp_capture_leaf_instances=1632
     mlp_capture_leaf_lut1=1632
     architecture_boundary_ok=1
-    pblock_count=27
+    pblock_count=26
     canonical_pblock_count=11
-    geometry_pblock_count=12
+    geometry_pblock_count=10
     p5_added_pblock_count=2
-    p6_added_pblock_count=2
-    p6_center_wrong_slr=0
-    p6_outer_wrong_slr=0
-    p6_slr0_row_primitives=10696
-    p6_center_row_primitives=21392
-    p6_slr2_row_primitives=10696
-    p7_region2_rows0_3_primitives=26800
-    p7_region2_rows4_7_primitives=26800
-    p7_region2_residual_primitives=15199
-    p7_region2_rows0_3_dsp48e2=272
-    p7_region2_rows4_7_dsp48e2=272
-    p7_region2_residual_dsp48e2=0
+    p9_postprocess_added_pblock_count=2
+    p9_quantizer3_added_pblock_count=1
+    p14_region2_relief_added_pblock_count=0
+    p9_postprocess_center_wrong_slr=0
+    p9_postprocess_outer_wrong_slr=0
+    p9_slr0_row_primitives=16044
+    p9_center_row_primitives=10696
+    p9_slr2_row_primitives=16044
+    p9_quantizer3_grid_range=CLOCKREGION_X2Y5:CLOCKREGION_X3Y6
+    p9_quantizer3_wrong_region=0
+    p9_quantizer3_unplaced=0
+    p14_region2_relief_base_range=CLOCKREGION_X0Y5:CLOCKREGION_X1Y9
+    p14_region2_relief_range=CLOCKREGION_X2Y5:CLOCKREGION_X2Y9
+    p14_region2_expected_range=CLOCKREGION_X0Y5:CLOCKREGION_X2Y9
+    p14_region2_relief_wrong=0
+    p14_region2_relief_unplaced=0
+    parent_head_ff=6560
+    parent_tail_ff=6560
+    parent_count_ff=2
+    parent_count_replica_equivalence_ok=1
+    parent_pointer_ff=0
+    local_clear_shared_upstream_ready_paths=0
+    branch_credit_shared_upstream_ready_paths=0
+    local_clear_gate_compute_ready_paths=0
+    branch_credit_gate_compute_ready_paths=0
+    local_clear_down_compute_ready_paths=0
+    branch_credit_down_compute_ready_paths=0
+    local_clear_input_cache_ready_paths=0
+    branch_credit_input_cache_ready_paths=0
     completed_u8_ff=4096
     completed_meta_ff=352
     input_capture_ff=12288
     input_capture_controls=48
-    slr0_dsp48e2=1862
-    slr1_dsp48e2=1781
-    slr2_dsp48e2=1810
     cdc_critical=0
     congestion_level6_or_higher_windows=0
     route_clean=1
@@ -333,26 +480,53 @@ foreach literal {
 } {
     require_ooc_route_authorization_line $ooc_route_summary $literal
 }
+require_ooc_route_authorization_line $ooc_route_summary \
+    "route_input_manifest_entries=$expected_ooc_route_input_count"
+foreach literal [list \
+        "dsp48e2=$expected_total_dsp" \
+        "slr0_dsp48e2=[lindex $expected_slr_dsp 0]" \
+        "slr1_dsp48e2=[lindex $expected_slr_dsp 1]" \
+        "slr2_dsp48e2=[lindex $expected_slr_dsp 2]" \
+        "place_input_manifest_entries=$place_input_manifest_entries" \
+        "p9_quantizer3_primitives=$expected_quantizer3_primitives" \
+        "p14_region2_relief_primitives=$expected_relief_primitives" \
+        "p14_region2_relief_placed=$expected_relief_primitives"] {
+    require_ooc_route_authorization_line $ooc_route_summary $literal
+}
+if {$rtl_variant eq "P16_NOCLIP"} {
+    foreach literal [list rtl_variant=P16_NOCLIP \
+            rtl_resource_variant=P16_NOCLIP \
+            "region2_signature_source=P16_PRODUCTION_POST_OPT_SHA256:$expected_p16_production_region2_summary_sha" \
+            "p16_post_opt_summary=$p16_post_opt_summary" \
+            "p16_post_opt_summary_sha256=$expected_p16_post_opt_summary_sha" \
+            "p16_production_region2_summary=$p16_production_region2_summary" \
+            "p16_production_region2_summary_sha256=$expected_p16_production_region2_summary_sha" \
+            "p16_production_dcp_sha256=$expected_p16_production_dcp_sha"] {
+        require_ooc_route_authorization_line $ooc_route_summary $literal
+    }
+}
 foreach literal {
-    status=V5_P7_ROUTE_FINAL_SELECTORS_PASS
+    status=V5_P14_ROUTE_FINAL_SELECTORS_PASS
     contract_variant=P2_COHORT16_COL2_12_2
-    total_dsp=5453
     total_uram=752
 } {
     require_ooc_route_authorization_line $ooc_route_selectors $literal
 }
+require_ooc_route_authorization_line $ooc_route_selectors \
+    "total_dsp=$expected_total_dsp"
+if {$rtl_variant eq "P16_NOCLIP"} {
+    require_ooc_route_authorization_line $ooc_route_selectors \
+        rtl_resource_variant=P16_NOCLIP
+}
 foreach literal {
-    status=V5_P7_ROUTE_FINAL_GEOMETRY_PASS
+    status=V5_P14_ROUTE_FINAL_GEOMETRY_PASS
     region0_input_primitives=3136
     region3_input_primitives=2112
     owner_region2_weight_primitives=2048
     center_region1_bisect_exact_cover=1
     center_region1_dsp_stripe_exact_cover=1
-    center_region2_rows0_3_primitives=26800
     center_region2_rows0_3_primitives_dsp48e2=272
-    center_region2_rows4_7_primitives=26800
     center_region2_rows4_7_primitives_dsp48e2=272
-    center_region2_residual_primitives=15199
     center_region2_residual_primitives_dsp48e2=0
     center_region2_row_exact_cover=1
     owner_region0_input_exact_cover=1
@@ -362,8 +536,14 @@ foreach literal {
 } {
     require_ooc_route_authorization_line $ooc_route_geometry $literal
 }
+foreach literal [list \
+        "center_region2_rows0_3_primitives=$expected_region2_rows0_3_primitives" \
+        "center_region2_rows4_7_primitives=$expected_region2_rows4_7_primitives" \
+        "center_region2_residual_primitives=$expected_region2_residual_primitives"] {
+    require_ooc_route_authorization_line $ooc_route_geometry $literal
+}
 foreach literal {
-    status=V5_P7_ROUTE_FINAL_GEOMETRY_PLACEMENT_PASS
+    status=V5_P14_ROUTE_FINAL_GEOMETRY_PLACEMENT_PASS
     wrong_total=0
     unplaced_total=0
     {slr_dsp=272 1696 272}
@@ -373,19 +553,20 @@ foreach literal {
         $ooc_route_geometry_placement $literal
 }
 foreach literal {
-    status=V5_P7_ROUTE_FINAL_BASE_PBLOCKS_PASS
+    status=V5_P14_ROUTE_FINAL_BASE_PBLOCKS_PASS
     ok=1
     require_placed=1
     contract_variant=P2_COHORT16_COL2_12_2
     pblock_count=11
-    dsp_coverage=5453
     uram_coverage=752
     placed_wrong=0
 } {
     require_ooc_route_authorization_line $ooc_route_base_pblocks $literal
 }
+require_ooc_route_authorization_line $ooc_route_base_pblocks \
+    "dsp_coverage=$expected_total_dsp"
 foreach literal {
-    status=V5_P7_ROUTE_FINAL_INPUT_PLAN_PASS
+    status=V5_P14_ROUTE_FINAL_INPUT_PLAN_PASS
     contract=P5_INPUT_HALF_LOCAL_8_8
     quantizer_count=4
     cache_count=2
@@ -399,7 +580,7 @@ foreach literal {
     require_ooc_route_authorization_line $ooc_route_p5_plan $literal
 }
 foreach literal {
-    status=V5_P7_ROUTE_FINAL_INPUT_PBLOCKS_PASS
+    status=V5_P14_ROUTE_FINAL_INPUT_PBLOCKS_PASS
     ok=1
     require_placed=1
     pblock_count=2
@@ -411,21 +592,21 @@ foreach literal {
     require_ooc_route_authorization_line $ooc_route_p5_pblocks $literal
 }
 foreach literal {
-    status=V5_P7_ROUTE_FINAL_POSTPROCESS_PLAN_PASS
-    contract=P6_POSTPROCESS_GROUP4_SPLIT_4_8_4
+    status=V5_P14_ROUTE_FINAL_POSTPROCESS_PLAN_PASS
+    contract=P9_POSTPROCESS_SPLIT_6_4_6
     row_bank_count=16
     all_row_primitives=42784
-    slr0_row_primitives=10696
-    center_row_primitives=21392
-    slr2_row_primitives=10696
+    slr0_row_primitives=16044
+    center_row_primitives=10696
+    slr2_row_primitives=16044
     per_row_primitives=2674
     per_row_lut=994
     per_row_ff=1536
 } {
-    require_ooc_route_authorization_line $ooc_route_p6_plan $literal
+    require_ooc_route_authorization_line $ooc_route_p9_postprocess_plan $literal
 }
 foreach literal {
-    status=V5_P7_ROUTE_FINAL_POSTPROCESS_PBLOCKS_PASS
+    status=V5_P14_ROUTE_FINAL_POSTPROCESS_PBLOCKS_PASS
     ok=1
     require_placed=1
     pblock_count=2
@@ -440,7 +621,85 @@ foreach literal {
     slr2_missing=0
     slr2_wrong=0
 } {
-    require_ooc_route_authorization_line $ooc_route_p6_pblocks $literal
+    require_ooc_route_authorization_line \
+        $ooc_route_p9_postprocess_pblocks $literal
+}
+foreach literal {
+    status=V5_P14_ROUTE_FINAL_QUANTIZER3_PLAN_PASS
+    contract=P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6
+    grid_range=CLOCKREGION_X2Y5:CLOCKREGION_X3Y6
+} {
+    require_ooc_route_authorization_line $ooc_route_p9_quantizer3_plan $literal
+}
+require_ooc_route_authorization_line $ooc_route_p9_quantizer3_plan \
+    "primitive_count=$expected_quantizer3_primitives"
+foreach literal {
+    status=V5_P14_ROUTE_FINAL_QUANTIZER3_PBLOCK_PASS
+    ok=1
+    require_placed=1
+    contract=P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6
+    missing=0
+    extras=0
+    wrong=0
+    unplaced=0
+} {
+    require_ooc_route_authorization_line \
+        $ooc_route_p9_quantizer3_pblock $literal
+}
+foreach literal [list "expected=$expected_quantizer3_primitives" \
+        "members=$expected_quantizer3_primitives"] {
+    require_ooc_route_authorization_line \
+        $ooc_route_p9_quantizer3_pblock $literal
+}
+foreach literal {
+    status=V5_P14_ROUTE_FINAL_REGION2_RELIEF_PLAN_PASS
+    contract=P14_ATTN_REGION2_SHARED_X0_X2
+    base_range=CLOCKREGION_X0Y5:CLOCKREGION_X1Y9
+    relief_range=CLOCKREGION_X2Y5:CLOCKREGION_X2Y9
+    expected_range=CLOCKREGION_X0Y5:CLOCKREGION_X2Y9
+} {
+    require_ooc_route_authorization_line $ooc_route_p14_relief_plan $literal
+}
+require_ooc_route_authorization_line $ooc_route_p14_relief_plan \
+    "primitive_count=$expected_relief_primitives"
+foreach literal {
+    status=V5_P14_ROUTE_FINAL_REGION2_RELIEF_PBLOCK_PASS
+    ok=1
+    contract=P14_ATTN_REGION2_SHARED_X0_X2
+    require_placed=1
+    missing=0
+    wrong=0
+    unplaced=0
+} {
+    require_ooc_route_authorization_line $ooc_route_p14_relief_pblock $literal
+}
+require_ooc_route_authorization_line $ooc_route_p14_relief_pblock \
+    "primitive_count=$expected_relief_primitives"
+set relief_fh [open $ooc_route_p14_relief_pblock r]
+set relief_text [read $relief_fh]
+close $relief_fh
+if {![regexp -line {^relief_placed=([0-9]+)$} $relief_text -> relief_placed] ||
+    $relief_placed > $expected_relief_primitives} {
+    error "OOC route P14 relief_placed is missing or invalid"
+}
+foreach {parent_file status} [list \
+        $ooc_route_p8_parent_input \
+            V5_P14_ROUTE_INPUT_PARENT_INGRESS_BOUNDARY_PASS \
+        $ooc_route_p8_parent_final \
+            V5_P14_ROUTE_FINAL_PARENT_INGRESS_BOUNDARY_PASS] {
+    foreach literal [list status=$status ok=1 parent_head_ff=6560 \
+            parent_tail_ff=6560 parent_count_ff=2 \
+            parent_count_replica_equivalence_ok=1 parent_pointer_ff=0 \
+            local_clear_shared_upstream_ready_paths=0 \
+            branch_credit_shared_upstream_ready_paths=0 \
+            local_clear_gate_compute_ready_paths=0 \
+            branch_credit_gate_compute_ready_paths=0 \
+            local_clear_down_compute_ready_paths=0 \
+            branch_credit_down_compute_ready_paths=0 \
+            local_clear_input_cache_ready_paths=0 \
+            branch_credit_input_cache_ready_paths=0] {
+        require_ooc_route_authorization_line $parent_file $literal
+    }
 }
 foreach boundary_file [list $ooc_route_input_boundaries \
         $ooc_route_final_boundaries] {
@@ -481,15 +740,19 @@ foreach boundary_file [list $ooc_route_input_boundaries \
     }
 }
 require_ooc_route_authorization_line $ooc_route_input_boundaries \
-    status=V5_P7_ROUTE_INPUT_BOUNDARIES_PASS
+    status=V5_P14_ROUTE_INPUT_BOUNDARIES_PASS
 require_ooc_route_authorization_line $ooc_route_final_boundaries \
-    status=V5_P7_ROUTE_FINAL_BOUNDARIES_PASS
+    status=V5_P14_ROUTE_FINAL_BOUNDARIES_PASS
 foreach literal {status=PASS final_exit_code=0 vivado_exit_code=0 \
         vivado_invoked=1 route_input_sha_postcheck=1 \
         place_input_sha_postcheck=1 place_output_sha_postcheck=1 \
         route_input_manifest_sha_match=1 place_input_manifest_sha_match=1 \
         place_output_manifest_sha_match=1 bitstream_generated=0} {
     require_ooc_route_authorization_line $ooc_route_launcher $literal
+}
+if {$rtl_variant eq "P16_NOCLIP"} {
+    require_ooc_route_authorization_line $ooc_route_launcher \
+        rtl_variant=P16_NOCLIP
 }
 set ooc_route_summary_sha256 \
     [lindex [exec sha256sum $ooc_route_summary] 0]
@@ -528,7 +791,7 @@ if {[get_property TOP [current_fileset]] ne $expected_top} {
 }
 set defines [get_property verilog_define [get_filesets sources_1]]
 foreach required {HAP_BOARD_BUILD HAP_BOARD_V5
-    HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s45} {
+    HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s46} {
     if {[lsearch -exact $defines $required] < 0} {
         error "V5 board define is missing: $required (actual=$defines)"
     }
@@ -536,15 +799,18 @@ foreach required {HAP_BOARD_BUILD HAP_BOARD_V5
 foreach forbidden_define $defines {
     if {[string match "HAP_MLP_FULL_COMMAND_V5_MODULE=*" $forbidden_define] &&
         $forbidden_define ne
-        "HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s45"} {
+        "HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s46"} {
         error "Conflicting V5 MLP module-name define: $forbidden_define"
     }
 }
 foreach required_source {
-    hap_a8w4_slice8x12_group_s36.sv
-    hap_mlp_shared_dual_slice16x12_s43_s45.sv
-    hap_mlp_serial_ddr_command16_v5_s45.sv
-    hap_mlp_full_command16_v5_s45.sv
+    hap_a8w4_group32_lane2_s37.sv
+    hap_a8w4_slice8x12_group_s37.sv
+    hap_mlp_tile_accum_s37.sv
+    hap_mlp_down_group_major_accum_s46.sv
+    hap_mlp_shared_dual_slice16x12_s44_s46.sv
+    hap_mlp_serial_ddr_command16_v5_s46.sv
+    hap_mlp_full_command16_v5_s46.sv
     hap_attention_mlp_resource_top.sv
     hap_attention_mlp_production_core.sv
     hap_attention_mlp_board_core.sv
@@ -565,6 +831,13 @@ foreach forbidden_source {
     hap_mlp_down_activation_replay16.sv
     hap_mlp_serial_ddr_command16_s45.sv
     hap_mlp_full_command16_s45.sv
+    hap_a8w4_group32_lane2_s36.sv
+    hap_a8w4_slice8x12_group_s36.sv
+    hap_mlp_tile_accum_s36.sv
+    hap_mlp_down_group_major_accum_s45.sv
+    hap_mlp_shared_dual_slice16x12_s43_s45.sv
+    hap_mlp_serial_ddr_command16_v5_s45.sv
+    hap_mlp_full_command16_v5_s45.sv
 } {
     set hits [get_files -quiet -of_objects [get_filesets sources_1] \
         -filter "NAME =~ */$forbidden_source"]
@@ -825,11 +1098,11 @@ if {[get_property PROGRESS [get_runs synth_1]] ne "100%"} {
 }
 open_run synth_1
 set syn_v5_serial [hap_v5_board_gate::module_cells \
-    hap_mlp_serial_ddr_command16_v5_s45]
+    hap_mlp_serial_ddr_command16_v5_s46]
 set syn_old_serial [hap_v5_board_gate::module_cells \
     hap_mlp_serial_ddr_command16_s45]
 set syn_kernels [hap_v5_board_gate::module_cells \
-    hap_a8w4_slice8x12_group_s36]
+    hap_a8w4_slice8x12_group_s37]
 set syn_old_kernels [hap_v5_board_gate::module_cells \
     hap_a8w4_slice8x16_group_s36]
 if {[llength $syn_v5_serial] != 1 || [llength $syn_old_serial] != 0 ||
@@ -890,7 +1163,8 @@ if {![regexp {^[0-9a-f]{64}$} $bit_hash] ||
 # deliberately excluded because Vivado run management updates it.
 set immutable_inputs_post [hap_board_verify_sha_manifest \
     $immutable_input_sha_manifest \
-    $expected_immutable_input_manifest_sha 122 \
+    $expected_immutable_input_manifest_sha \
+    $expected_board_immutable_input_count \
     "immutable INPUT_SHA256SUMS post-build"]
 hap_board_require_same_paths $immutable_paths $immutable_inputs_post \
     "immutable board input post-build"
@@ -898,7 +1172,7 @@ foreach {label path expected_sha expected_count} [list \
         recursive_source $source_sha_manifest \
             $expected_recursive_source_manifest_sha 90 \
         ooc_route_authorization $ooc_route_sha_manifest \
-            $expected_ooc_authorization_manifest_sha 14] {
+            $expected_ooc_authorization_manifest_sha 22] {
     hap_board_verify_sha_manifest $path $expected_sha $expected_count \
         "$label SHA256SUMS post-build"
 }
@@ -918,10 +1192,17 @@ puts $fp "ooc_route_artifact=$ooc_route_artifact"
 puts $fp "ooc_route_authorization_verified=1"
 puts $fp "ooc_route_summary_sha256=$ooc_route_summary_sha256"
 puts $fp "ooc_route_post_route_dcp_sha256=$ooc_route_dcp_sha256"
+if {$rtl_variant eq "P16_NOCLIP"} {
+    puts $fp "p16_post_opt_summary=$p16_post_opt_summary"
+    puts $fp "p16_post_opt_summary_sha256=$expected_p16_post_opt_summary_sha"
+    puts $fp "p16_production_region2_summary=$p16_production_region2_summary"
+    puts $fp "p16_production_region2_summary_sha256=$expected_p16_production_region2_summary_sha"
+    puts $fp "p16_production_dcp_sha256=$expected_p16_production_dcp_sha"
+}
 puts $fp "complete_input_sha_verified=1"
-puts $fp "complete_input_count=123"
+puts $fp "complete_input_count=$expected_board_input_count"
 puts $fp "complete_input_manifest_sha256=$expected_input_manifest_sha"
-puts $fp "immutable_input_count=122"
+puts $fp "immutable_input_count=$expected_board_immutable_input_count"
 puts $fp "immutable_input_manifest_sha256=$expected_immutable_input_manifest_sha"
 puts $fp "immutable_input_sha_verified=1"
 puts $fp "recursive_source_sha_verified=1"

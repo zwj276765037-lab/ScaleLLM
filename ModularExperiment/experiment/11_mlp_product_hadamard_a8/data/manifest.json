@@ -1,0 +1,48 @@
+{
+  "accuracy_vs_hadamard_s35_real": {
+    "fp16": {
+      "cosine_similarity": 0.9999942575129496,
+      "max_abs_error": 0.5468902587890625,
+      "mean_abs_error": 0.05316958868310654,
+      "rmse": 0.09987121256256574
+    },
+    "fp32": {
+      "cosine_similarity": 0.9999942770272882,
+      "max_abs_error": 0.5206375122070312,
+      "mean_abs_error": 0.05295348041363468,
+      "rmse": 0.09970211491481333
+    },
+    "sc": {
+      "cosine_similarity": 0.9999929480523725,
+      "max_abs_error": 0.97900390625,
+      "mean_abs_error": 0.05700791480817965,
+      "rmse": 0.1106817690578883
+    }
+  },
+  "activation_quantization_contract": "raw group32 Min/Max including zero; ideal-scale U8/zp; round-to-nearest ties-to-even; no pre-quantization clipping",
+  "fp16_nonfinite_scale_count": 0,
+  "fp16_output": "16x32 U8 plus 16x(zp8 + IEEE FP16 scale)",
+  "fp32_output": "16x32 U8 plus 16x(zp8 + IEEE FP32 scale)",
+  "groups": 448,
+  "hadamard_saturation_count": 0,
+  "input": "16 rows x 32 lanes signed S32 Q16.16",
+  "lanes": 32,
+  "minmax_reference": "/home/user/EDA-202/zhuowenjun/ScaleLLM/ModularExperiment/tools/model/minmax_a8.py",
+  "minmax_reference_sha256": "3ac29b4715e2e9338beeab62c6befc727898cab70518c251ed8a4af636ed8bbe",
+  "production_model": "/home/user/EDA-202/zhuowenjun/ScaleLLM/model/mlp_fixed.py",
+  "production_model_sha256": "919af25d6c7c1742b58bceb77893334351bd922722b6574b0fead4127f337673",
+  "rows": 16,
+  "sc_output": "16x32 U8 plus 16x(meta24 zp/code/shift)",
+  "scale_format_overflow_rows": 0,
+  "schema": "scalellm_modular_mlp_product_frontend_native_fp_v1",
+  "seed": "0xf1611",
+  "sha256": {
+    "expected_fp16_meta.mem": "d20f28ff6a265963cf307550524841b17730312972c1d986c604efd2d9e1f8cb",
+    "expected_fp32_meta.mem": "923fed3a5494f7aabf8d2aa9859e687b380a81b495f45c377d8dd6fc76b343cc",
+    "expected_fp_u8.mem": "d3cbfcbcf463dde886bbc0dfe841edb40f64a0495805a73db280e64e6e888b3e",
+    "expected_sc_meta.mem": "464987ef3ca6698c3eabc1f5fb3c52973eae76b2ee61397989667f2bf914e1ef",
+    "expected_sc_u8.mem": "d3cbfcbcf463dde886bbc0dfe841edb40f64a0495805a73db280e64e6e888b3e",
+    "input_s32.mem": "0b26074200ec4f4ec52bf241ea7963c217c65e9b8ce328bf133df17be41b8191"
+  },
+  "zero_diff_rows": 193
+}

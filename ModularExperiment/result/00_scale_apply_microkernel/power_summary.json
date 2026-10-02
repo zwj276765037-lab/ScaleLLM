@@ -1,0 +1,52 @@
+{
+  "schema": "scalellm_modular_post_route_saif_power_v1",
+  "module": "00_scale_apply_microkernel",
+  "method": "Vivado 2025.2 report_power on routed DCP with 100 MHz behavioral XSIM SAIF",
+  "measurement_kind": "post-route estimate from simulation activity, not board measurement",
+  "environment": {
+    "process": "typical",
+    "ambient_c": 25.0,
+    "airflow_lfm": 250,
+    "heat_sink": "medium"
+  },
+  "capture": {
+    "vectors": 256,
+    "window": "continuous workload after reset, including specified output backpressure",
+    "energy_formula": "dynamic_power_w * saif_duration_s / 256"
+  },
+  "results": [
+    {
+      "variant": "sc",
+      "saif_duration_us": 8.795,
+      "design_nets_matched": {"matched": 1130, "total": 3074, "percent": 37},
+      "confidence": "Medium",
+      "power_w": {"clock": 0.002, "clb_logic": 0.006, "signals": 0.006, "dsp": 0.015, "dynamic": 0.028, "device_static": 2.470, "total_on_chip": 2.498},
+      "dynamic_energy_nj_per_group32": 0.962,
+      "evidence_dir": "raw/sc/power/20260912_100508_saif_post_route_100mhz"
+    },
+    {
+      "variant": "fp16",
+      "saif_duration_us": 9.355,
+      "design_nets_matched": {"matched": 1432, "total": 4491, "percent": 32},
+      "confidence": "High",
+      "power_w": {"clock": 0.004, "clb_logic": 0.006, "signals": 0.005, "dsp": 0.014, "dynamic": 0.028, "device_static": 2.470, "total_on_chip": 2.498},
+      "dynamic_energy_nj_per_group32": 1.023,
+      "evidence_dir": "raw/fp16/power/20260912_101007_saif_post_route_100mhz"
+    },
+    {
+      "variant": "fp32",
+      "saif_duration_us": 9.195,
+      "design_nets_matched": {"matched": 1710, "total": 5074, "percent": 34},
+      "confidence": "High",
+      "power_w": {"clock": 0.004, "clb_logic": 0.007, "signals": 0.007, "dsp": 0.016, "dynamic": 0.035, "device_static": 2.470, "total_on_chip": 2.505},
+      "dynamic_energy_nj_per_group32": 1.257,
+      "evidence_dir": "raw/fp32/power/20260912_101229_saif_post_route_100mhz"
+    }
+  ],
+  "limitations": [
+    "Dynamic energy applies to the captured backpressure workload, not a permanently-ready extrapolation.",
+    "Unmatched post-route internal nodes use Vivado vectorless activity propagation.",
+    "Device static power is a whole-device model value and is not attributable solely to this module.",
+    "Power values are rounded to 1 mW by the generated report."
+  ]
+}

@@ -26,5 +26,6 @@ mkdir -p "xsim_work/$SIM"
     rtl/mlp/hap_mlp_gate_up_stream_controller16_q4.sv \
     rtl/attention/hap_u16_div_u8_seq.sv \
     tb/hap_mlp_gate_up_stream_controller16_q4_tb.sv
-"$BIN/xelab" hap_mlp_gate_up_stream_controller16_q4_tb -s "$SIM"
+"$BIN/xelab" hap_mlp_gate_up_stream_controller16_q4_tb \
+    -L unisims_ver -s "$SIM"
 "$BIN/xsim" "$SIM" -runall

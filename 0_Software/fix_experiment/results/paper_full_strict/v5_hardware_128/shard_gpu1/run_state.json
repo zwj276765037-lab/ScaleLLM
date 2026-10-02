@@ -1,0 +1,44 @@
+{
+  "schema": "scalellm_literature_aligned_worker_v1",
+  "created_at": "2026-09-13T07:29:16.957504+00:00",
+  "pid": 1637711,
+  "cuda_visible_devices": "1",
+  "device": "cuda:0",
+  "gpu_name": "NVIDIA RTX A6000",
+  "model": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+  "case": "v5",
+  "protocol": {
+    "protocol": "hardware_128",
+    "context_length": 128,
+    "case": "v5",
+    "zero_shot": true,
+    "full_split": true,
+    "literature_comparable": false,
+    "hardware_constrained": true,
+    "overlength_continuation_policy": "rolling_windows_score_all_choice_tokens"
+  },
+  "tasks": [
+    "wikitext2",
+    "piqa",
+    "arc_easy",
+    "arc_challenge",
+    "boolq",
+    "winogrande"
+  ],
+  "limit": null,
+  "versions": {
+    "python": "3.10.19",
+    "torch": "2.10.0+cu128",
+    "transformers": "5.3.0",
+    "datasets": "4.8.4",
+    "lm_eval": "0.4.11",
+    "accelerate": "1.13.0",
+    "triton": "3.6.0"
+  },
+  "seed": 20260913,
+  "status": "failed",
+  "elapsed_sec": 1087.8056349754333,
+  "error_type": "ValueError",
+  "error": "model.layers.31.mlp.down_proj.weight observed a production-invalid total shift: row=0 group=170 column=704 activation_shift=6 weight_shift=14 total=20 legal=[21,44]",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/fix_experiment/exp/run_eval_worker.py\", line 608, in main\n    raw_lm_eval, truncation, acc_rows = run_acc(\n  File \"/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/fix_experiment/exp/run_eval_worker.py\", line 447, in run_acc\n    raw = evaluator.simple_evaluate(\n  File \"/home/zwj/.local/lib/python3.10/site-packages/lm_eval/utils.py\", line 498, in _wrapper\n    return fn(*args, **kwargs)\n  File \"/home/zwj/.local/lib/python3.10/site-packages/lm_eval/evaluator.py\", line 366, in simple_evaluate\n    results = evaluate(\n  File \"/home/zwj/.local/lib/python3.10/site-packages/lm_eval/utils.py\", line 498, in _wrapper\n    return fn(*args, **kwargs)\n  File \"/home/zwj/.local/lib/python3.10/site-packages/lm_eval/evaluator.py\", line 595, in evaluate\n    resps = getattr(lm, reqtype)(cloned_reqs)\n  File \"/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/fix_experiment/exp/run_eval_worker.py\", line 382, in loglikelihood\n    outputs[index] = self._score_windowed_request(request)\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\n    return func(*args, **kwargs)\n  File \"/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/fix_experiment/exp/run_eval_worker.py\", line 342, in _score_windowed_request\n    self._model_call(input_ids),\n  File \"/home/zwj/.local/lib/python3.10/site-packages/lm_eval/models/huggingface.py\", line 969, in _model_call\n    return self.model(inps).logits\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1776, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1787, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/transformers/utils/generic.py\", line 843, in wrapper\n    output = func(self, *args, **kwargs)\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py\", line 487, in forward\n    outputs: BaseModelOutputWithPast = self.model(\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1776, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1787, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/transformers/utils/generic.py\", line 917, in wrapper\n    output = func(self, *args, **kwargs)\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/transformers/utils/output_capturing.py\", line 253, in wrapper\n    outputs = func(self, *args, **kwargs)\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py\", line 422, in forward\n    hidden_states = decoder_layer(\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/transformers/modeling_layers.py\", line 93, in __call__\n    return super().__call__(*args, **kwargs)\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1776, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1787, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py\", line 335, in forward\n    hidden_states = self.mlp(hidden_states)\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1776, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1787, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/FPtoQ/experiment/v5_fullchain.py\", line 1025, in forward\n    output = self.down_proj.forward_raw_fixed(product)\n  File \"/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/FPtoQ/experiment/v5_fullchain.py\", line 626, in forward_raw_fixed\n    return self.project_prepared(self.prepare_raw(raw))\n  File \"/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/FPtoQ/experiment/v5_fullchain.py\", line 594, in project_prepared\n    raise ValueError(\nValueError: model.layers.31.mlp.down_proj.weight observed a production-invalid total shift: row=0 group=170 column=704 activation_shift=6 weight_shift=14 total=20 legal=[21,44]\n"
+}

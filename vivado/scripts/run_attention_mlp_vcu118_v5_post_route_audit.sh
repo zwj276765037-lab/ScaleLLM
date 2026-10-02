@@ -30,6 +30,113 @@ export HAP_XDC_INVENTORY="$(readlink -f "$3")"
 for input in "$HAP_DCP" "$HAP_BITSTREAM" "$HAP_XDC_INVENTORY"; do
     [[ -s "$input" ]] || { printf 'missing audit input: %s\n' "$input" >&2; exit 2; }
 done
+BOARD_SUMMARY="$(dirname "$HAP_DCP")/summary.txt"
+[[ -s "$BOARD_SUMMARY" ]] || {
+    printf 'missing board summary for independent audit: %s\n' \
+        "$BOARD_SUMMARY" >&2
+    exit 2
+}
+unique_board_value() {
+    local key="$1" values
+    mapfile -t values < <(sed -n "s/^${key}=//p" "$BOARD_SUMMARY")
+    [[ "${#values[@]}" -eq 1 && -n "${values[0]}" ]] || return 1
+    printf '%s\n' "${values[0]}"
+}
+export HAP_BOARD_RTL_VARIANT="$(unique_board_value rtl_variant)"
+export HAP_BOARD_EXPECTED_QUANTIZER3_PRIMITIVES="$(
+    unique_board_value p9_quantizer3_primitives)"
+export HAP_BOARD_EXPECTED_RELIEF_PRIMITIVES="$(
+    unique_board_value p14_region2_relief_primitives)"
+[[ "$HAP_BOARD_EXPECTED_QUANTIZER3_PRIMITIVES" =~ ^[1-9][0-9]*$ &&
+   "$HAP_BOARD_EXPECTED_RELIEF_PRIMITIVES" =~ ^[1-9][0-9]*$ ]] || exit 2
+SELECTOR_LIB="$ROOT/vivado/scripts/v5_production_floorplan_selectors.tcl"
+P5_LIB="$ROOT/vivado/scripts/v5_production_p5_input_partition_floorplan.tcl"
+P9_POST_LIB="$ROOT/vivado/scripts/v5_production_p9_postprocess_partition_floorplan.tcl"
+P8_BOUNDARY_LIB="$ROOT/vivado/scripts/audit_mlp_p8_parent_ingress_boundary_replica_aware.tcl"
+AUDIT_PHYSICAL_EXTRA_INPUTS=()
+case "$HAP_BOARD_RTL_VARIANT" in
+    P14_LEGACY)
+        GEOMETRY_LIB="$ROOT/vivado/scripts/projection_core16x16_w8_reuse_ooc_floorplan.tcl"
+        P9_QUANTIZER3_LIB="$ROOT/vivado/scripts/v5_production_p9_quantizer3_locality_floorplan.tcl"
+        P14_RELIEF_LIB="$ROOT/vivado/scripts/v5_production_p14_region2_x2_relief_floorplan.tcl"
+        HAP_AUDIT_EXPECTED_INPUT_COUNT=14
+        HAP_BOARD_EXPECTED_TOTAL_DSP=5453
+        HAP_BOARD_EXPECTED_SLR1_DSP=1781
+        HAP_BOARD_EXPECTED_PROJECTED_SLR_DSP='1862 1781 1810'
+        HAP_BOARD_EXPECTED_REGION2_ROWS0_3_PRIMITIVES=26800
+        HAP_BOARD_EXPECTED_REGION2_ROWS4_7_PRIMITIVES=26800
+        HAP_BOARD_EXPECTED_REGION2_RESIDUAL_PRIMITIVES=15199
+        ;;
+    P16_NOCLIP)
+        GEOMETRY_LIB="$ROOT/vivado/scripts/projection_core16x16_w8_reuse_ooc_p16_bound_floorplan.tcl"
+        P9_QUANTIZER3_LIB="$ROOT/vivado/scripts/v5_production_p16_noclip_quantizer3_locality_floorplan.tcl"
+        P14_RELIEF_LIB="$ROOT/vivado/scripts/v5_production_p16_noclip_region2_x2_relief_floorplan.tcl"
+        P16_ADAPTER="$ROOT/vivado/scripts/projection_core16x16_w8_reuse_ooc_p16_floorplan.tcl"
+        BASE_GEOMETRY="$ROOT/vivado/scripts/projection_core16x16_w8_reuse_ooc_floorplan.tcl"
+        P9_QUANTIZER3_BASE="$ROOT/vivado/scripts/v5_production_p9_quantizer3_locality_floorplan.tcl"
+        P14_RELIEF_BASE="$ROOT/vivado/scripts/v5_production_p14_region2_x2_relief_floorplan.tcl"
+        export HAP_P16_POST_OPT_SUMMARY="$(readlink -e -- "$(
+            unique_board_value p16_post_opt_summary)")"
+        export HAP_P16_POST_OPT_SUMMARY_SHA256="$(
+            unique_board_value p16_post_opt_summary_sha256)"
+        [[ -s "$HAP_P16_POST_OPT_SUMMARY" &&
+           "$HAP_P16_POST_OPT_SUMMARY_SHA256" =~ ^[0-9a-f]{64}$ &&
+           "$(sha256sum -- "$HAP_P16_POST_OPT_SUMMARY" | awk '{print $1}')" == \
+                "$HAP_P16_POST_OPT_SUMMARY_SHA256" ]] || exit 2
+        export HAP_P16_PRODUCTION_REGION2_SUMMARY="$(readlink -e -- "$(
+            unique_board_value p16_production_region2_summary)")"
+        export HAP_P16_PRODUCTION_REGION2_SUMMARY_SHA256="$(
+            unique_board_value p16_production_region2_summary_sha256)"
+        export HAP_P16_PRODUCTION_DCP_SHA256="$(
+            unique_board_value p16_production_dcp_sha256)"
+        [[ -s "$HAP_P16_PRODUCTION_REGION2_SUMMARY" &&
+           "$HAP_P16_PRODUCTION_REGION2_SUMMARY_SHA256" =~ ^[0-9a-f]{64}$ &&
+           "$HAP_P16_PRODUCTION_DCP_SHA256" =~ ^[0-9a-f]{64}$ &&
+           "$(sha256sum -- "$HAP_P16_PRODUCTION_REGION2_SUMMARY" | \
+                awk '{print $1}')" == \
+                "$HAP_P16_PRODUCTION_REGION2_SUMMARY_SHA256" ]] || exit 2
+        AUDIT_PHYSICAL_EXTRA_INPUTS=("$P16_ADAPTER" "$BASE_GEOMETRY"
+            "$P9_QUANTIZER3_BASE" "$P14_RELIEF_BASE"
+            "$HAP_P16_POST_OPT_SUMMARY"
+            "$HAP_P16_PRODUCTION_REGION2_SUMMARY")
+        HAP_AUDIT_EXPECTED_INPUT_COUNT=20
+        HAP_BOARD_EXPECTED_TOTAL_DSP=5449
+        HAP_BOARD_EXPECTED_SLR1_DSP=1777
+        HAP_BOARD_EXPECTED_PROJECTED_SLR_DSP='1862 1777 1810'
+        unique_board_summary="$HAP_P16_PRODUCTION_REGION2_SUMMARY"
+        unique_post_opt_value() {
+            local key="$1" values
+            mapfile -t values < <(sed -n "s/^${key}=//p" \
+                "$unique_board_summary")
+            [[ "${#values[@]}" -eq 1 && -n "${values[0]}" ]] || return 1
+            printf '%s\n' "${values[0]}"
+        }
+        HAP_BOARD_EXPECTED_REGION2_ROWS0_3_PRIMITIVES="$(
+            unique_post_opt_value region2_rows0_3_primitives)"
+        HAP_BOARD_EXPECTED_REGION2_ROWS4_7_PRIMITIVES="$(
+            unique_post_opt_value region2_rows4_7_primitives)"
+        HAP_BOARD_EXPECTED_REGION2_RESIDUAL_PRIMITIVES="$(
+            unique_post_opt_value region2_residual_primitives)"
+        ;;
+    *)
+        printf 'unsupported independent-audit RTL variant: %s\n' \
+            "$HAP_BOARD_RTL_VARIANT" >&2
+        exit 2
+        ;;
+esac
+for value in "$HAP_BOARD_EXPECTED_TOTAL_DSP" \
+        "$HAP_BOARD_EXPECTED_SLR1_DSP" \
+        "$HAP_BOARD_EXPECTED_REGION2_ROWS0_3_PRIMITIVES" \
+        "$HAP_BOARD_EXPECTED_REGION2_ROWS4_7_PRIMITIVES" \
+        "$HAP_BOARD_EXPECTED_REGION2_RESIDUAL_PRIMITIVES"; do
+    [[ "$value" =~ ^[1-9][0-9]*$ ]] || exit 2
+done
+export HAP_BOARD_EXPECTED_TOTAL_DSP HAP_BOARD_EXPECTED_SLR1_DSP
+export HAP_BOARD_EXPECTED_PROJECTED_SLR_DSP
+export HAP_BOARD_EXPECTED_REGION2_ROWS0_3_PRIMITIVES
+export HAP_BOARD_EXPECTED_REGION2_ROWS4_7_PRIMITIVES
+export HAP_BOARD_EXPECTED_REGION2_RESIDUAL_PRIMITIVES
+export HAP_AUDIT_EXPECTED_INPUT_COUNT
 mkdir "$HAP_AUDIT_DIR"
 
 # Preserve every nonempty artifact on every exit.  The output manifest is the
@@ -73,6 +180,7 @@ write_audit_launcher_status() {
         "input_sha_postcheck=$input_sha_postcheck" \
         "input_manifest_sha_match=$input_manifest_sha_match" \
         "input_manifest_sha256=$HAP_AUDIT_INPUT_MANIFEST_SHA256" \
+        "rtl_variant=$HAP_BOARD_RTL_VARIANT" \
         > "$HAP_AUDIT_DIR/launcher_status.txt"
 }
 
@@ -90,15 +198,20 @@ audit_exit_archive() {
 trap audit_exit_archive EXIT
 
 INPUTS=(
-    "$HAP_DCP" "$HAP_BITSTREAM" "$HAP_XDC_INVENTORY"
+    "$HAP_DCP" "$HAP_BITSTREAM" "$HAP_XDC_INVENTORY" "$BOARD_SUMMARY"
     "$ROOT/vivado/scripts/audit_attention_mlp_vcu118_v5_post_route.tcl"
     "$ROOT/vivado/scripts/attention_mlp_vcu118_v5_post_route_gate.tcl"
-    "$ROOT/vivado/scripts/v5_production_floorplan_selectors.tcl"
-    "$ROOT/vivado/scripts/projection_core16x16_w8_reuse_ooc_floorplan.tcl"
-    "$ROOT/vivado/scripts/v5_production_p5_input_partition_floorplan.tcl"
-    "$ROOT/vivado/scripts/v5_production_p6_postprocess_partition_floorplan.tcl"
+    "$SELECTOR_LIB"
+    "$GEOMETRY_LIB"
+    "$P5_LIB"
+    "$P9_POST_LIB"
+    "$P9_QUANTIZER3_LIB"
+    "$P14_RELIEF_LIB"
+    "$P8_BOUNDARY_LIB"
+    "${AUDIT_PHYSICAL_EXTRA_INPUTS[@]}"
     "$ROOT/vivado/scripts/run_attention_mlp_vcu118_v5_post_route_audit.sh"
 )
+[[ "${#INPUTS[@]}" -eq "$HAP_AUDIT_EXPECTED_INPUT_COUNT" ]]
 printf '%s\n' "${INPUTS[@]}" > "$HAP_AUDIT_DIR/INPUT_FILES"
 sha256sum "${INPUTS[@]}" > "$HAP_AUDIT_DIR/INPUT_SHA256SUMS"
 export HAP_AUDIT_INPUT_MANIFEST_SHA256
@@ -178,8 +291,12 @@ for required in summary.txt post_route_gate_summary.txt timing_post_route.rpt \
     attention_geometry_placement_post_route.txt \
     base_pblocks_post_route.txt p5_input_plan_post_route.txt \
     p5_input_pblocks_post_route.txt \
-    p6_postprocess_plan_post_route.txt \
-    p6_postprocess_pblocks_post_route.txt \
+    p9_postprocess_plan_post_route.txt \
+    p9_postprocess_pblocks_post_route.txt \
+    p9_quantizer3_plan_post_route.txt p9_quantizer3_pblock_post_route.txt \
+    p14_region2_relief_plan_post_route.txt \
+    p14_region2_relief_pblock_post_route.txt \
+    p8_parent_ingress_boundary_post_route.txt \
     architecture_boundaries_post_route.txt \
     exceptions_coverage_post_route.rpt exceptions_valid_post_route.xdc \
     exceptions_merged_post_route.xdc utilization_post_route.rpt \
@@ -202,10 +319,12 @@ grep -Fqx 'input_manifest_sha_match=1' \
     "$HAP_AUDIT_DIR/launcher_status.txt"
 grep -Fqx "input_manifest_sha256=$HAP_AUDIT_INPUT_MANIFEST_SHA256" \
     "$HAP_AUDIT_DIR/launcher_status.txt"
+grep -Fqx "rtl_variant=$HAP_BOARD_RTL_VARIANT" \
+    "$HAP_AUDIT_DIR/launcher_status.txt"
 check_bufg_summary_schema "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'status=V5_BOARD_INDEPENDENT_AUDIT_PASS' \
     "$HAP_AUDIT_DIR/summary.txt"
-grep -Fqx 'audit_input_manifest_entries=10' \
+grep -Fqx "audit_input_manifest_entries=$HAP_AUDIT_EXPECTED_INPUT_COUNT" \
     "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx "audit_input_manifest_sha256=$HAP_AUDIT_INPUT_MANIFEST_SHA256" \
     "$HAP_AUDIT_DIR/summary.txt"
@@ -218,7 +337,8 @@ grep -Fqx 'status=V5_BOARD_POST_ROUTE_PASS' \
     "$HAP_AUDIT_DIR/post_route_gate_summary.txt"
 [[ "$(grep -c '^status=' \
     "$HAP_AUDIT_DIR/post_route_gate_summary.txt")" -eq 1 ]]
-grep -Fqx 'dsp48e2=5453' "$HAP_AUDIT_DIR/summary.txt"
+grep -Fqx "dsp48e2=$HAP_BOARD_EXPECTED_TOTAL_DSP" \
+    "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'mlp_kernel_dsp48e2=3072' "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'uram288=752' "$HAP_AUDIT_DIR/summary.txt"
 for exact in raw_weight_push_loads=37 \
@@ -285,43 +405,73 @@ grep -Fqx 'base_contract_variant=P2_COHORT16_COL2_12_2' \
     "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'p5_contract=P5_INPUT_HALF_LOCAL_8_8' \
     "$HAP_AUDIT_DIR/summary.txt"
-grep -Fqx 'p6_contract=P6_POSTPROCESS_GROUP4_SPLIT_4_8_4' \
+grep -Fqx 'p9_postprocess_contract=P9_POSTPROCESS_SPLIT_6_4_6' \
     "$HAP_AUDIT_DIR/summary.txt"
-grep -Fqx 'p7_contract=P7_ATTN_REGION2_ROWS_Y5_Y6_Y6_Y8' \
+grep -Fqx 'p9_quantizer3_contract=P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6' \
     "$HAP_AUDIT_DIR/summary.txt"
-grep -Fqx 'region2_variant=rowsplit_y5_y6_y6_y8' \
+grep -Fqx 'p14_region2_relief_contract=P14_ATTN_REGION2_SHARED_X0_X2' \
     "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'pblock_contract_variant=P2_COHORT16_COL2_12_2' \
     "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'pblock_contract_ok=1' "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'pblock_require_placed=1' "$HAP_AUDIT_DIR/summary.txt"
-grep -Fqx 'pblock_count=27' "$HAP_AUDIT_DIR/summary.txt"
+grep -Fqx 'pblock_count=26' "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'canonical_pblock_count=11' "$HAP_AUDIT_DIR/summary.txt"
-grep -Fqx 'geometry_pblock_count=12' "$HAP_AUDIT_DIR/summary.txt"
+grep -Fqx 'geometry_pblock_count=10' "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'p5_added_pblock_count=2' "$HAP_AUDIT_DIR/summary.txt"
-grep -Fqx 'p6_added_pblock_count=2' "$HAP_AUDIT_DIR/summary.txt"
-grep -Fqx 'total_pblock_count=27' "$HAP_AUDIT_DIR/summary.txt"
+grep -Fqx 'p9_postprocess_added_pblock_count=2' "$HAP_AUDIT_DIR/summary.txt"
+grep -Fqx 'p9_quantizer3_added_pblock_count=1' "$HAP_AUDIT_DIR/summary.txt"
+grep -Fqx 'p14_region2_relief_added_pblock_count=0' \
+    "$HAP_AUDIT_DIR/summary.txt"
+grep -Fqx 'total_pblock_count=26' "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'completed_u8_ff=4096' "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'completed_meta_ff=352' "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'input_capture_ff=12288' "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'input_capture_controls=48' "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'p5_center_wrong_slr=0' "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'p5_outer_wrong_slr=0' "$HAP_AUDIT_DIR/summary.txt"
-grep -Fqx 'p6_center_wrong_slr=0' "$HAP_AUDIT_DIR/summary.txt"
-grep -Fqx 'p6_outer_wrong_slr=0' "$HAP_AUDIT_DIR/summary.txt"
-grep -Fqx 'p6_slr0_row_primitives=10696' "$HAP_AUDIT_DIR/summary.txt"
-grep -Fqx 'p6_center_row_primitives=21392' "$HAP_AUDIT_DIR/summary.txt"
-grep -Fqx 'p6_slr2_row_primitives=10696' "$HAP_AUDIT_DIR/summary.txt"
-for exact in p7_region2_rows0_3_primitives=26800 \
-    p7_region2_rows4_7_primitives=26800 \
-    p7_region2_residual_primitives=15199 \
-    p7_region2_rows0_3_dsp48e2=272 \
-    p7_region2_rows4_7_dsp48e2=272 \
-    p7_region2_residual_dsp48e2=0; do
+grep -Fqx 'p9_postprocess_center_wrong_slr=0' "$HAP_AUDIT_DIR/summary.txt"
+grep -Fqx 'p9_postprocess_outer_wrong_slr=0' "$HAP_AUDIT_DIR/summary.txt"
+for exact in p9_slr0_row_primitives=16044 \
+    p9_center_row_primitives=10696 p9_slr2_row_primitives=16044 \
+    "p9_quantizer3_primitives=$HAP_BOARD_EXPECTED_QUANTIZER3_PRIMITIVES" \
+    p9_quantizer3_grid_range=CLOCKREGION_X2Y5:CLOCKREGION_X3Y6 \
+    p9_quantizer3_wrong_region=0 p9_quantizer3_unplaced=0 \
+    "p14_region2_relief_primitives=$HAP_BOARD_EXPECTED_RELIEF_PRIMITIVES" \
+    p14_region2_relief_base_range=CLOCKREGION_X0Y5:CLOCKREGION_X1Y9 \
+    p14_region2_relief_range=CLOCKREGION_X2Y5:CLOCKREGION_X2Y9 \
+    p14_region2_expected_range=CLOCKREGION_X0Y5:CLOCKREGION_X2Y9 \
+    p14_region2_relief_wrong=0 p14_region2_relief_unplaced=0 \
+    parent_head_ff=6560 parent_tail_ff=6560 parent_count_ff=2 \
+    parent_count_replica_equivalence_ok=1 parent_pointer_ff=0 \
+    local_clear_shared_upstream_ready_paths=0 \
+    branch_credit_shared_upstream_ready_paths=0 \
+    local_clear_gate_compute_ready_paths=0 \
+    branch_credit_gate_compute_ready_paths=0 \
+    local_clear_down_compute_ready_paths=0 \
+    branch_credit_down_compute_ready_paths=0 \
+    local_clear_input_cache_ready_paths=0 \
+    branch_credit_input_cache_ready_paths=0; do
     grep -Fqx "$exact" "$HAP_AUDIT_DIR/summary.txt"
 done
+grep -Fqx "rtl_variant=$HAP_BOARD_RTL_VARIANT" \
+    "$HAP_AUDIT_DIR/summary.txt"
+grep -Fqx "rtl_resource_variant=$HAP_BOARD_RTL_VARIANT" \
+    "$HAP_AUDIT_DIR/summary.txt"
+if [[ "$HAP_BOARD_RTL_VARIANT" == P16_NOCLIP ]]; then
+    for exact in \
+        "region2_signature_source=P16_PRODUCTION_POST_OPT_SHA256:$HAP_P16_PRODUCTION_REGION2_SUMMARY_SHA256" \
+        "p16_post_opt_summary=$HAP_P16_POST_OPT_SUMMARY" \
+        "p16_post_opt_summary_sha256=$HAP_P16_POST_OPT_SUMMARY_SHA256" \
+        "p16_production_region2_summary=$HAP_P16_PRODUCTION_REGION2_SUMMARY" \
+        "p16_production_region2_summary_sha256=$HAP_P16_PRODUCTION_REGION2_SUMMARY_SHA256" \
+        "p16_production_dcp_sha256=$HAP_P16_PRODUCTION_DCP_SHA256"; do
+        grep -Fqx "$exact" "$HAP_AUDIT_DIR/summary.txt"
+    done
+fi
 grep -Fqx 'physical_placement_ok=1' "$HAP_AUDIT_DIR/summary.txt"
-grep -Fqx 'pblock_dsp_coverage=5453' "$HAP_AUDIT_DIR/summary.txt"
+grep -Fqx "pblock_dsp_coverage=$HAP_BOARD_EXPECTED_TOTAL_DSP" \
+    "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'pblock_uram_coverage=752' "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'pblock_wrong_slr=0' "$HAP_AUDIT_DIR/summary.txt"
 grep -Fqx 'wrong_slr_primitives=0' "$HAP_AUDIT_DIR/summary.txt"
@@ -332,20 +482,22 @@ for exact in \
     outer0_ramb36e2=102 outer2_ramb36e2=102 \
     base_contract_variant=P2_COHORT16_COL2_12_2 \
     p5_contract=P5_INPUT_HALF_LOCAL_8_8 \
-    p6_contract=P6_POSTPROCESS_GROUP4_SPLIT_4_8_4 \
-    p7_contract=P7_ATTN_REGION2_ROWS_Y5_Y6_Y6_Y8 \
-    region2_variant=rowsplit_y5_y6_y6_y8 \
-    'projected_slr_dsp48e2=1862 1781 1810' \
+    p9_postprocess_contract=P9_POSTPROCESS_SPLIT_6_4_6 \
+    p9_quantizer3_contract=P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6 \
+    p14_region2_relief_contract=P14_ATTN_REGION2_SHARED_X0_X2 \
+    "projected_slr_dsp48e2=$HAP_BOARD_EXPECTED_PROJECTED_SLR_DSP" \
     'projected_slr_uram288=224 224 304' \
-    slr0_dsp48e2=1862 slr1_dsp48e2=1781 slr2_dsp48e2=1810 \
+    slr0_dsp48e2=1862 \
+    "slr1_dsp48e2=$HAP_BOARD_EXPECTED_SLR1_DSP" slr2_dsp48e2=1810 \
     slr0_uram288=224 slr1_uram288=224 slr2_uram288=304; do
     grep -Fqx "$exact" "$HAP_AUDIT_DIR/summary.txt"
 done
 for exact in status=V5_BOARD_POST_ROUTE_SELECTORS_PASS \
-    contract_variant=P2_COHORT16_COL2_12_2 total_dsp=5453 total_uram=752 \
+    "contract_variant=P2_COHORT16_COL2_12_2 total_dsp=$HAP_BOARD_EXPECTED_TOTAL_DSP total_uram=752" \
     outer0_dsp=1538 outer2_dsp=1538 \
     outer0_ramb36=102 outer2_ramb36=102 move0=16 center_lanes=96 \
-    move2=16 planned_slr0_dsp=1862 planned_slr1_dsp=1781 \
+    move2=16 planned_slr0_dsp=1862 \
+    "planned_slr1_dsp=$HAP_BOARD_EXPECTED_SLR1_DSP" \
     planned_slr2_dsp=1810; do
     grep -Fqx "$exact" "$HAP_AUDIT_DIR/selectors_post_route.txt"
 done
@@ -356,11 +508,11 @@ for exact in status=V5_BOARD_POST_ROUTE_GEOMETRY_PASS \
     owner_region2_weight_primitives=2048 \
     center_region1_bisect_exact_cover=1 \
     center_region1_dsp_stripe_exact_cover=1 \
-    center_region2_rows0_3_primitives=26800 \
+    "center_region2_rows0_3_primitives=$HAP_BOARD_EXPECTED_REGION2_ROWS0_3_PRIMITIVES" \
     center_region2_rows0_3_primitives_dsp48e2=272 \
-    center_region2_rows4_7_primitives=26800 \
+    "center_region2_rows4_7_primitives=$HAP_BOARD_EXPECTED_REGION2_ROWS4_7_PRIMITIVES" \
     center_region2_rows4_7_primitives_dsp48e2=272 \
-    center_region2_residual_primitives=15199 \
+    "center_region2_residual_primitives=$HAP_BOARD_EXPECTED_REGION2_RESIDUAL_PRIMITIVES" \
     center_region2_residual_primitives_dsp48e2=0 \
     center_region2_row_exact_cover=1 \
     owner_region0_input_exact_cover=1 owner_region3_input_exact_cover=1 \
@@ -377,7 +529,8 @@ done
 for exact in status=V5_BOARD_POST_ROUTE_BASE_PBLOCKS_PASS ok=1 \
     require_placed=1 contract_variant=P2_COHORT16_COL2_12_2 \
     pblock_count=11 \
-    dsp_coverage=5453 uram_coverage=752 placed_wrong=0 \
+    "dsp_coverage=$HAP_BOARD_EXPECTED_TOTAL_DSP" \
+    uram_coverage=752 placed_wrong=0 \
     pb_v5_mlp_branch_slr0_dsp=1538 \
     pb_v5_mlp_branch_slr0_ramb36=102 \
     pb_v5_mlp_branch_slr0_missing=0 \
@@ -407,19 +560,67 @@ for exact in status=V5_BOARD_POST_ROUTE_P5_INPUT_PBLOCKS_PASS ok=1 \
     center_outer_overlap=0 center_wrong=0 outer_wrong=0; do
     grep -Fqx "$exact" "$HAP_AUDIT_DIR/p5_input_pblocks_post_route.txt"
 done
-for exact in status=V5_BOARD_POST_ROUTE_P6_POSTPROCESS_PLAN_PASS \
-    contract=P6_POSTPROCESS_GROUP4_SPLIT_4_8_4 row_bank_count=16 \
-    all_row_primitives=42784 slr0_row_primitives=10696 \
-    center_row_primitives=21392 slr2_row_primitives=10696 \
+for exact in status=V5_BOARD_POST_ROUTE_P9_POSTPROCESS_PLAN_PASS \
+    contract=P9_POSTPROCESS_SPLIT_6_4_6 row_bank_count=16 \
+    all_row_primitives=42784 slr0_row_primitives=16044 \
+    center_row_primitives=10696 slr2_row_primitives=16044 \
     per_row_primitives=2674 per_row_lut=994 per_row_ff=1536; do
-    grep -Fqx "$exact" "$HAP_AUDIT_DIR/p6_postprocess_plan_post_route.txt"
+    grep -Fqx "$exact" "$HAP_AUDIT_DIR/p9_postprocess_plan_post_route.txt"
 done
-for exact in status=V5_BOARD_POST_ROUTE_P6_POSTPROCESS_PBLOCKS_PASS ok=1 \
+for exact in status=V5_BOARD_POST_ROUTE_P9_POSTPROCESS_PBLOCKS_PASS ok=1 \
     require_placed=1 pblock_count=2 center_missing=0 \
     center_outer_overlap=0 center_wrong=0 outer_wrong=0 \
     slr0_target=0 slr0_missing=0 slr0_wrong=0 \
     slr2_target=2 slr2_missing=0 slr2_wrong=0; do
-    grep -Fqx "$exact" "$HAP_AUDIT_DIR/p6_postprocess_pblocks_post_route.txt"
+    grep -Fqx "$exact" "$HAP_AUDIT_DIR/p9_postprocess_pblocks_post_route.txt"
+done
+for exact in status=V5_BOARD_POST_ROUTE_P9_QUANTIZER3_PLAN_PASS \
+    contract=P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6 \
+    "primitive_count=$HAP_BOARD_EXPECTED_QUANTIZER3_PRIMITIVES" \
+    grid_range=CLOCKREGION_X2Y5:CLOCKREGION_X3Y6; do
+    grep -Fqx "$exact" "$HAP_AUDIT_DIR/p9_quantizer3_plan_post_route.txt"
+done
+for exact in status=V5_BOARD_POST_ROUTE_P9_QUANTIZER3_PBLOCK_PASS ok=1 \
+    require_placed=1 contract=P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6 \
+    "expected=$HAP_BOARD_EXPECTED_QUANTIZER3_PRIMITIVES" \
+    "members=$HAP_BOARD_EXPECTED_QUANTIZER3_PRIMITIVES" \
+    missing=0 extras=0 wrong=0 unplaced=0; do
+    grep -Fqx "$exact" "$HAP_AUDIT_DIR/p9_quantizer3_pblock_post_route.txt"
+done
+for exact in status=V5_BOARD_POST_ROUTE_P14_REGION2_RELIEF_PLAN_PASS \
+    contract=P14_ATTN_REGION2_SHARED_X0_X2 \
+    "primitive_count=$HAP_BOARD_EXPECTED_RELIEF_PRIMITIVES" \
+    base_range=CLOCKREGION_X0Y5:CLOCKREGION_X1Y9 \
+    relief_range=CLOCKREGION_X2Y5:CLOCKREGION_X2Y9 \
+    expected_range=CLOCKREGION_X0Y5:CLOCKREGION_X2Y9; do
+    grep -Fqx "$exact" "$HAP_AUDIT_DIR/p14_region2_relief_plan_post_route.txt"
+done
+for exact in status=V5_BOARD_POST_ROUTE_P14_REGION2_RELIEF_PBLOCK_PASS \
+    ok=1 contract=P14_ATTN_REGION2_SHARED_X0_X2 require_placed=1 \
+    "primitive_count=$HAP_BOARD_EXPECTED_RELIEF_PRIMITIVES" \
+    missing=0 wrong=0 unplaced=0; do
+    grep -Fqx "$exact" "$HAP_AUDIT_DIR/p14_region2_relief_pblock_post_route.txt"
+done
+awk -F= -v maximum="$HAP_BOARD_EXPECTED_RELIEF_PRIMITIVES" '
+    $1 == "relief_placed" {
+        count++
+        if ($2 !~ /^[0-9]+$/ || $2 + 0 > maximum) bad=1
+    }
+    END {exit count == 1 && !bad ? 0 : 1}
+' "$HAP_AUDIT_DIR/p14_region2_relief_pblock_post_route.txt"
+for exact in status=V5_BOARD_POST_ROUTE_P8_PARENT_INGRESS_BOUNDARY_PASS \
+    ok=1 parent_head_ff=6560 parent_tail_ff=6560 parent_count_ff=2 \
+    parent_count_replica_equivalence_ok=1 parent_pointer_ff=0 \
+    local_clear_shared_upstream_ready_paths=0 \
+    branch_credit_shared_upstream_ready_paths=0 \
+    local_clear_gate_compute_ready_paths=0 \
+    branch_credit_gate_compute_ready_paths=0 \
+    local_clear_down_compute_ready_paths=0 \
+    branch_credit_down_compute_ready_paths=0 \
+    local_clear_input_cache_ready_paths=0 \
+    branch_credit_input_cache_ready_paths=0; do
+    grep -Fqx "$exact" \
+        "$HAP_AUDIT_DIR/p8_parent_ingress_boundary_post_route.txt"
 done
 awk -F= '/^wns_ns=|^whs_ns=/{if ($2 < 0) exit 1; n++} END{exit n==2?0:1}' \
     "$HAP_AUDIT_DIR/summary.txt"

@@ -18,7 +18,7 @@ set ::env(HAP_BOARD_XDC) [file join $root vivado constraints \
 set ::env(HAP_BOARD_DEFINES) [list \
     HAP_BOARD_BUILD \
     HAP_BOARD_V5 \
-    HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s45]
+    HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s46]
 set ::env(HAP_DUAL_RESET_GATE_MODULE) hap_v5_dual_async_ready_gate_xpm
 set ::env(HAP_RESET_GATE_MODULE) hap_v5_reset_gate_xpm
 set ::env(HAP_BOARD_CORE_CLK_MHZ) 100.0

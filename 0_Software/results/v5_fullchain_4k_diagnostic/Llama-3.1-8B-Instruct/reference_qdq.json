@@ -1,0 +1,53 @@
+{
+  "schema": "scalellm_fp_to_q_ppl_v1",
+  "generated_at": "2026-09-13T02:42:59.879811+00:00",
+  "case": "software",
+  "model": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+  "wikitext": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/wikitext-2-raw-v1/test-00000-of-00001.jsonl",
+  "dtype": "bfloat16",
+  "device": "cuda:0",
+  "block_size": 128,
+  "stride": 127,
+  "max_tokens": 4096,
+  "seed": 20260911,
+  "method": {
+    "case": "software",
+    "module_count": 224,
+    "per_op": {
+      "q_proj": 32,
+      "k_proj": 32,
+      "v_proj": 32,
+      "o_proj": 32,
+      "gate_proj": 32,
+      "up_proj": 32,
+      "down_proj": 32
+    },
+    "activation_frontend": "archived software FP Hadamard32 + A8 ScaleCode",
+    "weight_path": "archived folded ScaleCode W8 attention / W4 MLP"
+  },
+  "reproducibility": {
+    "seed": 20260911,
+    "deterministic": true,
+    "allow_tf32": false,
+    "pythonhashseed": "20260911",
+    "cublas_workspace_config": ":4096:8",
+    "torch_initial_seed": 20260911,
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true
+  },
+  "metrics": {
+    "task": "wikitext2",
+    "samples": 33,
+    "records_complete": true,
+    "num_tokens": 4095,
+    "avg_nll": 3.0769552153982085,
+    "ppl": 21.69225350329077,
+    "token_accuracy": 0.4192918192918193,
+    "finite": true,
+    "elapsed_sec": 7.951188564300537,
+    "status": "pass"
+  },
+  "rtl_audit": null,
+  "elapsed_sec_total": 20.29500675201416
+}

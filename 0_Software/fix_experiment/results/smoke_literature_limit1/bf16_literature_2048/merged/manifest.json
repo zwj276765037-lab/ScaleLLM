@@ -1,0 +1,288 @@
+{
+  "schema": "scalellm_literature_aligned_eval_v1",
+  "created_at": "2026-09-13T06:41:09.340387+00:00",
+  "status": "complete",
+  "hardware_contract_status": "valid",
+  "model": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+  "case": "bf16",
+  "protocol": {
+    "protocol": "literature_2048",
+    "context_length": 2048,
+    "case": "bf16",
+    "zero_shot": true,
+    "full_split": false,
+    "literature_comparable": false,
+    "hardware_constrained": false
+  },
+  "primary_metric_policy": {
+    "piqa": "acc_norm",
+    "arc_easy": "acc_norm",
+    "arc_challenge": "acc_norm",
+    "boolq": "acc",
+    "hellaswag": "acc_norm",
+    "winogrande": "acc"
+  },
+  "macro_accuracy": 0.6666666666666666,
+  "macro_accuracy_unit": "fraction",
+  "ppl": 5.84925397671112,
+  "results": [
+    {
+      "task": "piqa",
+      "kind": "acc",
+      "primary_metric": "acc_norm",
+      "value": 1.0,
+      "stderr": null,
+      "samples": 1,
+      "truncated_documents": 0,
+      "truncated_document_fraction": 0.0,
+      "all_metrics": {
+        "alias": "piqa",
+        "acc,none": 1.0,
+        "acc_stderr,none": "N/A",
+        "acc_norm,none": 1.0,
+        "acc_norm_stderr,none": "N/A"
+      },
+      "case": "bf16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "hardware_contract_status": "valid"
+    },
+    {
+      "task": "arc_easy",
+      "kind": "acc",
+      "primary_metric": "acc_norm",
+      "value": 1.0,
+      "stderr": null,
+      "samples": 1,
+      "truncated_documents": 0,
+      "truncated_document_fraction": 0.0,
+      "all_metrics": {
+        "alias": "arc_easy",
+        "acc,none": 1.0,
+        "acc_stderr,none": "N/A",
+        "acc_norm,none": 1.0,
+        "acc_norm_stderr,none": "N/A"
+      },
+      "case": "bf16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "hardware_contract_status": "valid"
+    },
+    {
+      "task": "arc_challenge",
+      "kind": "acc",
+      "primary_metric": "acc_norm",
+      "value": 1.0,
+      "stderr": null,
+      "samples": 1,
+      "truncated_documents": 0,
+      "truncated_document_fraction": 0.0,
+      "all_metrics": {
+        "alias": "arc_challenge",
+        "acc,none": 0.0,
+        "acc_stderr,none": "N/A",
+        "acc_norm,none": 1.0,
+        "acc_norm_stderr,none": "N/A"
+      },
+      "case": "bf16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "hardware_contract_status": "valid"
+    },
+    {
+      "task": "boolq",
+      "kind": "acc",
+      "primary_metric": "acc",
+      "value": 0.0,
+      "stderr": null,
+      "samples": 1,
+      "truncated_documents": 0,
+      "truncated_document_fraction": 0.0,
+      "all_metrics": {
+        "alias": "boolq",
+        "acc,none": 0.0,
+        "acc_stderr,none": "N/A"
+      },
+      "case": "bf16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "hardware_contract_status": "valid"
+    },
+    {
+      "task": "hellaswag",
+      "kind": "acc",
+      "primary_metric": "acc_norm",
+      "value": 1.0,
+      "stderr": null,
+      "samples": 1,
+      "truncated_documents": 0,
+      "truncated_document_fraction": 0.0,
+      "all_metrics": {
+        "alias": "hellaswag",
+        "acc,none": 0.0,
+        "acc_stderr,none": "N/A",
+        "acc_norm,none": 1.0,
+        "acc_norm_stderr,none": "N/A"
+      },
+      "case": "bf16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "hardware_contract_status": "valid"
+    },
+    {
+      "task": "winogrande",
+      "kind": "acc",
+      "primary_metric": "acc",
+      "value": 0.0,
+      "stderr": null,
+      "samples": 1,
+      "truncated_documents": 0,
+      "truncated_document_fraction": 0.0,
+      "all_metrics": {
+        "alias": "winogrande",
+        "acc,none": 0.0,
+        "acc_stderr,none": "N/A"
+      },
+      "case": "bf16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "hardware_contract_status": "valid"
+    },
+    {
+      "task": "wikitext2",
+      "kind": "ppl",
+      "primary_metric": "word_perplexity",
+      "value": 5.84925397671112,
+      "avg_nll": 1.76631412776319,
+      "raw_token_count": 288936,
+      "block_size": 2048,
+      "available_complete_blocks": 141,
+      "evaluated_blocks": 1,
+      "tokens_in_evaluated_blocks": 2048,
+      "scoring_tokens": 2047,
+      "discarded_tail_tokens": 168,
+      "unscored_block_initial_tokens": 1,
+      "elapsed_sec": 1.636805534362793,
+      "full_stream": false,
+      "non_overlapping": true,
+      "tail_policy": "drop_incomplete_block",
+      "case": "bf16",
+      "protocol": "literature_2048",
+      "context_length": 2048,
+      "hardware_contract_status": "valid"
+    }
+  ],
+  "worker_manifests": [
+    {
+      "cuda_visible_devices": "0",
+      "gpu_name": "NVIDIA RTX A6000",
+      "tasks": [
+        "hellaswag"
+      ],
+      "status": "complete",
+      "elapsed_sec": 11.708248138427734,
+      "hardware_audit": null,
+      "data": [
+        {
+          "task": "hellaswag",
+          "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/hellaswag/hellaswag_val.jsonl",
+          "split": "validation",
+          "rows": 10042,
+          "expected_rows": 10042,
+          "source_id": "Rowan/hellaswag",
+          "source_revision": "local validation export",
+          "sha256": "0aa3b88843990f3f10a97b9575c94d7b71fb2205240ba04ae4884d9e9c992588",
+          "primary_metric": "acc_norm"
+        }
+      ]
+    },
+    {
+      "cuda_visible_devices": "1",
+      "gpu_name": "NVIDIA RTX A6000",
+      "tasks": [
+        "wikitext2",
+        "piqa",
+        "arc_easy",
+        "arc_challenge",
+        "boolq",
+        "winogrande"
+      ],
+      "status": "complete",
+      "elapsed_sec": 13.672882556915283,
+      "hardware_audit": null,
+      "data": [
+        {
+          "task": "piqa",
+          "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/piqa/validation_full.jsonl",
+          "split": "validation",
+          "rows": 1838,
+          "expected_rows": 1838,
+          "source_id": "baber/piqa",
+          "source_revision": "local validation export",
+          "sha256": "e063f2cb457859c2764604d625ca4112fb9e706b666d7330f12f21a49a6dd9a1",
+          "primary_metric": "acc_norm"
+        },
+        {
+          "task": "arc_easy",
+          "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/lm_eval_standard/arc_easy_test.jsonl",
+          "split": "test",
+          "rows": 2376,
+          "expected_rows": 2376,
+          "source_id": "allenai/ai2_arc:ARC-Easy",
+          "source_revision": "210d026faf9955653af8916fad021475a3f00453",
+          "sha256": "09ab01ecb7493f88ebe45f4183360b102937d3879f566216e62f4ddeececdf56",
+          "primary_metric": "acc_norm"
+        },
+        {
+          "task": "arc_challenge",
+          "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/lm_eval_standard/arc_challenge_test.jsonl",
+          "split": "test",
+          "rows": 1172,
+          "expected_rows": 1172,
+          "source_id": "allenai/ai2_arc:ARC-Challenge",
+          "source_revision": "210d026faf9955653af8916fad021475a3f00453",
+          "sha256": "86ccaace4cd159b5c02b6b3339ebe8a7022a54f1b488e433c060b3bc38ac1f63",
+          "primary_metric": "acc_norm"
+        },
+        {
+          "task": "boolq",
+          "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/boolq/validation.parquet",
+          "split": "validation",
+          "rows": 3270,
+          "expected_rows": 3270,
+          "source_id": "aps/super_glue:boolq",
+          "source_revision": "local validation export",
+          "sha256": "52355d11524b4b874a9b9dcc278feb10f672d52c4f4eff9872e695ede59820f8",
+          "primary_metric": "acc"
+        },
+        {
+          "task": "winogrande",
+          "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/winogrande/winogrande_1.1/winogrande_1.1/dev.jsonl",
+          "split": "validation",
+          "rows": 1267,
+          "expected_rows": 1267,
+          "source_id": "allenai/winogrande:winogrande_xl",
+          "source_revision": "winogrande_1.1 dev",
+          "sha256": "1aeac79cf46a3dcbe59a71ca7e5372a1490cde2b4ae2387dc56f00378104d2e8",
+          "primary_metric": "acc"
+        },
+        {
+          "task": "wikitext2",
+          "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/wikitext-2-raw-v1/test-00000-of-00001.jsonl",
+          "split": "test",
+          "source_id": "Salesforce/wikitext:wikitext-2-raw-v1",
+          "sha256": "69d7ab3cc73d4e17e6ad44fe2f99e7734a51d5a321dc38af095fd02b398ca0b8"
+        }
+      ]
+    }
+  ],
+  "versions": {
+    "python": "3.10.19",
+    "torch": "2.10.0+cu128",
+    "transformers": "5.3.0",
+    "datasets": "4.8.4",
+    "lm_eval": "0.4.11",
+    "accelerate": "1.13.0",
+    "triton": "3.6.0"
+  }
+}

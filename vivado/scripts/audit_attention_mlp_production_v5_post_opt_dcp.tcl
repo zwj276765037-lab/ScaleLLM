@@ -89,6 +89,10 @@ proc cells_of_module {module_name} {
         "ORIG_REF_NAME == $module_name || REF_NAME == $module_name"]
 }
 
+proc is_literal_descendant {root_name candidate_name} {
+    return [expr {[string first "${root_name}/" $candidate_name] == 0}]
+}
+
 proc descendants_of_type {roots primitive} {
     set result {}
     set primitives [get_cells -quiet -hierarchical -filter \
@@ -97,7 +101,7 @@ proc descendants_of_type {roots primitive} {
         set primitive_name [get_property NAME $primitive_cell]
         foreach root_cell $roots {
             set root_name [get_property NAME $root_cell]
-            if {[string match "${root_name}/*" $primitive_name]} {
+            if {[is_literal_descendant $root_name $primitive_name]} {
                 lappend result $primitive_cell
                 break
             }
@@ -114,7 +118,7 @@ proc descendants_of_glob {roots primitive_glob} {
         set primitive_name [get_property NAME $primitive_cell]
         foreach root_cell $roots {
             set root_name [get_property NAME $root_cell]
-            if {[string match "${root_name}/*" $primitive_name]} {
+            if {[is_literal_descendant $root_name $primitive_name]} {
                 lappend result $primitive_cell
                 break
             }
@@ -129,7 +133,7 @@ proc cells_below_roots {roots candidates} {
         set cell_name [get_property NAME $cell]
         foreach root_cell $roots {
             set root_name [get_property NAME $root_cell]
-            if {[string match "${root_name}/*" $cell_name]} {
+            if {[is_literal_descendant $root_name $cell_name]} {
                 lappend result $cell
                 break
             }
@@ -144,10 +148,31 @@ proc named_descendants_of_glob {roots primitive_glob relative_glob} {
         set cell_name [get_property NAME $cell]
         foreach root_cell $roots {
             set root_name [get_property NAME $root_cell]
-            if {[string match "${root_name}/${relative_glob}" $cell_name]} {
+            if {![is_literal_descendant $root_name $cell_name]} {continue}
+            set relative_name [string range $cell_name \
+                [string length "${root_name}/"] end]
+            if {[string match $relative_glob $relative_name]} {
                 lappend result $cell
                 break
             }
+        }
+    }
+    return [lsort -dictionary -unique $result]
+}
+
+proc direct_children_of_type {roots primitive} {
+    set result {}
+    foreach cell [descendants_of_type $roots $primitive] {
+        set cell_name [get_property NAME $cell]
+        foreach root_cell $roots {
+            set root_name [get_property NAME $root_cell]
+            if {![is_literal_descendant $root_name $cell_name]} {continue}
+            set relative_name [string range $cell_name \
+                [string length "${root_name}/"] end]
+            if {[string first "/" $relative_name] < 0} {
+                lappend result $cell
+            }
+            break
         }
     }
     return [lsort -dictionary -unique $result]
@@ -650,6 +675,95 @@ proc audit_serial_reset_domains {roots} {
     return [list 3 $protected_cells]
 }
 
+proc audit_attention_region2_elastic_fifo {region2 dual_accumulators} {
+    require_count attention_region2_root $region2 1
+    require_count attention_dual_accumulator_roots $dual_accumulators 6
+
+    set region2_accumulators \
+        [cells_below_roots $region2 $dual_accumulators]
+    require_count attention_region2_dual_accumulator \
+        $region2_accumulators 1
+
+    set buffered_accumulators {}
+    foreach accumulator $dual_accumulators {
+        set buffered_ff [named_descendants_of_glob [list $accumulator] FD* \
+            *g_buffered_input*]
+        if {[llength $buffered_ff] != 0} {
+            lappend buffered_accumulators $accumulator
+        }
+    }
+    set buffered_accumulators \
+        [lsort -dictionary -unique $buffered_accumulators]
+    require_count attention_buffered_dual_accumulator \
+        $buffered_accumulators 1
+    if {[get_property NAME [lindex $buffered_accumulators 0]] ne \
+            [get_property NAME [lindex $region2_accumulators 0]]} {
+        error "The unique buffered Attention accumulator is not region2"
+    }
+
+    set accumulator [lindex $buffered_accumulators 0]
+    set accumulator_name [get_property NAME $accumulator]
+    set lower_banks [get_cells -quiet -hierarchical -filter \
+        "NAME =~ ${accumulator_name}/*u_lower_bank && \
+         (REF_NAME == hap_linear_tile_accum_dual_s42_bank || \
+          ORIG_REF_NAME == hap_linear_tile_accum_dual_s42_bank)"]
+    set upper_banks [get_cells -quiet -hierarchical -filter \
+        "NAME =~ ${accumulator_name}/*u_upper_bank && \
+         (REF_NAME == hap_linear_tile_accum_dual_s42_bank || \
+          ORIG_REF_NAME == hap_linear_tile_accum_dual_s42_bank)"]
+    require_count attention_region2_lower_bank $lower_banks 1
+    require_count attention_region2_upper_bank $upper_banks 1
+
+    set buffer_prefix "${accumulator_name}/*g_buffered_input"
+    set buffer_primitives [lsort -dictionary -unique \
+        [get_cells -quiet -hierarchical -filter \
+        "IS_PRIMITIVE && PRIMITIVE_LEVEL != INTERNAL && \
+         REF_NAME != GND && REF_NAME != VCC && \
+         NAME =~ ${buffer_prefix}*"]]
+    set buffer_ffs [named_descendants_of_glob [list $accumulator] FD* \
+        *g_buffered_input*]
+    set payload_ffs [named_descendants_of_glob [list $accumulator] FD* \
+        *g_buffered_input*guard_s42_r_reg*]
+    set occupancy_ffs [named_descendants_of_glob [list $accumulator] FD* \
+        *g_buffered_input*buffer_count_r_reg*]
+    set tag_ffs {}
+    foreach stem {wave first last} {
+        set tag_ffs [concat $tag_ffs \
+            [named_descendants_of_glob [list $accumulator] FD* \
+                *g_buffered_input*${stem}_r_reg*]]
+    }
+    set tag_ffs [lsort -dictionary -unique $tag_ffs]
+    set classified_ffs [lsort -dictionary -unique \
+        [concat $payload_ffs $tag_ffs $occupancy_ffs]]
+
+    if {[llength $buffer_primitives] == 0 || [llength $buffer_ffs] == 0} {
+        error "Attention region2 g_buffered_input has no synthesized state"
+    }
+    if {[llength $payload_ffs] == 0} {
+        error "Attention region2 FIFO payload state is missing"
+    }
+    if {[llength $tag_ffs] == 0} {
+        error "Attention region2 FIFO tag state is missing"
+    }
+    require_count attention_region2_fifo_occupancy_ff $occupancy_ffs 2
+    if {[llength $classified_ffs] != [llength $buffer_ffs]} {
+        error "Attention region2 FIFO FF partition mismatch: classified=[llength $classified_ffs] total=[llength $buffer_ffs]"
+    }
+
+    return [dict create region2_instances [llength $region2] \
+        region2_accumulators [llength $region2_accumulators] \
+        buffered_accumulators [llength $buffered_accumulators] \
+        lower_banks [llength $lower_banks] \
+        upper_banks [llength $upper_banks] \
+        g_buffered_input_present 1 \
+        buffer_primitives [llength $buffer_primitives] \
+        buffer_ff [llength $buffer_ffs] \
+        payload_ff [llength $payload_ffs] \
+        tag_ff [llength $tag_ffs] \
+        occupancy_ff [llength $occupancy_ffs] \
+        partition_ok 1 ok 1]
+}
+
 proc utilization_value {text pattern label} {
     if {![regexp $pattern $text unused value]} {
         error "Unable to parse $label from report_utilization"
@@ -711,13 +825,13 @@ if {$design_part ne "xcvu9p-flga2104-2L-e"} {
     error "Unexpected V5 post-opt part: $design_part"
 }
 
-set v5_serial [cells_of_module hap_mlp_serial_ddr_command16_v5_s45]
+set v5_serial [cells_of_module hap_mlp_serial_ddr_command16_v5_s46]
 set old_serial [cells_of_module hap_mlp_serial_ddr_command16_s45]
-set v5_shared [cells_of_module hap_mlp_shared_dual_slice16x12_s43_s45]
+set v5_shared [cells_of_module hap_mlp_shared_dual_slice16x12_s44_s46]
 set v5_branches [lsort -dictionary \
-    [cells_of_module hap_mlp_shared_local_slice8x12_s43_s45]]
+    [cells_of_module hap_mlp_shared_local_slice8x12_s44_s46]]
 set v5_kernels [lsort -dictionary \
-    [cells_of_module hap_a8w4_slice8x12_group_s36]]
+    [cells_of_module hap_a8w4_slice8x12_group_s37]]
 set old_kernels [cells_of_module hap_a8w4_slice8x16_group_s36]
 set history2_repack \
     [cells_of_module hap_mlp_projection_repack12_to16_s24_history2]
@@ -768,14 +882,18 @@ set attention_dual_accumulators \
     [cells_of_module hap_linear_tile_accum_dual_s42]
 set attention_local_contexts [expr {2 *
     [llength $attention_dual_accumulators]}]
+set attention_region2 [get_cells -quiet -hierarchical -filter {
+    NAME =~ */u_center12/u_region2_cols8_11 &&
+    (REF_NAME == hap_a8w8_col_shard_s42 ||
+     ORIG_REF_NAME == hap_a8w8_col_shard_s42)}]
 set compact_input_frontend \
     [cells_of_module hap_mlp_input_frontend16_compact_cache]
 set down_activation_cache \
     [cells_of_module hap_mlp_down_activation_cache16]
-set gate_accums [cells_of_module hap_mlp_tile_accum_s36]
-set down_accums [cells_of_module hap_mlp_down_group_major_accum_s45]
+set gate_accums [cells_of_module hap_mlp_tile_accum_s37]
+set down_accums [cells_of_module hap_mlp_down_group_major_accum_s46]
 set down_elastic2 \
-    [cells_of_module hap_mlp_down_branch_elastic2_s24]
+    [cells_of_module hap_mlp_down_branch_elastic2_s24_v6]
 
 set attention_center_subshards \
     [cells_below_roots $attention_center_shard $attention_leaf_shards]
@@ -786,6 +904,8 @@ set attention_right_leaf_shards \
 
 set projection_weight_capture \
     [audit_projection_weight_capture $attention_projection16]
+set attention_region2_fifo [audit_attention_region2_elastic_fifo \
+    $attention_region2 $attention_dual_accumulators]
 lassign [audit_compact_input_capture $compact_input_frontend] \
     compact_capture_ff compact_capture_controls \
     compact_capture_min compact_capture_max
@@ -796,7 +916,7 @@ lassign [audit_gate_accum_controls $gate_accums] \
     gate_write_controls gate_write_min gate_write_max \
     gate_finalize_owners gate_finalize_min gate_finalize_max
 lassign [audit_protected_capture_banks $down_accums \
-    *u_guard_capture_enable 432 6912 down_guard_capture] \
+    *u_guard_capture_enable 444 7104 down_guard_capture] \
     down_guard_controls down_guard_ff down_guard_min down_guard_max
 lassign [audit_protected_capture_banks $down_accums \
     *u_output_capture_enable 288 4608 down_output_capture] \
@@ -870,6 +990,82 @@ set attention_array_dsp [llength \
     [descendants_of_type $attention_col3_array DSP48E2]]
 set attention_frontend_dsp [llength \
     [descendants_of_type $attention_frontend DSP48E2]]
+set s27_quantizers [get_cells -quiet -hierarchical -filter {
+    ORIG_REF_NAME == hap_robust_a8_quantizer ||
+    REF_NAME == hap_robust_a8_quantizer}]
+set attention_s27_quantizers \
+    [cells_below_roots $attention_frontend $s27_quantizers]
+set compact_s27_quantizers \
+    [cells_below_roots $compact_input_frontend $s27_quantizers]
+set attention_quantizer_dsp [llength \
+    [descendants_of_type $attention_s27_quantizers DSP48E2]]
+set attention_base_frontend_dsp \
+    [expr {$attention_frontend_dsp - $attention_quantizer_dsp}]
+set compact_input_frontend_dsp [llength \
+    [descendants_of_type $compact_input_frontend DSP48E2]]
+set compact_input_quantizer_dsp [llength \
+    [descendants_of_type $compact_s27_quantizers DSP48E2]]
+set compact_input_base_frontend_dsp \
+    [expr {$compact_input_frontend_dsp - $compact_input_quantizer_dsp}]
+set swiglu_frontend_dsp [llength \
+    [descendants_of_type $swiglu_frontend DSP48E2]]
+set swiglu_hadamard_dsp [llength \
+    [descendants_of_type $swiglu_hadamard DSP48E2]]
+set swiglu_quantizer_dsp [llength \
+    [descendants_of_type $swiglu_quantizer DSP48E2]]
+set swiglu_silu_dsp [llength \
+    [descendants_of_type $swiglu_silu DSP48E2]]
+set swiglu_frontend_ramb36_cells \
+    [descendants_of_type $swiglu_frontend RAMB36E2]
+set swiglu_row_ring_ramb36_cells [named_descendants_of_glob \
+    $swiglu_frontend RAMB36E2 *g_row_ring_column*]
+set swiglu_silu_ramb36_cells \
+    [descendants_of_type $swiglu_silu RAMB36E2]
+set swiglu_recognized_ramb36_cells [lsort -dictionary -unique \
+    [concat $swiglu_row_ring_ramb36_cells $swiglu_silu_ramb36_cells]]
+set swiglu_frontend_ramb36 [llength $swiglu_frontend_ramb36_cells]
+set swiglu_row_ring_ramb36 [llength $swiglu_row_ring_ramb36_cells]
+set swiglu_silu_ramb36 [llength $swiglu_silu_ramb36_cells]
+set swiglu_other_ramb36 [expr {$swiglu_frontend_ramb36 -
+    [llength $swiglu_recognized_ramb36_cells]}]
+set swiglu_metadata_address_dsp_cells \
+    [direct_children_of_type $swiglu_frontend DSP48E2]
+set swiglu_metadata_address_dsp \
+    [llength $swiglu_metadata_address_dsp_cells]
+set swiglu_metadata_address_dsp_names {}
+if {[llength $swiglu_frontend] == 1} {
+    set swiglu_root_name [get_property NAME [lindex $swiglu_frontend 0]]
+    foreach cell $swiglu_metadata_address_dsp_cells {
+        set cell_name [get_property NAME $cell]
+        lappend swiglu_metadata_address_dsp_names [string range $cell_name \
+            [string length "${swiglu_root_name}/"] end]
+    }
+}
+set swiglu_metadata_address_dsp_names \
+    [lsort -dictionary $swiglu_metadata_address_dsp_names]
+set swiglu_metadata_address_dsp_r1 0
+set swiglu_metadata_address_dsp_r2 0
+set swiglu_metadata_address_dsp_unexpected {}
+foreach relative_name $swiglu_metadata_address_dsp_names {
+    if {[regexp {^activation_meta_r1(__[0-9]+)*$} $relative_name]} {
+        incr swiglu_metadata_address_dsp_r1
+    } elseif {[regexp {^activation_meta_r2(__[0-9]+)*$} $relative_name]} {
+        incr swiglu_metadata_address_dsp_r2
+    } else {
+        lappend swiglu_metadata_address_dsp_unexpected $relative_name
+    }
+}
+set swiglu_metadata_address_dsp_identity_ok [expr {
+    $swiglu_metadata_address_dsp == 4 &&
+    $swiglu_metadata_address_dsp_r1 == 3 &&
+    $swiglu_metadata_address_dsp_r2 == 1 &&
+    [llength $swiglu_metadata_address_dsp_unexpected] == 0
+}]
+set swiglu_other_dsp [expr {
+    $swiglu_frontend_dsp - $swiglu_hadamard_dsp -
+    $swiglu_quantizer_dsp - $swiglu_silu_dsp -
+    $swiglu_metadata_address_dsp
+}]
 set branch_dsp_counts {}
 foreach branch $v5_branches {
     lappend branch_dsp_counts \
@@ -919,6 +1115,11 @@ set hierarchy_ok [expr {
     && [llength $attention_lanes] == 128
     && [llength $attention_dual_accumulators] == 6
     && $attention_local_contexts == 12
+    && [dict get $attention_region2_fifo region2_instances] == 1
+    && [dict get $attention_region2_fifo region2_accumulators] == 1
+    && [dict get $attention_region2_fifo buffered_accumulators] == 1
+    && [dict get $attention_region2_fifo lower_banks] == 1
+    && [dict get $attention_region2_fifo upper_banks] == 1
     && [llength $attention_col3_array] == 1
     && [llength $attention_old_array] == 0
     && [llength $attention_left_shard] == 1
@@ -929,6 +1130,9 @@ set hierarchy_ok [expr {
     && [llength $attention_right_leaf_shards] == 1
     && [llength $attention_leaf_shards] == 6
     && [llength $compact_input_frontend] == 1
+    && [llength $s27_quantizers] == 12
+    && [llength $attention_s27_quantizers] == 8
+    && [llength $compact_s27_quantizers] == 4
     && [llength $down_activation_cache] == 1
     && [llength $gate_accums] == 2
     && [llength $down_accums] == 2
@@ -936,6 +1140,14 @@ set hierarchy_ok [expr {
 }]
 set protected_structure_ok [expr {
     [dict get $projection_weight_capture ok] == 1 &&
+    [dict get $attention_region2_fifo g_buffered_input_present] == 1 &&
+    [dict get $attention_region2_fifo buffer_primitives] > 0 &&
+    [dict get $attention_region2_fifo buffer_ff] > 0 &&
+    [dict get $attention_region2_fifo payload_ff] > 0 &&
+    [dict get $attention_region2_fifo tag_ff] > 0 &&
+    [dict get $attention_region2_fifo occupancy_ff] == 2 &&
+    [dict get $attention_region2_fifo partition_ok] == 1 &&
+    [dict get $attention_region2_fifo ok] == 1 &&
     [dict get $projection_weight_capture raw_loads] == 37 &&
     [dict get $projection_weight_capture data_nets] == 32 &&
     [dict get $projection_weight_capture data_min] == 256 &&
@@ -954,8 +1166,8 @@ set protected_structure_ok [expr {
     $down_activation_capture_min == 280 &&
     $down_activation_capture_max == 280 &&
     $gate_write_controls == 16 && $gate_finalize_owners == 16 &&
-    $down_guard_controls == 16 && $down_guard_ff == 6912 &&
-    $down_guard_min == 432 && $down_guard_max == 432 &&
+    $down_guard_controls == 16 && $down_guard_ff == 7104 &&
+    $down_guard_min == 444 && $down_guard_max == 444 &&
     $down_output_controls == 16 && $down_output_ff == 4608 &&
     $down_output_min == 288 && $down_output_max == 288 &&
     $serial_reset_domains == 3 && $serial_reset_protected == 3 &&
@@ -985,7 +1197,37 @@ set kernel_ok [expr {
 set attention_projection_ok [expr {
     $attention_projection_dsp == 2240 &&
     $attention_array_dsp == 2176 &&
-    $attention_frontend_dsp == 64
+    $attention_frontend_dsp == 64 &&
+    $attention_base_frontend_dsp == 64 &&
+    $attention_quantizer_dsp == 0
+}]
+set compact_input_frontend_ok [expr {
+    $compact_input_frontend_dsp == 8 &&
+    $compact_input_base_frontend_dsp == 8 &&
+    $compact_input_quantizer_dsp == 0
+}]
+set swiglu_frontend_ok [expr {
+    $swiglu_frontend_dsp == 72 &&
+    $swiglu_hadamard_dsp == 64 &&
+    $swiglu_quantizer_dsp == 0 &&
+    $swiglu_silu_dsp == 4 &&
+    $swiglu_metadata_address_dsp == 4 &&
+    $swiglu_metadata_address_dsp_identity_ok &&
+    $swiglu_other_dsp == 0
+}]
+set swiglu_bram_ok [expr {
+    $swiglu_frontend_ramb36 == 40 &&
+    $swiglu_row_ring_ramb36 == 28 &&
+    $swiglu_silu_ramb36 == 12 &&
+    $swiglu_other_ramb36 == 0
+}]
+set no_clip_quantizer_dsp_ok [expr {
+    [llength $s27_quantizers] == 12 &&
+    [llength $attention_s27_quantizers] == 8 &&
+    [llength $compact_s27_quantizers] == 4 &&
+    $attention_quantizer_dsp == 0 &&
+    $compact_input_quantizer_dsp == 0 &&
+    $swiglu_quantizer_dsp == 0
 }]
 set attention_local_store_ok [expr {
     [dict get $query_store_metrics instances] == 1 &&
@@ -1006,12 +1248,14 @@ set attention_local_store_ok [expr {
     [dict get $context_store_metrics uram] == 0
 }]
 set resource_ok [expr {
-    $total_dsp == 5453 && $total_uram == 752 &&
+    $total_dsp == 5449 && $total_uram == 752 &&
+    $total_ramb36 == 829 && $total_ramb18 == 22 &&
     $clb_lut <= 1064016
 }]
 set status [expr {$hierarchy_ok && $protected_structure_ok &&
     $post_opt_data_bufg_ok && $kernel_ok && $attention_projection_ok &&
-    $attention_local_store_ok && $resource_ok ?
+    $compact_input_frontend_ok && $swiglu_frontend_ok && $swiglu_bram_ok &&
+    $no_clip_quantizer_dsp_ok && $attention_local_store_ok && $resource_ok ?
     "V5_POST_OPT_DCP_AUDIT_PASS" : "FAIL"}]
 
 set handle [open $summary w]
@@ -1101,9 +1345,39 @@ foreach {key value} [list \
     attention_dual_accumulator_instances \
         [llength $attention_dual_accumulators] \
     attention_local_accumulator_contexts $attention_local_contexts \
+    attention_region2_instances \
+        [dict get $attention_region2_fifo region2_instances] \
+    attention_region2_dual_accumulator_instances \
+        [dict get $attention_region2_fifo region2_accumulators] \
+    attention_region2_buffered_accumulator_instances \
+        [dict get $attention_region2_fifo buffered_accumulators] \
+    attention_region2_lower_bank_instances \
+        [dict get $attention_region2_fifo lower_banks] \
+    attention_region2_upper_bank_instances \
+        [dict get $attention_region2_fifo upper_banks] \
+    attention_region2_g_buffered_input_present \
+        [dict get $attention_region2_fifo g_buffered_input_present] \
+    attention_region2_buffer_primitives \
+        [dict get $attention_region2_fifo buffer_primitives] \
+    attention_region2_buffer_ff \
+        [dict get $attention_region2_fifo buffer_ff] \
+    attention_region2_buffer_payload_ff \
+        [dict get $attention_region2_fifo payload_ff] \
+    attention_region2_buffer_tag_ff \
+        [dict get $attention_region2_fifo tag_ff] \
+    attention_region2_buffer_occupancy_ff \
+        [dict get $attention_region2_fifo occupancy_ff] \
+    attention_region2_buffer_partition_ok \
+        [dict get $attention_region2_fifo partition_ok] \
+    attention_region2_elastic_fifo_ok \
+        [dict get $attention_region2_fifo ok] \
     attention_projection_dsp48e2 $attention_projection_dsp \
     attention_array_dsp48e2 $attention_array_dsp \
     attention_frontend_dsp48e2 $attention_frontend_dsp \
+    attention_base_frontend_dsp48e2 $attention_base_frontend_dsp \
+    no_clip_s27_quantizer_instances [llength $s27_quantizers] \
+    attention_quantizer_instances [llength $attention_s27_quantizers] \
+    attention_quantizer_dsp48e2 $attention_quantizer_dsp \
     raw_weight_push_loads [dict get $projection_weight_capture raw_loads] \
     weight_data_capture_contract 32x256 \
     weight_data_capture_nets [dict get $projection_weight_capture data_nets] \
@@ -1140,6 +1414,11 @@ foreach {key value} [list \
     attention_center_subshard_instances [llength $attention_center_subshards] \
     attention_leaf_shard_instances [llength $attention_leaf_shards] \
     compact_input_frontend_instances [llength $compact_input_frontend] \
+    compact_input_frontend_dsp48e2 $compact_input_frontend_dsp \
+    compact_input_base_frontend_dsp48e2 \
+        $compact_input_base_frontend_dsp \
+    compact_input_quantizer_instances [llength $compact_s27_quantizers] \
+    compact_input_quantizer_dsp48e2 $compact_input_quantizer_dsp \
     compact_input_capture_contract 48x256 \
     compact_input_capture_ff $compact_capture_ff \
     compact_input_capture_controls $compact_capture_controls \
@@ -1156,7 +1435,7 @@ foreach {key value} [list \
     gate_accum_write_loads $gate_write_min/$gate_write_max \
     gate_accum_finalize_loads $gate_finalize_min/$gate_finalize_max \
     down_accum_instances [llength $down_accums] \
-    down_guard_capture_contract 16x432 \
+    down_guard_capture_contract 16x444 \
     down_guard_capture_controls $down_guard_controls \
     down_guard_capture_ff $down_guard_ff \
     down_guard_capture_loads $down_guard_min/$down_guard_max \
@@ -1178,6 +1457,24 @@ foreach {key value} [list \
     swiglu_row_clear_ff $swiglu_row_clear_ff \
     swiglu_clear_input_nets $swiglu_clear_input_nets \
     swiglu_direct_clear_bypass_state $swiglu_direct_clear_bypass_state \
+    swiglu_frontend_dsp48e2 $swiglu_frontend_dsp \
+    swiglu_hadamard_dsp48e2 $swiglu_hadamard_dsp \
+    swiglu_quantizer_dsp48e2 $swiglu_quantizer_dsp \
+    swiglu_silu_dsp48e2 $swiglu_silu_dsp \
+    swiglu_metadata_address_dsp48e2 $swiglu_metadata_address_dsp \
+    swiglu_metadata_address_dsp_names \
+        [join $swiglu_metadata_address_dsp_names ,] \
+    swiglu_metadata_address_dsp_r1 $swiglu_metadata_address_dsp_r1 \
+    swiglu_metadata_address_dsp_r2 $swiglu_metadata_address_dsp_r2 \
+    swiglu_metadata_address_dsp_unexpected \
+        [join $swiglu_metadata_address_dsp_unexpected ,] \
+    swiglu_metadata_address_dsp_identity_ok \
+        $swiglu_metadata_address_dsp_identity_ok \
+    swiglu_other_dsp48e2 $swiglu_other_dsp \
+    swiglu_frontend_ramb36e2 $swiglu_frontend_ramb36 \
+    swiglu_row_ring_ramb36e2 $swiglu_row_ring_ramb36 \
+    swiglu_silu_ramb36e2 $swiglu_silu_ramb36 \
+    swiglu_other_ramb36e2 $swiglu_other_ramb36 \
     mlp_central_clear_ff $mlp_central_clear_ff \
     mlp_central_clear_branch_endpoints \
         $mlp_central_clear_branch_endpoints \
@@ -1197,7 +1494,7 @@ foreach {key value} [list \
     down_elastic2_instances [llength $down_elastic2] \
     kernel_dsp48e2 $kernel_dsp branch0_dsp48e2 $branch0_dsp \
     branch1_dsp48e2 $branch1_dsp dsp48e2 $total_dsp \
-    dsp_required 5453 dsp_limit 5500 \
+    dsp_required 5449 dsp_limit 5500 \
     uram288 $total_uram uram_required 752 \
     ramb36e2 $total_ramb36 ramb18e2 $total_ramb18 \
     post_opt_clock_bufg $clock_bufg post_opt_data_bufg $data_bufg \
@@ -1207,6 +1504,9 @@ foreach {key value} [list \
     protected_structure_ok $protected_structure_ok \
     post_opt_data_bufg_ok $post_opt_data_bufg_ok \
     kernel_ok $kernel_ok attention_projection_ok $attention_projection_ok \
+    compact_input_frontend_ok $compact_input_frontend_ok \
+    swiglu_frontend_ok $swiglu_frontend_ok swiglu_bram_ok $swiglu_bram_ok \
+    no_clip_quantizer_dsp_ok $no_clip_quantizer_dsp_ok \
     attention_local_store_ok $attention_local_store_ok \
     resource_ok $resource_ok checkpoint_written 0 \
     implementation_commands_run 0 status $status] {
@@ -1214,7 +1514,7 @@ foreach {key value} [list \
 }
 close $handle
 
-puts "V5_POST_OPT_DCP_AUDIT SERIAL=[llength $v5_serial]/[llength $old_serial] SHARED=[llength $v5_shared] BRANCH=[llength $v5_branches] KERNEL=[llength $v5_kernels]/[llength $old_kernels] ATTN_COL3_OLD=[llength $attention_col3_array]/[llength $attention_old_array] ATTN_SHARDS=[llength $attention_left_shard]/[llength $attention_center_shard]/[llength $attention_right_shard]:[llength $attention_center_subshards]/[llength $attention_leaf_shards] ATTN_LOCAL_STORE=[dict get $query_store_metrics instances]/[dict get $postprocess_store_metrics instances]/[dict get $context_store_metrics instances]:[dict get $context_store_metrics ramb36]/[dict get $context_store_metrics lutram] ATTN_WEIGHT_CAPTURE=[dict get $projection_weight_capture raw_loads]:[dict get $projection_weight_capture data_nets]x[dict get $projection_weight_capture data_min]:[dict get $projection_weight_capture meta_nets]x[dict get $projection_weight_capture meta_min]:[dict get $projection_weight_capture group_nets]x[dict get $projection_weight_capture group_min] CAPTURE=$compact_capture_controls:$compact_capture_min/$compact_capture_max,$down_activation_capture_owners:$down_activation_capture_min/$down_activation_capture_max GATE_CTRL=$gate_write_controls/$gate_finalize_owners DOWN_CTRL=$down_guard_controls/$down_output_controls RESET=$serial_reset_domains LOCAL_CLEAR=$mlp_local_clear_ff/$mlp_local_clear_protected_ff DATA_BUFG=$data_bufg KERNEL_DSP=$kernel_dsp BRANCH_DSP=$branch0_dsp/$branch1_dsp DSP=$total_dsp URAM=$total_uram LUT=$clb_lut FF=$clb_ff BRAM=$total_ramb36/$total_ramb18 STATUS=$status"
+puts "V5_POST_OPT_DCP_AUDIT SERIAL=[llength $v5_serial]/[llength $old_serial] SHARED=[llength $v5_shared] BRANCH=[llength $v5_branches] KERNEL=[llength $v5_kernels]/[llength $old_kernels] ATTN_COL3_OLD=[llength $attention_col3_array]/[llength $attention_old_array] ATTN_SHARDS=[llength $attention_left_shard]/[llength $attention_center_shard]/[llength $attention_right_shard]:[llength $attention_center_subshards]/[llength $attention_leaf_shards] ATTN_REGION2_FIFO=[dict get $attention_region2_fifo buffered_accumulators]:[dict get $attention_region2_fifo payload_ff]/[dict get $attention_region2_fifo tag_ff]/[dict get $attention_region2_fifo occupancy_ff] ATTN_LOCAL_STORE=[dict get $query_store_metrics instances]/[dict get $postprocess_store_metrics instances]/[dict get $context_store_metrics instances]:[dict get $context_store_metrics ramb36]/[dict get $context_store_metrics lutram] ATTN_WEIGHT_CAPTURE=[dict get $projection_weight_capture raw_loads]:[dict get $projection_weight_capture data_nets]x[dict get $projection_weight_capture data_min]:[dict get $projection_weight_capture meta_nets]x[dict get $projection_weight_capture meta_min]:[dict get $projection_weight_capture group_nets]x[dict get $projection_weight_capture group_min] CAPTURE=$compact_capture_controls:$compact_capture_min/$compact_capture_max,$down_activation_capture_owners:$down_activation_capture_min/$down_activation_capture_max GATE_CTRL=$gate_write_controls/$gate_finalize_owners DOWN_CTRL=$down_guard_controls/$down_output_controls RESET=$serial_reset_domains LOCAL_CLEAR=$mlp_local_clear_ff/$mlp_local_clear_protected_ff DATA_BUFG=$data_bufg KERNEL_DSP=$kernel_dsp BRANCH_DSP=$branch0_dsp/$branch1_dsp DSP=$total_dsp URAM=$total_uram LUT=$clb_lut FF=$clb_ff BRAM=$total_ramb36/$total_ramb18 STATUS=$status"
 if {$status ne "V5_POST_OPT_DCP_AUDIT_PASS"} {
     error "V5 post-opt DCP hierarchy/resource audit failed"
 }

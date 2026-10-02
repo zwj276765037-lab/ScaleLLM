@@ -18,7 +18,16 @@ os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
 
 SCRIPT_PATH = Path(__file__).resolve()
 HAP_ROOT = SCRIPT_PATH.parents[1]
-PROJECT_ROOT = SCRIPT_PATH.parents[3]
+PROJECT_ROOT_CANDIDATES = (
+    HAP_ROOT,
+    HAP_ROOT.parent / "fpga_llm_project",
+    *HAP_ROOT.parents,
+)
+PROJECT_ROOT = next(
+    root
+    for root in PROJECT_ROOT_CANDIDATES
+    if (root / "scripts" / "accuracy_MLP_4bit").is_dir()
+)
 FIXEDPOINT_DIR = (
     PROJECT_ROOT / "scripts" / "accuracy_MLP_4bit" / "scala_code_accuracy"
 )

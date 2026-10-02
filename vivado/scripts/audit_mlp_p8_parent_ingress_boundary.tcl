@@ -82,8 +82,8 @@ proc hap_mlp_p8_parent_boundary::ready_startpoints {
 }
 
 proc hap_mlp_p8_parent_boundary::audit {} {
-    set shared [cells_of_module hap_mlp_shared_dual_slice16x12_s43_s45]
-    set branches [cells_of_module hap_mlp_shared_local_slice8x12_s43_s45]
+    set shared [cells_of_module hap_mlp_shared_dual_slice16x12_s44_s46]
+    set branches [cells_of_module hap_mlp_shared_local_slice8x12_s44_s46]
     require_count shared_root $shared 1
     require_count local_branch_roots $branches 2
 

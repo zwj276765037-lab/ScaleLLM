@@ -1,0 +1,49 @@
+{
+  "accuracy_vs_s24_real": {
+    "fp16": {
+      "cosine_similarity": 0.9999999898195217,
+      "max_abs_error": 0.019287109375,
+      "mean_abs_error": 0.000761374831199646,
+      "rmse": 0.002009066662694901
+    },
+    "fp32": {
+      "cosine_similarity": 1.0000000000000002,
+      "max_abs_error": 0.0,
+      "mean_abs_error": 0.0,
+      "rmse": 0.0
+    },
+    "sc": {
+      "cosine_similarity": 0.9999989411145545,
+      "max_abs_error": 0.2347412109375,
+      "mean_abs_error": 0.0071735677774995565,
+      "rmse": 0.020473522112383298
+    }
+  },
+  "batches": 16,
+  "formats": {
+    "fp16": "32 fully dequantized IEEE FP16 lanes; subnormals FTZ",
+    "fp32": "32 fully dequantized IEEE FP32 lanes",
+    "sc": "32xS12 plus ScaleCode meta16"
+  },
+  "input": "signed S24 Q8.16",
+  "lanes_per_record": 32,
+  "production_model": "/home/user/EDA-202/zhuowenjun/ScaleLLM/model/fixbit_v2.py",
+  "production_model_sha256": "fb4b34397edc9d14ed3ef4f0b46d60a61b545a52a7a47d15c2eec8ba7b6db271",
+  "record_bits": {
+    "fp16": 512,
+    "fp32": 1024,
+    "sc": 400
+  },
+  "rows_per_batch": 4,
+  "sc_clip_count": 0,
+  "sc_reserved_minus_2048_count": 0,
+  "schema": "scalellm_modular_kv_boundary_v1",
+  "seed": 20260908,
+  "sha256": {
+    "expected_fp16.mem": "01ea9a56c225c968cee83344fa4bdc0f97f2416683db1239d37d7d5aadbf347b",
+    "expected_fp32.mem": "0680c2d9e0a866dd5c11393f16d3410b0e06ddef6d6f9b1443ad967207363f83",
+    "expected_meta.mem": "852c4db8c9d16999f05fca9aab798b03ffbfd30d9a3091e48ec06b6141a18046",
+    "expected_s12.mem": "bbd8e7e55caf7341871fef55be8315c31e6ab86525d22926a5122f034ff69837",
+    "input_s24.mem": "c39ede576148143006eb511e9019c13062541ea64fed93e7692b2b007c133496"
+  }
+}

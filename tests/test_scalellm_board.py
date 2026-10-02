@@ -12,10 +12,18 @@ import numpy as np
 
 from host.scalellm_board import (
     BOARD_AUDIT_REQUIRED_FILES,
+    BOARD_AUDIT_INPUT_COUNT,
+    BOARD_COMPLETE_INPUT_COUNT,
+    BOARD_IMMUTABLE_INPUT_COUNT,
     BOARD_PROGRAM_REQUIRED_FILES,
     BOARD_REQUIRED_FILES,
+    BOARD_RTL_VARIANT,
+    BOARD_SLR_DSP,
+    BOARD_TOTAL_DSP,
     MODEL_ID,
     QUANTIZATION_ID,
+    P16_QUANTIZER3_PRIMITIVES,
+    P16_REGION2_PRIMITIVES,
     REFERENCE_FIXEDPOINT,
     REFERENCE_LINEAR_COUNTS,
     REFERENCE_WEIGHT_BITS,
@@ -39,10 +47,13 @@ from host.scalellm_hostops import (
     PinnedActivationPool,
 )
 from host.scalellm_memory import (
-    ACTIVATION_PAYLOAD_BYTES,
+    ACTIVATION_INPUT_PAYLOAD_BYTES,
+    ACTIVATION_OUTPUT_PAYLOAD_BYTES,
     activation_base_for_buffer,
 )
-from host.scalellm_runtime import Completion, CompletionStatus, RuntimeContractError
+from host.scalellm_runtime import (
+    Completion, CompletionStatus, Engine, RuntimeContractError,
+)
 
 
 class MemorySession:
@@ -78,8 +89,11 @@ class ZeroOutputBackend:
     def execute(self, engine, identity):
         time.sleep(0.003)
         offset = activation_base_for_buffer(identity.buffer_id)
+        payload_bytes = (ACTIVATION_OUTPUT_PAYLOAD_BYTES
+                         if engine is Engine.MLP
+                         else ACTIVATION_INPUT_PAYLOAD_BYTES)
         with self.session.lock:
-            self.session.memory[(0, offset)] = bytes(ACTIVATION_PAYLOAD_BYTES)
+            self.session.memory[(0, offset)] = bytes(payload_bytes)
         completion = Completion(identity, CompletionStatus.SUCCESS)
         item = HardwareCommandTelemetry(
             engine.value, identity, "SUCCESS", time.monotonic_ns(),
@@ -361,48 +375,146 @@ class ScaleLLMBoardTests(unittest.TestCase):
         for name in BOARD_REQUIRED_FILES:
             if name != "OUTPUT_SHA256SUMS":
                 (report / name).write_text("fixture\n", encoding="ascii")
-        p6_plan_text = "\n".join((
-            "status=V5_BOARD_POST_ROUTE_P6_POSTPROCESS_PLAN_PASS",
-            "contract=P6_POSTPROCESS_GROUP4_SPLIT_4_8_4",
-            "row_bank_count=16", "all_row_primitives=42784",
-            "slr0_row_primitives=10696", "center_row_primitives=21392",
-            "slr2_row_primitives=10696", "per_row_primitives=2674",
-            "per_row_lut=994", "per_row_ff=1536",
-        )) + "\n"
-        p6_pblock_text = "\n".join((
-            "status=V5_BOARD_POST_ROUTE_P6_POSTPROCESS_PBLOCKS_PASS",
-            "ok=1", "require_placed=1", "pblock_count=2",
-            "center_missing=0", "center_outer_overlap=0",
-            "center_wrong=0", "outer_wrong=0", "slr0_target=0",
-            "slr0_missing=0", "slr0_wrong=0", "slr2_target=2",
-            "slr2_missing=0", "slr2_wrong=0",
-        )) + "\n"
-        (report / "p6_postprocess_plan_post_route.txt").write_text(
-            p6_plan_text, encoding="ascii"
-        )
-        (report / "p6_postprocess_pblocks_post_route.txt").write_text(
-            p6_pblock_text, encoding="ascii"
+        physical_report_texts = {
+            "p9_postprocess_plan_post_route.txt": "\n".join((
+                "status=V5_BOARD_POST_ROUTE_P9_POSTPROCESS_PLAN_PASS",
+                "contract=P9_POSTPROCESS_SPLIT_6_4_6",
+                "row_bank_count=16", "all_row_primitives=42784",
+                "slr0_row_primitives=16044", "center_row_primitives=10696",
+                "slr2_row_primitives=16044", "per_row_primitives=2674",
+                "per_row_lut=994", "per_row_ff=1536",
+            )) + "\n",
+            "p9_postprocess_pblocks_post_route.txt": "\n".join((
+                "status=V5_BOARD_POST_ROUTE_P9_POSTPROCESS_PBLOCKS_PASS",
+                "ok=1", "require_placed=1", "pblock_count=2",
+                "center_missing=0", "center_outer_overlap=0",
+                "center_wrong=0", "outer_wrong=0", "outer_extras=0",
+                "slr0_name=pb_v5_p9_postprocess_rows0_5_slr0",
+                "slr0_target=0", "slr0_expected=16044",
+                "slr0_members=16044", "slr0_missing=0", "slr0_extras=0",
+                "slr0_wrong=0", "slr0_hard=dsp 0 uram 0 ramb36 0 ramb18 0",
+                "slr2_name=pb_v5_p9_postprocess_rows10_15_slr2",
+                "slr2_target=2", "slr2_expected=16044",
+                "slr2_members=16044", "slr2_missing=0", "slr2_extras=0",
+                "slr2_wrong=0", "slr2_hard=dsp 0 uram 0 ramb36 0 ramb18 0",
+            )) + "\n",
+            "p9_quantizer3_plan_post_route.txt": "\n".join((
+                "status=V5_BOARD_POST_ROUTE_P9_QUANTIZER3_PLAN_PASS",
+                "contract=P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6",
+                f"primitive_count={P16_QUANTIZER3_PRIMITIVES}",
+                "lut=9959", "ff=3794",
+                "pblock_name=pb_v5_p9_swiglu_quantizer3_cr_x2y5_x3y6",
+                "grid_range=CLOCKREGION_X2Y5:CLOCKREGION_X3Y6",
+                "allowed_regions=X2Y5 X2Y6 X3Y5 X3Y6", "dsp=0",
+                "uram=0", "ramb36=0", "ramb18=0",
+            )) + "\n",
+            "p9_quantizer3_pblock_post_route.txt": "\n".join((
+                "status=V5_BOARD_POST_ROUTE_P9_QUANTIZER3_PBLOCK_PASS",
+                "ok=1", "require_placed=1",
+                "name=pb_v5_p9_swiglu_quantizer3_cr_x2y5_x3y6",
+                "contract=P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6",
+                "grid_range=CLOCKREGION_X2Y5:CLOCKREGION_X3Y6",
+                f"expected={P16_QUANTIZER3_PRIMITIVES}",
+                f"members={P16_QUANTIZER3_PRIMITIVES}",
+                "missing=0", "extras=0",
+                "wrong=0", "unplaced=0",
+            )) + "\n",
+            "p14_region2_relief_plan_post_route.txt": "\n".join((
+                "status=V5_BOARD_POST_ROUTE_P14_REGION2_RELIEF_PLAN_PASS",
+                "contract=P14_ATTN_REGION2_SHARED_X0_X2",
+                "pblock_name=p3_pb_projection_center_region2_shared_cr_x0y5_x1y9",
+                "base_range=CLOCKREGION_X0Y5:CLOCKREGION_X1Y9",
+                "relief_range=CLOCKREGION_X2Y5:CLOCKREGION_X2Y9",
+                "expected_range=CLOCKREGION_X0Y5:CLOCKREGION_X2Y9",
+                f"primitive_count={P16_REGION2_PRIMITIVES}",
+                "lut=35269", "ff=34743", "dsp=544",
+            )) + "\n",
+            "p14_region2_relief_pblock_post_route.txt": "\n".join((
+                "status=V5_BOARD_POST_ROUTE_P14_REGION2_RELIEF_PBLOCK_PASS",
+                "ok=1", "contract=P14_ATTN_REGION2_SHARED_X0_X2",
+                "require_placed=1",
+                "name=p3_pb_projection_center_region2_shared_cr_x0y5_x1y9",
+                f"primitive_count={P16_REGION2_PRIMITIVES}",
+                "lut=35269", "ff=34743", "dsp=544",
+                "missing=0", "wrong=0", "unplaced=0", "relief_placed=100",
+            )) + "\n",
+            "p8_parent_ingress_boundary_post_route.txt": "\n".join((
+                "V5_BOARD_POST_ROUTE_P8_PARENT_INGRESS_BOUNDARY_PASS",
+                "ok=1", "parent_head_ff=6560", "parent_tail_ff=6560",
+                "parent_count_ff=2", "parent_count_physical_ff=16",
+                "parent_count_replica_ff=14",
+                "parent_count_bit0_physical_ff=8",
+                "parent_count_bit1_physical_ff=8",
+                "parent_count_replica_equivalence_ok=1", "parent_pointer_ff=0",
+                "local_clear_ff=2", "branch_ingress_count_ff=4",
+                "local_clear_shared_upstream_ready_paths=0",
+                "branch_credit_shared_upstream_ready_paths=0",
+                "local_clear_gate_compute_ready_paths=0",
+                "branch_credit_gate_compute_ready_paths=0",
+                "local_clear_down_compute_ready_paths=0",
+                "branch_credit_down_compute_ready_paths=0",
+                "local_clear_input_cache_ready_paths=0",
+                "branch_credit_input_cache_ready_paths=0",
+            )) + "\n",
+        }
+        for name, report_text in physical_report_texts.items():
+            (report / name).write_text(report_text, encoding="ascii")
+        p16_post_opt_summary = self.root / "p16_post_opt_summary.txt"
+        p16_post_opt_summary.write_text("\n".join((
+            "status=PASS", "attention_lane_instances=128",
+            "local_dual_accumulator_instances=6",
+            "local_accumulator_contexts=12", "dut_dsp48e2=2240",
+            "array_dsp48e2=2176", "frontend_dsp48e2=64",
+            "frontend_quantizer_dsp48e2=0", "place_authorized=0",
+            "route_authorized=0",
+        )) + "\n", encoding="ascii")
+        production_dcp_sha = "b" * 64
+        p16_region2_summary = self.root / "p16_region2_summary.txt"
+        p16_region2_summary.write_text("\n".join((
+            "status=V5_P16_PRODUCTION_REGION2_POST_OPT_PROBE_PASS",
+            f"input_dcp_sha256={production_dcp_sha}",
+            "attention_lane_instances=128",
+            "local_dual_accumulator_instances=6",
+            "local_accumulator_contexts=12", "dut_dsp48e2=2240",
+            "frontend_quantizer_dsp48e2=0", "region2_lane_instances=32",
+            f"region2_primitives={P16_REGION2_PRIMITIVES}",
+            "region2_dsp48e2=544", "region2_rows0_3_primitives=26800",
+            "region2_rows0_3_dsp48e2=272",
+            "region2_rows4_7_primitives=26800",
+            "region2_rows4_7_dsp48e2=272",
+            "region2_residual_primitives=19296",
+            "region2_residual_dsp48e2=0", "partition_exact_cover=1",
+            "drc_errors=0", "implementation_commands_run=0",
+            "checkpoint_written=0",
+        )) + "\n", encoding="ascii")
+        p16_post_opt_sha = sha256_file(p16_post_opt_summary)
+        p16_region2_sha = sha256_file(p16_region2_summary)
+        region2_signature = (
+            f"P16_PRODUCTION_POST_OPT_SHA256:{p16_region2_sha}"
         )
         bit_hash = sha256_file(report / "attention_mlp_vcu118_v5.bit")
         dcp_hash = sha256_file(report / "attention_mlp_vcu118_v5_post_route.dcp")
         (report / "launcher_status.txt").write_text("\n".join((
             "status=PASS", "final_exit_code=0", "vivado_exit_code=0",
             "vivado_invoked=1", "complete_input_manifest_sha_match=1",
-            "immutable_input_count=122",
+            f"immutable_input_count={BOARD_IMMUTABLE_INPUT_COUNT}",
             "immutable_input_manifest_sha_match=1",
             "immutable_input_postcheck=1",
             "recursive_source_post_build_sha_verified=1",
             "ooc_route_authorization_post_build_verified=1",
-            "bitstream_generated=1",
+            "bitstream_generated=1", f"rtl_variant={BOARD_RTL_VARIANT}",
         )) + "\n", encoding="ascii")
         common_post_route = (
             "evidence_class=FULL_VCU118_BOARD_POST_ROUTE",
+            f"rtl_variant={BOARD_RTL_VARIANT}",
+            f"rtl_resource_variant={BOARD_RTL_VARIANT}",
+            f"region2_signature_source={region2_signature}",
             "core_clock_mhz=100", "ddr0_clock_mhz=300",
             "ddr1_clock_mhz=300", "v5_serial_instances=1",
             "old_serial_instances=0", "v5_shared_instances=1",
             "v5_branch_instances=2", "v5_kernel12_instances=2",
             "v4_kernel16_instances=0", "history2_repack_instances=2",
-            "generic_repack_instances=0", "dsp48e2=5453",
+            "generic_repack_instances=0", f"dsp48e2={BOARD_TOTAL_DSP}",
             "mlp_kernel_dsp48e2=3072", "uram288=752",
             "projection_weight_capture_ok=1", "architecture_boundary_ok=1",
             "unplaced_primitives=0", "wrong_slr_primitives=0",
@@ -418,41 +530,61 @@ class ScaleLLMBoardTests(unittest.TestCase):
             "exception_scope_policy_ok=1", "live_post_route_rediscovery_ok=1",
             "base_contract_variant=P2_COHORT16_COL2_12_2",
             "p5_contract=P5_INPUT_HALF_LOCAL_8_8",
-            "p6_contract=P6_POSTPROCESS_GROUP4_SPLIT_4_8_4",
-            "p7_contract=P7_ATTN_REGION2_ROWS_Y5_Y6_Y6_Y8",
-            "region2_variant=rowsplit_y5_y6_y6_y8",
+            "p9_postprocess_contract=P9_POSTPROCESS_SPLIT_6_4_6",
+            "p9_quantizer3_contract=P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6",
+            "p14_region2_relief_contract=P14_ATTN_REGION2_SHARED_X0_X2",
             "pblock_contract_variant=P2_COHORT16_COL2_12_2",
             "pblock_contract_ok=1", "pblock_require_placed=1",
-            "pblock_count=27", "canonical_pblock_count=11",
-            "geometry_pblock_count=12", "p5_added_pblock_count=2",
-            "p6_added_pblock_count=2", "total_pblock_count=27",
+            "pblock_count=26", "canonical_pblock_count=11",
+            "geometry_pblock_count=10", "p5_added_pblock_count=2",
+            "p9_postprocess_added_pblock_count=2",
+            "p9_quantizer3_added_pblock_count=1",
+            "p14_region2_relief_added_pblock_count=0",
+            "total_pblock_count=26",
             "completed_u8_ff=4096",
             "completed_meta_ff=352", "input_capture_ff=12288",
             "input_capture_controls=48", "p5_center_wrong_slr=0",
             "p5_outer_wrong_slr=0",
-            "p6_center_wrong_slr=0", "p6_outer_wrong_slr=0",
-            "p6_slr0_row_primitives=10696",
-            "p6_center_row_primitives=21392",
-            "p6_slr2_row_primitives=10696",
-            "p7_region2_rows0_3_primitives=26800",
-            "p7_region2_rows4_7_primitives=26800",
-            "p7_region2_residual_primitives=15199",
-            "p7_region2_rows0_3_dsp48e2=272",
-            "p7_region2_rows4_7_dsp48e2=272",
-            "p7_region2_residual_dsp48e2=0",
+            "p9_postprocess_center_wrong_slr=0",
+            "p9_postprocess_outer_wrong_slr=0",
+            "p9_slr0_row_primitives=16044",
+            "p9_center_row_primitives=10696",
+            "p9_slr2_row_primitives=16044",
+            f"p9_quantizer3_primitives={P16_QUANTIZER3_PRIMITIVES}",
+            "p9_quantizer3_grid_range=CLOCKREGION_X2Y5:CLOCKREGION_X3Y6",
+            "p9_quantizer3_wrong_region=0", "p9_quantizer3_unplaced=0",
+            f"p14_region2_relief_primitives={P16_REGION2_PRIMITIVES}",
+            "p14_region2_relief_base_range=CLOCKREGION_X0Y5:CLOCKREGION_X1Y9",
+            "p14_region2_relief_range=CLOCKREGION_X2Y5:CLOCKREGION_X2Y9",
+            "p14_region2_expected_range=CLOCKREGION_X0Y5:CLOCKREGION_X2Y9",
+            "p14_region2_relief_placed=100",
+            "p14_region2_relief_wrong=0", "p14_region2_relief_unplaced=0",
+            "parent_head_ff=6560", "parent_tail_ff=6560",
+            "parent_count_ff=2", "parent_count_physical_ff=16",
+            "parent_count_replica_ff=14",
+            "parent_count_replica_equivalence_ok=1", "parent_pointer_ff=0",
+            "local_clear_shared_upstream_ready_paths=0",
+            "branch_credit_shared_upstream_ready_paths=0",
+            "local_clear_gate_compute_ready_paths=0",
+            "branch_credit_gate_compute_ready_paths=0",
+            "local_clear_down_compute_ready_paths=0",
+            "branch_credit_down_compute_ready_paths=0",
+            "local_clear_input_cache_ready_paths=0",
+            "branch_credit_input_cache_ready_paths=0",
             "geometry_region0_input_primitives=3136",
             "geometry_region3_input_primitives=2112",
             "geometry_owner_region2_weight_primitives=2048",
             "geometry_region0_input_ok=1", "geometry_region3_input_ok=1",
             "geometry_owner_region2_weight_ok=1",
-            "projected_slr_dsp48e2=1862 1781 1810",
+            f"projected_slr_dsp48e2={' '.join(map(str, BOARD_SLR_DSP))}",
             "projected_slr_uram288=224 224 304",
-            "slr0_dsp48e2=1862", "slr1_dsp48e2=1781",
+            "slr0_dsp48e2=1862", f"slr1_dsp48e2={BOARD_SLR_DSP[1]}",
             "slr2_dsp48e2=1810", "slr0_uram288=224",
             "slr1_uram288=224", "slr2_uram288=304",
-            "pblock_dsp_coverage=5453",
+            f"pblock_dsp_coverage={BOARD_TOTAL_DSP}",
             "pblock_uram_coverage=752", "pblock_wrong_slr=0",
-            "physical_ok=1", "floorplan_contract_ok=1",
+            "physical_placement_ok=1", "physical_ok=1",
+            "floorplan_contract_ok=1",
             "wns_ns=0.001", "whs_ns=0.002",
             f"bitstream={report / 'attention_mlp_vcu118_v5.bit'}",
             f"bitstream_sha256={bit_hash}",
@@ -460,11 +592,18 @@ class ScaleLLMBoardTests(unittest.TestCase):
         summary_text = "\n".join((
             "status=V5_BOARD_BITSTREAM_PASS",
             "post_route_gate_status=V5_BOARD_POST_ROUTE_PASS",
-            "complete_input_sha_verified=1", "complete_input_count=123",
-            "immutable_input_count=122", "immutable_input_sha_verified=1",
+            "complete_input_sha_verified=1",
+            f"complete_input_count={BOARD_COMPLETE_INPUT_COUNT}",
+            f"immutable_input_count={BOARD_IMMUTABLE_INPUT_COUNT}",
+            "immutable_input_sha_verified=1",
             "recursive_source_sha_verified=1",
             "ooc_route_authorization_verified=1",
             f"checkpoint_sha256={dcp_hash}",
+            f"p16_post_opt_summary={p16_post_opt_summary}",
+            f"p16_post_opt_summary_sha256={p16_post_opt_sha}",
+            f"p16_production_region2_summary={p16_region2_summary}",
+            f"p16_production_region2_summary_sha256={p16_region2_sha}",
+            f"p16_production_dcp_sha256={production_dcp_sha}",
             *common_post_route,
         )) + "\n"
         (report / "summary.txt").write_text(summary_text, encoding="ascii")
@@ -483,22 +622,39 @@ class ScaleLLMBoardTests(unittest.TestCase):
 
         write_output_manifest()
         evidence = BoardBuildEvidence.load(report)
+        self.assertEqual(evidence.rtl_variant, BOARD_RTL_VARIANT)
         self.assertEqual(evidence.bitstream_sha256, bit_hash)
         self.assertGreaterEqual(evidence.wns_ns, 0)
-        p6_plan_path = report / "p6_postprocess_plan_post_route.txt"
-        p6_plan_path.write_text(
-            p6_plan_text.replace(
-                "center_row_primitives=21392",
-                "center_row_primitives=21391",
+        (report / "summary.txt").write_text(
+            summary_text.replace(BOARD_RTL_VARIANT, "P14_LEGACY"),
+            encoding="ascii",
+        )
+        write_output_manifest()
+        with self.assertRaisesRegex(RuntimeContractError, "not the frozen"):
+            BoardBuildEvidence.load(report)
+        (report / "summary.txt").write_text(summary_text, encoding="ascii")
+        write_output_manifest()
+        region2_payload = p16_region2_summary.read_bytes()
+        p16_region2_summary.write_bytes(region2_payload + b"drift=1\n")
+        with self.assertRaisesRegex(RuntimeContractError, "lineage SHA256"):
+            BoardBuildEvidence.load(report)
+        p16_region2_summary.write_bytes(region2_payload)
+        p14_plan_path = report / "p14_region2_relief_plan_post_route.txt"
+        p14_plan_path.write_text(
+            physical_report_texts[p14_plan_path.name].replace(
+                f"primitive_count={P16_REGION2_PRIMITIVES}",
+                f"primitive_count={P16_REGION2_PRIMITIVES - 2}",
             ),
             encoding="ascii",
         )
         write_output_manifest()
         with self.assertRaisesRegex(
-            RuntimeContractError, "P6 report invariant failed"
+            RuntimeContractError, "P16 report invariant failed"
         ):
             BoardBuildEvidence.load(report)
-        p6_plan_path.write_text(p6_plan_text, encoding="ascii")
+        p14_plan_path.write_text(
+            physical_report_texts[p14_plan_path.name], encoding="ascii"
+        )
         write_output_manifest()
 
         audit = self.root / "board_audit"
@@ -506,24 +662,33 @@ class ScaleLLMBoardTests(unittest.TestCase):
         for name in BOARD_AUDIT_REQUIRED_FILES:
             if name != "OUTPUT_SHA256SUMS":
                 (audit / name).write_text("fixture\n", encoding="ascii")
-        (audit / "p6_postprocess_plan_post_route.txt").write_text(
-            p6_plan_text, encoding="ascii"
-        )
-        (audit / "p6_postprocess_pblocks_post_route.txt").write_text(
-            p6_pblock_text, encoding="ascii"
-        )
+        for name, report_text in physical_report_texts.items():
+            (audit / name).write_text(report_text, encoding="ascii")
         project = Path(__file__).resolve().parents[1]
         scripts = project / "vivado" / "scripts"
         audit_inputs = (
             report / "attention_mlp_vcu118_v5_post_route.dcp",
             report / "attention_mlp_vcu118_v5.bit",
             report / "XDC_SOURCE_INVENTORY",
+            report / "summary.txt",
             scripts / "audit_attention_mlp_vcu118_v5_post_route.tcl",
             scripts / "attention_mlp_vcu118_v5_post_route_gate.tcl",
             scripts / "v5_production_floorplan_selectors.tcl",
-            scripts / "projection_core16x16_w8_reuse_ooc_floorplan.tcl",
+            scripts /
+            "projection_core16x16_w8_reuse_ooc_p16_bound_floorplan.tcl",
             scripts / "v5_production_p5_input_partition_floorplan.tcl",
-            scripts / "v5_production_p6_postprocess_partition_floorplan.tcl",
+            scripts / "v5_production_p9_postprocess_partition_floorplan.tcl",
+            scripts /
+            "v5_production_p16_noclip_quantizer3_locality_floorplan.tcl",
+            scripts /
+            "v5_production_p16_noclip_region2_x2_relief_floorplan.tcl",
+            scripts / "audit_mlp_p8_parent_ingress_boundary_replica_aware.tcl",
+            scripts / "projection_core16x16_w8_reuse_ooc_p16_floorplan.tcl",
+            scripts / "projection_core16x16_w8_reuse_ooc_floorplan.tcl",
+            scripts / "v5_production_p9_quantizer3_locality_floorplan.tcl",
+            scripts / "v5_production_p14_region2_x2_relief_floorplan.tcl",
+            p16_post_opt_summary,
+            p16_region2_summary,
             scripts / "run_attention_mlp_vcu118_v5_post_route_audit.sh",
         )
         (audit / "INPUT_FILES").write_text(
@@ -542,15 +707,21 @@ class ScaleLLMBoardTests(unittest.TestCase):
             "vivado_invoked=1", "input_sha_precheck=1",
             "input_sha_postcheck=1", "input_manifest_sha_match=1",
             f"input_manifest_sha256={audit_input_sha}",
+            f"rtl_variant={BOARD_RTL_VARIANT}",
         )) + "\n", encoding="ascii")
         (audit / "summary.txt").write_text("\n".join((
             "status=V5_BOARD_INDEPENDENT_AUDIT_PASS",
             "post_route_gate_status=V5_BOARD_POST_ROUTE_PASS",
-            "audit_input_manifest_entries=10",
+            f"audit_input_manifest_entries={BOARD_AUDIT_INPUT_COUNT}",
             f"audit_input_manifest_sha256={audit_input_sha}",
             "audit_input_manifests_verified=1",
             f"checkpoint={report / 'attention_mlp_vcu118_v5_post_route.dcp'}",
             f"checkpoint_sha256={dcp_hash}",
+            f"p16_post_opt_summary={p16_post_opt_summary}",
+            f"p16_post_opt_summary_sha256={p16_post_opt_sha}",
+            f"p16_production_region2_summary={p16_region2_summary}",
+            f"p16_production_region2_summary_sha256={p16_region2_sha}",
+            f"p16_production_dcp_sha256={production_dcp_sha}",
             *common_post_route,
         )) + "\n", encoding="ascii")
         (audit / "post_route_gate_summary.txt").write_text("\n".join((

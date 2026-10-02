@@ -52,6 +52,8 @@ module hap_mlp_tensor_dma_bridge #(
     // bank decode has only 48 sinks and each local enable owns 256 FFs; the
     // flattened tensor order at the MLP boundary is unchanged.
     (* DONT_TOUCH = "yes" *) reg [255:0] input_group_beat_r [0:47];
+    (* DONT_TOUCH = "yes", KEEP = "yes" *)
+    wire [47:0] input_beat_write_enable;
     reg input_group_valid_r;
     reg [7:0] expected_output_tile_r;
     reg [4:0] output_beat_r;
@@ -62,7 +64,18 @@ module hap_mlp_tensor_dma_bridge #(
     // output_tile_valid_r remains the sole architectural protocol owner.
     (* DONT_TOUCH = "yes" *) reg [255:0] output_tile_beat_r [0:23];
     (* DONT_TOUCH = "yes" *) reg [23:0] output_tile_hold_r;
-    reg [255:0] output_stream_data_r;
+    // A stallable two-stage 24-to-1 read pipeline keeps the beat selector and
+    // data mux local.  It adds two startup cycles per tile but still retires
+    // one AXI beat per cycle once full.
+    reg [4:0] output_issue_count_r;
+    (* DONT_TOUCH = "yes" *) reg [255:0]
+        output_mux_group_data_r [0:5];
+    (* DONT_TOUCH = "yes", KEEP = "yes" *)
+    wire [5:0] output_mux_group_write_enable;
+    (* DONT_TOUCH = "yes" *) reg [2:0] output_mux_group_r;
+    (* DONT_TOUCH = "yes" *) reg output_mux_stage0_valid_r;
+    (* DONT_TOUCH = "yes" *) reg [255:0] output_stream_data_r;
+    (* DONT_TOUCH = "yes" *) reg output_stream_valid_r;
     reg output_tile_valid_r;
 
     wire dma_cmd_valid=(state_r==P_IDLE&&load_valid)||
@@ -94,7 +107,15 @@ module hap_mlp_tensor_dma_bridge #(
     assign mlp_input_bank=active_bank_r;
     assign mlp_input_group=input_group_r;
     assign mlp_out_ready=state_r==P_STORE&&!output_tile_valid_r;
-    assign dma_wr_valid=state_r==P_STORE&&output_tile_valid_r;
+    wire output_stream_ready = !output_stream_valid_r || dma_wr_ready;
+    wire output_mux_stage0_ready = !output_mux_stage0_valid_r ||
+        output_stream_ready;
+    wire output_issue_valid = state_r==P_STORE&&output_tile_valid_r&&
+        output_issue_count_r<24;
+    wire output_issue_fire = output_issue_valid&&output_mux_stage0_ready;
+
+    assign dma_wr_valid=state_r==P_STORE&&output_tile_valid_r&&
+        output_stream_valid_r;
     assign dma_wr_data=output_stream_data_r;
 
     genvar input_bank;
@@ -103,8 +124,15 @@ module hap_mlp_tensor_dma_bridge #(
           g_input_beat_bank
         assign mlp_input_s24x16x32[input_bank*256+:256]=
           input_group_beat_r[input_bank];
+        // Keep bank 47's payload CEs separate from the logically equivalent
+        // input_group_valid update.
+        (* DONT_TOUCH = "yes", KEEP = "yes" *) LUT1 #(.INIT(2'h2))
+        u_input_beat_write_enable (
+          .I0(rd_fire&&(input_beat_r==input_bank)),
+          .O(input_beat_write_enable[input_bank])
+        );
         always @(posedge clk)begin
-          if(rd_fire&&(input_beat_r==input_bank))
+          if(input_beat_write_enable[input_bank])
             input_group_beat_r[input_bank]<=dma_rd_data;
         end
       end
@@ -122,6 +150,51 @@ module hap_mlp_tensor_dma_bridge #(
           if(!output_tile_hold_r[output_bank])
             output_tile_beat_r[output_bank]<=
               mlp_out_s24x16x16[output_bank*256+:256];
+        end
+      end
+    endgenerate
+
+    // Payload registers have no architectural reset value; their valid bits
+    // are reset in the control block below.  Keeping payload writes in a
+    // clock-only process prevents Vivado from inferring ambiguous FDCP cells
+    // with simultaneous asynchronous set/reset behavior.
+    always @(posedge clk) begin
+      if(output_stream_ready&&output_mux_stage0_valid_r)begin
+        case(output_mux_group_r)
+          3'd0:output_stream_data_r<=output_mux_group_data_r[0];
+          3'd1:output_stream_data_r<=output_mux_group_data_r[1];
+          3'd2:output_stream_data_r<=output_mux_group_data_r[2];
+          3'd3:output_stream_data_r<=output_mux_group_data_r[3];
+          3'd4:output_stream_data_r<=output_mux_group_data_r[4];
+          default:output_stream_data_r<=output_mux_group_data_r[5];
+        endcase
+      end
+    end
+
+    genvar output_mux_group;
+    generate
+      for(output_mux_group=0;output_mux_group<6;
+          output_mux_group=output_mux_group+1)begin:
+          g_output_mux_group
+        // Keep the six 256-load payload enables physically independent.  A
+        // shared 1536-load CE is otherwise eligible for data-BUFG promotion.
+        (* DONT_TOUCH = "yes", KEEP = "yes" *) LUT1 #(.INIT(2'h2))
+        u_output_mux_group_write_enable (
+          .I0(output_issue_fire),
+          .O(output_mux_group_write_enable[output_mux_group])
+        );
+        always @(posedge clk)begin
+          if(output_mux_group_write_enable[output_mux_group])
+          case(output_issue_count_r[1:0])
+            2'd0:output_mux_group_data_r[output_mux_group]<=
+              output_tile_beat_r[output_mux_group*4];
+            2'd1:output_mux_group_data_r[output_mux_group]<=
+              output_tile_beat_r[output_mux_group*4+1];
+            2'd2:output_mux_group_data_r[output_mux_group]<=
+              output_tile_beat_r[output_mux_group*4+2];
+            default:output_mux_group_data_r[output_mux_group]<=
+              output_tile_beat_r[output_mux_group*4+3];
+          endcase
         end
       end
     endgenerate
@@ -149,26 +222,20 @@ module hap_mlp_tensor_dma_bridge #(
       .command_count(),.read_beat_count(),.write_beat_count(),
       .burst_count(),.protocol_error_count());
 
-    // Payload registers are meaningful only while their matching valid bit is
-    // asserted.  Keep them out of the asynchronous reset/clear control set;
-    // stale payload is masked by input_group_valid_r/output_tile_valid_r.
-    always @(posedge clk) begin
-      if(output_fire)
-        output_stream_data_r<=mlp_out_s24x16x16[255:0];
-      else if(wr_fire&&(output_beat_r!=23))
-        output_stream_data_r<=output_tile_beat_r[output_beat_r+1'b1];
-    end
-
     always @(posedge clk or negedge rst_n) begin
       if(!rst_n)begin state_r<=P_IDLE;active_bank_r<=0;input_group_r<=0;
         input_beat_r<=0;input_group_valid_r<=0;expected_output_tile_r<=0;
         output_beat_r<=0;output_tile_valid_r<=0;done<=0;load_done<=0;
         store_done<=0;error<=0;
+        output_issue_count_r<=0;output_mux_group_r<=0;
+        output_mux_stage0_valid_r<=0;output_stream_valid_r<=0;
         output_tile_hold_r<=24'd0;
         input_beat_count<=0;input_group_count<=0;output_beat_count<=0;
         output_tile_count<=0;end
       else if(clear)begin state_r<=P_IDLE;input_group_valid_r<=0;
         output_tile_valid_r<=0;done<=0;load_done<=0;store_done<=0;
+        output_issue_count_r<=0;output_mux_stage0_valid_r<=0;
+        output_stream_valid_r<=0;
         output_tile_hold_r<=24'd0;
         error<=0;input_beat_count<=0;
         input_group_count<=0;output_beat_count<=0;output_tile_count<=0;end
@@ -178,6 +245,8 @@ module hap_mlp_tensor_dma_bridge #(
           input_beat_count<=0;input_group_count<=0;end
         if(arm_store)begin state_r<=P_STORE_ARM;expected_output_tile_r<=0;
           output_beat_r<=0;output_tile_valid_r<=0;
+          output_issue_count_r<=0;output_mux_stage0_valid_r<=0;
+          output_stream_valid_r<=0;
           output_tile_hold_r<=24'd0;output_beat_count<=0;
           output_tile_count<=0;end
         if(start_store_dma)state_r<=P_STORE;
@@ -203,9 +272,22 @@ module hap_mlp_tensor_dma_bridge #(
           if(mlp_out_tile!=expected_output_tile_r)error<=1;
           output_tile_valid_r<=1;
           output_tile_hold_r<={24{1'b1}};
-          output_beat_r<=0;end
+          output_beat_r<=0;output_issue_count_r<=0;
+          output_mux_stage0_valid_r<=0;output_stream_valid_r<=0;end
+        if(output_stream_ready)begin
+          output_stream_valid_r<=output_mux_stage0_valid_r;
+        end
+        if(output_mux_stage0_ready)begin
+          output_mux_stage0_valid_r<=output_issue_valid;
+          if(output_issue_valid)begin
+            output_mux_group_r<=output_issue_count_r[4:2];
+          end
+        end
+        if(output_issue_fire)
+          output_issue_count_r<=output_issue_count_r+1'b1;
         if(wr_fire)begin output_beat_count<=output_beat_count+1;
           if(output_beat_r==23)begin output_beat_r<=0;output_tile_valid_r<=0;
+            output_issue_count_r<=0;
             output_tile_hold_r<=24'd0;
             output_tile_count<=output_tile_count+1;
             expected_output_tile_r<=expected_output_tile_r+1;end

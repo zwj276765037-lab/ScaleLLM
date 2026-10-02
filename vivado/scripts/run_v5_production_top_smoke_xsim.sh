@@ -14,7 +14,7 @@ TB="$ROOT/tb/hap_v4_production_top_smoke_tb.sv"
 LAUNCHER="$ROOT/vivado/scripts/run_v5_production_top_smoke_xsim.sh"
 DEFINES=(
   HAP_BOARD_BUILD
-  HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s45
+  HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s46
   HAP_ATTENTION_BOARD_MODULE=hap_attention_board_cohort16_core
 )
 
@@ -218,7 +218,7 @@ PASS_RE='^PASS hap_v4_production_top_smoke checks=[0-9]+ soft_clear=[0-9]+ cycle
   printf 'recursive_rtl_source_count=%d\n' "${#rtl_sources[@]}"
   printf 'recursive_memory_source_count=%d\n' "${#mem_sources[@]}"
   printf 'verilog_define=HAP_BOARD_BUILD\n'
-  printf 'verilog_define=HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s45\n'
+  printf 'verilog_define=HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s46\n'
   printf 'verilog_define=HAP_ATTENTION_BOARD_MODULE=hap_attention_board_cohort16_core\n'
   grep -E "$PASS_RE" "$REPORT_DIR/xsim.log"
 } > "$REPORT_DIR/summary.txt"

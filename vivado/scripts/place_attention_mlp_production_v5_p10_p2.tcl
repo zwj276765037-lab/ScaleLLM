@@ -126,7 +126,7 @@ proc hap_p10_create_hard_slr_pblock {name target cells} {
 
 proc hap_p10_mlp_local_clear_audit {require_placed} {
     set branches [lsort -dictionary [hap_p10_cells_of_module \
-        hap_mlp_shared_local_slice8x12_s43_s45]]
+        hap_mlp_shared_local_slice8x12_s44_s46]]
     if {[llength $branches] != 2} {
         error "P10 expected two MLP branches, got [llength $branches]"
     }
@@ -516,11 +516,11 @@ set projection_root [file dirname \
     [get_property NAME [dict get $plan projection_array]]]
 set geometry_plan [hap_projection_ooc_floorplan::discover $projection_root 1]
 set compact_input [hap_p10_cells_of_module hap_mlp_input_frontend16_compact_cache]
-set down_elastic [hap_p10_cells_of_module hap_mlp_down_branch_elastic2_s24]
+set down_elastic [hap_p10_cells_of_module hap_mlp_down_branch_elastic2_s24_v6]
 set pre_clear [hap_p10_mlp_local_clear_audit 0]
 set pre_metadata [hap_p10_metadata_local_write_audit 0]
 set pre_capture [hap_p10_mlp_capture_leaf_audit \
-    [hap_p10_cells_of_module hap_mlp_shared_local_slice8x12_s43_s45] 0]
+    [hap_p10_cells_of_module hap_mlp_shared_local_slice8x12_s44_s46] 0]
 if {[llength $compact_input] != 1 || [llength $down_elastic] != 2 ||
     [dict get $pre_clear total] != 2 || [dict get $pre_clear protected] != 2 ||
     [dict get $pre_metadata protected] != 970 ||
@@ -586,11 +586,11 @@ set rediscovery_rc [catch {
     set post_compact_input [hap_p10_cells_of_module \
         hap_mlp_input_frontend16_compact_cache]
     set post_down_elastic [hap_p10_cells_of_module \
-        hap_mlp_down_branch_elastic2_s24]
+        hap_mlp_down_branch_elastic2_s24_v6]
     set post_clear [hap_p10_mlp_local_clear_audit 1]
     set post_metadata [hap_p10_metadata_local_write_audit 1]
     set post_capture [hap_p10_mlp_capture_leaf_audit \
-        [hap_p10_cells_of_module hap_mlp_shared_local_slice8x12_s43_s45] 1]
+        [hap_p10_cells_of_module hap_mlp_shared_local_slice8x12_s44_s46] 1]
     hap_v5_floorplan::write_discovery $post_plan \
         [file join $out selectors_post_place.txt] \
         V5_P10_P2_POST_PLACE_SELECTORS_PASS

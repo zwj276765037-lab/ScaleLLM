@@ -1,12 +1,13 @@
 `timescale 1ns / 1ps
 
 package hap_mlp_pkg;
-    // V1 was the historical W8/S42/S52 exploration.  V2 is the implemented
-    // A8W4/S36/S43/S45 group-major contract and must never accept V1 files.
+    // V1 was the historical W8/S42/S52 exploration.  V2 was the implemented
+    // A8W4/S36/S43/S45 contract.  V3 widens only the MLP recovery/accumulation
+    // path to S37/S44/S46 and must never accept V1 or V2 artifacts.
     localparam logic [31:0] HAP_MLP_FIXBIT_V1_FORMAT_ID = 32'h4838_4d01;
     localparam logic [31:0] HAP_FULL_FIXBIT_V1_FORMAT_ID = 32'h4838_4601;
-    localparam logic [31:0] HAP_MLP_FIXBIT_V2_FORMAT_ID = 32'h4838_4d02;
-    localparam logic [31:0] HAP_FULL_FIXBIT_V2_FORMAT_ID = 32'h4838_4602;
+    localparam logic [31:0] HAP_MLP_FIXBIT_V3_FORMAT_ID = 32'h4838_4d03;
+    localparam logic [31:0] HAP_FULL_FIXBIT_V3_FORMAT_ID = 32'h4838_4603;
 
     localparam int MLP_QUERY_ROWS = 8;
     localparam int MLP_HIDDEN_DIM = 4096;
@@ -21,11 +22,10 @@ package hap_mlp_pkg;
 
     localparam int MLP_TENSOR_W = 24;
     localparam int MLP_PRODUCT_W = 32;
-    // Post-audit widths.  S36 is the group guard; S43/S45 are the two
-    // projection accumulator widths frozen in source/09.
-    localparam int MLP_GROUP_GUARD_W = 36;
-    localparam int MLP_GATE_UP_ACCUM_W = 43;
-    localparam int MLP_DOWN_ACCUM_W = 45;
+    // V3 widths required by legal total_shift=20 recovery.
+    localparam int MLP_GROUP_GUARD_W = 37;
+    localparam int MLP_GATE_UP_ACCUM_W = 44;
+    localparam int MLP_DOWN_ACCUM_W = 46;
 
     localparam int MLP_SILU_LUT_STEPS_PER_ONE = 256;
     localparam int MLP_SILU_LUT_ENTRIES = 8193;

@@ -32,8 +32,8 @@ from .scalellm_runtime import (
 
 ATTENTION_FORMAT_ID = 0x4838_4103
 ATTENTION_ABI = 0x0002_0000
-MLP_FORMAT_ID = 0x4838_4602
-MLP_ABI = 0x0004_0003
+MLP_FORMAT_ID = 0x4838_4605
+MLP_ABI = 0x0005_0000
 
 ATTENTION_CONTROL = 0x008
 ATTENTION_STATUS = 0x00C
@@ -49,6 +49,9 @@ MLP_PAIRED_STATUS = 0x260
 MLP_COMPLETION_FLAGS = 0x29C
 MLP_COMPLETION_ACK = 0x2A0
 MLP_ABORT_STATUS = 0x2A8
+MLP_DOWN_SATURATION_COUNT = 0x2AC
+MLP_TOTAL_SHIFT_FORMAT_ERROR_COUNT = 0x2B0
+MLP_NUMERIC_STATUS = 0x2B4
 
 OWNER_SHARED = 3
 MLP_GATE_META_RECORDS = 229_376
@@ -108,6 +111,12 @@ PAIRED_TELEMETRY_REGISTERS = {
     "paired_head_of_line_cycles_ddr1": 0x274,
     "paired_outstanding_hwm_ddr0": 0x278,
     "paired_outstanding_hwm_ddr1": 0x27C,
+}
+
+MLP_NUMERIC_TELEMETRY_REGISTERS = {
+    "down_output_saturation_count": MLP_DOWN_SATURATION_COUNT,
+    "total_shift_format_error_count": MLP_TOTAL_SHIFT_FORMAT_ERROR_COUNT,
+    "numeric_status": MLP_NUMERIC_STATUS,
 }
 
 
@@ -221,6 +230,10 @@ class ScaleLLMHardwareBackend:
         words.update({
             name: self.transport.read32(offset)
             for name, offset in PAIRED_TELEMETRY_REGISTERS.items()
+        })
+        words.update({
+            name: self.transport.read32(offset)
+            for name, offset in MLP_NUMERIC_TELEMETRY_REGISTERS.items()
         })
         words["tensor_input_beats"] = self.transport.read32(0x17C)
         words["tensor_input_groups"] = self.transport.read32(0x244)
@@ -524,9 +537,8 @@ class ScaleLLMHardwareBackend:
                 f"MLP hardware identity mismatch: "
                 f"expected={identity} actual={completion.identity}"
             )
-        self._record_telemetry(
-            Engine.MLP, identity, completion, self._mlp_telemetry()
-        )
+        telemetry = self._mlp_telemetry()
+        self._record_telemetry(Engine.MLP, identity, completion, telemetry)
         if completion.status in (
             CompletionStatus.TIMEOUT,
             CompletionStatus.MAINTENANCE_ABORT,
@@ -545,4 +557,31 @@ class ScaleLLMHardwareBackend:
             "MLP completion acknowledge",
             lambda: not (self.transport.read32(MLP_COMPLETION_FLAGS) & 0x1),
         )
+        numeric_status = telemetry["numeric_status"]
+        numeric_faults = []
+        if telemetry["down_output_saturation_count"]:
+            numeric_faults.append(
+                "down_output_saturation_count="
+                f"{telemetry['down_output_saturation_count']}"
+            )
+        if telemetry["total_shift_format_error_count"]:
+            numeric_faults.append(
+                "total_shift_format_error_count="
+                f"{telemetry['total_shift_format_error_count']}"
+            )
+        if numeric_status & 0x1:
+            numeric_faults.append("guard_overflow=1")
+        if numeric_status & 0x2:
+            numeric_faults.append("accumulator_overflow=1")
+        if numeric_status & 0x4:
+            numeric_faults.append("format_error_status=1")
+        if numeric_status & ~0x7:
+            numeric_faults.append(
+                f"unknown_numeric_status=0x{numeric_status & ~0x7:08x}"
+            )
+        if numeric_faults:
+            raise RuntimeContractError(
+                "MLP numeric telemetry fail-closed: "
+                + ", ".join(numeric_faults)
+            )
         return completion

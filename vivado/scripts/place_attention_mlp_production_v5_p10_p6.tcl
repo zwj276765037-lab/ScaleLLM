@@ -327,7 +327,7 @@ set rediscovery_rc [catch {
     set post_clear [hap_p10_mlp_local_clear_audit 1]
     set post_metadata [hap_p10_metadata_local_write_audit 1]
     set post_capture [hap_p10_mlp_capture_leaf_audit \
-        [hap_p10_cells_of_module hap_mlp_shared_local_slice8x12_s43_s45] 1]
+        [hap_p10_cells_of_module hap_mlp_shared_local_slice8x12_s44_s46] 1]
     hap_v5_floorplan::write_discovery $post_base_plan \
         [file join $out selectors_post_place.txt] \
         V5_P10_P6_BASE_SELECTORS_POST_PLACE_PASS

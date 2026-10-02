@@ -1,6 +1,7 @@
 set script_dir [file dirname [file normalize [info script]]]
 set dcp [file normalize $::env(HAP_DCP)]
 set bitstream [file normalize $::env(HAP_BITSTREAM)]
+set board_summary [file normalize [file join [file dirname $dcp] summary.txt]]
 set out [file normalize $::env(HAP_AUDIT_DIR)]
 set xdc_inventory [file normalize $::env(HAP_XDC_INVENTORY)]
 set input_files [file normalize [file join $out INPUT_FILES]]
@@ -9,14 +10,46 @@ set expected_input_manifest_sha $::env(HAP_AUDIT_INPUT_MANIFEST_SHA256)
 set audit_tcl [file normalize [info script]]
 set gate_tcl [file normalize [file join $script_dir \
     attention_mlp_vcu118_v5_post_route_gate.tcl]]
+set rtl_variant [expr {[info exists ::env(HAP_BOARD_RTL_VARIANT)] ?
+    $::env(HAP_BOARD_RTL_VARIANT) : "P14_LEGACY"}]
+set expected_input_count [expr {
+    [info exists ::env(HAP_AUDIT_EXPECTED_INPUT_COUNT)] ?
+    $::env(HAP_AUDIT_EXPECTED_INPUT_COUNT) : 14}]
 set selector_tcl [file normalize [file join $script_dir \
     v5_production_floorplan_selectors.tcl]]
-set geometry_tcl [file normalize [file join $script_dir \
-    projection_core16x16_w8_reuse_ooc_floorplan.tcl]]
 set p5_tcl [file normalize [file join $script_dir \
     v5_production_p5_input_partition_floorplan.tcl]]
-set p6_tcl [file normalize [file join $script_dir \
-    v5_production_p6_postprocess_partition_floorplan.tcl]]
+set p9_postprocess_tcl [file normalize [file join $script_dir \
+    v5_production_p9_postprocess_partition_floorplan.tcl]]
+set physical_extra_inputs {}
+if {$rtl_variant eq "P16_NOCLIP"} {
+    set geometry_tcl [file normalize [file join $script_dir \
+        projection_core16x16_w8_reuse_ooc_p16_bound_floorplan.tcl]]
+    set p9_quantizer3_tcl [file normalize [file join $script_dir \
+        v5_production_p16_noclip_quantizer3_locality_floorplan.tcl]]
+    set p14_relief_tcl [file normalize [file join $script_dir \
+        v5_production_p16_noclip_region2_x2_relief_floorplan.tcl]]
+    set physical_extra_inputs [list \
+        [file normalize [file join $script_dir \
+            projection_core16x16_w8_reuse_ooc_p16_floorplan.tcl]] \
+        [file normalize [file join $script_dir \
+            projection_core16x16_w8_reuse_ooc_floorplan.tcl]] \
+        [file normalize [file join $script_dir \
+            v5_production_p9_quantizer3_locality_floorplan.tcl]] \
+        [file normalize [file join $script_dir \
+            v5_production_p14_region2_x2_relief_floorplan.tcl]] \
+        [file normalize $::env(HAP_P16_POST_OPT_SUMMARY)] \
+        [file normalize $::env(HAP_P16_PRODUCTION_REGION2_SUMMARY)]]
+} else {
+    set geometry_tcl [file normalize [file join $script_dir \
+        projection_core16x16_w8_reuse_ooc_floorplan.tcl]]
+    set p9_quantizer3_tcl [file normalize [file join $script_dir \
+        v5_production_p9_quantizer3_locality_floorplan.tcl]]
+    set p14_relief_tcl [file normalize [file join $script_dir \
+        v5_production_p14_region2_x2_relief_floorplan.tcl]]
+}
+set p8_parent_tcl [file normalize [file join $script_dir \
+    audit_mlp_p8_parent_ingress_boundary_replica_aware.tcl]]
 set launcher [file normalize [file join $script_dir \
     run_attention_mlp_vcu118_v5_post_route_audit.sh]]
 file mkdir $out
@@ -89,19 +122,26 @@ proc hap_audit_verify_inputs {manifest expected_manifest_sha expected} {
     }
     set wanted [lsort -dictionary $expected]
     set actual [lsort -dictionary [dict keys $entries]]
-    if {[dict size $entries] != 10 || $actual ne $wanted} {
+    if {[dict size $entries] != [llength $expected] || $actual ne $wanted} {
         error "Audit input-manifest exact path mismatch: expected=$wanted actual=$actual"
     }
     return $entries
 }
 
-set exact_inputs [list $dcp $bitstream $xdc_inventory $audit_tcl \
-    $gate_tcl $selector_tcl $geometry_tcl $p5_tcl $p6_tcl $launcher]
+set exact_inputs [list $dcp $bitstream $xdc_inventory $board_summary $audit_tcl \
+    $gate_tcl $selector_tcl $geometry_tcl $p5_tcl $p9_postprocess_tcl \
+    $p9_quantizer3_tcl $p14_relief_tcl $p8_parent_tcl \
+    {*}$physical_extra_inputs $launcher]
+if {$rtl_variant ni {P14_LEGACY P16_NOCLIP} ||
+    ![string is integer -strict $expected_input_count] ||
+    [llength $exact_inputs] != $expected_input_count} {
+    error "Independent audit RTL variant/input count mismatch"
+}
 hap_audit_exact_path_list $input_files $exact_inputs
 set frozen_inputs [hap_audit_verify_inputs $input_sha \
     $expected_input_manifest_sha $exact_inputs]
 
-# No checkpoint is opened and no gate library is sourced until all ten
+# No checkpoint is opened and no gate library is sourced until all frozen
 # absolute paths, their file digests and the manifest's own digest agree.
 source $gate_tcl
 open_checkpoint $dcp
@@ -125,6 +165,13 @@ dict for {key value} $result {
 puts $fp "checkpoint=$dcp"
 puts $fp "checkpoint_size_bytes=[file size $dcp]"
 puts $fp "checkpoint_sha256=$dcp_hash"
+if {$rtl_variant eq "P16_NOCLIP"} {
+    puts $fp "p16_post_opt_summary=$::env(HAP_P16_POST_OPT_SUMMARY)"
+    puts $fp "p16_post_opt_summary_sha256=$::env(HAP_P16_POST_OPT_SUMMARY_SHA256)"
+    puts $fp "p16_production_region2_summary=$::env(HAP_P16_PRODUCTION_REGION2_SUMMARY)"
+    puts $fp "p16_production_region2_summary_sha256=$::env(HAP_P16_PRODUCTION_REGION2_SUMMARY_SHA256)"
+    puts $fp "p16_production_dcp_sha256=$::env(HAP_P16_PRODUCTION_DCP_SHA256)"
+}
 puts $fp "audit_input_manifest_entries=[dict size $frozen_inputs]"
 puts $fp "audit_input_manifest_sha256=$expected_input_manifest_sha"
 puts $fp "audit_input_manifests_verified=1"

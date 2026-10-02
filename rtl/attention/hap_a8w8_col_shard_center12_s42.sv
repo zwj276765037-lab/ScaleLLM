@@ -62,6 +62,10 @@ module hap_a8w8_col_shard_center12_s42 #(
     wire [31:0] region0_saturation, region1_saturation;
     wire [31:0] region2_saturation, region3_saturation;
     wire region0_error, region1_error, region2_error, region3_error;
+    reg owner_out_pending_r;
+    reg owner_out_wave_r;
+    wire owner_out_fire = owner_out_pending_r && out_ready;
+    wire subshard_out_ready = owner_out_fire;
     // Region 1 is the local owner.  All four subshards are cycle-identical;
     // using one owner keeps readiness from forming a long combinational chain
     // through every region.  Each subshard latches any owner event that it
@@ -70,14 +74,32 @@ module hap_a8w8_col_shard_center12_s42 #(
     assign launch_ready = region1_launch_ready;
     assign guard_valid = region1_guard_valid;
     assign accum_ready = region1_accum_ready;
-    assign out_valid = region1_out_valid;
-    assign out_wave = region1_out_wave;
+    // Region 2 has the P16 no-bypass accumulator FIFO and retires one cycle
+    // after the local owner.  Delay the owner event locally before releasing
+    // all four regions; this preserves owner-only timing and group II.
+    assign out_valid = owner_out_pending_r;
+    assign out_wave = owner_out_wave_r;
     assign accumulated_group_count = region1_accumulated;
     assign output_tile_count = region1_output;
     assign saturation_count = region0_saturation + region1_saturation +
         region2_saturation + region3_saturation;
     assign error = region0_error | region1_error | region2_error |
         region3_error;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            owner_out_pending_r <= 1'b0;
+            owner_out_wave_r <= 1'b0;
+        end else if (clear) begin
+            owner_out_pending_r <= 1'b0;
+            owner_out_wave_r <= 1'b0;
+        end else if (!owner_out_pending_r && region1_out_valid) begin
+            owner_out_pending_r <= 1'b1;
+            owner_out_wave_r <= region1_out_wave;
+        end else if (owner_out_fire) begin
+            owner_out_pending_r <= 1'b0;
+        end
+    end
 
     genvar map_row;
     generate
@@ -138,7 +160,7 @@ module hap_a8w8_col_shard_center12_s42 #(
         .accum_ready(region0_accum_ready), .guard_commit(guard_commit),
         .guard_wave(guard_wave), .guard_first(guard_first),
         .guard_last(guard_last),
-        .out_valid(region0_out_valid), .out_ready(out_ready),
+        .out_valid(region0_out_valid), .out_ready(subshard_out_ready),
         .out_wave(region0_out_wave), .out_s24(region0_out),
         .accumulated_group_count(region0_accumulated),
         .output_tile_count(region0_output),
@@ -163,7 +185,7 @@ module hap_a8w8_col_shard_center12_s42 #(
         .accum_ready(region1_accum_ready), .guard_commit(guard_commit),
         .guard_wave(guard_wave), .guard_first(guard_first),
         .guard_last(guard_last),
-        .out_valid(region1_out_valid), .out_ready(out_ready),
+        .out_valid(region1_out_valid), .out_ready(subshard_out_ready),
         .out_wave(region1_out_wave), .out_s24(region1_out),
         .accumulated_group_count(region1_accumulated),
         .output_tile_count(region1_output),
@@ -172,7 +194,9 @@ module hap_a8w8_col_shard_center12_s42 #(
 
     hap_a8w8_col_shard_s42 #(
         .COLS(4), .ACT_REGIONS(1), .GLOBAL_COL_BASE(8),
-        .DUAL_CONTEXT(DUAL_CONTEXT)
+        .DUAL_CONTEXT(DUAL_CONTEXT),
+        .SPLIT_DUAL_ACCUMULATOR(DUAL_CONTEXT != 0),
+        .BUFFER_DUAL_ACCUMULATOR(DUAL_CONTEXT != 0)
     ) u_region2_cols8_11 (
         .clk(clk), .rst_n(rst_n), .clear(clear),
         .capture_valid(capture_valid), .capture_ready(region2_capture_ready),
@@ -188,7 +212,7 @@ module hap_a8w8_col_shard_center12_s42 #(
         .accum_ready(region2_accum_ready), .guard_commit(guard_commit),
         .guard_wave(guard_wave), .guard_first(guard_first),
         .guard_last(guard_last),
-        .out_valid(region2_out_valid), .out_ready(out_ready),
+        .out_valid(region2_out_valid), .out_ready(subshard_out_ready),
         .out_wave(region2_out_wave), .out_s24(region2_out),
         .accumulated_group_count(region2_accumulated),
         .output_tile_count(region2_output),
@@ -213,7 +237,7 @@ module hap_a8w8_col_shard_center12_s42 #(
         .accum_ready(region3_accum_ready), .guard_commit(guard_commit),
         .guard_wave(guard_wave), .guard_first(guard_first),
         .guard_last(guard_last),
-        .out_valid(region3_out_valid), .out_ready(out_ready),
+        .out_valid(region3_out_valid), .out_ready(subshard_out_ready),
         .out_wave(region3_out_wave), .out_s24(region3_out),
         .accumulated_group_count(region3_accumulated),
         .output_tile_count(region3_output),

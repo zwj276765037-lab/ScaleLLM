@@ -18,7 +18,7 @@ from pathlib import Path
 from mlp_fixed import (
     build_silu_lut,
     hadamard32_product_normalized,
-    robust_a8_quantize_s35,
+    minmax_a8_quantize_s35,
     swiglu_product_s32,
 )
 
@@ -207,7 +207,7 @@ def main() -> None:
             for column in range(INTERMEDIATE_COLUMNS)
         ]
         transformed = hadamard32_product_normalized(products)
-        quantized = robust_a8_quantize_s35(transformed.values)
+        quantized = minmax_a8_quantize_s35(transformed.values)
         down_u8.extend(quantized.values)
         down_meta.append(quantized.metadata)
         down_centered.append([

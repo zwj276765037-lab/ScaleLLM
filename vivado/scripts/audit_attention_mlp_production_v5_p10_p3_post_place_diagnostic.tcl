@@ -179,11 +179,11 @@ set geometry_placement \
 set physical [hap_v5_floorplan::physical_metrics $plan $pblock_audit]
 set compact_input [hap_p10_cells_of_module \
     hap_mlp_input_frontend16_compact_cache]
-set down_elastic [hap_p10_cells_of_module hap_mlp_down_branch_elastic2_s24]
+set down_elastic [hap_p10_cells_of_module hap_mlp_down_branch_elastic2_s24_v6]
 set clear [hap_p10_mlp_local_clear_audit 1]
 set metadata [hap_p10_metadata_local_write_audit 1]
 set capture [hap_p10_mlp_capture_leaf_audit \
-    [hap_p10_cells_of_module hap_mlp_shared_local_slice8x12_s43_s45] 1]
+    [hap_p10_cells_of_module hap_mlp_shared_local_slice8x12_s44_s46] 1]
 hap_v5_floorplan::write_discovery $plan \
     [file join $out selectors_post_place.txt] \
     V5_P10_P3_DIAGNOSTIC_SELECTORS_PASS

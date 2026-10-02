@@ -11,7 +11,7 @@ from generate_mlp_input_frontend16_cache_vectors import (
 )
 from mlp_fixed import (
     build_silu_lut, hadamard32_product_normalized,
-    robust_a8_quantize_s35, swiglu_product_s32,
+    minmax_a8_quantize_s35, swiglu_product_s32,
 )
 
 
@@ -127,7 +127,7 @@ def main() -> None:
             up = projections[half+1][index]
             product.append(swiglu_product_s32(gate, up, silu_table))
         transformed = hadamard32_product_normalized(product)
-        quant = robust_a8_quantize_s35(transformed.values)
+        quant = minmax_a8_quantize_s35(transformed.values)
         expected_u8.extend(quant.values)
         expected_meta.append(quant.metadata)
 

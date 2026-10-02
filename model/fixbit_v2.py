@@ -11,11 +11,8 @@ from typing import Iterable, Sequence
 FORMAT_ID = 0x4838_4102
 GROUP_SIZE = 32
 INV_SQRT32_Q16 = 11_585
-ABS_Q9999_Q16 = 65_333
-CLIP_Q001_Q16 = 2_032
-CLIP_Q999_Q16 = 63_504
 DENOM_SCALE_Q16 = 255 << 16
-SCALE_SHIFT_LIMIT = 4_269_834_239
+SCALE_EXACT_LIMIT = 4_261_478_400
 S24_MIN = -(1 << 23)
 S24_MAX = (1 << 23) - 1
 S27_MIN = -(1 << 26)
@@ -117,29 +114,15 @@ class A8QuantResult:
         return (self.scale_shift << 16) | (self.scale_code << 8) | self.zero_point
 
 
-def _two_smallest(values: Sequence[int]) -> tuple[int, int]:
-    if len(values) < 2:
-        raise ValueError("two values are required")
-    first = second = None
-    for value in values:
-        if first is None or value <= first:
-            second = first
-            first = value
-        elif second is None or value < second:
-            second = value
-    assert first is not None and second is not None
-    return first, second
-
-
-def _two_largest(values: Sequence[int]) -> tuple[int, int]:
-    first, second = _two_smallest([-value for value in values])
-    return -first, -second
-
-
-def _interp_floor(base: int, high: int, low: int, coefficient_q16: int) -> int:
-    if high < low:
-        raise ValueError("interpolation bounds are reversed")
-    return base + (((high - low) * coefficient_q16) >> 16)
+def round_div_even(numerator: int, denominator: int) -> int:
+    """Round a non-negative rational to nearest, with exact ties to even."""
+    if numerator < 0 or denominator <= 0:
+        raise ValueError("round_div_even requires numerator>=0 and denominator>0")
+    quotient, remainder = divmod(numerator, denominator)
+    doubled = remainder << 1
+    if doubled > denominator or (doubled == denominator and quotient & 1):
+        quotient += 1
+    return quotient
 
 
 def encode_scale_from_diff(diff_q16: int) -> tuple[int, int]:
@@ -147,10 +130,10 @@ def encode_scale_from_diff(diff_q16: int) -> tuple[int, int]:
         return 0, 0
     shifted = int(diff_q16)
     shift = 0
-    while shift < 63 and (shifted << 1) <= SCALE_SHIFT_LIMIT:
+    while shift < 63 and (shifted << 1) <= SCALE_EXACT_LIMIT:
         shifted <<= 1
         shift += 1
-    code = (shifted + (DENOM_SCALE_Q16 // 2)) // DENOM_SCALE_Q16
+    code = round_div_even(shifted, DENOM_SCALE_Q16)
     if code < 1:
         code = 1
     if code > 255:
@@ -181,49 +164,39 @@ def encode_positive_scale(scale: float) -> tuple[int, int]:
     return code, shift
 
 
-def _encoded_ratio_magnitude(value_q16: int, code: int, shift: int) -> int:
-    if code <= 0:
-        return 0
-    magnitude = abs(int(value_q16))
-    adjusted = (magnitude << shift) + (code << 15)
-    if adjusted >= (code * 255 << 16):
-        return 255
-    numerator = adjusted >> 16
-    return min(255, numerator // code)
-
-
-def robust_a8_quantize(values: Sequence[int]) -> A8QuantResult:
+def minmax_a8_quantize(values: Sequence[int]) -> A8QuantResult:
+    """Raw Group32 asymmetric U8 Min/Max quantization after Hadamard."""
     if len(values) != GROUP_SIZE:
         raise ValueError(f"A8 group requires {GROUP_SIZE} values")
     source = [require_signed(int(value), 27, f"lane[{idx}]")
               for idx, value in enumerate(values)]
 
-    abs_max1, abs_max2 = _two_largest([abs(value) for value in source])
-    abs_threshold = _interp_floor(
-        abs_max2, abs_max1, abs_max2, ABS_Q9999_Q16)
-    clipped_abs = [max(-abs_threshold, min(abs_threshold, value))
-                   for value in source]
-    min1, min2 = _two_smallest(clipped_abs)
-    max1, max2 = _two_largest(clipped_abs)
-    clip_low = _interp_floor(min1, min2, min1, CLIP_Q001_Q16)
-    clip_high = _interp_floor(max2, max1, max2, CLIP_Q999_Q16)
-    diff = clip_high - clip_low
-
-    if diff <= 0:
+    low = min(min(source), 0)
+    high = max(max(source), 0)
+    diff = high - low
+    if diff == 0:
         return A8QuantResult((0,) * GROUP_SIZE, 0, 0, 0,
-                             clip_low, clip_high)
+                             low, high)
 
     code, shift = encode_scale_from_diff(diff)
-    zero_point = 0 if clip_low >= 0 else min(
-        255, _encoded_ratio_magnitude(clip_low, code, shift))
+    zero_point = min(255, round_div_even((-low) * 255, diff))
     output: list[int] = []
-    for value in clipped_abs:
-        value = max(clip_low, min(clip_high, value))
-        magnitude = _encoded_ratio_magnitude(value, code, shift)
-        quantized = zero_point - magnitude if value < 0 else zero_point + magnitude
-        output.append(max(0, min(255, quantized)))
+    for value in source:
+        affine_numerator = value * 255 + zero_point * diff
+        if affine_numerator <= 0:
+            quantized = 0
+        elif affine_numerator >= 255 * diff:
+            quantized = 255
+        else:
+            quantized = round_div_even(affine_numerator, diff)
+        output.append(quantized)
     return A8QuantResult(tuple(output), code, shift, zero_point,
-                         clip_low, clip_high)
+                         low, high)
+
+
+def robust_a8_quantize(values: Sequence[int]) -> A8QuantResult:
+    """Compatibility alias for callers being migrated to Min/Max naming."""
+    return minmax_a8_quantize(values)
 
 
 def a8w8_group32_guard_s42(
@@ -617,12 +590,12 @@ def self_test() -> None:
     if result.saturation_count != 0:
         raise AssertionError("valid S24 Hadamard input unexpectedly saturated")
 
-    zero_quant = robust_a8_quantize([0] * GROUP_SIZE)
+    zero_quant = minmax_a8_quantize([0] * GROUP_SIZE)
     if zero_quant.values != (0,) * GROUP_SIZE or zero_quant.metadata != 0:
         raise AssertionError("degenerate A8 group mismatch")
 
     ramp = [(lane - 16) << 16 for lane in range(GROUP_SIZE)]
-    ramp_quant = robust_a8_quantize(ramp)
+    ramp_quant = minmax_a8_quantize(ramp)
     if not (1 <= ramp_quant.scale_code <= 255 and
             0 <= ramp_quant.scale_shift <= 63 and
             0 <= ramp_quant.zero_point <= 255):

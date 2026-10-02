@@ -88,8 +88,17 @@ proc hap_v5_p5_input_partition::discover {base_plan} {
             "P2_COHORT16_COL2_12_2"} {
         error "P5 requires the P3 P2_COHORT16_COL2_12_2 base plan"
     }
-    foreach {key expected} {planned_slr0_dsp 1862 planned_slr1_dsp 1781
-            planned_slr2_dsp 1810 total_dsp 5453 total_uram 752} {
+    set rtl_variant [dict get $base_plan rtl_resource_variant]
+    if {$rtl_variant ni {P14_LEGACY P16_NOCLIP}} {
+        error "P5 unsupported RTL resource variant: $rtl_variant"
+    }
+    set expected_slr1_dsp [expr {
+        $rtl_variant eq "P16_NOCLIP" ? 1777 : 1781}]
+    set expected_total_dsp [expr {
+        $rtl_variant eq "P16_NOCLIP" ? 5449 : 5453}]
+    foreach {key expected} [list planned_slr0_dsp 1862 \
+            planned_slr1_dsp $expected_slr1_dsp planned_slr2_dsp 1810 \
+            total_dsp $expected_total_dsp total_uram 752] {
         if {[dict get $base_plan $key] != $expected} {
             error "P5 base-plan drift: $key expected=$expected actual=[dict get $base_plan $key]"
         }

@@ -99,6 +99,14 @@ REFERENCE_FIXEDPOINT = {
 EXPECTED_MATRIX_BYTES = 3_968 << 20
 COMMANDS_PER_PAIR = LAYERS * 2 * 2
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
+BOARD_RTL_VARIANT = "P16_NOCLIP"
+BOARD_TOTAL_DSP = 5449
+BOARD_SLR_DSP = (1862, 1777, 1810)
+BOARD_COMPLETE_INPUT_COUNT = 140
+BOARD_IMMUTABLE_INPUT_COUNT = 139
+BOARD_AUDIT_INPUT_COUNT = 20
+P16_QUANTIZER3_PRIMITIVES = 14375
+P16_REGION2_PRIMITIVES = 72896
 
 BOARD_REQUIRED_FILES = (
     "summary.txt",
@@ -130,8 +138,13 @@ BOARD_REQUIRED_FILES = (
     "base_pblocks_post_route.txt",
     "p5_input_plan_post_route.txt",
     "p5_input_pblocks_post_route.txt",
-    "p6_postprocess_plan_post_route.txt",
-    "p6_postprocess_pblocks_post_route.txt",
+    "p9_postprocess_plan_post_route.txt",
+    "p9_postprocess_pblocks_post_route.txt",
+    "p9_quantizer3_plan_post_route.txt",
+    "p9_quantizer3_pblock_post_route.txt",
+    "p14_region2_relief_plan_post_route.txt",
+    "p14_region2_relief_pblock_post_route.txt",
+    "p8_parent_ingress_boundary_post_route.txt",
     "architecture_boundaries_post_route.txt",
     "congestion_post_route.rpt",
     "exceptions_coverage_post_route.rpt",
@@ -165,8 +178,13 @@ BOARD_AUDIT_REQUIRED_FILES = (
     "base_pblocks_post_route.txt",
     "p5_input_plan_post_route.txt",
     "p5_input_pblocks_post_route.txt",
-    "p6_postprocess_plan_post_route.txt",
-    "p6_postprocess_pblocks_post_route.txt",
+    "p9_postprocess_plan_post_route.txt",
+    "p9_postprocess_pblocks_post_route.txt",
+    "p9_quantizer3_plan_post_route.txt",
+    "p9_quantizer3_pblock_post_route.txt",
+    "p14_region2_relief_plan_post_route.txt",
+    "p14_region2_relief_pblock_post_route.txt",
+    "p8_parent_ingress_boundary_post_route.txt",
     "architecture_boundaries_post_route.txt",
     "exceptions_coverage_post_route.rpt",
     "exceptions_valid_post_route.xdc",
@@ -189,7 +207,8 @@ BOARD_PROGRAM_REQUIRED_FILES = (
     "vivado.jou",
 )
 
-P7_POST_ROUTE_CROSSCHECK_FIELDS = (
+POST_ROUTE_CROSSCHECK_FIELDS = (
+    "rtl_variant", "rtl_resource_variant", "region2_signature_source",
     "evidence_class", "core_clock_mhz", "ddr0_clock_mhz",
     "ddr1_clock_mhz", "v5_serial_instances", "old_serial_instances",
     "v5_shared_instances", "v5_branch_instances", "v5_kernel12_instances",
@@ -204,29 +223,44 @@ P7_POST_ROUTE_CROSSCHECK_FIELDS = (
     "route_status_conflicts", "route_clean", "drc_errors", "cdc_critical",
     "data_bufg", "congestion_level6_or_higher_windows",
     "exception_scope_policy_ok", "live_post_route_rediscovery_ok",
-    "base_contract_variant", "p5_contract", "p6_contract", "p7_contract",
-    "region2_variant",
+    "base_contract_variant", "p5_contract", "p9_postprocess_contract",
+    "p9_quantizer3_contract", "p14_region2_relief_contract",
     "pblock_contract_variant",
     "pblock_contract_ok", "pblock_require_placed", "pblock_count",
     "canonical_pblock_count", "geometry_pblock_count",
-    "p5_added_pblock_count", "p6_added_pblock_count",
+    "p5_added_pblock_count", "p9_postprocess_added_pblock_count",
+    "p9_quantizer3_added_pblock_count",
+    "p14_region2_relief_added_pblock_count",
     "total_pblock_count", "completed_u8_ff",
     "completed_meta_ff", "input_capture_ff", "input_capture_controls",
     "p5_center_wrong_slr", "p5_outer_wrong_slr",
-    "p6_center_wrong_slr", "p6_outer_wrong_slr",
-    "p6_slr0_row_primitives", "p6_center_row_primitives",
-    "p6_slr2_row_primitives",
-    "p7_region2_rows0_3_primitives", "p7_region2_rows4_7_primitives",
-    "p7_region2_residual_primitives", "p7_region2_rows0_3_dsp48e2",
-    "p7_region2_rows4_7_dsp48e2", "p7_region2_residual_dsp48e2",
+    "p9_postprocess_center_wrong_slr", "p9_postprocess_outer_wrong_slr",
+    "p9_slr0_row_primitives", "p9_center_row_primitives",
+    "p9_slr2_row_primitives", "p9_quantizer3_primitives",
+    "p9_quantizer3_grid_range", "p9_quantizer3_wrong_region",
+    "p9_quantizer3_unplaced", "p14_region2_relief_primitives",
+    "p14_region2_relief_base_range", "p14_region2_relief_range",
+    "p14_region2_expected_range", "p14_region2_relief_placed",
+    "p14_region2_relief_wrong", "p14_region2_relief_unplaced",
+    "parent_head_ff", "parent_tail_ff", "parent_count_ff",
+    "parent_count_physical_ff", "parent_count_replica_ff",
+    "parent_count_replica_equivalence_ok", "parent_pointer_ff",
+    "local_clear_shared_upstream_ready_paths",
+    "branch_credit_shared_upstream_ready_paths",
+    "local_clear_gate_compute_ready_paths",
+    "branch_credit_gate_compute_ready_paths",
+    "local_clear_down_compute_ready_paths",
+    "branch_credit_down_compute_ready_paths",
+    "local_clear_input_cache_ready_paths",
+    "branch_credit_input_cache_ready_paths",
     "geometry_region0_input_primitives", "geometry_region3_input_primitives",
     "geometry_owner_region2_weight_primitives", "geometry_region0_input_ok",
     "geometry_region3_input_ok", "geometry_owner_region2_weight_ok",
     "projected_slr_dsp48e2", "projected_slr_uram288", "slr0_dsp48e2",
     "slr1_dsp48e2", "slr2_dsp48e2", "slr0_uram288", "slr1_uram288",
     "slr2_uram288", "pblock_dsp_coverage", "pblock_uram_coverage",
-    "pblock_wrong_slr", "physical_ok", "floorplan_contract_ok", "wns_ns",
-    "whs_ns",
+    "pblock_wrong_slr", "physical_placement_ok", "physical_ok",
+    "floorplan_contract_ok", "wns_ns", "whs_ns",
 )
 
 
@@ -268,27 +302,189 @@ def _load_key_values(path: Path) -> dict[str, str]:
     return result
 
 
-def _verify_p6_post_route_reports(root: Path, label: str) -> None:
+def _load_marker_key_values(path: Path, marker: str) -> dict[str, str]:
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except (OSError, UnicodeError) as exc:
+        raise RuntimeContractError(f"cannot read marker report {path}: {exc}") \
+            from exc
+    if not lines or lines[0] != marker:
+        raise RuntimeContractError(
+            f"invalid marker report {path}: expected={marker!r}"
+        )
+    result: dict[str, str] = {}
+    for line_number, line in enumerate(lines[1:], 2):
+        if not line:
+            continue
+        if "=" not in line:
+            raise RuntimeContractError(
+                f"invalid key/value line {path}:{line_number}"
+            )
+        key, value = line.split("=", 1)
+        if not key or key in result:
+            raise RuntimeContractError(
+                f"duplicate/empty key in {path}:{line_number}"
+            )
+        result[key] = value
+    return result
+
+
+def _report_int(values: Mapping[str, str], key: str, label: str) -> int:
+    try:
+        return int(values[key])
+    except (KeyError, ValueError) as exc:
+        raise RuntimeContractError(
+            f"{label} report has invalid integer: {key}={values.get(key)!r}"
+        ) from exc
+
+
+def _resolve_p16_lineage(
+    summary: Mapping[str, str], label: str
+) -> tuple[Path, Path, str]:
+    if (summary.get("rtl_variant") != BOARD_RTL_VARIANT or
+            summary.get("rtl_resource_variant") != BOARD_RTL_VARIANT):
+        raise RuntimeContractError(
+            f"{label} is not the frozen {BOARD_RTL_VARIANT} image"
+        )
+
+    resolved: dict[str, Path] = {}
+    for path_key, sha_key in (
+        ("p16_post_opt_summary", "p16_post_opt_summary_sha256"),
+        ("p16_production_region2_summary",
+         "p16_production_region2_summary_sha256"),
+    ):
+        expected_sha = _require_sha(summary.get(sha_key), f"{label} {sha_key}")
+        try:
+            unresolved = Path(summary[path_key])
+            path = unresolved.resolve(strict=True)
+        except (KeyError, OSError) as exc:
+            raise RuntimeContractError(
+                f"{label} has an invalid P16 lineage path: {path_key}"
+            ) from exc
+        if (not unresolved.is_absolute() or str(path) != str(unresolved) or
+                unresolved.is_symlink() or not path.is_file() or
+                path.stat().st_size == 0):
+            raise RuntimeContractError(
+                f"{label} P16 lineage is not a nonempty regular file: {path}"
+            )
+        if sha256_file(path) != expected_sha:
+            raise RuntimeContractError(
+                f"{label} P16 lineage SHA256 mismatch: {path_key}"
+            )
+        resolved[path_key] = path
+
+    post_opt = _load_key_values(resolved["p16_post_opt_summary"])
+    for key, expected in {
+        "status": "PASS",
+        "attention_lane_instances": "128",
+        "local_dual_accumulator_instances": "6",
+        "local_accumulator_contexts": "12",
+        "dut_dsp48e2": "2240",
+        "array_dsp48e2": "2176",
+        "frontend_dsp48e2": "64",
+        "frontend_quantizer_dsp48e2": "0",
+        "place_authorized": "0",
+        "route_authorized": "0",
+    }.items():
+        if post_opt.get(key) != expected:
+            raise RuntimeContractError(
+                f"{label} P16 post-opt lineage failed: {key}="
+                f"{post_opt.get(key)!r}"
+            )
+
+    region2 = _load_key_values(resolved["p16_production_region2_summary"])
+    for key, expected in {
+        "status": "V5_P16_PRODUCTION_REGION2_POST_OPT_PROBE_PASS",
+        "attention_lane_instances": "128",
+        "local_dual_accumulator_instances": "6",
+        "local_accumulator_contexts": "12",
+        "dut_dsp48e2": "2240",
+        "frontend_quantizer_dsp48e2": "0",
+        "region2_lane_instances": "32",
+        "region2_primitives": str(P16_REGION2_PRIMITIVES),
+        "region2_dsp48e2": "544",
+        "region2_rows0_3_primitives": "26800",
+        "region2_rows0_3_dsp48e2": "272",
+        "region2_rows4_7_primitives": "26800",
+        "region2_rows4_7_dsp48e2": "272",
+        "region2_residual_primitives": "19296",
+        "region2_residual_dsp48e2": "0",
+        "partition_exact_cover": "1",
+        "drc_errors": "0",
+        "implementation_commands_run": "0",
+        "checkpoint_written": "0",
+    }.items():
+        if region2.get(key) != expected:
+            raise RuntimeContractError(
+                f"{label} P16 Region2 lineage failed: {key}="
+                f"{region2.get(key)!r}"
+            )
+    production_dcp_sha = _require_sha(
+        summary.get("p16_production_dcp_sha256"),
+        f"{label} p16_production_dcp_sha256",
+    )
+    if region2.get("input_dcp_sha256") != production_dcp_sha:
+        raise RuntimeContractError(
+            f"{label} P16 production DCP lineage disagrees with Region2 probe"
+        )
+    signature = (
+        "P16_PRODUCTION_POST_OPT_SHA256:"
+        f"{summary['p16_production_region2_summary_sha256']}"
+    )
+    if summary.get("region2_signature_source") != signature:
+        raise RuntimeContractError(
+            f"{label} P16 Region2 signature source is not hash-bound"
+        )
+    return (
+        resolved["p16_post_opt_summary"],
+        resolved["p16_production_region2_summary"],
+        signature,
+    )
+
+
+def _verify_p16_post_route_reports(
+    root: Path, label: str, summary: Mapping[str, str]
+) -> tuple[Path, Path, str]:
+    lineage = _resolve_p16_lineage(summary, label)
+    quantizer_primitives = _report_int(
+        summary, "p9_quantizer3_primitives", label
+    )
+    relief_primitives = _report_int(
+        summary, "p14_region2_relief_primitives", label
+    )
+    if quantizer_primitives != P16_QUANTIZER3_PRIMITIVES:
+        raise RuntimeContractError(
+            f"{label} P16 quantizer3 primitive identity drifted: "
+            f"{quantizer_primitives}"
+        )
+    if relief_primitives not in {
+        P16_REGION2_PRIMITIVES, P16_REGION2_PRIMITIVES - 1
+    }:
+        raise RuntimeContractError(
+            f"{label} P16 Region2 optimizer delta is outside 0..1: "
+            f"{relief_primitives}"
+        )
+
     reports = (
         (
-            root / "p6_postprocess_plan_post_route.txt",
+            root / "p9_postprocess_plan_post_route.txt",
             {
-                "status": "V5_BOARD_POST_ROUTE_P6_POSTPROCESS_PLAN_PASS",
-                "contract": "P6_POSTPROCESS_GROUP4_SPLIT_4_8_4",
+                "status": "V5_BOARD_POST_ROUTE_P9_POSTPROCESS_PLAN_PASS",
+                "contract": "P9_POSTPROCESS_SPLIT_6_4_6",
                 "row_bank_count": "16",
                 "all_row_primitives": "42784",
-                "slr0_row_primitives": "10696",
-                "center_row_primitives": "21392",
-                "slr2_row_primitives": "10696",
+                "slr0_row_primitives": "16044",
+                "center_row_primitives": "10696",
+                "slr2_row_primitives": "16044",
                 "per_row_primitives": "2674",
                 "per_row_lut": "994",
                 "per_row_ff": "1536",
             },
         ),
         (
-            root / "p6_postprocess_pblocks_post_route.txt",
+            root / "p9_postprocess_pblocks_post_route.txt",
             {
-                "status": "V5_BOARD_POST_ROUTE_P6_POSTPROCESS_PBLOCKS_PASS",
+                "status": "V5_BOARD_POST_ROUTE_P9_POSTPROCESS_PBLOCKS_PASS",
                 "ok": "1",
                 "require_placed": "1",
                 "pblock_count": "2",
@@ -296,12 +492,80 @@ def _verify_p6_post_route_reports(root: Path, label: str) -> None:
                 "center_outer_overlap": "0",
                 "center_wrong": "0",
                 "outer_wrong": "0",
+                "slr0_name": "pb_v5_p9_postprocess_rows0_5_slr0",
                 "slr0_target": "0",
+                "slr0_expected": "16044",
                 "slr0_missing": "0",
                 "slr0_wrong": "0",
+                "slr0_hard": "dsp 0 uram 0 ramb36 0 ramb18 0",
+                "slr2_name": "pb_v5_p9_postprocess_rows10_15_slr2",
                 "slr2_target": "2",
+                "slr2_expected": "16044",
                 "slr2_missing": "0",
                 "slr2_wrong": "0",
+                "slr2_hard": "dsp 0 uram 0 ramb36 0 ramb18 0",
+            },
+        ),
+        (
+            root / "p9_quantizer3_plan_post_route.txt",
+            {
+                "status": "V5_BOARD_POST_ROUTE_P9_QUANTIZER3_PLAN_PASS",
+                "contract": "P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6",
+                "primitive_count": str(quantizer_primitives),
+                "lut": "9959",
+                "ff": "3794",
+                "pblock_name": "pb_v5_p9_swiglu_quantizer3_cr_x2y5_x3y6",
+                "grid_range": "CLOCKREGION_X2Y5:CLOCKREGION_X3Y6",
+                "allowed_regions": "X2Y5 X2Y6 X3Y5 X3Y6",
+                "dsp": "0",
+                "uram": "0",
+                "ramb36": "0",
+                "ramb18": "0",
+            },
+        ),
+        (
+            root / "p9_quantizer3_pblock_post_route.txt",
+            {
+                "status": "V5_BOARD_POST_ROUTE_P9_QUANTIZER3_PBLOCK_PASS",
+                "ok": "1",
+                "require_placed": "1",
+                "name": "pb_v5_p9_swiglu_quantizer3_cr_x2y5_x3y6",
+                "contract": "P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6",
+                "grid_range": "CLOCKREGION_X2Y5:CLOCKREGION_X3Y6",
+                "expected": str(quantizer_primitives),
+                "members": str(quantizer_primitives),
+                "missing": "0",
+                "extras": "0",
+                "wrong": "0",
+                "unplaced": "0",
+            },
+        ),
+        (
+            root / "p14_region2_relief_plan_post_route.txt",
+            {
+                "status": "V5_BOARD_POST_ROUTE_P14_REGION2_RELIEF_PLAN_PASS",
+                "contract": "P14_ATTN_REGION2_SHARED_X0_X2",
+                "pblock_name": "p3_pb_projection_center_region2_shared_cr_x0y5_x1y9",
+                "base_range": "CLOCKREGION_X0Y5:CLOCKREGION_X1Y9",
+                "relief_range": "CLOCKREGION_X2Y5:CLOCKREGION_X2Y9",
+                "expected_range": "CLOCKREGION_X0Y5:CLOCKREGION_X2Y9",
+                "primitive_count": str(relief_primitives),
+                "dsp": "544",
+            },
+        ),
+        (
+            root / "p14_region2_relief_pblock_post_route.txt",
+            {
+                "status": "V5_BOARD_POST_ROUTE_P14_REGION2_RELIEF_PBLOCK_PASS",
+                "ok": "1",
+                "contract": "P14_ATTN_REGION2_SHARED_X0_X2",
+                "require_placed": "1",
+                "name": "p3_pb_projection_center_region2_shared_cr_x0y5_x1y9",
+                "primitive_count": str(relief_primitives),
+                "dsp": "544",
+                "missing": "0",
+                "wrong": "0",
+                "unplaced": "0",
             },
         ),
     )
@@ -310,9 +574,69 @@ def _verify_p6_post_route_reports(root: Path, label: str) -> None:
         for key, expected in expected_fields.items():
             if values.get(key) != expected:
                 raise RuntimeContractError(
-                    f"{label} P6 report invariant failed: "
+                    f"{label} P16 report invariant failed: "
                     f"{path.name}:{key}={values.get(key)!r}"
                 )
+
+    p9_pblocks = _load_key_values(
+        root / "p9_postprocess_pblocks_post_route.txt"
+    )
+    slr0_extras = _report_int(p9_pblocks, "slr0_extras", label)
+    slr2_extras = _report_int(p9_pblocks, "slr2_extras", label)
+    outer_extras = _report_int(p9_pblocks, "outer_extras", label)
+    slr0_members = _report_int(p9_pblocks, "slr0_members", label)
+    slr2_members = _report_int(p9_pblocks, "slr2_members", label)
+    if (slr0_extras < 0 or slr2_extras < 0 or
+            outer_extras != slr0_extras + slr2_extras or
+            outer_extras > 4096 or slr0_members != 16044 + slr0_extras or
+            slr2_members != 16044 + slr2_extras):
+        raise RuntimeContractError(
+            f"{label} P16 report invariant failed: P9 optimizer extras"
+        )
+
+    p14_pblock = _load_key_values(
+        root / "p14_region2_relief_pblock_post_route.txt"
+    )
+    relief_placed = _report_int(p14_pblock, "relief_placed", label)
+    if relief_placed < 0 or relief_placed > relief_primitives:
+        raise RuntimeContractError(
+            f"{label} P16 report invariant failed: relief_placed"
+        )
+
+    parent = _load_marker_key_values(
+        root / "p8_parent_ingress_boundary_post_route.txt",
+        "V5_BOARD_POST_ROUTE_P8_PARENT_INGRESS_BOUNDARY_PASS",
+    )
+    for key, expected in {
+        "ok": "1", "parent_head_ff": "6560", "parent_tail_ff": "6560",
+        "parent_count_ff": "2", "parent_count_replica_equivalence_ok": "1",
+        "parent_pointer_ff": "0", "local_clear_ff": "2",
+        "branch_ingress_count_ff": "4",
+        "local_clear_shared_upstream_ready_paths": "0",
+        "branch_credit_shared_upstream_ready_paths": "0",
+        "local_clear_gate_compute_ready_paths": "0",
+        "branch_credit_gate_compute_ready_paths": "0",
+        "local_clear_down_compute_ready_paths": "0",
+        "branch_credit_down_compute_ready_paths": "0",
+        "local_clear_input_cache_ready_paths": "0",
+        "branch_credit_input_cache_ready_paths": "0",
+    }.items():
+        if parent.get(key) != expected:
+            raise RuntimeContractError(
+                f"{label} P16 report invariant failed: "
+                f"p8_parent_ingress_boundary_post_route.txt:{key}="
+                f"{parent.get(key)!r}"
+            )
+    physical = _report_int(parent, "parent_count_physical_ff", label)
+    replicas = _report_int(parent, "parent_count_replica_ff", label)
+    bit0 = _report_int(parent, "parent_count_bit0_physical_ff", label)
+    bit1 = _report_int(parent, "parent_count_bit1_physical_ff", label)
+    if (physical < 2 or replicas != physical - 2 or bit0 < 1 or bit1 < 1 or
+            bit0 + bit1 != physical):
+        raise RuntimeContractError(
+            f"{label} P16 report invariant failed: parent-count replicas"
+        )
+    return lineage
 
 
 def _verify_exact_output_tree(
@@ -488,6 +812,7 @@ class FrozenFile:
 @dataclass(frozen=True)
 class BoardBuildEvidence:
     report_dir: Path
+    rtl_variant: str
     bitstream: Path
     bitstream_sha256: str
     checkpoint_sha256: str
@@ -503,7 +828,10 @@ class BoardBuildEvidence:
         manifested = _verify_exact_output_tree(
             root, BOARD_REQUIRED_FILES, "board"
         )
-        _verify_p6_post_route_reports(root, "board")
+        summary = _load_key_values(root / "summary.txt")
+        _, _, region2_signature = _verify_p16_post_route_reports(
+            root, "board", summary
+        )
 
         launcher = _load_key_values(root / "launcher_status.txt")
         required_launcher = {
@@ -512,12 +840,13 @@ class BoardBuildEvidence:
             "vivado_exit_code": "0",
             "vivado_invoked": "1",
             "complete_input_manifest_sha_match": "1",
-            "immutable_input_count": "122",
+            "immutable_input_count": str(BOARD_IMMUTABLE_INPUT_COUNT),
             "immutable_input_manifest_sha_match": "1",
             "immutable_input_postcheck": "1",
             "recursive_source_post_build_sha_verified": "1",
             "ooc_route_authorization_post_build_verified": "1",
             "bitstream_generated": "1",
+            "rtl_variant": BOARD_RTL_VARIANT,
         }
         for key, expected in required_launcher.items():
             if launcher.get(key) != expected:
@@ -525,16 +854,17 @@ class BoardBuildEvidence:
                     f"board launcher gate failed: {key}={launcher.get(key)!r}"
                 )
 
-        summary = _load_key_values(root / "summary.txt")
         required_summary = {
             "status": "V5_BOARD_BITSTREAM_PASS",
             "post_route_gate_status": "V5_BOARD_POST_ROUTE_PASS",
-            "dsp48e2": "5453",
+            "rtl_variant": BOARD_RTL_VARIANT,
+            "rtl_resource_variant": BOARD_RTL_VARIANT,
+            "dsp48e2": str(BOARD_TOTAL_DSP),
             "mlp_kernel_dsp48e2": "3072",
             "uram288": "752",
             "complete_input_sha_verified": "1",
-            "complete_input_count": "123",
-            "immutable_input_count": "122",
+            "complete_input_count": str(BOARD_COMPLETE_INPUT_COUNT),
+            "immutable_input_count": str(BOARD_IMMUTABLE_INPUT_COUNT),
             "immutable_input_sha_verified": "1",
             "recursive_source_sha_verified": "1",
             "ooc_route_authorization_verified": "1",
@@ -551,6 +881,9 @@ class BoardBuildEvidence:
             )
         common_post_route = {
             "evidence_class": "FULL_VCU118_BOARD_POST_ROUTE",
+            "rtl_variant": BOARD_RTL_VARIANT,
+            "rtl_resource_variant": BOARD_RTL_VARIANT,
+            "region2_signature_source": region2_signature,
             "core_clock_mhz": "100",
             "ddr0_clock_mhz": "300",
             "ddr1_clock_mhz": "300",
@@ -562,7 +895,7 @@ class BoardBuildEvidence:
             "v4_kernel16_instances": "0",
             "history2_repack_instances": "2",
             "generic_repack_instances": "0",
-            "dsp48e2": "5453",
+            "dsp48e2": str(BOARD_TOTAL_DSP),
             "mlp_kernel_dsp48e2": "3072",
             "uram288": "752",
             "projection_weight_capture_ok": "1",
@@ -590,52 +923,74 @@ class BoardBuildEvidence:
             "live_post_route_rediscovery_ok": "1",
             "base_contract_variant": "P2_COHORT16_COL2_12_2",
             "p5_contract": "P5_INPUT_HALF_LOCAL_8_8",
-            "p6_contract": "P6_POSTPROCESS_GROUP4_SPLIT_4_8_4",
-            "p7_contract": "P7_ATTN_REGION2_ROWS_Y5_Y6_Y6_Y8",
-            "region2_variant": "rowsplit_y5_y6_y6_y8",
+            "p9_postprocess_contract": "P9_POSTPROCESS_SPLIT_6_4_6",
+            "p9_quantizer3_contract": "P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6",
+            "p14_region2_relief_contract": "P14_ATTN_REGION2_SHARED_X0_X2",
             "pblock_contract_variant": "P2_COHORT16_COL2_12_2",
             "pblock_contract_ok": "1",
             "pblock_require_placed": "1",
-            "pblock_count": "27",
+            "pblock_count": "26",
             "canonical_pblock_count": "11",
-            "geometry_pblock_count": "12",
+            "geometry_pblock_count": "10",
             "p5_added_pblock_count": "2",
-            "p6_added_pblock_count": "2",
-            "total_pblock_count": "27",
+            "p9_postprocess_added_pblock_count": "2",
+            "p9_quantizer3_added_pblock_count": "1",
+            "p14_region2_relief_added_pblock_count": "0",
+            "total_pblock_count": "26",
             "completed_u8_ff": "4096",
             "completed_meta_ff": "352",
             "input_capture_ff": "12288",
             "input_capture_controls": "48",
             "p5_center_wrong_slr": "0",
             "p5_outer_wrong_slr": "0",
-            "p6_center_wrong_slr": "0",
-            "p6_outer_wrong_slr": "0",
-            "p6_slr0_row_primitives": "10696",
-            "p6_center_row_primitives": "21392",
-            "p6_slr2_row_primitives": "10696",
-            "p7_region2_rows0_3_primitives": "26800",
-            "p7_region2_rows4_7_primitives": "26800",
-            "p7_region2_residual_primitives": "15199",
-            "p7_region2_rows0_3_dsp48e2": "272",
-            "p7_region2_rows4_7_dsp48e2": "272",
-            "p7_region2_residual_dsp48e2": "0",
+            "p9_postprocess_center_wrong_slr": "0",
+            "p9_postprocess_outer_wrong_slr": "0",
+            "p9_slr0_row_primitives": "16044",
+            "p9_center_row_primitives": "10696",
+            "p9_slr2_row_primitives": "16044",
+            "p9_quantizer3_primitives": str(P16_QUANTIZER3_PRIMITIVES),
+            "p9_quantizer3_grid_range": "CLOCKREGION_X2Y5:CLOCKREGION_X3Y6",
+            "p9_quantizer3_wrong_region": "0",
+            "p9_quantizer3_unplaced": "0",
+            "p14_region2_relief_primitives": summary[
+                "p14_region2_relief_primitives"
+            ],
+            "p14_region2_relief_base_range": "CLOCKREGION_X0Y5:CLOCKREGION_X1Y9",
+            "p14_region2_relief_range": "CLOCKREGION_X2Y5:CLOCKREGION_X2Y9",
+            "p14_region2_expected_range": "CLOCKREGION_X0Y5:CLOCKREGION_X2Y9",
+            "p14_region2_relief_wrong": "0",
+            "p14_region2_relief_unplaced": "0",
+            "parent_head_ff": "6560",
+            "parent_tail_ff": "6560",
+            "parent_count_ff": "2",
+            "parent_count_replica_equivalence_ok": "1",
+            "parent_pointer_ff": "0",
+            "local_clear_shared_upstream_ready_paths": "0",
+            "branch_credit_shared_upstream_ready_paths": "0",
+            "local_clear_gate_compute_ready_paths": "0",
+            "branch_credit_gate_compute_ready_paths": "0",
+            "local_clear_down_compute_ready_paths": "0",
+            "branch_credit_down_compute_ready_paths": "0",
+            "local_clear_input_cache_ready_paths": "0",
+            "branch_credit_input_cache_ready_paths": "0",
             "geometry_region0_input_primitives": "3136",
             "geometry_region3_input_primitives": "2112",
             "geometry_owner_region2_weight_primitives": "2048",
             "geometry_region0_input_ok": "1",
             "geometry_region3_input_ok": "1",
             "geometry_owner_region2_weight_ok": "1",
-            "projected_slr_dsp48e2": "1862 1781 1810",
+            "projected_slr_dsp48e2": " ".join(map(str, BOARD_SLR_DSP)),
             "projected_slr_uram288": "224 224 304",
             "slr0_dsp48e2": "1862",
-            "slr1_dsp48e2": "1781",
+            "slr1_dsp48e2": str(BOARD_SLR_DSP[1]),
             "slr2_dsp48e2": "1810",
             "slr0_uram288": "224",
             "slr1_uram288": "224",
             "slr2_uram288": "304",
-            "pblock_dsp_coverage": "5453",
+            "pblock_dsp_coverage": str(BOARD_TOTAL_DSP),
             "pblock_uram_coverage": "752",
             "pblock_wrong_slr": "0",
+            "physical_placement_ok": "1",
             "physical_ok": "1",
             "floorplan_contract_ok": "1",
         }
@@ -686,8 +1041,10 @@ class BoardBuildEvidence:
                                        "board checkpoint_sha256")
         if manifested.get(checkpoint) != checkpoint_hash:
             raise RuntimeContractError("checkpoint SHA lineage disagrees with summary")
-        return cls(root, bitstream, bit_hash, checkpoint_hash, wns, whs,
-                   len(manifested))
+        return cls(
+            root, BOARD_RTL_VARIANT, bitstream, bit_hash, checkpoint_hash,
+            wns, whs, len(manifested),
+        )
 
     def as_dict(self) -> dict:
         result = asdict(self)
@@ -716,7 +1073,9 @@ class BoardAuditEvidence:
         manifested = _verify_exact_output_tree(
             root, BOARD_AUDIT_REQUIRED_FILES, "board audit"
         )
-        _verify_p6_post_route_reports(root, "board audit")
+        summary = _load_key_values(root / "summary.txt")
+        post_opt_summary, production_region2_summary, _ = \
+            _verify_p16_post_route_reports(root, "board audit", summary)
         launcher = _load_key_values(root / "launcher_status.txt")
         for key, expected in {
             "status": "PASS",
@@ -726,6 +1085,7 @@ class BoardAuditEvidence:
             "input_sha_precheck": "1",
             "input_sha_postcheck": "1",
             "input_manifest_sha_match": "1",
+            "rtl_variant": BOARD_RTL_VARIANT,
         }.items():
             if launcher.get(key) != expected:
                 raise RuntimeContractError(
@@ -733,23 +1093,33 @@ class BoardAuditEvidence:
                     f"{key}={launcher.get(key)!r}"
                 )
 
-        summary = _load_key_values(root / "summary.txt")
         post_route = _load_key_values(root / "post_route_gate_summary.txt")
         if (summary.get("status") != "V5_BOARD_INDEPENDENT_AUDIT_PASS" or
                 summary.get("post_route_gate_status") !=
                 "V5_BOARD_POST_ROUTE_PASS" or
-                summary.get("audit_input_manifest_entries") != "10" or
+                summary.get("audit_input_manifest_entries") !=
+                str(BOARD_AUDIT_INPUT_COUNT) or
                 summary.get("audit_input_manifests_verified") != "1" or
                 post_route.get("status") != "V5_BOARD_POST_ROUTE_PASS"):
             raise RuntimeContractError("independent board audit is not PASS")
 
         board_summary = _load_key_values(board.report_dir / "summary.txt")
-        for key in P7_POST_ROUTE_CROSSCHECK_FIELDS:
+        for key in POST_ROUTE_CROSSCHECK_FIELDS:
             expected = board_summary.get(key)
             if (expected is None or summary.get(key) != expected or
                     post_route.get(key) != expected):
                 raise RuntimeContractError(
-                    f"board audit P6 cross-check failed: {key}"
+                    f"board audit P16 cross-check failed: {key}"
+                )
+        for key in (
+            "p16_post_opt_summary", "p16_post_opt_summary_sha256",
+            "p16_production_region2_summary",
+            "p16_production_region2_summary_sha256",
+            "p16_production_dcp_sha256",
+        ):
+            if summary.get(key) != board_summary.get(key):
+                raise RuntimeContractError(
+                    f"board audit P16 lineage cross-check failed: {key}"
                 )
 
         input_sha = root / "INPUT_SHA256SUMS"
@@ -761,27 +1131,44 @@ class BoardAuditEvidence:
                 "board audit input-manifest SHA256 lineage mismatch"
             )
         frozen_inputs = _verify_frozen_input_closure(
-            root / "INPUT_FILES", input_sha, 10, "board audit"
+            root / "INPUT_FILES", input_sha, BOARD_AUDIT_INPUT_COUNT,
+            "board audit",
         )
         checkpoint = board.report_dir / "attention_mlp_vcu118_v5_post_route.dcp"
-        expected_input_names = {
-            "attention_mlp_vcu118_v5_post_route.dcp",
-            "attention_mlp_vcu118_v5.bit",
-            "XDC_SOURCE_INVENTORY",
-            "audit_attention_mlp_vcu118_v5_post_route.tcl",
-            "attention_mlp_vcu118_v5_post_route_gate.tcl",
-            "v5_production_floorplan_selectors.tcl",
-            "projection_core16x16_w8_reuse_ooc_floorplan.tcl",
-            "v5_production_p5_input_partition_floorplan.tcl",
-            "v5_production_p6_postprocess_partition_floorplan.tcl",
-            "run_attention_mlp_vcu118_v5_post_route_audit.sh",
+        scripts = Path(__file__).resolve().parents[1] / "vivado" / "scripts"
+        expected_inputs = {
+            checkpoint.resolve(), board.bitstream.resolve(),
+            (board.report_dir / "XDC_SOURCE_INVENTORY").resolve(),
+            (board.report_dir / "summary.txt").resolve(),
+            (scripts / "audit_attention_mlp_vcu118_v5_post_route.tcl").resolve(),
+            (scripts / "attention_mlp_vcu118_v5_post_route_gate.tcl").resolve(),
+            (scripts / "v5_production_floorplan_selectors.tcl").resolve(),
+            (scripts /
+             "projection_core16x16_w8_reuse_ooc_p16_bound_floorplan.tcl").resolve(),
+            (scripts / "v5_production_p5_input_partition_floorplan.tcl").resolve(),
+            (scripts /
+             "v5_production_p9_postprocess_partition_floorplan.tcl").resolve(),
+            (scripts /
+             "v5_production_p16_noclip_quantizer3_locality_floorplan.tcl").resolve(),
+            (scripts /
+             "v5_production_p16_noclip_region2_x2_relief_floorplan.tcl").resolve(),
+            (scripts /
+             "audit_mlp_p8_parent_ingress_boundary_replica_aware.tcl").resolve(),
+            (scripts /
+             "projection_core16x16_w8_reuse_ooc_p16_floorplan.tcl").resolve(),
+            (scripts /
+             "projection_core16x16_w8_reuse_ooc_floorplan.tcl").resolve(),
+            (scripts /
+             "v5_production_p9_quantizer3_locality_floorplan.tcl").resolve(),
+            (scripts /
+             "v5_production_p14_region2_x2_relief_floorplan.tcl").resolve(),
+            post_opt_summary.resolve(), production_region2_summary.resolve(),
+            (scripts /
+             "run_attention_mlp_vcu118_v5_post_route_audit.sh").resolve(),
         }
-        if ({path.name for path in frozen_inputs} != expected_input_names or
-                board.bitstream not in frozen_inputs or
-                checkpoint not in frozen_inputs or
-                board.report_dir / "XDC_SOURCE_INVENTORY" not in frozen_inputs):
+        if set(frozen_inputs) != expected_inputs:
             raise RuntimeContractError(
-                "board audit does not bind the exact P6 board input set"
+                "board audit does not bind the exact P16 board input set"
             )
 
         if (summary.get("bitstream_sha256") != board.bitstream_sha256 or

@@ -1,0 +1,135 @@
+{
+  "schema": "scalellm_literature_aligned_worker_v1",
+  "created_at": "2026-09-13T09:53:51.023627+00:00",
+  "pid": 2181993,
+  "cuda_visible_devices": "1",
+  "device": "cuda:0",
+  "gpu_name": "NVIDIA RTX A6000",
+  "model": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+  "case": "v5_algorithm",
+  "protocol": {
+    "protocol": "hardware_128",
+    "context_length": 128,
+    "case": "v5_algorithm",
+    "zero_shot": true,
+    "full_split": true,
+    "literature_comparable": false,
+    "hardware_constrained": true,
+    "overlength_continuation_policy": "rolling_windows_score_all_choice_tokens"
+  },
+  "tasks": [
+    "wikitext2",
+    "piqa",
+    "arc_easy",
+    "arc_challenge",
+    "boolq",
+    "winogrande"
+  ],
+  "limit": null,
+  "versions": {
+    "python": "3.10.19",
+    "torch": "2.10.0+cu128",
+    "transformers": "5.3.0",
+    "datasets": "4.8.4",
+    "lm_eval": "0.4.11",
+    "accelerate": "1.13.0",
+    "triton": "3.6.0"
+  },
+  "seed": 20260913,
+  "runtime_args": {
+    "batch_size": 8,
+    "ppl_batch_size": 8,
+    "allow_format_errors": false
+  },
+  "status": "evaluating",
+  "method": {
+    "case": "v5_algorithm_software_reference",
+    "manifest": "vivado/manifests/attention_mlp_production_v5_cohort16_sources.list",
+    "attention_format_id": "0x48384103",
+    "mlp_full_format_id": "0x48384602",
+    "layers": 32,
+    "max_context": 128,
+    "cohort_rows": 16,
+    "attention_weight_bits": 8,
+    "mlp_weight_bits": 4,
+    "activation_bits": 8,
+    "kv_bits": 12,
+    "host_residual_rmsnorm": "FP32",
+    "lm_head": "FP32 host",
+    "strict_total_shift": false,
+    "total_shift_policy": "software_extended",
+    "software_reference_not_hardware": true,
+    "mlp_group_guard_compute_width": 37,
+    "mlp_gate_up_accumulator_compute_width": 44,
+    "mlp_down_accumulator_compute_width": 46,
+    "transformers_5_api_adapter": {
+      "geometry_aliases_only": true,
+      "attention_return_arity": "3_to_2",
+      "numeric_path_changed": false
+    }
+  },
+  "data": [
+    {
+      "task": "piqa",
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/piqa/validation_full.jsonl",
+      "split": "validation",
+      "rows": 1838,
+      "expected_rows": 1838,
+      "source_id": "baber/piqa",
+      "source_revision": "local validation export",
+      "sha256": "e063f2cb457859c2764604d625ca4112fb9e706b666d7330f12f21a49a6dd9a1",
+      "primary_metric": "acc_norm"
+    },
+    {
+      "task": "arc_easy",
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/lm_eval_standard/arc_easy_test.jsonl",
+      "split": "test",
+      "rows": 2376,
+      "expected_rows": 2376,
+      "source_id": "allenai/ai2_arc:ARC-Easy",
+      "source_revision": "210d026faf9955653af8916fad021475a3f00453",
+      "sha256": "09ab01ecb7493f88ebe45f4183360b102937d3879f566216e62f4ddeececdf56",
+      "primary_metric": "acc_norm"
+    },
+    {
+      "task": "arc_challenge",
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/lm_eval_standard/arc_challenge_test.jsonl",
+      "split": "test",
+      "rows": 1172,
+      "expected_rows": 1172,
+      "source_id": "allenai/ai2_arc:ARC-Challenge",
+      "source_revision": "210d026faf9955653af8916fad021475a3f00453",
+      "sha256": "86ccaace4cd159b5c02b6b3339ebe8a7022a54f1b488e433c060b3bc38ac1f63",
+      "primary_metric": "acc_norm"
+    },
+    {
+      "task": "boolq",
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/boolq/validation.parquet",
+      "split": "validation",
+      "rows": 3270,
+      "expected_rows": 3270,
+      "source_id": "aps/super_glue:boolq",
+      "source_revision": "local validation export",
+      "sha256": "52355d11524b4b874a9b9dcc278feb10f672d52c4f4eff9872e695ede59820f8",
+      "primary_metric": "acc"
+    },
+    {
+      "task": "winogrande",
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/winogrande/winogrande_1.1/winogrande_1.1/dev.jsonl",
+      "split": "validation",
+      "rows": 1267,
+      "expected_rows": 1267,
+      "source_id": "allenai/winogrande:winogrande_xl",
+      "source_revision": "winogrande_1.1 dev",
+      "sha256": "1aeac79cf46a3dcbe59a71ca7e5372a1490cde2b4ae2387dc56f00378104d2e8",
+      "primary_metric": "acc"
+    },
+    {
+      "task": "wikitext2",
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/wikitext-2-raw-v1/test-00000-of-00001.jsonl",
+      "split": "test",
+      "source_id": "Salesforce/wikitext:wikitext-2-raw-v1",
+      "sha256": "69d7ab3cc73d4e17e6ad44fe2f99e7734a51d5a321dc38af095fd02b398ca0b8"
+    }
+  ]
+}

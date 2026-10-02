@@ -64,9 +64,9 @@ set dut_nonclock_nets [nonclock_nets $dut_nets]
 set_property CLOCK_BUFFER_TYPE NONE $dut_nonclock_nets
 
 # Post-synth actual load accounting.  Derive the input controls from the CE
-# pins of all 12,288 input-bank FFs and the output controls from the CE pins
-# of all 6,144 output-bank FFs.  This proves the physical control topology
-# without depending on one generated-register spelling.
+# pins of all 12,288 input-bank FFs, 6,144 output-bank FFs and 1,536 output
+# mux-group FFs.  This proves the physical control topology without depending
+# on one generated-register spelling.
 set fanout_fp [open [file join $out fanout_post_synth.tsv] w]
 puts $fanout_fp "class\tindex\tdriver\tnet\tflat_pin_loads"
 set named_max 0
@@ -75,12 +75,15 @@ set input_bank_cells [get_cells -quiet -hierarchical -filter \
     {NAME =~ u_dut/*input_group_beat_r_reg* && REF_NAME =~ FD*}]
 set output_bank_cells [get_cells -quiet -hierarchical -filter \
     {NAME =~ u_dut/*output_tile_beat_r_reg* && REF_NAME =~ FD*}]
+set output_mux_cells [get_cells -quiet -hierarchical -filter \
+    {NAME =~ u_dut/*output_mux_group_data_r_reg* && REF_NAME =~ FD*}]
 if {[llength $input_bank_cells] != 12288 || \
-    [llength $output_bank_cells] != 6144} {
-    error "bank FF count mismatch input=[llength $input_bank_cells] output=[llength $output_bank_cells]"
+    [llength $output_bank_cells] != 6144 || \
+    [llength $output_mux_cells] != 1536} {
+    error "bank FF count mismatch input=[llength $input_bank_cells] output=[llength $output_bank_cells] output_mux=[llength $output_mux_cells]"
 }
 foreach {class cells expected_controls} [list input $input_bank_cells 48 \
-        output $output_bank_cells 24] {
+        output $output_bank_cells 24 output_mux $output_mux_cells 6] {
     set control_nets {}
     foreach cell $cells {
         set ce [get_pins -quiet -of_objects $cell \
@@ -189,7 +192,7 @@ set status [expr {$wns >= 0.0 && $whs >= 0.0 && $unrouted == 0 &&
     $conflicts == 0 && $drc_errors == 0 && $data_bufg == 0 &&
     $dut_dsp == 0 && $dut_bram == 0 && $dut_uram == 0 &&
     $forbidden_count == 0 && $exception_rows == 0 &&
-    $route_gap_count == 0 && $named_rows == 72 && $named_max <= 256 ?
+    $route_gap_count == 0 && $named_rows == 78 && $named_max <= 256 ?
     "REGISTERED_EXCEPTION_FREE_OOC_PASS" : "FAIL"}]
 
 set fp [open [file join $out summary.txt] w]

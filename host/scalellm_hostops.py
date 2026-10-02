@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pinned S24 transport and Llama-3.1 Host boundary operations."""
+"""Pinned S24 ingress/S24-or-S32 egress and Host boundary operations."""
 
 from __future__ import annotations
 
@@ -16,7 +16,8 @@ import numpy as np
 
 from .scalellm_memory import (
     ACTIVATION_COLUMNS,
-    ACTIVATION_PAYLOAD_BYTES,
+    ACTIVATION_INPUT_PAYLOAD_BYTES,
+    ACTIVATION_OUTPUT_PAYLOAD_BYTES,
     ACTIVATION_ROWS,
     LAYER_COUNT,
     activation_base_for_buffer,
@@ -28,6 +29,10 @@ S24_FRACTION_BITS = 16
 S24_SCALE = 1 << S24_FRACTION_BITS
 S24_MIN = -(1 << 23)
 S24_MAX = (1 << 23) - 1
+S32_FRACTION_BITS = 16
+S32_SCALE = 1 << S32_FRACTION_BITS
+S32_MIN = -(1 << 31)
+S32_MAX = (1 << 31) - 1
 ACTIVATION_SHAPE = (ACTIVATION_ROWS, ACTIVATION_COLUMNS)
 
 
@@ -131,11 +136,11 @@ def pack_s24_q16(
     encoded = np.bitwise_and(clipped, 0xFF_FFFF).astype(np.uint32)
 
     if destination is None:
-        output = np.empty(ACTIVATION_PAYLOAD_BYTES, dtype=np.uint8)
+        output = np.empty(ACTIVATION_INPUT_PAYLOAD_BYTES, dtype=np.uint8)
         return_bytes = True
     else:
         view = memoryview(destination).cast("B")
-        if view.readonly or len(view) != ACTIVATION_PAYLOAD_BYTES:
+        if view.readonly or len(view) != ACTIVATION_INPUT_PAYLOAD_BYTES:
             raise ValueError(
                 "S24 destination must be writable and exactly 192 KiB"
             )
@@ -151,7 +156,7 @@ def pack_s24_q16(
 def unpack_s24_q16(source: bytes | bytearray | memoryview) -> np.ndarray:
     """Decode a row-major little-endian S24 image to float32 Q8.16."""
     view = memoryview(source).cast("B")
-    if len(view) != ACTIVATION_PAYLOAD_BYTES:
+    if len(view) != ACTIVATION_INPUT_PAYLOAD_BYTES:
         raise ValueError("S24 source must be exactly 192 KiB")
     packed = np.frombuffer(view, dtype=np.uint8).reshape(-1, 3)
     raw = (
@@ -162,6 +167,40 @@ def unpack_s24_q16(source: bytes | bytearray | memoryview) -> np.ndarray:
     signed = ((raw ^ 0x80_0000).astype(np.int32) - 0x80_0000)
     return (
         signed.astype(np.float32) / np.float32(S24_SCALE)
+    ).reshape(ACTIVATION_SHAPE)
+
+
+def pack_s32_q16(
+    values: np.ndarray, destination: bytearray | memoryview | None = None,
+) -> bytes | memoryview:
+    """Round away from zero and pack row-major little-endian S32/F16."""
+    array = _require_activation(values, "S32 source").astype(np.float64)
+    magnitude = np.floor(np.abs(array) * S32_SCALE + 0.5)
+    signed = np.copysign(magnitude, array)
+    clipped = np.clip(signed, S32_MIN, S32_MAX).astype(np.int64)
+    encoded = clipped.astype("<i4")
+
+    if destination is None:
+        return encoded.tobytes(order="C")
+    view = memoryview(destination).cast("B")
+    if view.readonly or len(view) != ACTIVATION_OUTPUT_PAYLOAD_BYTES:
+        raise ValueError(
+            "S32 destination must be writable and exactly 256 KiB"
+        )
+    np.frombuffer(view, dtype="<i4")[:] = encoded.reshape(-1)
+    return view
+
+
+def unpack_s32_q16(source: bytes | bytearray | memoryview) -> np.ndarray:
+    """Decode exactly one row-major little-endian signed S32/F16 image."""
+    view = memoryview(source).cast("B")
+    if len(view) != ACTIVATION_OUTPUT_PAYLOAD_BYTES:
+        raise ValueError("S32 source must be exactly 256 KiB")
+    signed = np.frombuffer(view, dtype="<i4")
+    if signed.size != ACTIVATION_ROWS * ACTIVATION_COLUMNS:
+        raise ValueError("S32 source element count does not match cohort16")
+    return (
+        signed.astype(np.float32) / np.float32(S32_SCALE)
     ).reshape(ACTIVATION_SHAPE)
 
 
@@ -238,7 +277,7 @@ class ActivationTransfer:
 
 
 class PinnedActivationPool:
-    """Six persistent transfer buffers matching the frozen three/cohort ABI."""
+    """Six buffers for S24 H2C/Attention C2H and S32 MLP C2H payloads."""
 
     def __init__(
         self, session: ActivationDataSession, chunk_bytes: int = 1 << 20,
@@ -252,7 +291,7 @@ class PinnedActivationPool:
         try:
             for buffer_id in range(6):
                 self.buffers[buffer_id] = PinnedBuffer(
-                    ACTIVATION_PAYLOAD_BYTES, require_lock=require_lock
+                    ACTIVATION_OUTPUT_PAYLOAD_BYTES, require_lock=require_lock
                 )
         except BaseException:
             for buffer in self.buffers.values():
@@ -274,14 +313,15 @@ class PinnedActivationPool:
     ) -> None:
         buffer = self._buffer(buffer_id)
         local_offset = activation_base_for_buffer(buffer_id)
+        payload = buffer.view[:ACTIVATION_INPUT_PAYLOAD_BYTES]
         with self._locks[buffer_id]:
-            pack_s24_q16(values, buffer.view)
+            pack_s24_q16(values, payload)
             start = time.monotonic_ns()
             written = self.session.h2c_write_local(
-                0, buffer.view, local_offset, self.chunk_bytes
+                0, payload, local_offset, self.chunk_bytes
             )
             end = time.monotonic_ns()
-        if written != ACTIVATION_PAYLOAD_BYTES:
+        if written != ACTIVATION_INPUT_PAYLOAD_BYTES:
             raise RuntimeContractError(
                 f"short activation H2C write: {written}"
             )
@@ -295,17 +335,26 @@ class PinnedActivationPool:
     ) -> np.ndarray:
         buffer = self._buffer(buffer_id)
         local_offset = activation_base_for_buffer(buffer_id)
+        if stage == "after_attention":
+            expected_bytes = ACTIVATION_INPUT_PAYLOAD_BYTES
+            decoder = unpack_s24_q16
+        elif stage == "after_mlp":
+            expected_bytes = ACTIVATION_OUTPUT_PAYLOAD_BYTES
+            decoder = unpack_s32_q16
+        else:
+            raise ValueError(f"unsupported activation C2H stage {stage!r}")
+        payload = buffer.view[:expected_bytes]
         with self._locks[buffer_id]:
             start = time.monotonic_ns()
             received = self.session.c2h_read_into_local(
-                0, buffer.view, local_offset, self.chunk_bytes
+                0, payload, local_offset, self.chunk_bytes
             )
             end = time.monotonic_ns()
-            if received != ACTIVATION_PAYLOAD_BYTES:
+            if received != expected_bytes:
                 raise RuntimeContractError(
                     f"short activation C2H read: {received}"
                 )
-            values = unpack_s24_q16(buffer.view)
+            values = decoder(payload)
         self._record(ActivationTransfer(
             "c2h", cohort_id, layer_id, stage, buffer_id, local_offset,
             received, start, end, buffer.locked,

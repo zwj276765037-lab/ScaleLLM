@@ -122,6 +122,29 @@ module hap_projection_core16x16_w8_reuse_tb;
                 reason, cycle, activation_accepts, weight_accepts,
                 output_accepts, accepted_weight_group_count,
                 consumed_wave_group_count, released_weight_group_count);
+            $display("ERROR_SOURCE: core=%0b frontend=%0b array=%0b frontend_control=%0b hadamard=%0b quant=%0h cache=%0b array_control=%0b left=%0b center=%0b right=%0b",
+                dut.control_error_r, dut.frontend_error, dut.array_error,
+                dut.u_frontend.control_error_r, dut.u_frontend.had_error,
+                dut.u_frontend.quant_error, dut.u_frontend.cache_error,
+                dut.u_array.control_error_r, dut.u_array.left_error,
+                dut.u_array.center_error, dut.u_array.right_error);
+            $display("CENTER_SOURCE: region=%0b%0b%0b%0b control=%0b%0b%0b%0b lane=%0h/%0h/%0h/%0h accum=%0b%0b%0b%0b",
+                dut.u_array.u_center12.region3_error,
+                dut.u_array.u_center12.region2_error,
+                dut.u_array.u_center12.region1_error,
+                dut.u_array.u_center12.region0_error,
+                dut.u_array.u_center12.u_region3_cols12_13.control_error_r,
+                dut.u_array.u_center12.u_region2_cols8_11.control_error_r,
+                dut.u_array.u_center12.u_region1_cols4_7.control_error_r,
+                dut.u_array.u_center12.u_region0_cols2_3.control_error_r,
+                dut.u_array.u_center12.u_region3_cols12_13.lane_error,
+                dut.u_array.u_center12.u_region2_cols8_11.lane_error,
+                dut.u_array.u_center12.u_region1_cols4_7.lane_error,
+                dut.u_array.u_center12.u_region0_cols2_3.lane_error,
+                dut.u_array.u_center12.u_region3_cols12_13.accum_error,
+                dut.u_array.u_center12.u_region2_cols8_11.accum_error,
+                dut.u_array.u_center12.u_region1_cols4_7.accum_error,
+                dut.u_array.u_center12.u_region0_cols2_3.accum_error);
             $finish;
         end
     endtask
@@ -168,6 +191,28 @@ module hap_projection_core16x16_w8_reuse_tb;
 
     always @(posedge clk) begin
         cycle <= cycle + 1;
+        if (rst_n && ((dut.u_array.u_center12.u_region2_cols8_11.launch &&
+                       !dut.u_array.u_center12.u_region2_cols8_11.launch_ready) ||
+                      (dut.u_array.u_center12.u_region2_cols8_11.lane_in_ready !=
+                       {32{dut.u_array.u_center12.u_region2_cols8_11.owner_in_ready}}) ||
+                      (dut.u_array.u_center12.u_region2_cols8_11.lane_out_valid !=
+                       {32{dut.u_array.u_center12.u_region2_cols8_11.owner_out_valid}}) ||
+                      (dut.u_array.u_center12.u_region2_cols8_11.guard_commit &&
+                       (!dut.u_array.u_center12.u_region2_cols8_11.guard_valid ||
+                        !dut.u_array.u_center12.u_region2_cols8_11.accum_ready)) ||
+                      (dut.u_array.u_center12.u_region2_cols8_11.out_ready &&
+                       !dut.u_array.u_center12.u_region2_cols8_11.out_valid)))
+            $display("REGION2_INVARIANT: cycle=%0d launch=%0b/%0b lane_ready=%0h lane_valid=%0h guard=%0b/%0b/%0b out=%0b/%0b",
+                cycle,
+                dut.u_array.u_center12.u_region2_cols8_11.launch,
+                dut.u_array.u_center12.u_region2_cols8_11.launch_ready,
+                dut.u_array.u_center12.u_region2_cols8_11.lane_in_ready,
+                dut.u_array.u_center12.u_region2_cols8_11.lane_out_valid,
+                dut.u_array.u_center12.u_region2_cols8_11.guard_commit,
+                dut.u_array.u_center12.u_region2_cols8_11.guard_valid,
+                dut.u_array.u_center12.u_region2_cols8_11.accum_ready,
+                dut.u_array.u_center12.u_region2_cols8_11.out_ready,
+                dut.u_array.u_center12.u_region2_cols8_11.out_valid);
         if (cycle > 300000)
             fail("timeout");
         if (rst_n && error)

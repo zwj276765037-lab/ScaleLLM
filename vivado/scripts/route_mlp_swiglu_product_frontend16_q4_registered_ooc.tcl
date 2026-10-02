@@ -14,6 +14,18 @@ proc require_count {label objects expected} {
     return $actual
 }
 
+proc write_cell_names {path objects} {
+    set fp [open $path w]
+    set names {}
+    foreach object $objects {
+        lappend names [get_property NAME $object]
+    }
+    foreach name [lsort -dictionary -unique $names] {
+        puts $fp $name
+    }
+    close $fp
+}
+
 proc property_true {object property_name} {
     set value [string tolower [get_property $property_name $object]]
     return [expr {$value eq "1" || $value eq "true" || $value eq "yes"}]
@@ -113,6 +125,36 @@ read_xdc [file join $root vivado constraints \
 synth_design -top $top -part $part -mode out_of_context \
     -flatten_hierarchy none -directive PerformanceOptimized
 
+set post_synth_dut_ramb36_cells [get_cells -quiet -hierarchical -filter \
+    {NAME =~ u_dut/* && REF_NAME == RAMB36E2}]
+set post_synth_row_ring_ramb36_cells [get_cells -quiet -hierarchical -filter \
+    {NAME =~ u_dut/g_row_ring_column* && REF_NAME == RAMB36E2}]
+set post_synth_dut_ramb36 [llength $post_synth_dut_ramb36_cells]
+set post_synth_row_ring_ramb36 \
+    [llength $post_synth_row_ring_ramb36_cells]
+set post_synth_non_row_ring_ramb36 \
+    [expr {$post_synth_dut_ramb36 - $post_synth_row_ring_ramb36}]
+set post_synth_resource_fp [open \
+    [file join $out post_synth_resource_summary.txt] w]
+puts $post_synth_resource_fp \
+    "post_synth_dut_ramb36e2=$post_synth_dut_ramb36"
+puts $post_synth_resource_fp \
+    "post_synth_row_ring_ramb36e2=$post_synth_row_ring_ramb36"
+puts $post_synth_resource_fp \
+    "post_synth_non_row_ring_ramb36e2=$post_synth_non_row_ring_ramb36"
+close $post_synth_resource_fp
+write_cell_names [file join $out post_synth_row_ring_ramb36e2_cells.txt] \
+    $post_synth_row_ring_ramb36_cells
+report_utilization -hierarchical -hierarchical_depth 8 \
+    -file [file join $out post_synth_utilization.rpt]
+require_count post_synth_dut_ramb36e2 \
+    $post_synth_dut_ramb36_cells 44
+require_count post_synth_row_ring_ramb36e2 \
+    $post_synth_row_ring_ramb36_cells 32
+if {$post_synth_non_row_ring_ramb36 != 12} {
+    error "post_synth_non_row_ring_ramb36e2 count mismatch: expected=12 actual=$post_synth_non_row_ring_ramb36"
+}
+
 set src [get_cells -quiet -hierarchical -filter \
     {NAME =~ src_r_reg* && REF_NAME =~ FD*}]
 set sink [get_cells -quiet -hierarchical -filter \
@@ -181,8 +223,19 @@ set hadamard_dsp [llength [get_cells -quiet -hierarchical -filter \
 set silu_dsp [llength [get_cells -quiet -hierarchical -filter \
     {NAME =~ u_dut/g_row_branch*.u_branch_leaf/u_silu/* &&
      REF_NAME == DSP48E2}]]
-set dut_ramb36 [llength [get_cells -quiet -hierarchical -filter \
-    {NAME =~ u_dut/* && REF_NAME == RAMB36E2}]]
+set quantizer_dsp [llength [get_cells -quiet -hierarchical -filter {
+    NAME =~ u_dut/g_quantizer*.u_quantizer/* && REF_NAME == DSP48E2}]]
+set post_route_dut_ramb36_cells [get_cells -quiet -hierarchical -filter \
+    {NAME =~ u_dut/* && REF_NAME == RAMB36E2}]
+set post_route_row_ring_ramb36_cells [get_cells -quiet -hierarchical -filter \
+    {NAME =~ u_dut/g_row_ring_column* && REF_NAME == RAMB36E2}]
+set post_route_dut_ramb36 [llength $post_route_dut_ramb36_cells]
+set post_route_row_ring_ramb36 \
+    [llength $post_route_row_ring_ramb36_cells]
+set post_route_non_row_ring_ramb36 \
+    [expr {$post_route_dut_ramb36 - $post_route_row_ring_ramb36}]
+write_cell_names [file join $out post_route_row_ring_ramb36e2_cells.txt] \
+    $post_route_row_ring_ramb36_cells
 set dut_ramb18 [llength [get_cells -quiet -hierarchical -filter \
     {NAME =~ u_dut/* && REF_NAME == RAMB18E2}]]
 set dut_uram [llength [get_cells -quiet -hierarchical -filter \
@@ -226,7 +279,13 @@ set status [expr {$wns >= 0.0 && $whs >= 0.0 &&
     $dut_to_sink_wns >= 0.0 && $dut_to_sink_whs >= 0.0 &&
     $route_errors == 0 && $conflicts == 0 && $drc_errors == 0 &&
     $dut_dsp == 68 && $hadamard_dsp == 64 && $silu_dsp == 4 &&
-    $dut_ramb36 == 12 && $dut_ramb18 == 0 &&
+    $quantizer_dsp == 0 &&
+    $post_synth_dut_ramb36 == 44 &&
+    $post_synth_row_ring_ramb36 == 32 &&
+    $post_synth_non_row_ring_ramb36 == 12 &&
+    $post_route_dut_ramb36 == 40 &&
+    $post_route_row_ring_ramb36 == 28 &&
+    $post_route_non_row_ring_ramb36 == 12 && $dut_ramb18 == 0 &&
     $dut_uram == 0 && $data_bufg == 0 && [llength $top_ports] == 1 &&
     [llength $nonclock_top_ports] == 0 &&
     $max_delay_rows == 0 && $min_delay_rows == 0 &&
@@ -240,10 +299,17 @@ set fp [open [file join $out summary.txt] w]
 foreach {key value} [list tool [version -short] part $part top $top jobs $jobs \
     clock_mhz 100 clock_period_ns 10.000 source_proxy_ff [llength $src] \
     sink_proxy_ff [llength $sink] dut_lut_primitives $dut_lut \
-    dut_ff_primitives $dut_ff dut_ramb36e2 $dut_ramb36 \
+    dut_ff_primitives $dut_ff dut_ramb36e2 $post_route_dut_ramb36 \
+    post_synth_dut_ramb36e2 $post_synth_dut_ramb36 \
+    post_synth_row_ring_ramb36e2 $post_synth_row_ring_ramb36 \
+    post_synth_non_row_ring_ramb36e2 $post_synth_non_row_ring_ramb36 \
+    post_route_dut_ramb36e2 $post_route_dut_ramb36 \
+    post_route_row_ring_ramb36e2 $post_route_row_ring_ramb36 \
+    post_route_non_row_ring_ramb36e2 $post_route_non_row_ring_ramb36 \
     dut_ramb18e2 $dut_ramb18 dut_dsp48e2 $dut_dsp dut_uram288 $dut_uram \
     swiglu_hadamard_dsp48e2 $hadamard_dsp \
     swiglu_silu_dsp48e2 $silu_dsp \
+    swiglu_quantizer_dsp48e2 $quantizer_dsp \
     swiglu_local_clear_ff [dict get $post_clear total] \
     swiglu_local_clear_protected_ff [dict get $post_clear protected] \
     swiglu_control_clear_ff [dict get $post_clear control] \

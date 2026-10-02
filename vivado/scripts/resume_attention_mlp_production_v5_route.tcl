@@ -137,7 +137,7 @@ proc hap_route_cells_of_module {module_name} {
 
 proc hap_route_mlp_local_clear_audit {require_placed} {
     set branches [lsort -dictionary [hap_route_cells_of_module \
-        hap_mlp_shared_local_slice8x12_s43_s45]]
+        hap_mlp_shared_local_slice8x12_s44_s46]]
     if {[llength $branches] != 2} {
         error "Route expected two MLP branches, got [llength $branches]"
     }
@@ -345,7 +345,7 @@ proc hap_route_metadata_local_write_audit {require_placed} {
 
 proc hap_route_mlp_capture_leaf_audit {require_placed} {
     set branches [lsort -dictionary [hap_route_cells_of_module \
-        hap_mlp_shared_local_slice8x12_s43_s45]]
+        hap_mlp_shared_local_slice8x12_s44_s46]]
     if {[llength $branches] != 2} {
         error "Route expected two MLP capture-leaf branches"
     }

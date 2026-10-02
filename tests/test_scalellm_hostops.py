@@ -11,10 +11,16 @@ from host.scalellm_hostops import (
     PinnedBuffer,
     ScaleLLMHostBoundaryOps,
     pack_s24_q16,
+    pack_s32_q16,
     rms_norm,
     unpack_s24_q16,
+    unpack_s32_q16,
 )
-from host.scalellm_memory import ACTIVATION_PAYLOAD_BYTES
+from host.scalellm_memory import (
+    ACTIVATION_INPUT_PAYLOAD_BYTES,
+    ACTIVATION_OUTPUT_PAYLOAD_BYTES,
+    activation_base_for_buffer,
+)
 from host.scalellm_runtime import RuntimeContractError
 
 
@@ -42,7 +48,7 @@ class ScaleLLMHostOpsTests(unittest.TestCase):
             0.5 / 65536.0, 1.5 / 65536.0, 127.0, 200.0,
         )
         packed = pack_s24_q16(values)
-        self.assertEqual(len(packed), ACTIVATION_PAYLOAD_BYTES)
+        self.assertEqual(len(packed), ACTIVATION_INPUT_PAYLOAD_BYTES)
         result = unpack_s24_q16(packed).reshape(-1)
         expected = np.array((
             -128.0, -128.0, -2.0 / 65536.0, -1.0 / 65536.0,
@@ -50,6 +56,25 @@ class ScaleLLMHostOpsTests(unittest.TestCase):
             ((1 << 23) - 1) / 65536.0,
         ), dtype=np.float32)
         np.testing.assert_array_equal(result[:8], expected)
+
+    def test_s32_q16_roundtrip_signed_little_endian_and_exact_size(self):
+        values = np.zeros(ACTIVATION_SHAPE, dtype=np.float32)
+        values.reshape(-1)[:6] = (
+            -32768.0, -1.5 / 65536.0, -0.5 / 65536.0,
+            0.5 / 65536.0, 1.5 / 65536.0, 32768.0,
+        )
+        packed = pack_s32_q16(values)
+        self.assertEqual(len(packed), ACTIVATION_OUTPUT_PAYLOAD_BYTES)
+        self.assertEqual(packed[:4], b"\x00\x00\x00\x80")
+        result = unpack_s32_q16(packed).reshape(-1)
+        expected = np.array((
+            -32768.0, -2.0 / 65536.0, -1.0 / 65536.0,
+            1.0 / 65536.0, 2.0 / 65536.0,
+            ((1 << 31) - 1) / 65536.0,
+        ), dtype=np.float32)
+        np.testing.assert_array_equal(result[:6], expected)
+        with self.assertRaisesRegex(ValueError, "exactly 256 KiB"):
+            unpack_s32_q16(packed[:-1])
 
     def test_rms_norm_is_float32_and_row_local(self):
         source = np.zeros(ACTIVATION_SHAPE, dtype=np.float32)
@@ -92,7 +117,8 @@ class ScaleLLMHostOpsTests(unittest.TestCase):
             self.assertEqual(host.states[7], (0, "mlp"))
 
             mlp_output = np.full(ACTIVATION_SHAPE, -0.0625, dtype=np.float32)
-            transfers.write(mlp_output, 7, 0, "fixture", 0)
+            session.memory[(0, activation_base_for_buffer(0))] = \
+                pack_s32_q16(mlp_output)
             host.after_mlp(7, 0, 0)
             self.assertEqual(host.states[7], (1, "attention"))
             expected_hidden = np.full(

@@ -1,0 +1,115 @@
+{
+  "schema": "scalellm_fixedpoint_regression_evidence_v1",
+  "created_at": "2026-09-17T05:45:18.655812+00:00",
+  "python": "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+  "include_gpu": false,
+  "status": "cpu_pass_gpu_deferred",
+  "passed_tests": 42,
+  "expected_tests": 57,
+  "suites": [
+    {
+      "suite": "fptoq_frontend",
+      "status": "pass",
+      "expected_tests": 8,
+      "observed_tests": 8,
+      "returncode": 0,
+      "command": [
+        "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+        "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/FPtoQ/experiment/test_fptoq_core.py",
+        "-q"
+      ],
+      "output": "----------------------------------------------------------------------\nRan 8 tests in 1.455s\n\nOK\n"
+    },
+    {
+      "suite": "evaluation_protocol",
+      "status": "pass",
+      "expected_tests": 6,
+      "observed_tests": 6,
+      "returncode": 0,
+      "command": [
+        "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+        "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/fix_experiment/exp/test_protocol.py",
+        "-q"
+      ],
+      "output": "piqa: Custom kwargs can be passed to `--metadata` in console (as json string) or to the TaskManager.\nFor example --metadata='{\"max_seq_lengths\":[4096, 8192]}'. For details see task Readme.\n\n  0%|          | 0/1 [00:00<?, ?it/s]\n100%|██████████| 1/1 [00:00<00:00, 14074.85it/s]\narc_easy: Custom kwargs can be passed to `--metadata` in console (as json string) or to the TaskManager.\nFor example --metadata='{\"max_seq_lengths\":[4096, 8192]}'. For details see task Readme.\n\n  0%|          | 0/1 [00:00<?, ?it/s]\n100%|██████████| 1/1 [00:00<00:00, 12865.96it/s]\narc_challenge: Custom kwargs can be passed to `--metadata` in console (as json string) or to the TaskManager.\nFor example --metadata='{\"max_seq_lengths\":[4096, 8192]}'. For details see task Readme.\n\n  0%|          | 0/1 [00:00<?, ?it/s]\n100%|██████████| 1/1 [00:00<00:00, 13981.01it/s]\nhellaswag: Custom kwargs can be passed to `--metadata` in console (as json string) or to the TaskManager.\nFor example --metadata='{\"max_seq_lengths\":[4096, 8192]}'. For details see task Readme.\n\n  0%|          | 0/1 [00:00<?, ?it/s]\n100%|██████████| 1/1 [00:00<00:00, 12905.55it/s]\nwinogrande: Custom kwargs can be passed to `--metadata` in console (as json string) or to the TaskManager.\nFor example --metadata='{\"max_seq_lengths\":[4096, 8192]}'. For details see task Readme.\n\n  0%|          | 0/1 [00:00<?, ?it/s]\n100%|██████████| 1/1 [00:00<00:00, 13025.79it/s]\n----------------------------------------------------------------------\nRan 6 tests in 2.093s\n\nOK\n"
+    },
+    {
+      "suite": "tokenizer_boundary",
+      "status": "pass",
+      "expected_tests": 2,
+      "observed_tests": 2,
+      "returncode": 0,
+      "command": [
+        "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+        "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/fix_experiment/exp/test_tokenizer_boundary.py",
+        "-q"
+      ],
+      "output": "----------------------------------------------------------------------\nRan 2 tests in 1.015s\n\nOK\n"
+    },
+    {
+      "suite": "format_v3_rtl_static_contract",
+      "status": "pass",
+      "expected_tests": 2,
+      "observed_tests": 2,
+      "returncode": 0,
+      "command": [
+        "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+        "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/fix_experiment/exp/test_format_v3_static_contract.py",
+        "-q"
+      ],
+      "output": "----------------------------------------------------------------------\nRan 2 tests in 0.680s\n\nOK\n"
+    },
+    {
+      "suite": "mlp_scalar_model",
+      "status": "pass",
+      "expected_tests": 11,
+      "observed_tests": 11,
+      "returncode": 0,
+      "command": [
+        "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/tests/test_mlp_fixed.py",
+        "-q"
+      ],
+      "output": "----------------------------------------------------------------------\nRan 11 tests in 0.408s\n\nOK\n"
+    },
+    {
+      "suite": "artifact_contract",
+      "status": "pass",
+      "expected_tests": 8,
+      "observed_tests": 8,
+      "returncode": 0,
+      "command": [
+        "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/tests/test_scalellm_artifacts.py",
+        "-q"
+      ],
+      "output": "----------------------------------------------------------------------\nRan 8 tests in 0.090s\n\nOK\n"
+    },
+    {
+      "suite": "host_hardware_contract",
+      "status": "pass",
+      "expected_tests": 5,
+      "observed_tests": 5,
+      "returncode": 0,
+      "command": [
+        "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/0_fix_newdataflow_Hadamard/HAP/tests/test_scalellm_hardware.py",
+        "-q"
+      ],
+      "output": "----------------------------------------------------------------------\nRan 5 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "suite": "v5_cuda_integer_twin",
+      "status": "deferred_user_pause",
+      "expected_tests": 15,
+      "observed_tests": null,
+      "returncode": null,
+      "command": [
+        "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+        "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/FPtoQ/experiment/test_v5_fullchain.py",
+        "-q"
+      ],
+      "output": "GPU conformance was not run because the validation was paused at the user's request."
+    }
+  ]
+}

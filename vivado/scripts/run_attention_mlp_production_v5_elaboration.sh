@@ -33,10 +33,10 @@ export HAP_BUILD_DIR="$(readlink -m -- "$requested_build")"
         "$HAP_BUILD_DIR" >&2
     exit 2
 }
-mapfile -t active_batch < <(pgrep -af \
+mapfile -t active_batch < <(pgrep -u "$(id -u)" -af \
     '[u]nwrapped/lnx64.o/vivado .*[-]mode batch' || true)
 if [[ "${#active_batch[@]}" -ne 0 ]]; then
-    printf 'another batch Vivado is active; elaboration not started:\n' >&2
+    printf 'another project-user batch Vivado is active; elaboration not started:\n' >&2
     printf '  %s\n' "${active_batch[@]}" >&2
     exit 75
 fi

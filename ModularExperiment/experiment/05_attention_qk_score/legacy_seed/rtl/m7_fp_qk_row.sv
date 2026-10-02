@@ -1,0 +1,47 @@
+`timescale 1ns/1ps
+module m7_fp32_qk_row(
+ input wire clk,rst_n,clear,query_load_valid,output wire query_load_ready,
+ input wire[4095:0]query_fp32,input wire in_valid,output wire in_ready,
+ input wire in_last_key,in_mask,input wire[4095:0]key_fp32,
+ output wire out_valid,input wire out_ready,output wire signed[19:0]out_score_q14_s20,
+ output wire out_mask,output wire[6:0]out_key_index,output wire out_last_key,
+ output reg[31:0]input_key_count,output reg[31:0]output_score_count,output reg[31:0]clip_count,output wire error);
+ reg[4095:0]q;reg[7:0]used;wire fire=in_valid&&in_ready;wire[127:0]pv;wire[4095:0]p;
+ wire[63:0]s1v;wire[2047:0]s1;wire[31:0]s2v;wire[1023:0]s2;wire[15:0]s3v;wire[511:0]s3;
+ wire[7:0]s4v;wire[255:0]s4;wire[3:0]s5v;wire[127:0]s5;wire[1:0]s6v;wire[63:0]s6;wire s7v,hv,cv;wire[31:0]s7,h;wire[23:0]cf;wire signed[19:0]craw=cf[19:0];wire signed[19:0]c=(craw>20'sd262144)?20'sd262144:(craw< -20'sd262144)?-20'sd262144:craw;wire cclip=(craw>20'sd262144)||(craw< -20'sd262144);
+ reg maskp[0:255];reg lastp[0:255];reg[7:0]tw,tr;reg[8:0]tc;wire push=cv,pop=out_valid&&out_ready;reg[19:0]om[0:255];reg mm[0:255],lm[0:255];reg[7:0]ow,orr;reg[8:0]oc;reg[6:0]oidx;
+ assign query_load_ready=rst_n&&!clear&&(tc==0)&&(oc==0);always@(posedge clk)if(query_load_valid&&query_load_ready)q<=query_fp32;
+ assign in_ready=rst_n&&!clear&&1'b1;genvar i;generate for(i=0;i<128;i=i+1)m7_f32_mul u0(.aclk(clk),.s_axis_a_tvalid(fire),.s_axis_a_tdata(q[i*32+:32]),.s_axis_b_tvalid(fire),.s_axis_b_tdata(key_fp32[i*32+:32]),.m_axis_result_tvalid(pv[i]),.m_axis_result_tdata(p[i*32+:32]));
+ for(i=0;i<64;i=i+1)m7_f32_add u1(.aclk(clk),.s_axis_a_tvalid(pv[2*i]),.s_axis_a_tdata(p[2*i*32+:32]),.s_axis_b_tvalid(pv[2*i+1]),.s_axis_b_tdata(p[(2*i+1)*32+:32]),.m_axis_result_tvalid(s1v[i]),.m_axis_result_tdata(s1[i*32+:32]));
+ for(i=0;i<32;i=i+1)m7_f32_add u2(.aclk(clk),.s_axis_a_tvalid(s1v[2*i]),.s_axis_a_tdata(s1[2*i*32+:32]),.s_axis_b_tvalid(s1v[2*i+1]),.s_axis_b_tdata(s1[(2*i+1)*32+:32]),.m_axis_result_tvalid(s2v[i]),.m_axis_result_tdata(s2[i*32+:32]));
+ for(i=0;i<16;i=i+1)m7_f32_add u3(.aclk(clk),.s_axis_a_tvalid(s2v[2*i]),.s_axis_a_tdata(s2[2*i*32+:32]),.s_axis_b_tvalid(s2v[2*i+1]),.s_axis_b_tdata(s2[(2*i+1)*32+:32]),.m_axis_result_tvalid(s3v[i]),.m_axis_result_tdata(s3[i*32+:32]));
+ for(i=0;i<8;i=i+1)m7_f32_add u4(.aclk(clk),.s_axis_a_tvalid(s3v[2*i]),.s_axis_a_tdata(s3[2*i*32+:32]),.s_axis_b_tvalid(s3v[2*i+1]),.s_axis_b_tdata(s3[(2*i+1)*32+:32]),.m_axis_result_tvalid(s4v[i]),.m_axis_result_tdata(s4[i*32+:32]));
+ for(i=0;i<4;i=i+1)m7_f32_add u5(.aclk(clk),.s_axis_a_tvalid(s4v[2*i]),.s_axis_a_tdata(s4[2*i*32+:32]),.s_axis_b_tvalid(s4v[2*i+1]),.s_axis_b_tdata(s4[(2*i+1)*32+:32]),.m_axis_result_tvalid(s5v[i]),.m_axis_result_tdata(s5[i*32+:32]));
+ for(i=0;i<2;i=i+1)m7_f32_add u6(.aclk(clk),.s_axis_a_tvalid(s5v[2*i]),.s_axis_a_tdata(s5[2*i*32+:32]),.s_axis_b_tvalid(s5v[2*i+1]),.s_axis_b_tdata(s5[(2*i+1)*32+:32]),.m_axis_result_tvalid(s6v[i]),.m_axis_result_tdata(s6[i*32+:32]));endgenerate
+ m7_f32_add u7(.aclk(clk),.s_axis_a_tvalid(s6v[0]),.s_axis_a_tdata(s6[31:0]),.s_axis_b_tvalid(s6v[1]),.s_axis_b_tdata(s6[63:32]),.m_axis_result_tvalid(s7v),.m_axis_result_tdata(s7));
+ m7_f32_mul uh(.aclk(clk),.s_axis_a_tvalid(s7v),.s_axis_a_tdata(s7),.s_axis_b_tvalid(s7v),.s_axis_b_tdata(32'h3db50800),.m_axis_result_tvalid(hv),.m_axis_result_tdata(h));
+ m7_f32_to_s20 uc(.aclk(clk),.s_axis_a_tvalid(hv),.s_axis_a_tdata(h),.m_axis_result_tvalid(cv),.m_axis_result_tdata(cf));
+ assign out_valid=rst_n&&!clear&&(oc!=0);assign out_score_q14_s20=om[orr];assign out_mask=mm[orr];assign out_last_key=lm[orr];assign out_key_index=oidx;assign error=(pv!={128{pv[0]}})||(s1v!={64{s1v[0]}})||(cv&&(tc==0));
+ integer j;always@(posedge clk or negedge rst_n)if(!rst_n)begin used<=0;tw<=0;tr<=0;tc<=0;ow<=0;orr<=0;oc<=0;oidx<=0;input_key_count<=0;output_score_count<=0;clip_count<=0;end else if(clear)begin used<=0;tw<=0;tr<=0;tc<=0;ow<=0;orr<=0;oc<=0;oidx<=0;input_key_count<=0;output_score_count<=0;clip_count<=0;end else begin
+  if(fire)begin maskp[tw]<=in_mask;lastp[tw]<=in_last_key;tw<=tw+1;input_key_count<=input_key_count+1;end if(cv)begin om[ow]<=c;mm[ow]<=maskp[tr];lm[ow]<=lastp[tr];ow<=ow+1;tr<=tr+1;if(cclip)clip_count<=clip_count+1;end if(pop)begin orr<=orr+1;output_score_count<=output_score_count+1;if(out_last_key)oidx<=0;else oidx<=oidx+1;end case({fire,cv})2'b10:tc<=tc+1;2'b01:tc<=tc-1;endcase case({cv,pop})2'b10:oc<=oc+1;2'b01:oc<=oc-1;endcase case({fire,pop})2'b10:used<=used+1;2'b01:used<=used-1;endcase end
+endmodule
+
+module m7_fp16_qk_row(
+ input wire clk,rst_n,clear,query_load_valid,output wire query_load_ready,input wire[2047:0]query_fp16,input wire in_valid,output wire in_ready,input wire in_last_key,in_mask,input wire[2047:0]key_fp16,output wire out_valid,input wire out_ready,output wire signed[19:0]out_score_q14_s20,output wire out_mask,output wire[6:0]out_key_index,output wire out_last_key,output reg[31:0]input_key_count,output reg[31:0]output_score_count,output reg[31:0]clip_count,output wire error);
+ reg[2047:0]q;reg qr,qp;reg[7:0]used;wire fire=in_valid&&in_ready;wire[127:0]qsv,pv,bv;wire[2047:0]qs,p;wire[4095:0]b;wire[63:0]s1v;wire[2047:0]s1;wire[31:0]s2v;wire[1023:0]s2;wire[15:0]s3v;wire[511:0]s3;wire[7:0]s4v;wire[255:0]s4;wire[3:0]s5v;wire[127:0]s5;wire[1:0]s6v;wire[63:0]s6;wire s7v,cv;wire[31:0]s7;wire[23:0]cf;wire signed[19:0]craw=cf[19:0];wire signed[19:0]c=(craw>20'sd262144)?20'sd262144:(craw< -20'sd262144)?-20'sd262144:craw;wire cclip=(craw>20'sd262144)||(craw< -20'sd262144);
+ reg maskp[0:255],lastp[0:255];reg[7:0]tw,tr;reg[8:0]tc;wire push=cv,pop=out_valid&&out_ready;reg[19:0]om[0:255];reg mm[0:255],lm[0:255];reg[7:0]ow,orr;reg[8:0]oc;reg[6:0]oidx;
+ assign query_load_ready=rst_n&&!clear&&!qr&&!qp&&(tc==0)&&(oc==0);always@(posedge clk)if(qsv[0])q<=qs;assign in_ready=rst_n&&!clear&&1'b1;
+ genvar i;generate for(i=0;i<128;i=i+1)begin:m
+ m7_f16_mul uq(.aclk(clk),.s_axis_a_tvalid(query_load_valid&&query_load_ready),.s_axis_a_tdata(query_fp16[i*16+:16]),.s_axis_b_tvalid(query_load_valid&&query_load_ready),.s_axis_b_tdata(16'h2da8),.m_axis_result_tvalid(qsv[i]),.m_axis_result_tdata(qs[i*16+:16]));
+ m7_f16_mul u0(.aclk(clk),.s_axis_a_tvalid(fire),.s_axis_a_tdata(q[i*16+:16]),.s_axis_b_tvalid(fire),.s_axis_b_tdata(key_fp16[i*16+:16]),.m_axis_result_tvalid(pv[i]),.m_axis_result_tdata(p[i*16+:16]));
+ m7_f16_to_f32 ub(.aclk(clk),.s_axis_a_tvalid(pv[i]),.s_axis_a_tdata(p[i*16+:16]),.m_axis_result_tvalid(bv[i]),.m_axis_result_tdata(b[i*32+:32]));end
+ for(i=0;i<64;i=i+1)m7_f32_add u1(.aclk(clk),.s_axis_a_tvalid(bv[2*i]),.s_axis_a_tdata(b[2*i*32+:32]),.s_axis_b_tvalid(bv[2*i+1]),.s_axis_b_tdata(b[(2*i+1)*32+:32]),.m_axis_result_tvalid(s1v[i]),.m_axis_result_tdata(s1[i*32+:32]));
+ for(i=0;i<32;i=i+1)m7_f32_add u2(.aclk(clk),.s_axis_a_tvalid(s1v[2*i]),.s_axis_a_tdata(s1[2*i*32+:32]),.s_axis_b_tvalid(s1v[2*i+1]),.s_axis_b_tdata(s1[(2*i+1)*32+:32]),.m_axis_result_tvalid(s2v[i]),.m_axis_result_tdata(s2[i*32+:32]));
+ for(i=0;i<16;i=i+1)m7_f32_add u3(.aclk(clk),.s_axis_a_tvalid(s2v[2*i]),.s_axis_a_tdata(s2[2*i*32+:32]),.s_axis_b_tvalid(s2v[2*i+1]),.s_axis_b_tdata(s2[(2*i+1)*32+:32]),.m_axis_result_tvalid(s3v[i]),.m_axis_result_tdata(s3[i*32+:32]));
+ for(i=0;i<8;i=i+1)m7_f32_add u4(.aclk(clk),.s_axis_a_tvalid(s3v[2*i]),.s_axis_a_tdata(s3[2*i*32+:32]),.s_axis_b_tvalid(s3v[2*i+1]),.s_axis_b_tdata(s3[(2*i+1)*32+:32]),.m_axis_result_tvalid(s4v[i]),.m_axis_result_tdata(s4[i*32+:32]));
+ for(i=0;i<4;i=i+1)m7_f32_add u5(.aclk(clk),.s_axis_a_tvalid(s4v[2*i]),.s_axis_a_tdata(s4[2*i*32+:32]),.s_axis_b_tvalid(s4v[2*i+1]),.s_axis_b_tdata(s4[(2*i+1)*32+:32]),.m_axis_result_tvalid(s5v[i]),.m_axis_result_tdata(s5[i*32+:32]));
+ for(i=0;i<2;i=i+1)m7_f32_add u6(.aclk(clk),.s_axis_a_tvalid(s5v[2*i]),.s_axis_a_tdata(s5[2*i*32+:32]),.s_axis_b_tvalid(s5v[2*i+1]),.s_axis_b_tdata(s5[(2*i+1)*32+:32]),.m_axis_result_tvalid(s6v[i]),.m_axis_result_tdata(s6[i*32+:32]));endgenerate
+ m7_f32_add u7(.aclk(clk),.s_axis_a_tvalid(s6v[0]),.s_axis_a_tdata(s6[31:0]),.s_axis_b_tvalid(s6v[1]),.s_axis_b_tdata(s6[63:32]),.m_axis_result_tvalid(s7v),.m_axis_result_tdata(s7));m7_f32_to_s20 uc(.aclk(clk),.s_axis_a_tvalid(s7v),.s_axis_a_tdata(s7),.m_axis_result_tvalid(cv),.m_axis_result_tdata(cf));
+ assign out_valid=rst_n&&!clear&&(oc!=0);assign out_score_q14_s20=om[orr];assign out_mask=mm[orr];assign out_last_key=lm[orr];assign out_key_index=oidx;assign error=(pv!={128{pv[0]}})||(s1v!={64{s1v[0]}})||(cv&&(tc==0));
+ always@(posedge clk or negedge rst_n)if(!rst_n)begin qr<=0;qp<=0;used<=0;tw<=0;tr<=0;tc<=0;ow<=0;orr<=0;oc<=0;oidx<=0;input_key_count<=0;output_score_count<=0;clip_count<=0;end else if(clear)begin qr<=0;qp<=0;used<=0;tw<=0;tr<=0;tc<=0;ow<=0;orr<=0;oc<=0;oidx<=0;input_key_count<=0;output_score_count<=0;clip_count<=0;end else begin if(query_load_valid&&query_load_ready)qp<=1;if(qsv[0])begin qr<=1;qp<=0;end if(qr&&tc==0&&oc==0&&used!=0)used<=0; if(fire)begin maskp[tw]<=in_mask;lastp[tw]<=in_last_key;tw<=tw+1;input_key_count<=input_key_count+1;end if(cv)begin om[ow]<=c;mm[ow]<=maskp[tr];lm[ow]<=lastp[tr];ow<=ow+1;tr<=tr+1;if(cclip)clip_count<=clip_count+1;end if(pop)begin orr<=orr+1;output_score_count<=output_score_count+1;if(out_last_key)begin oidx<=0;qr<=0;end else oidx<=oidx+1;end case({fire,cv})2'b10:tc<=tc+1;2'b01:tc<=tc-1;endcase case({cv,pop})2'b10:oc<=oc+1;2'b01:oc<=oc-1;endcase case({fire,pop})2'b10:used<=used+1;2'b01:used<=used-1;endcase end
+endmodule

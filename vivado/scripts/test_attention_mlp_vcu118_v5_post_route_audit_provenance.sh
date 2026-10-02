@@ -8,7 +8,10 @@ GATE_TCL="$ROOT/vivado/scripts/attention_mlp_vcu118_v5_post_route_gate.tcl"
 SELECTOR_TCL="$ROOT/vivado/scripts/v5_production_floorplan_selectors.tcl"
 GEOMETRY_TCL="$ROOT/vivado/scripts/projection_core16x16_w8_reuse_ooc_floorplan.tcl"
 P5_INPUT_TCL="$ROOT/vivado/scripts/v5_production_p5_input_partition_floorplan.tcl"
-P6_POSTPROCESS_TCL="$ROOT/vivado/scripts/v5_production_p6_postprocess_partition_floorplan.tcl"
+P9_POSTPROCESS_TCL="$ROOT/vivado/scripts/v5_production_p9_postprocess_partition_floorplan.tcl"
+P9_QUANTIZER3_TCL="$ROOT/vivado/scripts/v5_production_p9_quantizer3_locality_floorplan.tcl"
+P14_RELIEF_TCL="$ROOT/vivado/scripts/v5_production_p14_region2_x2_relief_floorplan.tcl"
+P8_PARENT_TCL="$ROOT/vivado/scripts/audit_mlp_p8_parent_ingress_boundary_replica_aware.tcl"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
@@ -23,6 +26,9 @@ make_inputs() {
     printf 'fixture dcp\n' > "$dir/board.dcp"
     printf 'fixture bitstream\n' > "$dir/board.bit"
     printf 'fixture xdc inventory\n' > "$dir/xdc_inventory.txt"
+    printf '%s\n' rtl_variant=P14_LEGACY \
+        p9_quantizer3_primitives=11178 \
+        p14_region2_relief_primitives=68799 > "$dir/summary.txt"
 }
 
 # A mock executable exercises launcher failure archival without invoking
@@ -110,8 +116,10 @@ make_tcl_fixture() {
     mkdir -p "$dir/evidence"
     local -a exact=(
         "$dir/board.dcp" "$dir/board.bit" "$dir/xdc_inventory.txt"
+        "$dir/summary.txt"
         "$AUDIT_TCL" "$GATE_TCL" "$SELECTOR_TCL" "$GEOMETRY_TCL"
-        "$P5_INPUT_TCL" "$P6_POSTPROCESS_TCL" "$LAUNCHER"
+        "$P5_INPUT_TCL" "$P9_POSTPROCESS_TCL" "$P9_QUANTIZER3_TCL"
+        "$P14_RELIEF_TCL" "$P8_PARENT_TCL" "$LAUNCHER"
     )
     printf '%s\n' "${exact[@]}" > "$dir/evidence/INPUT_FILES"
     sha256sum -- "${exact[@]}" > "$dir/evidence/INPUT_SHA256SUMS"
@@ -155,7 +163,7 @@ make_tcl_fixture "$TMP/tcl_mutated"
 printf 'mutation\n' >> "$TMP/tcl_mutated/board.dcp"
 run_tcl_rejection "$TMP/tcl_mutated" 'Audit frozen-input SHA mismatch'
 
-# INPUT_FILES is independently exact: even a fully valid ten-row SHA
+# INPUT_FILES is independently exact: even a fully valid fourteen-row SHA
 # manifest cannot authorize a different/missing path list.
 make_tcl_fixture "$TMP/tcl_bad_paths"
 sed -i "\|$LAUNCHER|d" "$TMP/tcl_bad_paths/evidence/INPUT_FILES"

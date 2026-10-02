@@ -8,7 +8,11 @@ from model.v5_schedule_contract import (
     COMPUTE_COLUMNS,
     HIDDEN,
     INTERMEDIATE,
+    PRODUCT_FRONTEND_CYCLES_PER_GROUP,
+    S35_DIVIDERS_PER_QUANTIZER,
+    S35_XSIM_MAX_GROUP_CYCLES,
     SOURCE_COLUMNS,
+    SWIGLU_XSIM_MAX_GROUP_INTERVAL,
     build_supertile_schedule,
     build_v5_layer_model,
     ceil_div,
@@ -98,12 +102,21 @@ class V5ScheduleContractTests(unittest.TestCase):
                          (229_376 + 114_688) * BYTES_PER_SOURCE_RECORD)
         self.assertEqual(model.mlp_weight_bytes, 84 * (1 << 20))
         self.assertEqual(model.kernel_dsp, 3072)
-        self.assertAlmostEqual(model.kernel_tops, 1.8432, places=4)
+        self.assertAlmostEqual(model.kernel_tops, 1.2288, places=4)
         self.assertAlmostEqual(
-            model.projection_kernel_roof_tokens_per_s, 163.49, places=1)
-        self.assertEqual(model.serial_mlp_cycles_per_layer, 527_296)
+            model.projection_kernel_roof_tokens_per_s, 108.99, places=1)
+        self.assertEqual(model.serial_mlp_cycles_per_layer, 696_640)
         self.assertAlmostEqual(
-            model.serial_mlp_aggregate_tokens_per_s, 142.24, places=1)
+            model.serial_mlp_aggregate_tokens_per_s, 71.77, places=2)
+
+    def test_two_divider_s35_defines_frontend_budget(self):
+        self.assertEqual(S35_DIVIDERS_PER_QUANTIZER, 2)
+        self.assertEqual(S35_XSIM_MAX_GROUP_CYCLES, 308)
+        self.assertEqual(SWIGLU_XSIM_MAX_GROUP_INTERVAL, 1213)
+        self.assertLessEqual(
+            SWIGLU_XSIM_MAX_GROUP_INTERVAL,
+            PRODUCT_FRONTEND_CYCLES_PER_GROUP,
+        )
 
     def test_invalid_shapes_fail_closed(self):
         with self.assertRaises(ValueError):

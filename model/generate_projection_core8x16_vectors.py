@@ -12,7 +12,7 @@ from fixbit_v2 import (
     a8w8_group32_guard_s42,
     hadamard32_normalized,
     pack_lanes,
-    robust_a8_quantize,
+    minmax_a8_quantize,
     round_sat_guard_s42_to_s24,
     self_test,
 )
@@ -52,7 +52,7 @@ def main() -> None:
                 inputs.append(source)
                 transformed = hadamard32_normalized(source)
                 input_saturation += transformed.saturation_count
-                activations.append(robust_a8_quantize(transformed.values))
+                activations.append(minmax_a8_quantize(transformed.values))
             input_file.write(f"{pack_lanes([v for row in inputs for v in row], 24):01536x}\n")
             for tile in range(TILES):
                 for col in range(COLS):

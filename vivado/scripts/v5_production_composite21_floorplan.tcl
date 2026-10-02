@@ -57,7 +57,7 @@ proc hap_v5_composite21::discover {base_plan fine_plan
     require_count fine_spec_count $fine_specs 19
     set fine_members [spec_member_union $fine_specs]
 
-    set mlp_roots [hap_v5_floorplan::module_cells hap_mlp_full_command16_s45]
+    set mlp_roots [hap_v5_floorplan::module_cells hap_mlp_full_command16_s46]
     set attention_compute_roots [hap_v5_floorplan::module_cells \
         hap_attention_compute_cohort16_top]
     require_count mlp_roots $mlp_roots 1

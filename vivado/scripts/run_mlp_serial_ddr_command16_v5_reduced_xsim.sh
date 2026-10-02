@@ -6,7 +6,7 @@ BIN="${VIVADO_BIN:-/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin}"
 PYTHON="${PYTHON:-/home/user/anaconda3/envs/zhouwenjun/bin/python}"
 STAMP="$(date +%Y%m%d_%H%M%S)"
 OUT="${HAP_REPORT_DIR:-$ROOT/vivado/reports/mlp_serial_ddr_command16_v5_reduced_xsim_$STAMP}"
-SIM=hap_mlp_serial_ddr_command16_v5_s45_reduced_sim
+SIM=hap_mlp_serial_ddr_command16_v5_s46_reduced_sim
 WORK="$ROOT/xsim_work/$SIM"
 mkdir -p "$OUT" "$WORK"
 cd "$ROOT"
@@ -19,11 +19,11 @@ RTL=(
   rtl/mlp/hap_a8w4_pack2_dsp.sv
   rtl/mlp/hap_a8w4_group32_pack2_s17.sv
   rtl/mlp/hap_a8w4_scalecode_recover2_lut.sv
-  rtl/mlp/hap_a8w4_group32_lane2_s36.sv
-  rtl/mlp/hap_a8w4_slice8x12_group_s36.sv
-  rtl/mlp/hap_mlp_tile_accum_s36.sv
-  rtl/mlp/hap_mlp_down_group_major_accum_s45.sv
-  rtl/mlp/hap_mlp_shared_dual_slice16x12_s43_s45.sv
+  rtl/mlp/hap_a8w4_group32_lane2_s37.sv
+  rtl/mlp/hap_a8w4_slice8x12_group_s37.sv
+  rtl/mlp/hap_mlp_tile_accum_s37.sv
+  rtl/mlp/hap_mlp_down_group_major_accum_s46.sv
+  rtl/mlp/hap_mlp_shared_dual_slice16x12_s44_s46.sv
   rtl/mlp/hap_mlp_gate_up_gather_pingpong12.sv
   rtl/mlp/hap_mlp_w4_repack48_to12.sv
   rtl/mlp/hap_mlp_projection_repack12_to16_s24_history2.sv
@@ -35,21 +35,21 @@ RTL=(
   rtl/mlp/hap_mlp_swiglu_product_frontend16_q4.sv
   rtl/mlp/hap_mlp_gate_up_v5_scheduler16_q4.sv
   rtl/mlp/hap_mlp_down_activation_cache16.sv
-  rtl/mlp/hap_mlp_down_v5_scheduler16_s45.sv
+  rtl/mlp/hap_mlp_down_v5_scheduler16_s46.sv
   rtl/mlp/hap_axi512_w4_weight_reader.sv
   rtl/mlp/hap_ddr512_w4_halfgroup_async.sv
   rtl/mlp/hap_mlp_w4_dual_channel_join.sv
   rtl/mlp/hap_mlp_w4_dual_ddr_frontend.sv
-  rtl/mlp/hap_mlp_serial_ddr_command16_v5_s45.sv
+  rtl/mlp/hap_mlp_serial_ddr_command16_v5_s46.sv
 )
 
 "$BIN/xvlog" -sv "${RTL[@]}" \
-  tb/hap_mlp_serial_ddr_command16_v5_s45_reduced_tb.sv \
+  tb/hap_mlp_serial_ddr_command16_v5_s46_reduced_tb.sv \
   2>&1 | tee "$OUT/xvlog.log"
 GLBL_V="${GLBL_V:-$BIN/../ids_lite/ISE/verilog/src/glbl.v}"
 "$BIN/xvlog" "$GLBL_V" 2>&1 | tee -a "$OUT/xvlog.log"
 "$BIN/xelab" -L xpm -L unisims_ver \
-  hap_mlp_serial_ddr_command16_v5_s45_reduced_tb glbl -s "$SIM" \
+  hap_mlp_serial_ddr_command16_v5_s46_reduced_tb glbl -s "$SIM" \
   2>&1 | tee "$OUT/xelab.log"
 "$BIN/xsim" "$SIM" -runall 2>&1 | tee "$OUT/xsim.log"
 

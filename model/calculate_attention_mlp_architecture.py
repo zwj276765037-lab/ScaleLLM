@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Emit the frozen M0 capacity/cycle model as machine-readable evidence."""
+"""Emit the frozen V5 first-signoff capacity/cycle model as JSON evidence."""
 
 from __future__ import annotations
 
@@ -22,4 +22,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

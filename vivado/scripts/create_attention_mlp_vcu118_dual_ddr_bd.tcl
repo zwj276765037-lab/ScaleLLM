@@ -81,7 +81,7 @@ if {$strict_v5} {
         error "V5 board XDC substitution rejected: $board_xdc"
     }
     set expected_defines [list HAP_BOARD_BUILD HAP_BOARD_V5 \
-        HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s45]
+        HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s46]
     if {[lsort $board_defines] ne [lsort $expected_defines]} {
         error "V5 define contract mismatch: expected=$expected_defines actual=$board_defines"
     }

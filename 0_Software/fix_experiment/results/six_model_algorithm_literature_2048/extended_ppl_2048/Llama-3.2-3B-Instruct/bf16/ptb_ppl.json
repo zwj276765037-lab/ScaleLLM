@@ -1,0 +1,42 @@
+{
+  "schema": "scalellm_extended_ppl_result_v1",
+  "status": "complete",
+  "created_at": "2026-09-16T19:32:28.589361+00:00",
+  "model": "Llama-3.2-3B-Instruct",
+  "model_fingerprint_sha256": "1ec069ef95885b3c916f77980042350a63ded27beab744837100835dc563e5f7",
+  "case": "bf16",
+  "full_split": true,
+  "source": {
+    "asset_id": "ptb_test",
+    "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/ptb_text_only/ptb.test.txt",
+    "sha256": "dd65dff31e70846b2a6030a87482edcd5d199130cdcfa1f3dccbb033728deee0",
+    "rows": 3761,
+    "split": "test",
+    "separator": "none",
+    "description": "Penn Treebank legacy text-only test"
+  },
+  "method": {
+    "case": "bf16",
+    "dtype": "bfloat16",
+    "attention_implementation": "eager",
+    "use_cache": false
+  },
+  "task": "ptb_ppl",
+  "kind": "ppl",
+  "primary_metric": "token_perplexity",
+  "value": 18.75054224692576,
+  "avg_nll": 2.93122267183429,
+  "total_nll": 288010.21484375,
+  "raw_token_count": 98829,
+  "block_size": 2048,
+  "available_complete_blocks": 48,
+  "evaluated_blocks": 48,
+  "tokens_in_evaluated_blocks": 98304,
+  "scoring_tokens": 98256,
+  "discarded_tail_tokens": 525,
+  "unscored_block_initial_tokens": 48,
+  "elapsed_sec": 14.924431324005127,
+  "non_overlapping": true,
+  "tail_policy": "drop_incomplete_block",
+  "add_special_tokens": false
+}

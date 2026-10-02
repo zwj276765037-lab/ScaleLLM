@@ -20,7 +20,14 @@ archive() {
 trap archive EXIT
 
 cd "$ROOT"
+python3 model/generate_mlp_input_frontend16_cache_vectors.py
 sha256sum \
+    model/fixbit_v2.py \
+    model/generate_mlp_input_frontend16_cache_vectors.py \
+    data/mlp_input_frontend16_cache/input_s24x16x32.mem \
+    data/mlp_input_frontend16_cache/expected_u8x16x32.mem \
+    data/mlp_input_frontend16_cache/expected_meta_u24x16.mem \
+    data/mlp_input_frontend16_cache/manifest.json \
     rtl/mlp/hap_mlp_input_frontend16_compact_cache.sv \
     rtl/mlp/hap_mlp_hadamard32_s24_fold4.sv \
     rtl/attention/hap_robust_a8_quantizer.sv \

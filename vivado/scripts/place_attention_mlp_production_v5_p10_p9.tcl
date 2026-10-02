@@ -412,7 +412,7 @@ set rediscovery_rc [catch {
     set post_clear [hap_p10_mlp_local_clear_audit 1]
     set post_metadata [hap_p10_metadata_local_write_audit 1]
     set post_capture [hap_p10_mlp_capture_leaf_audit \
-        [hap_p10_cells_of_module hap_mlp_shared_local_slice8x12_s43_s45] 1]
+        [hap_p10_cells_of_module hap_mlp_shared_local_slice8x12_s44_s46] 1]
     set post_boundary [hap_mlp_p8_parent_boundary::audit]
     hap_mlp_p8_parent_boundary::write_audit $post_boundary \
         [file join $out p8_parent_ingress_boundary_post_place.txt] \

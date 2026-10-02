@@ -1,0 +1,88 @@
+{
+  "arithmetic_nonzero_group_tiles": {
+    "correlation": 64,
+    "fp16": 64,
+    "fp32": 64,
+    "sc": 64
+  },
+  "expected_bits": 4608,
+  "expected_nonzero_elements": {
+    "fp16": 2944,
+    "fp32": 2944,
+    "sc": 2944
+  },
+  "files": {
+    "expected_fp16_s24x16x12.mem": {
+      "bits": 4608,
+      "bytes": 18448,
+      "sha256": "3a45c909a0bc0793d90fbf6c0c168aeee58066b3dc660691e090764bfb6149e1"
+    },
+    "expected_fp32_s24x16x12.mem": {
+      "bits": 4608,
+      "bytes": 18448,
+      "sha256": "c9f59b19f9dbea903da279e4568e9ac9d8b9b428937c930ab81a39d17c8fc454"
+    },
+    "expected_sc_s24x16x12.mem": {
+      "bits": 4608,
+      "bytes": 18448,
+      "sha256": "7ac508990aa8e2d18057af4cea145617ea3eec5fe73ed415379b16206895174d"
+    },
+    "payload_fp16_u6656.mem": {
+      "bits": 6656,
+      "bytes": 133200,
+      "sha256": "03b3e62e259caf988fa1eb8e575986a63f92f75f284c2c652c3e687eb6ba2082"
+    },
+    "payload_fp32_u7168.mem": {
+      "bits": 7168,
+      "bytes": 143440,
+      "sha256": "e6ec728dceb1a6b0243ec3153b6e54d46cd353eecefe2819c6defaf6d516940d"
+    },
+    "payload_sc_u6656.mem": {
+      "bits": 6656,
+      "bytes": 133200,
+      "sha256": "d031106ca7b24ebf8a1ab00fba1c3b8f3bd0bfcf400e1376f35913dd49829367"
+    }
+  },
+  "fp16_boundary_cases": 3,
+  "fp16_zero_contributions": 3638,
+  "fp_semantics_model": "/home/user/EDA-202/zhuowenjun/ScaleLLM/ModularExperiment/experiment/12_mlp_down_a8w4/model/generate_vectors.py",
+  "fp_semantics_model_sha256": "751afbead80f4e393c99fedbed609f997301eaab88b43ed39ddbb9f276e2a09b",
+  "generator": "/home/user/EDA-202/zhuowenjun/ScaleLLM/ModularExperiment/experiment/12_mlp_down_a8w4/model/generate_mini_vectors.py",
+  "generator_sha256": "37b857d38639ac28fcb5d368fb065b2a189afcdb158b36200c76b038b403d111",
+  "group_size": 32,
+  "groups": 5,
+  "payload_bits": {
+    "fp16": 6656,
+    "fp32": 7168,
+    "sc": 6656
+  },
+  "payload_nonzero_transactions": {
+    "fp16": 80,
+    "fp32": 80,
+    "sc": 80
+  },
+  "physical_columns": 12,
+  "rows": 16,
+  "schema": "scalellm_m12_down_a8w4_full_lane_mini_v1",
+  "source_tiles": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    341
+  ],
+  "tail_mask": "0x00f",
+  "tiles": 16,
+  "transactions": 80
+}

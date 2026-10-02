@@ -79,7 +79,7 @@ create_project production_v5_elaboration $build -part $part -force
 set_property target_language Verilog [current_project]
 set_property verilog_define {
     HAP_BOARD_BUILD
-    HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s45
+    HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s46
     HAP_ATTENTION_BOARD_MODULE=hap_attention_board_cohort16_core
 } [get_filesets sources_1]
 add_manifest $root $manifest
@@ -94,16 +94,16 @@ set old_serial [get_cells -quiet -hierarchical -filter {
     REF_NAME == hap_mlp_serial_ddr_command16_s45
 }]
 set v5_serial [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_mlp_serial_ddr_command16_v5_s45 ||
-    REF_NAME == hap_mlp_serial_ddr_command16_v5_s45
+    ORIG_REF_NAME == hap_mlp_serial_ddr_command16_v5_s46 ||
+    REF_NAME == hap_mlp_serial_ddr_command16_v5_s46
 }]
 set v5_shared [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_mlp_shared_dual_slice16x12_s43_s45 ||
-    REF_NAME == hap_mlp_shared_dual_slice16x12_s43_s45
+    ORIG_REF_NAME == hap_mlp_shared_dual_slice16x12_s44_s46 ||
+    REF_NAME == hap_mlp_shared_dual_slice16x12_s44_s46
 }]
 set v5_local [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_mlp_shared_local_slice8x12_s43_s45 ||
-    REF_NAME == hap_mlp_shared_local_slice8x12_s43_s45
+    ORIG_REF_NAME == hap_mlp_shared_local_slice8x12_s44_s46 ||
+    REF_NAME == hap_mlp_shared_local_slice8x12_s44_s46
 }]
 set v4_shared [get_cells -quiet -hierarchical -filter {
     ORIG_REF_NAME == hap_mlp_shared_dual_slice16x16_s43_s45 ||
@@ -114,8 +114,8 @@ set v4_kernel [get_cells -quiet -hierarchical -filter {
     REF_NAME == hap_a8w4_slice8x16_group_s36
 }]
 set v5_kernel [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_a8w4_slice8x12_group_s36 ||
-    REF_NAME == hap_a8w4_slice8x12_group_s36
+    ORIG_REF_NAME == hap_a8w4_slice8x12_group_s37 ||
+    REF_NAME == hap_a8w4_slice8x12_group_s37
 }]
 set history2_repack [get_cells -quiet -hierarchical -filter {
     ORIG_REF_NAME == hap_mlp_projection_repack12_to16_s24_history2 ||
@@ -216,16 +216,16 @@ set down_activation_cache [get_cells -quiet -hierarchical -filter {
     REF_NAME == hap_mlp_down_activation_cache16
 }]
 set gate_accums [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_mlp_tile_accum_s36 ||
-    REF_NAME == hap_mlp_tile_accum_s36
+    ORIG_REF_NAME == hap_mlp_tile_accum_s37 ||
+    REF_NAME == hap_mlp_tile_accum_s37
 }]
 set down_accums [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_mlp_down_group_major_accum_s45 ||
-    REF_NAME == hap_mlp_down_group_major_accum_s45
+    ORIG_REF_NAME == hap_mlp_down_group_major_accum_s46 ||
+    REF_NAME == hap_mlp_down_group_major_accum_s46
 }]
 set down_elastic2 [get_cells -quiet -hierarchical -filter {
-    ORIG_REF_NAME == hap_mlp_down_branch_elastic2_s24 ||
-    REF_NAME == hap_mlp_down_branch_elastic2_s24
+    ORIG_REF_NAME == hap_mlp_down_branch_elastic2_s24_v6 ||
+    REF_NAME == hap_mlp_down_branch_elastic2_s24_v6
 }]
 set attention_center_subshards \
     [cells_below_roots $attention_center_shard $attention_leaf_shards]

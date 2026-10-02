@@ -6,10 +6,10 @@ set out [file normalize $::env(HAP_XDC_INVENTORY)]
 set core_refs {
     hap_attention_mlp_board_core
     hap_attention_mlp_production_core
-    hap_mlp_serial_ddr_command16_v5_s45
-    hap_mlp_shared_dual_slice16x12_s43_s45
-    hap_mlp_shared_local_slice8x12_s43_s45
-    hap_a8w4_slice8x12_group_s36
+    hap_mlp_serial_ddr_command16_v5_s46
+    hap_mlp_shared_dual_slice16x12_s44_s46
+    hap_mlp_shared_local_slice8x12_s44_s46
+    hap_a8w4_slice8x12_group_s37
 }
 set user_xdc_name attention_mlp_vcu118_board_v5.xdc
 set fp [open $out w]

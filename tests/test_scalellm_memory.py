@@ -4,6 +4,8 @@ import unittest
 from unittest.mock import Mock
 
 from host.scalellm_memory import (
+    ACTIVATION_INPUT_PAYLOAD_BYTES,
+    ACTIVATION_OUTPUT_PAYLOAD_BYTES,
     ACTIVATION_PAYLOAD_BYTES,
     ATTENTION_META_BYTES,
     DDR_CHANNEL_BYTES,
@@ -78,6 +80,8 @@ class ScaleLLMMemoryTests(unittest.TestCase):
         self.assertEqual(activation_base(0, 0), 0x7C00_0000)
         self.assertEqual(activation_base(1, 2), 0x7C50_0000)
         self.assertLessEqual(ACTIVATION_PAYLOAD_BYTES, 1 << 20)
+        self.assertEqual(ACTIVATION_INPUT_PAYLOAD_BYTES, 192 << 10)
+        self.assertEqual(ACTIVATION_OUTPUT_PAYLOAD_BYTES, 256 << 10)
         self.assertEqual(attention_meta_base(0), 0x7C80_0000)
         self.assertEqual(attention_meta_base(1), 0x7CC0_0000)
         self.assertLessEqual(ATTENTION_META_BYTES, 4 << 20)

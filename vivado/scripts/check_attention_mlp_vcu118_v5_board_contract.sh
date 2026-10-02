@@ -72,10 +72,14 @@ reject_text() {
 expand_manifest "$MANIFEST"
 
 for required in \
-    rtl/mlp/hap_a8w4_slice8x12_group_s36.sv \
-    rtl/mlp/hap_mlp_shared_dual_slice16x12_s43_s45.sv \
-    rtl/mlp/hap_mlp_serial_ddr_command16_v5_s45.sv \
-    rtl/mlp/hap_mlp_full_command16_v5_s45.sv \
+    rtl/mlp/hap_a8w4_group32_lane2_s37.sv \
+    rtl/mlp/hap_a8w4_slice8x12_group_s37.sv \
+    rtl/mlp/hap_mlp_tile_accum_s37.sv \
+    rtl/mlp/hap_mlp_down_group_major_accum_s46.sv \
+    rtl/mlp/hap_mlp_down_v5_scheduler16_s46.sv \
+    rtl/mlp/hap_mlp_shared_dual_slice16x12_s44_s46.sv \
+    rtl/mlp/hap_mlp_serial_ddr_command16_v5_s46.sv \
+    rtl/mlp/hap_mlp_full_command16_v5_s46.sv \
     rtl/integration/hap_attention_mlp_resource_top.sv \
     rtl/integration/hap_attention_mlp_production_core.sv \
     rtl/integration/hap_attention_mlp_board_core.sv \
@@ -91,16 +95,27 @@ for forbidden in \
     rtl/mlp/hap_mlp_gate_up_external_scheduler16_q4.sv \
     rtl/mlp/hap_mlp_down_activation_replay16.sv \
     rtl/mlp/hap_mlp_serial_ddr_command16_s45.sv \
-    rtl/mlp/hap_mlp_full_command16_s45.sv; do
+    rtl/mlp/hap_mlp_full_command16_s45.sv \
+    rtl/mlp/hap_a8w4_group32_lane2_s36.sv \
+    rtl/mlp/hap_a8w4_slice8x12_group_s36.sv \
+    rtl/mlp/hap_mlp_tile_accum_s36.sv \
+    rtl/mlp/hap_mlp_down_group_major_accum_s45.sv \
+    rtl/mlp/hap_mlp_shared_dual_slice16x12_s43_s45.sv \
+    rtl/mlp/hap_mlp_serial_ddr_command16_v5_s45.sv \
+    rtl/mlp/hap_mlp_full_command16_v5_s45.sv; do
     reject_source "$forbidden"
 done
 
-require_text "$ROOT/rtl/mlp/hap_mlp_full_command16_v5_s45.sv" \
-    '`define HAP_MLP_FULL_COMMAND_V5_MODULE hap_mlp_full_command16_v5_s45'
-require_text "$ROOT/rtl/mlp/hap_mlp_full_command16_v5_s45.sv" \
+require_text "$ROOT/rtl/mlp/hap_mlp_full_command16_v5_s46.sv" \
+    '`define HAP_MLP_FULL_COMMAND_V5_MODULE hap_mlp_full_command16_v5_s46'
+require_text "$ROOT/rtl/mlp/hap_mlp_full_command16_v5_s46.sv" \
     'module `HAP_MLP_FULL_COMMAND_V5_MODULE #('
 require_text "$ROOT/rtl/integration/hap_attention_mlp_resource_top.sv" \
-    'hap_mlp_full_command16_s45 u_mlp('
+    'hap_mlp_full_command16_s46 u_mlp('
+require_text "$ROOT/rtl/integration/hap_mlp_axil_control.sv" \
+    "localparam [31:0] FULL_FORMAT_ID = 32'h4838_4603;"
+reject_text "$ROOT/rtl/integration/hap_mlp_axil_control.sv" \
+    "localparam [31:0] FULL_FORMAT_ID = 32'h4838_4602;"
 
 require_text "$WRAPPER" 'set ::env(HAP_BOARD_PROFILE) V5_FULL_BOARD'
 require_text "$WRAPPER" 'set_param general.maxThreads $jobs'
@@ -109,7 +124,7 @@ require_text "$WRAPPER" 'attention_mlp_board_core_v5_sources.list'
 require_text "$WRAPPER" 'HAP_BOARD_BUILD'
 require_text "$WRAPPER" 'HAP_BOARD_V5'
 require_text "$WRAPPER" \
-    'HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s45'
+    'HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s46'
 require_text "$WRAPPER" 'set ::env(HAP_BOARD_CORE_CLK_MHZ) 100.0'
 require_text "$WRAPPER" 'set ::env(HAP_BOARD_DDR_UI_CLK_HZ) 300000000'
 require_text "$BD_LAUNCHER" 'export HAP_JOBS="${HAP_JOBS:-32}"'
@@ -192,13 +207,17 @@ PROVENANCE_LIB="$ROOT/vivado/scripts/v5_board_build_provenance.sh"
 PROVENANCE_TEST="$ROOT/vivado/scripts/test_v5_board_build_provenance.sh"
 BITSTREAM_PROVENANCE_TEST="$ROOT/vivado/scripts/test_attention_mlp_vcu118_v5_bitstream_provenance.sh"
 AUDIT_PROVENANCE_TEST="$ROOT/vivado/scripts/test_attention_mlp_vcu118_v5_post_route_audit_provenance.sh"
+BOARD_QUEUE=\
+"$ROOT/vivado/scripts/run_attention_mlp_vcu118_v5_board_when_p14_route_pass.sh"
+BOARD_QUEUE_TEST=\
+"$ROOT/vivado/scripts/test_attention_mlp_vcu118_v5_board_queue_static.sh"
 BUFG_TOPOLOGY_TEST=\
 "$ROOT/vivado/scripts/test_attention_mlp_vcu118_v5_bufg_topology_static.tcl"
 for required_file in "$BOARD_GATE" "$BITSTREAM_LAUNCHER" \
         "$AUDIT_TCL" "$AUDIT_LAUNCHER" "$SELECTOR_LIB" "$APPLY" \
         "$PROVENANCE_LIB" "$PROVENANCE_TEST" \
         "$BITSTREAM_PROVENANCE_TEST" "$AUDIT_PROVENANCE_TEST" \
-        "$BUFG_TOPOLOGY_TEST"; do
+        "$BOARD_QUEUE" "$BOARD_QUEUE_TEST" "$BUFG_TOPOLOGY_TEST"; do
     [[ -s "$required_file" ]] || fail "missing board gate source: $required_file"
 done
 BUFG_TEST_OUTPUT="$(tclsh "$BUFG_TOPOLOGY_TEST")" || \
@@ -265,7 +284,13 @@ require_text "$BOARD_GATE" \
 require_text "$BOARD_GATE" 'projection_core16x16_w8_reuse_ooc_floorplan.tcl'
 require_text "$BOARD_GATE" 'v5_production_p5_input_partition_floorplan.tcl'
 require_text "$BOARD_GATE" \
-    'v5_production_p6_postprocess_partition_floorplan.tcl'
+    'v5_production_p9_postprocess_partition_floorplan.tcl'
+require_text "$BOARD_GATE" \
+    'v5_production_p9_quantizer3_locality_floorplan.tcl'
+require_text "$BOARD_GATE" \
+    'v5_production_p14_region2_x2_relief_floorplan.tcl'
+require_text "$BOARD_GATE" \
+    'audit_mlp_p8_parent_ingress_boundary_replica_aware.tcl'
 require_text "$BOARD_GATE" \
     '[hap_projection_ooc_floorplan::discover $projection_root 1]'
 require_text "$BOARD_GATE" \
@@ -273,9 +298,15 @@ require_text "$BOARD_GATE" \
 require_text "$BOARD_GATE" \
     'set p5_pblock_audit [hap_v5_p5_input_partition::audit $p5_plan 1]'
 require_text "$BOARD_GATE" \
-    'set p6_plan [hap_v5_p6_postprocess_partition::discover \'
+    'set p9_postprocess_plan [hap_v5_p9_postprocess_partition::discover \'
 require_text "$BOARD_GATE" \
-    '[hap_v5_p6_postprocess_partition::audit $p6_plan 1]'
+    '[hap_v5_p9_postprocess_partition::audit $p9_postprocess_plan 1]'
+require_text "$BOARD_GATE" \
+    '[hap_v5_p9_quantizer3_locality::audit $p9_quantizer3_plan 1]'
+require_text "$BOARD_GATE" \
+    '[hap_v5_p14_region2_relief::audit $p14_relief_plan 1]'
+require_text "$BOARD_GATE" \
+    'set p8_parent_audit [hap_mlp_p8_parent_boundary::audit]'
 require_text "$BOARD_GATE" \
     '[hap_v5_floorplan::physical_ok $floorplan_plan $floorplan_metrics]'
 require_text "$BOARD_GATE" 'selectors_post_route.txt'
@@ -284,8 +315,13 @@ require_text "$BOARD_GATE" 'attention_geometry_placement_post_route.txt'
 require_text "$BOARD_GATE" 'base_pblocks_post_route.txt'
 require_text "$BOARD_GATE" 'p5_input_plan_post_route.txt'
 require_text "$BOARD_GATE" 'p5_input_pblocks_post_route.txt'
-require_text "$BOARD_GATE" 'p6_postprocess_plan_post_route.txt'
-require_text "$BOARD_GATE" 'p6_postprocess_pblocks_post_route.txt'
+require_text "$BOARD_GATE" 'p9_postprocess_plan_post_route.txt'
+require_text "$BOARD_GATE" 'p9_postprocess_pblocks_post_route.txt'
+require_text "$BOARD_GATE" 'p9_quantizer3_plan_post_route.txt'
+require_text "$BOARD_GATE" 'p9_quantizer3_pblock_post_route.txt'
+require_text "$BOARD_GATE" 'p14_region2_relief_plan_post_route.txt'
+require_text "$BOARD_GATE" 'p14_region2_relief_pblock_post_route.txt'
+require_text "$BOARD_GATE" 'p8_parent_ingress_boundary_post_route.txt'
 require_text "$BOARD_GATE" '$cdc_critical == 0 && $floorplan_contract_ok &&'
 require_text "$BOARD_GATE" \
     '$projection_weight_capture_ok && $architecture_boundary_ok &&'
@@ -301,7 +337,10 @@ require_text "$BOARD_GATE" 'pblock_count [llength [get_pblocks -quiet]]'
 require_text "$BOARD_GATE" 'canonical_pblock_count [dict get $base_pblock_audit pblock_count]'
 require_text "$BOARD_GATE" 'geometry_pblock_count [dict get $geometry_audit pblock_count]'
 require_text "$BOARD_GATE" 'p5_added_pblock_count [dict get $p5_pblock_audit pblock_count]'
-require_text "$BOARD_GATE" 'p6_added_pblock_count [dict get $p6_pblock_audit pblock_count]'
+require_text "$BOARD_GATE" \
+    'p9_postprocess_added_pblock_count \'
+require_text "$BOARD_GATE" 'p9_quantizer3_added_pblock_count 1'
+require_text "$BOARD_GATE" 'p14_region2_relief_added_pblock_count 0'
 require_text "$BOARD_GATE" 'pblock_dsp_coverage [dict get $base_pblock_audit dsp_coverage]'
 require_text "$BOARD_GATE" 'pblock_uram_coverage [dict get $base_pblock_audit uram_coverage]'
 require_text "$BOARD_GATE" \
@@ -312,22 +351,35 @@ require_text "$BOARD_GATE" 'outer0_dsp48e2 [dict get $floorplan_plan outer0_dsp]
 require_text "$BOARD_GATE" \
     'p5_contract [dict get $p5_plan contract]'
 require_text "$BOARD_GATE" \
-    'p6_contract [dict get $p6_plan contract]'
+    'p9_postprocess_contract [dict get $p9_postprocess_plan contract]'
 require_text "$BOARD_GATE" \
-    'projected_slr_dsp48e2 {1862 1781 1810}'
+    'p9_quantizer3_contract [dict get $p9_quantizer3_plan contract]'
+require_text "$BOARD_GATE" \
+    'p14_region2_relief_contract [dict get $p14_relief_plan contract]'
+require_text "$BOARD_GATE" \
+    'projected_slr_dsp48e2 $expected_slr_dsp'
+require_text "$BOARD_GATE" \
+    'set hap_v5_board_gate_slr_dsp {1862 1781 1810}'
+require_text "$BOARD_GATE" \
+    'set hap_v5_board_gate_slr_dsp {1862 1777 1810}'
 for literal in \
-    'v5_production_p6_postprocess_partition_floorplan.tcl' \
-    'set p6_contract P6_POSTPROCESS_GROUP4_SPLIT_4_8_4' \
-    'set p7_contract P7_ATTN_REGION2_ROWS_Y5_Y6_Y6_Y8' \
-    'set region2_variant rowsplit_y5_y6_y6_y8' \
-    'set p6_plan [hap_v5_p6_postprocess_partition::discover $plan $p5_plan]' \
-    'hap_v5_p6_postprocess_partition::apply $p6_plan' \
-    'set p6_audit [hap_v5_p6_postprocess_partition::audit $p6_plan 0]' \
-    '[llength [get_pblocks -quiet]] != 27' \
-    'v5_board_p6_postprocess_plan_pre_place.txt' \
-    'V5_BOARD_P6_POSTPROCESS_PLAN_PRE_PLACE_PASS' \
-    'v5_board_p6_postprocess_pblocks_pre_place.txt' \
-    'V5_BOARD_P6_POSTPROCESS_PBLOCK_PRE_PLACE_PASS'; do
+    'v5_production_p9_postprocess_partition_floorplan.tcl' \
+    'v5_production_p9_quantizer3_locality_floorplan.tcl' \
+    'v5_production_p14_region2_x2_relief_floorplan.tcl' \
+    'set p9_postprocess_contract P9_POSTPROCESS_SPLIT_6_4_6' \
+    'set p9_quantizer3_contract P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6' \
+    'set p14_region2_relief_contract P14_ATTN_REGION2_SHARED_X0_X2' \
+    '[hap_v5_p9_postprocess_partition::discover $plan $p5_plan]' \
+    'hap_v5_p9_postprocess_partition::apply $p9_postprocess_plan' \
+    'hap_v5_p9_quantizer3_locality::apply $p9_quantizer3_plan' \
+    'hap_v5_p14_region2_relief::apply $p14_relief_plan' \
+    '[llength [get_pblocks -quiet]] != 26' \
+    'v5_board_p9_postprocess_plan_pre_place.txt' \
+    'V5_BOARD_P9_POSTPROCESS_PLAN_PRE_PLACE_PASS' \
+    'v5_board_p9_quantizer3_plan_pre_place.txt' \
+    'V5_BOARD_P9_QUANTIZER3_PLAN_PRE_PLACE_PASS' \
+    'v5_board_p14_region2_relief_plan_pre_place.txt' \
+    'V5_BOARD_P14_REGION2_RELIEF_PLAN_PRE_PLACE_PASS'; do
     require_text "$APPLY" "$literal"
 done
 for literal in \
@@ -353,45 +405,51 @@ require_text "$AUDIT_LAUNCHER" \
     'for exact in no_clock_endpoints=0 unconstrained_paths=0 \'
 for literal in \
     'set ooc_route_artifact [file normalize $::env(HAP_OOC_ROUTE_DIR)]' \
-    'HAP_BOARD_INPUT_COUNT 123' \
-    'HAP_BOARD_IMMUTABLE_INPUT_COUNT 122' \
+    'HAP_BOARD_INPUT_COUNT $expected_board_input_count' \
+    'HAP_BOARD_IMMUTABLE_INPUT_COUNT $expected_board_immutable_input_count' \
     'HAP_BOARD_SOURCE_MANIFEST_COUNT 3' \
     'HAP_BOARD_RTL_SOURCE_COUNT 87' \
     'HAP_BOARD_SOURCE_CLOSURE_COUNT 90' \
     'sha256sum --status -c --strict $path' \
     'ooc_route_input_sha' \
     'ooc_route_output_sha' \
-    'status=V5_P10_P7_PRODUCTION_OOC_POST_ROUTE_PASS' \
-    'status=V5_P7_ROUTE_FINAL_SELECTORS_PASS' \
-    'status=V5_P7_ROUTE_FINAL_GEOMETRY_PASS' \
-    'status=V5_P7_ROUTE_FINAL_GEOMETRY_PLACEMENT_PASS' \
-    'status=V5_P7_ROUTE_FINAL_BASE_PBLOCKS_PASS' \
-    'status=V5_P7_ROUTE_FINAL_INPUT_PLAN_PASS' \
-    'status=V5_P7_ROUTE_FINAL_INPUT_PBLOCKS_PASS' \
-    'status=V5_P7_ROUTE_FINAL_POSTPROCESS_PLAN_PASS' \
-    'status=V5_P7_ROUTE_FINAL_POSTPROCESS_PBLOCKS_PASS' \
+    'status=V5_P10_P14_PRODUCTION_OOC_POST_ROUTE_PASS' \
+    'status=V5_P14_ROUTE_FINAL_SELECTORS_PASS' \
+    'status=V5_P14_ROUTE_FINAL_GEOMETRY_PASS' \
+    'status=V5_P14_ROUTE_FINAL_GEOMETRY_PLACEMENT_PASS' \
+    'status=V5_P14_ROUTE_FINAL_BASE_PBLOCKS_PASS' \
+    'status=V5_P14_ROUTE_FINAL_INPUT_PLAN_PASS' \
+    'status=V5_P14_ROUTE_FINAL_INPUT_PBLOCKS_PASS' \
+    'status=V5_P14_ROUTE_FINAL_POSTPROCESS_PLAN_PASS' \
+    'status=V5_P14_ROUTE_FINAL_POSTPROCESS_PBLOCKS_PASS' \
+    'status=V5_P14_ROUTE_FINAL_QUANTIZER3_PLAN_PASS' \
+    'status=V5_P14_ROUTE_FINAL_QUANTIZER3_PBLOCK_PASS' \
+    'status=V5_P14_ROUTE_FINAL_REGION2_RELIEF_PLAN_PASS' \
+    'status=V5_P14_ROUTE_FINAL_REGION2_RELIEF_PBLOCK_PASS' \
     'p5_contract=P5_INPUT_HALF_LOCAL_8_8' \
-    'p6_contract=P6_POSTPROCESS_GROUP4_SPLIT_4_8_4' \
-    'p7_contract=P7_ATTN_REGION2_ROWS_Y5_Y6_Y6_Y8' \
-    'region2_variant=rowsplit_y5_y6_y6_y8' \
-    'slr0_dsp48e2=1862' \
-    'slr1_dsp48e2=1781' \
-    'slr2_dsp48e2=1810' \
-    'route_input_manifest_entries=25' \
+    'p9_postprocess_contract=P9_POSTPROCESS_SPLIT_6_4_6' \
+    'p9_quantizer3_contract=P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6' \
+    'p14_region2_relief_contract=P14_ATTN_REGION2_SHARED_X0_X2' \
+    'set expected_ooc_route_input_count 33' \
+    'set expected_ooc_route_input_count 39' \
+    'route_input_manifest_entries=$expected_ooc_route_input_count' \
+    'center_region2_rows0_3_primitives=$expected_region2_rows0_3_primitives' \
+    'center_region2_rows4_7_primitives=$expected_region2_rows4_7_primitives' \
+    'center_region2_residual_primitives=$expected_region2_residual_primitives' \
     'swiglu_local_clear_ff=8' \
     'swiglu_local_clear_protected_ff=8' \
     'swiglu_direct_clear_bypass_state=0' \
     'foreach literal {status=PASS final_exit_code=0 vivado_exit_code=0 \' \
     'puts $fp "ooc_route_authorization_verified=1"' \
-    'puts $fp "complete_input_count=123"' \
-    'puts $fp "immutable_input_count=122"' \
+    'puts $fp "complete_input_count=$expected_board_input_count"' \
+    'puts $fp "immutable_input_count=$expected_board_immutable_input_count"' \
     'puts $fp "recursive_source_manifest_count=3"' \
     'puts $fp "recursive_rtl_source_count=87"' \
     'puts $fp "recursive_source_closure_count=90"'; do
     require_text "$BUILD_TCL" "$literal"
 done
 for literal in \
-    'set exact_inputs [list $dcp $bitstream $xdc_inventory $audit_tcl' \
+    'set exact_inputs [list $dcp $bitstream $xdc_inventory $board_summary $audit_tcl' \
     'set frozen_inputs [hap_audit_verify_inputs $input_sha' \
     'expected_input_manifest_sha' \
     'audit_input_manifest_entries=[dict size $frozen_inputs]' \
@@ -401,7 +459,7 @@ done
 for literal in \
     'V5_BOARD_BITSTREAM_PROVENANCE_TEST_PASS' \
     'manifest_self_synchronized_mutation_negative=PASS' \
-    'p7_route_to_open_project_positive=PASS' \
+    'p14_route_to_open_project_positive=PASS' \
     'immutable_post_tool_mutation_negative=PASS' \
     'failure_dynamic_archive=PASS'; do
     require_text "$BITSTREAM_PROVENANCE_TEST" "$literal"
@@ -439,8 +497,13 @@ for launcher in "$BITSTREAM_LAUNCHER" "$AUDIT_LAUNCHER"; do
     require_text "$launcher" 'base_pblocks_post_route.txt'
     require_text "$launcher" 'p5_input_plan_post_route.txt'
     require_text "$launcher" 'p5_input_pblocks_post_route.txt'
-    require_text "$launcher" 'p6_postprocess_plan_post_route.txt'
-    require_text "$launcher" 'p6_postprocess_pblocks_post_route.txt'
+    require_text "$launcher" 'p9_postprocess_plan_post_route.txt'
+    require_text "$launcher" 'p9_postprocess_pblocks_post_route.txt'
+    require_text "$launcher" 'p9_quantizer3_plan_post_route.txt'
+    require_text "$launcher" 'p9_quantizer3_pblock_post_route.txt'
+    require_text "$launcher" 'p14_region2_relief_plan_post_route.txt'
+    require_text "$launcher" 'p14_region2_relief_pblock_post_route.txt'
+    require_text "$launcher" 'p8_parent_ingress_boundary_post_route.txt'
     require_text "$launcher" 'architecture_boundaries_post_route.txt'
     require_text "$launcher" 'mlp_local_clear_protected_ff=2'
     require_text "$launcher" 'swiglu_local_clear_ff=8'
@@ -460,15 +523,16 @@ for launcher in "$BITSTREAM_LAUNCHER" "$AUDIT_LAUNCHER"; do
         "grep -Fqx 'pblock_contract_variant=P2_COHORT16_COL2_12_2'"
     require_text "$launcher" "grep -Fqx 'p5_contract=P5_INPUT_HALF_LOCAL_8_8'"
     require_text "$launcher" \
-        "grep -Fqx 'p6_contract=P6_POSTPROCESS_GROUP4_SPLIT_4_8_4'"
+        "grep -Fqx 'p9_postprocess_contract=P9_POSTPROCESS_SPLIT_6_4_6'"
     require_text "$launcher" \
-        "grep -Fqx 'p7_contract=P7_ATTN_REGION2_ROWS_Y5_Y6_Y6_Y8'"
+        "grep -Fqx 'p9_quantizer3_contract=P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6'"
     require_text "$launcher" \
-        "grep -Fqx 'region2_variant=rowsplit_y5_y6_y6_y8'"
-    require_text "$launcher" "grep -Fqx 'pblock_count=27'"
-    require_text "$launcher" "grep -Fqx 'total_pblock_count=27'"
+        "grep -Fqx 'p14_region2_relief_contract=P14_ATTN_REGION2_SHARED_X0_X2'"
+    require_text "$launcher" "grep -Fqx 'pblock_count=26'"
+    require_text "$launcher" "grep -Fqx 'total_pblock_count=26'"
     require_text "$launcher" "grep -Fqx 'physical_placement_ok=1'"
-    require_text "$launcher" "grep -Fqx 'pblock_dsp_coverage=5453'"
+    require_text "$launcher" \
+        'pblock_dsp_coverage=$HAP_BOARD_EXPECTED_TOTAL_DSP'
     require_text "$launcher" "grep -Fqx 'pblock_uram_coverage=752'"
     require_text "$launcher" "grep -c '^status='"
     require_text "$launcher" 'status=V5_BOARD_POST_ROUTE_SELECTORS_PASS'
@@ -480,10 +544,23 @@ for launcher in "$BITSTREAM_LAUNCHER" "$AUDIT_LAUNCHER"; do
     require_text "$launcher" \
         'status=V5_BOARD_POST_ROUTE_P5_INPUT_PBLOCKS_PASS'
     require_text "$launcher" \
-        'status=V5_BOARD_POST_ROUTE_P6_POSTPROCESS_PLAN_PASS'
+        'status=V5_BOARD_POST_ROUTE_P9_POSTPROCESS_PLAN_PASS'
     require_text "$launcher" \
-        'status=V5_BOARD_POST_ROUTE_P6_POSTPROCESS_PBLOCKS_PASS'
-    require_text "$launcher" 'slr1_dsp48e2=1781'
+        'status=V5_BOARD_POST_ROUTE_P9_POSTPROCESS_PBLOCKS_PASS'
+    require_text "$launcher" \
+        'status=V5_BOARD_POST_ROUTE_P9_QUANTIZER3_PLAN_PASS'
+    require_text "$launcher" \
+        'status=V5_BOARD_POST_ROUTE_P14_REGION2_RELIEF_PLAN_PASS'
+    require_text "$launcher" \
+        'status=V5_BOARD_POST_ROUTE_P8_PARENT_INGRESS_BOUNDARY_PASS'
+    require_text "$launcher" \
+        'slr1_dsp48e2=$HAP_BOARD_EXPECTED_SLR1_DSP'
+    require_text "$launcher" \
+        'center_region2_rows0_3_primitives=$HAP_BOARD_EXPECTED_REGION2_ROWS0_3_PRIMITIVES'
+    require_text "$launcher" \
+        'center_region2_rows4_7_primitives=$HAP_BOARD_EXPECTED_REGION2_ROWS4_7_PRIMITIVES'
+    require_text "$launcher" \
+        'center_region2_residual_primitives=$HAP_BOARD_EXPECTED_REGION2_RESIDUAL_PRIMITIVES'
     require_text "$launcher" 'bufg_topology_post_route.txt'
     require_text "$launcher" "grep -Fqx 'real_bufg_bad_connections=0'"
     require_text "$launcher" "grep -Fqx 'bufg_gt_data=0'"
@@ -516,8 +593,9 @@ for literal in \
     '"${#SOURCE_MANIFESTS[@]}" -eq 3' \
     '"${#RTL_SOURCES[@]}" -eq 87' \
     '"${#SOURCE_CLOSURE[@]}" -eq 90' \
-    '"${#INPUTS[@]}" -eq 123' \
-    '"$HAP_BOARD_IMMUTABLE_INPUT_COUNT" -eq 122' \
+    '"${#INPUTS[@]}" -eq "$HAP_BOARD_EXPECTED_INPUT_COUNT"' \
+    '"$HAP_BOARD_IMMUTABLE_INPUT_COUNT" -eq \' \
+    '"$HAP_BOARD_EXPECTED_IMMUTABLE_INPUT_COUNT"' \
     'RECURSIVE_SOURCE_SHA256SUMS' \
     'OOC_ROUTE_AUTHORIZATION_SHA256SUMS' \
     'sha256sum -c --strict "$HAP_REPORT_DIR/INPUT_SHA256SUMS"' \
@@ -569,10 +647,11 @@ case "$AUDIT_FRONT_ORDER" in
 esac
 for literal in \
     'hap_v5_read_sha_manifest_paths_dynamic "$output_sha"' \
-    'hap_v5_read_path_list "$input_files" 25' \
-    'hap_v5_read_sha_manifest_paths "$input_sha" 25' \
+    'hap_v5_read_path_list "$input_files" "$expected_route_input_count"' \
+    'hap_v5_read_sha_manifest_paths "$input_sha" "$expected_route_input_count"' \
     'complete OOC route output manifest' \
-    'hap_v5_read_sha_manifest_paths "$place_dir/INPUT_SHA256SUMS" 11' \
+    'hap_v5_read_sha_manifest_paths "$place_dir/INPUT_SHA256SUMS" \' \
+    '"$place_input_count"' \
     'hap_v5_read_sha_manifest_paths_dynamic \' \
     '"$place_dir/OUTPUT_SHA256SUMS" place_output_paths' \
     'place_output_manifest_entries="${#place_output_paths[@]}"' \
@@ -590,21 +669,30 @@ for literal in \
     'hap_v5_require_same_path_set expected_place_output_paths \' \
     'place_output_paths "complete place output SHA manifest"' \
     'hap_v5_require_same_path_set expected_inputs route_input_paths' \
+    'expected_route_input_count=39' \
+    'region2_primitives "P16 production region2 summary"' \
+    'p16_production_region2_summary_sha256' \
+    'P16_PRODUCTION_POST_OPT_SHA256' \
+    'P16 no-clip region2 partition/relief identity mismatch' \
     'hap_v5_require_path_member place_output_paths "$input_dcp"' \
-    'status=V5_P10_P7_PRODUCTION_OOC_POST_ROUTE_PASS' \
-    'status=V5_P7_ROUTE_FINAL_SELECTORS_PASS' \
-    'status=V5_P7_ROUTE_FINAL_GEOMETRY_PASS' \
-    'status=V5_P7_ROUTE_FINAL_GEOMETRY_PLACEMENT_PASS' \
-    'status=V5_P7_ROUTE_FINAL_BASE_PBLOCKS_PASS' \
-    'status=V5_P7_ROUTE_FINAL_INPUT_PLAN_PASS' \
-    'status=V5_P7_ROUTE_FINAL_INPUT_PBLOCKS_PASS' \
-    'status=V5_P7_ROUTE_FINAL_POSTPROCESS_PLAN_PASS' \
-    'status=V5_P7_ROUTE_FINAL_POSTPROCESS_PBLOCKS_PASS' \
+    'status=V5_P10_P14_PRODUCTION_OOC_POST_ROUTE_PASS' \
+    'status=V5_P14_ROUTE_FINAL_SELECTORS_PASS' \
+    'status=V5_P14_ROUTE_FINAL_GEOMETRY_PASS' \
+    'status=V5_P14_ROUTE_FINAL_GEOMETRY_PLACEMENT_PASS' \
+    'status=V5_P14_ROUTE_FINAL_BASE_PBLOCKS_PASS' \
+    'status=V5_P14_ROUTE_FINAL_INPUT_PLAN_PASS' \
+    'status=V5_P14_ROUTE_FINAL_INPUT_PBLOCKS_PASS' \
+    'status=V5_P14_ROUTE_FINAL_POSTPROCESS_PLAN_PASS' \
+    'status=V5_P14_ROUTE_FINAL_POSTPROCESS_PBLOCKS_PASS' \
+    'status=V5_P14_ROUTE_FINAL_QUANTIZER3_PLAN_PASS' \
+    'status=V5_P14_ROUTE_FINAL_QUANTIZER3_PBLOCK_PASS' \
+    'status=V5_P14_ROUTE_FINAL_REGION2_RELIEF_PLAN_PASS' \
+    'status=V5_P14_ROUTE_FINAL_REGION2_RELIEF_PBLOCK_PASS' \
     'architecture_boundaries_input.txt' \
     'architecture_boundaries_post_route.txt' \
-    'V5_P7_ROUTE_INPUT_BOUNDARIES_PASS' \
-    'V5_P7_ROUTE_FINAL_BOUNDARIES_PASS' \
-    'place_input_manifest_entries=11' \
+    'V5_P14_ROUTE_INPUT_BOUNDARIES_PASS' \
+    'V5_P14_ROUTE_FINAL_BOUNDARIES_PASS' \
+    'place_input_manifest_entries=${#place_inputs[@]}' \
     'architecture_boundary_ok=1' \
     'bitstream_generated=0' \
     'find "$route_dir" -maxdepth 1 -type f -name '\''*.bit'\'''; do
@@ -665,6 +753,19 @@ case "$AUDIT_ORDER" in
 'set result [hap_v5_board_gate::audit $out $xdc_inventory $bitstream]'*) ;;
     *) fail 'independent input SHA gate/checkpoint/full-board order is invalid' ;;
 esac
+
+BOARD_QUEUE_TEST_OUTPUT="$(bash "$BOARD_QUEUE_TEST")" || \
+    fail 'P14 route-to-board queue static regression failed'
+[[ "$(grep -Fxc 'V5_BOARD_QUEUE_STATIC_TEST_PASS' \
+    <<< "$BOARD_QUEUE_TEST_OUTPUT")" -eq 1 ]] || \
+    fail 'P14 route-to-board queue PASS marker is not unique'
+[[ "$(grep -Fxc \
+    'stage_order=route_verify,bd_create,board_build,independent_audit' \
+    <<< "$BOARD_QUEUE_TEST_OUTPUT")" -eq 1 ]] || \
+    fail 'P14 route-to-board queue stage order drifted'
+[[ "$(grep -Fxc 'hardware_programming=0' \
+    <<< "$BOARD_QUEUE_TEST_OUTPUT")" -eq 1 ]] || \
+    fail 'P14 route-to-board queue may access hardware'
 
 printf 'V5_BOARD_STATIC_CONTRACT_PASS\n'
 printf 'manifest=%s\n' "${MANIFEST#"$ROOT/"}"

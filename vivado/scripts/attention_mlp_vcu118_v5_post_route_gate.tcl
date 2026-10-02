@@ -4,20 +4,82 @@
 
 set hap_v5_board_gate_script_dir \
     [file dirname [file normalize [info script]]]
+set hap_v5_board_gate_rtl_variant [expr {
+    [info exists ::env(HAP_BOARD_RTL_VARIANT)] ?
+    $::env(HAP_BOARD_RTL_VARIANT) : "P14_LEGACY"}]
+set hap_v5_board_gate_quantizer3_primitives 11178
+set hap_v5_board_gate_relief_primitives 68799
+set hap_v5_board_gate_total_dsp 5453
+set hap_v5_board_gate_slr_dsp {1862 1781 1810}
+if {$hap_v5_board_gate_rtl_variant eq "P16_NOCLIP"} {
+    foreach variable {HAP_BOARD_EXPECTED_QUANTIZER3_PRIMITIVES
+            HAP_BOARD_EXPECTED_RELIEF_PRIMITIVES HAP_P16_POST_OPT_SUMMARY
+            HAP_P16_POST_OPT_SUMMARY_SHA256
+            HAP_P16_PRODUCTION_REGION2_SUMMARY
+            HAP_P16_PRODUCTION_REGION2_SUMMARY_SHA256
+            HAP_P16_PRODUCTION_DCP_SHA256} {
+        if {![info exists ::env($variable)] || $::env($variable) eq ""} {
+            error "P16 no-clip board gate requires $variable"
+        }
+    }
+    set hap_v5_board_gate_quantizer3_primitives \
+        $::env(HAP_BOARD_EXPECTED_QUANTIZER3_PRIMITIVES)
+    set hap_v5_board_gate_relief_primitives \
+        $::env(HAP_BOARD_EXPECTED_RELIEF_PRIMITIVES)
+    set hap_v5_board_gate_total_dsp 5449
+    set hap_v5_board_gate_slr_dsp {1862 1777 1810}
+}
+if {$hap_v5_board_gate_rtl_variant ni {P14_LEGACY P16_NOCLIP} ||
+    ![string is integer -strict $hap_v5_board_gate_quantizer3_primitives] ||
+    $hap_v5_board_gate_quantizer3_primitives <= 0 ||
+    ![string is integer -strict $hap_v5_board_gate_relief_primitives] ||
+    $hap_v5_board_gate_relief_primitives <= 0} {
+    error "invalid V5 board gate RTL variant or primitive contract"
+}
 source [file join $hap_v5_board_gate_script_dir \
     v5_production_floorplan_selectors.tcl]
-source [file join $hap_v5_board_gate_script_dir \
-    projection_core16x16_w8_reuse_ooc_floorplan.tcl]
+if {$hap_v5_board_gate_rtl_variant eq "P16_NOCLIP"} {
+    source [file join $hap_v5_board_gate_script_dir \
+        projection_core16x16_w8_reuse_ooc_p16_bound_floorplan.tcl]
+} else {
+    source [file join $hap_v5_board_gate_script_dir \
+        projection_core16x16_w8_reuse_ooc_floorplan.tcl]
+}
 source [file join $hap_v5_board_gate_script_dir \
     v5_production_p5_input_partition_floorplan.tcl]
 source [file join $hap_v5_board_gate_script_dir \
-    v5_production_p6_postprocess_partition_floorplan.tcl]
+    v5_production_p9_postprocess_partition_floorplan.tcl]
+if {$hap_v5_board_gate_rtl_variant eq "P16_NOCLIP"} {
+    source [file join $hap_v5_board_gate_script_dir \
+        v5_production_p16_noclip_quantizer3_locality_floorplan.tcl]
+    source [file join $hap_v5_board_gate_script_dir \
+        v5_production_p16_noclip_region2_x2_relief_floorplan.tcl]
+} else {
+    source [file join $hap_v5_board_gate_script_dir \
+        v5_production_p9_quantizer3_locality_floorplan.tcl]
+    source [file join $hap_v5_board_gate_script_dir \
+        v5_production_p14_region2_x2_relief_floorplan.tcl]
+}
+source [file join $hap_v5_board_gate_script_dir \
+    audit_mlp_p8_parent_ingress_boundary_replica_aware.tcl]
 unset hap_v5_board_gate_script_dir
 
 namespace eval hap_v5_board_gate {
     variable expected_part xcvu9p-flga2104-2L-e
     variable expected_top attention_mlp_vcu118_v5_bd_wrapper
 }
+set ::hap_v5_board_gate::rtl_variant $hap_v5_board_gate_rtl_variant
+set ::hap_v5_board_gate::expected_quantizer3_primitives \
+    $hap_v5_board_gate_quantizer3_primitives
+set ::hap_v5_board_gate::expected_relief_primitives \
+    $hap_v5_board_gate_relief_primitives
+set ::hap_v5_board_gate::expected_total_dsp $hap_v5_board_gate_total_dsp
+set ::hap_v5_board_gate::expected_slr_dsp $hap_v5_board_gate_slr_dsp
+unset hap_v5_board_gate_rtl_variant
+unset hap_v5_board_gate_quantizer3_primitives
+unset hap_v5_board_gate_relief_primitives
+unset hap_v5_board_gate_total_dsp
+unset hap_v5_board_gate_slr_dsp
 
 proc hap_v5_board_gate::module_cells {module_name} {
     return [lsort -dictionary [get_cells -quiet -hierarchical -filter \
@@ -58,7 +120,7 @@ proc hap_v5_board_gate::property_true {object property_name} {
 
 proc hap_v5_board_gate::mlp_local_clear_audit {} {
     set branches [hap_v5_board_gate::module_cells \
-        hap_mlp_shared_local_slice8x12_s43_s45]
+        hap_mlp_shared_local_slice8x12_s44_s46]
     hap_v5_board_gate::require_count mlp_local_clear_branches $branches 2
     set total 0
     set protected 0
@@ -241,7 +303,7 @@ proc hap_v5_board_gate::metadata_local_write_audit {} {
 
 proc hap_v5_board_gate::mlp_capture_leaf_audit {} {
     set branches [hap_v5_board_gate::module_cells \
-        hap_mlp_shared_local_slice8x12_s43_s45]
+        hap_mlp_shared_local_slice8x12_s44_s46]
     hap_v5_board_gate::require_count mlp_capture_leaf_branches $branches 2
     set leaves [hap_v5_board_gate::module_cells hap_a8w4_ingress_capture_leaf]
     set leaf_lut [get_cells -quiet -hierarchical -filter {
@@ -379,10 +441,10 @@ proc hap_v5_board_gate::parse_xdc_inventory {path} {
         foreach selector {
             hap_attention_mlp_board_core
             hap_attention_mlp_production_core
-            hap_mlp_serial_ddr_command16_v5_s45
-            hap_mlp_shared_dual_slice16x12_s43_s45
-            hap_mlp_shared_local_slice8x12_s43_s45
-            hap_a8w4_slice8x12_group_s36
+            hap_mlp_serial_ddr_command16_v5_s46
+            hap_mlp_shared_dual_slice16x12_s44_s46
+            hap_mlp_shared_local_slice8x12_s44_s46
+            hap_a8w4_slice8x12_group_s37
         } {
             if {[string first $selector $scoped_ref_values] >= 0 ||
                 [string first $selector $scoped_cell_values] >= 0} {
@@ -828,6 +890,11 @@ proc hap_v5_board_gate::bufg_topology {production_core} {
 proc hap_v5_board_gate::audit {out xdc_inventory {bitstream ""}} {
     variable expected_part
     variable expected_top
+    variable rtl_variant
+    variable expected_quantizer3_primitives
+    variable expected_relief_primitives
+    variable expected_total_dsp
+    variable expected_slr_dsp
     file mkdir $out
 
     if {![string match "2025.2*" [version -short]]} {
@@ -844,15 +911,15 @@ proc hap_v5_board_gate::audit {out xdc_inventory {bitstream ""}} {
     set production_cores [hap_v5_board_gate::module_cells \
         hap_attention_mlp_production_core]
     set v5_serial [hap_v5_board_gate::module_cells \
-        hap_mlp_serial_ddr_command16_v5_s45]
+        hap_mlp_serial_ddr_command16_v5_s46]
     set old_serial [hap_v5_board_gate::module_cells \
         hap_mlp_serial_ddr_command16_s45]
     set v5_shared [hap_v5_board_gate::module_cells \
-        hap_mlp_shared_dual_slice16x12_s43_s45]
+        hap_mlp_shared_dual_slice16x12_s44_s46]
     set v5_branches [hap_v5_board_gate::module_cells \
-        hap_mlp_shared_local_slice8x12_s43_s45]
+        hap_mlp_shared_local_slice8x12_s44_s46]
     set v5_kernels [hap_v5_board_gate::module_cells \
-        hap_a8w4_slice8x12_group_s36]
+        hap_a8w4_slice8x12_group_s37]
     set v4_kernels [hap_v5_board_gate::module_cells \
         hap_a8w4_slice8x16_group_s36]
     set history2 [hap_v5_board_gate::module_cells \
@@ -904,42 +971,57 @@ proc hap_v5_board_gate::audit {out xdc_inventory {bitstream ""}} {
     set dsp [llength $all_dsp]
     set uram [llength $all_uram]
     set kernel_dsp_count [llength $kernel_dsp]
-    if {$dsp > 5500 || $uram != 752 || $kernel_dsp_count != 3072 ||
+    if {$dsp != $expected_total_dsp || $uram != 752 ||
+        $kernel_dsp_count != 3072 ||
         $branch_dsp_counts ne {1536 1536}} {
         error "V5 board hard-resource mismatch: DSP=$dsp URAM=$uram kernel=$kernel_dsp_count branches=$branch_dsp_counts"
     }
 
     # Route/phys_opt may replace live cell handles. Rediscover every selector
-    # from this routed full-board design, then prove the logical P2 identity and
-    # the exact P7 contract used by the accepted OOC route. P7 retains the P5
-    # input-locality and P6 postprocess partitions, then splits Attention
-    # region2 by row inside SLR1.
-    # No pre-route collection is reused.
+    # from this routed full-board design and prove the exact P14 contract used
+    # by the accepted OOC route. No pre-route collection is reused.
     set ::hap_v5_floorplan::expected_top $expected_top
+    if {$rtl_variant eq "P16_NOCLIP" &&
+        [hap_projection_ooc_floorplan::get_region2_signature_source] ne
+            "P16_PRODUCTION_POST_OPT_SHA256:$::env(HAP_P16_PRODUCTION_REGION2_SUMMARY_SHA256)"} {
+        error "P16 no-clip board gate signature provenance mismatch"
+    }
     set floorplan_plan [hap_v5_floorplan::discover P2_COHORT16_COL2_12_2]
     set projection_root [file dirname \
         [get_property NAME [dict get $floorplan_plan projection_array]]]
     set geometry_plan \
         [hap_projection_ooc_floorplan::discover $projection_root 1]
     set p5_plan [hap_v5_p5_input_partition::discover $floorplan_plan]
-    set p6_plan [hap_v5_p6_postprocess_partition::discover \
+    set p9_postprocess_plan [hap_v5_p9_postprocess_partition::discover \
         $floorplan_plan $p5_plan]
+    set p9_quantizer3_plan [hap_v5_p9_quantizer3_locality::discover \
+        $floorplan_plan $p5_plan $p9_postprocess_plan]
+    set p14_relief_plan \
+        [hap_v5_p14_region2_relief::discover $geometry_plan]
+    set p8_parent_audit [hap_mlp_p8_parent_boundary::audit]
     set projection_weight_capture_ok \
         [dict get $floorplan_plan projection_weight_capture_ok]
     hap_v5_floorplan::write_discovery $floorplan_plan \
         [file join $out selectors_post_route.txt] \
         V5_BOARD_POST_ROUTE_SELECTORS_PASS
     set geometry_audit [hap_projection_ooc_floorplan::audit_pblocks \
-        $geometry_plan 0 p3_ 1 rowsplit_y5_y6_y6_y8]
+        $geometry_plan 0 p3_ 1 shared \
+        [hap_v5_p14_region2_relief::range_overrides $p14_relief_plan]]
     set geometry_placement \
         [hap_projection_ooc_floorplan::audit_placement $geometry_plan]
+    set base_delegate_specs [concat \
+        [hap_projection_ooc_floorplan::specs $geometry_plan p3_] \
+        [list [dict create name [dict get $p9_quantizer3_plan pblock_name] \
+            target 1]]]
     set base_pblock_audit [hap_v5_floorplan::audit_pblock_contract \
-        $floorplan_plan 1 P2_COHORT16_COL2_12_2 \
-        [hap_projection_ooc_floorplan::specs $geometry_plan p3_ \
-            rowsplit_y5_y6_y6_y8]]
+        $floorplan_plan 1 P2_COHORT16_COL2_12_2 $base_delegate_specs]
     set p5_pblock_audit [hap_v5_p5_input_partition::audit $p5_plan 1]
-    set p6_pblock_audit \
-        [hap_v5_p6_postprocess_partition::audit $p6_plan 1]
+    set p9_postprocess_audit \
+        [hap_v5_p9_postprocess_partition::audit $p9_postprocess_plan 1]
+    set p9_quantizer3_audit \
+        [hap_v5_p9_quantizer3_locality::audit $p9_quantizer3_plan 1]
+    set p14_relief_audit \
+        [hap_v5_p14_region2_relief::audit $p14_relief_plan 1]
     hap_projection_ooc_floorplan::write_plan $geometry_plan \
         [file join $out attention_geometry_post_route.txt] \
         V5_BOARD_POST_ROUTE_GEOMETRY_PASS
@@ -955,19 +1037,34 @@ proc hap_v5_board_gate::audit {out xdc_inventory {bitstream ""}} {
     hap_v5_p5_input_partition::write_audit $p5_pblock_audit \
         [file join $out p5_input_pblocks_post_route.txt] \
         V5_BOARD_POST_ROUTE_P5_INPUT_PBLOCKS_PASS
-    hap_v5_p6_postprocess_partition::write_plan $p6_plan \
-        [file join $out p6_postprocess_plan_post_route.txt] \
-        V5_BOARD_POST_ROUTE_P6_POSTPROCESS_PLAN_PASS
-    hap_v5_p6_postprocess_partition::write_audit $p6_pblock_audit \
-        [file join $out p6_postprocess_pblocks_post_route.txt] \
-        V5_BOARD_POST_ROUTE_P6_POSTPROCESS_PBLOCKS_PASS
+    hap_v5_p9_postprocess_partition::write_plan $p9_postprocess_plan \
+        [file join $out p9_postprocess_plan_post_route.txt] \
+        V5_BOARD_POST_ROUTE_P9_POSTPROCESS_PLAN_PASS
+    hap_v5_p9_postprocess_partition::write_audit $p9_postprocess_audit \
+        [file join $out p9_postprocess_pblocks_post_route.txt] \
+        V5_BOARD_POST_ROUTE_P9_POSTPROCESS_PBLOCKS_PASS
+    hap_v5_p9_quantizer3_locality::write_plan $p9_quantizer3_plan \
+        [file join $out p9_quantizer3_plan_post_route.txt] \
+        V5_BOARD_POST_ROUTE_P9_QUANTIZER3_PLAN_PASS
+    hap_v5_p9_quantizer3_locality::write_audit $p9_quantizer3_audit \
+        [file join $out p9_quantizer3_pblock_post_route.txt] \
+        V5_BOARD_POST_ROUTE_P9_QUANTIZER3_PBLOCK_PASS
+    hap_v5_p14_region2_relief::write_plan $p14_relief_plan \
+        [file join $out p14_region2_relief_plan_post_route.txt] \
+        V5_BOARD_POST_ROUTE_P14_REGION2_RELIEF_PLAN_PASS
+    hap_v5_p14_region2_relief::write_audit $p14_relief_audit \
+        [file join $out p14_region2_relief_pblock_post_route.txt] \
+        V5_BOARD_POST_ROUTE_P14_REGION2_RELIEF_PBLOCK_PASS
+    hap_mlp_p8_parent_boundary::write_audit $p8_parent_audit \
+        [file join $out p8_parent_ingress_boundary_post_route.txt] \
+        V5_BOARD_POST_ROUTE_P8_PARENT_INGRESS_BOUNDARY_PASS
     set floorplan_metrics [hap_v5_floorplan::physical_metrics \
         $floorplan_plan $base_pblock_audit]
     set physical_ok \
         [hap_v5_floorplan::physical_ok $floorplan_plan $floorplan_metrics]
     set expected_center_extras [expr {
         [llength [dict get $p5_plan center_base_extras]] +
-        [llength [dict get $p6_plan center_rows]]}]
+        [llength [dict get $p9_postprocess_plan center_rows]]}]
     set base_optimizer_extra_delta [expr {
         [dict get $base_pblock_audit optimizer_extra_count] -
         $expected_center_extras}]
@@ -984,7 +1081,8 @@ proc hap_v5_board_gate::audit {out xdc_inventory {bitstream ""}} {
     set floorplan_contract_ok [expr {
         [dict get $floorplan_plan contract_variant] eq
             "P2_COHORT16_COL2_12_2" &&
-        [dict get $floorplan_plan total_dsp] == 5453 &&
+        [dict get $floorplan_plan rtl_resource_variant] eq $rtl_variant &&
+        [dict get $floorplan_plan total_dsp] == $expected_total_dsp &&
         [dict get $floorplan_plan total_uram] == 752 &&
         [dict get $floorplan_plan kernel_dsp] == 3072 &&
         [dict get $floorplan_plan branch0_dsp] == 1536 &&
@@ -1009,25 +1107,28 @@ proc hap_v5_board_gate::audit {out xdc_inventory {bitstream ""}} {
         [dict get $p5_plan completed_meta_ff] == 352 &&
         [dict get $p5_plan input_capture_ff] == 12288 &&
         [dict get $p5_plan capture_leaf_count] == 48 &&
-        [dict get $p6_plan contract] eq
-            "P6_POSTPROCESS_GROUP4_SPLIT_4_8_4" &&
-        [llength [dict get $p6_plan slr0_rows]] == 10696 &&
-        [llength [dict get $p6_plan center_rows]] == 21392 &&
-        [llength [dict get $p6_plan slr2_rows]] == 10696 &&
-        [dict get $geometry_audit pblock_count] == 12 &&
-        [dict get $geometry_plan center_region2_row_exact_cover] == 1 &&
-        [llength [dict get $geometry_plan \
-            center_region2_rows0_3_primitives]] == 26800 &&
-        [llength [dict get $geometry_plan \
-            center_region2_rows4_7_primitives]] == 26800 &&
-        [llength [dict get $geometry_plan \
-            center_region2_residual_primitives]] == 15199 &&
-        [hap_projection_ooc_floorplan::count_ref [dict get $geometry_plan \
-            center_region2_rows0_3_primitives] DSP48E2] == 272 &&
-        [hap_projection_ooc_floorplan::count_ref [dict get $geometry_plan \
-            center_region2_rows4_7_primitives] DSP48E2] == 272 &&
-        [hap_projection_ooc_floorplan::count_ref [dict get $geometry_plan \
-            center_region2_residual_primitives] DSP48E2] == 0 &&
+        [dict get $p9_postprocess_plan contract] eq
+            "P9_POSTPROCESS_SPLIT_6_4_6" &&
+        [llength [dict get $p9_postprocess_plan slr0_rows]] == 16044 &&
+        [llength [dict get $p9_postprocess_plan center_rows]] == 10696 &&
+        [llength [dict get $p9_postprocess_plan slr2_rows]] == 16044 &&
+        [dict get $p9_quantizer3_plan contract] eq
+            "P9_SWIGLU_QUANTIZER3_CR_X2Y5_X3Y6" &&
+        [dict get $p9_quantizer3_plan primitive_count] ==
+            $expected_quantizer3_primitives &&
+        [dict get $p9_quantizer3_plan grid_range] eq
+            "CLOCKREGION_X2Y5:CLOCKREGION_X3Y6" &&
+        [dict get $p14_relief_plan contract] eq
+            "P14_ATTN_REGION2_SHARED_X0_X2" &&
+        [dict get $p14_relief_plan primitive_count] ==
+            $expected_relief_primitives &&
+        [dict get $p14_relief_plan base_range] eq
+            "CLOCKREGION_X0Y5:CLOCKREGION_X1Y9" &&
+        [dict get $p14_relief_plan relief_range] eq
+            "CLOCKREGION_X2Y5:CLOCKREGION_X2Y9" &&
+        [dict get $p14_relief_plan expected_range] eq
+            "CLOCKREGION_X0Y5:CLOCKREGION_X2Y9" &&
+        [dict get $geometry_audit pblock_count] == 10 &&
         [dict get $geometry_placement ok] == 1 &&
         [dict get $base_pblock_audit ok] == 1 &&
         [dict get $base_pblock_audit require_placed] == 1 &&
@@ -1042,13 +1143,34 @@ proc hap_v5_board_gate::audit {out xdc_inventory {bitstream ""}} {
         [dict get $p5_pblock_audit center_wrong] == 0 &&
         [dict get $p5_pblock_audit outer_wrong] == 0 &&
         [dict get $p5_pblock_audit outer_extras] <= 4096 &&
-        [dict get $p6_pblock_audit ok] == 1 &&
-        [dict get $p6_pblock_audit require_placed] == 1 &&
-        [dict get $p6_pblock_audit pblock_count] == 2 &&
-        [dict get $p6_pblock_audit center_wrong] == 0 &&
-        [dict get $p6_pblock_audit outer_wrong] == 0 &&
-        [dict get $p6_pblock_audit outer_extras] <= 4096 &&
-        [llength [get_pblocks -quiet]] == 27 &&
+        [dict get $p9_postprocess_audit ok] == 1 &&
+        [dict get $p9_postprocess_audit require_placed] == 1 &&
+        [dict get $p9_postprocess_audit pblock_count] == 2 &&
+        [dict get $p9_postprocess_audit center_wrong] == 0 &&
+        [dict get $p9_postprocess_audit outer_wrong] == 0 &&
+        [dict get $p9_postprocess_audit outer_extras] <= 4096 &&
+        [dict get $p9_quantizer3_audit ok] == 1 &&
+        [dict get $p9_quantizer3_audit wrong] == 0 &&
+        [dict get $p9_quantizer3_audit unplaced] == 0 &&
+        [dict get $p14_relief_audit ok] == 1 &&
+        [dict get $p14_relief_audit missing] == 0 &&
+        [dict get $p14_relief_audit wrong] == 0 &&
+        [dict get $p14_relief_audit unplaced] == 0 &&
+        [dict get $p8_parent_audit ok] == 1 &&
+        [dict get $p8_parent_audit parent_head_ff] == 6560 &&
+        [dict get $p8_parent_audit parent_tail_ff] == 6560 &&
+        [dict get $p8_parent_audit parent_count_ff] == 2 &&
+        [dict get $p8_parent_audit parent_count_replica_equivalence_ok] == 1 &&
+        [dict get $p8_parent_audit parent_pointer_ff] == 0 &&
+        [dict get $p8_parent_audit local_clear_shared_upstream_ready_paths] == 0 &&
+        [dict get $p8_parent_audit branch_credit_shared_upstream_ready_paths] == 0 &&
+        [dict get $p8_parent_audit local_clear_gate_compute_ready_paths] == 0 &&
+        [dict get $p8_parent_audit branch_credit_gate_compute_ready_paths] == 0 &&
+        [dict get $p8_parent_audit local_clear_down_compute_ready_paths] == 0 &&
+        [dict get $p8_parent_audit branch_credit_down_compute_ready_paths] == 0 &&
+        [dict get $p8_parent_audit local_clear_input_cache_ready_paths] == 0 &&
+        [dict get $p8_parent_audit branch_credit_input_cache_ready_paths] == 0 &&
+        [llength [get_pblocks -quiet]] == 26 &&
         [llength [dict get $geometry_plan region0_input_primitives]] == 3136 &&
         [llength [dict get $geometry_plan region3_input_primitives]] == 2112 &&
         [llength [dict get $geometry_plan owner_region2_weight_primitives]] == 2048 &&
@@ -1058,19 +1180,19 @@ proc hap_v5_board_gate::audit {out xdc_inventory {bitstream ""}} {
             $geometry_plan] &&
         [hap_projection_ooc_floorplan::owner_region2_weight_anchor_ok \
             $geometry_plan] &&
-        [dict get $base_pblock_audit dsp_coverage] == 5453 &&
+        [dict get $base_pblock_audit dsp_coverage] == $expected_total_dsp &&
         [dict get $base_pblock_audit uram_coverage] == 752 &&
         [dict get $base_pblock_audit placed_wrong] == 0 &&
         $physical_ok
     }]
     if {!$floorplan_contract_ok} {
-        error "V5 board P7 row-split post-route contract failed"
+        error "V5 board P14 post-route physical contract failed"
     }
 
     set slr_dsp [dict get $floorplan_metrics slr_dsp]
     set slr_uram [dict get $floorplan_metrics slr_uram]
-    if {$slr_dsp ne {1862 1781 1810}} {
-        error "V5 board DSP locality mismatch: expected=1862/1781/1810 actual=$slr_dsp"
+    if {$slr_dsp ne $expected_slr_dsp} {
+        error "V5 board DSP locality mismatch: expected=$expected_slr_dsp actual=$slr_dsp"
     }
     if {$slr_uram ne {224 224 304}} {
         error "V5 board URAM locality mismatch: expected=224/224/304 actual=$slr_uram"
@@ -1282,6 +1404,10 @@ proc hap_v5_board_gate::audit {out xdc_inventory {bitstream ""}} {
         "V5_BOARD_POST_ROUTE_PASS" : "FAIL"}]
     set result [dict create tool [version -short] part $part top $top \
         evidence_class FULL_VCU118_BOARD_POST_ROUTE \
+        rtl_variant $rtl_variant \
+        rtl_resource_variant [dict get $floorplan_plan rtl_resource_variant] \
+        region2_signature_source \
+            [hap_projection_ooc_floorplan::get_region2_signature_source] \
         core_clock_mhz 100 ddr0_clock_mhz 300 ddr1_clock_mhz 300 \
         core_period_ns $core_period ddr0_period_ns $ddr0_period \
         ddr1_period_ns $ddr1_period xdma_endpoint_count 1 \
@@ -1356,13 +1482,16 @@ proc hap_v5_board_gate::audit {out xdc_inventory {bitstream ""}} {
         architecture_boundary_ok $architecture_boundary_ok \
         base_contract_variant [dict get $floorplan_plan contract_variant] \
         p5_contract [dict get $p5_plan contract] \
-        p6_contract [dict get $p6_plan contract] \
-        p7_contract P7_ATTN_REGION2_ROWS_Y5_Y6_Y6_Y8 \
-        region2_variant rowsplit_y5_y6_y6_y8 \
+        p9_postprocess_contract [dict get $p9_postprocess_plan contract] \
+        p9_quantizer3_contract [dict get $p9_quantizer3_plan contract] \
+        p14_region2_relief_contract [dict get $p14_relief_plan contract] \
         canonical_pblock_count [dict get $base_pblock_audit pblock_count] \
         geometry_pblock_count [dict get $geometry_audit pblock_count] \
         p5_added_pblock_count [dict get $p5_pblock_audit pblock_count] \
-        p6_added_pblock_count [dict get $p6_pblock_audit pblock_count] \
+        p9_postprocess_added_pblock_count \
+            [dict get $p9_postprocess_audit pblock_count] \
+        p9_quantizer3_added_pblock_count 1 \
+        p14_region2_relief_added_pblock_count 0 \
         total_pblock_count [llength [get_pblocks -quiet]] \
         completed_u8_ff [dict get $p5_plan completed_u8_ff] \
         completed_meta_ff [dict get $p5_plan completed_meta_ff] \
@@ -1371,28 +1500,62 @@ proc hap_v5_board_gate::audit {out xdc_inventory {bitstream ""}} {
         p5_center_wrong_slr [dict get $p5_pblock_audit center_wrong] \
         p5_outer_wrong_slr [dict get $p5_pblock_audit outer_wrong] \
         p5_outer_optimizer_extras [dict get $p5_pblock_audit outer_extras] \
-        p6_center_wrong_slr [dict get $p6_pblock_audit center_wrong] \
-        p6_outer_wrong_slr [dict get $p6_pblock_audit outer_wrong] \
-        p6_outer_optimizer_extras \
-            [dict get $p6_pblock_audit outer_extras] \
-        p6_slr0_row_primitives [llength [dict get $p6_plan slr0_rows]] \
-        p6_center_row_primitives [llength [dict get $p6_plan center_rows]] \
-        p6_slr2_row_primitives [llength [dict get $p6_plan slr2_rows]] \
-        p7_region2_rows0_3_primitives [llength [dict get $geometry_plan \
-            center_region2_rows0_3_primitives]] \
-        p7_region2_rows4_7_primitives [llength [dict get $geometry_plan \
-            center_region2_rows4_7_primitives]] \
-        p7_region2_residual_primitives [llength [dict get $geometry_plan \
-            center_region2_residual_primitives]] \
-        p7_region2_rows0_3_dsp48e2 [hap_projection_ooc_floorplan::count_ref \
-            [dict get $geometry_plan center_region2_rows0_3_primitives] DSP48E2] \
-        p7_region2_rows4_7_dsp48e2 [hap_projection_ooc_floorplan::count_ref \
-            [dict get $geometry_plan center_region2_rows4_7_primitives] DSP48E2] \
-        p7_region2_residual_dsp48e2 [hap_projection_ooc_floorplan::count_ref \
-            [dict get $geometry_plan center_region2_residual_primitives] DSP48E2] \
-        projected_slr_dsp48e2 {1862 1781 1810} \
+        p9_postprocess_center_wrong_slr \
+            [dict get $p9_postprocess_audit center_wrong] \
+        p9_postprocess_outer_wrong_slr \
+            [dict get $p9_postprocess_audit outer_wrong] \
+        p9_postprocess_outer_optimizer_extras \
+            [dict get $p9_postprocess_audit outer_extras] \
+        p9_slr0_row_primitives \
+            [llength [dict get $p9_postprocess_plan slr0_rows]] \
+        p9_center_row_primitives \
+            [llength [dict get $p9_postprocess_plan center_rows]] \
+        p9_slr2_row_primitives \
+            [llength [dict get $p9_postprocess_plan slr2_rows]] \
+        p9_quantizer3_primitives \
+            [dict get $p9_quantizer3_plan primitive_count] \
+        p9_quantizer3_grid_range \
+            [dict get $p9_quantizer3_plan grid_range] \
+        p9_quantizer3_wrong_region [dict get $p9_quantizer3_audit wrong] \
+        p9_quantizer3_unplaced [dict get $p9_quantizer3_audit unplaced] \
+        p14_region2_relief_primitives \
+            [dict get $p14_relief_plan primitive_count] \
+        p14_region2_relief_base_range [dict get $p14_relief_plan base_range] \
+        p14_region2_relief_range [dict get $p14_relief_plan relief_range] \
+        p14_region2_expected_range [dict get $p14_relief_plan expected_range] \
+        p14_region2_relief_placed [dict get $p14_relief_audit relief_placed] \
+        p14_region2_relief_wrong [dict get $p14_relief_audit wrong] \
+        p14_region2_relief_unplaced [dict get $p14_relief_audit unplaced] \
+        parent_head_ff [dict get $p8_parent_audit parent_head_ff] \
+        parent_tail_ff [dict get $p8_parent_audit parent_tail_ff] \
+        parent_count_ff [dict get $p8_parent_audit parent_count_ff] \
+        parent_count_physical_ff \
+            [dict get $p8_parent_audit parent_count_physical_ff] \
+        parent_count_replica_ff \
+            [dict get $p8_parent_audit parent_count_replica_ff] \
+        parent_count_replica_equivalence_ok \
+            [dict get $p8_parent_audit parent_count_replica_equivalence_ok] \
+        parent_pointer_ff [dict get $p8_parent_audit parent_pointer_ff] \
+        local_clear_shared_upstream_ready_paths \
+            [dict get $p8_parent_audit local_clear_shared_upstream_ready_paths] \
+        branch_credit_shared_upstream_ready_paths \
+            [dict get $p8_parent_audit branch_credit_shared_upstream_ready_paths] \
+        local_clear_gate_compute_ready_paths \
+            [dict get $p8_parent_audit local_clear_gate_compute_ready_paths] \
+        branch_credit_gate_compute_ready_paths \
+            [dict get $p8_parent_audit branch_credit_gate_compute_ready_paths] \
+        local_clear_down_compute_ready_paths \
+            [dict get $p8_parent_audit local_clear_down_compute_ready_paths] \
+        branch_credit_down_compute_ready_paths \
+            [dict get $p8_parent_audit branch_credit_down_compute_ready_paths] \
+        local_clear_input_cache_ready_paths \
+            [dict get $p8_parent_audit local_clear_input_cache_ready_paths] \
+        branch_credit_input_cache_ready_paths \
+            [dict get $p8_parent_audit branch_credit_input_cache_ready_paths] \
+        projected_slr_dsp48e2 $expected_slr_dsp \
         projected_slr_uram288 {224 224 304} \
-        dsp48e2 $dsp dsp_limit 5500 uram288 $uram uram_required 752 \
+        dsp48e2 $dsp dsp_required $expected_total_dsp dsp_limit 5500 \
+        uram288 $uram uram_required 752 \
         slr0_dsp48e2 [lindex $slr_dsp 0] \
         slr1_dsp48e2 [lindex $slr_dsp 1] \
         slr2_dsp48e2 [lindex $slr_dsp 2] per_slr_dsp_limit 2280 \

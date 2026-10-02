@@ -1,0 +1,73 @@
+{
+  "schema": "scalellm_v5_fullchain_quality_v1",
+  "case": "bf16",
+  "status": "complete",
+  "created_at": "2026-09-13T01:44:31.700441+00:00",
+  "elapsed_sec": 11.496995687484741,
+  "model": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+  "args": {
+    "case": "bf16",
+    "model": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+    "wikitext": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/wikitext-2-raw-v1/test-00000-of-00001.jsonl",
+    "output": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/v5_fullchain_smoke/Llama-3.1-8B-Instruct",
+    "device": "cuda:0",
+    "tasks": "wikitext2,piqa",
+    "max_mcqa_samples": 2,
+    "mcqa_batch_size": 1,
+    "max_length": 128,
+    "wikitext_max_tokens": 256,
+    "wikitext_block_size": 128,
+    "wikitext_stride": 127,
+    "seed": 20260913
+  },
+  "reproducibility": {
+    "seed": 20260913,
+    "deterministic": true,
+    "allow_tf32": false,
+    "pythonhashseed": "20260913",
+    "cublas_workspace_config": ":4096:8",
+    "torch_initial_seed": 20260913,
+    "torch_deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true
+  },
+  "method": {
+    "case": "bf16_matched_context128",
+    "max_context": 128,
+    "dtype": "bfloat16"
+  },
+  "audit": null,
+  "results": [
+    {
+      "case": "bf16",
+      "task": "wikitext2",
+      "task_label": "WikiText2",
+      "samples": 2,
+      "records_complete": true,
+      "ppl": 12.559054567509476,
+      "avg_nll": 2.5304418849194144,
+      "token_accuracy": 0.515748031496063,
+      "scoring_tokens": 254,
+      "status": "pass",
+      "elapsed_sec": 1.454470157623291,
+      "context_length": 128,
+      "stride": 127
+    },
+    {
+      "case": "bf16",
+      "task": "piqa",
+      "task_label": "PIQA",
+      "dataset": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/piqa/validation_full.jsonl",
+      "samples": 2,
+      "records_complete": true,
+      "primary_metric": "score_char_norm",
+      "primary_accuracy": 0.5,
+      "accuracy_score_sum": 0.5,
+      "accuracy_score_mean": 0.5,
+      "accuracy_score_char_norm": 0.5,
+      "status": "pass",
+      "elapsed_sec": 0.2429049015045166,
+      "max_length": 128
+    }
+  ]
+}

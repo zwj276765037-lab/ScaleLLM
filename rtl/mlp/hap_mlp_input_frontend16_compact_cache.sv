@@ -204,7 +204,7 @@ module hap_mlp_input_frontend16_compact_cache (
             quant_output_wave_r[quantizer] < 4;
     end endgenerate
 
-    hap_activation_cache_8row u_cache0 (
+    hap_activation_cache_8row #(.RD_RESPONSE_DEPTH(2)) u_cache0 (
         .clk(clk),.rst_n(rst_n),.clear(clear),
         .wr_valid(bundle_valid_r),.wr_ready(half0_wr_ready),
         .wr_bank(active_bank_r),.wr_group(active_group_r),
@@ -221,7 +221,7 @@ module hap_mlp_input_frontend16_compact_cache (
         .write_count(),.read_count(),.release_count(),.error(half0_error)
     );
 
-    hap_activation_cache_8row u_cache1 (
+    hap_activation_cache_8row #(.RD_RESPONSE_DEPTH(2)) u_cache1 (
         .clk(clk),.rst_n(rst_n),.clear(clear),
         .wr_valid(bundle_valid_r),.wr_ready(half1_wr_ready),
         .wr_bank(active_bank_r),.wr_group(active_group_r),
