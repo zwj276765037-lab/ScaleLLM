@@ -1,0 +1,1098 @@
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/engineering_inputs_before_OPT_POST_recovery/run_m002_optimized.py
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m002_optimized.py
+@@ -27,6 +27,8 @@
+     parser.add_argument('--synth-report', type=Path)
+     parser.add_argument('--synth-attempt', type=Path)
+     parser.add_argument('--place-report', type=Path)
++    for option in ['init-report','opt-report','pre-place-report','physical-report']:
++        parser.add_argument('--'+option,type=Path)
+     parser.add_argument('--command', nargs=argparse.REMAINDER)
+     args = parser.parse_args()
+     attempt, report = args.attempt.resolve(), args.report.resolve()
+@@ -39,6 +41,8 @@
+         policy.check(args.synth_report and args.synth_attempt and args.project, 'physical stage needs actual synthesis identity')
+     if args.stage == 'route':
+         policy.check(args.place_report, 'route needs successful new place/physopt parent')
++    recoveries=[args.init_report,args.opt_report,args.pre_place_report,args.physical_report]
++    policy.check(sum(bool(p) for p in recoveries)<=1 and (not any(recoveries) or args.stage=='place'),'one exact place recovery source required')
+     policy.check(not args.command or args.stage in {'preflight','xsim'}, 'custom command restricted to preflight/xsim')
+     policy.check(args.stage not in {'preflight','xsim'} or args.command, 'preflight/xsim command missing')
+     os.sched_setaffinity(0, set(range(8)))
+@@ -63,7 +67,7 @@
+                HAP_CURRENT_ATTEMPT_DIR=str(attempt), HAP_EXECUTION_PROFILE=policy.OPTIMIZED_PROFILE,
+                HAP_SUPERVISION_PROFILE=policy.OPTIMIZED_PROFILE, HAP_XSIM_TIMEOUT_SECONDS='0',
+                HAP_XSIM_REPORT_DIR=str(report), OMP_NUM_THREADS='4', OPENBLAS_NUM_THREADS='1')
+-    for name, value in [('HAP_SYNTH_REPORT_DIR',args.synth_report),('HAP_SYNTH_ATTEMPT_DIR',args.synth_attempt),('HAP_PLACE_REPORT_DIR',args.place_report)]:
++    for name, value in [('HAP_SYNTH_REPORT_DIR',args.synth_report),('HAP_SYNTH_ATTEMPT_DIR',args.synth_attempt),('HAP_PLACE_REPORT_DIR',args.place_report),('HAP_INIT_REPORT_DIR',args.init_report),('HAP_OPT_REPORT_DIR',args.opt_report),('HAP_PRE_PLACE_REPORT_DIR',args.pre_place_report),('HAP_PHYSICAL_REPORT_DIR',args.physical_report)]:
+         if value: env[name] = str(value.resolve())
+     if args.command:
+         cmd = args.command
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/engineering_inputs_before_OPT_POST_recovery/m002_resume_physical.tcl
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_resume_physical.tcl
+@@ -164,14 +164,17 @@
+     m002_post debug_materialized
+     exec python3 [file join $script_dir m002_physical_evidence.py] pre-place debug_materialized $report_dir
+     }
+-    if {!$restore_placed} {m002_command place place_design}
++    set optimized [expr {[info exists ::env(HAP_EXECUTION_PROFILE)] && $::env(HAP_EXECUTION_PROFILE) eq "m002_optimized_implementation"}]
++    if {!$restore_placed} {
++        if {$optimized} {m002_command place {place_design -directive SSI_SpreadSLLs}} else {m002_command place place_design}
++    }
+     m002_post place
+-    m002_command physopt phys_opt_design
++    if {$optimized} {m002_command physopt {phys_opt_design -directive Default}} else {m002_command physopt phys_opt_design}
+     m002_post physopt
+     set checkpoint [file join $report_dir physopt.dcp]
+ } else {
+     # Explicitly restore the qualified physopt DCP of this execution mode.
+-    m002_command route route_design
++    if {[info exists ::env(HAP_EXECUTION_PROFILE)] && $::env(HAP_EXECUTION_PROFILE) eq "m002_optimized_implementation"} {m002_command route {route_design -directive Default}} else {m002_command route route_design}
+     m002_post route
+     set checkpoint [file join $report_dir route.dcp]
+ }
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/engineering_inputs_before_OPT_POST_recovery/m002_physical_evidence.py
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_physical_evidence.py
+@@ -4,6 +4,8 @@
+ 
+ import m002_execution_profile as full_impl
+ import m002_synthesis_recovery as synth_recovery
++import m002_fresh_project_opt_recovery as fresh_opt
++import sys
+ 
+ import datetime as dt
+ from functools import cache
+@@ -855,7 +857,7 @@
+     return original
+ 
+ 
+-def generated_phy_parent(attempt: Path) -> dict:
++def generated_phy_parent(attempt: Path, *, fresh_project: Path | None = None, create_terminal_observation: bool = False) -> dict:
+     evidence = attempt/'generated_phy_evidence.json'
+     value = json.loads(evidence.read_text())
+     archive = attempt/'generated_phy_snapshot'
+@@ -881,18 +883,25 @@
+             worker_reads.append({'line':number,'path':str(name),'scope':match.group(2),
+                                  'retained_source':{k:v for k,v in row.items() if k != 'source_path'}})
+     require(len(worker_reads) == 2, 'incomplete bounded actual PHY worker constraint reads')
++    disabled_cache = (fresh_opt.qualify_disabled_phy_cache(sys.modules[__name__], attempt, value, records, original, fresh_project, create_observation=create_terminal_observation)
++                      if fresh_project is not None else None)
+     outputs = {}
+     for d in (0,1):
+         module = f'scalellm_vcu118_f05_bd_ddr4_{d}_0_phy'
+         produced = records[original/(module+'.dcp')]
+         output = records[original/'out'/(module+'.0')/'result.dcp']
+         cached = [row for p,row in records.items() if p.is_relative_to(original/'.cache/ip') and p.name == module+'.dcp']
+-        require(len(cached) == 1 and produced['sha256'] == output['sha256'] == cached[0]['sha256'],
+-                'MIG PHY generated/actual output/post-synthesis cache bytes differ')
+-        outputs[module] = {k:{a:b for a,b in row.items() if a != 'source_path'} for k,row in (
+-            ('produced',produced),('output',output),('cache_written_after_synthesis',cached[0]))}
++        if disabled_cache:
++            require(not cached and produced['sha256'] == output['sha256'], 'fresh disabled-cache produced/result PHY mismatch')
++            pairs = (('produced',produced),('output',output))
++        else:
++            require(len(cached) == 1 and produced['sha256'] == output['sha256'] == cached[0]['sha256'],
++                    'MIG PHY generated/actual output/post-synthesis cache bytes differ')
++            pairs = (('produced',produced),('output',output),('cache_written_after_synthesis',cached[0]))
++        outputs[module] = {k:{a:b for a,b in row.items() if a != 'source_path'} for k,row in pairs}
+     return {'evidence':file_id(evidence),'manifest':file_id(attempt/'generated_phy_snapshot.sha256'),
+             'cache_miss_count':2,'outputs':outputs,'worker_actual_xdc_reads':worker_reads,
++            **({'fresh_disabled_cache_qualification':disabled_cache} if disabled_cache else {}),
+             'main_generated_xdc_candidates':{str(p):{k:v for k,v in row.items() if k != 'source_path'} for p,row in records.items()
+                 if p.is_relative_to(original/'out') and p.suffix == '.xdc' and row['bytes'] > 0},
+             'scope':'actual OPT-generated PHY; separate worker OOC constraints and original 45 synthesis DCP paths; not a claim about main-design imported constraint coverage'}
+@@ -979,6 +988,10 @@
+     require(source.is_relative_to(ROOT / 'vivado/reports') and project.is_relative_to(ROOT / 'vivado/project'), 'foreign OPT recovery root')
+     require(source not in _seen and len(_seen) < 8, 'cyclic/unbounded OPT recovery ancestry')
+     command = json.loads((source / 'command.json').read_text())
++    if command.get('execution_mode') == 'project_runs':
++        return fresh_opt.qualify_native_project(sys.modules[__name__], source, project, lineage, report, write=_write)
++    if (source/'recovery_parent.json').is_file() and json.loads((source/'recovery_parent.json').read_text()).get('opt_execution_proof_kind') == 'native_project_log_derived':
++        return fresh_opt.qualify_restored_opt(sys.modules[__name__], source, project, lineage, report, write=_write)
+     status_path = Path(command['managed_attempt']) / 'status.json'
+     status = json.loads(status_path.read_text())
+     stop_path = Path(command['managed_attempt'])/'controlled_stop_request.json'
+@@ -1797,7 +1810,7 @@
+     original = manifest_records(Path(stage_identity["path"]))
+     for source, digest in original.items():
+         archived = report / "stage_sources" / source.name
+-        if archived in archive:
++        if archived in archive and source.parent.name != 'stage_sources':
+             require(archive[archived] == digest, "archived execution code differs from old stage manifest")
+         else:
+             require(source.is_file() and sha256(source) == digest, f"design/probe input changed: {source}")
+@@ -1851,11 +1864,17 @@
+                 value.get('historical_command_receipts')==json.loads(Path(value['recovery_parent']['path']).read_text())['historical_command_receipts'],
+                 'restarted parent historical/new command scopes mismatch')
+         for identity in value['historical_command_receipts'].values():verify_identity(identity)
+-    for point,command in ((('physopt','phys_opt_design'),) if placed else (('place','place_design'),('physopt','phys_opt_design')) if restarted else
++    log_derived_opt = value.get('inherited_opt_execution_proof')
++    if log_derived_opt:
++        require(auth and auth['profile'] == full_impl.OPTIMIZED_PROFILE, 'log-derived OPT inheritance outside E005')
++        fresh_opt.verify_inherited_proof(sys.modules[__name__], log_derived_opt, project, lineage, report)
++        expected_new = {'physopt'} if placed else {'place','physopt'} if restarted else {'debug_materialization','place','physopt'}
++        require(set(value['command_receipts']) == expected_new, 'fresh OPT inherited/new command scopes changed')
++    for point,command in ((('physopt','phys_opt_design'),) if placed else (('place','place_design'),('physopt','phys_opt_design')) if restarted or log_derived_opt else
+                            (('opt','opt_design'),('place','place_design'),('physopt','phys_opt_design'))):
+         identity=value['command_receipts'][point];verify_identity(identity)
+         receipt=key_values(Path(identity['path']))
+-        require(receipt.get('native_tcl_code')=='0' and receipt.get('command')==command and receipt.get('phase')==point,'recovered parent native phase failed')
++        require(receipt.get('native_tcl_code')=='0' and receipt.get('command')==fresh_opt.expected_physical_command(point, command, auth) and receipt.get('phase')==point,'recovered parent native phase failed')
+     verify_identity(value['pre_place'])
+     if not placed:pre_place_evidence(report)
+     verify_identity(value['integrity'])
+@@ -1977,6 +1996,7 @@
+     restored_parent=json.loads((report/'recovery_parent.json').read_text()) if restored and stage=='place' else None
+     restarted_pre_place=bool(restored_parent and restored_parent.get('phase')=='post_debug_pre_place')
+     restarted_placed=bool(restored_parent and restored_parent.get('phase')=='post_place_pre_physopt')
++    log_derived_opt=bool(restored_parent and restored_parent.get('opt_execution_proof_kind')=='native_project_log_derived')
+     if restarted_placed:
+         physical_resume_evidence(report)
+         completed_placed_post(report)
+@@ -1987,9 +2007,10 @@
+         "restored_checkpoint_phase": json.loads((report/'recovery_parent.json').read_text())['phase'] if restored and stage == 'place' else None,
+         "recovery_parent": file_id(report / "recovery_parent.json") if restored and stage == "place" else None,
+         "command_receipts": {p:file_id(report/f"{p}_command_result.txt") for p in
+-            (("physopt",) if restarted_placed else ("place","physopt") if restarted_pre_place else ("opt","debug_materialization","place","physopt") if stage == "place" else ("route",))} if restored else {},
++            (("physopt",) if restarted_placed else ("place","physopt") if restarted_pre_place else ("debug_materialization","place","physopt") if log_derived_opt else ("opt","debug_materialization","place","physopt") if stage == "place" else ("route",))} if restored else {},
+         "historical_command_receipts": restored_parent["historical_command_receipts"] if restarted_pre_place or restarted_placed else {},
+-        "command_execution_scope": "new_place_POST_physopt__inherited_opt_debug_place" if restarted_placed else "new_place_physopt__inherited_opt_debug" if restarted_pre_place else "original_stage_flow",
++        "inherited_opt_execution_proof": restored_parent["inherited_opt_execution_proof"] if log_derived_opt else None,
++        "command_execution_scope": "new_place_POST_physopt__inherited_opt_debug_place" if restarted_placed else "new_place_physopt__inherited_opt_debug" if restarted_pre_place else "new_debug_place_physopt__inherited_native_project_opt" if log_derived_opt else "original_stage_flow",
+         "physical_resume_admission": file_id(report/"physical_resume_evidence.json") if restarted_placed else None,
+         "completed_place_POST": file_id(report/"integrity_place.json") if restarted_placed else None,
+         "pre_place": restored_parent["inherited_pre_place"] if restarted_placed else file_id(report/'pre_place_evidence.json') if restored and stage == 'place' else None,
+@@ -2020,6 +2041,14 @@
+     }
+     auth=full_impl.report_authorization(report)
+     if auth:
++        if restored and auth["profile"] == full_impl.OPTIMIZED_PROFILE:
++            for phase, identity in evidence["command_receipts"].items():
++                receipt=key_values(Path(identity["path"]))
++                if phase in {"place","physopt","route"}:
++                    command={"place":"place_design","physopt":"phys_opt_design","route":"route_design"}[phase]
++                    require(receipt.get("phase")==phase and receipt.get("native_tcl_code")=="0" and
++                            receipt.get("command")==fresh_opt.expected_physical_command(phase,command,auth),
++                            "E005 restored command directive/phase mismatch")
+         evidence["execution_authorization"]=auth
+         if stage=="route":full_impl.require_complete_route(evidence["route"])
+     (report / "diagnostic_evidence.json").write_text(json.dumps(evidence, indent=2) + "\n")
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/engineering_inputs_before_OPT_POST_recovery/run_m002_physical_stage.py
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m002_physical_stage.py
+@@ -20,6 +20,17 @@
+ def tcl_literal(value: str) -> str:
+     require(not any(c in value for c in "{}\r\n"), "unsupported generated Tcl literal")
+     return "{" + value + "}"
++
++
++def critical_probe_report(stage, recovery, inherited, parent_path):
++    if recovery and stage == 'place':
++        if inherited.get('phase') == 'post_place_pre_physopt':
++            return Path(inherited['source_report'])/'cdc_place.rpt'
++        if inherited.get('phase') == 'post_debug_pre_place':
++            return Path(inherited['inherited_reports']['cdc_debug_materialized.rpt']['path'])
++        if inherited.get('opt_evidence_complete') or (inherited.get('opt_execution_proof_kind') == 'native_project_log_derived' and inherited.get('opt_reports_complete')):
++            return Path(inherited['inherited_reports']['cdc_opt.rpt']['path'])
++    return parent_path.parent/'cdc_physopt.rpt' if stage == 'route' else None
+ 
+ 
+ def main() -> int:
+@@ -60,7 +71,10 @@
+                 os.environ['HAP_INHERITED_RESET_FANOUT']=inherited['inherited_reset_evidence']['fanout']['path']
+                 if inherited['inherited_reset_evidence'].get('bram_port_clocks'):
+                     os.environ['HAP_INHERITED_BRAM_PORT_CLOCKS']=inherited['inherited_reset_evidence']['bram_port_clocks']['path']
+-            if opt_recovery and not inherited.get('opt_evidence_complete'):
++            if inherited.get('opt_execution_proof_kind') == 'native_project_log_derived':
++                os.environ['HAP_RECOVERY_OPT_LOG_DERIVED'] = '1'
++                shutil.copy2(Path(inherited['inherited_opt_execution_proof']['path']), report/'inherited_opt_execution_proof.json')
++            elif opt_recovery and not inherited.get('opt_evidence_complete'):
+                 shutil.copy2(inherited_report/'opt_command_result.txt',report/'opt_command_result.txt')
+         else:
+             os.environ["HAP_RECOVERY_PARENT_REPORT"] = str(parent_path.parent)
+@@ -70,7 +84,7 @@
+                    scripts / "m002_impl_threads.tcl", scripts / "m002_resume_physical.tcl", scripts / "m002_physical_evidence.py",
+                    scripts / "emit_current_board_evidence.py", scripts / "m002_route_failure_capture.tcl",
+                    scripts / "m002_optimized_structure.tcl",
+-                   scripts / "m002_synthesis_recovery.py",
++                   scripts / "m002_synthesis_recovery.py", scripts / "m002_fresh_project_opt_recovery.py",
+                    scripts / "freeze_m002_optimized_synthesis.py",
+                    scripts / "run_m002_optimized.py",
+                    Path(__file__), scripts / "run_managed_eda.py", scripts / "m002_execution_profile.py", scripts / "run_m002_no_wall.py"])
+@@ -97,7 +111,12 @@
+         identities += [Path(inherited[k]["path"]) for k in ("status","launcher","child_log","command","stage_inputs","archive","implementation_settings","source_registry") if inherited.get(k)]
+         identities += [Path(x["path"]) for x in inherited["inherited_reports"].values()]
+         identities += [Path(inherited[k]['path']) for k in ('upstream_recovery','opt_command','parent_constraints','controlled_stop',
+-            'post_termination','resource_samples','frozen_child_log','completed_report_integrity') if inherited.get(k)]
++            'post_termination','resource_samples','frozen_child_log','completed_report_integrity','inherited_opt_execution_proof') if inherited.get(k)]
++        if inherited.get('inherited_opt_execution_proof'):
++            import m002_fresh_project_opt_recovery as fresh_opt
++            import m002_physical_evidence as evidence
++            identities += fresh_opt.proof_source_paths(evidence, inherited['inherited_opt_execution_proof'])
++            identities.append(report/'inherited_opt_execution_proof.json')
+         if inherited.get('inherited_reset_evidence'):
+             reset=inherited['inherited_reset_evidence']
+             identities += [Path(reset[k]['path']) for k in ('graph','fanout')]+[Path(row['path']) for row in reset['exports']]
+@@ -130,12 +149,7 @@
+     targets = [re.split(r"\s{2,}", row["raw"].strip())[-1] for row in critical]
+     probe = "set ::m002_warning_registers [list " + " ".join(tcl_literal(x.rsplit(".", 1)[-1]) for x in registers) + "]\n"
+     probe += "set ::m002_cdc_targets [list " + " ".join(tcl_literal(x) for x in targets) + "]\n"
+-    critical_source = (Path(inherited['source_report'])/'cdc_place.rpt'
+-        if recovery and stage=='place' and inherited.get('phase')=='post_place_pre_physopt' else Path(inherited['inherited_reports']['cdc_debug_materialized.rpt']['path'])
+-        if recovery and stage=='place' and inherited.get('phase')=='post_debug_pre_place' else
+-        Path(inherited['inherited_reports']['cdc_opt.rpt']['path'])
+-        if recovery and stage == 'place' and inherited.get('opt_evidence_complete') else
+-        parent_path.parent/'cdc_physopt.rpt' if stage=='route' else None)
++    critical_source = critical_probe_report(stage, recovery, inherited if recovery and stage == 'place' else {}, parent_path if stage == 'route' else None)
+     if critical_source is not None:
+         actual_critical = sorted(cdc_critical_records(critical_source))
+         probe += "set ::m002_actual_critical_sources [list " + " ".join(tcl_literal(x) for x in sorted({row[3] for row in actual_critical})) + "]\n"
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/engineering_inputs_before_OPT_POST_recovery/m002_diagnostic_common.tcl
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_common.tcl
+@@ -537,11 +537,13 @@
+ }
+ proc m002_post {point} {
+     file mkdir $::m002_report_dir
+-    set inherited_opt [expr {[info exists ::env(HAP_RECOVERY_PHASE)] && $::env(HAP_RECOVERY_PHASE) eq "post_opt_pre_debug" && $point eq "opt" && $::env(HAP_RECOVERY_OPT_EVIDENCE_COMPLETE) eq "1"}]
++    set log_derived_opt [expr {[info exists ::env(HAP_RECOVERY_OPT_LOG_DERIVED)] && $::env(HAP_RECOVERY_OPT_LOG_DERIVED) eq "1"}]
++    set inherited_opt [expr {[info exists ::env(HAP_RECOVERY_PHASE)] && $::env(HAP_RECOVERY_PHASE) eq "post_opt_pre_debug" && $point eq "opt" && ($::env(HAP_RECOVERY_OPT_EVIDENCE_COMPLETE) eq "1" || $log_derived_opt)}]
+     if {$inherited_opt} {
+         # Exact same untransformed post-OPT DCP. These reports/command are inherited,
+         # not fresh opt_design execution. Parent validation bound every source.
+         foreach name {opt.dcp opt_command_result.txt timing_opt.rpt utilization_opt.rpt drc_opt.rpt check_timing_opt.rpt clocks_opt.rpt cdc_opt.rpt clock_interaction_opt.rpt exceptions_opt.rpt pulse_width_opt.rpt bus_skew_opt.rpt reset_cdc_and_io_probe_opt.tsv xpm_invalid_endpoint_probe_opt.tsv head_wave_local_opt.tsv} {
++            if {$log_derived_opt && $name eq "opt_command_result.txt"} {continue}
+             file copy [file join $::env(HAP_RECOVERY_PARENT_REPORT) $name] [file join $::m002_report_dir $name]
+         }
+         set bb [get_cells -quiet -hier -filter {IS_BLACKBOX == 1}]
+--- /dev/null
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_fresh_project_opt_recovery.py
+@@ -0,0 +1,431 @@
++"""Explicit log-derived E005 native-project OPT provenance.
++
++This module never manufactures a command receipt or a successful native run.
++Its caller supplies the existing diagnostic evidence functions as ``m``.
++"""
++from __future__ import annotations
++
++import datetime as dt
++import json
++from pathlib import Path
++import re
++
++
++GUARD = 'native project mode has no qualified explicit pre-place debug admission'
++FROZEN_SHA = 'c34da1cfa5f8dec2a0bba93c282c5c07c71b8ed0bdcfc390330bc3261cce1e01'
++
++
++def expected_physical_command(point, default, authorization):
++    if authorization and authorization.get('profile') == 'm002_optimized_implementation':
++        return dict(place='place_design -directive SSI_SpreadSLLs',
++                    physopt='phys_opt_design -directive Default',
++                    route='route_design -directive Default').get(point, default)
++    return default
++
++
++def verify_inherited_proof(m, identity, project, lineage, report):
++    m.verify_identity(identity)
++    proof = json.loads(Path(identity['path']).read_text())
++    m.require(proof.get('schema') == 'E005_native_project_OPT_log_derived_v1' and
++              proof.get('native_command_receipt_exists') is False,
++              'inherited fresh OPT proof is not explicitly log-derived')
++    source = Path(proof['original_command']['path']).parent
++    qualified = qualify_native_project(m, source, project, lineage, report, write=False)
++    m.require(qualified['inherited_opt_execution_proof'] == identity,
++              'inherited fresh OPT proof differs from requalified native source')
++    return qualified
++
++
++def proof_source_paths(m, identity):
++    """Bind the separate proof, retained inputs and fixed observations in-stage."""
++    m.verify_identity(identity)
++    proof = json.loads(Path(identity['path']).read_text())
++    paths = {Path(identity['path'])}
++    def visit(value):
++        if isinstance(value, dict):
++            if set(value) == {'path', 'bytes', 'sha256'}:
++                m.verify_identity(value); paths.add(Path(value['path']))
++            else:
++                for child in value.values():
++                    visit(child)
++        elif isinstance(value, list):
++            for child in value:
++                visit(child)
++    visit(proof)
++    for path in m.input_manifest(Path(proof['archive']['path'])):
++        paths.add(path)
++    return sorted(paths)
++
++
++def literal_assignment(m, text, variable):
++    """Parse only a unique literal scalar/list assignment; never evaluate Tcl."""
++    prefix = r'^[ \t]*set[ \t]+'+re.escape(variable)+r'[ \t]+'
++    m.require(len(re.findall(prefix, text, re.M)) == 1,
++              f'fresh PHY assignment missing or repeated: {variable}')
++    matches = list(re.finditer(prefix+r'(?:\{([^{}]*)\}|([^\n{}]*))[ \t]*$', text, re.M))
++    m.require(len(matches) == 1, f'fresh PHY assignment is not a bounded literal: {variable}')
++    value = next(group for group in matches[0].groups() if group is not None).strip()
++    m.require(not any(char in value for char in '$[];\\'),
++              f'fresh PHY assignment contains executable substitution: {variable}')
++    return value.split()
++
++
++def qualify_disabled_phy_cache(m, attempt, value, records, original, project, *, create_observation=False):
++    """Additional fresh-project proof; zero cached files alone is insufficient."""
++    status = json.loads((attempt/'status.json').read_text())
++    report = Path(status['report'])
++    auth = m.full_impl.report_authorization(report)
++    command = json.loads((report/'command.json').read_text())
++    m.require(auth and auth['profile'] == m.full_impl.OPTIMIZED_PROFILE and
++              auth['managed_attempt'] == str(attempt) and
++              command.get('execution_mode') == 'project_runs' and command.get('stage') == 'place' and
++              command.get('managed_attempt') == str(attempt) and status.get('project') == str(project) and
++              status.get('exit_code') == 1 and status.get('native_exit_code') == 1 and
++              status.get('stop_reason') is None and status.get('owned_survivors') == [],
++              'disabled-cache PHY branch requires the genuine failed E005 fresh project')
++    runtime = project/'scalellm_vcu118_f05.runs/impl_1/.Xil'
++    relative = original.relative_to(runtime)
++    match = re.fullmatch(r'Vivado-(\d+)-user/\1', str(relative))
++    m.require(match and match.group(1) in status.get('tracked_identities', {}),
++              'disabled-cache PHY worker is not owned by the actual native implementation')
++    script_record = records[original/'get_cs_ip.tcl']
++    script = Path(script_record['path']).read_text()
++    log_record = records[original/'vivado.log']
++    log = Path(log_record['path']).read_text()
++    repo = project/'scalellm_vcu118_f05.cache/ip'
++    modules = [f'scalellm_vcu118_f05_bd_ddr4_{d}_0_phy' for d in (1, 0)]
++    expected = dict(part=['xcvu9p-flga2104-2L-e'], board_part=['xilinx.com:vcu118:part0:2.0'],
++        ip_vlnv=['xilinx.com:ip:ddr4_phy:2.2']*2, ip_module_name=modules,
++        ip_output_repo=[str(repo)], ip_cache_permissions=['disable'],
++        output_dcp=[str(original/'out'/(name+'.0')/'result.dcp') for name in modules],
++        output_xci=[str(original/'out'/(name+'.0')/'result.xci') for name in modules])
++    traced_script = '\n'.join(line[2:] for line in log.splitlines() if line.startswith('# '))
++    for variable, expected_value in expected.items():
++        m.require(literal_assignment(m, script, variable) == expected_value and
++                  literal_assignment(m, traced_script, variable) == expected_value,
++                  f'actual fresh PHY script/log assignment differs: {variable}')
++    m.require('synth_design completed successfully' in log and 'Exiting Vivado' in log and
++              log.count('DBG: no cache hit, so run synth') == 2 and
++              log.count('synth_design completed successfully') == 2,
++              'disabled-cache PHY lacks two actual current syntheses and worker exit')
++    for name in modules:
++        m.require(not any(p.is_relative_to(original/'.cache/ip') and p.name == name+'.dcp' for p in records),
++                  'disabled-cache fresh PHY unexpectedly has a worker-local third copy')
++    declared_files = sorted(str(p) for p in repo.rglob('*') if p.is_file())
++    m.require(repo.is_dir() and not any(Path(p).name in {name+'.dcp' for name in modules} for p in declared_files),
++              'disabled-cache fresh PHY has unexpected declared-repo third DCP copies')
++    main_log = report/'implementation_run.log'
++    messages = [dict(line=n, text=line) for n,line in enumerate(main_log.read_text().splitlines(), 1)
++                if 'Added synthesis output to IP cache for IP ' in line]
++    m.require(len(messages) == 2 and all(sum(name in row['text'] for row in messages) == 1 for name in modules),
++              'fresh PHY main-log cache dispositions are missing or ambiguous')
++    observation_path = attempt/'generated_phy_terminal_repository_observation.json'
++    if not observation_path.exists():
++        m.require(create_observation, 'fresh PHY fixed terminal repository observation is missing')
++        observation = dict(observed_utc=dt.datetime.now(dt.timezone.utc).isoformat(),
++            status=m.file_id(attempt/'status.json'), project=str(project),
++            declared_ip_output_repo=str(repo), declared_repo_files_observed=declared_files,
++            matched_PHY_DCP_copies=0, scope='one fixed terminal observation; unrelated later repo entries do not rewrite historical provenance')
++        observation_path.write_text(json.dumps(observation, indent=2)+'\n')
++    observation = json.loads(observation_path.read_text())
++    m.require(observation.get('status') == m.file_id(attempt/'status.json') and
++              observation.get('project') == str(project) and observation.get('declared_ip_output_repo') == str(repo) and
++              observation.get('matched_PHY_DCP_copies') == 0 and
++              not any(Path(p).name in {name+'.dcp' for name in modules}
++                      for p in observation['declared_repo_files_observed']),
++              'fresh PHY fixed terminal repository observation changed')
++    return dict(mode='E005_fresh_project_worker_cache_disabled',
++        actual_worker_script={k:v for k,v in script_record.items() if k != 'source_path'},
++        actual_worker_log={k:v for k,v in log_record.items() if k != 'source_path'},
++        project=str(project), declared_ip_output_repo=str(repo), cache_permissions='disable',
++        worker_local_cache_DCP_copies=0, terminal_repository_observation=m.file_id(observation_path),
++        actual_script_and_log_assignments=expected,
++        main_log=m.file_id(main_log), native_main_cache_messages=messages,
++        scope='matching actual produced/result pairs; native cache messages retained; no measured third disk copy; no legacy cache exemption')
++
++
++def no_active_owned_identity(m, status):
++    tracked = status.get('tracked_identities', {})
++    m.require(tracked and str(status['leader_pid']) in tracked,
++              'fresh OPT terminal lacks tracked native process identities')
++    observations = []
++    for pid, ticks in sorted(tracked.items(), key=lambda row: int(row[0])):
++        try:
++            fields = Path(f'/proc/{int(pid)}/stat').read_text().rsplit(')', 1)[1].split()
++        except (FileNotFoundError, ProcessLookupError):
++            observations.append(dict(pid=int(pid), expected_start_ticks=ticks, state='not_present'))
++            continue
++        m.require(int(fields[19]) != ticks,
++                  f'fresh OPT still has a matching owned PID identity: {pid}')
++        observations.append(dict(pid=int(pid), expected_start_ticks=ticks,
++                                 state='different_identity'))
++    return observations
++
++
++def archive_frozen_inputs(m, source):
++    frozen = m.ROOT.parent/'E005_m002_optimized_implementation/experiment_source/frozen_inputs_before_physical.json'
++    m.require(m.sha256(frozen) == FROZEN_SHA, 'fresh OPT original 142-input freeze identity changed')
++    rows = json.loads(frozen.read_text())['files']
++    m.require(len(rows) == 142 and len({row['path'] for row in rows}) == 142,
++              'fresh OPT original production freeze is incomplete')
++    resolved = []
++    for row in rows:
++        original = Path(row['path'])
++        archived = source/'stage_sources'/original.name
++        current = archived if archived.is_file() else original
++        m.require(current.is_file() and m.sha256(current) == row['sha256'],
++                  f'fresh OPT original production input differs: {original}')
++        resolved.append(dict(original_path=str(original), retained_identity=m.file_id(current)))
++    return dict(manifest=m.file_id(frozen), inputs=resolved)
++
++
++def qualify_native_project(m, source, project, lineage, report, *, write=True):
++    """Read a naturally failed POST; return a distinct inherited-OPT parent."""
++    m.require(source.is_relative_to(m.ROOT/'vivado/reports') and
++              project.is_relative_to(m.ROOT/'vivado/project'), 'foreign fresh OPT source root')
++    auth = m.full_impl.report_authorization(source)
++    m.require(auth and auth['profile'] == m.full_impl.OPTIMIZED_PROFILE and auth['stage'] == 'place',
++              'fresh OPT source is not the authorized E005 project run')
++    command = json.loads((source/'command.json').read_text())
++    attempt = Path(command['managed_attempt'])
++    status_path = attempt/'status.json'
++    status = json.loads(status_path.read_text())
++    m.require(command.get('execution_mode') == 'project_runs' and command.get('stage') == 'place' and
++              str(attempt) == auth['managed_attempt'] and
++              command.get('synthesis') == lineage and lineage.get('source_rows') == 342 and
++              lineage.get('checkpoint_paths') == 45 and status.get('project') == str(project) and
++              status.get('report') == str(source) and status.get('stage') == 'place' and
++              status.get('exit_code') == 1 and status.get('native_exit_code') == 1 and
++              status.get('stop_reason') is None and status.get('owned_survivors') == [] and
++              not (attempt/'controlled_stop_request.json').exists(),
++              'fresh OPT source is not the native/supervisor failure without configured stop')
++    launcher = m.key_values(source/'launcher_status.txt')
++    m.require(launcher.get('stage') == 'place' and launcher.get('exit_code') == '1' and
++              launcher.get('native_exit_code') == '1' and launcher.get('project') == str(project) and
++              launcher.get('reports') == str(source), 'fresh OPT failed launcher identity mismatch')
++    manager_command = json.loads((attempt/'command.json').read_text())
++    started = json.loads((attempt/'started.json').read_text())
++    m.require(all(started.get(key) == value for key,value in manager_command.items()) and
++              set(started)-set(manager_command) == {'supervisor_pid','leader_pid','process_group'} and
++              all(status.get(key) == value for key,value in started.items()),
++              'fresh OPT manager command/started/status chain does not bind one attempt')
++    identity_checks = no_active_owned_identity(m, status)
++    identity_path = attempt/'native_project_opt_terminal_identity_observation.json'
++    if not identity_path.exists():
++        m.require(write, 'fresh OPT fixed terminal identity observation is missing')
++        identity_path.write_text(json.dumps(dict(observed_utc=dt.datetime.now(dt.timezone.utc).isoformat(),
++            original_status=m.file_id(status_path), checks=identity_checks,
++            scope='fixed observation of exact owned PID/start identities after native/supervisor terminal'), indent=2)+'\n')
++    identities = json.loads(identity_path.read_text())
++    m.require(identities.get('original_status') == m.file_id(status_path) and
++              {str(row['pid']):row['expected_start_ticks'] for row in identities['checks']} == status['tracked_identities'] and
++              all(row['state'] in {'not_present','different_identity'} for row in identities['checks']),
++              'fresh OPT fixed terminal identity observation changed')
++    m.validate_stage_archive(source, m.file_id(source/'stage_inputs.sha256'),
++                             m.file_id(source/'archived_sources.sha256'))
++    frozen = archive_frozen_inputs(m, source)
++    result = m.key_values(source/'opt_result.txt')
++    init = m.key_values(source/'init_result.txt')
++    m.require(result.get('completed') == '0' and result.get('phase') == 'opt' and
++              init.get('completed') == '1' and init.get('phase') == 'init',
++              'fresh OPT original INIT/failed POST disposition was changed')
++    m.require(not any((source/name).exists() for name in (
++        'opt_command_result.txt', 'integrity_opt.json', 'debug_materialization_command_result.txt',
++        'place_command_result.txt', 'physopt_command_result.txt', 'place.dcp', 'physopt.dcp',
++        'diagnostic_evidence.json')), 'fresh OPT source has unexpected later/synthetic success artifacts')
++    checkpoint = m.file_id(source/'opt.dcp')
++    package = m.checkpoint_package(source/'opt.dcp')
++    log_path = source/'implementation_run.log'
++    text = log_path.read_text(errors='replace')
++    markers = ['Command: opt_design', 'opt_design completed successfully',
++               'source '+str(m.ROOT/'vivado/scripts/m002_diagnostic_opt_post.tcl'),
++               "The checkpoint '"+checkpoint['path']+"' has been generated", GUARD]
++    positions = [text.find(marker) for marker in markers]
++    m.require(all(pos >= 0 for pos in positions) and positions == sorted(positions) and
++              text.count('Command: opt_design') == 1 and
++              not any('Command: '+name in text for name in ('implement_debug_core', 'place_design',
++                                                           'phys_opt_design', 'route_design')) and
++              'M002_DIAGNOSTIC_STEP_COMPLETED opt' not in text,
++              'fresh OPT successful command/failed POST chronology is not genuine')
++    native = source/'native_run_receipts'
++    script_path = native/'scalellm_vcu118_f05_bd_wrapper.tcl'
++    script = script_path.read_text()
++    opt_command = re.search(r'^\s*opt_design\s*$', script, re.M)
++    hook_command = re.search(r'^\s*source '+re.escape(str(m.ROOT/'vivado/scripts/m002_diagnostic_opt_post.tcl'))+r'\s*$', script, re.M)
++    m.require(opt_command and hook_command and opt_command.start() < hook_command.start() and
++              'step_failed opt_design' in script and 'return -code error' in script and
++              (native/'.opt_design.error.rst').is_file() and
++              not (native/'.opt_design.end.rst').exists(),
++              'fresh OPT generated native Tcl/error receipt does not bind the failed POST')
++    settings = m.key_values(source/'implementation_settings.txt')
++    m.require(settings.get('STEPS.PLACE_DESIGN.ARGS.DIRECTIVE') == 'SSI_SpreadSLLs' and
++              settings.get('STEPS.PHYS_OPT_DESIGN.ARGS.DIRECTIVE') == 'Default' and
++              settings.get('STEPS.ROUTE_DESIGN.ARGS.DIRECTIVE') == 'Default',
++              'fresh OPT project settings no longer match E005 authorization')
++    constraint_path = source/'constraints_opt.json'
++    constraints = json.loads(constraint_path.read_text())
++    m.require(constraints.get('phase') == 'opt' and constraints.get('parent') ==
++              m.file_id(source/'constraints_init.json'), 'fresh OPT failed POST constraint ancestry mismatch')
++    m.require(constraints.get('registry') == m.file_id(source/'xdc_registry_opt_hashed.tsv') and
++              constraints.get('actual_reads') == m.file_id(source/'actual_xdc_reads_opt.json'),
++              'fresh OPT actual constraint registry/read-file identity mismatch')
++    metadata = constraints['metadata']
++    registry_rows = (source/'xdc_registry_opt_hashed.tsv').read_text().splitlines()[1:]
++    registry_metadata = {}
++    for row in registry_rows:
++        fields = row.split('\t')
++        m.require(len(fields) == 9 and fields[0] not in registry_metadata and
++                  constraints['hashes'].get(fields[0]) == fields[-1],
++                  'fresh OPT constraint registry has duplicate/inconsistent rows')
++        registry_metadata[fields[0]] = fields[1:-1]
++    project_constraints = json.loads((source/'constraints_project.json').read_text())
++    m.require(len(registry_metadata) == 162 and metadata == registry_metadata == project_constraints['metadata'],
++              'fresh OPT original candidate XDC metadata is incomplete or changed')
++    source_archives = {}
++    generated = dict(generated_phy=m.generated_phy_parent(attempt, fresh_project=project, create_terminal_observation=write),
++                     generated_debug=m.generated_debug_parent(attempt))
++    hashes = dict(constraints['hashes'])
++    candidates = {}
++    for kind, value in generated.items():
++        for name, identity in value['main_generated_xdc_candidates'].items():
++            m.require(name not in hashes or hashes[name] == identity['sha256'],
++                      'fresh OPT generated constraint candidate bytes differ from actual constraint hash')
++            hashes[name] = identity['sha256']; source_archives[name] = identity
++            candidates[name] = dict(kind=kind, produced_phase='actual_OPT_core_generation',
++                effective_import_status='inherited_binary_checkpoint; candidate is not a fabricated read record')
++    for name in hashes:
++        m.constraint_source(name, dict(hashes=hashes, source_archives=source_archives))
++    actual = json.loads((source/'actual_xdc_reads_opt.json').read_text())['records']
++    recomputed = []
++    for number, line in enumerate(text.splitlines(), 1):
++        match = re.match(r"Parsing XDC File \[([^]]+)\](?: for cell '([^']+)')?", line)
++        if match:
++            recomputed.append(dict(line=number, path=match.group(1), scope=match.group(2),
++                                   sha256=hashes[match.group(1)]))
++    m.require(actual and actual == recomputed,
++              'fresh OPT actual constraint records are incomplete or changed')
++    required = ('timing_opt.rpt', 'utilization_opt.rpt', 'drc_opt.rpt', 'check_timing_opt.rpt',
++                'clocks_opt.rpt', 'cdc_opt.rpt', 'clock_interaction_opt.rpt', 'exceptions_opt.rpt',
++                'pulse_width_opt.rpt', 'bus_skew_opt.rpt', 'reset_cdc_and_io_probe_opt.tsv',
++                'xpm_invalid_endpoint_probe_opt.tsv', 'head_wave_local_opt.tsv')
++    reports = {name:m.file_id(source/name) for name in required}
++    m.require(all(value['bytes'] > 0 for value in reports.values()), 'fresh OPT incomplete POST report set')
++    proof = dict(schema='E005_native_project_OPT_log_derived_v1', origin='native_project_log_and_generated_Tcl',
++        native_command_receipt_exists=False, original_execution_state='failed_incomplete_OPT_POST',
++        original_native_exit_code=1, original_supervisor_exit_code=1,
++        successful_native_command='opt_design', qualified_scope='completed OPT only; no POST/admission success',
++        checkpoint=checkpoint, checkpoint_package=package, synthesis=lineage,
++        markers=[dict(text=marker, character_offset=pos) for marker,pos in zip(markers, positions)],
++        source_log=m.file_id(log_path), native_generated_tcl=m.file_id(script_path),
++        native_OPT_error_receipt=m.artifact_id(native/'.opt_design.error.rst'),
++        original_status=m.file_id(status_path), original_command=m.file_id(source/'command.json'),
++        original_manager_command=m.file_id(attempt/'command.json'), original_started=m.file_id(attempt/'started.json'),
++        terminal_identity_observation=m.file_id(identity_path),
++        original_launcher=m.file_id(source/'launcher_status.txt'), frozen_production_inputs=frozen,
++        stage_inputs=m.file_id(source/'stage_inputs.sha256'), archive=m.file_id(source/'archived_sources.sha256'),
++        original_failed_POST=m.file_id(source/'opt_result.txt'), constraints=m.file_id(constraint_path),
++        generated_phy=generated['generated_phy'], generated_debug=generated['generated_debug'])
++    proof_path = attempt/'native_project_opt_execution_proof.json'
++    if proof_path.exists():
++        m.require(json.loads(proof_path.read_text()) == proof, 'fresh OPT log-derived proof changed')
++    elif write:
++        proof_path.write_text(json.dumps(proof, indent=2)+'\n')
++    m.require(proof_path.is_file(), 'fresh OPT separate log-derived proof not yet materialized')
++    value = dict(phase='post_opt_pre_debug', original_execution_state='failed_native_project_OPT_POST_guard',
++        original_impl_run_remains='FAIL', original_POST_remains='incomplete',
++        opt_evidence_complete=False, opt_reports_complete=True,
++        opt_execution_proof_kind='native_project_log_derived',
++        inherited_opt_execution_proof=m.file_id(proof_path),
++        checkpoint=checkpoint, checkpoint_package=package, synthesis=lineage,
++        status=m.file_id(status_path), launcher=m.file_id(source/'launcher_status.txt'),
++        child_log=m.file_id(log_path), command=m.file_id(source/'command.json'),
++        stage_inputs=m.file_id(source/'stage_inputs.sha256'), archive=m.file_id(source/'archived_sources.sha256'),
++        implementation_settings=m.file_id(source/'implementation_settings.txt'),
++        source_registry=m.file_id(source/'xdc_registry_opt_hashed.tsv'), source_metadata=metadata,
++        hashes=hashes, actual_reads=actual, source_archives=source_archives,
++        generated_source_candidates=candidates, **generated,
++        parent_constraints=m.file_id(constraint_path), constraint_mode='embedded_checkpoint_inherited',
++        inherited_reports=reports, parent_coverage='NOT_QUALIFIED_INCOMPLETE_NATIVE_OPT_POST',
++        formal_reset_cdc_safety='OPEN', inherited_reset_evidence=None)
++    if write:
++        (report/'recovery_parent.json').write_text(json.dumps(value, indent=2)+'\n')
++    return value
++
++
++def qualify_restored_opt(m, source, project, lineage, report, *, write=True):
++    """Resume a failed POST of the same new OPT; never replay a later command."""
++    command = json.loads((source/'command.json').read_text())
++    old = json.loads((source/'recovery_parent.json').read_text())
++    m.require(old.get('phase') == 'post_opt_pre_debug' and
++              old.get('opt_execution_proof_kind') == 'native_project_log_derived',
++              'restored fresh OPT is outside its exact pre-debug proof scope')
++    original = verify_inherited_proof(m, old['inherited_opt_execution_proof'], project, lineage, report)
++    auth = m.full_impl.report_authorization(source)
++    attempt = Path(command['managed_attempt'])
++    status_path = attempt/'status.json'; status = json.loads(status_path.read_text())
++    m.require(auth and auth['profile'] == m.full_impl.OPTIMIZED_PROFILE and auth['managed_attempt'] == str(attempt) and
++              command.get('execution_mode') == 'checkpoint_restored_commands' and command.get('stage') == 'place' and
++              command.get('synthesis') == lineage and status.get('stage') == 'place' and
++              status.get('project') == str(project) and status.get('report') == str(source) and
++              status.get('exit_code') == 1 and status.get('native_exit_code') == 1 and
++              status.get('stop_reason') is None and status.get('owned_survivors') == [],
++              'restored fresh OPT is not this terminal failed POST without configured stop')
++    manager_command = json.loads((attempt/'command.json').read_text())
++    started = json.loads((attempt/'started.json').read_text())
++    m.require(all(started.get(key) == value for key,value in manager_command.items()) and
++              set(started)-set(manager_command) == {'supervisor_pid','leader_pid','process_group'} and
++              all(status.get(key) == value for key,value in started.items()),
++              'restored fresh OPT manager command/started/status chain changed')
++    no_active_owned_identity(m, status)
++    launcher = m.key_values(source/'launcher_status.txt')
++    m.require(launcher.get('exit_code') == '1' and launcher.get('native_exit_code') == '1' and
++              launcher.get('project') == str(project), 'restored fresh OPT launcher identity mismatch')
++    upstream = Path(command.get('environment', {}).get('HAP_OPT_REPORT_DIR', ''))
++    m.require(upstream.is_absolute() and old['command']['path'] == str(upstream/'command.json') and
++              old.get('synthesis') == lineage, 'restored fresh OPT upstream identity mismatch')
++    m.validate_stage_archive(source, m.file_id(source/'stage_inputs.sha256'), m.file_id(source/'archived_sources.sha256'))
++    for name in ('opt_command_result.txt','debug_materialization_command_result.txt','place_command_result.txt',
++                 'physopt_command_result.txt','debug_materialized.dcp','place.dcp','physopt.dcp','diagnostic_evidence.json'):
++        m.require(not (source/name).exists(), 'restored fresh OPT has later executed-command evidence; recover the later checkpoint')
++    checkpoint = m.file_id(source/'opt.dcp')
++    m.require(all(checkpoint[key] == original['checkpoint'][key] == old['checkpoint'][key] for key in ('bytes','sha256')),
++              'restored fresh OPT checkpoint bytes transformed')
++    m.checkpoint_package(source/'opt.dcp')
++    result = m.key_values(source/'opt_result.txt')
++    m.require(result.get('completed') == '0' and result.get('phase') == 'opt' and
++              result.get('evidence_origin') == 'inherited_identical_opt_checkpoint',
++              'restored fresh OPT failed POST disposition changed')
++    text = (source/'implementation_run.log').read_text(errors='replace')
++    m.require(f"Command: open_checkpoint {old['checkpoint']['path']}" in text and
++              not any('Command: '+name in text for name in ('opt_design','implement_debug_core','place_design','phys_opt_design','route_design')),
++              'restored fresh OPT executed a new transformation or later command')
++    reports = {name:m.file_id(source/name) for name in original['inherited_reports']}
++    m.require(all(all(value[key] == original['inherited_reports'][name][key] for key in ('bytes','sha256'))
++                  for name,value in reports.items()), 'restored fresh OPT copied reports differ from original OPT')
++    constraint_path = source/'constraints_opt.json'; constraints = json.loads(constraint_path.read_text())
++    m.require(constraints.get('mode') == 'embedded_checkpoint_inherited' and
++              constraints.get('candidate_metadata') == original['source_metadata'] and constraints['hashes'] == original['hashes'],
++              'restored fresh OPT effective/candidate constraints changed')
++    for name in constraints['hashes']:
++        m.constraint_source(name, constraints)
++    proof_sources = list(old.get('inherited_proof_sources', []))
++    proof_sources += [m.file_id(path) for path in (status_path, attempt/'command.json', attempt/'started.json',
++        source/'command.json', source/'launcher_status.txt', source/'implementation_run.log', source/'opt_result.txt',
++        source/'stage_inputs.sha256', source/'archived_sources.sha256', source/'recovery_parent.json', constraint_path)]
++    proof_sources += [m.file_id(path) for path in m.input_manifest(source/'archived_sources.sha256')]
++    if (source/'integrity_opt.json').exists():
++        proof_sources.append(m.file_id(source/'integrity_opt.json'))
++    for identity in proof_sources:
++        m.verify_identity(identity)
++    value = dict(original)
++    value.update(original_execution_state='failed_restored_identical_OPT_POST', checkpoint=checkpoint,
++        status=m.file_id(status_path), launcher=m.file_id(source/'launcher_status.txt'),
++        child_log=m.file_id(source/'implementation_run.log'), command=m.file_id(source/'command.json'),
++        stage_inputs=m.file_id(source/'stage_inputs.sha256'), archive=m.file_id(source/'archived_sources.sha256'),
++        implementation_settings=m.file_id(source/'implementation_settings.txt'),
++        source_registry=m.file_id(source/'xdc_registry_opt_hashed.tsv'), inherited_reports=reports,
++        upstream_recovery=m.file_id(source/'recovery_parent.json'), parent_constraints=m.file_id(constraint_path),
++        inherited_proof_sources=proof_sources, source_archives=constraints.get('source_archives', {}))
++    if write:
++        (report/'recovery_parent.json').write_text(json.dumps(value, indent=2)+'\n')
++    return value
+--- /dev/null
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/tests/test_m002_fresh_project_opt_recovery.py
+@@ -0,0 +1,397 @@
++"""E005 fresh-project provenance fixtures; never run a hardware tool."""
++import json
++from pathlib import Path
++import shutil
++import sys
++import tempfile
++import unittest
++from unittest.mock import patch
++import zipfile
++
++SCRIPTS = Path(__file__).resolve().parents[1]/'vivado/scripts'
++sys.path.insert(0, str(SCRIPTS))
++import m002_physical_evidence as m
++import m002_fresh_project_opt_recovery as fresh
++import run_m002_physical_stage as runner
++
++
++def put(path, body='fixture'):
++    path.parent.mkdir(parents=True, exist_ok=True)
++    path.write_text(body)
++    return path
++
++
++class FreshPHY(unittest.TestCase):
++    def setUp(self):
++        self.tmp = tempfile.TemporaryDirectory()
++        self.addCleanup(self.tmp.cleanup)
++        self.root = Path(self.tmp.name)
++        self.attempt = self.root/'attempt'
++        self.project = self.root/'project'
++        self.report = self.root/'report'
++        self.original = self.project/'scalellm_vcu118_f05.runs/impl_1/.Xil/Vivado-987654321-user/987654321'
++        self.archive = self.attempt/'generated_phy_snapshot'
++        self.repo = self.project/'scalellm_vcu118_f05.cache/ip'
++        self.repo.mkdir(parents=True)
++        self.modules = [f'scalellm_vcu118_f05_bd_ddr4_{d}_0_phy' for d in (1, 0)]
++        assignments = dict(part='xcvu9p-flga2104-2L-e', board_part='xilinx.com:vcu118:part0:2.0',
++            ip_vlnv='{xilinx.com:ip:ddr4_phy:2.2 xilinx.com:ip:ddr4_phy:2.2}',
++            ip_module_name='{'+ ' '.join(self.modules)+'}',
++            output_dcp='{\n'+'\n'.join(str(self.original/'out'/(name+'.0')/'result.dcp') for name in self.modules)+'\n}',
++            output_xci='{\n'+'\n'.join(str(self.original/'out'/(name+'.0')/'result.xci') for name in self.modules)+'\n}',
++            ip_output_repo=str(self.repo), ip_cache_permissions='disable')
++        self.script = ''.join(f'set {key} {value}\n' for key, value in assignments.items())
++        self.bodies = {self.original/'get_cs_ip.tcl': self.script}
++        for d in (0, 1):
++            name = f'scalellm_vcu118_f05_bd_ddr4_{d}_0_phy'
++            self.bodies[self.original/(name+'.dcp')] = f'new PHY {d}'
++            self.bodies[self.original/'out'/(name+'.0')/'result.dcp'] = f'new PHY {d}'
++            self.bodies[self.original/f'phy{d}.xdc'] = f'worker constraint {d}'
++            self.bodies[self.original/'out'/(name+'.0')/'main.xdc'] = f'generated main candidate {d}'
++        self.refresh_log()
++        put(self.attempt/'status.json', json.dumps(dict(project=str(self.project), report=str(self.report),
++            exit_code=1, native_exit_code=1, stop_reason=None, owned_survivors=[], tracked_identities={'987654321': 1})))
++        put(self.report/'command.json', json.dumps(dict(stage='place', execution_mode='project_runs',
++            managed_attempt=str(self.attempt))))
++        put(self.report/'implementation_run.log', ''.join(f'INFO: [IP_Flow 19-5647] Added synthesis output to IP cache for IP {name}, cache-ID = fixture\n' for name in self.modules))
++        self.auth = dict(profile=m.full_impl.OPTIMIZED_PROFILE, stage='place', managed_attempt=str(self.attempt))
++        self.patcher = patch.object(m.full_impl, 'report_authorization', return_value=self.auth)
++        self.patcher.start(); self.addCleanup(self.patcher.stop)
++        self.save()
++
++    def refresh_log(self):
++        self.bodies[self.original/'get_cs_ip.tcl'] = self.script
++        trace = ''.join('# '+line+'\n' for line in self.script.splitlines())
++        self.bodies[self.original/'vivado.log'] = trace+''.join(
++            f'DBG: no cache hit, so run synth\nParsing XDC File [{self.original/f"phy{d}.xdc"}]\nsynth_design completed successfully\n'
++            for d in (0, 1))+'Exiting Vivado\n'
++
++    def save(self):
++        files = []
++        for source, body in self.bodies.items():
++            copy = put(self.archive/source.relative_to(self.original), body)
++            files.append(dict(source_path=str(source), **m.file_id(copy)))
++        put(self.attempt/'generated_phy_evidence.json', json.dumps(dict(source_root=str(self.original),
++            archive_root=str(self.archive), cache_miss_count=2, actual_synth_success_count=2, files=files)))
++        put(self.attempt/'generated_phy_snapshot.sha256', ''.join(f"{row['sha256']}  {row['path']}\n" for row in files))
++
++    def check(self):
++        return m.generated_phy_parent(self.attempt, fresh_project=self.project, create_terminal_observation=True)
++
++    def test_complete_disabled_cache_new_pair(self):
++        result = self.check()
++        self.assertEqual(result['fresh_disabled_cache_qualification']['cache_permissions'], 'disable')
++        for pair in result['outputs'].values():
++            self.assertEqual(set(pair), {'produced', 'output'})
++            self.assertEqual(pair['produced']['sha256'], pair['output']['sha256'])
++
++    def test_legacy_still_requires_third_copy(self):
++        with self.assertRaisesRegex(ValueError, 'post-synthesis cache bytes differ'):
++            m.generated_phy_parent(self.attempt)
++
++    def test_duplicate_permission_assignment_rejected(self):
++        self.script += 'set ip_cache_permissions disable\n'; self.refresh_log(); self.save()
++        with self.assertRaisesRegex(ValueError, 'assignment missing or repeated'):
++            self.check()
++
++    def test_module_assignment_cannot_hide_behind_name_elsewhere(self):
++        self.script = self.script.replace('set ip_module_name {', 'set ip_module_name {foreign ')
++        self.refresh_log(); self.save()
++        with self.assertRaisesRegex(ValueError, 'assignment differs: ip_module_name'):
++            self.check()
++
++    def test_output_dcp_order_rejected(self):
++        old = fresh.literal_assignment(m, self.script, 'output_dcp')
++        self.script = self.script.replace('\n'.join(old), '\n'.join(reversed(old)))
++        self.refresh_log(); self.save()
++        with self.assertRaisesRegex(ValueError, 'assignment differs: output_dcp'):
++            self.check()
++
++    def test_foreign_board_rejected(self):
++        self.script = self.script.replace('xilinx.com:vcu118:part0:2.0', 'xilinx.com:foreign:part0:2.0')
++        self.refresh_log(); self.save()
++        with self.assertRaisesRegex(ValueError, 'assignment differs: board_part'):
++            self.check()
++
++    def test_substituted_repo_rejected(self):
++        self.script = self.script.replace('set ip_output_repo '+str(self.repo), 'set ip_output_repo $foreign')
++        self.refresh_log(); self.save()
++        with self.assertRaisesRegex(ValueError, 'executable substitution'):
++            self.check()
++
++    def test_actual_cache_copy_rejected_by_new_branch(self):
++        put(self.repo/'unknown'/ (self.modules[0]+'.dcp'))
++        with self.assertRaisesRegex(ValueError, 'unexpected declared-repo third'):
++            self.check()
++
++    def test_result_byte_difference_rejected(self):
++        name = self.modules[0]
++        self.bodies[self.original/'out'/(name+'.0')/'result.dcp'] = 'foreign PHY bytes'
++        self.save()
++        with self.assertRaisesRegex(ValueError, 'produced/result PHY mismatch'):
++            self.check()
++
++    def test_original_repo_observation_stays_fixed(self):
++        original = self.check()
++        put(self.repo/'later_unrelated.txt', 'unrelated later metadata')
++        self.assertEqual(original, self.check())
++
++    def test_source_attempt_mismatch_rejected(self):
++        self.auth['managed_attempt'] = str(self.root/'other_attempt')
++        with self.assertRaisesRegex(ValueError, 'genuine failed E005 fresh project'):
++            self.check()
++
++    def test_main_cache_message_is_not_erased(self):
++        put(self.report/'implementation_run.log', 'no cache message\n')
++        with self.assertRaisesRegex(ValueError, 'main-log cache dispositions'):
++            self.check()
++
++    def test_read_only_missing_observation_is_not_rebuilt(self):
++        with self.assertRaisesRegex(ValueError, 'repository observation is missing'):
++            m.generated_phy_parent(self.attempt, fresh_project=self.project)
++        self.assertFalse((self.attempt/'generated_phy_terminal_repository_observation.json').exists())
++
++
++class Directives(unittest.TestCase):
++    def test_e005_explicit_and_legacy_unchanged(self):
++        auth = dict(profile=m.full_impl.OPTIMIZED_PROFILE)
++        self.assertEqual(fresh.expected_physical_command('place', 'place_design', auth),
++                         'place_design -directive SSI_SpreadSLLs')
++        self.assertEqual(fresh.expected_physical_command('route', 'route_design', auth),
++                         'route_design -directive Default')
++        self.assertEqual(fresh.expected_physical_command('physopt', 'phys_opt_design', None), 'phys_opt_design')
++
++
++class TransitiveArchive(unittest.TestCase):
++    def setUp(self):
++        self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup)
++        self.root=Path(self.tmp.name);self.report=self.root/'new_report'
++        self.old=put(self.root/'old_report/stage_sources/same.py', 'immutable earlier code')
++        self.current=put(self.root/'scripts/same.py', 'new current code')
++        self.archive=put(self.report/'stage_sources/same.py', 'new current code')
++        put(self.report/'stage_inputs.sha256', ''.join(f'{m.sha256(p)}  {p}\n' for p in [self.current,self.old]))
++        put(self.report/'archived_sources.sha256', f'{m.sha256(self.archive)}  {self.archive}\n')
++
++    def check(self):
++        return m.validate_stage_archive(self.report,m.file_id(self.report/'stage_inputs.sha256'),
++                                        m.file_id(self.report/'archived_sources.sha256'))
++
++    def test_same_basename_previous_archive_keeps_own_bytes(self):
++        self.assertEqual(self.check()[self.old], m.sha256(self.old))
++
++    def test_changed_previous_archive_is_not_masked_by_new_code(self):
++        put(self.old, 'new current code')
++        with self.assertRaisesRegex(ValueError, 'design/probe input changed'):
++            self.check()
++
++
++class CurrentCDCProbe(unittest.TestCase):
++    def setUp(self):
++        self.parent = dict(phase='post_opt_pre_debug', opt_evidence_complete=False,
++            opt_execution_proof_kind='native_project_log_derived', opt_reports_complete=True,
++            inherited_reports={'cdc_opt.rpt':dict(path='/fresh/current/cdc_opt.rpt')})
++
++    def test_bound_new_report_supplies_actual_probe_sources(self):
++        self.assertEqual(runner.critical_probe_report('place', True, self.parent, None), Path('/fresh/current/cdc_opt.rpt'))
++
++    def test_incomplete_report_cannot_supply_new_probe_sources(self):
++        self.parent['opt_reports_complete'] = False
++        self.assertIsNone(runner.critical_probe_report('place', True, self.parent, None))
++
++    def test_foreign_proof_kind_cannot_supply_new_probe_sources(self):
++        self.parent['opt_execution_proof_kind'] = 'foreign'
++        self.assertIsNone(runner.critical_probe_report('place', True, self.parent, None))
++
++
++class NativeOPT(unittest.TestCase):
++    def setUp(self):
++        self.tmp = tempfile.TemporaryDirectory(); self.addCleanup(self.tmp.cleanup)
++        self.root = Path(self.tmp.name)
++        self.hardware = self.root/'hardware'
++        self.source = self.hardware/'vivado/reports/original'
++        self.project = self.hardware/'vivado/project/fresh'
++        self.attempt = self.root/'attempt'
++        self.report = self.hardware/'vivado/reports/continuation'
++        self.report.mkdir(parents=True)
++        self.lineage = dict(project=str(self.project), source_rows=342, checkpoint_paths=45)
++        self.auth = dict(profile=m.full_impl.OPTIMIZED_PROFILE, stage='place', managed_attempt=str(self.attempt))
++        self.patches = [patch.object(m, 'ROOT', self.hardware),
++            patch.object(m.full_impl, 'report_authorization', return_value=self.auth),
++            patch.object(m, 'generated_phy_parent', return_value=dict(main_generated_xdc_candidates={})),
++            patch.object(m, 'generated_debug_parent', return_value=dict(main_generated_xdc_candidates={}))]
++        for p in self.patches:
++            p.start(); self.addCleanup(p.stop)
++        put(self.source/'command.json', json.dumps(dict(stage='place', execution_mode='project_runs',
++            managed_attempt=str(self.attempt), synthesis=self.lineage)))
++        manager = dict(stage='place', project=str(self.project), report=str(self.source),
++                       execution_profile=m.full_impl.OPTIMIZED_PROFILE, started_utc='2026-10-16T02:00:00+00:00')
++        started = dict(**manager, supervisor_pid=987654320, leader_pid=987654321, process_group=987654321)
++        status = dict(**started, exit_code=1, native_exit_code=1, stop_reason=None,
++                      tracked_identities={'987654321': 1}, owned_survivors=[], owned_before_reap=[])
++        put(self.attempt/'command.json', json.dumps(manager))
++        put(self.attempt/'started.json', json.dumps(started))
++        put(self.attempt/'status.json', json.dumps(status))
++        put(self.source/'launcher_status.txt', f'stage=place\nexit_code=1\nnative_exit_code=1\nproject={self.project}\nreports={self.source}\n')
++        put(self.source/'init_result.txt', 'completed=1\nphase=init\n')
++        put(self.source/'opt_result.txt', 'completed=0\nphase=opt\nblackboxes=1\n')
++        put(self.source/'implementation_settings.txt', 'STEPS.PLACE_DESIGN.ARGS.DIRECTIVE=SSI_SpreadSLLs\nSTEPS.PHYS_OPT_DESIGN.ARGS.DIRECTIVE=Default\nSTEPS.ROUTE_DESIGN.ARGS.DIRECTIVE=Default\n')
++        source_script = put(self.hardware/'vivado/scripts/native_fixture.py')
++        archived_script = put(self.source/'stage_sources/native_fixture.py')
++        put(self.source/'stage_inputs.sha256', f'{m.sha256(source_script)}  {source_script}\n')
++        put(self.source/'archived_sources.sha256', f'{m.sha256(archived_script)}  {archived_script}\n')
++        frozen_rows = [m.file_id(put(self.hardware/'fixture_design'/f'{n}.v', f'input {n}')) for n in range(142)]
++        frozen_path = put(self.root/'E005_m002_optimized_implementation/experiment_source/frozen_inputs_before_physical.json',
++                          json.dumps(dict(files=frozen_rows)))
++        self.freeze_patch = patch.object(fresh, 'FROZEN_SHA', m.sha256(frozen_path))
++        self.freeze_patch.start(); self.addCleanup(self.freeze_patch.stop)
++        self.xdc = [put(self.project/'fixture_constraints'/f'{n}.xdc', f'constraint {n}') for n in range(162)]
++        self.metadata = {str(p):['implementation','0','1','1','','','NORMAL'] for p in self.xdc}
++        self.hashes = {str(p):m.sha256(p) for p in self.xdc}
++        registry = put(self.source/'xdc_registry_opt_hashed.tsv', 'header\n'+''.join(
++            '\t'.join([str(p), *self.metadata[str(p)], self.hashes[str(p)]])+'\n' for p in self.xdc))
++        project_constraints = put(self.source/'constraints_project.json', json.dumps(dict(metadata=self.metadata, hashes=self.hashes)))
++        init_constraints = put(self.source/'constraints_init.json', json.dumps(dict(phase='init', parent=m.file_id(project_constraints))))
++        self.log = ''.join(f"Parsing XDC File [{p}] for cell 'instance{n}'\n" for n,p in enumerate(self.xdc))
++        self.log += f"Command: opt_design\nopt_design completed successfully\nsource {self.hardware/'vivado/scripts/m002_diagnostic_opt_post.tcl'}\nThe checkpoint '{self.source/'opt.dcp'}' has been generated\n{fresh.GUARD}\n"
++        put(self.source/'implementation_run.log', self.log)
++        actual = [dict(line=n+1, path=str(p), scope=f'instance{n}', sha256=self.hashes[str(p)]) for n,p in enumerate(self.xdc)]
++        reads = put(self.source/'actual_xdc_reads_opt.json', json.dumps(dict(records=actual)))
++        put(self.source/'constraints_opt.json', json.dumps(dict(phase='opt', parent=m.file_id(init_constraints),
++            registry=m.file_id(registry), actual_reads=m.file_id(reads), metadata=self.metadata, hashes=self.hashes)))
++        put(self.source/'native_run_receipts/scalellm_vcu118_f05_bd_wrapper.tcl',
++            f'  opt_design\n  source {self.hardware/"vivado/scripts/m002_diagnostic_opt_post.tcl"}\nstep_failed opt_design\nreturn -code error\n')
++        put(self.source/'native_run_receipts/.opt_design.error.rst', '')
++        checkpoint = self.source/'opt.dcp'
++        with zipfile.ZipFile(checkpoint, 'w') as z:
++            z.writestr('dcp.xml', '<Checkpoint>'+''.join(f'<{key} Name="{value}"/>' for key,value in {
++                'Part':'xcvu9p-flga2104-2L-e','Top':'scalellm_vcu118_f05_bd_wrapper',
++                'BoardPart':'xilinx.com:vcu118:part0:2.0','BUILD_NUMBER':'6299465','PRODUCT':'Vivado v2025.2 (64-bit)'}.items())+'</Checkpoint>')
++        for name in ('timing_opt.rpt','utilization_opt.rpt','drc_opt.rpt','check_timing_opt.rpt','clocks_opt.rpt',
++                     'cdc_opt.rpt','clock_interaction_opt.rpt','exceptions_opt.rpt','pulse_width_opt.rpt','bus_skew_opt.rpt',
++                     'reset_cdc_and_io_probe_opt.tsv','xpm_invalid_endpoint_probe_opt.tsv','head_wave_local_opt.tsv'):
++            put(self.source/name)
++
++    def check(self, write=True):
++        return fresh.qualify_native_project(m, self.source, self.project, self.lineage, self.report, write=write)
++
++    def mutate_reads(self, change):
++        p = self.source/'actual_xdc_reads_opt.json'; value=json.loads(p.read_text()); change(value['records']); put(p,json.dumps(value))
++        c = self.source/'constraints_opt.json'; value=json.loads(c.read_text()); value['actual_reads']=m.file_id(p); put(c,json.dumps(value))
++
++    def test_real_command_success_failed_POST_stays_separate(self):
++        value = self.check()
++        self.assertFalse(value['opt_evidence_complete'])
++        self.assertTrue(value['opt_reports_complete'])
++        self.assertFalse((self.source/'opt_command_result.txt').exists())
++        self.assertFalse((self.report/'opt_command_result.txt').exists())
++        self.assertEqual(value, self.check(write=False))
++
++    def test_deleted_constraint_read_cannot_pass_updated_identity(self):
++        self.mutate_reads(lambda rows: rows.pop())
++        with self.assertRaisesRegex(ValueError, 'actual constraint records'):
++            self.check()
++
++    def test_wrong_constraint_scope_cannot_pass_updated_identity(self):
++        self.mutate_reads(lambda rows: rows[0].update(scope='foreign_instance'))
++        with self.assertRaisesRegex(ValueError, 'actual constraint records'):
++            self.check()
++
++    def test_missing_opt_success_rejected(self):
++        put(self.source/'implementation_run.log', self.log.replace('opt_design completed successfully', 'failure'))
++        with self.assertRaisesRegex(ValueError, 'chronology'):
++            self.check()
++
++    def test_fake_original_receipt_rejected(self):
++        put(self.source/'opt_command_result.txt', 'command=opt_design\nnative_tcl_code=0\n')
++        with self.assertRaisesRegex(ValueError, 'synthetic success artifacts'):
++            self.check()
++
++    def test_actual_later_debug_execution_rejected(self):
++        put(self.source/'implementation_run.log', self.log+'Command: implement_debug_core\n')
++        with self.assertRaisesRegex(ValueError, 'chronology'):
++            self.check()
++
++    def test_wrong_authorized_attempt_rejected(self):
++        self.auth['managed_attempt'] = str(self.root/'other')
++        with self.assertRaisesRegex(ValueError, 'without configured stop'):
++            self.check()
++
++    def test_started_leader_mismatch_rejected(self):
++        p=self.attempt/'started.json';value=json.loads(p.read_text());value['leader_pid']=123;put(p,json.dumps(value))
++        with self.assertRaisesRegex(ValueError, 'command/started/status chain'):
++            self.check()
++
++    def test_read_only_validation_cannot_rebuild_missing_terminal_observation(self):
++        with self.assertRaisesRegex(ValueError, 'terminal identity observation is missing'):
++            self.check(write=False)
++        self.assertFalse((self.attempt/'native_project_opt_terminal_identity_observation.json').exists())
++
++    def test_configured_stop_rejected(self):
++        p=self.attempt/'status.json';value=json.loads(p.read_text());value['stop_reason']='resource_limit';put(p,json.dumps(value))
++        with self.assertRaisesRegex(ValueError, 'without configured stop'):
++            self.check()
++
++    def test_native_OPT_success_receipt_not_invented(self):
++        put(self.source/'native_run_receipts/.opt_design.end.rst', '')
++        with self.assertRaisesRegex(ValueError, 'generated native Tcl/error receipt'):
++            self.check()
++
++    def make_restored(self):
++        original = self.check()
++        restored = self.report
++        attempt = self.root/'restored_attempt'
++        authorization = dict(profile=m.full_impl.OPTIMIZED_PROFILE, stage='place', managed_attempt=str(attempt))
++        m.full_impl.report_authorization.side_effect = lambda report: self.auth if report == self.source else authorization
++        manager = dict(stage='place', project=str(self.project), report=str(restored),
++                       execution_profile=m.full_impl.OPTIMIZED_PROFILE, started_utc='2026-10-16T03:00:00+00:00')
++        started = dict(**manager, supervisor_pid=987654322, leader_pid=987654323, process_group=987654323)
++        put(attempt/'command.json', json.dumps(manager)); put(attempt/'started.json', json.dumps(started))
++        put(attempt/'status.json', json.dumps(dict(**started, exit_code=1, native_exit_code=1,
++            stop_reason=None, owned_survivors=[], tracked_identities={'987654323': 1})))
++        put(restored/'command.json', json.dumps(dict(stage='place', managed_attempt=str(attempt),
++            synthesis=self.lineage, execution_mode='checkpoint_restored_commands', environment={'HAP_OPT_REPORT_DIR': str(self.source)})))
++        put(restored/'launcher_status.txt', f'stage=place\nexit_code=1\nnative_exit_code=1\nproject={self.project}\nreports={restored}\n')
++        put(restored/'implementation_run.log', f"Command: open_checkpoint {original['checkpoint']['path']}\nfailed OPT POST\n")
++        put(restored/'opt_result.txt', 'completed=0\nphase=opt\nevidence_origin=inherited_identical_opt_checkpoint\n')
++        put(restored/'constraints_opt.json', json.dumps(dict(mode='embedded_checkpoint_inherited',
++            candidate_metadata=original['source_metadata'], hashes=original['hashes'], source_archives={})))
++        shutil.copy2(self.source/'opt.dcp', restored/'opt.dcp')
++        for name, identity in original['inherited_reports'].items():
++            shutil.copy2(Path(identity['path']), restored/name)
++        for name in ('implementation_settings.txt','xdc_registry_opt_hashed.tsv'):
++            shutil.copy2(self.source/name, restored/name)
++        code = put(self.hardware/'vivado/scripts/restored_fixture.py')
++        archive = put(restored/'stage_sources/restored_fixture.py')
++        put(restored/'stage_inputs.sha256', f'{m.sha256(code)}  {code}\n')
++        put(restored/'archived_sources.sha256', f'{m.sha256(archive)}  {archive}\n')
++        target = self.hardware/'vivado/reports/second_continuation'; target.mkdir()
++        return restored, target
++
++    def test_failed_identical_restored_OPT_POST_can_continue_without_command_replay(self):
++        source, target = self.make_restored()
++        value = fresh.qualify_restored_opt(m, source, self.project, self.lineage, target)
++        self.assertEqual(value['opt_execution_proof_kind'], 'native_project_log_derived')
++        self.assertFalse(value['opt_evidence_complete'])
++        self.assertFalse((target/'opt_command_result.txt').exists())
++
++    def test_later_debug_checkpoint_requires_its_own_continuation(self):
++        source, target = self.make_restored()
++        put(source/'debug_materialized.dcp', 'later completed step')
++        with self.assertRaisesRegex(ValueError, 'later executed-command evidence'):
++            fresh.qualify_restored_opt(m, source, self.project, self.lineage, target)
++
++    def test_restored_OPT_report_modification_rejected(self):
++        source, target = self.make_restored()
++        put(source/'cdc_opt.rpt', 'foreign report')
++        with self.assertRaisesRegex(ValueError, 'copied reports differ'):
++            fresh.qualify_restored_opt(m, source, self.project, self.lineage, target)
++
++    def test_restored_OPT_cannot_hide_replayed_OPT_command(self):
++        source, target = self.make_restored()
++        p=source/'implementation_run.log'; put(p, p.read_text()+'Command: opt_design\n')
++        with self.assertRaisesRegex(ValueError, 'new transformation or later command'):
++            fresh.qualify_restored_opt(m, source, self.project, self.lineage, target)
++
++
++if __name__ == '__main__':
++    unittest.main()

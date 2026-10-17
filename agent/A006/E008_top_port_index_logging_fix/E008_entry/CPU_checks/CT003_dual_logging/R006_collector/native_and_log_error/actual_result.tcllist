@@ -1,0 +1,14 @@
+mode native_and_log_error code 1 result {ORIGINAL_NATIVE_FAILURE
+second line} options {-errorcode CPU_EXPECTED_ALIAS_NATIVE_FAILURE -errorstack {INNER {invokeStk1 get_property NAME n1} CALL {directed_alias n1} CALL {directed_local_scope test} CALL {slr2::cut test}} -errorinfo {ORIGINAL_NATIVE_FAILURE
+second line
+    while executing
+"get_property NAME $net"
+    (procedure "directed_alias" line 4)
+    invoked from within
+"directed_alias $net"
+    (procedure "directed_local_scope" line 67)
+    invoked from within
+"directed_local_scope $point"
+    (procedure "slr2::cut" line 7)
+    invoked from within
+"slr2::cut $point"} -errorline 1 -code 1 -level 0} sidecar_channel {}

@@ -1,0 +1,129 @@
+NET
+
+Description:
+A net is a set of interconnected pins, ports, and wires. Every wire has a net 
+name which identifies it in the design. Two or more wires can have the same net name. All 
+wires sharing a common net name are part of a single net, and all pins or 
+ports connected to these wires are electrically connected.
+
+A default net name is assigned to the NET object as it is added to the netlist 
+design during elaboration or compilation of the RTL source files into a 
+netlist design. You can also manually assign names to nets. 
+
+Nets can either be scalar nets, with a single signal, or can be bus nets, which 
+are groups of scalar nets with multiple signals. Buses are a convenient way to 
+group related signals, allowing less cluttered, more understandable schematics. 
+It also clarifies the connection between the main circuit and a block symbol. 
+
+Buses are especially useful for the following: 
+   Routing a number of signals from one side of the schematic to the other
+   Connecting more than one signal to a block symbol
+   Connecting more than one signal to pass between hierarchical levels by connecting 
+   to a single I/O marker
+
+Related Objects: 
+In the design netlist, a net can be connected to the pin of a cell, or to a port. 
+As the design is mapped onto the target AMD FPGA, the net is mapped to wires 
+and nodes on the device, and is connected to bels through bel_pins, and to sites 
+through site_pins. Nets are also associated with timing_paths and clocks in the design. 
+
+Nets can also be associated with drc_violation objects to allow you to more quickly 
+locate and resolve design issues. 
+
+Properties:
+The specific properties on a net object can vary depending on the type of net the 
+object represents. The following table lists some of the properties assigned to a 
+net object in the Vivado Design Suite, with example values:
+
+Property                        Type     Read-only  Visible  Value
+AREA_GROUP                      string   true       true     
+BEL                             string   true       true     
+BLKNM                           string   true       true     
+BUFFER_TYPE                     enum     false      true     
+BUFG                            enum     true       true     
+BUS_NAME                        string   true       true     
+BUS_START                       int      true       true     
+BUS_STOP                        int      true       true     
+BUS_WIDTH                       int      true       true     
+CLASS                           string   true       true     net
+CLOCK_BUFFER_TYPE               enum     false      true     
+CLOCK_DEDICATED_ROUTE           enum     false      true     
+CLOCK_REGION_ASSIGNMENT         string   false      true     
+CLOCK_ROOT                      string*  false      true     
+COLLAPSE                        bool     true       true     
+COOL_CLK                        bool     true       true     
+DATA_GATE                       bool     true       true     
+DCI_VALUE                       int      false      true     
+DIFF_TERM                       bool     false      true     0
+DONT_TOUCH                      bool     false      true     
+DRIVE                           int      true       false    
+DRIVER_COUNT                    int      true       true     1
+ESSENTIAL_CLASSIFICATION_VALUE  int      false      true     
+FILE_NAME                       string   true       true     
+FIXED_ROUTE                     string   false      true     
+FLAT_PIN_COUNT                  int      true       true     1
+FLOAT                           bool     true       true     
+GATED_CLOCK                     bool     false      true     
+HBLKNM                          string   true       true     
+HIERARCHICALNAME                string   true       false    CLK_P
+HU_SET                          string   true       false    
+IBUF_DELAY_VALUE                double   true       true     
+IBUF_LOW_PWR                    bool     false      true     1
+IFD_DELAY_VALUE                 double   true       true     
+IN_TERM                         enum     true       true     
+IOB                             enum     false      true     
+IOBDELAY                        enum     false      true     
+IOSTANDARD                      string   true       false    LVDS
+IO_BUFFER_TYPE                  enum     false      true     
+IS_CONTAIN_ROUTING              bool     true       true     0
+IS_REUSED                       bool     true       true     0
+IS_ROUTE_FIXED                  bool     false      true     0
+KEEP                            bool     true       true     
+KEEPER                          bool     true       true     
+LINE_NUMBER                     int      true       true     
+LOC                             string   true       true     
+MARK_DEBUG                      bool     false      true     0
+MAXDELAY                        double   true       true     
+MAXSKEW                         double   true       true     
+MAX_FANOUT                      string   false      true     
+METHODOLOGY_DRC_VIOS            string   false      true     
+NAME                            string   true       true     CLK_P
+NODELAY                         bool     true       true     
+NOREDUCE                        bool     true       true     
+OUT_TERM                        enum     true       true     
+PARENT                          string   true       true     CLK_P
+PARENT_CELL                     string   true       true     
+PIN_COUNT                       int      true       true     1
+PULLDOWN                        bool     true       true     
+PULLUP                          bool     true       true     
+PWR_MODE                        enum     true       true     
+RAM_STYLE                       enum     false      true     
+REUSE_STATUS                    enum     true       true     
+RLOC                            string   true       true     
+RLOC_ORIGIN                     string   true       false    
+RLOC_RANGE                      string   true       false    
+ROM_STYLE                       enum     false      true     
+ROUTE                           string   false      true     
+ROUTE_STATUS                    enum     true       true     INTRASITE
+RPM_GRID                        enum     true       true     
+RTL_KEEP                        string   true       false    
+RTL_MAX_FANOUT                  string   true       false    
+S                               bool     true       true     
+SCHMITT_TRIGGER                 bool     true       true     
+SLEW                            string   true       true     
+SUSPEND                         string   true       true     
+TYPE                            enum     true       true     SIGNAL
+USELOWSKEWLINES                 bool     true       true     
+USE_DSP48                       enum     false      true     
+U_SET                           string   true       false    
+WEIGHT                          int      false      true     
+WIREAND                         bool     true       true     
+XBLKNM                          string   true       true     
+XLNX_LINE_COL                   int      false      false    
+XLNX_LINE_FILE                  long     false      false   
+
+To report the properties for a net object, you can copy and paste the 
+following command into the Vivado Design Suite Tcl shell or Tcl console:
+
+	report_property -all [lindex [get_nets] 0]
+ 

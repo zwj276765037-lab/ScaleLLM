@@ -1,0 +1,11 @@
+{
+  "source": "# E008：热点卸载与完整实现\n\n沿用[SM012合同](../../../mission/M002_ddr_separation_and_timing_recovery/exact_hotspot_offload_implementation_contract_2026-10-17.md)、[有向边界范围](../../../mission/M002_ddr_separation_and_timing_recovery/directed_candidate_cut_scope_revision_2026-10-17.md)和[端口索引获取补充](../../../mission/M002_ddr_separation_and_timing_recovery/top_port_reverse_index_acquisition_revision_2026-10-17.md)。E005 debug_materialized DCP为父图，C01/C02至多选一个移至SLR2，RTL/IP/ABI/时钟/数值和完整物理验收保持。单EDA，正常进程无墙钟/无输出强停。\n",
+  "results": "# E008：当前准备结果\n\n针对实测发现的高频同步日志开销，最小修复已完成并独立接受：[新manifest](../../../agent/A006/E008_top_port_index_logging_fix/E008_entry/prepared_manifest.json)，14747B / 3cae179e3af5e831bcfd5030a2751b0b0c8b734d7c159a29d359ed2055dd4496。对应R006重试包为23be91f8。[集中delta审核](../../../agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/review.md)完成12个实际collector生命周期用例、20个语义账本逐字节等同、121身份核对及两个真实入口检查。\n\n唯一修复是将六处高频alias细trace写入独立全缓冲sidecar，保留完整真实事件、时间和正常/异常关闭记录；原查询、缓存、top-port协议BEGIN/END、图覆盖/资格和方向时序保持。原1425/dcc64及全部运行证据未改；受影响验证通过不等于原生性能已测。\n\n本实验尚无实际候选选择、原生资格或implementation。每个真实阶段仍核完整端口索引、成员/物理父/祖先约束及80保护边界；SLR2 hard非排他且不限制走线Pblock与完整place/physopt/route和正式物理验收保持。\n",
+  "status": "# E008：当前状态\n\nexecution_state: planned\nverdict: unassessed\n\n已授权的定向优化与完整implementation仍待真实候选比较。C01完整cut/有界时序已在R005闭合；R006 AT003正在诊断，C02尚未完成，E008没有实际R/AT/native。\n\n最小日志修复3cae入口已准备并独立通过。用户已明确批准本次R006 AT002切换，实际收尾已闭合；缓冲日志AT003于03:49:59Z真实启动，正在继续同范围候选诊断。取得实际候选支持和完整前置收尾后直接执行E008，无新的普通工程批准门。\n\n正常进程无墙钟/无输出强停；单EDA/资源保护、RTL/IP/ABI/时钟及Hadamard/ScaleCode/format05保持，无bitstream/GPU/板卡/PPL/ACC。\n",
+  "execution_state": "planned",
+  "verdict": "unassessed",
+  "applicability": "3cae E008缓冲alias日志入口经集中delta审核接受；实际性能未测，候选未选，implementation未启动。",
+  "evidence": [
+    "project/E008_m002_exact_hotspot_offload_implementation/experiment_source/protocol.md"
+  ]
+}

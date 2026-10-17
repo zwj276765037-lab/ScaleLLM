@@ -1,0 +1,68 @@
+{
+  "observed_utc": "2026-10-16T08:37:39.521295+00:00",
+  "scope": "DRAFT Tcl scheduler input guards only using isolated stubs; no Vivado/checkpoint load/physical commands",
+  "driver": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/physical_supplement/readonly_two_phase_driver.tcl",
+    "sha256": "e3556563c6538ec1e76cbd6b124a98ae43b0b2f0c2bb5c9c82f342a042df8be5"
+  },
+  "cases": [
+    {
+      "case": "valid_two_phases",
+      "expected_accept": true,
+      "exit_code": 0,
+      "passed": true,
+      "stderr": ""
+    },
+    {
+      "case": "empty_jobs",
+      "expected_accept": false,
+      "exit_code": 1,
+      "passed": true,
+      "stderr": "Expected exactly two closed-DCP jobs\n    while executing\n\"error \"Expected exactly two closed-DCP jobs\"\"\n    invoked from within\n\"if {![info exists jobs] || [llength $jobs] != 2} {error \"Expected exactly two closed-DCP jobs\"}\"\n    (file \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/physical_supplement/readonly_two_phase_driver.tcl\" line 5)\n"
+    },
+    {
+      "case": "one_job",
+      "expected_accept": false,
+      "exit_code": 1,
+      "passed": true,
+      "stderr": "Expected exactly two closed-DCP jobs\n    while executing\n\"error \"Expected exactly two closed-DCP jobs\"\"\n    invoked from within\n\"if {![info exists jobs] || [llength $jobs] != 2} {error \"Expected exactly two closed-DCP jobs\"}\"\n    (file \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/physical_supplement/readonly_two_phase_driver.tcl\" line 5)\n"
+    },
+    {
+      "case": "duplicate_phase",
+      "expected_accept": false,
+      "exit_code": 1,
+      "passed": true,
+      "stderr": "Comparison phases, checkpoints and outputs must each be distinct\n    while executing\n\"error \"Comparison phases, checkpoints and outputs must each be distinct\"\"\n    invoked from within\n\"if {[lsort $phases] ne {physopt place} || [llength [lsort -unique $checkpoints]] != 2 || [llength [lsort -unique $outputs]] != 2} {\n    error \"Compari...\"\n    (file \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/physical_supplement/readonly_two_phase_driver.tcl\" line 18)\n"
+    },
+    {
+      "case": "same_checkpoint",
+      "expected_accept": false,
+      "exit_code": 1,
+      "passed": true,
+      "stderr": "Comparison phases, checkpoints and outputs must each be distinct\n    while executing\n\"error \"Comparison phases, checkpoints and outputs must each be distinct\"\"\n    invoked from within\n\"if {[lsort $phases] ne {physopt place} || [llength [lsort -unique $checkpoints]] != 2 || [llength [lsort -unique $outputs]] != 2} {\n    error \"Compari...\"\n    (file \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/physical_supplement/readonly_two_phase_driver.tcl\" line 18)\n"
+    },
+    {
+      "case": "same_output",
+      "expected_accept": false,
+      "exit_code": 1,
+      "passed": true,
+      "stderr": "Comparison phases, checkpoints and outputs must each be distinct\n    while executing\n\"error \"Comparison phases, checkpoints and outputs must each be distinct\"\"\n    invoked from within\n\"if {[lsort $phases] ne {physopt place} || [llength [lsort -unique $checkpoints]] != 2 || [llength [lsort -unique $outputs]] != 2} {\n    error \"Compari...\"\n    (file \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/physical_supplement/readonly_two_phase_driver.tcl\" line 18)\n"
+    },
+    {
+      "case": "invalid_phase",
+      "expected_accept": false,
+      "exit_code": 1,
+      "passed": true,
+      "stderr": "Unexpected comparison phase: route\n    while executing\n\"error \"Unexpected comparison phase: $phase\"\"\n    (\"foreach\" body line 4)\n    invoked from within\n\"foreach job $jobs {\n    if {[llength $job] != 3} {error \"Each job requires phase/checkpoint/output\"}\n    lassign $job phase checkpoint phase_out\n    i...\"\n    (file \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/physical_supplement/readonly_two_phase_driver.tcl\" line 8)\n"
+    },
+    {
+      "case": "used_output",
+      "expected_accept": false,
+      "exit_code": 1,
+      "passed": true,
+      "stderr": "Output already used or aliases master: /tmp/E005_supplement_job_guard_6f7l4tmh/used_output/physopt\n    while executing\n\"error \"Output already used or aliases master: $phase_out\"\"\n    (\"foreach\" body line 8)\n    invoked from within\n\"foreach job $jobs {\n    if {[llength $job] != 3} {error \"Each job requires phase/checkpoint/output\"}\n    lassign $job phase checkpoint phase_out\n    i...\"\n    (file \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/physical_supplement/readonly_two_phase_driver.tcl\" line 8)\n"
+    }
+  ],
+  "passed": 8,
+  "native_supplement_state": "NOT_RUN"
+}

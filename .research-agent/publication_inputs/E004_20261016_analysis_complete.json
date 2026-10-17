@@ -1,0 +1,14 @@
+{
+  "source": "# E004：分析依据与适用范围\n\n依据SM008分析合同，使用E003自然失败日志、成功physopt父点、17个已绑定RTL来源及MLP两repacker源码。E003为245279节点重叠/248289拥塞失败信号，无失败route DCP；本轮唯一只读查询只能解释成功physopt布局，不能重建失败路由全图。\n\n原DCP SHA256 c6944eeeafb1d58776f2f3b85ecec61ddd283ff0b367d53b997e2c091696ff91前后保持；native Vivado2025.2、xcvu9p。Hadamard/ScaleCode/format05/数值/ABI/双DDR/core100MHz与UI200+200MHz保持。官方方法见[2025.2笔记](amd_methodology_2025_2.md)，具体计划及原生证据见实验结果。\n",
+  "results": "# E004：详细优化分析交付\n\n**分析完成；优化尚未实施，布通效果inconclusive。** 完整交付见[优化方案](optimization_plan.md)，含具体模块/控制资格、基线、首选组合、后备、回归缺口、物理比较及严格route验收。\n\n- Attention双wave的10根capture_index位各6170–6174叶负载，全SLR2；input当前18651LUT/12341FF/56control sets。首改固定24×256bit目的写及每wave24个局部译码边界，保留原快照、复位和周期。不得将全部负载先验称为FF CE。\n- MLP Down/Gate输出控制8201/6145负载，分别SLR0/1=4105/4096、3073/3072；按各16row拆为32个同拍局部output CE，保持payload/metadata/资格，不给控制单独加拍。\n- 首轮合计80个计划控制边界，不是净新增80LUT保证；新的place选SSI_SpreadSLLs，physopt/router保持Default。安装版帮助缺口列启动前轻量核验，效果须新网表/布局/route测量。\n- Down浅历史6144个SRL16E实际占3072个SRL-LUT，Gate4608占2304；当前物理槽数不等于未来净节省。S32-only、保留双bank的postprocess固定pair写列独立后备；S24转FF可能增加CE端点。\n- 全局LUT68.93%、FF43.13%但CLB站点99.11%；control sets7.58%。48个拥塞窗口Combined LUT最高34%、Level6仅6–16%，无全局no_lc首选证据。Attention2296DSP超过单SLR推导容量2280，不采用整引擎单SLR硬Pblock。\n- 回归须补生产Down MATRICES=1、input任意slot reset/clear/新epoch与长背压；旧TB、stub/全零测试不覆盖全部义务。下一轮失败也保存DCP/route_status，保留原始失败码。\n\n[R001物理报告](runs/R001/physical_routability_analysis.md)、[工程小事实](runs/R001/engineering_delivery_facts_2026-10-16.json)、[R002源码/测试](runs/R002/rtl_routability_analysis.md)、[R003方案](runs/R003/architecture_plan.md)、[独立审核](runs/R003/integration_review.md)。\n",
+  "status": "# E004：执行终态\n\nexecution_state: completed\nverdict: inconclusive\n\nSM008详细分析已交付。唯一只读AT001于23:25:10→23:53:35 UTC自然完成，native/监督0，stop_reason=null，无残留进程且EDA锁释放；没有墙钟/无输出强停，原DCP未改。\n\n48项query中35项code0、13项help失败；BEL填充直方图因名称解析全零而INVALID，未用于结论。52个目标net已查询、27个唯一路由样本net全部找到；每负载REF_NAME及SLR内完整位置包络未导出。native help轻量核验留下一阶段，未启动第二次DCP查询。\n\n本轮不改生产RTL/XDC/IP，不运行新综合/place/route/bitstream/板卡/GPU/PPL/ACC。候选功能等价、拥塞改善与合法布通均待下一轮实际验证；正式时序/CDC/reset/全系统数值与板级验收继续OPEN。独立分析审核不代表用户批准或硬件验收。\n",
+  "execution_state": "completed",
+  "verdict": "inconclusive",
+  "applicability": "E003冻结设计成功physopt父点的可布性分析与具体后继设计；未实施优化，不证明布通或时序收敛",
+  "evidence": [
+    "project/E004_m002_routability_optimization_analysis/experiment_results/optimization_plan.md",
+    "project/E004_m002_routability_optimization_analysis/experiment_results/runs/R001/engineering_delivery_facts_2026-10-16.json",
+    "project/E004_m002_routability_optimization_analysis/experiment_results/runs/R002/rtl_routability_analysis.md",
+    "project/E004_m002_routability_optimization_analysis/experiment_results/runs/R003/integration_review.md"
+  ]
+}

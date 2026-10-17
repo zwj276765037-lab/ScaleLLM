@@ -1,0 +1,42 @@
+# E006：执行状态
+
+execution_state: running
+verdict: unassessed
+
+R005/AT003_system_python_directed_cut于北京时间09:51:16真实启动。supervisor1338668/start931443208、native1338773/start931443386和唯一EDA锁已核；11份归档源与b3308185一致，144生产输入冻结通过。[实际启动](runs/R005/attempts/AT003_system_python_directed_cut/native_start_verified.json)。
+
+加载DCP前，原生system_python_runtime_preflight已实际code0：系统Python3.12、_tkinter和Tcl8.6.14可用，子进程环境已隔离；原检查点已成功打开；两候选membership资格阶段已真实code0，RAW/S/P与R004一致。C01完整有向cut已真实code0并完成一致性核查，当前进行其有界方向时序；C02cut/时序未完成，候选未选择。
+
+AT001缺少owner、AT002受Vivado内Python缺少_tkinter影响，两次自然失败及输入/PID/锁收尾均保持。AT002实际成员/site表的独立CPU回放与R004全字段一致，可复用原成员证据，不能改写原失败查询或当作新cut通过。[独立成员核查](../../../agent/A007/R005_python_environment_review_20261017/AT002_membership_applicability.json)、[环境修复核查](../../../agent/A007/R005_python_environment_review_20261017/R005_final_b330_identity_review.json)。
+
+E008最新da34c310环境适配入口已完成并独立核查；implementation尚未启动。真实候选比较和R005终态闭合后，连续执行已授权完整implementation，无新增用户门。R001/R004停止例外已使用，不扩展后续正常进程。
+
+单EDA、CPU0–7/nice5/max8及原资源保护保持；正常进程无墙钟/静默强停。算法/数值/接口/时钟保持，无bitstream/GPU/板卡/PPL/ACC。
+
+并行准备R006同覆盖top-port反向索引获取方式，仅改变采集路径并保留完整端口/方向时序。新包尚未最终核查，不构成运行许可；当前R005继续且没有本次停止许可。原R005若先完成则优先其结果，E008 da34现成入口保持可用。
+
+
+---
+Published: 2026-10-17T02:34:55.181973+00:00
+Publication: Pf8e0dc0b01a746668f076abcdfc39943
+Execution state: running
+Research verdict: unassessed
+Applicability: AT003两membership与C01完整有向cut原生通过；有界时序运行，C02cut/时序及最终终态未闭合。候选未选，E008尚未启动。R006仅替代获取准备，不改变当前运行。
+Evidence:
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/started.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/input_bindings.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/native_start_verified.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/status.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/terminal_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/terminal_summary.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/candidate_C01_membership_resources_closed_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/candidate_C02_membership_resources_closed_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/terminal_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/authorized_controlled_stop_signal_R005_switch.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/started.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/input_bindings.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/native_start_verified.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/command.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/candidate_C01_membership_qualification_closed_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/candidate_C02_membership_qualification_closed_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/candidate_C01_directed_cut_closed_facts.json

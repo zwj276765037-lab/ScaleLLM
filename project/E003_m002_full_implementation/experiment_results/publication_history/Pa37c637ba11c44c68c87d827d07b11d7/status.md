@@ -1,0 +1,42 @@
+# E003：执行状态
+
+execution_state: running
+verdict: unassessed
+
+当前独立physopt命令已真实成功，16:38:12 UTC native0/1106秒，closed DCP已保存并通过工程25成员CRC/平台身份检查；完整physopt POST正在生成，尚无合格route父链或route实际执行。正常运行无固定时限，继续原single EDA。
+
+正式优化后WNS−1.290/TNS−762.165ns、setup980；WHS−0.620/THS−2150.556ns、hold33141；PW/skew栏目0。setup较place改善但时序仍FAIL，最终互连和全布通待route。A007正核阶段身份和具体路径/物理变化，不增加停点。[本次正式时序事实](../experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_timing_facts.json)。
+
+此前AT002完整原生place POST已于16:19:46 UTC通过，64文件封闭，结构/fanout及内部覆盖通过，8条CDC限定分类、新未分类0；正式安全OPEN。原AT001 POST失败保留，原place成功回执明确继承，没有place/OPT/debug重执行。150项CPU及真实来源验证、5份安装冻结已核，算法/RTL/XDC/接口/core100MHz/UI200+200MHz不变。
+
+manager3866162/worker3866163/native3866592，timeout/global_deadline均null，单EDA/8CPU/nice5及内存磁盘保护保持。physopt完整POST合格后自动无wall route，最终时序与安全/板级分别判断，无bitstream/板卡/GPU/PPL/ACC。
+
+
+---
+Published: 2026-10-15T16:48:35.461490+00:00
+Publication: Pfa4343ead9a949f19a280d85dd6f4887
+Execution state: running
+Research verdict: unassessed
+Applicability: 独立physopt命令与DCP已完成，正式setup改善但仍FAIL；完整POST及最终route结果待实际取得
+Evidence:
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_checkpoint_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_timing_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_physical_reports_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/actual_place_CDC_delta.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/status.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/worker_terminal_before_old_supervisor_release.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/old_supervisor_released.json
+- project/E003_m002_full_implementation/experiment_results/runs/R004/architecture_review.md
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/cpu_tests_final.log
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/validated_sources.sha256
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/installation.json
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/actual_CDC_revalidation.json
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/actual_worker_entry_preflight.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/actual_eda_started.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/command.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/completed_place_POST_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/completed_place_POST.sha256
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/place_POST_and_physopt_start_log_snapshot.txt
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_native_command_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_checkpoint_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_timing_facts.json

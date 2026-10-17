@@ -1,0 +1,632 @@
+{
+  "recorded_utc": "2026-10-17T02:48:37.819790+00:00",
+  "engineering_execution_verified": false,
+  "checks": {
+    "native_zero": false,
+    "supervisor_zero": false,
+    "natural_terminal": false,
+    "no_stop": false,
+    "no_cleanup": false,
+    "no_survivors": true,
+    "no_original_live": true,
+    "lane_released": true,
+    "six_stages_complete": false,
+    "complete_expected_query_order": false,
+    "all_stage_codes_zero": true,
+    "all_query_codes_zero": true,
+    "production_144_unchanged": true,
+    "source_physopt_DCP_unchanged": true,
+    "archived_runtime_sources_unchanged": true,
+    "all_bound_external_targets_sources_unchanged": true,
+    "all_bound_reused_closed_inputs_unchanged": true,
+    "replacement_authorization_unchanged": true,
+    "contract_unchanged": true,
+    "resource_helper_unchanged": true,
+    "no_post_integrity_error": true,
+    "wrapper_after_freeze_agrees": true,
+    "no_physical_commands": true,
+    "no_checkpoint_write": true,
+    "resource_extrema_agree": true
+  },
+  "started_utc": "2026-10-17T01:51:16.543988+00:00",
+  "ended_utc": "2026-10-17T02:48:19.111722+00:00",
+  "native_exit_code": -15,
+  "supervisor_exit_code": 125,
+  "stop_reason": "KeyboardInterrupt:signal 15",
+  "attempt_seconds": 3422.567734,
+  "stages": [
+    {
+      "stage": "candidate_C01_membership_qualification",
+      "native_tcl_code": "0",
+      "started_epoch": "1792202450",
+      "ended_epoch": "1792202463",
+      "failed_queries": "{}"
+    },
+    {
+      "stage": "candidate_C02_membership_qualification",
+      "native_tcl_code": "0",
+      "started_epoch": "1792202463",
+      "ended_epoch": "1792202473",
+      "failed_queries": "{}"
+    },
+    {
+      "stage": "candidate_C01_directed_cut",
+      "native_tcl_code": "0",
+      "started_epoch": "1792202473",
+      "ended_epoch": "1792204418",
+      "failed_queries": "{}"
+    },
+    {
+      "stage": "candidate_C01_bounded_timing",
+      "native_tcl_code": "0",
+      "started_epoch": "1792204418",
+      "ended_epoch": "1792204628",
+      "failed_queries": "{}"
+    }
+  ],
+  "queries": [
+    {
+      "query": "system_python_runtime_preflight",
+      "native_tcl_code": "0",
+      "started_epoch": "1792201881",
+      "ended_epoch": "1792201881",
+      "result": "{}"
+    },
+    {
+      "query": "open_checkpoint",
+      "native_tcl_code": "0",
+      "started_epoch": "1792201881",
+      "ended_epoch": "1792202437",
+      "result": "checkpoint_physopt"
+    },
+    {
+      "query": "identity",
+      "native_tcl_code": "0",
+      "started_epoch": "1792202437",
+      "ended_epoch": "1792202441",
+      "result": "{}"
+    },
+    {
+      "query": "topology",
+      "native_tcl_code": "0",
+      "started_epoch": "1792202441",
+      "ended_epoch": "1792202450",
+      "result": "{}"
+    },
+    {
+      "query": "candidate_C01_membership_qualification",
+      "native_tcl_code": "0",
+      "started_epoch": "1792202450",
+      "ended_epoch": "1792202463",
+      "result": "{{\"validated\": true, \"point\": \"C01\", \"coverage_version\": \"candidate_directed_cut_v1\"}}"
+    },
+    {
+      "query": "candidate_C02_membership_qualification",
+      "native_tcl_code": "0",
+      "started_epoch": "1792202463",
+      "ended_epoch": "1792202473",
+      "result": "{{\"validated\": true, \"point\": \"C02\", \"coverage_version\": \"candidate_directed_cut_v1\"}}"
+    },
+    {
+      "query": "candidate_disjointness",
+      "native_tcl_code": "0",
+      "started_epoch": "1792202473",
+      "ended_epoch": "1792202473",
+      "result": "{}"
+    },
+    {
+      "query": "candidate_C01_directed_cut",
+      "native_tcl_code": "0",
+      "started_epoch": "1792202473",
+      "ended_epoch": "1792204418",
+      "result": "{}"
+    },
+    {
+      "query": "candidate_C01_bounded_timing",
+      "native_tcl_code": "0",
+      "started_epoch": "1792204418",
+      "ended_epoch": "1792204628",
+      "result": "{{\"validated\": true, \"point\": \"C01\", \"coverage_version\": \"candidate_directed_cut_v1\"}}"
+    }
+  ],
+  "bound_external_input_count": 35,
+  "bound_reused_input_count": 30,
+  "processes": [
+    {
+      "pid": 1338668,
+      "expected_start_ticks": 931443208,
+      "original_identity_present": false,
+      "original_live": false
+    },
+    {
+      "pid": 1338683,
+      "expected_start_ticks": 931443371,
+      "original_identity_present": false,
+      "original_live": false
+    },
+    {
+      "pid": 1338702,
+      "expected_start_ticks": 931443375,
+      "original_identity_present": false,
+      "original_live": false
+    },
+    {
+      "pid": 1338773,
+      "expected_start_ticks": 931443386,
+      "original_identity_present": false,
+      "original_live": false
+    },
+    {
+      "pid": 1365748,
+      "expected_start_ticks": 931697103,
+      "original_identity_present": false,
+      "original_live": false
+    },
+    {
+      "pid": 1368212,
+      "expected_start_ticks": 931718468,
+      "original_identity_present": false,
+      "original_live": false
+    }
+  ],
+  "lane_lock_probe": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/.m002_eda.lock",
+    "probe": "exclusive_nonblocking_acquire_succeeded",
+    "released_immediately": true
+  },
+  "input_bindings": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/input_bindings.json",
+    "bytes": 27451,
+    "sha256": "7c4b9cc098097d8328130f96a69e94ef6143a022449b874b2b46b1970e7a942d"
+  },
+  "status": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/status.json",
+    "bytes": 4633,
+    "sha256": "9eefe51a5fe3bf582a71c197070305370babbf6b7f56ecb769bd5fb2bc5c11c4"
+  },
+  "freeze_manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_source/frozen_inputs_before_current_CDC_recovery.json",
+    "bytes": 36069,
+    "sha256": "a5643a9e8adb13d6e76f3e78b2dfb6804b9b8ac193f7006f5ceff1b0c4f5a26f"
+  },
+  "production_files_checked": 144,
+  "production_mismatches": [],
+  "source_checkpoint": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/physopt.dcp",
+    "bytes": 579969232,
+    "sha256": "766217926d5e8d01137d0ba39f4512dd2337f9fcbcb788525320b5bd0a810a2d"
+  },
+  "prior_R004_actual_closure": {
+    "status": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/status.json",
+      "bytes": 4389,
+      "sha256": "5d275c02dd7cadf2526dc7e3a9ca9cc6c3775b6d98c0d1fda3b55024b1cc4f98"
+    },
+    "facts": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/terminal_facts.json",
+      "bytes": 39388,
+      "sha256": "3b16bf096a183cb1bcdb71006643ae56cec4c38c7d6fc39ffa12b1e1fbd8f838"
+    }
+  },
+  "preparation_manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/directed_candidate_cut_system_python/prepared_source_manifest.json",
+    "bytes": 15225,
+    "sha256": "b3308185827d5fe24a4f1b878271f0f42e186d885fb4d0b75acd5a85af094d68"
+  },
+  "archived_sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/sources/attribution_directed.tcl",
+      "bytes": 5765,
+      "sha256": "ac93ad7b9cd1dc7a84546e932fc2db355a0d076fe7e337ec027da411d935a47a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/sources/candidate_inspector.tcl",
+      "bytes": 18703,
+      "sha256": "a63d1ace7f7e00a05be2d21bc2ee42971773302d62c3b6cd483d315097731640"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/sources/controlled_stop_R004.py",
+      "bytes": 4099,
+      "sha256": "d955f651786dc239243af02cacb71ad3ee89868caffef2570e80e67d002cb27c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/sources/directed_evidence.py",
+      "bytes": 33426,
+      "sha256": "c2db4914e09eb68f630df8d78ca4eb4ed6edc1463502c2d802b3d0c3f0df981b"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/sources/directed_exporter.tcl",
+      "bytes": 25321,
+      "sha256": "7789a136b2f46ab70627fde21d1779304716aca9dfe77c066076a11e5e744d0d"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/sources/launch_detached.py",
+      "bytes": 2995,
+      "sha256": "67c94c5619cdbcdaf8e64e56c9d9240cbe7a138daabaeaf6c717a514e34d82f9"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/sources/property_alignment.tcl",
+      "bytes": 1997,
+      "sha256": "f4a2937792487ae771c0016af6ded187152d882d90f0f0b63e8b9c9af86d65bb"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/sources/reuse_manifest.json",
+      "bytes": 12255,
+      "sha256": "a72f04cf202dc50e5aede58343becdfd8c9c5b75757abcfb8e930d7a2a72af33"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/sources/run_directed_attribution.py",
+      "bytes": 15582,
+      "sha256": "3ef7073ff87027c980ba781d17b5fa2d441aa31ad1c8f5c0782be3f10070bf45"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/sources/system_python.tcl",
+      "bytes": 505,
+      "sha256": "29a1daba922a830f48c7e77757f7f7d7859578a3ff4ce0576777b47c7484dbd0"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/sources/targets.tcl",
+      "bytes": 304,
+      "sha256": "9176a453ed082bdc5c242d0004eb801912006e8d049c98bf0b824a2fd80a820c"
+    }
+  ],
+  "external_inputs": {
+    "scope_revision": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/mission/M002_ddr_separation_and_timing_recovery/directed_candidate_cut_scope_revision_2026-10-17.md",
+      "bytes": 6471,
+      "sha256": "516f9fd469c1d5b8cf4018dc0637c29122fb3cd894adbc0a48846014b406248e"
+    },
+    "independent_exporter_specification": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_candidate_cut_scope_review_20261017.md",
+      "bytes": 14040,
+      "sha256": "59473b7c7d13549dcf95a8e3948097f5999f824968d1a2889f7b62e1e5262c51"
+    },
+    "independent_finite_graph_CPU_model": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_cut_scope_model_check_20261017.json",
+      "bytes": 1674,
+      "sha256": "50afacd78b65be93f614bab3a8cd19f32f656c7a01b5d46739363093400756c2"
+    },
+    "prior_fixed_R004_runner": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E006_exact_candidates/run_attribution_lean.py",
+      "bytes": 22384,
+      "sha256": "7a4446bb9bd8888c35a15d056d043d33db21cb6ab30810a6241b73dd7072deb5"
+    },
+    "imported_identity_freeze_PID_helpers": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E006_lean_candidate/run_attribution_lean.py",
+      "bytes": 18844,
+      "sha256": "00d39932cd838533859f35423097f2e6b109dc0444d88050ecb9a4b4f9f81845"
+    },
+    "resource_process_guard": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m002_no_wall.py",
+      "bytes": 13257,
+      "sha256": "147d73052d6a110b4261d7110ce3d878377fa5b676d18235a251fee945edca8e"
+    },
+    "imported_guard_profile": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_execution_profile.py",
+      "bytes": 7776,
+      "sha256": "424b541158ff15d86a3006e3b70b7a87c4f9e24169d434bc62295dbf2da72b9d"
+    },
+    "production_freeze_manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_source/frozen_inputs_before_current_CDC_recovery.json",
+      "bytes": 36069,
+      "sha256": "a5643a9e8adb13d6e76f3e78b2dfb6804b9b8ac193f7006f5ceff1b0c4f5a26f"
+    },
+    "R004_target_authority": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/independent_candidate_targets.json",
+      "bytes": 12016,
+      "sha256": "8a07bcbef2061ee98d9255ef59c0d94bd27ddfd573990eccc90140518e4dcff5"
+    },
+    "R004_terminal_capture_producer": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E006_exact_candidates_capture/capture_terminal.py",
+      "bytes": 9932,
+      "sha256": "07814d9ca60ae9e80bd36526f4433f9904e70fbe61708763b1c31b00da2a6fea"
+    },
+    "original_558c_manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/directed_candidate_cut/prepared_source_manifest.json",
+      "bytes": 9705,
+      "sha256": "558c46fe4aaf5e14c3a8f548b02a1fd00891588d2054f5fc9c3e5fcf1d921161"
+    },
+    "failed_AT001_terminal_status": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT001_candidate_directed_cut/status.json",
+      "bytes": 3982,
+      "sha256": "2ff19a6858eedc53c2f8111c0cb0cd0543b1fe6b9a4cf703509ef129ad029e73"
+    },
+    "failed_AT001_terminal_facts": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT001_candidate_directed_cut/terminal_facts.json",
+      "bytes": 29324,
+      "sha256": "6d4581da32d4ace02e37a88918cb46f1047293862bfd5fd7fc93fcfaf95b3d18"
+    },
+    "original_owner_source": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E006_exact_candidates/candidate_inspector.tcl",
+      "bytes": 26331,
+      "sha256": "58625397b5816730ab88e9cab9f5527b1cdce4c041c8e307943dcd1c30ad9274"
+    },
+    "original_a660_manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/directed_candidate_cut_owner_fix/prepared_source_manifest.json",
+      "bytes": 13167,
+      "sha256": "a660b244e07840a1bc18524fab8c0bdafc42723918d9c7b93e8b4ea0440505bc"
+    },
+    "failed_AT002_terminal_status": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/status.json",
+      "bytes": 4102,
+      "sha256": "bc30ee550398b2aedc0e9c755c498bffb33804652aa90a42f12889de48fc7e84"
+    },
+    "failed_AT002_terminal_facts": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/terminal_facts.json",
+      "bytes": 34927,
+      "sha256": "2ba791e882805212a85ff39f6d29925253c929da69a3ab8ea6410dec2a24dc75"
+    },
+    "system_python_binary": {
+      "path": "/usr/bin/python3.12",
+      "bytes": 8020928,
+      "sha256": "1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118"
+    },
+    "system_env_binary": {
+      "path": "/usr/bin/env",
+      "bytes": 48072,
+      "sha256": "595f3912fa7d5f91b45cac22a4a772b23232ace24ff9d82ee47cc762c59be5e1"
+    },
+    "execution_binding_scope_revision": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/mission/M002_ddr_separation_and_timing_recovery/directed_candidate_cut_scope_revision_2026-10-17.md",
+      "bytes": 6471,
+      "sha256": "516f9fd469c1d5b8cf4018dc0637c29122fb3cd894adbc0a48846014b406248e"
+    },
+    "execution_binding_prepared_source_manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/directed_candidate_cut_system_python/prepared_source_manifest.json",
+      "bytes": 15225,
+      "sha256": "b3308185827d5fe24a4f1b878271f0f42e186d885fb4d0b75acd5a85af094d68"
+    },
+    "execution_binding_prior_terminal_status": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/status.json",
+      "bytes": 4389,
+      "sha256": "5d275c02dd7cadf2526dc7e3a9ca9cc6c3775b6d98c0d1fda3b55024b1cc4f98"
+    },
+    "execution_binding_prior_terminal_facts": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/terminal_facts.json",
+      "bytes": 39388,
+      "sha256": "3b16bf096a183cb1bcdb71006643ae56cec4c38c7d6fc39ffa12b1e1fbd8f838"
+    },
+    "execution_binding_controlled_stop_evidence": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/.research-agent/decision_inputs/E006_R004_controlled_stop_for_R005_20261017.json",
+      "bytes": 1613,
+      "sha256": "b68b22256a57671e3cce6238d964b64ea01a91b11802de2551ab424d224381b9"
+    },
+    "execution_binding_actual_user_decision": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/.research-agent/decision_inputs/E006_R004_user_allowed_directed_switch_20261017.json",
+      "bytes": 1240,
+      "sha256": "351f5acb03a88ccdde8b3970f6f2f300143c04110f1b13b704daffdea087f0c7"
+    },
+    "execution_binding_controlled_stop_signal": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/authorized_controlled_stop_signal_R005_switch.json",
+      "bytes": 1051,
+      "sha256": "762d35f0e908cfac408d3318681c4bec0f40abaa318b724cfecb45351fb6e6bf"
+    },
+    "execution_binding_controlled_stop_intent": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/authorized_controlled_stop_intent_R005_switch.json",
+      "bytes": 2612,
+      "sha256": "8ff60b91f8cc7c634e00c53c60b245cd9fa19acd704aa2e475099738e9b74621"
+    },
+    "execution_binding_independent_source_admission_review": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_source_review_20261017/final_source_admission_review_558c46fe.json",
+      "bytes": 26923,
+      "sha256": "412cba2b461f6f231f932eb8fc95af18376f2f617b48bea9fe4a6fc2e7eb82dc"
+    },
+    "execution_binding_prior_same_scope_attempt_terminal": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/status.json",
+      "bytes": 4102,
+      "sha256": "bc30ee550398b2aedc0e9c755c498bffb33804652aa90a42f12889de48fc7e84"
+    },
+    "execution_binding_prior_same_scope_attempt_facts": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/terminal_facts.json",
+      "bytes": 34927,
+      "sha256": "2ba791e882805212a85ff39f6d29925253c929da69a3ab8ea6410dec2a24dc75"
+    },
+    "execution_binding_owner_failure_review_correction": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R005_owner_integration_review_20261017/root_cause_and_review_correction.json",
+      "bytes": 13556,
+      "sha256": "576cb5fe7fc33553f64470e28a6ed960adf08f0de4af74b68e912b3fb468ed9f"
+    },
+    "execution_binding_owner_helper_independent_integration_checks": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R005_owner_integration_review_20261017/independent_owner_integration_checks.json",
+      "bytes": 3989,
+      "sha256": "d3c9b65c4da2d388d38ea26f41008515ea12aa591fac4361c8a3e295592ba77e"
+    },
+    "execution_binding_system_python_entry_CPU_check": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/directed_candidate_cut_system_python/CPU_checks/CT012_system_python_entry.json",
+      "bytes": 6096,
+      "sha256": "7e79e9210792e77bce757fb70e1e2b81438b426d5626296f5731f4432b4bbaa6"
+    },
+    "execution_binding_system_python_final_control_membership_CPU_check": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/directed_candidate_cut_system_python/CPU_checks/CT013_final_control_membership.json",
+      "bytes": 5869,
+      "sha256": "80ebf5a5f6e856718a1af8ebdc7f49e190db082f547120a6eb8b33f85573bc45"
+    },
+    "execution_binding_actual_AT002_membership_independent_replay": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R005_python_environment_review_20261017/AT002_membership_applicability.json",
+      "bytes": 2676,
+      "sha256": "c6f313e7860e3f4242706b9f99067f4a04a5765731dc8735f44567bd9615aed9"
+    }
+  },
+  "reused_closed_inputs": {
+    "C01_closed_facts": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/candidate_C01_membership_resources_closed_facts.json",
+      "bytes": 15367,
+      "sha256": "4296dcecb6dc5a6bb96b5705848378c80f2c1a31853e247bcd2b27ffb6fc49e2"
+    },
+    "C01_closed_summary": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/candidate_C01_membership_resources_closed_summary.json",
+      "bytes": 5121,
+      "sha256": "ab963e49a96a1a2fbaca202ba51e6f48b198b5f27d2580b63400ab7a5e9707a9"
+    },
+    "C01_RAW": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/candidate_RAW_C01.tsv",
+      "bytes": 1514354,
+      "sha256": "4aa7fbf24b8e74593367189684f0a525f6c9c3aa9ea412c90e474b91dc6d0065"
+    },
+    "C01_S": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/candidate_S_C01.tsv",
+      "bytes": 1513347,
+      "sha256": "d5c491e18fa5a3325eaec67c21169f8c3f6cb6e3d18420e82e93eac736e1ff36"
+    },
+    "C01_P": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/candidate_P_C01.tsv",
+      "bytes": 1510475,
+      "sha256": "3bd3fd7b17658f37c4b7b8d0e0b6926420c4023eeeeafca512c03401e259c919"
+    },
+    "C01_membership": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/candidate_membership_C01.tsv",
+      "bytes": 4064026,
+      "sha256": "61398aed9b07605a42677c9a106d7d894dc9bd6d6368dbed7ee28b749bc2e405"
+    },
+    "C01_physical_members": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/candidate_physical_members_C01.tsv",
+      "bytes": 2277809,
+      "sha256": "2a0aa276aad348bd9aca7277800cad328c4b4d9435c0359ab5b76d5c0870eba1"
+    },
+    "C01_site_members": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/candidate_site_members_C01.tsv",
+      "bytes": 14920150,
+      "sha256": "57801eabe407edd83331e993d7208c48b7c4154be1cd23ff555866c2a5aa3b3f"
+    },
+    "C01_native_resources": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/utilization_candidate_C01_SLR.rpt",
+      "bytes": 7180,
+      "sha256": "d6b0f3f41d115e4cf22767442ae1789a8247585a800fc08f028f6d8795cf4ad2"
+    },
+    "C01_native_membership_marker": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/candidate_membership_C01_closed.txt",
+      "bytes": 577,
+      "sha256": "e937ddec4054e21cbb27607c0f72d3821caf44649b2b3ef7259f97790125c4ca"
+    },
+    "C02_closed_facts": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/candidate_C02_membership_resources_closed_facts.json",
+      "bytes": 14873,
+      "sha256": "1aa0b39cd5a276123ef7ad22aa1e030a65bc5c9d059d4dd1bf205d14a2596a69"
+    },
+    "C02_closed_summary": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/candidate_C02_membership_resources_closed_summary.json",
+      "bytes": 4733,
+      "sha256": "90e0afcccd8dba2066d0702dad58a01f921827348b5618ef462b583d68b2ee51"
+    },
+    "C02_RAW": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/candidate_RAW_C02.tsv",
+      "bytes": 968006,
+      "sha256": "6eccbe3722ad4d567aa8748782097d73403fe99812f508ca19dc7ece87edea81"
+    },
+    "C02_S": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/candidate_S_C02.tsv",
+      "bytes": 967656,
+      "sha256": "97f2c93a7ec6c0fd012bc0341cb78d5fc06edbeb31cc405fe16f8f364883aec6"
+    },
+    "C02_P": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/candidate_P_C02.tsv",
+      "bytes": 967656,
+      "sha256": "97f2c93a7ec6c0fd012bc0341cb78d5fc06edbeb31cc405fe16f8f364883aec6"
+    },
+    "C02_membership": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/candidate_membership_C02.tsv",
+      "bytes": 2722534,
+      "sha256": "7943352723b858924f2d8af54746d9d14f96b551751930e9acc2045d215ffe69"
+    },
+    "C02_physical_members": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/candidate_physical_members_C02.tsv",
+      "bytes": 1550686,
+      "sha256": "8e2fccbd950694430460fa18cf6e5c15e59f44ab6b8d694800a495fa701f9096"
+    },
+    "C02_site_members": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/candidate_site_members_C02.tsv",
+      "bytes": 10081732,
+      "sha256": "31afaf57b3f2b49dfca910e254782b2eaaf55cc43559800b3e048904660a2cba"
+    },
+    "C02_native_resources": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/utilization_candidate_C02_SLR.rpt",
+      "bytes": 7069,
+      "sha256": "a8fafa83531a985b6ebc7c318e9ca0635fd12da61c7275c2918ebe4b45ddc60d"
+    },
+    "C02_native_membership_marker": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R004_AT001_exact_candidate_comparison/candidate_membership_C02_closed.txt",
+      "bytes": 531,
+      "sha256": "2246fe93de1eee795203838a0360309ac159f954cd815da02464b7d0b13c2d4c"
+    },
+    "R004_authority_hotspot_ownership_closed_stage_facts.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/attempts/AT001_lean_physopt_attribution/hotspot_ownership_closed_stage_facts.json",
+      "bytes": 268221,
+      "sha256": "21dd2232fb643ce2b584e3002fb5dfd8efe74f0b9b02711c43dd05a30714024e"
+    },
+    "R004_authority_failure_samples_closed_stage_facts.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/attempts/AT001_lean_physopt_attribution/failure_samples_closed_stage_facts.json",
+      "bytes": 185858,
+      "sha256": "066af66c8ca959881b436a114d944846f6bc154176f383db06848ca13ab977c3"
+    },
+    "utilization_global_SLR.rpt": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_global_SLR.rpt",
+      "bytes": 6889,
+      "sha256": "2dfe2df39c2892272dffe30dc887e47b7b5f9938723f7dc70c76a38dc72e11c5"
+    },
+    "R003_AT001_hotspot_UNION_cells.tsv": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R003_AT001_lean_physopt_attribution/hotspot_UNION_cells.tsv",
+      "bytes": 30917964,
+      "sha256": "0ce9d2bd0fec9e19d685d85682eeb15411c7a3048f5fb4e2f02280f731bf957c"
+    },
+    "R003_AT001_failure_exact_net_resolution.tsv": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R003_AT001_lean_physopt_attribution/failure_exact_net_resolution.tsv",
+      "bytes": 12201,
+      "sha256": "da4a30c70963fef03edeb498b93ce58f91dc1166f6d974655741b532a56ee9f3"
+    },
+    "R004_started": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/started.json",
+      "bytes": 2767,
+      "sha256": "8b732d6e0f94206a6750e2a104a3b1a71fb42e994c427deaeb585aaf133de7f2"
+    },
+    "R004_input_bindings": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/input_bindings.json",
+      "bytes": 34878,
+      "sha256": "f6c5f45e03bdfa829561aa62498709b94ee74d948d2d292834098a6eaa2901e5"
+    },
+    "R004_target_authority": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/independent_candidate_targets.json",
+      "bytes": 12016,
+      "sha256": "8a07bcbef2061ee98d9255ef59c0d94bd27ddfd573990eccc90140518e4dcff5"
+    },
+    "R004_independent_membership_review": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/independent_membership_resources_and_probe_review.json",
+      "bytes": 36523,
+      "sha256": "0696755244e7f6dc6f7debdd42be799808d2518763329c812dad0c7e34fc4246"
+    },
+    "R004_actual_probe_facts": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/actual_failed_batch_property_probe_closed_facts.json",
+      "bytes": 18340,
+      "sha256": "027541bd0363dd18e492031326db3829991e6e1d1aa84881bd0154380e6ca806"
+    }
+  },
+  "replacement_authorization": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/.research-agent/decision_inputs/E006_R005_AT003_system_python_execution_20261017.json",
+    "bytes": 6660,
+    "sha256": "eb32dda0b22503f2f8ab700fdefd0437eba3b214e6323e59b92b63fe97f6ae33"
+  },
+  "producer": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/terminal_capture_producer.py",
+    "bytes": 11027,
+    "sha256": "de448e3eb3569d4413c41d9ffa249ec4070c29d183a5a408d1af76c1cfc15b47"
+  },
+  "resources": {
+    "samples": 673,
+    "first_sample": "2026-10-17T01:51:16.603780+00:00",
+    "last_sample": "2026-10-17T02:48:07.276405+00:00",
+    "sampled_peak_tree_rss_bytes": 27643273216,
+    "minimum_mem_available_bytes": 440269811712,
+    "minimum_disk_free_bytes": 387105067008,
+    "maximum_sample_gap_seconds": 5.239376
+  },
+  "closed_native_log": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/vivado.log",
+    "bytes": 12679616,
+    "sha256": "42146b46821860185bc11777fcf40478ec3fb083c08824587b3bc3a6741969db"
+  },
+  "result": null,
+  "graph_scope": "Original E005 physopt only, not failed route graph; failure sample names may legitimately not exist",
+  "coverage_version": "candidate_directed_cut_v1",
+  "endpoint_scope": "Candidate-directed complete local leaf and aliases with native class/role-qualified external-driver reduction, all top ports, declared full fallback and bounded timing. External peer ordinary leaf loads NOT_ENUMERATED on qualified reduced nets; full-net fanout NOT_MEASURED. Old hotspot UNION full endpoint recovery NOT_IN_SCOPE and old unfinished evidence preserved. Native resources explicitly reused from R004. No candidate support inferred.",
+  "fixed_window_congestion": "UNAVAILABLE; occupancy is not congestion",
+  "formal_signoff": false
+}

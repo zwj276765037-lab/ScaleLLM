@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_source_review_20261017/round3_source_snapshot/directed_evidence.py", line 434, in <module>
+    result={'qualify-membership':qualify_membership,'cut':cut,'timing':timing}[sys.argv[1]](sys.argv[2],Path(sys.argv[3]))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_source_review_20261017/round3_source_snapshot/directed_evidence.py", line 202, in cut
+    require(row['REF_NAME'] == actual_owner['REF_NAME'] and row['physical_parent'] == actual_owner['physical_parent'], 'Local pin/native owner REF or physical parent differs')
+  File "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_source_review_20261017/round3_source_snapshot/directed_evidence.py", line 21, in require
+    raise ValueError(message)
+ValueError: Local pin/native owner REF or physical parent differs

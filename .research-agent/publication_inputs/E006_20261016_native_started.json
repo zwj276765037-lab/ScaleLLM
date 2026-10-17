@@ -1,0 +1,14 @@
+{
+  "source": "# E006：SLR1拥塞归因依据\n\n用户在Q002讨论后明确授权“火速去查明”。以E005当前physopt检查点、实际新峰tile名单及route失败日志为权威输入，按[SM010合同](../../../mission/M002_ddr_separation_and_timing_recovery/slr1_attribution_contract_2026-10-16.md)只读提取模块×SLR、热点模块占用、连接和失败样本归属。算法/数值/接口/时钟及生产输入保持；单EDA/8CPU/nice5，正常无墙钟/无输出强停。\n",
+  "results": "# E006：已确认资源分布向SLR1集中，模块归属待原生提取\n\nCPU读取E003/E005各自原生physopt报告，版本/器件与阶段一致。旧→新，SLR1 LUT268405→336107（+67702）、CLB Registers319883→435367（+115484）、BRAM tile160.5→468（+307.5）；两侧这三类资源均减少。全局LUT减少13184，SLR1 DSP1875→1835（−40），因此不能用DSP分布趋均衡代替逻辑/存储均衡。\n\n这是同阶段聚合分布变化，不证明每个同一cell发生了移动，也不能分离两项RTL与SSI布局策略的因果。实际SLR1模块贡献、热点归属和连接关系仍待本轮只读查询。[对照表](slr_same_stage_comparison.md)、[来源身份与原行号](slr_same_stage_comparison.json)。\n\nA007已从E005原闭合route日志解析10个失败节点、40条exact unique contender nets及12个附近InstTerms，完整保留原行号和文本；该top10/每节点最多5条样本不代表全部758463失败信号。A006将用精确对象查询，未命中/多driver保留，不做名字猜配。[样本目标](runs/R002/route_failure_sample_targets.json)。\n\nR001/AT001于2026-10-16 15:51:44.063950 UTC实际启动，监督942046、leader942061，原生已加载指定xcvu9p器件并打开E005当前physopt检查点；当前恢复中，尚无新模块/热点结果。单EDA/CPU0–7/nice5/max8与资源保护保持，正常无墙钟/无输出强停。查询按模块资源、热点、失败样本、热点连接四stage分别关闭；不重跑implementation。\n",
+  "status": "# E006：执行状态\n\nexecution_state: running\nverdict: unassessed\n\nR001/AT001于2026-10-16 15:51:44.063950 UTC实际启动，监督942046、leader942061，原生已加载指定xcvu9p器件并打开E005当前physopt检查点；当前恢复中，尚无新模块/热点结果。单EDA/CPU0–7/nice5/max8与资源保护保持，正常无墙钟/无输出强停。\n\nA007并行审核固定targets/来源与已有CPU资料，等待实际阶段产物。已有SLR总量对照不能代替新模块归属数据。\n",
+  "execution_state": "running",
+  "verdict": "unassessed",
+  "applicability": "E005当前physopt只读SLR1归因已实际运行；同阶段聚合变化已核，模块/热点结果待测",
+  "evidence": [
+    "project/E006_m002_slr1_congestion_attribution/experiment_source/protocol.md",
+    "project/E006_m002_slr1_congestion_attribution/experiment_results/slr_same_stage_comparison.json",
+    "project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/route_failure_sample_targets.json",
+    "project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/attempts/AT001_physopt_attribution/started.json"
+  ]
+}

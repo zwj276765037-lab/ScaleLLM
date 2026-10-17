@@ -1,0 +1,19 @@
+{
+  "event_id": "SM010-E006-20261017-hotspots-revise-candidate-priority",
+  "small_mission": "SM010",
+  "trigger": "milestone",
+  "summary": "真实热点与40失败样本已闭合：MLP占UNION约76.735%，旧输入candidate仅1.01%且仅23/657样本热点负载；原候选降为探索对照。",
+  "impact": "E007旧源码准备有效，但下一完整implementation默认首选尚未成立；R003连接查询自然失败保留，缺失属性空值处理需修复。",
+  "action": "E006/R004在同一DCP恢复中比较SwiGLU独立8-row producer1与Down weight_repack的exact资源/位置/完整边界，并补必要连接；按实测决定实现范围。普通修复和比较无需新用户批准。",
+  "requires_decision": false,
+  "affected": [
+    "SM010",
+    "SM011"
+  ],
+  "evidence": [
+    "project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/independent_candidate_raw_intersections.json",
+    "project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/attempts/AT001_lean_physopt_attribution/hotspot_ownership_closed_stage_facts.json",
+    "project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/attempts/AT001_lean_physopt_attribution/failure_samples_closed_stage_facts.json",
+    ".research-agent/decision_inputs/E006_20261017_candidate_priority_revision.json"
+  ]
+}

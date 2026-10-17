@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail;e="$(cd "$(dirname "${BASH_SOURCE[0]}")"&&pwd)";v="${VIVADO_BIN:-/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/vivado}";mkdir -p "$e/artifacts/xsim";python3 "$e/generate_vectors.py";for s in '1 fp16' '2 fp32';do read -r i n<<<"$s";M8_CASE_ID=$i M8_CASE_NAME=$n "$v" -mode batch -notrace -source "$e/run_xsim.tcl" >"$e/artifacts/xsim/$n.console.log" 2>&1;done

@@ -1,0 +1,93 @@
+{
+  "recorded_utc": "2026-10-16T23:30:05.162705+00:00",
+  "phase": "closed_E006_observed_candidate_endpoints",
+  "stage": "failure_samples",
+  "native_closed_stage_receipt": {
+    "stage": "failure_samples",
+    "native_tcl_code": "0",
+    "started_epoch": "1792193210",
+    "ended_epoch": "1792193307",
+    "failed_queries": "{}"
+  },
+  "native_closed_query_receipts": [
+    {
+      "query": "failure_node_device_mapping",
+      "native_tcl_code": "0",
+      "started_epoch": "1792193210",
+      "ended_epoch": "1792193210",
+      "result": "{}"
+    },
+    {
+      "query": "failure_samples",
+      "native_tcl_code": "0",
+      "started_epoch": "1792193210",
+      "ended_epoch": "1792193307",
+      "result": "{}"
+    }
+  ],
+  "source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R003_AT001_lean_physopt_attribution/failure_net_endpoints.tsv",
+    "bytes": 2710075,
+    "sha256": "384232713b61944285dde8d84a8440c78d515d847f6ae5b1a154e08d92321b81"
+  },
+  "classifier": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/audit_input_frontend_candidate.py",
+    "bytes": 11243,
+    "sha256": "c02e22575e7df711c0555eb45d10bbad901326b27161947f5cb9912f1ad3fb92"
+  },
+  "graph_classification_helper": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E006_lean_capture/capture_graph_stage.py",
+    "bytes": 18021,
+    "sha256": "ffe74c6af1ea3148c5dd07f5535bfd8ac21264ed33613aa8720b0ccec410ad2f"
+  },
+  "producer": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/attempts/AT001_lean_physopt_attribution/capture_failure_samples_candidate_endpoint_producer.py",
+    "bytes": 7775,
+    "sha256": "d7b589bcd8aa1bf6b0a3ec723a035807dd8b7908b8edd4775f3c4f0f7b022337"
+  },
+  "totals": {
+    "raw_source_endpoint_rows": 4877,
+    "unique_canonical_endpoint_rows": 4877,
+    "unique_candidate_RAW_endpoints": 771,
+    "unique_candidate_S_endpoints": 771,
+    "selected_constant_endpoints": 0,
+    "observed_unique_canonical_nets": 40,
+    "canonical_nets_with_candidate_RAW_endpoints": 3,
+    "candidate_RAW_cells_observed_at_endpoints": 771,
+    "candidate_S_cells_observed_at_endpoints": 771,
+    "selected_DSP_LOC_sites_observed_not_P_normalization": 0
+  },
+  "candidate_RAW_endpoint_REF_counts": {
+    "LUT1": 2,
+    "FDRE": 768,
+    "LUT2": 1
+  },
+  "candidate_RAW_endpoint_primitive_categories": [
+    {
+      "role": "LOAD",
+      "category": "ENABLE_WRITE_CONTROL",
+      "count": 768
+    },
+    {
+      "role": "DRIVER",
+      "category": "LOGIC_PIN_FUNCTION_UNCLASSIFIED",
+      "count": 3
+    }
+  ],
+  "selected_DSP_LOC_sites_observed": [],
+  "endpoints": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/attempts/AT001_lean_physopt_attribution/failure_samples_candidate_observed_endpoints.tsv",
+    "bytes": 376540,
+    "sha256": "4fb814ca2de67016df40d1fad1875a0490d7c16ae73db3f0d06efe09289d96d0"
+  },
+  "per_net_counts": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/attempts/AT001_lean_physopt_attribution/failure_samples_candidate_per_canonical_net_counts.tsv",
+    "bytes": 657,
+    "sha256": "42f9ebd7f641581b995e2f49d0f79a4ed15217b77421f4d67d1eac7f766cf03d"
+  },
+  "alias_handling": "Deduplicated exact (canonical net, role, pin); repeated aliases must have identical full endpoint rows; suppression counted separately",
+  "scope": "Only complete nets selected by closed E006 failure-sample or hotspot-UNION scope, leaf IN/OUT. Observed RAW/S endpoint names are not the whole candidate cut or actual E007 physical P.",
+  "missing_fields": "INOUT/top ports/native IS_CLOCK/origin/macro/new E007 P membership not queried here; unknown parent/SLR counters retained",
+  "native_E007_P_qualification": "NOT_RUN",
+  "formal_signoff": false
+}

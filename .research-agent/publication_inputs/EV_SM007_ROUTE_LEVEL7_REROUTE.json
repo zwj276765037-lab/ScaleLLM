@@ -1,0 +1,16 @@
+{
+  "event_id": "EV_SM007_ROUTE_LEVEL7_REROUTE",
+  "small_mission": "SM007",
+  "trigger": "milestone",
+  "summary": "初始网络布线Phase4完成，当前进入Phase5拆线重布；初始详细路由Global/Short及Timing估计拥塞Level7。",
+  "impact": "早期GR0不代表当前详细路由无拥塞，工具仍正常争取全布通；Level7为当前估计而非最终失败，设计/策略冻结。",
+  "evidence": [
+    "project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_level7_estimated_congestion_facts.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_level7_estimated_congestion_log_snapshot.txt"
+  ],
+  "affected": [
+    "SM007"
+  ],
+  "action": "继续同一正常无wall拆线重布，待最终route_status、DCP/POST和正式时序，不因告警强停或改约束。",
+  "requires_decision": false
+}

@@ -1,0 +1,56 @@
+# E003：执行状态
+
+execution_state: running
+verdict: unassessed
+
+R003/AT001_full_route已真实进入route_design，17:31:05 UTC启动facts冻结原生日志；随后已到Phase2.3 Global Clock Net Routing。精确命令起始时间待原生回执，本次无route完成结果。native3964652/start919724289连续正常，单EDA/CPU0–7/nice5，timeout/global_deadline=null，正常推进无固定时长停止。
+
+恢复后实际执行共用对象/时钟/复位级数preflight，BB实测0、PREFLIGHT_ISSUES空；route没有重跑place专用完整live guard，完整DRC/coverage/reset图资格从已封闭physopt父点继承。A007独立核当前输入/源码/父链与合同边界；主控核route启动facts7项小证据身份。
+
+独立physopt命令/DCP/完整POST与阶段终态均成功，正式WNS−1.290/TNS−762.165ns、setup980；WHS−0.620/THS−2150.556ns、hold33141，仍FAIL且互连为pre-route估计。当前route有至少97 CLBs高pin使用告警，未因此失败。最终全布通、路由时序和安全按真实后继证据，reset/CDC安全仍OPEN；不改设计、不运行bitstream或板卡。
+
+新增实质物理风险：当前Phase3/3.1的SLL估计需求，SLR0–1总量126.66%、最大列208.125%；SLR1–2总量83.81%、最大列141.944%。Route35-3311警告可能不能布通全部跨SLR网络；当前进程正常，无真实route失败，继续既定无wall运行。此估算不是最终route_status；不把初始化时大量未布线网当最终失败。
+
+
+---
+Published: 2026-10-15T17:43:11.390555+00:00
+Publication: Pd16be2a87da245259fd1ac28c9dbddf5
+Execution state: running
+Research verdict: unassessed
+Applicability: 真实route持续运行；新的局部及边界SLL估计超额构成显著布通风险，最终route_status仍待实际结果
+Evidence:
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_checkpoint_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_timing_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_physical_reports_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/actual_place_CDC_delta.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/status.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/worker_terminal_before_old_supervisor_release.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/old_supervisor_released.json
+- project/E003_m002_full_implementation/experiment_results/runs/R004/architecture_review.md
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/cpu_tests_final.log
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/validated_sources.sha256
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/installation.json
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/actual_CDC_revalidation.json
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/actual_worker_entry_preflight.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/actual_eda_started.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/command.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/completed_place_POST_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/completed_place_POST.sha256
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/place_POST_and_physopt_start_log_snapshot.txt
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_native_command_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_checkpoint_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_timing_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/completed_physopt_POST_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/completed_physopt_POST.sha256
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/completed_physopt_POST_log_snapshot.txt
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_physical_reports_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/terminal_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/status.json
+- project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/actual_eda_started.json
+- project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/command.json
+- project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_native_started_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_native_started_log_snapshot.txt
+- project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_restore_scope.json
+- project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/startup_no_wall_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_SLL_demand_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_SLL_demand_log_snapshot.txt

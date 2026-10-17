@@ -1,0 +1,223 @@
+{
+  "execution": "completed_independent_C01_timing_stage_review",
+  "verdict": "directional_query_coverage_and_reported_slacks_supported; existing_ingress_hold_failure; candidate_choice_pending_C02",
+  "applicability": "same original physopt graph, estimated pre-route timing, b330 archived collector/validator",
+  "actual_native_receipts": {
+    "stage_receipts.tsv": {
+      "stage": "candidate_C01_bounded_timing",
+      "native_tcl_code": "0",
+      "started_epoch": "1792204418",
+      "ended_epoch": "1792204628",
+      "failed_queries": "{}"
+    },
+    "query_receipts.tsv": {
+      "query": "candidate_C01_bounded_timing",
+      "native_tcl_code": "0",
+      "started_epoch": "1792204418",
+      "ended_epoch": "1792204628",
+      "result": "{{\"validated\": true, \"point\": \"C01\", \"coverage_version\": \"candidate_directed_cut_v1\"}}"
+    }
+  },
+  "replay_exact_equal": true,
+  "identities_checked": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_timing_queries_C01.tcllist",
+      "bytes": 6830100,
+      "sha256": "aac47f2f2a2a0d1883c60a9427ac61b8b2fab155033f9f4b9fd782c6f577e1b7"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_scoped_timing_C01.tsv",
+      "bytes": 32924,
+      "sha256": "55c3eb01da6132722f0ccc8ef2f1a08f83c208a62ae33c0f641654f521173e1b"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_scoped_timing_C01_coverage.txt",
+      "bytes": 278,
+      "sha256": "10c64397afd4658650380680d8c69d0bf13f9ac01d2d0a117f397736321b5277"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_timing_validation_C01.json",
+      "bytes": 3566430,
+      "sha256": "06e11046c630bb9d849a912c41af679de94d2c2fc8b500ba3382d155a6dd8bad"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_cut_timing_C01_EGRESS_min.rpt",
+      "bytes": 734233,
+      "sha256": "6c27738665ec11379008414af8ad96bb6281c2af8bc064c329076fdc365b4f5f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_cut_timing_C01_INGRESS_max.rpt",
+      "bytes": 9758830,
+      "sha256": "58c9e51046174e6bb3033b7c70611c08a84f01bc2f981842598dc489e423777c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_cut_timing_C01_EGRESS_max.rpt",
+      "bytes": 807902,
+      "sha256": "1807c47a3efcb6ea92dedb61f5fd4325f633f1037c6f6f5218779d82fa69579b"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_cut_timing_C01_INGRESS_min.rpt",
+      "bytes": 9680016,
+      "sha256": "9aa5b7c8b4a955016fc2202a379b0f9e54bce46542fe06510cb7a2782ec0e6a3"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/stage_candidate_C01_bounded_timing_closed.txt",
+      "bytes": 182,
+      "sha256": "61244fdeb446303392129271c028ee676685f5ebc8acaeae435f856c28f1143d"
+    }
+  ],
+  "query_sets": {
+    "INGRESS": 20534,
+    "EGRESS": 945
+  },
+  "native_query_count": 4,
+  "worst_paths": [
+    {
+      "direction": "INGRESS",
+      "delay_type": "max",
+      "returned_paths": 16,
+      "worst": {
+        "direction": "INGRESS",
+        "delay_type": "max",
+        "max_paths": "16",
+        "queried_boundary_pins": "20534",
+        "returned_paths": "16",
+        "STARTPOINT_PIN": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[0].u_branch_leaf/output_element_r_reg[0]/C",
+        "ENDPOINT_PIN": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0/DSP_A_B_DATA_INST/CEA1",
+        "STARTPOINT_CLOCK": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "ENDPOINT_CLOCK": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "SLACK": "1.416",
+        "LOGIC_DELAY": "UNKNOWN_UNSUPPORTED_PROPERTY",
+        "NET_DELAY": "UNKNOWN_UNSUPPORTED_PROPERTY",
+        "DATAPATH_DELAY": "8.092",
+        "EXCEPTION": ""
+      },
+      "native_first_path_excerpt": [
+        "Slack (MET) :             1.416ns  (required time - arrival time)",
+        "  Source:                 scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[0].u_branch_leaf/output_element_r_reg[0]/C",
+        "  Destination:            scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0/DSP_A_B_DATA_INST/CEA1",
+        "  Path Type:              Setup (Max at Slow Process Corner)",
+        "  Requirement:            10.000ns  (clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise@10.000ns - clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise@0.000ns)",
+        "  Data Path Delay:        8.092ns  (logic 0.475ns (5.870%)  route 7.617ns (94.130%))",
+        "  Clock Path Skew:        -0.013ns (DCD - SCD + CPR)"
+      ],
+      "report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_cut_timing_C01_INGRESS_max.rpt",
+        "bytes": 9758830,
+        "sha256": "58c9e51046174e6bb3033b7c70611c08a84f01bc2f981842598dc489e423777c"
+      }
+    },
+    {
+      "direction": "INGRESS",
+      "delay_type": "min",
+      "returned_paths": 16,
+      "worst": {
+        "direction": "INGRESS",
+        "delay_type": "min",
+        "max_paths": "16",
+        "queried_boundary_pins": "20534",
+        "returned_paths": "16",
+        "STARTPOINT_PIN": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack/g_output_payload_row[10].out_payload_r_reg[4213]/C",
+        "ENDPOINT_PIN": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/up_tile_r_reg[1141]/D",
+        "STARTPOINT_CLOCK": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "ENDPOINT_CLOCK": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "SLACK": "-0.128",
+        "LOGIC_DELAY": "UNKNOWN_UNSUPPORTED_PROPERTY",
+        "NET_DELAY": "UNKNOWN_UNSUPPORTED_PROPERTY",
+        "DATAPATH_DELAY": "0.14",
+        "EXCEPTION": ""
+      },
+      "native_first_path_excerpt": [
+        "Slack (VIOLATED) :        -0.128ns  (arrival time - required time)",
+        "  Source:                 scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack/g_output_payload_row[10].out_payload_r_reg[4213]/C",
+        "  Destination:            scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/up_tile_r_reg[1141]/D",
+        "  Path Type:              Hold (Min at Slow Process Corner)",
+        "  Requirement:            0.000ns  (clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise@0.000ns - clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise@0.000ns)",
+        "  Data Path Delay:        0.140ns  (logic 0.058ns (41.429%)  route 0.082ns (58.571%))",
+        "  Clock Path Skew:        0.206ns (DCD - SCD - CPR)"
+      ],
+      "report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_cut_timing_C01_INGRESS_min.rpt",
+        "bytes": 9680016,
+        "sha256": "9aa5b7c8b4a955016fc2202a379b0f9e54bce46542fe06510cb7a2782ec0e6a3"
+      }
+    },
+    {
+      "direction": "EGRESS",
+      "delay_type": "max",
+      "returned_paths": 16,
+      "worst": {
+        "direction": "EGRESS",
+        "delay_type": "max",
+        "max_paths": "16",
+        "queried_boundary_pins": "945",
+        "returned_paths": "16",
+        "STARTPOINT_PIN": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/output_element_r_reg[2]/C",
+        "ENDPOINT_PIN": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[0].u_branch_leaf/u_silu/input_gate_r_reg[11]/CE",
+        "STARTPOINT_CLOCK": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "ENDPOINT_CLOCK": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "SLACK": "1.848",
+        "LOGIC_DELAY": "UNKNOWN_UNSUPPORTED_PROPERTY",
+        "NET_DELAY": "UNKNOWN_UNSUPPORTED_PROPERTY",
+        "DATAPATH_DELAY": "7.877",
+        "EXCEPTION": ""
+      },
+      "native_first_path_excerpt": [
+        "Slack (MET) :             1.848ns  (required time - arrival time)",
+        "  Source:                 scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/output_element_r_reg[2]/C",
+        "  Destination:            scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[0].u_branch_leaf/u_silu/input_gate_r_reg[11]/CE",
+        "  Path Type:              Setup (Max at Slow Process Corner)",
+        "  Requirement:            10.000ns  (clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise@10.000ns - clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise@0.000ns)",
+        "  Data Path Delay:        7.877ns  (logic 0.416ns (5.281%)  route 7.461ns (94.719%))",
+        "  Clock Path Skew:        0.126ns (DCD - SCD + CPR)"
+      ],
+      "report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_cut_timing_C01_EGRESS_max.rpt",
+        "bytes": 807902,
+        "sha256": "1807c47a3efcb6ea92dedb61f5fd4325f633f1037c6f6f5218779d82fa69579b"
+      }
+    },
+    {
+      "direction": "EGRESS",
+      "delay_type": "min",
+      "returned_paths": 16,
+      "worst": {
+        "direction": "EGRESS",
+        "delay_type": "min",
+        "max_paths": "16",
+        "queried_boundary_pins": "945",
+        "returned_paths": "16",
+        "STARTPOINT_PIN": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/out_product_s32_reg[24]/C",
+        "ENDPOINT_PIN": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_ring_column[11].u_row_ring_bram/xpm_memory_base_inst/gen_wr_a.gen_word_wide.mem_reg_bram_0/DINBDIN[24]",
+        "STARTPOINT_CLOCK": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "ENDPOINT_CLOCK": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "SLACK": "0.035",
+        "LOGIC_DELAY": "UNKNOWN_UNSUPPORTED_PROPERTY",
+        "NET_DELAY": "UNKNOWN_UNSUPPORTED_PROPERTY",
+        "DATAPATH_DELAY": "0.277",
+        "EXCEPTION": ""
+      },
+      "native_first_path_excerpt": [
+        "Slack (MET) :             0.035ns  (arrival time - required time)",
+        "  Source:                 scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/out_product_s32_reg[24]/C",
+        "  Destination:            scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_ring_column[11].u_row_ring_bram/xpm_memory_base_inst/gen_wr_a.gen_word_wide.mem_reg_bram_0/DINBDIN[24]",
+        "  Path Type:              Hold (Min at Slow Process Corner)",
+        "  Requirement:            0.000ns  (clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise@0.000ns - clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise@0.000ns)",
+        "  Data Path Delay:        0.277ns  (logic 0.058ns (20.939%)  route 0.219ns (79.061%))",
+        "  Clock Path Skew:        0.270ns (DCD - SCD - CPR)"
+      ],
+      "report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_cut_timing_C01_EGRESS_min.rpt",
+        "bytes": 734233,
+        "sha256": "6c27738665ec11379008414af8ad96bb6281c2af8bc064c329076fdc365b4f5f"
+      }
+    }
+  ],
+  "logic_and_net_property_columns": "all UNKNOWN_UNSUPPORTED_PROPERTY retained; independently quoted report timing fields do not rewrite them",
+  "C02_class_schema_same_as_prior_accepted_C01": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_directed_class_schema_C02.tcllist",
+    "bytes": 1672,
+    "sha256": "7d5fe8405aa9745703620a2f2c6ca449e86d5d4c110f3f522a8b1a427fa38bd3"
+  },
+  "no_EDA_DCP_or_process_control": true
+}

@@ -1,0 +1,195 @@
+
+Description:
+
+  Gets a list of pin objects in the current design that match a specified
+  search pattern. The default command gets a list of all pins in the
+  current_instance of the open design, as specified by the current_instance
+  command. You can use the -hierarchical option to extract pins from the
+  hierarchy of the current design.
+
+  Note: Because there are so many pins in the design, the get_pins command
+  can cause performance issues, and add significant time to processing design
+  constraints. In many cases, a design constraint that is written with the
+  get_pins command can be rewritten using the get_cells command, as shown in
+  the examples, to significantly improve constraint processing and
+  performance of the Vivado tool.
+
+  The get_pins command also includes an option to get all replicated pins
+  that are added to a design during physical optimization, or
+  phys_opt_design. The use of the -include_replicated_objects option returns
+  the pins on replicated cells when the pins of an original cell are
+  returned. You can use this option to ensure that constraints or properties
+  that are applied to the pins of a cell are also applied to the pins of its
+  replicated cells.
+
+  Note: To improve memory and performance, the get_* commands return a
+  container list of a single type of objects (e.g. cells, nets, pins, or
+  ports). You can add new objects to the list (using lappend for instance),
+  but you can only add the same type of object that is currently in the list.
+  Adding a different type of object, or string, to the list is not permitted
+  and will result in a Tcl error.
+
+Arguments:
+
+  -hsc <arg> - (Optional) The default hierarchy separator is `/`. Use this
+  argument to specify a different hierarchy separator.
+
+  -hierarchical - (Optional) Get pins from all levels of the design hierarchy
+  starting from the level of the current_instance, or from the top of the
+  current design. Without this argument, the command will only get pins from
+  the current_instance of the design hierarchy. When using -hierarchical, the
+  search pattern should not contain a hierarchy separator because the search
+  pattern is applied at each level of the hierarchy, not to the full
+  hierarchical cell name. For instance, searching for U1/* searches each
+  level of the hierarchy for pins with U1/ in the name. This may not return
+  the intended results. See get_cells for examples of -hierarchical searches.
+
+  Note: When used with -regexpr, the specified search string is matched
+  against the full hierarchical name, and the U1/* search pattern will work
+  as intended.
+
+  -regexp - (Optional) Specifies that the search <patterns> are written as
+  regular expressions. Both search <patterns> and -filter expressions must be
+  written as regular expressions when this argument is used. AMD regular
+  expression Tcl commands are always anchored to the start of the search
+  string. You can add ".*" to the beginning or end of a search string to
+  widen the search to include a substring. See
+  http://perldoc.perl.org/perlre.html for help with regular expression
+  syntax.
+
+  Note: The Tcl built-in command regexp is not anchored, and works as a
+  standard Tcl command. For more information refer to
+  http://www.tcl.tk/man/tcl8.5/TclCmd/regexp.htm.
+
+  -nocase - (Optional) Perform case-insensitive matching when a pattern has
+  been specified. This argument applies to the use of -regexp only.
+
+  -leaf - (Optional) Include leaf pins, from primitive or black box cells,
+  for the objects specified with the -of_object argument.
+
+  -filter <args> - (Optional) Filter the results list with the specified
+  expression. The -filter argument filters the list of objects returned by
+  get_pins based on property values on the pins. You can find the properties
+  on an object with the report_property or list_property commands. In the
+  case of the pins object, "PARENT" and "TYPE" are some of the properties
+  that can be used to filter results.
+
+  The filter search pattern should be quoted to avoid having to escape
+  special characters that may be found in net, pin, or cell names, or other
+  properties. String matching is case-sensitive and is always anchored to the
+  start and to the end of the search string. The wildcard "*" character can
+  be used at the beginning or at the end of a search string to widen the
+  search to include a substring of the property value.
+
+  Note: The filter returns an object if a specified property exists on the
+  object, and the specified pattern matches the property value on the object.
+  In the case of the "*" wildcard character, this will match a property with
+  a defined value of "".
+
+  For string comparison, the specific operators that can be used in filter
+  expressions are "equal" (==), "not-equal" (!=), "match" (=~), and
+  "not-match" (!~). Numeric comparison operators <, >, <=, and >= can also be
+  used. Multiple filter expressions can be joined by AND and OR (&& and ||).
+  The following gets input pins that do NOT contain the "RESET" substring
+  within their name:
+
+    get_pins * -filter {DIRECTION == IN && NAME !~ "*RESET*"} 
+    
+
+  -of_objects <arg> - (Optional) Get the pins connected to the specified
+  cell, clock, timing path, or net; or pins associated with specified DRC
+  violation objects.
+
+  Note: The -of_objects option requires objects to be specified using the
+  get_* commands, such as get_cells or get_pins, rather than specifying
+  objects by name. In addition, -of_objects cannot be used with a search
+  <pattern>.
+
+  -match_style [sdc | ucf] - (Optional) Indicates that the search pattern
+  matches UCF constraints or SDC constraints. The default is SDC.
+
+  -include_replicated_objects - (Optional) Include pins that have been added
+  through replication of cell instances during optimization. This option is
+  valid only when specified with <patterns>, and returns the pins matching
+  the specified pattern, from replicated cell instances. As a default, the
+  get_pins command does not return the pins of replicated cells.
+
+  -quiet - (Optional) Execute the command quietly, returning no messages from
+  the command. The command also returns TCL_OK regardless of any errors
+  encountered during execution.
+
+  Note: Any errors encountered on the command-line, while launching the
+  command, will be returned. Only errors occurring inside the command will be
+  trapped.
+
+  -verbose - (Optional) Temporarily override any message limits and return
+  all messages from this command.
+
+  Note: Message limits can be defined with the set_msg_config command.
+
+  <patterns> - (Optional) Match pins against the specified patterns. The
+  default pattern is the wildcard `*` which gets a list of all pins in the
+  project. More than one pattern can be specified to find multiple pins based
+  on different search criteria.
+
+  Note: You must enclose multiple search patterns in braces, {}, or quotes,
+  "", to present the list as a single element.
+
+Examples:
+
+  The following example gets a list of pins attached to the specified cells:
+
+    get_pins -of_objects [get_cells usb*] 
+    
+
+  Note: If there are no pins matching the pattern, the tool will return a
+  warning.
+
+  This example shows how using get_cells can improve the performance of the
+  get_pins command:
+
+    [get_pins -hier * -filter {NAME=~xx*/yy*}] 
+    
+
+  can be rewritten as:
+
+    [get_pins -filter {REF_PIN_NAME=~yy*} -of [get_cells -hier xx*]]  
+    
+
+  The following shows how rewriting the set_max_delay constraint can
+  significantly improve performance:
+
+    set_max_delay 15 -from [get_pins -hier \  
+       -filter name=~*/aclk_dpram_reg*/*/CLK] \  
+       -to [get_cells -hier -filter name=~*/bclk_dout_reg*] -datapath_only 
+    
+
+  can be rewritten as:
+
+    set_max_delay 15 -from [get_pins -of \  
+       [get_cells -hier -filter name=~*aclk_dpram_reg*/*] \  
+       -filter {REF_PIN_NAME == CLK}] \  
+       -to [get_pins -of [get_cells -hier -filter {name =~ */bclk_dout_reg*}] \  
+       -filter {REF_PIN_NAME == D}] -datapath_only 
+    
+
+  Note: Although the second command syntax is more complex, the performance
+  gains can be significant.
+
+  This example runs the report_drc command on the current design, and then
+  returns any pins associated with DRC violations:
+
+    report_drc -name drc_1  
+    get_pins -of_objects [get_drc_violations] 
+    
+
+See Also:
+
+   *  current_instance
+   *  get_cells
+   *  get_drc_violations
+   *  list_property
+   *  phys_opt_design
+   *  report_drc
+   *  report_property
+   *  set_max_delay

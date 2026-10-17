@@ -1,0 +1,36 @@
+# E003：执行状态
+
+execution_state: running
+verdict: unassessed
+
+R002/AT002已于2026-10-15 15:35:29.081055 UTC实际启动Vivado，从AT001 closed place DCP恢复。manager3866162、worker3866163、launch3866502/native3866592；新无wall监管显式timeout/global_deadline=null、wall_clock_stop_disabled=true，单EDA/8CPU/nice5及原资源保护保持。
+
+150项CPU（129原+21新）、实际CDC图重放/来源资格/worker准备与后继archive预检通过，5文件安装与验证版身份一致；A007已核具体修复和控制流，最终冻结证据审核待其回执。算法/RTL/XDC/接口/core100MHz/UI200+200MHz不改。
+
+本次恢复范围：fresh live检查→重新原生采集完整place POST→独立physopt及POST→成功父链下自动route。当前尚未完成本次fresh guard/完整POST/独立physopt，绝不把原place命令重记为新执行；原AT001的POST自然失败保留，不重跑place/OPT/debug。
+
+AT001已经完成place命令、closed DCP与正式物理报告：placed时序FAIL、Level6拥塞风险保留；两条DDR1 AUX CDC代表源变化经实际结构与独立审核核实，窄分类重放通过但正式CDC/reset安全仍OPEN。完整implementation、最终时序/全布通待实际后续结果，无bitstream/板卡/GPU/PPL/ACC。
+
+
+---
+Published: 2026-10-15T15:37:05.529628+00:00
+Publication: P21c4ccf75c75435d96a6cee7d6412538
+Execution state: running
+Research verdict: unassessed
+Applicability: 150项受影响CPU及真实来源验证通过，AT002从closed place实际启动无wall恢复；后续POST/独立physopt/route待实际结果
+Evidence:
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_checkpoint_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_timing_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_physical_reports_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/actual_place_CDC_delta.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/status.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/worker_terminal_before_old_supervisor_release.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/old_supervisor_released.json
+- project/E003_m002_full_implementation/experiment_results/runs/R004/architecture_review.md
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/cpu_tests_final.log
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/validated_sources.sha256
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/installation.json
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/actual_CDC_revalidation.json
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/actual_worker_entry_preflight.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/actual_eda_started.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/command.json

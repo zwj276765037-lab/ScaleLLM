@@ -1,0 +1,72 @@
+
+Description:
+
+  Gets a list of valid values for an enumerated type property of either a
+  class of objects or a specific object.
+
+  Note: The command cannot be used to return valid values for properties
+  other than Enum properties. The report_property command will return the
+  type of property to help you identify Enum properties.
+
+Arguments:
+
+  -default - (Optional) Return the default property value for the specified
+  class of objects.
+
+  -class <arg> - (Optional) Return the property values of the specified class
+  instead of a specific object. The class argument is case sensitive, and
+  most class names are lower case.
+
+  Note: -class cannot be used together with an <object>.
+
+  -quiet - (Optional) Execute the command quietly, returning no messages from
+  the command. The command also returns TCL_OK regardless of any errors
+  encountered during execution.
+
+  Note: Any errors encountered on the command-line, while launching the
+  command, will be returned. Only errors occurring inside the command will be
+  trapped.
+
+  -verbose - (Optional) Temporarily override any message limits and return
+  all messages from this command.
+
+  Note: Message limits can be defined with the set_msg_config command.
+
+  <name> - (Required) The name of the property to be queried. Only properties
+  with an enumerated value, or a predefined value set, can be queried with
+  this command. All valid values of the specified property will be returned.
+
+  <object> - (Optional) A single object on which to report properties.
+
+  Note: If you specify multiple objects you will get an error.
+
+Examples:
+
+  The following example returns the list of valid values for the
+  KEEP_HIERARCHY property from cell objects:
+
+    list_property_value KEEP_HIERARCHY -class cell 
+    
+
+  The following example returns the same result, but uses an actual cell
+  object in place of the general cell class:
+
+    list_property_value KEEP_HIERARCHY [get_cells cpuEngine] 
+    
+
+  The following example returns the default value for the specified property
+  by using the current design as a representative of the design class:
+
+    list_property_value -default BITSTREAM.GENERAL.COMPRESS [current_design] 
+    
+
+See Also:
+
+   *  create_property
+   *  current_design
+   *  get_cells
+   *  get_property
+   *  list_property
+   *  report_property
+   *  reset_property
+   *  set_property

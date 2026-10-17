@@ -1,0 +1,25 @@
+# E007：执行状态
+
+execution_state: planned
+verdict: unassessed
+
+原输入前端SLR2迁移入口的CPU准备、源码审核及helper身份桥接已完成（b049e0f6）；没有运行E007原生资格、Pblock、place/physopt/route。
+
+新的实际归因改变了优先级：该候选仅占10峰窗UNION原语约1.01%，只覆盖40失败样本网中的3条内部CE网和23/657样本热点负载。主控将它降为探索对照，暂不作为下一完整implementation默认首选；不能生成candidate_scope_supported=true。这不是布线实验失败，也不表示源码准备无效。
+
+E006/R004正在准备同DCP的两项更直接候选比较（SwiGLU独立8-row producer1与down/weight_repack），同时修复连接导出的optional属性空值处理。待实际资源/完整边界和工程收尾后再确定对应实现范围。用户优化和完整实现授权保持，无需再次批准普通工程修复；当前无新implementation，下一正常EDA仍无墙钟/静默强停。
+
+
+---
+Published: 2026-10-16T23:38:49.632130+00:00
+Publication: P771ff4be35704b01a727dd8f3350cee3
+Execution state: planned
+Research verdict: unassessed
+Applicability: 原输入候选入口源码已审，但实际热点覆盖较弱，降为探索对照；下一实施候选待E006/R004同图比较。
+Evidence:
+- project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/actual_CPU_execution_observations.json
+- project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/runtime_fix_CPU_execution_CT002.json
+- project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/runtime_fix_CPU_execution_CT003.json
+- project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/prepared_entry_delivery_tail_fixes.json
+- project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/independent_entry_review.md
+- project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/independent_entry_review.json

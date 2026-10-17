@@ -1,0 +1,81 @@
+{
+  "reviewed_utc": "2026-10-16T03:17:02.186291+00:00",
+  "reviewer": "A007",
+  "execution": "bounded path review completed; fresh implementation running; possible OPT guard failure not yet observed",
+  "verdict": "existing fresh OPT guard and old restored-entry mismatch confirmed; narrow post-terminal adaptation identified",
+  "applicability": "frozen R004/AT001 project_runs and current E005 contract; production read-only",
+  "review": "internal implementation guidance delivered to A006/root; not approval gate",
+  "sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_physical.tcl",
+      "bytes": 6635,
+      "sha256": "787d1674c4b3f1a5c12a6386c477e77cb22bba34d34f7ec9967a531c615e9e29",
+      "same_as_running_stage_archive": true
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_resume_physical.tcl",
+      "bytes": 12277,
+      "sha256": "d50d2024fc95c497aff10a106000fde90d7219de8f17ac61f11600edf2e6d9ba",
+      "same_as_running_stage_archive": true
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_common.tcl",
+      "bytes": 47552,
+      "sha256": "105d9d1174ea6e453a15af59b1d31056a9122482e27ed3aea32190a425cf3915",
+      "same_as_running_stage_archive": true
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_physical_evidence.py",
+      "bytes": 150683,
+      "sha256": "99329a7bb061b19c19a7b1775c471add11ef32d9e8adc29aea7da236a15c53cd",
+      "same_as_running_stage_archive": true
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m002_physical_stage.py",
+      "bytes": 15154,
+      "sha256": "412a8a56bb0b4be933c0347ebef14a6bd86dc50b4f2a4e79a96524e1a049c2d9",
+      "same_as_running_stage_archive": true
+    }
+  ],
+  "confirmed_path_facts": [
+    {
+      "scope": "hook_batch(opt)",
+      "fact": "after lineage/input/constraints, require checkpoint_restored_commands before integrity_opt is written; project_runs rejected even if native OPT succeeds",
+      "source": "m002_physical_evidence.py:1644"
+    },
+    {
+      "scope": "m002_post(opt)",
+      "fact": "writes opt.dcp/result0 and reports/graph probes before guard, provided preceding commands complete; future outputs must be checked individually",
+      "source": "m002_diagnostic_common.tcl:540"
+    },
+    {
+      "scope": "old recovery_opt_parent",
+      "fact": "only accepts failed restored attempts with upstream recovery_parent, explicit opt command receipt, embedded constraints and exact prior CDC-failure integrity; cannot directly authorize fresh project-runs parent",
+      "source": "m002_physical_evidence.py:977"
+    },
+    {
+      "scope": "restored placement strategy",
+      "fact": "existing m002_resume_physical.tcl invokes bare place_design; actual temporary checkpoint project does not inherit candidate XPR run directive",
+      "source": "m002_resume_physical.tcl:167"
+    },
+    {
+      "scope": "XPM valid export",
+      "fact": "existing report_exceptions combines -to and -write_valid_exceptions; same combination actually rejected Vivado12-2785 in E002. Catch records unavailable, not PASS. Legal-D timing and separate effective/ignored/scope_override still needed from new graph",
+      "source": "m002_diagnostic_common.tcl:204"
+    }
+  ],
+  "minimum_recovery_checks": [
+    "Wait natural original attempt terminal; preserve native/supervisor exits, stop reason, owned survivor identities and precise original failure; no live frozen edits.",
+    "Narrow E005 fresh post-OPT parent branch binds original native OPT successful log records, actual generated opt.dcp and package, exact project-mode admission failure, 342 source/45 DCP synthesis lineage,142 engineering freeze and archived execution sources.",
+    "Do not fabricate original opt_command_result, successful native end receipt, recovery_parent or integrity_opt; log-derived completion receipt identifies actual evidence and scope.",
+    "opt_evidence_complete reflects actual produced raw reports; reuse only same new OPT bytes/constraints/tool with bound full identities. Rerun incomplete reports/qualification as needed, not synth/INIT/OPT.",
+    "Retain current generated PHY/debug source snapshots and actual worker/main constraint-read distinctions; embedded checkpoint constraints are not absent just because restored temporary project has empty file registry.",
+    "Restore actual design/part/top/BD/IP-cache/threads; rerun actual live clock family and unchanged constraint/DRC checks. OPT admits explicit debug only.",
+    "Explicit debug command from actual core count, command receipt, new DCP/full debug POST and independent pre_place_evidence must precede actual place.",
+    "Fresh hub input/output period/source/master/fanout, zero blackboxes and complete internal clock coverage; original IO reset and formal CDC/transaction safety remain OPEN.",
+    "Classify new critical CDC against original synthesis and current graph/14 primitive exports/fanout/BRAM port clocks. Old canonical report remains taxonomy, not evidence of new graph equality.",
+    "E005 actual restored place command must explicitly SSI_SpreadSLLs; independent physopt/route Default and route failure capture retained; actual receipts define effective strategy."
+  ],
+  "pending": "real OPT terminal and produced raw reports, adapted entry diff/tests/freeze, restored debug/clock/CDC/XPM results",
+  "no_eda_or_tests_run_by_reviewer": true
+}

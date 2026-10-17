@@ -1,0 +1,88 @@
+{
+  "recorded_utc": "2026-10-17T04:50:18.974187+00:00",
+  "execution": "completed_independent_candidate_comparison_and_terminal_review",
+  "verdict": "supported_C01_as_single_E008_implementation_experiment",
+  "applicability": "R004 native resources and R006 AT003 original E005 physopt graph; actual E008 qualification and complete physical validation remain execution steps",
+  "review": "accepted_and_recommend_start_under_existing_authorization; no_additional_approval_gate",
+  "recommended_candidate": "C01",
+  "maximum_selected_candidates": 1,
+  "exact_module": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+  "destination": "SLR2",
+  "pblock": {
+    "hard": true,
+    "exclusive": false,
+    "routing_contained": false
+  },
+  "unselected_candidate": "C02",
+  "unselected_candidate_verdict": "not_selected_this_experiment; not_method_refuted",
+  "prepared_E008_manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_top_port_index_logging_fix/E008_entry/prepared_manifest.json",
+    "bytes": 14747,
+    "sha256": "3cae179e3af5e831bcfd5030a2751b0b0c8b734d7c159a29d359ed2055dd4496"
+  },
+  "comparison": {
+    "hotspot_S_intersection": {
+      "C01": 8697,
+      "C02": 2303
+    },
+    "candidate_P": {
+      "C01": 9491,
+      "C02": 7257
+    },
+    "ordinary_positioned_hypothetical_boundary_pairs": {
+      "C01": 7124,
+      "C02": 12235
+    },
+    "ordinary_pair_reduction_C01_percent": 41.77360032693094,
+    "hotspot_intersection_ratio_C01": 3.7763786365610073
+  },
+  "material_risks": [
+    "SLR2 current CLB occupancy 93.07 percent does not prove packing capacity",
+    "C01 2 DSP 6 RAMB36 816 MUXF7 384 MUXF8 packing",
+    "C01 original ingress hold -0.128 ns and network-dominated setup",
+    "Shared source CLBs not guaranteed freed",
+    "Complete candidate cut is not complete outside peer fanout or whole hotspot UNION",
+    "Pre-route bounded timing is not post-route signoff"
+  ],
+  "required_existing_execution": "Bind Root decision and actual terminal to 3cae entry; A006 acquire lane and run existing parent/member/origin/constraints qualification then place physopt route/signoff",
+  "success_guaranteed": false,
+  "actual_terminal_accepted": true,
+  "evidence": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT003_native_stage_review_20261017/single_candidate_recommendation.md",
+      "bytes": 4773,
+      "sha256": "17cc51167963fdfc8504202199a0425d3e791fa286c64821b55b23c203b9465f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT003_native_stage_review_20261017/C02_cut_timing_review.json",
+      "bytes": 62231,
+      "sha256": "f9aa9c0f93a032f58e5fab7cceaf7187cccf030337206e306f2d8e3b84d77ed8"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT003_native_stage_review_20261017/C01_cut_review.json",
+      "bytes": 24345,
+      "sha256": "3c6413359fdbbb2c6442ad1cd6c02e16f2cfbd59ee8910dc6b271548e13a7b46"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT003_native_stage_review_20261017/C01_timing_review.json",
+      "bytes": 14938,
+      "sha256": "792237834c242af6e8c22b7d56988b25b1b08f6625a631f76dc1ff7984fe9f5c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT003_native_stage_review_20261017/natural_terminal_review.json",
+      "bytes": 67549,
+      "sha256": "63e1a24a7b6712a79b801d42b3ef823c71683d8d037eafa4bd6a07aa971baab6"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R005_python_environment_review_20261017/candidate_policy_capacity_existing_evidence.json",
+      "bytes": 32366,
+      "sha256": "0400ab33516f5c6c058419a5a923a1a290debf3cc05ae66ba5d8dc5b61c824ca"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_top_port_index_logging_fix/E008_entry/prepared_manifest.json",
+      "bytes": 14747,
+      "sha256": "3cae179e3af5e831bcfd5030a2751b0b0c8b734d7c159a29d359ed2055dd4496"
+    }
+  ],
+  "no_EDA_DCP_signal_or_lock_control": true
+}

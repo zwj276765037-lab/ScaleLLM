@@ -1,0 +1,331 @@
+{
+  "recorded_utc": "2026-10-16T07:59:59.540211+00:00",
+  "scope": "same Fully Placed timing comparison before completePOST; raw summary inspected without scanning full multiMB report",
+  "facts_identity": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/place_timing_report_facts.json",
+    "bytes": 1367,
+    "sha256": "c9fa0931b69b38456533cb429fd59a9263cb160b5c7a0b3f7c3727135a9ab477"
+  },
+  "facts_hash_equals_engineering_message": true,
+  "raw_report_identity": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/timing_place.rpt",
+    "bytes": 2386534,
+    "sha256": "152e4bede3c14720728b1808cd6d1718b6a2ff9dd0dca9cd1996416b0762b1a9"
+  },
+  "actual_report_bytes": 2386534,
+  "raw_report_hash_scope": "A006 actual hash, A007 independently read header/12-value summary and checked stat; did not rehash full report",
+  "raw_header_and_summary": [
+    {
+      "line": 1,
+      "text": "Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved."
+    },
+    {
+      "line": 2,
+      "text": "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
+    },
+    {
+      "line": 3,
+      "text": "| Tool Version      : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025"
+    },
+    {
+      "line": 4,
+      "text": "| Date              : Fri Oct 16 15:57:14 2026"
+    },
+    {
+      "line": 5,
+      "text": "| Host              : user running 64-bit Ubuntu 24.04.4 LTS"
+    },
+    {
+      "line": 6,
+      "text": "| Command           : report_timing_summary -delay_type min_max -report_unconstrained -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/timing_place.rpt"
+    },
+    {
+      "line": 7,
+      "text": "| Design            : scalellm_vcu118_f05_bd_wrapper"
+    },
+    {
+      "line": 8,
+      "text": "| Device            : xcvu9p-flga2104"
+    },
+    {
+      "line": 9,
+      "text": "| Speed File        : -2L  PRODUCTION 1.28 03-30-2022"
+    },
+    {
+      "line": 10,
+      "text": "| Design State      : Fully Placed"
+    },
+    {
+      "line": 11,
+      "text": "| Temperature Grade : E"
+    },
+    {
+      "line": 12,
+      "text": "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
+    },
+    {
+      "line": 139,
+      "text": ""
+    },
+    {
+      "line": 140,
+      "text": "    WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  "
+    },
+    {
+      "line": 141,
+      "text": "    -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  "
+    },
+    {
+      "line": 142,
+      "text": "      0.103        0.000                      0              3209751       -0.695    -2145.408                  30885              3208307        0.000        0.000                       0               1095361  "
+    },
+    {
+      "line": 143,
+      "text": ""
+    },
+    {
+      "line": 144,
+      "text": ""
+    },
+    {
+      "line": 145,
+      "text": "Timing constraints are not met."
+    }
+  ],
+  "all12_raw_metrics_equal_facts": true,
+  "baseline_timing_facts": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_timing_facts.json",
+    "bytes": 1486,
+    "sha256": "3bc9fd55deef0baabe8b05c033b9e6a1cb03fec82d3dc2df28f5395158e7deeb"
+  },
+  "same_stage_comparison": {
+    "wns": {
+      "old": -1.819,
+      "new": 0.103,
+      "delta": 1.922
+    },
+    "tns": {
+      "old": -818.651,
+      "new": 0.0,
+      "delta": 818.651
+    },
+    "setup_failing_endpoints": {
+      "old": 1014.0,
+      "new": 0.0,
+      "delta": -1014.0
+    },
+    "setup_total_endpoints": {
+      "old": 3209658.0,
+      "new": 3209751.0,
+      "delta": 93.0
+    },
+    "whs": {
+      "old": -0.62,
+      "new": -0.695,
+      "delta": -0.075
+    },
+    "ths": {
+      "old": -2150.556,
+      "new": -2145.408,
+      "delta": 5.148
+    },
+    "hold_failing_endpoints": {
+      "old": 33141.0,
+      "new": 30885.0,
+      "delta": -2256.0
+    },
+    "hold_total_endpoints": {
+      "old": 3208214.0,
+      "new": 3208307.0,
+      "delta": 93.0
+    },
+    "wpws": {
+      "old": 0.0,
+      "new": 0.0,
+      "delta": 0.0
+    },
+    "tpws": {
+      "old": 0.0,
+      "new": 0.0,
+      "delta": 0.0
+    },
+    "pw_skew_failing_endpoints": {
+      "old": 0.0,
+      "new": 0.0,
+      "delta": 0.0
+    },
+    "pw_skew_total_endpoints": {
+      "old": 1095362.0,
+      "new": 1095361.0,
+      "delta": -1.0
+    }
+  },
+  "timing_verdict": "FAIL: hold",
+  "interpretation": [
+    "Setup slack improves1.922ns and setup failing endpoints1014->0 at Fully Placed stage.",
+    "Worst hold worsens0.075ns; THS improves5.148ns and hold endpoint count falls2256, still30885 violations.",
+    "Pulse width metrics0 at both same stages.",
+    "Interconnect is pre-route estimate; +0.103ns setup margin cannot establish routed timing convergence.",
+    "This combined RTL+SSI run does not isolate the causal effect of individual optimizations.",
+    "FullPOST/80boundary/congestion/fixed-window evidence remains pending; no new approval gate."
+  ],
+  "summary_worst_path_samples": [
+    {
+      "stage": "new",
+      "type": "setup",
+      "source": "project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/timing_place.rpt",
+      "raw_selected_rows": [
+        {
+          "line": 6556,
+          "text": "Slack (MET) :             0.103ns  (required time - arrival time)"
+        },
+        {
+          "line": 6557,
+          "text": "  Source:                 scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_pcie_4_0_pipe_inst/pcie_4_0_e4_inst/CORECLK"
+        },
+        {
+          "line": 6559,
+          "text": "  Destination:            scalellm_vcu118_f05_bd_i/xdma_0/inst/udma_wrapper/dma_top/axi4mm_bridge_top_inst/axi4mm_axi_mm_master_top_inst/axi4mm_axi_str_masterbr_rdtlp_inst/rdcplpend_ff_reg[1]/D"
+        },
+        {
+          "line": 6561,
+          "text": "  Path Group:             xdma_0_axi_aclk"
+        },
+        {
+          "line": 6562,
+          "text": "  Path Type:              Setup (Max at Slow Process Corner)"
+        },
+        {
+          "line": 6563,
+          "text": "  Requirement:            4.000ns  (xdma_0_axi_aclk rise@4.000ns - GTYE4_CHANNEL_TXOUTCLK[3]_1 rise@0.000ns)"
+        },
+        {
+          "line": 6564,
+          "text": "  Data Path Delay:        3.248ns  (logic 0.941ns (28.972%)  route 2.307ns (71.028%))"
+        },
+        {
+          "line": 6566,
+          "text": "  Clock Path Skew:        -0.628ns (DCD - SCD + CPR)"
+        }
+      ]
+    },
+    {
+      "stage": "new",
+      "type": "hold",
+      "source": "project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/timing_place.rpt",
+      "raw_selected_rows": [
+        {
+          "line": 6361,
+          "text": "Slack (VIOLATED) :        -0.695ns  (arrival time - required time)"
+        },
+        {
+          "line": 6362,
+          "text": "  Source:                 scalellm_vcu118_f05_bd_i/xdma_0/inst/udma_wrapper/dma_top/axi4mm_bridge_top_inst/axi4mm_axi_mm_master_top_inst/axi4mm_axi_str_masterbr_rdtlp_inst/aa256_tdata_ff_reg[185]/C"
+        },
+        {
+          "line": 6364,
+          "text": "  Destination:            scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_pcie_4_0_pipe_inst/pcie_4_0_e4_inst/SAXISCCTDATA[185]"
+        },
+        {
+          "line": 6366,
+          "text": "  Path Group:             GTYE4_CHANNEL_TXOUTCLK[3]_1"
+        },
+        {
+          "line": 6367,
+          "text": "  Path Type:              Hold (Min at Slow Process Corner)"
+        },
+        {
+          "line": 6368,
+          "text": "  Requirement:            0.000ns  (GTYE4_CHANNEL_TXOUTCLK[3]_1 rise@0.000ns - xdma_0_axi_aclk rise@0.000ns)"
+        },
+        {
+          "line": 6369,
+          "text": "  Data Path Delay:        0.167ns  (logic 0.059ns (35.329%)  route 0.108ns (64.671%))"
+        },
+        {
+          "line": 6371,
+          "text": "  Clock Path Skew:        0.349ns (DCD - SCD - CPR)"
+        }
+      ]
+    },
+    {
+      "stage": "old",
+      "type": "setup",
+      "source": "project/hardware/vivado/reports/m002_E003_R002_AT001_full_pre_place_restore_place_physopt/timing_place.rpt",
+      "raw_selected_rows": [
+        {
+          "line": 6607,
+          "text": "Slack (VIOLATED) :        -1.819ns  (required time - arrival time)"
+        },
+        {
+          "line": 6608,
+          "text": "  Source:                 scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_pcie_4_0_pipe_inst/pcie_4_0_e4_inst/CORECLK"
+        },
+        {
+          "line": 6610,
+          "text": "  Destination:            scalellm_vcu118_f05_bd_i/xdma_0/inst/udma_wrapper/dma_top/dma_pcie_req/dma_pcie_rq/RQ_FIFO/Head_reg[220]/CE"
+        },
+        {
+          "line": 6612,
+          "text": "  Path Group:             xdma_0_axi_aclk"
+        },
+        {
+          "line": 6613,
+          "text": "  Path Type:              Setup (Max at Slow Process Corner)"
+        },
+        {
+          "line": 6614,
+          "text": "  Requirement:            4.000ns  (xdma_0_axi_aclk rise@4.000ns - GTYE4_CHANNEL_TXOUTCLK[3]_1 rise@0.000ns)"
+        },
+        {
+          "line": 6615,
+          "text": "  Data Path Delay:        5.070ns  (logic 0.669ns (13.195%)  route 4.401ns (86.805%))"
+        },
+        {
+          "line": 6617,
+          "text": "  Clock Path Skew:        -0.261ns (DCD - SCD + CPR)"
+        }
+      ]
+    },
+    {
+      "stage": "old",
+      "type": "hold",
+      "source": "project/hardware/vivado/reports/m002_E003_R002_AT001_full_pre_place_restore_place_physopt/timing_place.rpt",
+      "raw_selected_rows": [
+        {
+          "line": 6412,
+          "text": "Slack (VIOLATED) :        -0.620ns  (arrival time - required time)"
+        },
+        {
+          "line": 6413,
+          "text": "  Source:                 scalellm_vcu118_f05_bd_i/xdma_0/inst/udma_wrapper/dma_top/axi4mm_bridge_top_inst/axi4mm_axi_mm_master_top_inst/axi4mm_axi_str_masterbr_rdtlp_inst/aa256_tdata_ff_reg[51]/C"
+        },
+        {
+          "line": 6415,
+          "text": "  Destination:            scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_pcie_4_0_pipe_inst/pcie_4_0_e4_inst/SAXISCCTDATA[51]"
+        },
+        {
+          "line": 6417,
+          "text": "  Path Group:             GTYE4_CHANNEL_TXOUTCLK[3]_1"
+        },
+        {
+          "line": 6418,
+          "text": "  Path Type:              Hold (Min at Slow Process Corner)"
+        },
+        {
+          "line": 6419,
+          "text": "  Requirement:            0.000ns  (GTYE4_CHANNEL_TXOUTCLK[3]_1 rise@0.000ns - xdma_0_axi_aclk rise@0.000ns)"
+        },
+        {
+          "line": 6420,
+          "text": "  Data Path Delay:        0.168ns  (logic 0.060ns (35.714%)  route 0.108ns (64.286%))"
+        },
+        {
+          "line": 6422,
+          "text": "  Clock Path Skew:        0.272ns (DCD - SCD - CPR)"
+        }
+      ]
+    }
+  ],
+  "worst_path_comparison_limit": "Matching global summary slack samples identify bottleneck families; different endpoints/bit lanes are not the exact same timed path, and route columns remain pre-route estimates."
+}

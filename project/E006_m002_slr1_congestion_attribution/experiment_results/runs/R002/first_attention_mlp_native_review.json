@@ -1,0 +1,745 @@
+{
+  "created_utc": "2026-10-16T16:11:44.517457+00:00",
+  "scope": "native_global_SLR and native_owner_attention/mlp each closed code0; later stage continues",
+  "receipts_snapshot": "query\tnative_tcl_code\tstarted_epoch\tended_epoch\tresult\nopen_checkpoint\t0\t1792165909\t1792166488\tcheckpoint_physopt\nidentity\t0\t1792166488\t1792166492\t{}\ntopology\t0\t1792166492\t1792166494\t{}\ncomplete_exclusive_ownership\t0\t1792166494\t1792166887\t{}\nnative_global_SLR\t0\t1792166887\t1792166986\t/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_global_SLR.rpt\nnative_owner_attention\t0\t1792166986\t1792167019\t/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_attention_SLR.rpt\nnative_owner_mlp\t0\t1792167019\t1792167080\t/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_mlp_SLR.rpt\nnative_owner_weight_metadata\t0\t1792167080\t1792167086\t/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_weight_metadata_SLR.rpt\nnative_owner_weight_loader\t0\t1792167086\t1792167092\t/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_weight_loader_SLR.rpt\n",
+  "global": {
+    "source": {
+      "path": "project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_global_SLR.rpt",
+      "bytes": 6889,
+      "sha256": "2dfe2df39c2892272dffe30dc887e47b7b5f9938723f7dc70c76a38dc72e11c5"
+    },
+    "rows": {
+      "CLB": {
+        "used": [
+          48769.0,
+          49185.0,
+          45848.0
+        ],
+        "util_percent": [
+          99.0,
+          99.85,
+          93.07
+        ],
+        "line": 69,
+        "raw_line": "| CLB                        |  48769 |  49185 |  45848 |  99.00 |  99.85 |  93.07 |"
+      },
+      "CLB LUTs": {
+        "used": [
+          251963.0,
+          336107.0,
+          213681.0
+        ],
+        "util_percent": [
+          63.94,
+          85.29,
+          54.22
+        ],
+        "line": 72,
+        "raw_line": "| CLB LUTs                   | 251963 | 336107 | 213681 |  63.94 |  85.29 |  54.22 |"
+      },
+      "LUT as Logic": {
+        "used": [
+          240119.0,
+          315988.0,
+          208014.0
+        ],
+        "util_percent": [
+          60.93,
+          80.18,
+          52.78
+        ],
+        "line": 73,
+        "raw_line": "|   LUT as Logic             | 240119 | 315988 | 208014 |  60.93 |  80.18 |  52.78 |"
+      },
+      "LUT as Memory": {
+        "used": [
+          11844.0,
+          20119.0,
+          5667.0
+        ],
+        "util_percent": [
+          6.0,
+          10.2,
+          2.87
+        ],
+        "line": 77,
+        "raw_line": "|   LUT as Memory            |  11844 |  20119 |   5667 |   6.00 |  10.20 |   2.87 |"
+      },
+      "CLB Registers": {
+        "used": [
+          324527.0,
+          435367.0,
+          257156.0
+        ],
+        "util_percent": [
+          41.18,
+          55.24,
+          32.63
+        ],
+        "line": 84,
+        "raw_line": "| CLB Registers              | 324527 | 435367 | 257156 |  41.18 |  55.24 |  32.63 |"
+      },
+      "Block RAM Tile": {
+        "used": [
+          151.5,
+          468.0,
+          321.5
+        ],
+        "util_percent": [
+          21.04,
+          65.0,
+          44.65
+        ],
+        "line": 89,
+        "raw_line": "| Block RAM Tile             |  151.5 |    468 |  321.5 |  21.04 |  65.00 |  44.65 |"
+      },
+      "RAMB36/FIFO": {
+        "used": [
+          151.0,
+          462.0,
+          316.0
+        ],
+        "util_percent": [
+          20.97,
+          64.17,
+          43.89
+        ],
+        "line": 90,
+        "raw_line": "|   RAMB36/FIFO              |    151 |    462 |    316 |  20.97 |  64.17 |  43.89 |"
+      },
+      "RAMB18": {
+        "used": [
+          1.0,
+          12.0,
+          11.0
+        ],
+        "util_percent": [
+          0.07,
+          0.83,
+          0.76
+        ],
+        "line": 91,
+        "raw_line": "|   RAMB18                   |      1 |     12 |     11 |   0.07 |   0.83 |   0.76 |"
+      },
+      "URAM": {
+        "used": [
+          280.0,
+          280.0,
+          192.0
+        ],
+        "util_percent": [
+          87.5,
+          87.5,
+          60.0
+        ],
+        "line": 92,
+        "raw_line": "| URAM                       |    280 |    280 |    192 |  87.50 |  87.50 |  60.00 |"
+      },
+      "DSPs": {
+        "used": [
+          1861.0,
+          1835.0,
+          1755.0
+        ],
+        "util_percent": [
+          81.62,
+          80.48,
+          76.97
+        ],
+        "line": 93,
+        "raw_line": "| DSPs                       |   1861 |   1835 |   1755 |  81.62 |  80.48 |  76.97 |"
+      },
+      "Unique Control Sets": {
+        "used": [
+          9024.0,
+          9529.0,
+          3912.0
+        ],
+        "util_percent": [
+          9.16,
+          9.67,
+          3.97
+        ],
+        "line": 94,
+        "raw_line": "| Unique Control Sets        |   9024 |   9529 |   3912 |   9.16 |   9.67 |   3.97 |"
+      }
+    },
+    "native_command": "| Command      : report_utilization -slr -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_global_SLR.rpt"
+  },
+  "owners": {
+    "attention": {
+      "native": {
+        "source": {
+          "path": "project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_attention_SLR.rpt",
+          "bytes": 7029,
+          "sha256": "0980e02edaa8d0f0aea1d572ca1fb70403c3468c72543cdb26bfbfe81e3127b9"
+        },
+        "rows": {
+          "CLB": {
+            "used": [
+              0.0,
+              8286.0,
+              43515.0
+            ],
+            "util_percent": [
+              0.0,
+              16.82,
+              88.34
+            ],
+            "line": 73,
+            "raw_line": "| CLB                        |    0 |  8286 |  43515 |   0.00 |  16.82 |  88.34 |"
+          },
+          "CLB LUTs": {
+            "used": [
+              0.0,
+              29578.0,
+              198380.0
+            ],
+            "util_percent": [
+              0.0,
+              7.51,
+              50.34
+            ],
+            "line": 76,
+            "raw_line": "| CLB LUTs                   |    0 | 29578 | 198380 |   0.00 |   7.51 |  50.34 |"
+          },
+          "LUT as Logic": {
+            "used": [
+              0.0,
+              28682.0,
+              194786.0
+            ],
+            "util_percent": [
+              0.0,
+              7.28,
+              49.43
+            ],
+            "line": 77,
+            "raw_line": "|   LUT as Logic             |    0 | 28682 | 194786 |   0.00 |   7.28 |  49.43 |"
+          },
+          "LUT as Memory": {
+            "used": [
+              0.0,
+              896.0,
+              3594.0
+            ],
+            "util_percent": [
+              0.0,
+              0.45,
+              1.82
+            ],
+            "line": 81,
+            "raw_line": "|   LUT as Memory            |    0 |   896 |   3594 |   0.00 |   0.45 |   1.82 |"
+          },
+          "CLB Registers": {
+            "used": [
+              0.0,
+              38447.0,
+              233337.0
+            ],
+            "util_percent": [
+              0.0,
+              4.88,
+              29.61
+            ],
+            "line": 86,
+            "raw_line": "| CLB Registers              |    0 | 38447 | 233337 |   0.00 |   4.88 |  29.61 |"
+          },
+          "Block RAM Tile": {
+            "used": [
+              0.0,
+              57.0,
+              296.0
+            ],
+            "util_percent": [
+              0.0,
+              7.92,
+              41.11
+            ],
+            "line": 91,
+            "raw_line": "| Block RAM Tile             |    0 |    57 |    296 |   0.00 |   7.92 |  41.11 |"
+          },
+          "RAMB36/FIFO": {
+            "used": [
+              0.0,
+              56.0,
+              291.0
+            ],
+            "util_percent": [
+              0.0,
+              7.78,
+              40.42
+            ],
+            "line": 92,
+            "raw_line": "|   RAMB36/FIFO              |    0 |    56 |    291 |   0.00 |   7.78 |  40.42 |"
+          },
+          "RAMB18": {
+            "used": [
+              0.0,
+              2.0,
+              10.0
+            ],
+            "util_percent": [
+              0.0,
+              0.14,
+              0.69
+            ],
+            "line": 93,
+            "raw_line": "|   RAMB18                   |    0 |     2 |     10 |   0.00 |   0.14 |   0.69 |"
+          },
+          "URAM": {
+            "used": [
+              0.0,
+              0.0,
+              80.0
+            ],
+            "util_percent": [
+              0.0,
+              0.0,
+              25.0
+            ],
+            "line": 94,
+            "raw_line": "| URAM                       |    0 |     0 |     80 |   0.00 |   0.00 |  25.00 |"
+          },
+          "DSPs": {
+            "used": [
+              0.0,
+              544.0,
+              1752.0
+            ],
+            "util_percent": [
+              0.0,
+              23.86,
+              76.84
+            ],
+            "line": 95,
+            "raw_line": "| DSPs                       |    0 |   544 |   1752 |   0.00 |  23.86 |  76.84 |"
+          },
+          "Unique Control Sets": {
+            "used": [
+              0.0,
+              697.0,
+              3325.0
+            ],
+            "util_percent": [
+              0.0,
+              0.71,
+              3.37
+            ],
+            "line": 96,
+            "raw_line": "| Unique Control Sets        |    0 |   697 |   3325 |   0.00 |   0.71 |   3.37 |"
+          }
+        },
+        "native_command": "| Command      : report_utilization -cells scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention -slr -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_attention_SLR.rpt"
+      },
+      "same_scope_deltas": {
+        "CLB": {
+          "old": [
+            0.0,
+            11052.0,
+            37793.0
+          ],
+          "new": [
+            0.0,
+            8286.0,
+            43515.0
+          ],
+          "delta": [
+            0.0,
+            -2766.0,
+            5722.0
+          ]
+        },
+        "CLB LUTs": {
+          "old": [
+            0.0,
+            60981.0,
+            180374.0
+          ],
+          "new": [
+            0.0,
+            29578.0,
+            198380.0
+          ],
+          "delta": [
+            0.0,
+            -31403.0,
+            18006.0
+          ]
+        },
+        "CLB Registers": {
+          "old": [
+            0.0,
+            44043.0,
+            227673.0
+          ],
+          "new": [
+            0.0,
+            38447.0,
+            233337.0
+          ],
+          "delta": [
+            0.0,
+            -5596.0,
+            5664.0
+          ]
+        },
+        "Block RAM Tile": {
+          "old": [
+            0.0,
+            28.5,
+            324.5
+          ],
+          "new": [
+            0.0,
+            57.0,
+            296.0
+          ],
+          "delta": [
+            0.0,
+            28.5,
+            -28.5
+          ]
+        },
+        "URAM": {
+          "old": [
+            0.0,
+            0.0,
+            80.0
+          ],
+          "new": [
+            0.0,
+            0.0,
+            80.0
+          ],
+          "delta": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "DSPs": {
+          "old": [
+            0.0,
+            337.0,
+            1959.0
+          ],
+          "new": [
+            0.0,
+            544.0,
+            1752.0
+          ],
+          "delta": [
+            0.0,
+            207.0,
+            -207.0
+          ]
+        },
+        "Unique Control Sets": {
+          "old": [
+            0.0,
+            776.0,
+            3284.0
+          ],
+          "new": [
+            0.0,
+            697.0,
+            3325.0
+          ],
+          "delta": [
+            0.0,
+            -79.0,
+            41.0
+          ]
+        }
+      }
+    },
+    "mlp": {
+      "native": {
+        "source": {
+          "path": "project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_mlp_SLR.rpt",
+          "bytes": 7169,
+          "sha256": "f182097a2bd1d568b946a71c4efcc437c7585f29ec8c6d723a675ad39a9190b9"
+        },
+        "rows": {
+          "CLB": {
+            "used": [
+              46507.0,
+              42934.0,
+              0.0
+            ],
+            "util_percent": [
+              94.41,
+              87.16,
+              0.0
+            ],
+            "line": 73,
+            "raw_line": "| CLB                        |  46507 |  42934 |    0 |  94.41 |  87.16 |   0.00 |"
+          },
+          "CLB LUTs": {
+            "used": [
+              233499.0,
+              248355.0,
+              0.0
+            ],
+            "util_percent": [
+              59.25,
+              63.02,
+              0.0
+            ],
+            "line": 76,
+            "raw_line": "| CLB LUTs                   | 233499 | 248355 |    0 |  59.25 |  63.02 |   0.00 |"
+          },
+          "LUT as Logic": {
+            "used": [
+              223620.0,
+              240449.0,
+              0.0
+            ],
+            "util_percent": [
+              56.74,
+              61.02,
+              0.0
+            ],
+            "line": 77,
+            "raw_line": "|   LUT as Logic             | 223620 | 240449 |    0 |  56.74 |  61.02 |   0.00 |"
+          },
+          "LUT as Memory": {
+            "used": [
+              9879.0,
+              7906.0,
+              0.0
+            ],
+            "util_percent": [
+              5.01,
+              4.01,
+              0.0
+            ],
+            "line": 81,
+            "raw_line": "|   LUT as Memory            |   9879 |   7906 |    0 |   5.01 |   4.01 |   0.00 |"
+          },
+          "CLB Registers": {
+            "used": [
+              294608.0,
+              288933.0,
+              0.0
+            ],
+            "util_percent": [
+              37.38,
+              36.66,
+              0.0
+            ],
+            "line": 88,
+            "raw_line": "| CLB Registers              | 294608 | 288933 |    0 |  37.38 |  36.66 |   0.00 |"
+          },
+          "Block RAM Tile": {
+            "used": [
+              126.0,
+              361.0,
+              0.0
+            ],
+            "util_percent": [
+              17.5,
+              50.14,
+              0.0
+            ],
+            "line": 93,
+            "raw_line": "| Block RAM Tile             |    126 |    361 |    0 |  17.50 |  50.14 |   0.00 |"
+          },
+          "RAMB36/FIFO": {
+            "used": [
+              126.0,
+              356.0,
+              0.0
+            ],
+            "util_percent": [
+              17.5,
+              49.44,
+              0.0
+            ],
+            "line": 94,
+            "raw_line": "|   RAMB36/FIFO              |    126 |    356 |    0 |  17.50 |  49.44 |   0.00 |"
+          },
+          "RAMB18": {
+            "used": [
+              0.0,
+              10.0,
+              0.0
+            ],
+            "util_percent": [
+              0.0,
+              0.69,
+              0.0
+            ],
+            "line": 95,
+            "raw_line": "|   RAMB18                   |      0 |     10 |    0 |   0.00 |   0.69 |   0.00 |"
+          },
+          "URAM": {
+            "used": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "util_percent": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "line": 96,
+            "raw_line": "| URAM                       |      0 |      0 |    0 |   0.00 |   0.00 |   0.00 |"
+          },
+          "DSPs": {
+            "used": [
+              1858.0,
+              1291.0,
+              0.0
+            ],
+            "util_percent": [
+              81.49,
+              56.62,
+              0.0
+            ],
+            "line": 97,
+            "raw_line": "| DSPs                       |   1858 |   1291 |    0 |  81.49 |  56.62 |   0.00 |"
+          },
+          "Unique Control Sets": {
+            "used": [
+              8405.0,
+              6325.0,
+              0.0
+            ],
+            "util_percent": [
+              8.53,
+              6.42,
+              0.0
+            ],
+            "line": 98,
+            "raw_line": "| Unique Control Sets        |   8405 |   6325 |    0 |   8.53 |   6.42 |   0.00 |"
+          }
+        },
+        "native_command": "| Command      : report_utilization -cells scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp -slr -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_mlp_SLR.rpt"
+      },
+      "same_scope_deltas": {
+        "CLB": {
+          "old": [
+            47571.0,
+            38751.0,
+            4920.0
+          ],
+          "new": [
+            46507.0,
+            42934.0,
+            0.0
+          ],
+          "delta": [
+            -1064.0,
+            4183.0,
+            -4920.0
+          ]
+        },
+        "CLB LUTs": {
+          "old": [
+            280584.0,
+            193322.0,
+            7382.0
+          ],
+          "new": [
+            233499.0,
+            248355.0,
+            0.0
+          ],
+          "delta": [
+            -47085.0,
+            55033.0,
+            -7382.0
+          ]
+        },
+        "CLB Registers": {
+          "old": [
+            320046.0,
+            246829.0,
+            16694.0
+          ],
+          "new": [
+            294608.0,
+            288933.0,
+            0.0
+          ],
+          "delta": [
+            -25438.0,
+            42104.0,
+            -16694.0
+          ]
+        },
+        "Block RAM Tile": {
+          "old": [
+            385.0,
+            102.0,
+            0.0
+          ],
+          "new": [
+            126.0,
+            361.0,
+            0.0
+          ],
+          "delta": [
+            -259.0,
+            259.0,
+            0.0
+          ]
+        },
+        "URAM": {
+          "old": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "new": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "delta": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "DSPs": {
+          "old": [
+            1611.0,
+            1538.0,
+            0.0
+          ],
+          "new": [
+            1858.0,
+            1291.0,
+            0.0
+          ],
+          "delta": [
+            247.0,
+            -247.0,
+            0.0
+          ]
+        },
+        "Unique Control Sets": {
+          "old": [
+            7748.0,
+            7040.0,
+            55.0
+          ],
+          "new": [
+            8405.0,
+            6325.0,
+            0.0
+          ],
+          "delta": [
+            657.0,
+            -715.0,
+            -55.0
+          ]
+        }
+      }
+    }
+  }
+}

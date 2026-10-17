@@ -1,0 +1,37 @@
+# E002：执行状态
+
+execution_state: running
+verdict: unassessed
+applicability: 新综合完成；AT004完整INIT结束，真实OPT运行中；本AT止于place前，修正显式debug步骤后继续。
+
+A006唯一EDA执行者。AT004于2026-10-15 04:24:24 UTC启动，supervisor3161783、owned group3161784；实际OPT已生成PHY和debug核，当前等待OPT完成。独立stop guard在真实OPT成功receipt/DCP及必要报告存在后停止本次；或由技术门自然失败，保留实际退出与中止原因，不改运行中字节。
+
+下一AT从最近合法OPT DCP恢复，绑定原终态、DCP/生成IP/约束身份；对真实恢复project禁用cache，补hub输入/两输出/扇出实际clock与有效约束，显式implement_debug_core后保存独立pre_place DCP并完成覆盖/reset/CDC/IO/DRC检查。之后按合同继续place/phys_opt/route，不重复请求用户批准。5份清理的debug worker OOC XDC原hash缺口保留，不假称完整重现。
+
+原339输入/45综合DCP冻结，失败AT保留。A004局部head-wave核查已完成，无RTL修改；全局告警与CDC仍OPEN。单路8CPU、nice5、RSS192GiB、MemAvailable48GiB/30s、磁盘30GiB、单次2h，累计成本另记。无bitstream/板卡/GPU/PPL/ACC；数值/接口/时钟目标不变。
+
+
+---
+Published: 2026-10-15T05:05:45.610770+00:00
+Publication: P1ed6050e372a4ee2a875cae0aaa6d929
+Execution state: running
+Research verdict: unassessed
+Applicability: 新综合完成，AT004完整INIT结束且真实OPT已生成PHY/debug并继续优化；尚无OPT终态或place结果，本AT止于place前
+Evidence:
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/attempts/AT002_fresh_synth/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/attempts/AT002_fresh_synth/observed_utilization_post_synth.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/attempts/AT002_fresh_synth/cdc_critical_rows.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/attempts/AT002_fresh_synth/synth_checkpoint_bindings.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT004_physical_diagnostic_final_cpu/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT001_project_init_opt_place_physopt/started.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT001_project_init_opt_place_physopt/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT002_project_init_opt_place_physopt/started.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT002_project_init_opt_place_physopt/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R005/architecture_review.md
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT005_checkpoint_recovery_cpu/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT003_checkpoint_recovery_opt_place_physopt/started.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT003_checkpoint_recovery_opt_place_physopt/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT006_recovery_identity_preflight_cpu/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT004_complete_recovery_preflight_opt_place_physopt/started.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT004_complete_recovery_preflight_opt_place_physopt/generated_phy_evidence.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT004_complete_recovery_preflight_opt_place_physopt/generated_debug_evidence.json

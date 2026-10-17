@@ -1,0 +1,16 @@
+{
+  "event_id": "EV_SM002_M002_GROUP_SCOREBOARD_DIAGNOSIS",
+  "small_mission": "SM002",
+  "trigger": "anomaly",
+  "summary": "完整权重组/原生frontend首组比较失败；诊断发现native expected全X而DUT payload确定、metadata相等，正在修复测试台组合计算初始触发并保持独立期望算法。",
+  "impact": "权重功能结论在新AT通过前保持未通过；Host、data/CSR仿真和完整RTL展开证据独立有效。",
+  "evidence": [
+    "project/E001_m002_repair_quick_validation/experiment_results/runs/R002/worker_report.md"
+  ],
+  "affected": [
+    "SM002",
+    "SM004"
+  ],
+  "action": "按既有授权修复TB触发与非X断言，由A006串行复测；不修改golden或宣称局部PASS代表全局完成。",
+  "requires_decision": false
+}

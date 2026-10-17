@@ -1,0 +1,46 @@
+# E005：执行状态
+
+execution_state: running
+verdict: unassessed
+
+新综合、80局部控制和原生OPT已完成，入口219项CPU回归通过。AT003完整debug_materialized POST与pre_place已实际通过；新图复位结构/fanout、688 BRAM时钟端点有资格，gate_issues为空，内部缺时钟与未约束端点均0。8条已知Critical诊断分类，新未分类0。
+
+真实place_design -directive SSI_SpreadSLLs已执行，观察到Phase1.3 Build Placer Netlist Model；当前尚无place完成结果。后续继续完整place POST、Default独立physopt、缺失固定窗口/目标跨SLR等最小只读补证据，以及完整Default route。
+
+原AT001/AT002失败、综合监督UNKNOWN及2097.384826秒观测缺口保持。单EDA、CPU0–7/max8/nice5、无墙钟或无输出强停与原资源保护保持，144输入冻结；不重复成功综合/OPT。
+
+合法布通及物理时序待测。当前hold/PW FAIL；正式CDC/reset及外部IO安全OPEN。无bitstream/板卡/GPU/PPL/ACC。
+
+
+---
+Published: 2026-10-16T05:33:09.875906+00:00
+Publication: P7e940ee3b7d24b42a0bef9f05af600c4
+Execution state: running
+Research verdict: unassessed
+Applicability: AT003完整debug POST及pre_place已通过，真实SSI_SpreadSLLs布局运行中；尚无place/route完成结果
+Evidence:
+- project/E005_m002_optimized_implementation/experiment_results/runs/R001/rtl_functional_final_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R001/mlp_functional_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R002/entry_preparation_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT006_fresh_create/status.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/started.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/supervision_handover_20261016T021717Z/started.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/supervision_handover_20261016T021717Z/status.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R005/synthesis_structure_preterminal_review_evidence.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R005/synthesis_utilization_preterminal_review_evidence.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/synth_recovery_completion_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/detached_launch_handoff.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R005/synthesis_stage_review_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R005/physical_startup_review_evidence.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/status.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/new_OPT_checkpoint_observation.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/completed_OPT_timing_resources_observation.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT009_project_OPT_recovery_cpu/completion_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT002_native_OPT_POST_recovery_place_physopt/started.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT002_native_OPT_POST_recovery_place_physopt/status.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT010_current_CDC_recovery_cpu/completion_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT002_native_OPT_POST_recovery_place_physopt/same_OPT_current_targeted_CDC_requalification.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/started.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R005/AT003_OPT_and_debug_command_review_evidence.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R005/AT003_frozen_physical_reporting_coverage.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/completed_debug_pre_place_facts.json

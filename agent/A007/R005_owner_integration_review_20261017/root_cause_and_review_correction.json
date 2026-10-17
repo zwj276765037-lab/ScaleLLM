@@ -1,0 +1,142 @@
+{
+  "recorded_utc": "2026-10-17T01:32:04.481426+00:00",
+  "execution": "completed_root_cause_verification_repair_pending",
+  "verdict": "missing_source_dependency_confirmed",
+  "original_R004_inspector": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/sources/candidate_inspector.tcl",
+    "bytes": 26331,
+    "sha256": "58625397b5816730ab88e9cab9f5527b1cdce4c041c8e307943dcd1c30ad9274"
+  },
+  "actual_R005_inspector": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/directed_candidate_cut/candidate_inspector.tcl",
+    "bytes": 18376,
+    "sha256": "b98703f34b76a6bf08d88a39cacb7a2aa45012af8022d5abae3cabfc38d89ced"
+  },
+  "shared_exporter": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/directed_candidate_cut/directed_exporter.tcl",
+    "bytes": 25315,
+    "sha256": "6514c3fe8cb8819cbc8631f43f01a3976285e7ac1563045a3a7e1706d8188dea"
+  },
+  "old_procedure_names": [
+    "::slr2::clock_domains",
+    "::slr2::cut",
+    "::slr2::domains",
+    "::slr2::ensure_cells",
+    "::slr2::objects",
+    "::slr2::owner",
+    "::slr2::physical",
+    "::slr2::pin_class",
+    "::slr2::pin_columns",
+    "::slr2::prefix",
+    "::slr2::property_values",
+    "::slr2::readonly_resolve",
+    "::slr2::scoped_timing",
+    "::slr2::slr",
+    "::slr2::spatial",
+    "::slr2::timing_boundary_selection",
+    "::slr2::value"
+  ],
+  "composed_R005_procedure_names": [
+    "::slr2::clock_domains",
+    "::slr2::cut",
+    "::slr2::directed_alias",
+    "::slr2::directed_choose_scope",
+    "::slr2::directed_local_scope",
+    "::slr2::directed_pin_columns",
+    "::slr2::directed_role",
+    "::slr2::directed_schema_gate",
+    "::slr2::directed_trace",
+    "::slr2::domains",
+    "::slr2::ensure_cells",
+    "::slr2::objects",
+    "::slr2::physical",
+    "::slr2::pin_class",
+    "::slr2::pin_columns",
+    "::slr2::prefix",
+    "::slr2::property_values",
+    "::slr2::readonly_resolve",
+    "::slr2::retained_reason",
+    "::slr2::scoped_timing",
+    "::slr2::slr",
+    "::slr2::spatial",
+    "::slr2::timing_boundary_selection",
+    "::slr2::value"
+  ],
+  "missing_original_procedures_after_actual_source_composition": [
+    "::slr2::owner"
+  ],
+  "readonly_resolve_calls_missing_owner": true,
+  "original_owner": {
+    "args": [
+      "name"
+    ],
+    "body": "\n    variable base\n    foreach root [list ${base}u_compute/u_mlp ${base}u_compute/u_attention ${base}u_tensor scalellm_vcu118_f05_bd_i/ddr4_0 scalellm_vcu118_f05_bd_i/ddr4_1] {\n        if {$name eq $root || [prefix $name ${root}/]} {return $root}\n    }\n    return [join [lrange [split $name /] 0 1] /]\n"
+  },
+  "runtime_errors": [
+    {
+      "identity": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT001_candidate_directed_cut/error_candidate_C01_bounded_timing.txt",
+        "bytes": 615,
+        "sha256": "9b02d6f6d48747306968fb9bda8769ccafee606d48d2851b38655b15af4528d6"
+      },
+      "text": "result {Directed candidate boundary did not close} options {-code 1 -level 0 -errorstack {INNER {returnImm {Directed candidate boundary did not close} {}} UP 1 CALL {query candidate_C01_bounded_timing {\n        if {$code} {error \"Directed candidate boundary did not close\"}\n        slr2::scoped_timing $point\n        exec python3 $::env(E006_CANDIDATE_ADAPTER) timing $point $out\n    }}} -errorcode NONE -errorinfo {Directed candidate boundary did not close\n    while executing\n\"error \"Directed candidate boundary did not close\"\"\n    (\"uplevel\" body line 2)\n    invoked from within\n\"uplevel 1 $body\"} -errorline 1}\n"
+    },
+    {
+      "identity": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT001_candidate_directed_cut/error_candidate_C01_directed_cut.txt",
+        "bytes": 643,
+        "sha256": "ae44043ac21afe5310a2a26f5e739c9f7aa135516b1eee8d799fd2186774f982"
+      },
+      "text": "result {Actual candidate membership unqualified} options {-code 1 -level 0 -errorstack {INNER {returnImm {Actual candidate membership unqualified} {}} UP 1 CALL {query candidate_C01_directed_cut {\n        if {[dict get $memberStatus $point]} {error \"Actual candidate membership unqualified\"}\n        foreach key {RAW S P} {set ::slr2::$key [dict get $::slr2::candidateSets $point $key]}\n        slr2::cut $point\n    }}} -errorcode NONE -errorinfo {Actual candidate membership unqualified\n    while executing\n\"error \"Actual candidate membership unqualified\"\"\n    (\"uplevel\" body line 2)\n    invoked from within\n\"uplevel 1 $body\"} -errorline 1}\n"
+    },
+    {
+      "identity": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT001_candidate_directed_cut/error_candidate_C01_membership_qualification.txt",
+        "bytes": 1397,
+        "sha256": "6a4adf2ab6ff67fcc433ad331655497e739d31f905f21d7e2d2688cca5a90bff"
+      },
+      "text": "result {invalid command name \"owner\"} options {-code 1 -level 0 -errorstack {INNER {invokeStk1 owner {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/rom_q_reg_3}} CALL {slr2::readonly_resolve C01 {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf}} CALL {slr2::readonly_resolve C01 {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf}} UP 1 CALL {query candidate_C01_membership_qualification {\n        slr2::readonly_resolve $point $root\n        exec python3 $::env(E006_CANDIDATE_ADAPTER) qualify-membership $point $out\n    }}} -errorcode NONE -errorinfo invalid\\ command\\ name\\ \\\"owner\\\"\\n\\ \\ \\ \\ while\\ executing\\n\\\"owner\\ \\$name\\\"\\n\\ \\ \\ \\ (\\\"foreach\\\"\\ body\\ line\\ 5)\\n\\ \\ \\ \\ invoked\\ from\\ within\\n\\\"foreach\\ name\\ \\[property_values\\ \\$siteCells\\ NAME\\ 0\\ readonly_touched_site_members\\]\\ \\{\\n\\ \\ \\ \\ \\ \\ \\ \\ set\\ ref\\ \\[value\\ \\$name\\ REF_NAME\\]\\;set\\ loc\\ \\[value\\ \\$name\\ LOC\\]\\n\\ \\ \\ \\ ...\\\"\\n\\ \\ \\ \\ (procedure\\ \\\"slr2::readonly_resolve\\\"\\ line\\ 89)\\n\\ \\ \\ \\ invoked\\ from\\ within\\n\\\"slr2::readonly_resolve\\ \\$point\\ \\$root\\\"\\n\\ \\ \\ \\ (\\\"uplevel\\\"\\ body\\ line\\ 2)\\n\\ \\ \\ \\ invoked\\ from\\ within\\n\\\"uplevel\\ 1\\ \\$body\\\" -errorline 1}\n"
+    },
+    {
+      "identity": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT001_candidate_directed_cut/error_candidate_C02_bounded_timing.txt",
+        "bytes": 615,
+        "sha256": "834b280af95f0359071f22314a7a9b3b493a095447cca88e0dc98b97f1e97989"
+      },
+      "text": "result {Directed candidate boundary did not close} options {-code 1 -level 0 -errorstack {INNER {returnImm {Directed candidate boundary did not close} {}} UP 1 CALL {query candidate_C02_bounded_timing {\n        if {$code} {error \"Directed candidate boundary did not close\"}\n        slr2::scoped_timing $point\n        exec python3 $::env(E006_CANDIDATE_ADAPTER) timing $point $out\n    }}} -errorcode NONE -errorinfo {Directed candidate boundary did not close\n    while executing\n\"error \"Directed candidate boundary did not close\"\"\n    (\"uplevel\" body line 2)\n    invoked from within\n\"uplevel 1 $body\"} -errorline 1}\n"
+    },
+    {
+      "identity": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT001_candidate_directed_cut/error_candidate_C02_directed_cut.txt",
+        "bytes": 643,
+        "sha256": "d6ddd669210a00e96ce3430b6241308379b4d552a1640c11f13070ccdfa628a4"
+      },
+      "text": "result {Actual candidate membership unqualified} options {-code 1 -level 0 -errorstack {INNER {returnImm {Actual candidate membership unqualified} {}} UP 1 CALL {query candidate_C02_directed_cut {\n        if {[dict get $memberStatus $point]} {error \"Actual candidate membership unqualified\"}\n        foreach key {RAW S P} {set ::slr2::$key [dict get $::slr2::candidateSets $point $key]}\n        slr2::cut $point\n    }}} -errorcode NONE -errorinfo {Actual candidate membership unqualified\n    while executing\n\"error \"Actual candidate membership unqualified\"\"\n    (\"uplevel\" body line 2)\n    invoked from within\n\"uplevel 1 $body\"} -errorline 1}\n"
+    },
+    {
+      "identity": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT001_candidate_directed_cut/error_candidate_C02_membership_qualification.txt",
+        "bytes": 1302,
+        "sha256": "53940a3c09234e242a371a78467a4dac3e780b2a80fbee6484316aae84332bb1"
+      },
+      "text": "result {invalid command name \"owner\"} options {-code 1 -level 0 -errorstack {INNER {invokeStk1 owner {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/g_output_beat_bank[16].output_tile_beat_r_reg[16][46]}} CALL {slr2::readonly_resolve C02 scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack} CALL {slr2::readonly_resolve C02 scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack} UP 1 CALL {query candidate_C02_membership_qualification {\n        slr2::readonly_resolve $point $root\n        exec python3 $::env(E006_CANDIDATE_ADAPTER) qualify-membership $point $out\n    }}} -errorcode NONE -errorinfo invalid\\ command\\ name\\ \\\"owner\\\"\\n\\ \\ \\ \\ while\\ executing\\n\\\"owner\\ \\$name\\\"\\n\\ \\ \\ \\ (\\\"foreach\\\"\\ body\\ line\\ 5)\\n\\ \\ \\ \\ invoked\\ from\\ within\\n\\\"foreach\\ name\\ \\[property_values\\ \\$siteCells\\ NAME\\ 0\\ readonly_touched_site_members\\]\\ \\{\\n\\ \\ \\ \\ \\ \\ \\ \\ set\\ ref\\ \\[value\\ \\$name\\ REF_NAME\\]\\;set\\ loc\\ \\[value\\ \\$name\\ LOC\\]\\n\\ \\ \\ \\ ...\\\"\\n\\ \\ \\ \\ (procedure\\ \\\"slr2::readonly_resolve\\\"\\ line\\ 89)\\n\\ \\ \\ \\ invoked\\ from\\ within\\n\\\"slr2::readonly_resolve\\ \\$point\\ \\$root\\\"\\n\\ \\ \\ \\ (\\\"uplevel\\\"\\ body\\ line\\ 2)\\n\\ \\ \\ \\ invoked\\ from\\ within\\n\\\"uplevel\\ 1\\ \\$body\\\" -errorline 1}\n"
+    },
+    {
+      "identity": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT001_candidate_directed_cut/error_candidate_disjointness.txt",
+        "bytes": 1433,
+        "sha256": "9ae757dd0b988f278afbdbcaac1cf1053e58193a4256bd2de36ad6193735979e"
+      },
+      "text": "result {Candidate native membership did not qualify: C01} options {-code 1 -level 0 -errorstack {INNER {returnImm {Candidate native membership did not qualify: C01} {}} UP 1 UP 1 CALL {query candidate_disjointness {\n    set seen [dict create]\n    foreach spec $exact_candidate_targets {\n        lassign $spec point root\n        if {[dict get $memberStatus $point]} {error \"Candidate native membership did not qualify: $point\"}\n        foreach key {RAW P} {\n            foreach name [dict keys [dict get $::slr2::candidateSets $point $key]] {\n                set identity [list $key $name]\n                if {[dict exists $seen $identity]} {error \"Independent candidates overlap: $identity\"}\n                dict set seen $identity $point\n            }\n        }\n    }\n    m002_put [file join $out candidate_disjointness.txt] \"disjoint=true\\ncombined_migration=false\"\n}}} -errorcode NONE -errorinfo Candidate\\ native\\ membership\\ did\\ not\\ qualify:\\ C01\\n\\ \\ \\ \\ while\\ executing\\n\\\"error\\ \\\"Candidate\\ native\\ membership\\ did\\ not\\ qualify:\\ \\$point\\\"\\\"\\n\\ \\ \\ \\ (\\\"foreach\\\"\\ body\\ line\\ 3)\\n\\ \\ \\ \\ invoked\\ from\\ within\\n\\\"foreach\\ spec\\ \\$exact_candidate_targets\\ \\{\\n\\ \\ \\ \\ \\ \\ \\ \\ lassign\\ \\$spec\\ point\\ root\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ \\{\\[dict\\ get\\ \\$memberStatus\\ \\$point\\]\\}\\ \\{error\\ \\\"Candidate\\ native\\ members...\\\"\\n\\ \\ \\ \\ (\\\"uplevel\\\"\\ body\\ line\\ 3)\\n\\ \\ \\ \\ invoked\\ from\\ within\\n\\\"uplevel\\ 1\\ \\$body\\\" -errorline 1}\n"
+    }
+  ],
+  "prior_mock": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_source_review_20261017/check_native_mock.tcl",
+    "bytes": 11015,
+    "sha256": "7b5049135b2679e0bc40791ab4dc4c026d0f3f6f3463738c8323a6c276e5bdc5"
+  },
+  "prior_mock_defines_owner": true,
+  "correction": "The previous collector mocks sourced the actual inspector but then redefined slr2::owner, and did not execute the complete readonly_resolve path. They validate collector protocol cases, not completeness of source-helper integration. The 558c overall source-admission conclusion missed this deleted helper and is narrowed accordingly; original test/raw records remain unchanged.",
+  "planned_fix": "Restore exact frozen R004 pure owner procedure in a new sibling package; compose all actual Tcl sources and execute readonly_resolve while stubbing native tool APIs only, with no source-helper shadowing. No need to rerun unaffected collector protocol matrix.",
+  "limits": "No EDA, large DCP read, native query, source edit, process signal or lane lock control. This record checks root cause; terminal integrity facts are separately reported by engineering."
+}

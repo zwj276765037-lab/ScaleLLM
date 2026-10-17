@@ -1,0 +1,59 @@
+# E005：优化后的完整route自然失败，补充比较继续
+
+本次候选未合法布通。R004/AT004的Default route与失败取证于2026-10-16 13:56:35.660913 UTC自然结束，native/监督均1、stop_reason=null；没有墙钟或静默强停。原始错误正确重抛，失败现场保全，成功route DCP/完整POST/成功父链均未取得。R006只读补充比较及最终整合尚未结束，实验交付保持进行中。
+
+## 同阶段实际布线结果
+
+以下为E003与本次E005原生Phase9及末期报告的直接比较，节点与信号是不同单位：
+
+| 指标 | E003 | E005 |
+| --- | ---: | ---: |
+| 重叠路由节点 | 245279 | 1148579 |
+| 因拥塞未布通的信号 | 248289 | 758463 |
+| 末期North最大拥塞 (%) | 85.471 | 116.672 |
+| 末期South最大拥塞 (%) | 86.437 | 100.013 |
+| 末期East最大拥塞 (%) | 86.551 | 102.451 |
+| 末期West最大拥塞 (%) | 87.3848 | 112.353 |
+| 四方向effective congestion level | 6 | 7 |
+
+两次末期拥塞表的threshold均0.85、窗口标签均64×64；该表不同于初始%Tiles和placed Level6。新route_status实际routable2031772、fully_routed1273309、routing errors/resource conflicts各758463；Phase8未布/部分布线等为0不能覆盖Phase9合法性FAIL。[同阶段独立证据](runs/R005/AT004_phase9_failure_same_stage_review_evidence.json)、[终态独立审核](runs/R005/AT004_natural_failure_terminal_review_evidence.json)。
+
+失败图时序诊断为WNS−13.528/TNS−1920757.000ns、WHS−0.258/THS−468.768ns、WPWS−0.537/TPWS−3.018ns；不是合法routed signoff，也无旧E003完整失败图时序可作同阶段比较。失败DRC的RTSTAT-13指明路由不足且RTSTAT-*检查未运行，report命令code0不是DRC通过。
+
+## 已证实的功能与布线前变化
+
+Attention、Gate和Down局部差分及独立oracle验证PASS；Attention1265488周期、1263504检查，Gate/Down4821/2477周期、98/49输出，保留192次中断及相应非法输入覆盖。仅覆盖实际局部测试，不替代全系统数值、真实DDR事务或板级验收。[功能事实](runs/R001/rtl_functional_final_facts.json)。新综合80个局部控制结构落实，综合LUT841576→828763（−12813），342输入/45DCP父链绑定。[综合审核](runs/R005/synthesis_stage_review_facts.json)。
+
+以下严格为旧E003 physopt→新E005 physopt；新SSI_SpreadSLLs布局完成，独立Default physopt因setup非负跳过setup优化且网表未改，不能将组合变化归因于该次physopt：
+
+| 指标 | E003 physopt | E005 physopt |
+| --- | ---: | ---: |
+| CLB LUTs | 814935 | 801751 |
+| CLB Registers | 1019698 | 1017050 |
+| CLB站点占用 | 146472 / 99.11% | 143802 / 97.31% |
+| SLL Used | 18282 | 18983 |
+| Setup WNS/TNS (ns) | −1.290 / −762.165 | +0.103 / 0 |
+| Hold WHS/THS (ns) | −0.620 / −2150.556 | −0.695 / −2145.408 |
+
+BRAM941/URAM752/DSP5451保持；新SLR0/1/2的CLB占用99.00%/99.85%/93.07%，局部仍极满。setup/PW仅布线前通过，整体hold FAIL。[完整physopt审核](runs/R005/AT003_completed_physopt_POST_parent_review_evidence.json)。
+
+80个控制边界均保留：48Attention×256FDCE/CE、16Gate×384FDRE/CE、16Down×512FDRE/CE，共26624叶pin，保护属性与实际LOC/BEL合格。79组负载各在单SLR，Gate row5负载分布381/3；精确driver-relative跨SLR量待R006补采。Attention同SLR负载的Xspan59–68/Yspan186–192，不能把同SLR视为局部紧凑。14上游源负载数/类型保持。[边界证据](runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/place_80_boundary_graph_facts.json)。
+
+## 失败现场、完整性与时间口径
+
+失败checkpoint为route_failed.dcp，779113008字节，SHA256 6d1cf5ef3fea7b8ca0ab7ba27aaa61383ce487a640bcb63248cb6a9af7009590。checkpoint/status/timing/congestion/DRC五项取证均code0；失败产物明确拒绝成功父链。全部原PID-start已退出，锁于结束时实测取得并释放，144冻结输入未变。3515条资源采样独立复算一致：峰树RSS27.2882GiB、最低MemAvailable385.2928GiB、最低磁盘404.3942GiB。[终态事实](runs/R004/attempts/AT004_default_route/route_terminal_observation_summary.json)、[资源与freeze复核](runs/R005/AT004_terminal_facts_resources_freeze_crosscheck.json)。
+
+四种时间分别为：原生内部Routing Task15510.3秒；route命令含自动失败DRC15782秒；外层回执含1449秒失败取证共17233秒；整AT含恢复/监督17864.645秒。较短失败耗时不是布通性能收益。
+
+## 当前判定与剩余工作
+
+当前组合取得局部功能保持、资源及布线前setup改善，但实际合法布通失败，且同阶段末期拥塞、重叠节点和失败信号均比旧版更多。两项RTL和SSI布局同时改变，不能据这一次组合实验分离因果，也不能据top10样本推断全局失败分布；不重复相同route。
+
+R006从本次各自closed placed/physopt DCP只读补采driver/上游位置、精确跨SLR负载、目标层次资源与旧固定窗口/新热点比较，不重放物理阶段。首次AT001在Vivado前因两份旧CPU状态schema被拒，原失败已独立归档；A006已完成窄修与23项CPU检查、144输入未变，R006/AT002于14:09:31.002290 UTC实际启动，supervisor874653/start927231694、leader874789；原生日志已打开本次精确place.dcp，随后将独立打开physopt.dcp。当前仅只读提取，尚无补采终态，正常运行无墙钟/无输出强停。[实际启动](runs/R006/attempts/AT002_closed_place_physopt_readonly/started.json)。任意固定窗口的原生拥塞API若不可用，记UNAVAILABLE，不能以资源占用替代拥塞等级。[补采批次](runs/R006/run.md)。
+
+正式CDC/reset/release/transaction与外部IO安全仍OPEN。完整place/physopt POST的BB0、内部时钟覆盖完整、8已分类Critical CDC/新增0仅为诊断准入。raw debug verified0、声明300MHz/实际50MHz、vendor XPM例外、外部input1/output2缺delay及OPT辅助枚举coverage_limited保留。原综合监督UNKNOWN和2097.384826秒观测缺口、早期OPT/CDC入口失败均保留，不由本次route闭合追溯改写。无bitstream、板卡、GPU、PPL或ACC。
+
+
+---
+Published: 2026-10-16T14:11:10.944424+00:00
+Publication: Peea71218093746e1a9dc06b98ee58d55

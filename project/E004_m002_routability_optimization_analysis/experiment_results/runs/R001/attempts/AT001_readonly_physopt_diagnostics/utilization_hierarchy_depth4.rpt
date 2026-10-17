@@ -1,0 +1,106 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date         : Fri Oct 16 07:36:35 2026
+| Host         : user running 64-bit Ubuntu 24.04.4 LTS
+| Command      : report_utilization -hierarchical -hierarchical_depth 4 -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E004_m002_routability_optimization_analysis/experiment_results/runs/R001/attempts/AT001_readonly_physopt_diagnostics/utilization_hierarchy_depth4.rpt
+| Design       : scalellm_vcu118_f05_bd_wrapper
+| Device       : xcvu9p-flga2104-2L-e
+| Speed File   : -2L
+| Design State : Physopt postPlace
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-----------------------------------------+--------------------------------------------------------------------------------------------+------------+------------+---------+------+---------+--------+--------+------+------------+
+|                 Instance                |                                           Module                                           | Total LUTs | Logic LUTs | LUTRAMs | SRLs |   FFs   | RAMB36 | RAMB18 | URAM | DSP Blocks |
++-----------------------------------------+--------------------------------------------------------------------------------------------+------------+------------+---------+------+---------+--------+--------+------+------------+
+| scalellm_vcu118_f05_bd_wrapper          |                                                                                      (top) |     814935 |     777308 |   28580 | 9047 | 1019698 |    929 |     24 |  752 |       5451 |
+|   (scalellm_vcu118_f05_bd_wrapper)      |                                                                                      (top) |          0 |          0 |       0 |    0 |       0 |      0 |      0 |    0 |          0 |
+|   dbg_hub                               |                                                                                    dbg_hub |        456 |        436 |      20 |    0 |     753 |      0 |      0 |    0 |          0 |
+|     inst                                |                                                                 dbg_hub_xsdbm_v3_0_5_xsdbm |        456 |        436 |      20 |    0 |     753 |      0 |      0 |    0 |          0 |
+|       BSCANID.u_xsdbm_id                |                                                              dbg_hub_xsdbm_v3_0_5_xsdbm_id |        456 |        436 |      20 |    0 |     753 |      0 |      0 |    0 |          0 |
+|         SWITCH_N_EXT_BSCAN.bscan_switch |                                                          dbg_hub_xsdbm_v3_0_5_bscan_switch |        133 |        133 |       0 |    0 |     125 |      0 |      0 |    0 |          0 |
+|         CORE_XSDB.UUT_MASTER            |                                                             dbg_hub_xsdbm_v3_0_5_icon2xsdb |        275 |        255 |      20 |    0 |     566 |      0 |      0 |    0 |          0 |
+|   scalellm_vcu118_f05_bd_i              |                                                                     scalellm_vcu118_f05_bd |     814480 |     776873 |   28560 | 9047 | 1018945 |    929 |     24 |  752 |       5451 |
+|     xdma_0                              |                                                            scalellm_vcu118_f05_bd_xdma_0_0 |      22698 |      20685 |    1996 |   17 |   25901 |     50 |      0 |    0 |          0 |
+|       inst                              |                                                   scalellm_vcu118_f05_bd_xdma_0_0_core_top |      22698 |      20685 |    1996 |   17 |   25901 |     50 |      0 |    0 |          0 |
+|         udma_wrapper                    |                                   scalellm_vcu118_f05_bd_xdma_0_0_xdma_v4_2_2_udma_wrapper |      20203 |      18205 |    1996 |    2 |   17980 |      6 |      0 |    0 |          0 |
+|         pcie4_ip_i                      |                                                   scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip |       2487 |       2472 |       0 |   15 |    7920 |     22 |      0 |    0 |          0 |
+|     core                                |                                                              scalellm_vcu118_f05_bd_core_0 |     735844 |     713340 |   17128 | 5376 |  891730 |    829 |     22 |  752 |       5445 |
+|       (core)                            |                                                              scalellm_vcu118_f05_bd_core_0 |          0 |          0 |       0 |    0 |       0 |      0 |      0 |    0 |          0 |
+|       inst                              |                                 scalellm_vcu118_f05_bd_core_0_hap_attention_mlp_board_core |     735844 |     713340 |   17128 | 5376 |  891730 |    829 |     22 |  752 |       5445 |
+|         u_core                          |                            scalellm_vcu118_f05_bd_core_0_hap_attention_mlp_production_core |     735844 |     713340 |   17128 | 5376 |  891729 |    829 |     22 |  752 |       5445 |
+|     ctrl_smc                            |                                                          scalellm_vcu118_f05_bd_ctrl_smc_0 |        124 |        121 |       0 |    3 |     456 |      0 |      0 |    0 |          0 |
+|       inst                              |                                                  scalellm_vcu118_f05_bd_ctrl_smc_0_bd_7a02 |        124 |        121 |       0 |    3 |     456 |      0 |      0 |    0 |          0 |
+|         clk_map                         |                                       scalellm_vcu118_f05_bd_ctrl_smc_0_clk_map_imp_6VNI86 |         38 |         35 |       0 |    3 |      90 |      0 |      0 |    0 |          0 |
+|         s00_nodes                       |                                     scalellm_vcu118_f05_bd_ctrl_smc_0_s00_nodes_imp_X07NB8 |         52 |         52 |       0 |    0 |     329 |      0 |      0 |    0 |          0 |
+|     d0_mig_slice                        |                                                      scalellm_vcu118_f05_bd_d0_mig_slice_0 |       2486 |       1284 |       0 | 1202 |    9871 |      0 |      0 |    0 |          0 |
+|       inst                              |        scalellm_vcu118_f05_bd_d0_mig_slice_0_axi_register_slice_v2_1_36_axi_register_slice |       2486 |       1284 |       0 | 1202 |    9871 |      0 |      0 |    0 |          0 |
+|         ar15.ar_multi                   |                 scalellm_vcu118_f05_bd_d0_mig_slice_0_axi_register_slice_v2_1_36_multi_slr |        120 |         66 |       0 |   54 |     479 |      0 |      0 |    0 |          0 |
+|         aw15.aw_multi                   |               scalellm_vcu118_f05_bd_d0_mig_slice_0_axi_register_slice_v2_1_36_multi_slr_0 |        121 |         67 |       0 |   54 |     479 |      0 |      0 |    0 |          0 |
+|         b15.b_multi                     | scalellm_vcu118_f05_bd_d0_mig_slice_0_axi_register_slice_v2_1_36_multi_slr__parameterized1 |         16 |         14 |       0 |    2 |      63 |      0 |      0 |    0 |          0 |
+|         r15.r_multi                     | scalellm_vcu118_f05_bd_d0_mig_slice_0_axi_register_slice_v2_1_36_multi_slr__parameterized2 |       1063 |        548 |       0 |  515 |    4187 |      0 |      0 |    0 |          0 |
+|         w15.w_multi                     | scalellm_vcu118_f05_bd_d0_mig_slice_0_axi_register_slice_v2_1_36_multi_slr__parameterized0 |       1166 |        589 |       0 |  577 |    4663 |      0 |      0 |    0 |          0 |
+|     d0_smc                              |                                                            scalellm_vcu118_f05_bd_d0_smc_0 |       8503 |       5761 |    2702 |   40 |   16457 |      0 |      0 |    0 |          0 |
+|       inst                              |                                                    scalellm_vcu118_f05_bd_d0_smc_0_bd_ea2b |       8503 |       5761 |    2702 |   40 |   16457 |      0 |      0 |    0 |          0 |
+|         clk_map                         |                                         scalellm_vcu118_f05_bd_d0_smc_0_clk_map_imp_91DCUX |         38 |         35 |       0 |    3 |      90 |      0 |      0 |    0 |          0 |
+|         m00_exit_pipeline               |                              scalellm_vcu118_f05_bd_d0_smc_0_m00_exit_pipeline_imp_1NZZ3PE |        732 |        712 |       0 |   20 |    2466 |      0 |      0 |    0 |          0 |
+|         m00_nodes                       |                                      scalellm_vcu118_f05_bd_d0_smc_0_m00_nodes_imp_11QSY3Y |       1223 |        449 |     772 |    2 |    1678 |      0 |      0 |    0 |          0 |
+|         s00_entry_pipeline              |                              scalellm_vcu118_f05_bd_d0_smc_0_s00_entry_pipeline_imp_P9RDZ5 |       1297 |       1282 |       0 |   15 |    1951 |      0 |      0 |    0 |          0 |
+|         s00_nodes                       |                                       scalellm_vcu118_f05_bd_d0_smc_0_s00_nodes_imp_LTVVDN |       1507 |        725 |     782 |    0 |    2532 |      0 |      0 |    0 |          0 |
+|         s01_entry_pipeline              |                             scalellm_vcu118_f05_bd_d0_smc_0_s01_entry_pipeline_imp_1HDVT5H |        926 |        926 |       0 |    0 |    1488 |      0 |      0 |    0 |          0 |
+|         s01_nodes                       |                                      scalellm_vcu118_f05_bd_d0_smc_0_s01_nodes_imp_1MPYL7X |        519 |        155 |     364 |    0 |     737 |      0 |      0 |    0 |          0 |
+|         s02_entry_pipeline              |                             scalellm_vcu118_f05_bd_d0_smc_0_s02_entry_pipeline_imp_1EN23XK |        692 |        692 |       0 |    0 |    2620 |      0 |      0 |    0 |          0 |
+|         s02_nodes                       |                                      scalellm_vcu118_f05_bd_d0_smc_0_s02_nodes_imp_1CRNRCM |       1156 |        372 |     784 |    0 |    1594 |      0 |      0 |    0 |          0 |
+|         switchboards                    |                                    scalellm_vcu118_f05_bd_d0_smc_0_switchboards_imp_AD4OZZ |        419 |        419 |       0 |    0 |    1301 |      0 |      0 |    0 |          0 |
+|     d1_mig_slice                        |                                                      scalellm_vcu118_f05_bd_d1_mig_slice_0 |       2477 |       1275 |       0 | 1202 |    7898 |      0 |      0 |    0 |          0 |
+|       inst                              |        scalellm_vcu118_f05_bd_d1_mig_slice_0_axi_register_slice_v2_1_36_axi_register_slice |       2477 |       1275 |       0 | 1202 |    7898 |      0 |      0 |    0 |          0 |
+|         ar15.ar_multi                   |                 scalellm_vcu118_f05_bd_d1_mig_slice_0_axi_register_slice_v2_1_36_multi_slr |        120 |         66 |       0 |   54 |     367 |      0 |      0 |    0 |          0 |
+|         aw15.aw_multi                   |               scalellm_vcu118_f05_bd_d1_mig_slice_0_axi_register_slice_v2_1_36_multi_slr_0 |        120 |         66 |       0 |   54 |     367 |      0 |      0 |    0 |          0 |
+|         b15.b_multi                     | scalellm_vcu118_f05_bd_d1_mig_slice_0_axi_register_slice_v2_1_36_multi_slr__parameterized1 |         16 |         14 |       0 |    2 |      57 |      0 |      0 |    0 |          0 |
+|         r15.r_multi                     | scalellm_vcu118_f05_bd_d1_mig_slice_0_axi_register_slice_v2_1_36_multi_slr__parameterized2 |       1055 |        540 |       0 |  515 |    3155 |      0 |      0 |    0 |          0 |
+|         w15.w_multi                     | scalellm_vcu118_f05_bd_d1_mig_slice_0_axi_register_slice_v2_1_36_multi_slr__parameterized0 |       1167 |        590 |       0 |  577 |    3952 |      0 |      0 |    0 |          0 |
+|     d1_smc                              |                                                            scalellm_vcu118_f05_bd_d1_smc_0 |       8510 |       5768 |    2702 |   40 |   16540 |      0 |      0 |    0 |          0 |
+|       inst                              |                                                    scalellm_vcu118_f05_bd_d1_smc_0_bd_2a3b |       8510 |       5768 |    2702 |   40 |   16540 |      0 |      0 |    0 |          0 |
+|         clk_map                         |                                         scalellm_vcu118_f05_bd_d1_smc_0_clk_map_imp_UW0R2B |         38 |         35 |       0 |    3 |      90 |      0 |      0 |    0 |          0 |
+|         m00_exit_pipeline               |                              scalellm_vcu118_f05_bd_d1_smc_0_m00_exit_pipeline_imp_1665RYW |        729 |        709 |       0 |   20 |    2466 |      0 |      0 |    0 |          0 |
+|         m00_nodes                       |                                      scalellm_vcu118_f05_bd_d1_smc_0_m00_nodes_imp_1JFMI2C |       1210 |        436 |     772 |    2 |    1679 |      0 |      0 |    0 |          0 |
+|         s00_entry_pipeline              |                              scalellm_vcu118_f05_bd_d1_smc_0_s00_entry_pipeline_imp_5S3B2Z |       1313 |       1298 |       0 |   15 |    2033 |      0 |      0 |    0 |          0 |
+|         s00_nodes                       |                                        scalellm_vcu118_f05_bd_d1_smc_0_s00_nodes_imp_E7V7L |       1501 |        719 |     782 |    0 |    2532 |      0 |      0 |    0 |          0 |
+|         s01_entry_pipeline              |                             scalellm_vcu118_f05_bd_d1_smc_0_s01_entry_pipeline_imp_13UW5XR |        690 |        690 |       0 |    0 |    2620 |      0 |      0 |    0 |          0 |
+|         s01_nodes                       |                                      scalellm_vcu118_f05_bd_d1_smc_0_s01_nodes_imp_17E4GJB |       1158 |        374 |     784 |    0 |    1594 |      0 |      0 |    0 |          0 |
+|         s02_entry_pipeline              |                             scalellm_vcu118_f05_bd_d1_smc_0_s02_entry_pipeline_imp_1X5UDKI |        936 |        936 |       0 |    0 |    1488 |      0 |      0 |    0 |          0 |
+|         s02_nodes                       |                                      scalellm_vcu118_f05_bd_d1_smc_0_s02_nodes_imp_1Q5KR58 |        521 |        157 |     364 |    0 |     737 |      0 |      0 |    0 |          0 |
+|         switchboards                    |                                    scalellm_vcu118_f05_bd_d1_smc_0_switchboards_imp_TKVYZ9 |        419 |        419 |       0 |    0 |    1301 |      0 |      0 |    0 |          0 |
+|     ddr4_0                              |                                                            scalellm_vcu118_f05_bd_ddr4_0_0 |      13605 |      12217 |     816 |  572 |   17568 |     25 |      1 |    0 |          3 |
+|       inst                              |                                                       scalellm_vcu118_f05_bd_ddr4_0_0_ddr4 |      13605 |      12217 |     816 |  572 |   17568 |     25 |      1 |    0 |          3 |
+|         u_ddr_axi                       |                                           scalellm_vcu118_f05_bd_ddr4_0_0_ddr4_v2_2_28_axi |       1442 |        921 |       0 |  521 |    1406 |      0 |      0 |    0 |          0 |
+|         u_ddr4_infrastructure           |                                scalellm_vcu118_f05_bd_ddr4_0_0_ddr4_v2_2_28_infrastructure |         38 |         38 |       0 |    0 |      65 |      0 |      0 |    0 |          0 |
+|         u_ddr4_mem_intfc                |                                             scalellm_vcu118_f05_bd_ddr4_0_0_ddr4_mem_intfc |      12126 |      11259 |     816 |   51 |   16096 |     25 |      1 |    0 |          3 |
+|     ddr4_1                              |                                                            scalellm_vcu118_f05_bd_ddr4_1_0 |      13734 |      12346 |     816 |  572 |   17555 |     25 |      1 |    0 |          3 |
+|       inst                              |                                                       scalellm_vcu118_f05_bd_ddr4_1_0_ddr4 |      13734 |      12346 |     816 |  572 |   17555 |     25 |      1 |    0 |          3 |
+|         u_ddr_axi                       |                                           scalellm_vcu118_f05_bd_ddr4_1_0_ddr4_v2_2_28_axi |       1446 |        925 |       0 |  521 |    1406 |      0 |      0 |    0 |          0 |
+|         u_ddr4_infrastructure           |                                scalellm_vcu118_f05_bd_ddr4_1_0_ddr4_v2_2_28_infrastructure |         41 |         41 |       0 |    0 |      65 |      0 |      0 |    0 |          0 |
+|         u_ddr4_mem_intfc                |                                             scalellm_vcu118_f05_bd_ddr4_1_0_ddr4_mem_intfc |      12247 |      11380 |     816 |   51 |   16083 |     25 |      1 |    0 |          3 |
+|     host_split                          |                                                        scalellm_vcu118_f05_bd_host_split_0 |       6488 |       4068 |    2400 |   20 |   14841 |      0 |      0 |    0 |          0 |
+|       inst                              |                                                scalellm_vcu118_f05_bd_host_split_0_bd_8cce |       6488 |       4068 |    2400 |   20 |   14841 |      0 |      0 |    0 |          0 |
+|         clk_map                         |                                     scalellm_vcu118_f05_bd_host_split_0_clk_map_imp_B0MKN2 |         49 |         45 |       0 |    4 |     120 |      0 |      0 |    0 |          0 |
+|         m00_exit_pipeline               |                          scalellm_vcu118_f05_bd_host_split_0_m00_exit_pipeline_imp_1PWI9T1 |        685 |        685 |       0 |    0 |    2616 |      0 |      0 |    0 |          0 |
+|         m00_nodes                       |                                  scalellm_vcu118_f05_bd_host_split_0_m00_nodes_imp_13Q8ETL |       1175 |        375 |     800 |    0 |    1848 |      0 |      0 |    0 |          0 |
+|         m01_exit_pipeline               |                          scalellm_vcu118_f05_bd_host_split_0_m01_exit_pipeline_imp_1JJPHB9 |        685 |        685 |       0 |    0 |    2616 |      0 |      0 |    0 |          0 |
+|         m01_nodes                       |                                   scalellm_vcu118_f05_bd_host_split_0_m01_nodes_imp_512MBJ |       1173 |        373 |     800 |    0 |    1848 |      0 |      0 |    0 |          0 |
+|         s00_entry_pipeline              |                          scalellm_vcu118_f05_bd_host_split_0_s00_entry_pipeline_imp_PKZGH2 |        992 |        976 |       0 |   16 |    2147 |      0 |      0 |    0 |          0 |
+|         s00_nodes                       |                                   scalellm_vcu118_f05_bd_host_split_0_s00_nodes_imp_KEL1Z0 |       1482 |        682 |     800 |    0 |    2298 |      0 |      0 |    0 |          0 |
+|         switchboards                    |                                scalellm_vcu118_f05_bd_host_split_0_switchboards_imp_9KHWDK |        261 |        261 |       0 |    0 |    1348 |      0 |      0 |    0 |          0 |
++-----------------------------------------+--------------------------------------------------------------------------------------------+------------+------------+---------+------+---------+--------+--------+------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

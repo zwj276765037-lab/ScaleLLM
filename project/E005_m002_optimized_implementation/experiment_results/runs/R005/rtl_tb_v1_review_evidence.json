@@ -1,0 +1,81 @@
+{
+  "observed_utc": "2026-10-16T00:35:16.777076+00:00",
+  "scope": "Bounded static identity/diff and full two-small-testbench source review; no compiler, simulation or EDA executed by A007.",
+  "delivery_version": "v1",
+  "files": [
+    {
+      "path": "project/hardware/rtl/attention/hap_tensor24_buffers.sv",
+      "bytes": 13330,
+      "sha256": "fd83206f4bdf0750bac85af685da026bedd173800956ecdf3ca9de48a88f5890"
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_tensor24_cohort16_buffers.sv",
+      "bytes": 8503,
+      "sha256": "063d705e6703127476bed192b28b9fdb392a0bf5b7432b0dd0717e8f0aa92890"
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_projection_repack12_to16_s24_history2.sv",
+      "bytes": 12744,
+      "sha256": "4056e00b7e29b85a3053a60ced559b67814147863002f9ce7a43bde1f5ae64dd"
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_projection_repack12_to16_s32_history2.sv",
+      "bytes": 12737,
+      "sha256": "45e0560bfd5ee0198692f47a9a5b0ecc6671bf48774114a11ac4eccb33fe4ef8"
+    },
+    {
+      "path": "project/hardware/tb/m002_ce_reference/hap_mlp_projection_repack12_to16_s24_history2_frozen.sv",
+      "bytes": 11718,
+      "sha256": "429b0cebb13b096ab00233c99c0a7c6f42c2eb4f395b488e11872ebb9fe8f9cf"
+    },
+    {
+      "path": "project/hardware/tb/m002_ce_reference/hap_mlp_projection_repack12_to16_s32_history2_frozen.sv",
+      "bytes": 11711,
+      "sha256": "cd2a5f3ec3b116c6383fabd3694fdd7d749dc5b15b62377cf37ef97a07c04122"
+    },
+    {
+      "path": "project/hardware/tb/m002_ce_reference/hap_tensor24_input_buffer16_frozen.sv",
+      "bytes": 4235,
+      "sha256": "eefd72ab2c627a075b8b62d2dffd4aa2dfa2260a71a653651cb5da7bfb219aa8"
+    },
+    {
+      "path": "project/hardware/tb/m002_ce_reference/hap_tensor24_input_buffer_frozen.sv",
+      "bytes": 5166,
+      "sha256": "301609634a8c6380fae21b9ba8adb382f95533d3538cd946cdc8f5c0b64b39bd"
+    },
+    {
+      "path": "project/hardware/tb/hap_tensor24_input_slot_ce_tb.sv",
+      "bytes": 14087,
+      "sha256": "d85c58ecf966411c1cb11117bac92ed857a0228f74ca670fd0567b536bd3974b"
+    },
+    {
+      "path": "project/hardware/tb/hap_mlp_repack_output_ce_tb.sv",
+      "bytes": 20607,
+      "sha256": "22c322344db9a1b213d37ee23be3a6c24e498761c5b138505b20766dba65bae7"
+    }
+  ],
+  "frozen_originals_verified": 4,
+  "references": [
+    {
+      "reference": "project/hardware/tb/m002_ce_reference/hap_tensor24_input_buffer_frozen.sv",
+      "matches_documented_rename_and_extract_ignoring_outer_whitespace": true
+    },
+    {
+      "reference": "project/hardware/tb/m002_ce_reference/hap_tensor24_input_buffer16_frozen.sv",
+      "matches_documented_rename_and_extract_ignoring_outer_whitespace": true
+    },
+    {
+      "reference": "project/hardware/tb/m002_ce_reference/hap_mlp_projection_repack12_to16_s24_history2_frozen.sv",
+      "matches_documented_rename_and_extract_ignoring_outer_whitespace": true
+    },
+    {
+      "reference": "project/hardware/tb/m002_ce_reference/hap_mlp_projection_repack12_to16_s32_history2_frozen.sv",
+      "matches_documented_rename_and_extract_ignoring_outer_whitespace": true
+    }
+  ],
+  "RTL_semantics": "Three diffs confined to payload write ownership and exact combinational scalar CE; control metadata and SRL unchanged. Input LUT6 INIT bit32+slot correct; only scalar drivers DONT_TOUCH.",
+  "Attention_oracle": "DMA address/wave/row/beat expected payload independent of DUT selection. Pre-NBA accepted sample, post-NBA old-reference comparisons, off-edge resets, 192 cases and 4 full image paths structurally verified. Runtime coverage counts NOT_RUN at review.",
+  "MLP_oracle": "Per-matrix accepted column FIFO and independent order/capacity/error tracking, production32/M1 and24/M2; not copied DUT SRL part-select assembly. Frozen reference compared every cycle including invalid payload. Runtime coverage NOT_RUN at review.",
+  "material_issues_found": [],
+  "qualification": "No new approval gate; actual simulation result and netlist behavior remain required."
+}

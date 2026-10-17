@@ -1,0 +1,334 @@
+{
+  "source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E003_R002_AT002_closed_place_POST_physopt/control_sets_physopt.rpt",
+    "bytes": 36000467,
+    "sha256": "19dd222706c0436949eb7c96f0d1f2974b86adb072c764fb938f8b5067f87b77"
+  },
+  "detailed_rows": 22410,
+  "bel_load_sum": 1089753,
+  "control_origin_buckets": {
+    "shared_or_other": {
+      "control_sets": 1415,
+      "bel_loads": 104081,
+      "sets_BELloads_lt4": 452,
+      "sets_BELloads_lt8": 697,
+      "bel_loads_lt8": 2250
+    },
+    "Attention": {
+      "control_sets": 2672,
+      "bel_loads": 238778,
+      "sets_BELloads_lt4": 131,
+      "sets_BELloads_lt8": 398,
+      "bel_loads_lt8": 1985
+    },
+    "MLP": {
+      "control_sets": 7727,
+      "bel_loads": 444282,
+      "sets_BELloads_lt4": 600,
+      "sets_BELloads_lt8": 1039,
+      "bel_loads_lt8": 3496
+    },
+    "DDR": {
+      "control_sets": 1099,
+      "bel_loads": 24660,
+      "sets_BELloads_lt4": 132,
+      "sets_BELloads_lt8": 494,
+      "bel_loads_lt8": 2394
+    },
+    "PCIe_XDMA": {
+      "control_sets": 1057,
+      "bel_loads": 22489,
+      "sets_BELloads_lt4": 229,
+      "sets_BELloads_lt8": 502,
+      "bel_loads_lt8": 1893
+    },
+    "mixed_control_origin": {
+      "control_sets": 8419,
+      "bel_loads": 211314,
+      "sets_BELloads_lt4": 157,
+      "sets_BELloads_lt8": 816,
+      "bel_loads_lt8": 3508
+    },
+    "no_CE_SR": {
+      "control_sets": 21,
+      "bel_loads": 44149,
+      "sets_BELloads_lt4": 0,
+      "sets_BELloads_lt8": 8,
+      "bel_loads_lt8": 32
+    }
+  },
+  "top30_by_BEL_loads": [
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0",
+      "CE": "",
+      "SR": "",
+      "slice_loads": 3018,
+      "bel_loads": 17096,
+      "reported_BELs_per_slice": 5.66,
+      "control_origin": "no_CE_SR"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_infrastructure/u_bufg_divClk_0",
+      "CE": "",
+      "SR": "",
+      "slice_loads": 2818,
+      "bel_loads": 15147,
+      "reported_BELs_per_slice": 5.38,
+      "control_origin": "no_CE_SR"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/out_payload_r[8191]_i_1_n_0",
+      "SR": "",
+      "slice_loads": 1925,
+      "bel_loads": 8201,
+      "reported_BELs_per_slice": 4.26,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[0]",
+      "SR": "",
+      "slice_loads": 1283,
+      "bel_loads": 6560,
+      "reported_BELs_per_slice": 5.11,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_tail_r[0]",
+      "SR": "",
+      "slice_loads": 1788,
+      "bel_loads": 6560,
+      "reported_BELs_per_slice": 3.67,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_clk_i/PHY_USERCLK",
+      "CE": "",
+      "SR": "",
+      "slice_loads": 1326,
+      "bel_loads": 6240,
+      "reported_BELs_per_slice": 4.71,
+      "control_origin": "no_CE_SR"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack/out_payload_r[0]",
+      "SR": "",
+      "slice_loads": 1372,
+      "bel_loads": 6145,
+      "reported_BELs_per_slice": 4.48,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/error_r_reg_0",
+      "SR": "",
+      "slice_loads": 384,
+      "bel_loads": 6144,
+      "reported_BELs_per_slice": 16.0,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "",
+      "SR": "scalellm_vcu118_f05_bd_i/core_gate/inst/aresetn_BUFG",
+      "slice_loads": 1871,
+      "bel_loads": 4678,
+      "reported_BELs_per_slice": 2.5,
+      "control_origin": "shared_or_other"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack/input_fire",
+      "SR": "",
+      "slice_loads": 288,
+      "bel_loads": 4608,
+      "reported_BELs_per_slice": 16.0,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch0/ingress_down_reg_0_1_0_0_i_1_n_0",
+      "SR": "",
+      "slice_loads": 127,
+      "bel_loads": 2022,
+      "reported_BELs_per_slice": 15.92,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/ingress_down_reg_0_1_0_0_i_1_n_0",
+      "SR": "",
+      "slice_loads": 127,
+      "bel_loads": 2022,
+      "reported_BELs_per_slice": 15.92,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_gather/core_rst_n_2",
+      "SR": "",
+      "slice_loads": 127,
+      "bel_loads": 2012,
+      "reported_BELs_per_slice": 15.84,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/ingress_weights_reg_0_1_0_13_i_1_n_0",
+      "SR": "",
+      "slice_loads": 123,
+      "bel_loads": 1968,
+      "reported_BELs_per_slice": 16.0,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch0/ingress_weights_reg_0_1_0_13_i_1_n_0",
+      "SR": "",
+      "slice_loads": 123,
+      "bel_loads": 1968,
+      "reported_BELs_per_slice": 16.0,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_clk_i/PHY_CORECLK",
+      "CE": "",
+      "SR": "",
+      "slice_loads": 201,
+      "bel_loads": 1767,
+      "reported_BELs_per_slice": 8.79,
+      "control_origin": "no_CE_SR"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_gather/out_matrix_r",
+      "SR": "",
+      "slice_loads": 549,
+      "bel_loads": 1760,
+      "reported_BELs_per_slice": 3.21,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region2_cols8_11/g_dual_accumulator.u_accumulator/g_physical_split.g_buffered_input.lower_head_guard_s42_r[0]",
+      "SR": "",
+      "slice_loads": 256,
+      "bel_loads": 1344,
+      "reported_BELs_per_slice": 5.25,
+      "control_origin": "Attention"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region2_cols8_11/g_dual_accumulator.u_accumulator/g_physical_split.g_buffered_input.lower_tail_guard_s42_r[0]",
+      "SR": "",
+      "slice_loads": 241,
+      "bel_loads": 1344,
+      "reported_BELs_per_slice": 5.58,
+      "control_origin": "Attention"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/u_hadamard/fifo_mem_reg_0_7_1106_1119_i_1_n_0",
+      "SR": "",
+      "slice_loads": 80,
+      "bel_loads": 1280,
+      "reported_BELs_per_slice": 16.0,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_attention_row/u_qk/u_dot/in_fire_1",
+      "SR": "",
+      "slice_loads": 515,
+      "bel_loads": 1152,
+      "reported_BELs_per_slice": 2.24,
+      "control_origin": "Attention"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "",
+      "SR": "",
+      "slice_loads": 387,
+      "bel_loads": 1091,
+      "reported_BELs_per_slice": 2.82,
+      "control_origin": "no_CE_SR"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/u_hadamard/fifo_mem_reg_0_7_0_13_i_1_n_0",
+      "SR": "",
+      "slice_loads": 62,
+      "bel_loads": 992,
+      "reported_BELs_per_slice": 16.0,
+      "control_origin": "Attention"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_hadamard/valid_s4",
+      "SR": "",
+      "slice_loads": 128,
+      "bel_loads": 928,
+      "reported_BELs_per_slice": 7.25,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/u_hadamard/in_fire",
+      "SR": "",
+      "slice_loads": 131,
+      "bel_loads": 924,
+      "reported_BELs_per_slice": 7.05,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_hadamard/valid_s3",
+      "SR": "",
+      "slice_loads": 128,
+      "bel_loads": 896,
+      "reported_BELs_per_slice": 7.0,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/u_hadamard/valid_s3",
+      "SR": "",
+      "slice_loads": 128,
+      "bel_loads": 896,
+      "reported_BELs_per_slice": 7.0,
+      "control_origin": "Attention"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_hadamard/FSM_onehot_state_r_reg[7][0]",
+      "SR": "",
+      "slice_loads": 236,
+      "bel_loads": 864,
+      "reported_BELs_per_slice": 3.66,
+      "control_origin": "MLP"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/u_hadamard/FSM_onehot_state_r_reg[7]_1[0]",
+      "SR": "",
+      "slice_loads": 123,
+      "bel_loads": 864,
+      "reported_BELs_per_slice": 7.02,
+      "control_origin": "Attention"
+    },
+    {
+      "clock": "scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1",
+      "CE": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_hadamard/FSM_onehot_state_r_reg[7]_2[0]",
+      "SR": "",
+      "slice_loads": 221,
+      "bel_loads": 864,
+      "reported_BELs_per_slice": 3.91,
+      "control_origin": "MLP"
+    }
+  ],
+  "scope": "CE/SR net origin only, not register-load hierarchy. Native Bel Load Count sums1089753, different from FF1019698; its exact primitive accounting unresolved and must not be divided by FF total. Slice-load counts overlap, not unique sites. Unused register locations28860 is separate native quantity.",
+  "derived_label_correction": "Revision2 corrects provisional registers/register_sum labels to native BEL loads; source raw report unchanged."
+}

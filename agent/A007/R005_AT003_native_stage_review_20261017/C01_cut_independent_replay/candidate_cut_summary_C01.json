@@ -1,0 +1,248 @@
+{
+  "coverage_version": "candidate_directed_cut_v1",
+  "point": "C01",
+  "directed_boundary_complete": true,
+  "candidate_leaf_coverage_complete": true,
+  "native_pin_class_schema_qualified": true,
+  "native_role_qualified_nets": 14307,
+  "canonical_nets": 14307,
+  "actual_candidate_native_leaf_pins": 55605,
+  "actual_local_raw_pin_records": 56470,
+  "disconnected_candidate_leaf_pins": 1276,
+  "retained_endpoint_rows": 58361,
+  "retained_class_counts": {
+    "CONSTANT": 7,
+    "RESET_SET": 6337,
+    "DATA_LOGIC_PRIMITIVE": 4140,
+    "ENABLE_WRITE_CONTROL": 6345,
+    "DATA_REGISTER": 15708,
+    "LOGIC_PIN_FUNCTION_UNCLASSIFIED": 12643,
+    "CLOCK_NATIVE_PIN": 6341,
+    "CLOCK_BUFFER_OUTPUT_REF": 2,
+    "SELECT_CONTROL": 1200,
+    "UNKNOWN_REF_PIN": 2192,
+    "UNKNOWN_DSP_PIN": 2774,
+    "DATA_ARITHMETIC": 672
+  },
+  "scope_modes": {
+    "RESOLVED_EXTERNAL_DRIVER_DIRECTED_CUT": 3087,
+    "FULL_ENUMERATION_CANDIDATE_DRIVER": 11220
+  },
+  "boundary_directions": {
+    "INGRESS": 3087,
+    "EGRESS": 55
+  },
+  "retained_net_categories": {
+    "reset_set": 4,
+    "constant": 5,
+    "mixed_known_unknown": 8721,
+    "clock": 3,
+    "enable_write_control": 33,
+    "unknown_or_unclassified": 1361,
+    "known_data_or_select_control": 4180
+  },
+  "candidate_involved_driver_load_pairs": 44054,
+  "candidate_boundary_driver_load_pairs": 21479,
+  "pair_scope": [
+    {
+      "category": "clock",
+      "relation": "boundary",
+      "candidate_related_pairs": 7770,
+      "current_known_cross_SLR_pairs": 0,
+      "hypothetical_all_P_to_SLR2_outside_fixed_known_cross_SLR_pairs": 6341
+    },
+    {
+      "category": "constant",
+      "relation": "boundary",
+      "candidate_related_pairs": 429,
+      "current_known_cross_SLR_pairs": 0,
+      "hypothetical_all_P_to_SLR2_outside_fixed_known_cross_SLR_pairs": 0
+    },
+    {
+      "category": "enable_write_control",
+      "relation": "internal",
+      "candidate_related_pairs": 6319,
+      "current_known_cross_SLR_pairs": 0,
+      "hypothetical_all_P_to_SLR2_outside_fixed_known_cross_SLR_pairs": 0
+    },
+    {
+      "category": "known_data_or_select_control",
+      "relation": "boundary",
+      "candidate_related_pairs": 6144,
+      "current_known_cross_SLR_pairs": 0,
+      "hypothetical_all_P_to_SLR2_outside_fixed_known_cross_SLR_pairs": 6144
+    },
+    {
+      "category": "known_data_or_select_control",
+      "relation": "internal",
+      "candidate_related_pairs": 1474,
+      "current_known_cross_SLR_pairs": 0,
+      "hypothetical_all_P_to_SLR2_outside_fixed_known_cross_SLR_pairs": 0
+    },
+    {
+      "category": "mixed_known_unknown",
+      "relation": "boundary",
+      "candidate_related_pairs": 950,
+      "current_known_cross_SLR_pairs": 0,
+      "hypothetical_all_P_to_SLR2_outside_fixed_known_cross_SLR_pairs": 950
+    },
+    {
+      "category": "mixed_known_unknown",
+      "relation": "internal",
+      "candidate_related_pairs": 13145,
+      "current_known_cross_SLR_pairs": 0,
+      "hypothetical_all_P_to_SLR2_outside_fixed_known_cross_SLR_pairs": 0
+    },
+    {
+      "category": "reset_set",
+      "relation": "boundary",
+      "candidate_related_pairs": 6156,
+      "current_known_cross_SLR_pairs": 0,
+      "hypothetical_all_P_to_SLR2_outside_fixed_known_cross_SLR_pairs": 0
+    },
+    {
+      "category": "reset_set",
+      "relation": "internal",
+      "candidate_related_pairs": 68,
+      "current_known_cross_SLR_pairs": 0,
+      "hypothetical_all_P_to_SLR2_outside_fixed_known_cross_SLR_pairs": 0
+    },
+    {
+      "category": "unknown_or_unclassified",
+      "relation": "boundary",
+      "candidate_related_pairs": 30,
+      "current_known_cross_SLR_pairs": 0,
+      "hypothetical_all_P_to_SLR2_outside_fixed_known_cross_SLR_pairs": 30
+    },
+    {
+      "category": "unknown_or_unclassified",
+      "relation": "internal",
+      "candidate_related_pairs": 1569,
+      "current_known_cross_SLR_pairs": 0,
+      "hypothetical_all_P_to_SLR2_outside_fixed_known_cross_SLR_pairs": 0
+    }
+  ],
+  "unknown_top_or_unplaced_pair_positions": [
+    {
+      "category": "clock",
+      "driver_SLR": "UNPLACED",
+      "load_SLR": "SLR1",
+      "pairs": 1429
+    },
+    {
+      "category": "constant",
+      "driver_SLR": "UNPLACED",
+      "load_SLR": "SLR1",
+      "pairs": 429
+    },
+    {
+      "category": "reset_set",
+      "driver_SLR": "UNPLACED",
+      "load_SLR": "SLR1",
+      "pairs": 6156
+    }
+  ],
+  "original_failure_sample_alias_relation": {
+    "source": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R003_AT001_lean_physopt_attribution/failure_exact_net_resolution.tsv",
+      "bytes": 12201,
+      "sha256": "da4a30c70963fef03edeb498b93ce58f91dc1166f6d974655741b532a56ee9f3"
+    },
+    "original_sample_resolution_statuses": {
+      "EXACT_ONE": 40
+    },
+    "matched_original_sample_rows": [],
+    "semantics": "Original native exact-match actual_NAMES intersect fresh complete candidate aliases; requested strings alone are not matched. Not whole hotspot UNION recovery"
+  },
+  "timing_scope_rows": 21479,
+  "full_net_endpoint_coverage": "MIXED_DECLARED_PER_NET",
+  "outside_peer_leaf_loads": "NOT_ENUMERATED_ON_QUALIFIED_EXTERNAL_DRIVER_NETS",
+  "complete_external_fanout": "NOT_MEASURED",
+  "whole_hotspot_UNION_recovery": "NOT_IN_SCOPE_OLD_UNFINISHED_EVIDENCE_PRESERVED",
+  "full_cut_TNS": "NOT_MEASURED",
+  "timing_signoff": false,
+  "candidate_supported": "NOT_ASSESSED",
+  "limitations": [
+    "Native-filter cost/performance not inferred from CPU checks",
+    "Unknown semantics and top/unplaced SLR retained",
+    "Hypothetical pairs are logical connections, not SLL usage, bandwidth or routed success",
+    "Full physical implementation and formal timing remain required"
+  ],
+  "artifacts": {
+    "RAW": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_RAW_C01.tsv",
+      "bytes": 1514354,
+      "sha256": "4aa7fbf24b8e74593367189684f0a525f6c9c3aa9ea412c90e474b91dc6d0065"
+    },
+    "S": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_S_C01.tsv",
+      "bytes": 1513347,
+      "sha256": "d5c491e18fa5a3325eaec67c21169f8c3f6cb6e3d18420e82e93eac736e1ff36"
+    },
+    "P": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_P_C01.tsv",
+      "bytes": 1510475,
+      "sha256": "3bd3fd7b17658f37c4b7b8d0e0b6926420c4023eeeeafca512c03401e259c919"
+    },
+    "pins": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_pins_C01.tsv",
+      "bytes": 35669651,
+      "sha256": "2d60d9cf0ff0b3bdc2316de69fd3f21cd020883d9c89d290aae0504a1a1b8a9b"
+    },
+    "local_owners": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_local_owners_C01.tsv",
+      "bytes": 3104541,
+      "sha256": "d6060a3e939faa6ef1e53273c872d1f5dd4008fd987f7769ea1b67b7a5293dbc"
+    },
+    "segments": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_segments_C01.tsv",
+      "bytes": 14610121,
+      "sha256": "ad1f17587576f171376414c78e8c3a150fe524c3d8a6d538a6ca10aec71f9d3c"
+    },
+    "local_pin_net": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_local_pin_net_C01.tsv",
+      "bytes": 24658325,
+      "sha256": "e14d48e16827cae7c90933b86131e7f4ff99d4d40b2418702979168f27a19c50"
+    },
+    "nets": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_nets_C01.tsv",
+      "bytes": 5384438,
+      "sha256": "2b6d99fbcfe1237aef2577135979696157963ba7c9249cfc6343356fbc804e00"
+    },
+    "endpoints": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_endpoints_C01.tsv",
+      "bytes": 57813158,
+      "sha256": "a516453f6417a7f8986660a8b4a55d228fa1b51ae80a9012c419a2e7e6244f38"
+    },
+    "boundary_timing_scope": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_boundary_timing_scope_C01.tsv",
+      "bytes": 7972717,
+      "sha256": "4a3e793d5a4f41eca42cbb1dbde6c02f122280aade8a6546c8898ea9a6cd465f"
+    }
+  },
+  "schema": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_directed_class_schema_C01.tcllist",
+    "bytes": 1672,
+    "sha256": "7d5fe8405aa9745703620a2f2c6ca449e86d5d4c110f3f522a8b1a427fa38bd3"
+  },
+  "local_scope": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_local_scope_C01.tcllist",
+    "bytes": 8904625,
+    "sha256": "550da2024608106d1ec2d74a835e8e653096bb693c04fa7a927e5509ed9f59c1"
+  },
+  "native_role_queries": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_native_role_queries_C01.tcllist",
+    "bytes": 64081858,
+    "sha256": "708276fa68d8029fb723e158a4bec72c25745839ce1304859b592504f6ec58cd"
+  },
+  "native_closed_marker": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R005_AT003_system_python_directed_cut/candidate_cut_C01_closed.txt",
+    "bytes": 314,
+    "sha256": "67f1b067248515366ce9a4d2070b173acedb5c1f2d21d13aa44d1422a914fa19"
+  },
+  "validator": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/sources/directed_evidence.py",
+    "bytes": 33426,
+    "sha256": "c2db4914e09eb68f630df8d78ca4eb4ed6edc1463502c2d802b3d0c3f0df981b"
+  }
+}

@@ -1,0 +1,823 @@
+{
+  "schema": "A007_E005_AT002_targeted_CDC_cap_review_v1",
+  "observed_utc": "2026-10-16T04:40:33.789902+00:00",
+  "execution": "actual_failed_OPT_POST_and_bounded_cause_review_completed",
+  "verdict": "legacy_fixed_report_hash_rejects_same_complete_CDC_semantics; current_graph_admission_not_overridden",
+  "applicability": "actual R004/AT002 after same_new_OPT_restore; exact four targeted reports",
+  "review": "read-only source/report/exports/proc inspection; no test/EDA, no full119.9MB graph scan, no production or failed-report edits",
+  "status": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT002_native_OPT_POST_recovery_place_physopt/status.json",
+    "bytes": 4334,
+    "sha256": "d47b01c2654cef42028df255a349bfb994bbe043e74a1d1f4c18b8ed92dd5322"
+  },
+  "terminal": {
+    "ended_utc": "2026-10-16T04:36:17.349319+00:00",
+    "native_exit_code": 1,
+    "supervisor_exit_code": 1,
+    "stop_reason": null,
+    "owned_survivors": [],
+    "exact_process_observations": [
+      {
+        "pid": 345119,
+        "expected_start_ticks": 923696626,
+        "state": "not_present"
+      },
+      {
+        "pid": 345181,
+        "expected_start_ticks": 923697089,
+        "state": "not_present"
+      },
+      {
+        "pid": 345200,
+        "expected_start_ticks": 923697093,
+        "state": "not_present"
+      },
+      {
+        "pid": 345274,
+        "expected_start_ticks": 923697105,
+        "state": "not_present"
+      },
+      {
+        "pid": 355457,
+        "expected_start_ticks": 923787566,
+        "state": "not_present"
+      },
+      {
+        "pid": 356018,
+        "expected_start_ticks": 923792483,
+        "state": "not_present"
+      },
+      {
+        "pid": 345108,
+        "expected_start_ticks": 923696505,
+        "state": "not_present"
+      }
+    ]
+  },
+  "actual_log": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/implementation_run.log",
+    "bytes": 20979,
+    "sha256": "12eb5eb3d1b26f52daad90cc6c492b85a0299deff2a61f286a725f13232691ea"
+  },
+  "no_OPT_or_debug_or_physical_command_replay": true,
+  "absent_new_success_artifacts": [
+    "opt_command_result.txt",
+    "debug_materialization_command_result.txt",
+    "place_command_result.txt",
+    "physopt_command_result.txt",
+    "debug_materialized.dcp",
+    "place.dcp",
+    "physopt.dcp",
+    "diagnostic_evidence.json"
+  ],
+  "original_integrity": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/integrity_opt.json",
+    "bytes": 89777,
+    "sha256": "be4eeb32464319ae164f95b7b2be3f998733b28443b161eb42acb044b5b6d528"
+  },
+  "original_gate_issues": [
+    "critical_CDC: ValueError: exact OPT reset CDC requires actual chain/polarity/HostSplit/fanout diagnostic proof"
+  ],
+  "original_fanout_issues": [
+    "auxiliary CDC cap proof: ValueError: targeted CDC complete report identity changed",
+    "TARGETED_CDC_VIOLATIONS_UNKNOWN\tm002_changed_reset_opt_0",
+    "TARGETED_CDC_VIOLATIONS_UNKNOWN\tm002_changed_reset_opt_1",
+    "TARGETED_CDC_VIOLATIONS_UNKNOWN\tm002_changed_reset_opt_2",
+    "TARGETED_CDC_VIOLATIONS_UNKNOWN\tm002_changed_reset_opt_3"
+  ],
+  "structure": {
+    "original_validator_qualified": true,
+    "original_issues": [],
+    "async_chains": [
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core_gate/inst/u_base_reset_cdc",
+        "stages": [
+          "scalellm_vcu118_f05_bd_i/core_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]",
+          "scalellm_vcu118_f05_bd_i/core_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]",
+          "scalellm_vcu118_f05_bd_i/core_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]",
+          "scalellm_vcu118_f05_bd_i/core_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]"
+        ],
+        "clock": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "source": "scalellm_vcu118_f05_bd_i/core_gate/inst/base_aresetn",
+        "physical_assertion_source": "scalellm_vcu118_f05_bd_i/core_gate/inst/base_aresetn",
+        "physical_asserted_level": 0
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready0_cdc",
+        "stages": [
+          "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready0_cdc/arststages_ff_reg[0]",
+          "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready0_cdc/arststages_ff_reg[1]",
+          "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready0_cdc/arststages_ff_reg[2]",
+          "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready0_cdc/arststages_ff_reg[3]"
+        ],
+        "clock": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "source": "scalellm_vcu118_f05_bd_i/core_gate/inst/async_ready0",
+        "physical_assertion_source": "scalellm_vcu118_f05_bd_i/core_gate/inst/async_ready0",
+        "physical_asserted_level": 0
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready1_cdc",
+        "stages": [
+          "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready1_cdc/arststages_ff_reg[0]",
+          "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready1_cdc/arststages_ff_reg[1]",
+          "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready1_cdc/arststages_ff_reg[2]",
+          "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready1_cdc/arststages_ff_reg[3]"
+        ],
+        "clock": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "source": "scalellm_vcu118_f05_bd_i/core_gate/inst/async_ready1",
+        "physical_assertion_source": "scalellm_vcu118_f05_bd_i/core_gate/inst/async_ready1",
+        "physical_asserted_level": 0
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc",
+        "stages": [
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]",
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]",
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]",
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]"
+        ],
+        "clock": "mmcm_clkout0",
+        "source": "scalellm_vcu118_f05_bd_i/d0_gate/inst/base_aresetn",
+        "physical_assertion_source": "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+        "physical_asserted_level": 1
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_ready_cdc",
+        "stages": [
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_ready_cdc/arststages_ff_reg[0]",
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_ready_cdc/arststages_ff_reg[1]",
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_ready_cdc/arststages_ff_reg[2]",
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_ready_cdc/arststages_ff_reg[3]"
+        ],
+        "clock": "mmcm_clkout0",
+        "source": "scalellm_vcu118_f05_bd_i/d0_gate/inst/async_ready",
+        "physical_assertion_source": "scalellm_vcu118_f05_bd_i/d0_gate/inst/async_ready",
+        "physical_asserted_level": 0
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc",
+        "stages": [
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]",
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]",
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]",
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]"
+        ],
+        "clock": "mmcm_clkout0_1",
+        "source": "scalellm_vcu118_f05_bd_i/d1_gate/inst/base_aresetn",
+        "physical_assertion_source": "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+        "physical_asserted_level": 1
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc",
+        "stages": [
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[0]",
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[1]",
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[2]",
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[3]"
+        ],
+        "clock": "mmcm_clkout0_1",
+        "source": "scalellm_vcu118_f05_bd_i/d1_gate/inst/async_ready",
+        "physical_assertion_source": "scalellm_vcu118_f05_bd_i/d1_gate/inst/async_ready",
+        "physical_asserted_level": 0
+      }
+    ],
+    "aux_chains": [
+      {
+        "root": "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX",
+        "stages": [
+          "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]",
+          "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[1]",
+          "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[2]",
+          "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[3]"
+        ],
+        "source_synchronized_terms": [
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/Q",
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_ready_cdc/arststages_ff_reg[3]/Q"
+        ],
+        "destination_clock": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0"
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX",
+        "stages": [
+          "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]",
+          "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[1]",
+          "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[2]",
+          "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[3]"
+        ],
+        "source_synchronized_terms": [
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/Q",
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_ready_cdc/arststages_ff_reg[3]/Q"
+        ],
+        "destination_clock": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0"
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX",
+        "stages": [
+          "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]",
+          "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[1]",
+          "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[2]",
+          "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[3]"
+        ],
+        "source_synchronized_terms": [
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/Q",
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[3]/Q"
+        ],
+        "destination_clock": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0"
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX",
+        "stages": [
+          "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]",
+          "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[1]",
+          "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[2]",
+          "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[3]"
+        ],
+        "source_synchronized_terms": [
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/Q",
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[3]/Q"
+        ],
+        "destination_clock": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0"
+      }
+    ],
+    "host_split_reset_chains": [
+      {
+        "root": "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX",
+        "stages": [
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]",
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[1]",
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[2]",
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[3]"
+        ],
+        "clock": "mmcm_clkout0",
+        "effective_init": 0,
+        "input_source": "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+        "consumer": "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk1/U0/EXT_LPF/lpf_asr_reg/D"
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX",
+        "stages": [
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]",
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[1]",
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[2]",
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[3]"
+        ],
+        "clock": "mmcm_clkout0_1",
+        "effective_init": 0,
+        "input_source": "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+        "consumer": "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr0/U0/EXT_LPF/lpf_asr_reg/D"
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk2/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX",
+        "stages": [
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk2/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]",
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk2/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[1]",
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk2/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[2]",
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk2/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[3]"
+        ],
+        "clock": "mmcm_clkout0_1",
+        "effective_init": 0,
+        "input_source": "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+        "consumer": "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk2/U0/EXT_LPF/lpf_asr_reg/D"
+      }
+    ],
+    "source_record": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_graph_opt.tsv",
+      "bytes": 119917902,
+      "sha256": "a575912aa3988eb1258d9b3033707572cebab022ab192d0f160c016a23fb67ae"
+    },
+    "graph_stat_verified_no_full_scan": true,
+    "explicit_four_stage_exports": [
+      {
+        "scope": "scalellm_vcu118_f05_bd_i/core_gate/inst/u_base_reset_cdc",
+        "netlist": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_primitive_overrides_opt_0.v",
+          "bytes": 23844,
+          "sha256": "ac68db840a51f9b58d9bace369f70d31517d920e2a4efa0a763a9bbaa18847ab"
+        },
+        "primitive_count": 4
+      },
+      {
+        "scope": "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready0_cdc",
+        "netlist": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_primitive_overrides_opt_1.v",
+          "bytes": 23823,
+          "sha256": "849fe3cb8dcd4ce39d3df44b7b2697d91dce31dd1f1ced8f79eb1105e391af78"
+        },
+        "primitive_count": 4
+      },
+      {
+        "scope": "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready1_cdc",
+        "netlist": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_primitive_overrides_opt_2.v",
+          "bytes": 23817,
+          "sha256": "870332222d231a6d777af74ae3104c90c5ca2b6115407304d445027561129654"
+        },
+        "primitive_count": 4
+      },
+      {
+        "scope": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc",
+        "netlist": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_primitive_overrides_opt_3.v",
+          "bytes": 23821,
+          "sha256": "4b32cb0ad928a5a1cbb32efa7472eebfc2fd6b158f78616050242eb2b4ff55de"
+        },
+        "primitive_count": 4
+      },
+      {
+        "scope": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_ready_cdc",
+        "netlist": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_primitive_overrides_opt_4.v",
+          "bytes": 23810,
+          "sha256": "5acce4dfd58f6e049acc1ecc8e841978ff02607886e973eec68b96805d9c1906"
+        },
+        "primitive_count": 4
+      },
+      {
+        "scope": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc",
+        "netlist": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_primitive_overrides_opt_5.v",
+          "bytes": 23821,
+          "sha256": "239212a9d4e34066f2a195e523e187c3e60e44e3ff8e81e10fbdc85d75c40a82"
+        },
+        "primitive_count": 4
+      },
+      {
+        "scope": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc",
+        "netlist": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_primitive_overrides_opt_6.v",
+          "bytes": 23810,
+          "sha256": "dba14169c992474ed97f8b99b8f098a1ac1c4832850a5b8a35a11151e0d346a6"
+        },
+        "primitive_count": 4
+      },
+      {
+        "scope": "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX",
+        "netlist": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_primitive_overrides_opt_7.v",
+          "bytes": 23556,
+          "sha256": "6a0b1a66de94252750b9f0c6ffd9201f0bd789668b0ee896f49d86ed25d2c2b3"
+        },
+        "primitive_count": 4
+      },
+      {
+        "scope": "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX",
+        "netlist": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_primitive_overrides_opt_8.v",
+          "bytes": 23567,
+          "sha256": "6157e170e75fbeb25c6c22db1b8def07a602bf80ff69e1e0a5889b4041471964"
+        },
+        "primitive_count": 4
+      },
+      {
+        "scope": "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX",
+        "netlist": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_primitive_overrides_opt_9.v",
+          "bytes": 23556,
+          "sha256": "9dc60508fb6d05de5dec180f3b93803be98fa1c360b5c9bc24347c74a68d952d"
+        },
+        "primitive_count": 4
+      },
+      {
+        "scope": "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX",
+        "netlist": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_primitive_overrides_opt_10.v",
+          "bytes": 23568,
+          "sha256": "19f5e822a72154c5f6a55ee1f371763a75bae94173e3cd68578fce95c6aca412"
+        },
+        "primitive_count": 4
+      },
+      {
+        "scope": "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX",
+        "netlist": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_primitive_overrides_opt_11.v",
+          "bytes": 23580,
+          "sha256": "b5c56dc09e23c9fd8f921b8b48f3c5959525f9adae3b869171c88e0e1ba46fed"
+        },
+        "primitive_count": 4
+      },
+      {
+        "scope": "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX",
+        "netlist": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_primitive_overrides_opt_12.v",
+          "bytes": 23569,
+          "sha256": "b81b9f31735c862b44f5cfdcadf4ac4cee02d9aeed4f9dec264f28cc748592d6"
+        },
+        "primitive_count": 4
+      },
+      {
+        "scope": "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk2/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX",
+        "netlist": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_primitive_overrides_opt_13.v",
+          "bytes": 23580,
+          "sha256": "4253b3deb0d7814e5778cd953657f09506413c00c33119c25e980f9d943667f5"
+        },
+        "primitive_count": 4
+      }
+    ],
+    "export_and_primitive_model_hashes_independently_match": true
+  },
+  "fanout": {
+    "source_record": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/cdc_changed_reset_opt.tsv",
+      "bytes": 5962771,
+      "sha256": "87320c12406b45a77fa89e8621f27e14088970ba952a3b892824a8935a320bd8"
+    },
+    "targeted_rows": [
+      {
+        "line": 25482,
+        "text": "TARGETED_CDC_COMMAND\tmmcm_clkout0\tclk_out1_scalellm_vcu118_f05_bd_clk_core_0\treport_cdc -from mmcm_clkout0 -to clk_out1_scalellm_vcu118_f05_bd_clk_core_0 -severity Critical -all_checks_per_endpoint -details -name m002_changed_reset_opt_0 -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/cdc_changed_opt_0.rpt"
+      },
+      {
+        "line": 25483,
+        "text": "TARGETED_CDC_VIOLATION_COUNT\tmmcm_clkout0\tclk_out1_scalellm_vcu118_f05_bd_clk_core_0\t668\tLIMIT=64"
+      },
+      {
+        "line": 25484,
+        "text": "TARGETED_CDC_VIOLATIONS_UNKNOWN\tm002_changed_reset_opt_0"
+      },
+      {
+        "line": 25485,
+        "text": "TARGETED_CDC_COMMAND\tmmcm_clkout0_1\tclk_out1_scalellm_vcu118_f05_bd_clk_core_0\treport_cdc -from mmcm_clkout0_1 -to clk_out1_scalellm_vcu118_f05_bd_clk_core_0 -severity Critical -all_checks_per_endpoint -details -name m002_changed_reset_opt_1 -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/cdc_changed_opt_1.rpt"
+      },
+      {
+        "line": 25486,
+        "text": "TARGETED_CDC_VIOLATION_COUNT\tmmcm_clkout0_1\tclk_out1_scalellm_vcu118_f05_bd_clk_core_0\t668\tLIMIT=64"
+      },
+      {
+        "line": 25487,
+        "text": "TARGETED_CDC_VIOLATIONS_UNKNOWN\tm002_changed_reset_opt_1"
+      },
+      {
+        "line": 25488,
+        "text": "TARGETED_CDC_COMMAND\txdma_0_axi_aclk\tmmcm_clkout0\treport_cdc -from xdma_0_axi_aclk -to mmcm_clkout0 -severity Critical -all_checks_per_endpoint -details -name m002_changed_reset_opt_2 -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/cdc_changed_opt_2.rpt"
+      },
+      {
+        "line": 25489,
+        "text": "TARGETED_CDC_VIOLATION_COUNT\txdma_0_axi_aclk\tmmcm_clkout0\t768\tLIMIT=64"
+      },
+      {
+        "line": 25490,
+        "text": "TARGETED_CDC_VIOLATIONS_UNKNOWN\tm002_changed_reset_opt_2"
+      },
+      {
+        "line": 25491,
+        "text": "TARGETED_CDC_COMMAND\txdma_0_axi_aclk\tmmcm_clkout0_1\treport_cdc -from xdma_0_axi_aclk -to mmcm_clkout0_1 -severity Critical -all_checks_per_endpoint -details -name m002_changed_reset_opt_3 -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/cdc_changed_opt_3.rpt"
+      },
+      {
+        "line": 25492,
+        "text": "TARGETED_CDC_VIOLATION_COUNT\txdma_0_axi_aclk\tmmcm_clkout0_1\t769\tLIMIT=64"
+      },
+      {
+        "line": 25493,
+        "text": "TARGETED_CDC_VIOLATIONS_UNKNOWN\tm002_changed_reset_opt_3"
+      }
+    ],
+    "independent_XDMA_UI_branch_rows": [
+      {
+        "line": 13597,
+        "fields": [
+          "SOURCE_Q_ENDPOINT",
+          "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/CLR",
+          "FDCE",
+          "CLOCKS=mmcm_clkout0_1"
+        ]
+      },
+      {
+        "line": 13598,
+        "fields": [
+          "SOURCE_Q_ENDPOINT",
+          "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]/CLR",
+          "FDCE",
+          "CLOCKS=mmcm_clkout0_1"
+        ]
+      },
+      {
+        "line": 13599,
+        "fields": [
+          "SOURCE_Q_ENDPOINT",
+          "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]/CLR",
+          "FDCE",
+          "CLOCKS=mmcm_clkout0_1"
+        ]
+      },
+      {
+        "line": 13600,
+        "fields": [
+          "SOURCE_Q_ENDPOINT",
+          "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+          "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]/CLR",
+          "FDCE",
+          "CLOCKS=mmcm_clkout0_1"
+        ]
+      },
+      {
+        "line": 13601,
+        "fields": [
+          "SOURCE_Q_ENDPOINT",
+          "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/CLR",
+          "FDCE",
+          "CLOCKS=mmcm_clkout0"
+        ]
+      },
+      {
+        "line": 13602,
+        "fields": [
+          "SOURCE_Q_ENDPOINT",
+          "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]/CLR",
+          "FDCE",
+          "CLOCKS=mmcm_clkout0"
+        ]
+      },
+      {
+        "line": 13603,
+        "fields": [
+          "SOURCE_Q_ENDPOINT",
+          "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]/CLR",
+          "FDCE",
+          "CLOCKS=mmcm_clkout0"
+        ]
+      },
+      {
+        "line": 13604,
+        "fields": [
+          "SOURCE_Q_ENDPOINT",
+          "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+          "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]/CLR",
+          "FDCE",
+          "CLOCKS=mmcm_clkout0"
+        ]
+      },
+      {
+        "line": 13605,
+        "fields": [
+          "SOURCE_Q_ENDPOINT",
+          "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D",
+          "FDRE",
+          "CLOCKS=mmcm_clkout0"
+        ]
+      },
+      {
+        "line": 13606,
+        "fields": [
+          "SOURCE_Q_ENDPOINT",
+          "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk2/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D",
+          "FDRE",
+          "CLOCKS=mmcm_clkout0_1"
+        ]
+      },
+      {
+        "line": 13608,
+        "fields": [
+          "SOURCE_Q_ENDPOINT",
+          "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+          "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D",
+          "FDRE",
+          "CLOCKS=mmcm_clkout0_1"
+        ]
+      }
+    ],
+    "bram_port_clock_source": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/bram_port_clocks_opt.tsv",
+      "bytes": 263752,
+      "sha256": "1a4704be88423f55a1825911fce1c57ce24cce83624d78244aeeea386593b69c"
+    },
+    "bram_port_clock_endpoints": 688,
+    "scope": "no independent whole-fanout requalification; original evaluator has no consumer/clock/polarity issues outside auxiliary cap identity failure"
+  },
+  "targeted_report_comparison": [
+    {
+      "index": 0,
+      "previous_report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT006_cdc_reset_proof_debug_place_physopt/cdc_changed_opt_0.rpt",
+        "bytes": 3414,
+        "sha256": "dd84ac0ca83c91630474d858d153bcbe95f46534829a37cf1721a7a397c0280f"
+      },
+      "current_report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/cdc_changed_opt_0.rpt",
+        "bytes": 3423,
+        "sha256": "443dff70fad21392993c76d237d14608a593c58507e2056fda83d5751f334a1b"
+      },
+      "line_count": 29,
+      "changed_lines": [
+        2,
+        4,
+        6,
+        12
+      ],
+      "change_scope": "two separator widths/date/output file path only; every complete report content row unchanged",
+      "critical": [
+        {
+          "line": 26,
+          "fields": [
+            "1",
+            "CDC-10",
+            "Critical",
+            "Combinational logic detected before a synchronizer",
+            "4",
+            "Asynch Clock Groups",
+            "scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_ddr_cal_top/calDone_gated_reg/C",
+            "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready0_cdc/arststages_ff_reg[0]/CLR"
+          ]
+        },
+        {
+          "line": 27,
+          "fields": [
+            "2",
+            "CDC-10",
+            "Critical",
+            "Combinational logic detected before a synchronizer",
+            "5",
+            "Asynch Clock Groups",
+            "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_ready_cdc/arststages_ff_reg[3]/C",
+            "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D"
+          ]
+        },
+        {
+          "line": 28,
+          "fields": [
+            "3",
+            "CDC-10",
+            "Critical",
+            "Combinational logic detected before a synchronizer",
+            "5",
+            "Asynch Clock Groups",
+            "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_ready_cdc/arststages_ff_reg[3]/C",
+            "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D"
+          ]
+        }
+      ],
+      "actual_object_count": 668,
+      "object_limit": 64
+    },
+    {
+      "index": 1,
+      "previous_report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT006_cdc_reset_proof_debug_place_physopt/cdc_changed_opt_1.rpt",
+        "bytes": 3422,
+        "sha256": "d7a16c3c859a5d5c344eb4d0fbe95731610d01f89206a61d91d3801e139f5930"
+      },
+      "current_report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/cdc_changed_opt_1.rpt",
+        "bytes": 3431,
+        "sha256": "c93938eee3eff330772f26c02dba0dcdecbc9b9c3aad59dcd17518e3e7e1eff9"
+      },
+      "line_count": 29,
+      "changed_lines": [
+        2,
+        4,
+        6,
+        12
+      ],
+      "change_scope": "two separator widths/date/output file path only; every complete report content row unchanged",
+      "critical": [
+        {
+          "line": 26,
+          "fields": [
+            "1",
+            "CDC-10",
+            "Critical",
+            "Combinational logic detected before a synchronizer",
+            "4",
+            "Asynch Clock Groups",
+            "scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_ddr_cal_top/calDone_gated_reg/C",
+            "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready1_cdc/arststages_ff_reg[0]/CLR"
+          ]
+        },
+        {
+          "line": 27,
+          "fields": [
+            "2",
+            "CDC-10",
+            "Critical",
+            "Combinational logic detected before a synchronizer",
+            "5",
+            "Asynch Clock Groups",
+            "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[3]/C",
+            "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D"
+          ]
+        },
+        {
+          "line": 28,
+          "fields": [
+            "3",
+            "CDC-10",
+            "Critical",
+            "Combinational logic detected before a synchronizer",
+            "5",
+            "Asynch Clock Groups",
+            "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[3]/C",
+            "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D"
+          ]
+        }
+      ],
+      "actual_object_count": 668,
+      "object_limit": 64
+    },
+    {
+      "index": 2,
+      "previous_report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT006_cdc_reset_proof_debug_place_physopt/cdc_changed_opt_2.rpt",
+        "bytes": 2585,
+        "sha256": "ed4dd29ec38557bec16e07d8dcdc43ea828ada4a0e55acf24fc4d6dca5834db5"
+      },
+      "current_report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/cdc_changed_opt_2.rpt",
+        "bytes": 2594,
+        "sha256": "c275c07d829afa0bf7ca362b4c8b583a5b10ad28f12585266b0657a4804ac72d"
+      },
+      "line_count": 27,
+      "changed_lines": [
+        2,
+        4,
+        6,
+        12
+      ],
+      "change_scope": "two separator widths/date/output file path only; every complete report content row unchanged",
+      "critical": [
+        {
+          "line": 26,
+          "fields": [
+            "1",
+            "CDC-11",
+            "Critical",
+            "Fan-out from launch flop to destination clock",
+            "4",
+            "Asynch Clock Groups",
+            "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/C",
+            "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]/CLR"
+          ]
+        }
+      ],
+      "actual_object_count": 768,
+      "object_limit": 64
+    },
+    {
+      "index": 3,
+      "previous_report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT006_cdc_reset_proof_debug_place_physopt/cdc_changed_opt_3.rpt",
+        "bytes": 2593,
+        "sha256": "751f9dfc750d24270ed1884bd590bc4d8756aac0bc837317154ea8ddcd0dd4b2"
+      },
+      "current_report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/cdc_changed_opt_3.rpt",
+        "bytes": 2602,
+        "sha256": "b6c4de023a8215cc13c4a1a3fd90fcafa8fa36deac1d2e3f4d0375758fe4da5a"
+      },
+      "line_count": 27,
+      "changed_lines": [
+        2,
+        4,
+        6,
+        12
+      ],
+      "change_scope": "two separator widths/date/output file path only; every complete report content row unchanged",
+      "critical": [
+        {
+          "line": 26,
+          "fields": [
+            "1",
+            "CDC-11",
+            "Critical",
+            "Fan-out from launch flop to destination clock",
+            "4",
+            "Asynch Clock Groups",
+            "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/C",
+            "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]/CLR"
+          ]
+        }
+      ],
+      "actual_object_count": 769,
+      "object_limit": 64
+    }
+  ],
+  "complete_report_tuple_union": {
+    "rows": 8,
+    "equals_current_inherited_full_OPT_CDC": true,
+    "raw_full_report": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT001_fresh_place_physopt/cdc_opt.rpt",
+      "bytes": 3941229,
+      "sha256": "60fd2f4b92385eb46cbe65bf8a9285c5e6582367c46799466e0eb359922adb0b"
+    },
+    "canonical_types": [
+      "CDC-10",
+      "CDC-10",
+      "CDC-10",
+      "CDC-10",
+      "CDC-10",
+      "CDC-10",
+      "CDC-11",
+      "CDC-11"
+    ]
+  },
+  "recommended_scope": "New E005 attempt-local report/command/name/clock/cap/complete-tuple/full-report identity binding; retain raw four UNKNOWN as auxiliary object-property enumeration limit, reject changed/unclassified tuples and every other UNKNOWN; preserve legacy branch and original failed integrity.",
+  "formal_reset_cdc_safety": "OPEN",
+  "pending": "A006 ordinary entry fix/actual CPU and next attempt; neither old graph nor file hash adjustment alone confers qualification"
+}

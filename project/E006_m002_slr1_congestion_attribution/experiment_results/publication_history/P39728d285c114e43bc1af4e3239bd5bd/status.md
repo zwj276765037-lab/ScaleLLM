@@ -1,0 +1,36 @@
+# E006：当前状态
+
+execution_state: running
+verdict: unassessed
+
+R006 AT003_buffered_alias_directed_cut已于2026-10-17T03:49:59.301815Z实际启动。supervisor1414420/start932155482，native1414533/start932155661；12归档源/23be、144冻结输入、CPU0–7/nice5及本项目唯一EDA身份已核。当前加载同一E005 physopt DCP，新完整cut/时序和性能待实测。
+
+AT002已按本次明确用户许可于03:48:51Z受控收尾、16项完整性/进程/锁检查通过，独立审核接受。其两membership与C01实际完整port索引资格保持，完整cut/时序未闭合。R005 C01完整cut/时序亦按原身份保持。原失败和部分结果均不覆盖。
+
+缓冲alias日志修复23be/3cae已通过集中delta核查；原图覆盖/查询/缓存/端口资格/方向时序保持。不增加准备或批准门，实际C02比较和真实终态齐后选择至多一个有意义候选并启动E008完整implementation。
+
+此前R001/R004/R005/R006-AT002单次停止例外均已使用，不扩展到本次正常AT003。单EDA/资源保护、正常无墙钟/无输出强停、数值/接口/时钟及无bitstream/GPU/板卡/PPL/ACC保持。
+
+
+---
+Published: 2026-10-17T03:52:00.110254+00:00
+Publication: P67c50ae1308d441bbc988d20e2604fba
+Execution state: running
+Research verdict: unassessed
+Applicability: R006 AT003缓冲日志版真实启动并核输入/源/CPU/nice/唯一EDA；AT002已授权受控收尾，C01实际索引保持。当前新图资格/完整cut时序及C02比较待实测，无E008启动。
+Evidence:
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/terminal_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/terminal_summary.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/candidate_C01_directed_cut_closed_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT003_system_python_directed_cut/candidate_C01_bounded_timing_closed_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT002_top_port_index_directed_cut/started.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT002_top_port_index_directed_cut/command.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT002_top_port_index_directed_cut/input_bindings.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT002_top_port_index_directed_cut/native_start_verified.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT002_top_port_index_directed_cut/candidate_C01_native_port_index_closed_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT002_top_port_index_directed_cut/candidate_C01_native_port_index_closed_summary.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT003_buffered_alias_directed_cut/started.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT003_buffered_alias_directed_cut/input_bindings.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT003_buffered_alias_directed_cut/native_start_verified.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT003_buffered_alias_directed_cut/unique_native_lane_verified.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT002_top_port_index_directed_cut/terminal_facts.json

@@ -1,0 +1,30 @@
+# E006：执行状态
+
+execution_state: running
+verdict: unassessed
+
+R001/AT001原physopt已恢复、完整primitive归属及global+4owner原生资源已关闭并独立核验。当前native_owner_core_other自2026-10-16 16:11:32 UTC起仍在计算，32,829离散leaf大列表统计为已核成本差异；CPU活跃/内存稳定，阶段未关闭、无可信ETA。热点/失败对象/连接与最终收尾尚未完成。
+
+A006仅在新目录准备lean替代、A007静态覆盖审核并行；当前原进程/冻结源不动，替代未运行。因用户既有正常不强停指令，实际切换须等明确决定，未答复不视为许可。另原wrapper收尾引用未定义new_peak_sources的潜在NameError已定位，不影响当前native查询；原错误将保留，最终以独立CPU身份核查补证，lean入口修正常规引用错误。
+
+用户已授权归因清楚后定向优化SLR1；候选与同pre_place父链准备完成，尚未启动新implementation。单EDA及既有资源保护保持，无墙钟/静默强停。E005失败终态不变。
+
+
+---
+Published: 2026-10-16T16:56:13.808517+00:00
+Publication: P5fa515a56d8a4f939fd86ae42a8ca01e
+Execution state: running
+Research verdict: unassessed
+Applicability: E005当前physopt首批原生模块资源已核；热点/连接待完成，后继优化已获用户授权
+Evidence:
+- project/E006_m002_slr1_congestion_attribution/experiment_source/protocol.md
+- project/E006_m002_slr1_congestion_attribution/experiment_results/slr_same_stage_comparison.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/route_failure_sample_targets.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/attempts/AT001_physopt_attribution/started.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/first_attention_mlp_native_review.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/metadata_uram_roles.md
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/failure_nodes_cpu_tile_intersection.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/peripheral_slr1_primitive_review.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/ddr_non_slice_ff_site_types.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/closed_primitive_ownership_review.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/input_frontend_locality_candidate.md

@@ -1,0 +1,170 @@
+{
+  "reviewed_utc": "2026-10-16T00:50:34.325953+00:00",
+  "reviewer": "A007",
+  "evidence": [
+    {
+      "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R001/attempts/AT003_mlp_output_ce_v2/status.json",
+      "bytes": 3842,
+      "sha256": "e339c5e22f8c3ab6b199cb33eb0a224de5c082fa6d13d2462e41e3327e7e665f"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E005_R001_AT003_mlp_output_ce_v2/xsim.log",
+      "bytes": 2344,
+      "sha256": "e1f519b04406b9ea9eaa735c360e2e71a90a59bf782070a76fa965eee45013a4"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E005_R001_AT003_mlp_output_ce_v2/launcher_status.txt",
+      "bytes": 346,
+      "sha256": "5f6a68597330728e9a9df744316ee6c723841ab65e75466033358528aba64463"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E005_R001_AT003_mlp_output_ce_v2/inputs.sha256",
+      "bytes": 8305,
+      "sha256": "d5660fd99eaccecc51a007193f2092c8f26114f17523633575ed80cf1381b51c"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E005_R001_AT003_mlp_output_ce_v2/fault_lines.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT005_final_cpu_entry_checks/status.json",
+      "bytes": 1180,
+      "sha256": "ee23935d841901ec8cc46feb45a18bf791a35a37e2e2ca99d3b786e11978cd80"
+    },
+    {
+      "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT005_final_cpu_entry_checks/inputs.json",
+      "bytes": 8074,
+      "sha256": "13e50875fc57e093b8b8eeec3b159aa2c15daa63013f839d8b3b6f3e4a53ec97"
+    },
+    {
+      "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT005_final_cpu_entry_checks/tests.log",
+      "bytes": 29384,
+      "sha256": "97575c3a7d35867ce7ca1a18d44c06864b2272aa49776fb4b96fc92549c4dbb9"
+    },
+    {
+      "path": "project/E005_m002_optimized_implementation/experiment_source/frozen_inputs_before_create.json",
+      "bytes": 34838,
+      "sha256": "f94724cb255978e7f77acd8f5f0cc0f7dfb025b6ae8c272aaccac1eb17f21dc1"
+    },
+    {
+      "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT006_fresh_create/command.json",
+      "bytes": 2945,
+      "sha256": "4672cf9bfd044743d56c7014191fddb01379fffc616652285563e2f2aa47169c"
+    },
+    {
+      "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT006_fresh_create/started.json",
+      "bytes": 3024,
+      "sha256": "1de3be58162e40d54b929a2951f61a820d3c0975d5dec29bc27a4f121f714a3b"
+    },
+    {
+      "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT006_fresh_create/startup_facts.json",
+      "bytes": 1086,
+      "sha256": "f9c30b8cbf1358dde4442c8018c3ff191252fd2ca5e7bbdc35248c02c32f83e9"
+    },
+    {
+      "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R001/rtl_functional_final_facts.json",
+      "bytes": 2134,
+      "sha256": "1276f7b31e3d6eb7c9ec7d2b15ef2b079de76305a4e8936d462ff7783f210658"
+    },
+    {
+      "path": "project/hardware/vivado/scripts/m002_optimized_structure.tcl",
+      "bytes": 4374,
+      "sha256": "28866b163981a9fa5c3051c2e45d13b35a1c3c04155d5a41bb633464312e455e"
+    },
+    {
+      "path": "project/hardware/vivado/scripts/freeze_m002_optimized_synthesis.py",
+      "bytes": 4786,
+      "sha256": "2c93e7a85290a25e3738377e03ccdebebb022e03f1e6dda4940fa10177aa3751"
+    },
+    {
+      "path": "project/hardware/tests/test_m002_optimized_implementation.py",
+      "bytes": 8088,
+      "sha256": "dec5ee518a46b1b2a53465b32bcf8098627fb036bf1a6080023bee02e5a7c04c"
+    }
+  ],
+  "MLP": {
+    "verdict": "PASS for scoped production S32/M1/ROWS16 and S24/M2/ROWS16",
+    "coverage": [
+      {
+        "width": 32,
+        "matrices": 1,
+        "cycles": 2477,
+        "diff": 2477,
+        "oracle_outputs": 49,
+        "replace": 2,
+        "stalls": 1368,
+        "reset_overlap": 1,
+        "clear_overlap": 1,
+        "errors": 16,
+        "tail4": 6,
+        "tail8": 6,
+        "signed_high_lanes": 7168
+      },
+      {
+        "width": 24,
+        "matrices": 2,
+        "cycles": 4821,
+        "diff": 4821,
+        "oracle_outputs": 98,
+        "replace": 5,
+        "stalls": 2754,
+        "reset_overlap": 1,
+        "clear_overlap": 1,
+        "errors": 17,
+        "tail4": 12,
+        "tail8": 12,
+        "signed_high_lanes": 14456
+      }
+    ],
+    "status": {
+      "native_exit_code": 0,
+      "exit_code": 0,
+      "stop_reason": null,
+      "owned_survivors": [],
+      "timeout_seconds": null,
+      "no_output_timeout_seconds": null
+    },
+    "fault_lines_empty": true,
+    "simulation_finish_ns": 48207,
+    "run_all_elapsed_seconds": 341,
+    "compilation_revision": "v2 declaration-only fix, production RTL unchanged"
+  },
+  "entry": {
+    "test_groups": [
+      151,
+      6,
+      11,
+      11
+    ],
+    "total": 179,
+    "exit_codes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "inputs_checked": 38,
+    "all_current_hashes_match": true,
+    "prior_AT001_two_input_version_gap": "closed by AT005 final current-source CPU tests"
+  },
+  "pre_create": {
+    "identity": {
+      "path": "project/E005_m002_optimized_implementation/experiment_source/frozen_inputs_before_create.json",
+      "bytes": 34838,
+      "sha256": "f94724cb255978e7f77acd8f5f0cc0f7dfb025b6ae8c272aaccac1eb17f21dc1"
+    },
+    "inputs_checked": 141,
+    "all_current_hashes_match": true,
+    "all_paths_in_new_hardware_root": true,
+    "matches_three_functionally_tested_RTL": true,
+    "scope": "pre-create selected source closure, not complete generated/IP/DCP synthesis identity",
+    "actual_create_stage": "started; terminal not yet observed at review",
+    "synthesis_verdict": "pending; do not infer from create"
+  },
+  "new_graph_probe": {
+    "source_review": "bounded scope counts 48/16/16 primitives, exact CE leaf pin counts 256/384/512, REF_NAME/pin histograms, upstream net fanout, and placed SLR/XY bounds; actual INIT and mapping still need original result review",
+    "synthesis_lineage": "new E005 dynamic source manifest anchor; produced/consumed DCP graph and native log identities required; actual records pending"
+  },
+  "review": "independent internal stage finding delivered by real messages; no new approval gate; global synthesis/physical/timing/signoff remain open"
+}

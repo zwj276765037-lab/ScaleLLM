@@ -1,0 +1,17 @@
+{
+  "event_id": "EV_SM007_NO_WALL_HANDOFF_EFFECTIVE",
+  "small_mission": "SM007",
+  "trigger": "milestone",
+  "summary": "12:32:57 UTC无wall监督实际接管：仅暂停旧supervisor，worker/Vivado及计算进程身份连续；接管后native CPU实增17749 ticks，旧固定截止不再执行。",
+  "impact": "用户最新持续运行指令已落实；未重启EDA或修改冻结生产输入，后继route也无固定墙钟上限；真实资源与阶段结果检查保留。",
+  "evidence": [
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/handoff_effective.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/validation.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/post_handoff_continuity.json"
+  ],
+  "affected": [
+    "SM007"
+  ],
+  "action": "继续同一恢复/place/physopt，实际成功后无wall监督route；记录接管来源、真实native结果、旧manager清理及完整物理报告，不以接管代替阶段成功。",
+  "requires_decision": false
+}

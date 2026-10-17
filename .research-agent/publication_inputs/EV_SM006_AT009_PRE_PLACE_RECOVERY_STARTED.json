@@ -1,0 +1,19 @@
+{
+  "event_id": "EV_SM006_AT009_PRE_PLACE_RECOVERY_STARTED",
+  "small_mission": "SM006",
+  "trigger": "milestone",
+  "summary": "AT012新增13项恢复+6项隔离测试以及真实完整POST/父链核验PASS，入口已安装；AT009于09:41:02 UTC从已完成debug/pre_place实际启动恢复，单次截止11:41:02 UTC。",
+  "impact": "用有身份的完整POST继承减少重复准备开销；本轮live guard和重新place尚未确认，不能把旧失败改为成功或继承部分布局进度。19项本轮新执行与96项legacy复用分别记录。",
+  "evidence": [
+    "project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT012_post_debug_pre_place_recovery_cpu/status.json",
+    "project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT012_post_debug_pre_place_recovery_cpu/actual_replay_status.json",
+    "project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT012_post_debug_pre_place_recovery_cpu/installation.json",
+    "project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT009_completed_pre_place_recovery_place_physopt/started.json",
+    "project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R005/architecture_review.md"
+  ],
+  "affected": [
+    "SM006"
+  ],
+  "action": "继续唯一AT009实际恢复sanity/DRC/clock验证及place/physopt，保持2小时/8CPU/单EDA和原保护；记录实际前置净成本。若无新完整物理恢复点不再重复place，原AT008终态保留。",
+  "requires_decision": false
+}

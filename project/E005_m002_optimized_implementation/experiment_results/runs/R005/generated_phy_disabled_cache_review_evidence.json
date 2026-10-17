@@ -1,0 +1,194 @@
+{
+  "reviewed_utc": "2026-10-16T03:26:05.827817+00:00",
+  "reviewer": "A007",
+  "execution": "bounded current PHY source review completed; native OPT continues",
+  "verdict": "two newly synthesized PHY output pairs supported under actual disabled-cache configuration; legacy third-cache requirement inapplicable to this narrow source",
+  "applicability": "E005 R004 AT001 fresh-project OPT generated PHY source; no general cache-validation relaxation",
+  "review": "internal evidence/path review; no new approval gate",
+  "source_count": 116,
+  "source_total_bytes": 61190878,
+  "manifest_record_identity_match": 116,
+  "archive_size_checks": 116,
+  "independently_hashed_small_text_files": 67,
+  "small_text_hash_mismatches": [],
+  "evidence": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_evidence.json",
+      "bytes": 82954,
+      "sha256": "72a9022fb68f30b4d29bda57cbddbc2f1a8aeac7727e1d0f1efd8380aa6d9623"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot.sha256",
+      "bytes": 39905,
+      "sha256": "3970638ed6f7f4b1be47fe4ba74a174f27b8d2e3a839da08c27f7e30f94274d1"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_observation_correction.json",
+      "bytes": 4746,
+      "sha256": "bece16785002c5239c021c498c507e75c7d3639fde339c073022d6dfa8e583af"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/get_cs_ip.tcl",
+      "bytes": 17144,
+      "sha256": "df19521866a191a2ff837d1d61a8a4977fbaf370dec1ee6966337bf5f56ca19f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/vivado.log",
+      "bytes": 228745,
+      "sha256": "b0e21073d93532d286e1f13b057a2897fc90da9b697951ec69928da4d3dcd307"
+    }
+  ],
+  "worker_configuration": {
+    "part": "xcvu9p-flga2104-2L-e",
+    "board": "xilinx.com:vcu118:part0:2.0",
+    "module_order": [
+      "scalellm_vcu118_f05_bd_ddr4_1_0_phy",
+      "scalellm_vcu118_f05_bd_ddr4_0_0_phy"
+    ],
+    "ip_vlnv": [
+      "xilinx.com:ip:ddr4_phy:2.2",
+      "xilinx.com:ip:ddr4_phy:2.2"
+    ],
+    "ip_cache_permissions": "disable",
+    "ip_output_repo": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.cache/ip",
+    "number_of_generated_modules": 2,
+    "description": "one recorded script/worker flow synthesizes two PHY modules; no unverified assertion of two independent worker PIDs"
+  },
+  "raw_log_rows": [
+    {
+      "line": 26,
+      "text": "# set part xcvu9p-flga2104-2L-e"
+    },
+    {
+      "line": 28,
+      "text": "# set board_part xilinx.com:vcu118:part0:2.0"
+    },
+    {
+      "line": 32,
+      "text": "# set ip_module_name {scalellm_vcu118_f05_bd_ddr4_1_0_phy scalellm_vcu118_f05_bd_ddr4_0_0_phy}"
+    },
+    {
+      "line": 47,
+      "text": "# set ip_output_repo /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.cache/ip"
+    },
+    {
+      "line": 48,
+      "text": "# set ip_cache_permissions disable"
+    },
+    {
+      "line": 73,
+      "text": "DBG: no cache hit, so run synth"
+    },
+    {
+      "line": 1164,
+      "text": "Parsing XDC File [/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/impl_1/.Xil/Vivado-266576-user/266576/scalellm_vcu118_f05_bd_ddr4_1_0_phy_0/u_mig_ddr4_phy_phy.xdc]"
+    },
+    {
+      "line": 1181,
+      "text": "synth_design completed successfully"
+    },
+    {
+      "line": 1187,
+      "text": "INFO: [Common 17-1381] The checkpoint '/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/impl_1/.Xil/Vivado-266576-user/266576/scalellm_vcu118_f05_bd_ddr4_1_0_phy.dcp' has been generated."
+    },
+    {
+      "line": 1203,
+      "text": "DBG: no cache hit, so run synth"
+    },
+    {
+      "line": 2101,
+      "text": "Parsing XDC File [/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/impl_1/.Xil/Vivado-266576-user/266576/scalellm_vcu118_f05_bd_ddr4_0_0_phy_1/u_mig_ddr4_phy_phy.xdc]"
+    },
+    {
+      "line": 2119,
+      "text": "synth_design completed successfully"
+    },
+    {
+      "line": 2125,
+      "text": "INFO: [Common 17-1381] The checkpoint '/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/impl_1/.Xil/Vivado-266576-user/266576/scalellm_vcu118_f05_bd_ddr4_0_0_phy.dcp' has been generated."
+    },
+    {
+      "line": 2133,
+      "text": "INFO: [Common 17-206] Exiting Vivado at Fri Oct 16 11:19:21 2026..."
+    }
+  ],
+  "worker_actual_XDC_reads": [
+    {
+      "line": 1164,
+      "source_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/impl_1/.Xil/Vivado-266576-user/266576/scalellm_vcu118_f05_bd_ddr4_1_0_phy_0/u_mig_ddr4_phy_phy.xdc",
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_1_0_phy_0/u_mig_ddr4_phy_phy.xdc",
+      "bytes": 150307,
+      "sha256": "62ddac1621a2082accb6da71ca2f90630ef01575fa1afc600921607d42286b71"
+    },
+    {
+      "line": 2101,
+      "source_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/impl_1/.Xil/Vivado-266576-user/266576/scalellm_vcu118_f05_bd_ddr4_0_0_phy_1/u_mig_ddr4_phy_phy.xdc",
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_0_0_phy_1/u_mig_ddr4_phy_phy.xdc",
+      "bytes": 149530,
+      "sha256": "1e4cb5a873998f905af4c3fc4c94239844f6583f51710971061cde50e66f097c"
+    }
+  ],
+  "output_pairs": [
+    {
+      "module": "scalellm_vcu118_f05_bd_ddr4_0_0_phy",
+      "produced": {
+        "source_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/impl_1/.Xil/Vivado-266576-user/266576/scalellm_vcu118_f05_bd_ddr4_0_0_phy.dcp",
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_0_0_phy.dcp",
+        "bytes": 2318792,
+        "sha256": "fc9a413b10f6e685a2cd3a3ced8726e8a242e20cc7f377104b7de70bdff7102c"
+      },
+      "output": {
+        "source_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/impl_1/.Xil/Vivado-266576-user/266576/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/result.dcp",
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/result.dcp",
+        "bytes": 2318792,
+        "sha256": "fc9a413b10f6e685a2cd3a3ced8726e8a242e20cc7f377104b7de70bdff7102c"
+      },
+      "hash_records_equal": true,
+      "current_original_and_archive_size_match": true
+    },
+    {
+      "module": "scalellm_vcu118_f05_bd_ddr4_1_0_phy",
+      "produced": {
+        "source_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/impl_1/.Xil/Vivado-266576-user/266576/scalellm_vcu118_f05_bd_ddr4_1_0_phy.dcp",
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_1_0_phy.dcp",
+        "bytes": 2303362,
+        "sha256": "344efdbbeaf832bb228a97267b39835abb618c7390bff7f1cba505c4a1f91237"
+      },
+      "output": {
+        "source_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/impl_1/.Xil/Vivado-266576-user/266576/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/result.dcp",
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/result.dcp",
+        "bytes": 2303362,
+        "sha256": "344efdbbeaf832bb228a97267b39835abb618c7390bff7f1cba505c4a1f91237"
+      },
+      "hash_records_equal": true,
+      "current_original_and_archive_size_match": true
+    }
+  ],
+  "cache_path_observation": {
+    "worker_local_cache_exists": false,
+    "declared_repo": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.cache/ip",
+    "declared_repo_exists": true,
+    "matching_PHY_DCP_paths": []
+  },
+  "DCP_binary_verification_scope": "A006 snapshot/correction contain actual output hashes; A007 independently checks both records, expected script/log path association and all four archive/original sizes; does not rehash/read DCP binary or large EDF netlists.",
+  "original_template_correction": "original cache_writes field is unsupported and preserved; bound correction explicitly withdraws cache-write claim. Generic Added synthesis output text is not a disk-cache write receipt.",
+  "narrow_branch_conditions": [
+    "E005 fresh-project OPT ownership, original synthesis lineage, actual worker root identity and current stage archive bound",
+    "script+native log agree on exact disable and declared repository; unknown/readwrite policy cannot select two-output branch",
+    "exact expected d0/d1 module/IP/part and output mapping",
+    "two real no-hit records, two successful syntheses, both produced checkpoints and natural worker exit; module association remains exact",
+    "complete unique source/archive manifest; current actual worker XDC read identities retained; output/main-XDC candidate identities separate from actual main-design read proof",
+    "each produced/result pair is nonempty, current hash/size equal and correctly associated; no foreign/stale/swapped artifacts",
+    "old readwrite/cache-present branch keeps original strict third-copy validation; no fake cache receipt",
+    "do not rerun successful PHY/OPT or mutate current142 frozen inputs"
+  ],
+  "suggested_affected_negative_tests": [
+    "unknown/readwrite mode cannot use disabled-cache branch",
+    "module/output ownership mismatch or foreign source",
+    "missing nohit/synthesis success/exit",
+    "produced-output byte mismatch",
+    "script/log configuration mismatch",
+    "archive/actual XDC/input tamper"
+  ],
+  "pending": "post-terminal implementation of narrow branch and actual qualification; main OPT/dependent debug and physical results not concluded"
+}

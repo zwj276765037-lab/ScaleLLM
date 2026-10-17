@@ -1,0 +1,34 @@
+# E006：执行状态
+
+execution_state: running
+verdict: unassessed
+
+当前R005/AT002_owner_helper_repaired_directed_cut于北京时间2026-10-17 09:34:23真实启动。supervisor1327816/start931341905、native1327925/start931342078及唯一EDA锁已核；10份归档源与固定a660b244包一致，144生产冻结通过。当前恢复检查点，尚无原生schema/cut/时序或候选选择。[启动核验](runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/native_start_verified.json)、[输入绑定](runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/input_bindings.json)。
+
+原AT001自然失败native1/supervisor1，无stop/cleanup/残留。清理inspector时漏了readonly_resolve共享site导出调用的owner纯辅助过程；旧局部mock替代owner，未覆盖完整入口。新包恢复原R004函数，完整实际source且不stub helper的正负对照已核。[根因与审核订正](../../../agent/A007/R005_owner_integration_review_20261017/root_cause_and_review_correction.json)、[补充审核](../../../agent/A007/R005_owner_integration_review_20261017/review_addendum.md)。该失败未进入class/role/cut，不反驳新方法或候选。
+
+原R001及R004用户停止例外均已执行，真实收尾保持；不扩展到后续正常进程。E008最终1d612c65入口已独立审核，原物理流程和正式验收保持；候选未选，implementation未启动。真实候选证据和R005终态闭合后，连续执行已授权完整implementation，无新用户批准门。
+
+单EDA、CPU0–7/nice5/max8及原资源保护保持；正常进程无墙钟/无输出强停。无bitstream、板卡、GPU、PPL/ACC，算法/数值/接口/时钟保持。
+
+
+---
+Published: 2026-10-17T01:36:31.443971+00:00
+Publication: P8cc85d1e2ad1496baedc7bd7c17e6f54
+Execution state: running
+Research verdict: unassessed
+Applicability: R004资源/成员闭合并真实受控收尾；R005 AT001因owner集成缺口自然失败、未执行原生class/role/cut，闭合通过。修复包a660经完整入口正负对照，AT002真实启动已核；候选选择和implementation未完成。
+Evidence:
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/candidate_C01_membership_resources_closed_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/candidate_C02_membership_resources_closed_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/terminal_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/authorized_controlled_stop_signal_R005_switch.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT001_candidate_directed_cut/started.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT001_candidate_directed_cut/native_start_verified.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT001_candidate_directed_cut/input_bindings.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/run.md
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT001_candidate_directed_cut/status.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT001_candidate_directed_cut/terminal_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/started.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/native_start_verified.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/input_bindings.json

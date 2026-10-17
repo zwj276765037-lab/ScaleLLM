@@ -1,0 +1,117 @@
+{
+  "recorded_utc": "2026-10-16T17:36:31.782534+00:00",
+  "recording_scope": "Retrospective transcription of already-observed tool calls; no verification command repeated.",
+  "execution_state": "CPU_checks_completed_and_source_prepared",
+  "native_execution_state": "NOT_STARTED",
+  "steps": [
+    {
+      "started_utc": null,
+      "ended_utc": null,
+      "time_precision": "Per-command start/end UTC was not recorded; not reconstructed from file timestamps.",
+      "EDA_executed": false,
+      "tool": "functions.exec -> tools.exec_command",
+      "command": "python3 agent/A006/slr2_input_locality/validate_cpu.py",
+      "yielded_exec_session_id": 71930,
+      "exit_code": 0,
+      "completion_observed_via": "tools.write_stdin session 71930",
+      "result_receipt": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/bounded_CPU_validation.json",
+        "bytes": 2729,
+        "sha256": "79cb55be0268d2e5e9b05f36fb8098b614d04dc3245ad08fb960f0aa6e7269ae"
+      },
+      "actual_scope": "One stream parse of already-closed 2204250 primitive export; literal selector, raw count 77360, P count 77182, 64 DSP internal, 114 constants, two input index sets, 59 Python/Tcl cases; receipt originally labelled raw selector as semantic locally.",
+      "ordering_bracket": {
+        "after_actual_observation_utc": "2026-10-16T17:19:54.576911+00:00",
+        "before_actual_observation_utc": "2026-10-16T17:33:16.318784+00:00",
+        "meaning": "Conservative order bounds from actual E006 inspect outputs, not measured command timestamps."
+      }
+    },
+    {
+      "started_utc": null,
+      "ended_utc": null,
+      "time_precision": "Per-command start/end UTC was not recorded; not reconstructed from file timestamps.",
+      "EDA_executed": false,
+      "tool": "functions.exec -> tools.exec_command",
+      "command_kind": "inline Python, PYTHONDONTWRITEBYTECODE=1; not rerun for this record",
+      "function_call": "evidence_adapter.successful_pre_place_parent(source, Path(command[\"synthesis\"][\"project\"]), command[\"synthesis\"], ROOT/\"agent/A006/slr2_input_locality\", _write=False)",
+      "exit_code": 1,
+      "error": "FileNotFoundError: original E005 source has no standalone opt_command_result.txt",
+      "actual_scope": "CPU-only attempted parent adapter validation; no source/attempt writes by the called function.",
+      "resolution": "Use the existing verified original native project log-derived OPT execution proof, plus actual debug_materialization command receipt; no synthetic OPT receipt."
+    },
+    {
+      "started_utc": null,
+      "ended_utc": null,
+      "time_precision": "Per-command start/end UTC was not recorded; not reconstructed from file timestamps.",
+      "EDA_executed": false,
+      "tool": "functions.exec -> tools.exec_command",
+      "command_kind": "inline Python, PYTHONDONTWRITEBYTECODE=1; not rerun for this record",
+      "function_call": "evidence_adapter.successful_pre_place_parent(source, Path(command[\"synthesis\"][\"project\"]), command[\"synthesis\"], ROOT/\"agent/A006/slr2_input_locality\", _write=False)",
+      "exit_code": 0,
+      "measured_function_elapsed_seconds": 9.252684308215976,
+      "result_receipt": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/parent_CPU_validation.json",
+        "bytes": 961,
+        "sha256": "ffef79a2b4451b473d2cf18b953f332d3deb484f5b4a4dbc5896af228fdd5937"
+      },
+      "actual_scope": "True completed-successful E005 pre-place parent, exact 396068466-byte debug DCP, 175 constraint sources, 162 registered XDC; adapter revision d23ec954… in receipt predates later RAW/S/P ledger label changes.",
+      "ordering_bracket": {
+        "after_actual_observation_utc": "2026-10-16T17:27:36.408994+00:00",
+        "before_actual_observation_utc": "2026-10-16T17:33:16.318784+00:00",
+        "meaning": "Conservative order bounds, not start/end measurement."
+      }
+    },
+    {
+      "started_utc": null,
+      "ended_utc": null,
+      "time_precision": "Per-command start/end UTC was not recorded; not reconstructed from file timestamps.",
+      "EDA_executed": false,
+      "tool": "functions.exec -> tools.exec_command",
+      "command": "python3 agent/A006/slr2_input_locality/validate_cpu.py --terminology-bridge",
+      "exit_code": 0,
+      "result_receipt": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/bounded_CPU_validation_current.json",
+        "bytes": 2217,
+        "sha256": "358a541ea8e724ac708f76bdf6884bfe83371930ecb8e59765c29a641ecacb9c"
+      },
+      "actual_scope": "Compare unchanged Python selector AST hashes and Tcl selector proc-body hash; derive RAW/S/P=77360/77246/77182 from the prior real CPU receipt. Did not rerun full export or 59 cases."
+    },
+    {
+      "started_utc": null,
+      "ended_utc": null,
+      "time_precision": "Per-command start/end UTC was not recorded; not reconstructed from file timestamps.",
+      "EDA_executed": false,
+      "tool": "functions.exec -> tools.exec_command",
+      "command": "python3 agent/A006/slr2_input_locality/prepare.py",
+      "exit_code": 0,
+      "result_receipt": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/prepared_manifest.json",
+        "bytes": 8340,
+        "sha256": "807c1c67fae277df08147485e420c3e92d69aa711f26eb0df974062837fa1ccd"
+      },
+      "actual_scope": "Final source generation, Python AST parse, Tcl info complete; 6 agent-owned sources/16 reused sources. Earlier preparation iterations are not represented as new EDA runs."
+    },
+    {
+      "started_utc": null,
+      "ended_utc": null,
+      "time_precision": "Per-command start/end UTC was not recorded; not reconstructed from file timestamps.",
+      "EDA_executed": false,
+      "tool": "functions.exec -> tools.exec_command",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 agent/A006/slr2_input_locality/run_candidate.py --help",
+      "exit_code": 0,
+      "actual_scope": "Argument help only; exited before dependency/lock/attempt creation or EDA."
+    }
+  ],
+  "final_source_closure_utc": "2026-10-16T17:34:05.284292+00:00",
+  "final_source_closure_scope": "Actual prepared_entry_delivery JSON creation UTC; not command start/end or native start.",
+  "source_delivery": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/prepared_entry_delivery.json",
+    "bytes": 5839,
+    "sha256": "cad3b93ce1a44bac7e104650429e933f928b3e85925e9d4852184daebda0863a"
+  },
+  "missing_fields": [
+    "Per-command start/end UTC not recorded",
+    "No native command/start/end exists for E007"
+  ],
+  "new_run_created_by_this_record": false
+}

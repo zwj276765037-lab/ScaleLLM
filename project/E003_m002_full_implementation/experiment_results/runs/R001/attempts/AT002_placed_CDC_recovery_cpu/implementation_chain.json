@@ -1,0 +1,93 @@
+{
+  "started_utc": "2026-10-15T15:34:59.940140+00:00",
+  "execution_state": "failed",
+  "supervision_profile": "m002_no_wall_continuation",
+  "wall_clock_stop_disabled": true,
+  "driver": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/continue_full_implementation.py",
+    "bytes": 3086,
+    "sha256": "977ebf7e733d094d9261e459b5de6ef4de847e8178905555a40b7e7107ad1f63"
+  },
+  "stages": [
+    {
+      "stage": "place",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m002_no_wall.py",
+        "place",
+        "--attempt",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt",
+        "--project",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E002_R001_AT001_fresh",
+        "--report",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E003_R002_AT002_closed_place_POST_physopt",
+        "--synth-report",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R001_AT002_fresh_synth",
+        "--synth-attempt",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/attempts/AT002_fresh_synth",
+        "--execution-profile",
+        "m002_full_implementation",
+        "--physical-report",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E003_R002_AT001_full_pre_place_restore_place_physopt"
+      ],
+      "started_utc": "2026-10-15T15:34:59.940547+00:00",
+      "attempt": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt",
+      "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E003_R002_AT002_closed_place_POST_physopt",
+      "supervisor_pid": 3866162,
+      "exit_code": 0,
+      "ended_utc": "2026-10-15T17:16:53.398902+00:00",
+      "status": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/status.json",
+        "bytes": 3646,
+        "sha256": "4e3b13c832cc07d3a4e03c40c016f61afacbdffce07349d269ac59b1791a2615"
+      }
+    },
+    {
+      "stage": "route",
+      "argv": [
+        "/usr/bin/python3",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m002_no_wall.py",
+        "route",
+        "--attempt",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route",
+        "--project",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E002_R001_AT001_fresh",
+        "--report",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E003_R003_AT001_full_route",
+        "--synth-report",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R001_AT002_fresh_synth",
+        "--synth-attempt",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/attempts/AT002_fresh_synth",
+        "--execution-profile",
+        "m002_full_implementation",
+        "--place-report",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E003_R002_AT002_closed_place_POST_physopt"
+      ],
+      "started_utc": "2026-10-15T17:17:27.644906+00:00",
+      "attempt": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route",
+      "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E003_R003_AT001_full_route",
+      "supervisor_pid": 3964207,
+      "exit_code": 1,
+      "ended_utc": "2026-10-15T22:45:51.715870+00:00",
+      "status": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/status.json",
+        "bytes": 3338,
+        "sha256": "dcd1eb2c45ec1269c9d1fd653b792f045900e6bb82e442f3ffdc39336ed48430"
+      }
+    }
+  ],
+  "qualified_physopt_parent": {
+    "evidence": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E003_R002_AT002_closed_place_POST_physopt/diagnostic_evidence.json",
+      "bytes": 13826,
+      "sha256": "66e3565a3f570ed7f48ab6e8a37cf9fcc6e7be375f89edcde17f502bd20a12dc"
+    },
+    "checkpoint": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E003_R002_AT002_closed_place_POST_physopt/physopt.dcp",
+      "bytes": 568389035,
+      "sha256": "c6944eeeafb1d58776f2f3b85ecec61ddd283ff0b367d53b997e2c091696ff91"
+    }
+  },
+  "exit_code": 1,
+  "ended_utc": "2026-10-15T22:45:51.717252+00:00"
+}

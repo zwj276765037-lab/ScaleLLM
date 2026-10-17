@@ -1,0 +1,64 @@
+{
+  "CPU_only_no_EDA": true,
+  "cases": [
+    {
+      "case": "actual source and48/12/10 associations",
+      "expected_rejection": false,
+      "PASS": true
+    },
+    {
+      "case": "missing phase rejected",
+      "expected_rejection": true,
+      "PASS": true
+    },
+    {
+      "case": "missing report row rejected",
+      "expected_rejection": true,
+      "PASS": true
+    },
+    {
+      "case": "duplicate unique region rejected",
+      "expected_rejection": true,
+      "PASS": true
+    },
+    {
+      "case": "foreign source path rejected",
+      "expected_rejection": true,
+      "PASS": true
+    },
+    {
+      "case": "changed targets hash rejected",
+      "expected_rejection": true,
+      "PASS": true
+    },
+    {
+      "case": "peak maximum changed rejected",
+      "expected_rejection": true,
+      "PASS": true
+    },
+    {
+      "case": "peak wrong region rejected",
+      "expected_rejection": true,
+      "PASS": true
+    },
+    {
+      "case": "direction coverage missing rejected",
+      "expected_rejection": true,
+      "PASS": true
+    }
+  ],
+  "guard_functions_AST_identical_to_reviewed_4cfa": {
+    "prior_terminal_kind": true,
+    "prior_registered_identities": true,
+    "require_registered_closed": true,
+    "prior_attempts_closed": true,
+    "closed_status": true,
+    "still_live": true,
+    "freeze_check": true
+  },
+  "Tcl_structure_and_bounds_stdout": "STRUCTURE_COMPLETE readonly_physical_supplement.tcl\nSTRUCTURE_COMPLETE readonly_two_phase_driver.tcl\nSTRUCTURE_COMPLETE targets.tcl\nBOUNDED_TARGETS place rows=48 regions=10\nBOUNDED_TARGETS physopt rows=48 regions=10\n",
+  "Tcl_structure_stderr": "",
+  "Tcl_exit": 0,
+  "new_wrapper_sha256": "a4178f45767acc229b972d62c3826f651ea4ff382ee5115c65832cb9e0880ca0",
+  "producer_sha256": "3a992bd0fbeffff7d78073586f73567da97750f53d3707913557a3880571151f"
+}

@@ -1,0 +1,103 @@
+
+Description:
+
+  Takes a list of objects, and returns a reduced list of objects that match
+  the specified filter search pattern.
+
+Arguments:
+
+  -regexp - (Optional) Specifies that the search <patterns> are written as
+  regular expressions. Both search <patterns> and -filter expressions must be
+  written as regular expressions when this argument is used. AMD regular
+  expression Tcl commands are always anchored to the start of the search
+  string. You can add ".*" to the beginning or end of a search string to
+  widen the search to include a substring. See
+  http://perldoc.perl.org/perlre.html for help with regular expression
+  syntax.
+
+  Note: The Tcl built-in command regexp is not anchored, and works as a
+  standard Tcl command. For more information refer to
+  http://www.tcl.tk/man/tcl8.5/TclCmd/regexp.htm.
+
+  -nocase - (Optional) Perform case-insensitive matching when a pattern has
+  been specified. This argument applies to the use of -regexp only.
+
+  -quiet - (Optional) Execute the command quietly, returning no messages from
+  the command. The command also returns TCL_OK regardless of any errors
+  encountered during execution.
+
+  Note: Any errors encountered on the command-line, while launching the
+  command, will be returned. Only errors occurring inside the command will be
+  trapped.
+
+  -verbose - (Optional) Temporarily override any message limits and return
+  all messages from this command.
+
+  Note: Message limits can be defined with the set_msg_config command.
+
+  <objects> - (Optional) A list of objects that should be filtered to reduce
+  the set to the desired results. The list of objects can be obtained by
+  using one of the many get_* commands such as get_parts.
+
+  <filter> - (Optional) The expression to use for filtering. The specified
+  pattern filters the list of objects returned based on property values on
+  the objects. You can find out which properties are on an object with the
+  report_property or list_property command. Any property/value pair can be
+  used as a filter. For example, in the case of the "part" object, "DEVICE",
+  "FAMILY" and "SPEED" are some of the properties that can be used to filter
+  results.
+
+  The filter search pattern should be quoted to avoid having to escape
+  special characters that may be found in net, pin, or cell names, or other
+  properties. String matching is case-sensitive and is always anchored to the
+  start and to the end of the search string. The wildcard "*" character can
+  be used at the beginning or at the end of a search string to widen the
+  search to include a substring of the property value.
+
+  Note: The filter returns an object if a specified property exists on the
+  object, and the specified pattern matches the property value on the object.
+  In the case of the "*" wildcard character, this will match a property with
+  a defined value of "".
+
+  For string comparison, the specific operators that can be used in filter
+  expressions are "equal" (==), "not-equal" (!=), "match" (=~), and
+  "not-match" (!~). Numeric comparison operators <, >, <=, and >= can also be
+  used. Multiple filter expressions can be joined by AND and OR (&& and ||).
+  The following gets input pins that do NOT contain the "RESET" substring
+  within their name:
+
+    get_pins * -filter {DIRECTION == IN && NAME !~ "*RESET*"} 
+    
+
+  Boolean (bool) type properties can be directly evaluated in filter
+  expressions as true or not true:
+
+    -filter {IS_PRIMITIVE && !IS_LOC_FIXED} 
+    
+
+Examples:
+
+  The following example returns a list of parts filtered for the specified
+  speed grade:
+
+    filter [get_parts] {speed == -3} 
+    
+
+  The following example filters parts based according to speed grade -3 OR
+  speed grade -2. All parts matching either speed grade will be returned.
+
+    filter [get_parts] {speed == -3  ||  speed == -2} 
+    
+
+  The following example uses regular expression and returns a list of VStatus
+  ports in the design, with zero or more wildcards, and the numbers 0 to 9
+  appearing one or more times within square brackets:
+
+    filter -regexp [get_ports] {NAME =~ VStatus.*\[[0-9]+\]} 
+    
+
+See Also:
+
+   *  get_parts
+
+   *  get_ports

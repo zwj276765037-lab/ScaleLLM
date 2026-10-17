@@ -1,0 +1,26 @@
+{
+  "source": "# E005：优化依据\n\n用户明确授权开始优化与新implementation。依据[E004冻结方案](../../E004_m002_routability_optimization_analysis/experiment_results/optimization_plan.md)及[SM009合同](../../../mission/M002_ddr_separation_and_timing_recovery/optimized_implementation_contract_2026-10-16.md)，首选Attention input48局部边界、MLP32同拍output CE，place SSI_SpreadSLLs、physopt/router Default。算法/数值/接口/时钟保持。E003自然route失败是历史基线。\n",
+  "results": "# E005：新综合与OPT完成，物理入口修复接续中\n\nAttention AT001与生产Down/Gate AT003局部功能通过：原版逐拍与独立oracle均PASS，3个生产RTL保持冻结；[功能事实](runs/R001/rtl_functional_final_facts.json)。179项入口检查通过，新create成功。新综合原生自然0，真实80个局部控制逐项符合设计，LUT841576→828763（−12813，同Synthesized阶段）。恢复closure/342源/45DCP已绑定，164项补充CPU通过，A007集中独立复核完成；原综合监督/leader wait UNKNOWN及2097.384826秒观测缺口保留。[综合阶段审核](runs/R005/synthesis_stage_review_facts.json)。\n\nR004/AT001于02:46:43→04:15:48 UTC真实执行新物理入口，INIT完整POST完成，原生opt_design成功且0 Errors，生成新opt.dcp。之后POST因 `native project mode has no qualified explicit pre-place debug admission` 自然失败，native/监督均1、stop_reason=null、无残留。没有执行place/physopt/route；该次失败与OPT成功分开记录。[原终态](runs/R004/attempts/AT001_fresh_place_physopt/status.json)。\n\n新OPT检查点218327530字节，SHA256 `af634c358eecf869c83cb45c0755d0164b39d5a9f5aed316bcaa52cd3c02919e`，器件/top/板卡/工具身份吻合。[检查点观察](runs/R004/attempts/AT001_fresh_place_physopt/new_OPT_checkpoint_observation.json)。OPT资源：LUT815443（68.97%）、CLB Registers1021366（43.20%）、BRAM941、URAM752、DSP5451；时序WNS+0.904ns/TNS0，WHS−0.814ns/THS−48990.676ns，WPWS−0.012ns，FAIL且仅布线前估计。[资源与时序事实](runs/R004/attempts/AT001_fresh_place_physopt/completed_OPT_timing_resources_observation.json)。新OPT内部缺时钟及未约束端点均0，critical CDC8；当前图完整分类及正式安全仍待后续核验。\n\n两PHY、调试核本次实际生成与来源已保全。XPM两条18-401告警与旧同阶段端点/出处一致，合法端点实际覆盖仍按新图检查。PHY worker实际禁用缓存、produced/result成对一致；主日志同时有cache消息，但未观测到第三磁盘cache副本。首次模板cache_writes误述已追加更正并保留原证据，不作为实测。当前工具正常自然结束，没有墙钟/无输出强停，峰值树RSS约32.68GiB；142项活动输入在原运行中保持冻结。\n\nA006按已授权普通修复安装窄来源入口并回归，从本次新OPT恢复显式debug和布局前检查，显式采用SSI_SpreadSLLs，后续Default独立physopt及完整route；不重复成功综合/INIT/OPT。恢复草稿验证不冒充已安装入口或实际物理通过，原failed POST不改写为成功父点。A007继续集中审核新来源与当前图。合法布通、物理时序与CDC/reset安全尚未通过。\n",
+  "status": "# E005：执行状态\n\nexecution_state: running\nverdict: unassessed\n\n局部功能、新create、新综合及原生OPT成功。R004/AT001整次尝试于2026-10-16 04:15:48 UTC自然返回1，原因是fresh project路径不满足既有显式布局前debug入口要求；无强停、无残留，新OPT检查点保留。place/physopt/route尚未执行。\n\nA006正在当前终态后安装已准备的窄来源恢复入口并运行受影响CPU回归；随后直接从新OPT接续，不重综合/INIT/OPT，不增加用户审批。包括新fresh OPT真实日志/DCP/准确guard失败绑定、PHY无第三cache的实际来源，以及恢复时显式SSI_SpreadSLLs；安全/时钟/约束判据不放松。A007集中独立复核，主控整合。\n\n当前无活动EDA；下一次真实启动另开AT并冻结新输入。保持单EDA与原资源保护，正常进程无墙钟/无输出强停。原综合监督UNKNOWN和观测缺口保持；无bitstream/板卡/GPU/PPL/ACC。E005仍在执行，不因单次入口失败标作方法失败或整体完成。\n",
+  "execution_state": "running",
+  "verdict": "unassessed",
+  "applicability": "新综合80控制及原生OPT成功；R004/AT001因显式debug入口缺失自然失败，正在从新OPT修复接续；尚无place/route完成结果",
+  "evidence": [
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R001/rtl_functional_final_facts.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R001/mlp_functional_facts.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R002/entry_preparation_facts.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT006_fresh_create/status.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/started.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/supervision_handover_20261016T021717Z/started.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/supervision_handover_20261016T021717Z/status.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R005/synthesis_structure_preterminal_review_evidence.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R005/synthesis_utilization_preterminal_review_evidence.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/synth_recovery_completion_facts.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/detached_launch_handoff.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R005/synthesis_stage_review_facts.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R005/physical_startup_review_evidence.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/status.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/new_OPT_checkpoint_observation.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/completed_OPT_timing_resources_observation.json"
+  ]
+}

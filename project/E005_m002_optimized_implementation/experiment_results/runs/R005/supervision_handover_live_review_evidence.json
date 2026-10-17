@@ -1,0 +1,688 @@
+{
+  "reviewed_utc": "2026-10-16T02:20:18.901072+00:00",
+  "reviewer": "A007",
+  "review_scope": "Read-only actual same-process supervision handover and bounded current synthesis identities. No EDA/test/process-control or production writes.",
+  "identities": [
+    {
+      "path": "agent/A006/adopt_E005_synth_guard.py",
+      "bytes": 5568,
+      "sha256": "650861d2487b3e03bb3b60097068d456fae5a672c2576c329562cbfbcdb93a1a"
+    },
+    {
+      "path": "project/hardware/vivado/scripts/run_m002_no_wall.py",
+      "bytes": 13257,
+      "sha256": "147d73052d6a110b4261d7110ce3d878377fa5b676d18235a251fee945edca8e"
+    },
+    {
+      "path": "project/hardware/vivado/scripts/run_vcu118_board.sh",
+      "bytes": 7499,
+      "sha256": "b5cc6fa2bd06e45fc53be50e8a2b7ea4cf7f7d1319de7733617429d34e2673a4"
+    },
+    {
+      "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/supervision_handover_20261016T021717Z/started.json",
+      "bytes": 1222,
+      "sha256": "8974c2b5d316417f43c893261556ef033f276792f30b628f1e65e4296e1751a4"
+    },
+    {
+      "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/supervision_handover_20261016T021717Z/original_evidence_snapshot.json",
+      "bytes": 3354,
+      "sha256": "79449990b0069c0e21283a2b82cc44324a3aa3934086350ce79fc4f2073adf69"
+    },
+    {
+      "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/started.json",
+      "bytes": 3017,
+      "sha256": "dddb9b533840a06707b35e609ee24f64cebab2f4e19fda48382596892a4663bf"
+    },
+    {
+      "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/command.json",
+      "bytes": 2938,
+      "sha256": "6e2231ee895133e2ca24dce4f31f4cc2d7efe4c7dd6c53a1fe153882c84d6939"
+    },
+    {
+      "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/resources.jsonl",
+      "bytes": 1503232,
+      "sha256": "29ce8043a28a9c30a309b041492358240ad012f2ccb97e16303a98ed9e1d5d61"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E005_R003_AT001_fresh_synth/inputs.sha256",
+      "bytes": 87724,
+      "sha256": "f889d3d953c1a23c551f85111928a613c3195cb794c05983fc56a7396d0a4db5"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E005_R003_AT001_fresh_synth/build_identity.txt",
+      "bytes": 207003,
+      "sha256": "6880434eac78be5fdf41d2a1d2385f0634647f18ef26d93003ef5b4ca63a7afc"
+    }
+  ],
+  "live_process_snapshot": [
+    {
+      "pid": 156037,
+      "present": false
+    },
+    {
+      "pid": 156038,
+      "present": true,
+      "start_ticks": 922452770,
+      "state": "S",
+      "ppid": 1,
+      "pgrp": 156038,
+      "cpu_ticks": 0,
+      "rss_bytes": 3256320,
+      "cpu_affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "nice": 5,
+      "command": "bash /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_vcu118_board.sh synth "
+    },
+    {
+      "pid": 156138,
+      "present": true,
+      "start_ticks": 922452788,
+      "state": "S",
+      "ppid": 156065,
+      "pgrp": 156038,
+      "cpu_ticks": 250357,
+      "rss_bytes": 21850476544,
+      "cpu_affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "nice": 5,
+      "command": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/unwrapped/lnx64.o/vivado -mode batch -notrace -source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/build_vcu118_board.tcl -log /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R003_AT001_fresh_synth/vivado.log -journal /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R003_AT001_fresh_synth/vivado.jou "
+    },
+    {
+      "pid": 243730,
+      "present": true,
+      "start_ticks": 922959750,
+      "state": "S",
+      "ppid": 1,
+      "pgrp": 243730,
+      "cpu_ticks": 254,
+      "rss_bytes": 20484096,
+      "cpu_affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "nice": 5,
+      "command": "/usr/bin/python3 /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/adopt_E005_synth_guard.py /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/supervision_handover_20261016T021717Z "
+    }
+  ],
+  "actual_lock": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/.m002_eda.lock",
+    "fdinfo": "pos:\t0\nflags:\t02102002\nmnt_id:\t32\nino:\t169247080\nlock:\t1: FLOCK  ADVISORY  WRITE 243730 103:02:169247080 0 EOF\n"
+  },
+  "new_resource_log_observed_prefix": {
+    "bytes": 24552,
+    "sha256": "00c0cac95ee7c7fb57d0a9161fbe1e2cb0098a5862686667ca8b3113fa70ecc7",
+    "latest_complete_sample": {
+      "utc": "2026-10-16T02:20:15.483869+00:00",
+      "rss_bytes": 21856288768,
+      "mem_available_bytes": 437943386112,
+      "disk_free_bytes": 482387808256,
+      "processes": {
+        "156038": {
+          "ppid": 1,
+          "pgrp": 156038,
+          "start_ticks": 922452770,
+          "rss_bytes": 3256320,
+          "cpu_ticks": 0,
+          "nice": 5
+        },
+        "156046": {
+          "ppid": 156038,
+          "pgrp": 156038,
+          "start_ticks": 922452773,
+          "rss_bytes": 3264512,
+          "cpu_ticks": 0,
+          "nice": 5
+        },
+        "156065": {
+          "ppid": 156046,
+          "pgrp": 156038,
+          "start_ticks": 922452777,
+          "rss_bytes": 3223552,
+          "cpu_ticks": 2,
+          "nice": 5
+        },
+        "156138": {
+          "ppid": 156065,
+          "pgrp": 156038,
+          "start_ticks": 922452788,
+          "rss_bytes": 21846544384,
+          "cpu_ticks": 250018,
+          "nice": 5
+        }
+      },
+      "live_pids": [
+        156038,
+        156046,
+        156065,
+        156138
+      ]
+    }
+  },
+  "old_records_match_snapshot": true,
+  "observed_sample_gap_seconds": 2097.384826,
+  "gap_qualification": "Interval from last original sample to handover start is unobserved; exact old supervisor disappearance time and interval resource compliance are not proven.",
+  "original_status_exists": false,
+  "original_supervisor_exit": "UNKNOWN; no fabricated wait receipt",
+  "handover_verdict": "Actual guard with same PID/start native tree, same exclusive EDA lock and configured guards confirmed; native stage still running; later original wrapper launcher status may prove its native child return, distinct from unknown lost supervisor wait.",
+  "source_manifest": {
+    "rows": 342,
+    "unique_paths": 342,
+    "all_current_hashes_match": true,
+    "three_optimized_RTL_same_as_functional": true
+  },
+  "native_runs": [
+    {
+      "run": "scalellm_vcu118_f05_bd_clk_core_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_clk_core_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_clk_core_0_synth_1/scalellm_vcu118_f05_bd_clk_core_0.dcp",
+          "bytes": 12497,
+          "mtime_ns": 1792112613247611174
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_core_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_core_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_core_0_synth_1/scalellm_vcu118_f05_bd_core_0.dcp",
+          "bytes": 176782822,
+          "mtime_ns": 1792114983845310437
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_core_gate_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_core_gate_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_core_gate_0_synth_1/scalellm_vcu118_f05_bd_core_gate_0.dcp",
+          "bytes": 16114,
+          "mtime_ns": 1792115164897382524
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_ctrl_smc_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_ctrl_smc_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_ctrl_smc_0_synth_1/scalellm_vcu118_f05_bd_ctrl_smc_0.dcp",
+          "bytes": 439397,
+          "mtime_ns": 1792115418846844069
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_d0_gate_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_d0_gate_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_d0_gate_0_synth_1/scalellm_vcu118_f05_bd_d0_gate_0.dcp",
+          "bytes": 15616,
+          "mtime_ns": 1792115210744500368
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_d0_mig_slice_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_d0_mig_slice_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_d0_mig_slice_0_synth_1/scalellm_vcu118_f05_bd_d0_mig_slice_0.dcp",
+          "bytes": 1050158,
+          "mtime_ns": 1792116127215142335
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_d0_smc_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_d0_smc_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_d0_smc_0_synth_1/scalellm_vcu118_f05_bd_d0_smc_0.dcp",
+          "bytes": 6029787,
+          "mtime_ns": 1792115808275474909
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_d1_gate_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_d1_gate_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_d1_gate_0_synth_1/scalellm_vcu118_f05_bd_d1_gate_0.dcp",
+          "bytes": 15625,
+          "mtime_ns": 1792115306625395809
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_d1_mig_slice_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_d1_mig_slice_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_d1_mig_slice_0_synth_1/scalellm_vcu118_f05_bd_d1_mig_slice_0.dcp",
+          "bytes": 1050157,
+          "mtime_ns": 1792116196408127423
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_d1_smc_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_d1_smc_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_d1_smc_0_synth_1/scalellm_vcu118_f05_bd_d1_smc_0.dcp",
+          "bytes": 6065436,
+          "mtime_ns": 1792116052928323636
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_ddr0_and_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_ddr0_and_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_ddr0_and_0_synth_1/scalellm_vcu118_f05_bd_ddr0_and_0.dcp",
+          "bytes": 9717,
+          "mtime_ns": 1792112967273444089
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_ddr0_not_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_ddr0_not_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_ddr0_not_0_synth_1/scalellm_vcu118_f05_bd_ddr0_not_0.dcp",
+          "bytes": 9689,
+          "mtime_ns": 1792112928604345646
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_ddr1_and_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_ddr1_and_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_ddr1_and_0_synth_1/scalellm_vcu118_f05_bd_ddr1_and_0.dcp",
+          "bytes": 9733,
+          "mtime_ns": 1792113044913688608
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_ddr1_not_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_ddr1_not_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_ddr1_not_0_synth_1/scalellm_vcu118_f05_bd_ddr1_not_0.dcp",
+          "bytes": 9703,
+          "mtime_ns": 1792113006020554834
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_ddr4_0_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_ddr4_0_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_ddr4_0_0_synth_1/scalellm_vcu118_f05_bd_ddr4_0_0.dcp",
+          "bytes": 5929780,
+          "mtime_ns": 1792112559104072259
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_ddr4_1_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_ddr4_1_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_ddr4_1_0_synth_1/scalellm_vcu118_f05_bd_ddr4_1_0.dcp",
+          "bytes": 5929356,
+          "mtime_ns": 1792112884696420994
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_host_split_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_host_split_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_host_split_0_synth_1/scalellm_vcu118_f05_bd_host_split_0.dcp",
+          "bytes": 4744197,
+          "mtime_ns": 1792115569453279612
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_pcie_refclk_buf_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_pcie_refclk_buf_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_pcie_refclk_buf_0_synth_1/scalellm_vcu118_f05_bd_pcie_refclk_buf_0.dcp",
+          "bytes": 13743,
+          "mtime_ns": 1792112337557132293
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_rst_core_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_rst_core_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_rst_core_0_synth_1/scalellm_vcu118_f05_bd_rst_core_0.dcp",
+          "bytes": 27404,
+          "mtime_ns": 1792112662657403530
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_rst_ddr0_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_rst_ddr0_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_rst_ddr0_0_synth_1/scalellm_vcu118_f05_bd_rst_ddr0_0.dcp",
+          "bytes": 27438,
+          "mtime_ns": 1792115260358206486
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_rst_ddr1_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_rst_ddr1_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_rst_ddr1_0_synth_1/scalellm_vcu118_f05_bd_rst_ddr1_0.dcp",
+          "bytes": 27448,
+          "mtime_ns": 1792115356269112725
+        }
+      ]
+    },
+    {
+      "run": "scalellm_vcu118_f05_bd_xdma_0_0_synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_xdma_0_0_synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_xdma_0_0_synth_1/scalellm_vcu118_f05_bd_xdma_0_0.dcp",
+          "bytes": 7959221,
+          "mtime_ns": 1792112290470706323
+        }
+      ]
+    },
+    {
+      "run": "synth_1",
+      "end_identity": {
+        "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/synth_1/.vivado.end.rst",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "error_receipt_exists": false,
+      "DCP_stat_only": [
+        {
+          "path": "project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/synth_1/scalellm_vcu118_f05_bd_wrapper.dcp",
+          "bytes": 408267,
+          "mtime_ns": 1792116266529239993
+        }
+      ]
+    }
+  ],
+  "consumed_records": [
+    {
+      "line": 805,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_clk_core_0/scalellm_vcu118_f05_bd_clk_core_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/clk_core"
+    },
+    {
+      "line": 806,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_core_0/scalellm_vcu118_f05_bd_core_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/core"
+    },
+    {
+      "line": 807,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_core_gate_0/scalellm_vcu118_f05_bd_core_gate_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/core_gate"
+    },
+    {
+      "line": 808,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_ctrl_smc_0/scalellm_vcu118_f05_bd_ctrl_smc_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/ctrl_smc"
+    },
+    {
+      "line": 809,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_d0_gate_0/scalellm_vcu118_f05_bd_d0_gate_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/d0_gate"
+    },
+    {
+      "line": 810,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_d0_mig_slice_0/scalellm_vcu118_f05_bd_d0_mig_slice_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/d0_mig_slice"
+    },
+    {
+      "line": 811,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_d0_smc_0/scalellm_vcu118_f05_bd_d0_smc_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/d0_smc"
+    },
+    {
+      "line": 812,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_d1_gate_0/scalellm_vcu118_f05_bd_d1_gate_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/d1_gate"
+    },
+    {
+      "line": 813,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_d1_mig_slice_0/scalellm_vcu118_f05_bd_d1_mig_slice_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/d1_mig_slice"
+    },
+    {
+      "line": 814,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_d1_smc_0/scalellm_vcu118_f05_bd_d1_smc_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/d1_smc"
+    },
+    {
+      "line": 815,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_ddr0_and_0/scalellm_vcu118_f05_bd_ddr0_and_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/ddr0_and"
+    },
+    {
+      "line": 816,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_ddr0_not_0/scalellm_vcu118_f05_bd_ddr0_not_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/ddr0_not"
+    },
+    {
+      "line": 817,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_ddr1_and_0/scalellm_vcu118_f05_bd_ddr1_and_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/ddr1_and"
+    },
+    {
+      "line": 818,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_ddr1_not_0/scalellm_vcu118_f05_bd_ddr1_not_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/ddr1_not"
+    },
+    {
+      "line": 819,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_ddr4_0_0/scalellm_vcu118_f05_bd_ddr4_0_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/ddr4_0"
+    },
+    {
+      "line": 820,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_ddr4_1_0/scalellm_vcu118_f05_bd_ddr4_1_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/ddr4_1"
+    },
+    {
+      "line": 821,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_host_split_0/scalellm_vcu118_f05_bd_host_split_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/host_split"
+    },
+    {
+      "line": 822,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_pcie_refclk_buf_0/scalellm_vcu118_f05_bd_pcie_refclk_buf_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/pcie_refclk_buf"
+    },
+    {
+      "line": 823,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_rst_core_0/scalellm_vcu118_f05_bd_rst_core_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/rst_core"
+    },
+    {
+      "line": 824,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_rst_ddr0_0/scalellm_vcu118_f05_bd_rst_ddr0_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/rst_ddr0"
+    },
+    {
+      "line": 825,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_rst_ddr1_0/scalellm_vcu118_f05_bd_rst_ddr1_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/rst_ddr1"
+    },
+    {
+      "line": 826,
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_xdma_0_0/scalellm_vcu118_f05_bd_xdma_0_0.dcp",
+      "cell": "scalellm_vcu118_f05_bd_i/xdma_0"
+    }
+  ],
+  "consumed_count": 22,
+  "DCP_pair_hash_verification": "pending actual final bindings; no large DCP read in this review",
+  "controller_artifact_presence": {
+    "launcher_status.txt": false,
+    "fresh_synth_complete.txt": false,
+    "optimized_boundaries_synth.tsv": false,
+    "optimized_control_sources_synth.tsv": false,
+    "optimized_structure_synth_result.txt": false,
+    "timing_summary_post_synth.rpt": false
+  },
+  "global_qualification": "23 native run receipts plus source identity do not establish completed full synthesis report stage, 80 boundaries, placement, routing, timing or formal safety."
+}

@@ -1,0 +1,23 @@
+{
+  "recorded_utc": "2026-10-16T23:56:36.277647+00:00",
+  "attempts": [
+    {
+      "issue": "unclosed Python list in review script",
+      "effect": "parse failure before any audit work",
+      "correction": "close list; old source archived"
+    },
+    {
+      "issue": "tkinter converts native Tcl list-valued scalar SLICE_X0Y0 to Python tuple",
+      "observed_value": [
+        "",
+        [
+          "SLICE_X0Y0"
+        ]
+      ],
+      "effect": "review harness Python equality assertion failed after correct Tcl optional-empty result",
+      "correction": "normalize through Tcl format %s before Tcl splitlist; preserve first/debug evidence and rerun to CT002 output"
+    }
+  ],
+  "engineering_source_changed": false,
+  "native_EDA_executed": false
+}

@@ -1,0 +1,11 @@
+{
+  "source": "# E008：热点卸载与完整实现准备\n\n依据[SM012合同](../../../mission/M002_ddr_separation_and_timing_recovery/exact_hotspot_offload_implementation_contract_2026-10-17.md)，以 E005 同图同工具为基线，针对 E006/R004 实际支持的一个热点候选向 SLR2 卸载。只允许 C01/C02 之一，当前尚未选择；不继承旧 E007 的银行/Hadamard/8DSP/无存储断言。算法、接口、时钟及完整验收保持。\n",
+  "results": "# E008：当前结果\n\n共通物理入口源码准备及独立核查完成，最终[manifest](../../../agent/A006/exact_hotspot_offload/prepared_manifest.json)为8935 B / b59d1126。原3phase输出文件冲突已修复，实际Tcl写出/解析与相关CPU反例通过；资源schema输出去重保留逐对象原生查询要求。旧源与检查记录保留。[独立核查](../../../agent/A007/independent_E008_source_preparation_review.md)。\n\n尚未选择候选，native/pre-place/implementation全部NOT_RUN。源码准备不代表已迁移、已布通或时序通过。\n",
+  "status": "# E008：当前状态\n\nexecution_state: planned\nverdict: unassessed\n\nCPU 入口准备与独立源码核查完成；候选未选择，无实际 R/AT/EDA。依赖 E006/R004 的两候选实际资源、完整连接、位置/硬约束及本轮真实收尾，再绑定实际选择后连续执行完整 implementation。当前唯一活动 EDA 是 E006/R004 只读比较。\n\n用户已授权定向优化及下一轮 implementation，无新增用户审批门；正常进程不强停、单 EDA 和原资源限制保持。\n",
+  "execution_state": "planned",
+  "verdict": "unassessed",
+  "applicability": "E008最终b59d源码准备已核；R004完整cut/时序/终态及实际单候选选择未完成，native pre-place和implementation均NOT_RUN。",
+  "evidence": [
+    "project/E008_m002_exact_hotspot_offload_implementation/experiment_source/protocol.md"
+  ]
+}

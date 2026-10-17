@@ -1,0 +1,509 @@
+{
+  "recorded_utc": "2026-10-16T14:19:48.838449+00:00",
+  "execution": "AT004 naturally completed failure; original error preserved after all five diagnostic captures",
+  "verdict": "Native legal routing FAIL; no successful route POST/parent or timing signoff",
+  "applicability": "Only current E005 Default attempt with qualified AT003 physopt parent and immutable production144; no method-generalization or isolated-cause conclusion",
+  "terminal_snapshot": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT004_default_route/route_terminal_observation_facts.json",
+    "bytes": 14517,
+    "sha256": "92129a868d3ef19f54a008aafe269cc580aa1ce9224d6ba88732ca44fda3f525"
+  },
+  "independent_terminal_review_reused": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R005/AT004_natural_failure_terminal_review_evidence.json",
+    "bytes": 121998,
+    "sha256": "7bbc2689b0124e5c5a5887d6ef7e0f4d57d0d92d28457bd25de39ec3d1303154"
+  },
+  "same_stage_comparison_reused": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R005/AT004_phase9_failure_same_stage_review_evidence.json",
+    "bytes": 139625,
+    "sha256": "03c7ff0f672112c06ef85d411fed517e367b3bf65af903e7fb15b4d0de7af4d8"
+  },
+  "supervisor_execution": {
+    "started_utc": "2026-10-16T08:58:51.015791+00:00",
+    "ended_utc": "2026-10-16T13:56:35.660913+00:00",
+    "native_exit_code": 1,
+    "exit_code": 1,
+    "stop_reason": null,
+    "owned_survivors": [],
+    "wall_clock_stop_disabled": true
+  },
+  "native_route_receipt": {
+    "phase": "route",
+    "command": "route_design -directive Default",
+    "started_epoch": "1792141747",
+    "ended_epoch": "1792158980",
+    "native_tcl_code": "1",
+    "duration_seconds_including_failure_capture_if_any": 17233
+  },
+  "native_tcl_code": 1,
+  "Vivado_and_worker_launcher_receipt": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT004_default_route/launcher_status.txt",
+    "bytes": 283,
+    "sha256": "19a263f85ef9e691d7549ed952d41f7c16dae2c35901686e09ba52c94a0ac5de"
+  },
+  "original_error_code": 1,
+  "original_error_unchanged_since_checkpoint_observation": true,
+  "all_five_capture_native_codes_zero": true,
+  "capture_receipts": [
+    {
+      "label": "checkpoint",
+      "code": "0",
+      "started_epoch": "1792157531",
+      "ended_epoch": "1792157720",
+      "result": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT004_default_route/route_failed.dcp"
+    },
+    {
+      "label": "route_status",
+      "code": "0",
+      "started_epoch": "1792157720",
+      "ended_epoch": "1792157872",
+      "result": ""
+    },
+    {
+      "label": "timing",
+      "code": "0",
+      "started_epoch": "1792157872",
+      "ended_epoch": "1792158294",
+      "result": ""
+    },
+    {
+      "label": "congestion",
+      "code": "0",
+      "started_epoch": "1792158294",
+      "ended_epoch": "1792158739",
+      "result": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT004_default_route/route_failed_congestion.rpt"
+    },
+    {
+      "label": "drc",
+      "code": "0",
+      "started_epoch": "1792158739",
+      "ended_epoch": "1792158980",
+      "result": "0"
+    }
+  ],
+  "failed_manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT004_default_route/failed_route_artifacts.json",
+    "bytes": 6836,
+    "sha256": "c23ea558aa5b26c14dde8281127deaff4174d15a0d7109c365a49893179b4a81"
+  },
+  "failed_artifact_identities_match_actual_terminal_hashes": true,
+  "checkpoint": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT004_default_route/route_failed.dcp",
+    "bytes": 779113008,
+    "sha256": "6d1cf5ef3fea7b8ca0ab7ba27aaa61383ce487a640bcb63248cb6a9af7009590"
+  },
+  "eligible_as_successful_parent": false,
+  "phase9": {
+    "overlapping_nodes": 1148579,
+    "congestion_failed_signals": 758463,
+    "counters_are_distinct": true
+  },
+  "failed_route_status_counts": {
+    "logical nets": 7145486,
+    "nets not needing routing": 5113714,
+    "internally routed nets": 4340206,
+    "nets with no loads": 773508,
+    "routable nets": 2031772,
+    "fully routed nets": 1273309,
+    "nets with routing errors": 758463,
+    "nets with resource conflicts": 758463,
+    "unrouted_nets": "NOT_EXPLICITLY_REPORTED",
+    "partially_routed_nets": "NOT_EXPLICITLY_REPORTED",
+    "complete": false
+  },
+  "failed_route_diagnostic_timing": {
+    "metrics": {
+      "wns": -13.528,
+      "tns": -1920757.0,
+      "setup_failing_endpoints": 546167,
+      "setup_total_endpoints": 3209751,
+      "whs": -0.258,
+      "ths": -468.768,
+      "hold_failing_endpoints": 13151,
+      "hold_total_endpoints": 3208307,
+      "wpws": -0.537,
+      "tpws": -3.018,
+      "pw_skew_failing_endpoints": 10,
+      "pw_skew_total_endpoints": 1095381
+    },
+    "source": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT004_default_route/route_failed_timing.rpt",
+      "bytes": 1296209,
+      "sha256": "d0fb78cc76d5495c31fc1783d68203befdc5db41874a9da5631d0b1240a00566"
+    },
+    "parser_source": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_physical_evidence.py",
+      "bytes": 154895,
+      "sha256": "9444d1a5127ec5e7c0174df1f70dc72f5bf77df124a307b939defcb25207dac9"
+    },
+    "A007_raw_metric_line_matches": true,
+    "scope": "Failed illegal-route diagnostic only; header label is not legal routed signoff; setup/hold/pulse width all FAIL"
+  },
+  "failed_DRC_review_reused": {
+    "summary": [
+      {
+        "line": 31,
+        "rule": "RTSTAT-13",
+        "severity": "Critical Warning",
+        "description": "Insufficient Routing",
+        "checks": 1,
+        "raw": "| RTSTAT-13 | Critical Warning | Insufficient Routing                   | 1      |"
+      },
+      {
+        "line": 32,
+        "rule": "DPIP-2",
+        "severity": "Warning",
+        "description": "Input pipelining",
+        "checks": 7275,
+        "raw": "| DPIP-2    | Warning          | Input pipelining                       | 7275   |"
+      },
+      {
+        "line": 33,
+        "rule": "DPOP-3",
+        "severity": "Warning",
+        "description": "PREG Output pipelining",
+        "checks": 5192,
+        "raw": "| DPOP-3    | Warning          | PREG Output pipelining                 | 5192   |"
+      },
+      {
+        "line": 34,
+        "rule": "DPOP-4",
+        "severity": "Warning",
+        "description": "MREG Output pipelining",
+        "checks": 325,
+        "raw": "| DPOP-4    | Warning          | MREG Output pipelining                 | 325    |"
+      },
+      {
+        "line": 35,
+        "rule": "DPREG-7",
+        "severity": "Warning",
+        "description": "DSP48E2_PregDynOpmodeZmuxP:",
+        "checks": 3072,
+        "raw": "| DPREG-7   | Warning          | DSP48E2_PregDynOpmodeZmuxP:            | 3072   |"
+      },
+      {
+        "line": 36,
+        "rule": "PDCN-1569",
+        "severity": "Warning",
+        "description": "LUT equation term check",
+        "checks": 3,
+        "raw": "| PDCN-1569 | Warning          | LUT equation term check                | 3      |"
+      },
+      {
+        "line": 37,
+        "rule": "REQP-1858",
+        "severity": "Warning",
+        "description": "RAMB36E2_writefirst_collision_advisory",
+        "checks": 22,
+        "raw": "| REQP-1858 | Warning          | RAMB36E2_writefirst_collision_advisory | 22     |"
+      },
+      {
+        "line": 38,
+        "rule": "REQP-1935",
+        "severity": "Warning",
+        "description": "RAMB36E2_nochange_collision_advisory",
+        "checks": 28,
+        "raw": "| REQP-1935 | Warning          | RAMB36E2_nochange_collision_advisory   | 28     |"
+      }
+    ],
+    "checks_total": 15918,
+    "header_state": "Partially Routed",
+    "routing_check_limit": "A signficant portion of the design is not routed. Routed nets status (RTSTAT-*) DRC checks will not be run.  For routing information, run report_route_status.  Please run implementation on your design.",
+    "prefix_records": [
+      {
+        "line": 1,
+        "raw": "Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved."
+      },
+      {
+        "line": 2,
+        "raw": "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
+      },
+      {
+        "line": 3,
+        "raw": "| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025"
+      },
+      {
+        "line": 4,
+        "raw": "| Date         : Fri Oct 16 21:56:19 2026"
+      },
+      {
+        "line": 5,
+        "raw": "| Host         : user running 64-bit Ubuntu 24.04.4 LTS"
+      },
+      {
+        "line": 6,
+        "raw": "| Command      : report_drc -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT004_default_route/route_failed_drc.rpt"
+      },
+      {
+        "line": 7,
+        "raw": "| Design       : scalellm_vcu118_f05_bd_wrapper"
+      },
+      {
+        "line": 8,
+        "raw": "| Device       : xcvu9p-flga2104-2L-e"
+      },
+      {
+        "line": 9,
+        "raw": "| Speed File   : -2L"
+      },
+      {
+        "line": 10,
+        "raw": "| Design State : Partially Routed"
+      },
+      {
+        "line": 11,
+        "raw": "---------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
+      },
+      {
+        "line": 12,
+        "raw": ""
+      },
+      {
+        "line": 13,
+        "raw": "Report DRC"
+      },
+      {
+        "line": 14,
+        "raw": ""
+      },
+      {
+        "line": 15,
+        "raw": "Table of Contents"
+      },
+      {
+        "line": 16,
+        "raw": "-----------------"
+      },
+      {
+        "line": 17,
+        "raw": "1. REPORT SUMMARY"
+      },
+      {
+        "line": 18,
+        "raw": "2. REPORT DETAILS"
+      },
+      {
+        "line": 19,
+        "raw": ""
+      },
+      {
+        "line": 20,
+        "raw": "1. REPORT SUMMARY"
+      },
+      {
+        "line": 21,
+        "raw": "-----------------"
+      },
+      {
+        "line": 22,
+        "raw": "            Netlist: netlist"
+      },
+      {
+        "line": 23,
+        "raw": "          Floorplan: checkpoint_physopt"
+      },
+      {
+        "line": 24,
+        "raw": "      Design limits: <entire design considered>"
+      },
+      {
+        "line": 25,
+        "raw": "           Ruledeck: default"
+      },
+      {
+        "line": 26,
+        "raw": "             Max checks: <unlimited>"
+      },
+      {
+        "line": 27,
+        "raw": "             Checks found: 15918"
+      },
+      {
+        "line": 28,
+        "raw": "+-----------+------------------+----------------------------------------+--------+"
+      },
+      {
+        "line": 29,
+        "raw": "| Rule      | Severity         | Description                            | Checks |"
+      },
+      {
+        "line": 30,
+        "raw": "+-----------+------------------+----------------------------------------+--------+"
+      },
+      {
+        "line": 31,
+        "raw": "| RTSTAT-13 | Critical Warning | Insufficient Routing                   | 1      |"
+      },
+      {
+        "line": 32,
+        "raw": "| DPIP-2    | Warning          | Input pipelining                       | 7275   |"
+      },
+      {
+        "line": 33,
+        "raw": "| DPOP-3    | Warning          | PREG Output pipelining                 | 5192   |"
+      },
+      {
+        "line": 34,
+        "raw": "| DPOP-4    | Warning          | MREG Output pipelining                 | 325    |"
+      },
+      {
+        "line": 35,
+        "raw": "| DPREG-7   | Warning          | DSP48E2_PregDynOpmodeZmuxP:            | 3072   |"
+      },
+      {
+        "line": 36,
+        "raw": "| PDCN-1569 | Warning          | LUT equation term check                | 3      |"
+      },
+      {
+        "line": 37,
+        "raw": "| REQP-1858 | Warning          | RAMB36E2_writefirst_collision_advisory | 22     |"
+      },
+      {
+        "line": 38,
+        "raw": "| REQP-1935 | Warning          | RAMB36E2_nochange_collision_advisory   | 28     |"
+      },
+      {
+        "line": 39,
+        "raw": "+-----------+------------------+----------------------------------------+--------+"
+      },
+      {
+        "line": 40,
+        "raw": ""
+      },
+      {
+        "line": 41,
+        "raw": "2. REPORT DETAILS"
+      },
+      {
+        "line": 42,
+        "raw": "-----------------"
+      },
+      {
+        "line": 43,
+        "raw": "RTSTAT-13#1 Critical Warning"
+      },
+      {
+        "line": 44,
+        "raw": "Insufficient Routing  "
+      },
+      {
+        "line": 45,
+        "raw": "A signficant portion of the design is not routed. Routed nets status (RTSTAT-*) DRC checks will not be run.  For routing information, run report_route_status.  Please run implementation on your design."
+      },
+      {
+        "line": 46,
+        "raw": "Related violations: <none>"
+      }
+    ]
+  },
+  "failed_congestion_report_sections": {
+    "Placer Final Level Congestion Reporting": {
+      "row_count": 24,
+      "peaks": {
+        "North/Global": 6,
+        "South/Global": 6,
+        "East/Global": 6,
+        "West/Global": 6,
+        "North/Long": 6,
+        "South/Long": 6,
+        "East/Long": 6,
+        "West/Long": 6,
+        "North/Short": 6,
+        "South/Short": 6,
+        "East/Short": 6,
+        "West/Short": 6
+      }
+    },
+    "Router Initial Congestion": {
+      "row_count": 21,
+      "peaks": {
+        "North/Global": 7,
+        "South/Global": 7,
+        "East/Global": 7,
+        "West/Global": 7,
+        "North/Long": 7,
+        "South/Long": 7,
+        "East/Long": 7,
+        "West/Long": 7,
+        "North/Short": 7,
+        "South/Short": 6,
+        "East/Short": 7,
+        "West/Short": 7
+      }
+    }
+  },
+  "failed_congestion_limit": "Contains only retained Placer Final Level and Router Initial tables; not final routed congestion. Use section38 Phase8 log for final router evidence.",
+  "times_reused_from_independent_native_review": {
+    "native_internal_total_elapsed_seconds": 15510.3,
+    "native_ending_routing_task_cumulative_elapsed_seconds": 15525,
+    "native_route_command_including_automatic_DRC_elapsed": "04:23:02",
+    "native_route_command_including_automatic_DRC_seconds": 15782,
+    "native_capture_start_epoch": 1792157531,
+    "wrapper_start_to_original_error_capture_epoch_seconds": 15784,
+    "failure_capture_sum_seconds": 1449,
+    "wrapper_receipt_including_capture_seconds": 17233,
+    "attempt_supervisor_elapsed_seconds": 17864.645122,
+    "scope": "Different native/wrapper/attempt intervals; epoch rounding and wrapper overhead retained, not equated."
+  },
+  "entire_AT_seconds": 17864.645122,
+  "resources_exact_terminal_sampling": {
+    "samples": 3515,
+    "sampled_peak_tree_rss_bytes": 29300494336,
+    "minimum_mem_available_bytes": 413704990720,
+    "minimum_disk_free_bytes": 434214965248,
+    "first_sample_utc": "2026-10-16T08:58:51.077510+00:00",
+    "last_sample_utc": "2026-10-16T13:56:35.415163+00:00",
+    "max_sample_interval_seconds": 6.013834,
+    "max_interval_bounds_utc": [
+      "2026-10-16T09:23:10.016777+00:00",
+      "2026-10-16T09:23:16.030611+00:00"
+    ]
+  },
+  "resources_GiB": {
+    "sampled_peak_tree_rss_bytes": 27.288212,
+    "minimum_mem_available_bytes": 385.292797,
+    "minimum_disk_free_bytes": 404.394199
+  },
+  "original_owned_live": [],
+  "all_original_recorded_identities_absent": true,
+  "original_registered_identity_count": 6,
+  "route_lane_release_observed_at": "2026-10-16T13:57:53.176848+00:00",
+  "route_lane_release_observation": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/.m002_eda.lock",
+    "probe": "exclusive_nonblocking_acquire_succeeded",
+    "released_immediately": true
+  },
+  "production_freeze_verified": {
+    "manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_source/frozen_inputs_before_current_CDC_recovery.json",
+      "bytes": 36069,
+      "sha256": "a5643a9e8adb13d6e76f3e78b2dfb6804b9b8ac193f7006f5ceff1b0c4f5a26f"
+    },
+    "manifest_identity_matches": true,
+    "entries": 144,
+    "expected_entries": 144,
+    "mismatches": []
+  },
+  "success_POST_artifacts_absent": {
+    "route.dcp": true,
+    "route_result.txt": true,
+    "diagnostic_evidence.json": true,
+    "implementation_checkpoint.sha256": true,
+    "route_status_route.rpt": true,
+    "timing_route.rpt": true,
+    "utilization_route.rpt": true,
+    "drc_route.rpt": true,
+    "fanout_reset_integrity_route.json": true,
+    "reset_structure_route.json": true,
+    "optimized_boundaries_route.tsv": true
+  },
+  "formal_reset_CDC_board_safety": "OPEN",
+  "unperformed": [
+    "bitstream",
+    "board",
+    "GPU",
+    "PPL",
+    "ACC"
+  ],
+  "next_scope": "Authorized R006 actual read-only each closed place/physopt comparison; no physical rerun"
+}

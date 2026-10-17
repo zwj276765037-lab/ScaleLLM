@@ -1,0 +1,17 @@
+{
+  "event_id": "EV_SM007_ROUTE_GLOBAL_TO_INITIAL",
+  "small_mission": "SM007",
+  "trigger": "milestone",
+  "summary": "全局布线真实完成：GR Congestion7076→0，下一迭代仍0，进入Phase4.1初始网络布线。",
+  "impact": "同一route持续推进，先前SLL估算告警未导致即时退出；GR0不等于最终全布通或时序通过，最终route/DCP/POST仍待取得。",
+  "evidence": [
+    "project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_global_to_initial_facts.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_global_to_initial_log_snapshot.txt",
+    "project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_SLL_demand_facts.json"
+  ],
+  "affected": [
+    "SM007"
+  ],
+  "action": "继续同一正常无wall详细布线；按最终route_status与正式报告判定，不以中间GR指标替代验收。",
+  "requires_decision": false
+}

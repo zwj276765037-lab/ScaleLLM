@@ -1,0 +1,3953 @@
+{
+  "created_utc": "2026-10-16T16:35:46.229513+00:00",
+  "execution": "CPU subset/source audit completed; native candidate endpoint coverage pending",
+  "verdict": "candidate physical-locality hypothesis only; not implemented or timing/routing-qualified",
+  "applicability": "E005 original physopt NAME export and original 144-input RTL freeze",
+  "review": "prepared for controller; no user acceptance implied",
+  "closure": {
+    "query": "complete_exclusive_ownership",
+    "native_tcl_code": "0",
+    "started_epoch": "1792166494",
+    "ended_epoch": "1792166887",
+    "result": "{}"
+  },
+  "primitive_source_identity_from_prior_full_audit": {
+    "path": "project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/all_primitive_locations.tsv",
+    "bytes": 676367399,
+    "sha256": "d291d95dbcb335511de5949a26b53e26a8cd168c0c3aa8972a24eb160db967f2"
+  },
+  "prior_full_audit": {
+    "path": "project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/closed_primitive_ownership_review.json",
+    "bytes": 11911,
+    "sha256": "a26114b00563ce10ab085ba65b6b350a7b79c779b239affc36e679955501db65"
+  },
+  "freeze": {
+    "path": "project/E005_m002_optimized_implementation/experiment_source/frozen_inputs_before_current_CDC_recovery.json",
+    "bytes": 36069,
+    "sha256": "a5643a9e8adb13d6e76f3e78b2dfb6804b9b8ac193f7006f5ceff1b0c4f5a26f"
+  },
+  "sources": [
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_input_frontend16_compact_cache.sv",
+      "bytes": 14636,
+      "sha256": "3d4bc5682923264f9585aab5655a157c8394570f4a343eaf94d0170954c3959c",
+      "freeze_match": true,
+      "evidence": [
+        {
+          "start_line": 3,
+          "end_line": 36,
+          "lines": [
+            {
+              "line": 3,
+              "text": "// Resource-compact cohort16 MLP input frontend.  One Hadamard32 pipeline and"
+            },
+            {
+              "line": 4,
+              "text": "// four robust A8 quantizers are time-multiplexed across all 16 requests.  The"
+            },
+            {
+              "line": 5,
+              "text": "// resulting bundle is committed atomically into two independent eight-row"
+            },
+            {
+              "line": 6,
+              "text": "// ping-pong caches.  This path runs while the other bank is consumed, so input"
+            },
+            {
+              "line": 7,
+              "text": "// latency is traded for the LUT/DSP headroom needed by the full board."
+            },
+            {
+              "line": 8,
+              "text": "module hap_mlp_input_frontend16_compact_cache ("
+            },
+            {
+              "line": 9,
+              "text": "    input  wire                          clk,"
+            },
+            {
+              "line": 10,
+              "text": "    input  wire                          rst_n,"
+            },
+            {
+              "line": 11,
+              "text": "    input  wire                          clear,"
+            },
+            {
+              "line": 12,
+              "text": "    input  wire                          in_valid,"
+            },
+            {
+              "line": 13,
+              "text": "    output wire                          in_ready,"
+            },
+            {
+              "line": 14,
+              "text": "    input  wire                          in_bank,"
+            },
+            {
+              "line": 15,
+              "text": "    input  wire [6:0]                    in_group,"
+            },
+            {
+              "line": 16,
+              "text": "    input  wire [16*32*24-1:0]           in_s24x16x32,"
+            },
+            {
+              "line": 17,
+              "text": ""
+            },
+            {
+              "line": 18,
+              "text": "    input  wire                          rd_req_valid,"
+            },
+            {
+              "line": 19,
+              "text": "    output wire                          rd_req_ready,"
+            },
+            {
+              "line": 20,
+              "text": "    input  wire                          rd_req_bank,"
+            },
+            {
+              "line": 21,
+              "text": "    input  wire [6:0]                    rd_req_group,"
+            },
+            {
+              "line": 22,
+              "text": "    output wire                          rd_rsp_valid,"
+            },
+            {
+              "line": 23,
+              "text": "    input  wire                          rd_rsp_ready,"
+            },
+            {
+              "line": 24,
+              "text": "    output wire                          rd_rsp_bank,"
+            },
+            {
+              "line": 25,
+              "text": "    output wire [6:0]                    rd_rsp_group,"
+            },
+            {
+              "line": 26,
+              "text": "    output wire [16*32*8-1:0]            rd_rsp_u8x16x32,"
+            },
+            {
+              "line": 27,
+              "text": "    output wire [16*24-1:0]              rd_rsp_meta_u24x16,"
+            },
+            {
+              "line": 28,
+              "text": ""
+            },
+            {
+              "line": 29,
+              "text": "    input  wire                          release_valid,"
+            },
+            {
+              "line": 30,
+              "text": "    output wire                          release_ready,"
+            },
+            {
+              "line": 31,
+              "text": "    input  wire                          release_bank,"
+            },
+            {
+              "line": 32,
+              "text": "    output wire [1:0]                    bank_ready,"
+            },
+            {
+              "line": 33,
+              "text": "    output reg  [31:0]                   input_group_count,"
+            },
+            {
+              "line": 34,
+              "text": "    output reg  [31:0]                   read_group_count,"
+            },
+            {
+              "line": 35,
+              "text": "    output reg  [31:0]                   release_count,"
+            },
+            {
+              "line": 36,
+              "text": "    output wire [31:0]                   hadamard_saturation_count,"
+            }
+          ]
+        },
+        {
+          "start_line": 43,
+          "end_line": 75,
+          "lines": [
+            {
+              "line": 43,
+              "text": "    reg active_bank_r;"
+            },
+            {
+              "line": 44,
+              "text": "    reg [6:0] active_group_r;"
+            },
+            {
+              "line": 45,
+              "text": "    // The complete S24 transaction is retained while the folded Hadamard"
+            },
+            {
+              "line": 46,
+              "text": "    // visits its sixteen rows.  Keep the same 12288 payload FFs, but give each"
+            },
+            {
+              "line": 47,
+              "text": "    // physical row its own protected capture predicate.  A single in_fire CE"
+            },
+            {
+              "line": 48,
+              "text": "    // previously reached all payload bits and Vivado promoted that data net to"
+            },
+            {
+              "line": 49,
+              "text": "    // a BUFGCE (12373 non-clock loads in Run 0147)."
+            },
+            {
+              "line": 50,
+              "text": "    reg [32*24-1:0] input_buffer_row_r [0:15];"
+            },
+            {
+              "line": 51,
+              "text": "    // Net protection is required here: post-place phys_opt preserved the LUT1"
+            },
+            {
+              "line": 52,
+              "text": "    // cells but reconnected their equivalent outputs into six device-wide CE"
+            },
+            {
+              "line": 53,
+              "text": "    // trees.  Three independent 256-bit domains per row keep every protected"
+            },
+            {
+              "line": 54,
+              "text": "    // CE below the data-BUFG promotion threshold."
+            },
+            {
+              "line": 55,
+              "text": "    (* DONT_TOUCH = \"yes\", KEEP = \"yes\" *)"
+            },
+            {
+              "line": 56,
+              "text": "    wire [47:0] input_capture_enable;"
+            },
+            {
+              "line": 57,
+              "text": "    reg [4:0] source_row_r;"
+            },
+            {
+              "line": 58,
+              "text": "    reg [4:0] dispatch_row_r;"
+            },
+            {
+              "line": 59,
+              "text": "    reg [2:0] quant_output_wave_r[0:3];"
+            },
+            {
+              "line": 60,
+              "text": "    reg [5:0] completed_row_count_r;"
+            },
+            {
+              "line": 61,
+              "text": "    // Keep completed rows in their final physical banks.  The previous"
+            },
+            {
+              "line": 62,
+              "text": "    // variable part-select on one 4096-bit register caused Vivado to build"
+            },
+            {
+              "line": 63,
+              "text": "    // multi-thousand-load write predicates (three data BUFG candidates in"
+            },
+            {
+              "line": 64,
+              "text": "    // the first V5 place).  Sixteen explicit row banks make each payload"
+            },
+            {
+              "line": 65,
+              "text": "    // write local; payload storage is intentionally not cleared because all"
+            },
+            {
+              "line": 66,
+              "text": "    // sixteen rows are overwritten before bundle_valid_r may be asserted."
+            },
+            {
+              "line": 67,
+              "text": "    reg [32*8-1:0] bundle_u8_bank_r [0:15];"
+            },
+            {
+              "line": 68,
+              "text": "    reg [23:0] bundle_meta_bank_r [0:15];"
+            },
+            {
+              "line": 69,
+              "text": "    wire [16*32*8-1:0] bundle_u8;"
+            },
+            {
+              "line": 70,
+              "text": "    wire [16*24-1:0] bundle_meta;"
+            },
+            {
+              "line": 71,
+              "text": "    wire [15:0] row_write_fire;"
+            },
+            {
+              "line": 72,
+              "text": "    (* DONT_TOUCH = \"yes\", KEEP = \"yes\" *)"
+            },
+            {
+              "line": 73,
+              "text": "    wire [15:0] row_u8_write_enable;"
+            },
+            {
+              "line": 74,
+              "text": "    (* DONT_TOUCH = \"yes\", KEEP = \"yes\" *)"
+            },
+            {
+              "line": 75,
+              "text": "    wire [15:0] row_meta_write_enable;"
+            }
+          ]
+        },
+        {
+          "start_line": 92,
+          "end_line": 140,
+          "lines": [
+            {
+              "line": 92,
+              "text": "    // Quantizers 0/1 own rows 0..7 and quantizers 2/3 own rows 8..15."
+            },
+            {
+              "line": 93,
+              "text": "    // This preserves four-way issue bandwidth while making each completed"
+            },
+            {
+              "line": 94,
+              "text": "    // row half physically local to its corresponding eight-row cache."
+            },
+            {
+              "line": 95,
+              "text": "    wire [1:0] dispatch_quantizer ="
+            },
+            {
+              "line": 96,
+              "text": "        {dispatch_row_r[3], dispatch_row_r[0]};"
+            },
+            {
+              "line": 97,
+              "text": "    wire hadamard_out_fire = hadamard_out_valid && hadamard_out_ready;"
+            },
+            {
+              "line": 98,
+              "text": "    wire [3:0] quant_out_fire = quant_out_valid & quant_out_ready;"
+            },
+            {
+              "line": 99,
+              "text": "    wire [2:0] quant_fire_count ="
+            },
+            {
+              "line": 100,
+              "text": "        {2'd0,quant_out_fire[0]} + {2'd0,quant_out_fire[1]} +"
+            },
+            {
+              "line": 101,
+              "text": "        {2'd0,quant_out_fire[2]} + {2'd0,quant_out_fire[3]};"
+            },
+            {
+              "line": 102,
+              "text": ""
+            },
+            {
+              "line": 103,
+              "text": "    wire half0_wr_ready, half1_wr_ready;"
+            },
+            {
+              "line": 104,
+              "text": "    wire [1:0] half0_bank_ready, half1_bank_ready;"
+            },
+            {
+              "line": 105,
+              "text": "    wire half0_rd_req_ready, half1_rd_req_ready;"
+            },
+            {
+              "line": 106,
+              "text": "    wire half0_rsp_valid, half1_rsp_valid;"
+            },
+            {
+              "line": 107,
+              "text": "    wire half0_rsp_bank, half1_rsp_bank;"
+            },
+            {
+              "line": 108,
+              "text": "    wire [6:0] half0_rsp_group, half1_rsp_group;"
+            },
+            {
+              "line": 109,
+              "text": "    wire [8*32*8-1:0] half0_rsp_u8, half1_rsp_u8;"
+            },
+            {
+              "line": 110,
+              "text": "    wire [8*24-1:0] half0_rsp_meta, half1_rsp_meta;"
+            },
+            {
+              "line": 111,
+              "text": "    wire half0_release_ready, half1_release_ready;"
+            },
+            {
+              "line": 112,
+              "text": "    wire half0_error, half1_error;"
+            },
+            {
+              "line": 113,
+              "text": "    wire cache_write_fire = bundle_valid_r && half0_wr_ready &&"
+            },
+            {
+              "line": 114,
+              "text": "        half1_wr_ready;"
+            },
+            {
+              "line": 115,
+              "text": "    wire release_fire = release_valid && release_ready;"
+            },
+            {
+              "line": 116,
+              "text": "    wire response_fire = rd_rsp_valid && rd_rsp_ready;"
+            },
+            {
+              "line": 117,
+              "text": "    wire in_fire = in_valid && in_ready;"
+            },
+            {
+              "line": 118,
+              "text": ""
+            },
+            {
+              "line": 119,
+              "text": "    assign in_ready = rst_n && !clear && !active_r && !bundle_valid_r;"
+            },
+            {
+              "line": 120,
+              "text": "    assign hadamard_out_ready = quant_in_ready[dispatch_quantizer];"
+            },
+            {
+              "line": 121,
+              "text": "    assign rd_req_ready = rst_n && !clear && half0_rd_req_ready &&"
+            },
+            {
+              "line": 122,
+              "text": "        half1_rd_req_ready;"
+            },
+            {
+              "line": 123,
+              "text": "    assign rd_rsp_valid = rst_n && !clear && half0_rsp_valid &&"
+            },
+            {
+              "line": 124,
+              "text": "        half1_rsp_valid;"
+            },
+            {
+              "line": 125,
+              "text": "    assign rd_rsp_bank = half0_rsp_bank;"
+            },
+            {
+              "line": 126,
+              "text": "    assign rd_rsp_group = half0_rsp_group;"
+            },
+            {
+              "line": 127,
+              "text": "    assign rd_rsp_u8x16x32[0+:8*32*8] = half0_rsp_u8;"
+            },
+            {
+              "line": 128,
+              "text": "    assign rd_rsp_u8x16x32[8*32*8+:8*32*8] = half1_rsp_u8;"
+            },
+            {
+              "line": 129,
+              "text": "    assign rd_rsp_meta_u24x16[0+:8*24] = half0_rsp_meta;"
+            },
+            {
+              "line": 130,
+              "text": "    assign rd_rsp_meta_u24x16[8*24+:8*24] = half1_rsp_meta;"
+            },
+            {
+              "line": 131,
+              "text": "    assign release_ready = rst_n && !clear && half0_release_ready &&"
+            },
+            {
+              "line": 132,
+              "text": "        half1_release_ready;"
+            },
+            {
+              "line": 133,
+              "text": "    assign bank_ready = half0_bank_ready & half1_bank_ready;"
+            },
+            {
+              "line": 134,
+              "text": ""
+            },
+            {
+              "line": 135,
+              "text": "    // Both cache halves begin from identical state and receive identical tags."
+            },
+            {
+              "line": 136,
+              "text": "    // Present each transaction locally so no half-ready/half-valid signal must"
+            },
+            {
+              "line": 137,
+              "text": "    // cross an SLR to qualify the other half.  The public ready/valid join and"
+            },
+            {
+              "line": 138,
+              "text": "    // sticky mismatch checks below retain the atomic lockstep contract."
+            },
+            {
+              "line": 139,
+              "text": ""
+            },
+            {
+              "line": 140,
+              "text": "    genvar row_bank;"
+            }
+          ]
+        },
+        {
+          "start_line": 180,
+          "end_line": 240,
+          "lines": [
+            {
+              "line": 180,
+              "text": "    hap_mlp_hadamard32_s24_fold4 u_hadamard ("
+            },
+            {
+              "line": 181,
+              "text": "        .clk(clk),.rst_n(rst_n),.clear(clear),"
+            },
+            {
+              "line": 182,
+              "text": "        .in_valid(hadamard_in_valid),.in_ready(hadamard_in_ready),"
+            },
+            {
+              "line": 183,
+              "text": "        .in_s24(input_buffer_row_r[source_row_r]),"
+            },
+            {
+              "line": 184,
+              "text": "        .out_valid(hadamard_out_valid),.out_ready(hadamard_out_ready),"
+            },
+            {
+              "line": 185,
+              "text": "        .out_s27(hadamard_out_s27),"
+            },
+            {
+              "line": 186,
+              "text": "        .input_group_count(hadamard_input_unused),"
+            },
+            {
+              "line": 187,
+              "text": "        .output_group_count(hadamard_output_unused),"
+            },
+            {
+              "line": 188,
+              "text": "        .saturation_count(hadamard_saturation_count),.error(hadamard_error)"
+            },
+            {
+              "line": 189,
+              "text": "    );"
+            },
+            {
+              "line": 190,
+              "text": ""
+            },
+            {
+              "line": 191,
+              "text": "    genvar quantizer;"
+            },
+            {
+              "line": 192,
+              "text": "    generate for(quantizer=0;quantizer<4;quantizer=quantizer+1)begin:g_quant"
+            },
+            {
+              "line": 193,
+              "text": "        hap_robust_a8_quantizer u_quantizer ("
+            },
+            {
+              "line": 194,
+              "text": "            .clk(clk),.rst_n(rst_n),.clear(clear),"
+            },
+            {
+              "line": 195,
+              "text": "            .in_valid(hadamard_out_valid &&"
+            },
+            {
+              "line": 196,
+              "text": "                dispatch_quantizer==quantizer[1:0]),"
+            },
+            {
+              "line": 197,
+              "text": "            .in_ready(quant_in_ready[quantizer]),.in_s27(hadamard_out_s27),"
+            },
+            {
+              "line": 198,
+              "text": "            .out_valid(quant_out_valid[quantizer]),"
+            },
+            {
+              "line": 199,
+              "text": "            .out_ready(quant_out_ready[quantizer]),"
+            },
+            {
+              "line": 200,
+              "text": "            .out_u8(quant_out_u8[quantizer*32*8+:32*8]),"
+            },
+            {
+              "line": 201,
+              "text": "            .out_meta(quant_out_meta[quantizer*24+:24]),"
+            },
+            {
+              "line": 202,
+              "text": "            .input_group_count(),.output_group_count(),.cycle_count(),"
+            },
+            {
+              "line": 203,
+              "text": "            .error(quant_error[quantizer])"
+            },
+            {
+              "line": 204,
+              "text": "        );"
+            },
+            {
+              "line": 205,
+              "text": "        assign quant_out_ready[quantizer] = active_r &&"
+            },
+            {
+              "line": 206,
+              "text": "            quant_output_wave_r[quantizer] < 4;"
+            },
+            {
+              "line": 207,
+              "text": "    end endgenerate"
+            },
+            {
+              "line": 208,
+              "text": ""
+            },
+            {
+              "line": 209,
+              "text": "    hap_activation_cache_8row #(.RD_RESPONSE_DEPTH(2)) u_cache0 ("
+            },
+            {
+              "line": 210,
+              "text": "        .clk(clk),.rst_n(rst_n),.clear(clear),"
+            },
+            {
+              "line": 211,
+              "text": "        .wr_valid(bundle_valid_r),.wr_ready(half0_wr_ready),"
+            },
+            {
+              "line": 212,
+              "text": "        .wr_bank(active_bank_r),.wr_group(active_group_r),"
+            },
+            {
+              "line": 213,
+              "text": "        .wr_u8(bundle_u8[0+:8*32*8]),"
+            },
+            {
+              "line": 214,
+              "text": "        .wr_meta(bundle_meta[0+:8*24]),"
+            },
+            {
+              "line": 215,
+              "text": "        .rd_req_valid(rd_req_valid),"
+            },
+            {
+              "line": 216,
+              "text": "        .rd_req_ready(half0_rd_req_ready),.rd_req_bank(rd_req_bank),"
+            },
+            {
+              "line": 217,
+              "text": "        .rd_req_group(rd_req_group),.rd_rsp_valid(half0_rsp_valid),"
+            },
+            {
+              "line": 218,
+              "text": "        .rd_rsp_ready(rd_rsp_ready),.rd_rsp_bank(half0_rsp_bank),"
+            },
+            {
+              "line": 219,
+              "text": "        .rd_rsp_group(half0_rsp_group),.rd_rsp_u8(half0_rsp_u8),"
+            },
+            {
+              "line": 220,
+              "text": "        .rd_rsp_meta(half0_rsp_meta),"
+            },
+            {
+              "line": 221,
+              "text": "        .release_valid(release_valid),.release_ready(half0_release_ready),"
+            },
+            {
+              "line": 222,
+              "text": "        .release_bank(release_bank),.bank_ready(half0_bank_ready),"
+            },
+            {
+              "line": 223,
+              "text": "        .write_count(),.read_count(),.release_count(),.error(half0_error)"
+            },
+            {
+              "line": 224,
+              "text": "    );"
+            },
+            {
+              "line": 225,
+              "text": ""
+            },
+            {
+              "line": 226,
+              "text": "    hap_activation_cache_8row #(.RD_RESPONSE_DEPTH(2)) u_cache1 ("
+            },
+            {
+              "line": 227,
+              "text": "        .clk(clk),.rst_n(rst_n),.clear(clear),"
+            },
+            {
+              "line": 228,
+              "text": "        .wr_valid(bundle_valid_r),.wr_ready(half1_wr_ready),"
+            },
+            {
+              "line": 229,
+              "text": "        .wr_bank(active_bank_r),.wr_group(active_group_r),"
+            },
+            {
+              "line": 230,
+              "text": "        .wr_u8(bundle_u8[8*32*8+:8*32*8]),"
+            },
+            {
+              "line": 231,
+              "text": "        .wr_meta(bundle_meta[8*24+:8*24]),"
+            },
+            {
+              "line": 232,
+              "text": "        .rd_req_valid(rd_req_valid),"
+            },
+            {
+              "line": 233,
+              "text": "        .rd_req_ready(half1_rd_req_ready),.rd_req_bank(rd_req_bank),"
+            },
+            {
+              "line": 234,
+              "text": "        .rd_req_group(rd_req_group),.rd_rsp_valid(half1_rsp_valid),"
+            },
+            {
+              "line": 235,
+              "text": "        .rd_rsp_ready(rd_rsp_ready),.rd_rsp_bank(half1_rsp_bank),"
+            },
+            {
+              "line": 236,
+              "text": "        .rd_rsp_group(half1_rsp_group),.rd_rsp_u8(half1_rsp_u8),"
+            },
+            {
+              "line": 237,
+              "text": "        .rd_rsp_meta(half1_rsp_meta),"
+            },
+            {
+              "line": 238,
+              "text": "        .release_valid(release_valid),.release_ready(half1_release_ready),"
+            },
+            {
+              "line": 239,
+              "text": "        .release_bank(release_bank),.bank_ready(half1_bank_ready),"
+            },
+            {
+              "line": 240,
+              "text": "        .write_count(),.read_count(),.release_count(),.error(half1_error)"
+            }
+          ]
+        },
+        {
+          "start_line": 247,
+          "end_line": 306,
+          "lines": [
+            {
+              "line": 247,
+              "text": "        if(!rst_n||clear)begin"
+            },
+            {
+              "line": 248,
+              "text": "            active_r<=0;bundle_valid_r<=0;source_row_r<='0;"
+            },
+            {
+              "line": 249,
+              "text": "            dispatch_row_r<='0;completed_row_count_r<='0;"
+            },
+            {
+              "line": 250,
+              "text": "            input_group_count<=0;read_group_count<=0;release_count<=0;"
+            },
+            {
+              "line": 251,
+              "text": "            error<=0;"
+            },
+            {
+              "line": 252,
+              "text": "            for(q=0;q<4;q=q+1)quant_output_wave_r[q]<='0;"
+            },
+            {
+              "line": 253,
+              "text": "        end else begin"
+            },
+            {
+              "line": 254,
+              "text": "            if(in_fire)begin"
+            },
+            {
+              "line": 255,
+              "text": "                active_r<=1;active_bank_r<=in_bank;active_group_r<=in_group;"
+            },
+            {
+              "line": 256,
+              "text": "                source_row_r<='0;"
+            },
+            {
+              "line": 257,
+              "text": "                dispatch_row_r<='0;completed_row_count_r<='0;"
+            },
+            {
+              "line": 258,
+              "text": "                input_group_count<=input_group_count+1;"
+            },
+            {
+              "line": 259,
+              "text": "                for(q=0;q<4;q=q+1)quant_output_wave_r[q]<='0;"
+            },
+            {
+              "line": 260,
+              "text": "            end"
+            },
+            {
+              "line": 261,
+              "text": "            for(row=0;row<16;row=row+1)"
+            },
+            {
+              "line": 262,
+              "text": "                for(capture_chunk=0;capture_chunk<3;"
+            },
+            {
+              "line": 263,
+              "text": "                    capture_chunk=capture_chunk+1)"
+            },
+            {
+              "line": 264,
+              "text": "                    if(input_capture_enable[row*3+capture_chunk])"
+            },
+            {
+              "line": 265,
+              "text": "                        input_buffer_row_r[row][capture_chunk*256+:256] <="
+            },
+            {
+              "line": 266,
+              "text": "                            in_s24x16x32[row*32*24+"
+            },
+            {
+              "line": 267,
+              "text": "                                capture_chunk*256+:256];"
+            },
+            {
+              "line": 268,
+              "text": "            if(hadamard_in_fire)source_row_r<=source_row_r+1'b1;"
+            },
+            {
+              "line": 269,
+              "text": "            if(hadamard_out_fire)dispatch_row_r<=dispatch_row_r+1'b1;"
+            },
+            {
+              "line": 270,
+              "text": "            for(row=0;row<16;row=row+1)begin"
+            },
+            {
+              "line": 271,
+              "text": "                if(row_u8_write_enable[row])"
+            },
+            {
+              "line": 272,
+              "text": "                    bundle_u8_bank_r[row] <="
+            },
+            {
+              "line": 273,
+              "text": "                        quant_out_u8["
+            },
+            {
+              "line": 274,
+              "text": "                            (((row/8)*2)+(row%2))*32*8+:32*8];"
+            },
+            {
+              "line": 275,
+              "text": "                if(row_meta_write_enable[row])"
+            },
+            {
+              "line": 276,
+              "text": "                    bundle_meta_bank_r[row] <="
+            },
+            {
+              "line": 277,
+              "text": "                        quant_out_meta["
+            },
+            {
+              "line": 278,
+              "text": "                            (((row/8)*2)+(row%2))*24+:24];"
+            },
+            {
+              "line": 279,
+              "text": "            end"
+            },
+            {
+              "line": 280,
+              "text": "            for(q=0;q<4;q=q+1)if(quant_out_fire[q])begin"
+            },
+            {
+              "line": 281,
+              "text": "                quant_output_wave_r[q]<=quant_output_wave_r[q]+1'b1;"
+            },
+            {
+              "line": 282,
+              "text": "            end"
+            },
+            {
+              "line": 283,
+              "text": "            if(quant_fire_count!=0)begin"
+            },
+            {
+              "line": 284,
+              "text": "                completed_row_count_r<=completed_row_count_r+quant_fire_count;"
+            },
+            {
+              "line": 285,
+              "text": "                if(completed_row_count_r+quant_fire_count==16)"
+            },
+            {
+              "line": 286,
+              "text": "                    bundle_valid_r<=1;"
+            },
+            {
+              "line": 287,
+              "text": "            end"
+            },
+            {
+              "line": 288,
+              "text": "            if(cache_write_fire)begin"
+            },
+            {
+              "line": 289,
+              "text": "                bundle_valid_r<=0;active_r<=0;"
+            },
+            {
+              "line": 290,
+              "text": "            end"
+            },
+            {
+              "line": 291,
+              "text": "            if(response_fire)read_group_count<=read_group_count+1;"
+            },
+            {
+              "line": 292,
+              "text": "            if(release_fire)release_count<=release_count+1;"
+            },
+            {
+              "line": 293,
+              "text": "            if(hadamard_error||(|quant_error)||half0_error||half1_error||"
+            },
+            {
+              "line": 294,
+              "text": "               source_row_r>16||dispatch_row_r>16||"
+            },
+            {
+              "line": 295,
+              "text": "               completed_row_count_r>16||"
+            },
+            {
+              "line": 296,
+              "text": "               (bundle_valid_r&&(half0_wr_ready!=half1_wr_ready))||"
+            },
+            {
+              "line": 297,
+              "text": "               (rd_req_valid&&(half0_rd_req_ready!=half1_rd_req_ready))||"
+            },
+            {
+              "line": 298,
+              "text": "               (half0_rsp_valid!=half1_rsp_valid)||"
+            },
+            {
+              "line": 299,
+              "text": "               (release_valid&&"
+            },
+            {
+              "line": 300,
+              "text": "                (half0_release_ready!=half1_release_ready))||"
+            },
+            {
+              "line": 301,
+              "text": "               (half0_bank_ready!=half1_bank_ready)||"
+            },
+            {
+              "line": 302,
+              "text": "               (half0_rsp_valid&&half1_rsp_valid&&"
+            },
+            {
+              "line": 303,
+              "text": "                (half0_rsp_bank!=half1_rsp_bank||"
+            },
+            {
+              "line": 304,
+              "text": "                 half0_rsp_group!=half1_rsp_group)))error<=1;"
+            },
+            {
+              "line": 305,
+              "text": "        end"
+            },
+            {
+              "line": 306,
+              "text": "    end"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_hadamard32_s24_fold4.sv",
+      "bytes": 7120,
+      "sha256": "88e7e6f5afdbf1b6276dcc924b22bf6acb36eb620d7277f735ba387ae9a47d7d",
+      "freeze_match": true,
+      "evidence": [
+        {
+          "start_line": 3,
+          "end_line": 40,
+          "lines": [
+            {
+              "line": 3,
+              "text": "// Resource-folded S24 Q8.16 normalized Hadamard32 for the MLP input path."
+            },
+            {
+              "line": 4,
+              "text": "// Butterfly arithmetic is bit-identical to hap_hadamard32_norm_stream.  Only"
+            },
+            {
+              "line": 5,
+              "text": "// four of the 32 S29xU14 normalization multiplies are issued per cycle; each"
+            },
+            {
+              "line": 6,
+              "text": "// multiplier maps to two DSP48E2 on VU9P, reducing the bank from 64 to 8 DSP."
+            },
+            {
+              "line": 7,
+              "text": "module hap_mlp_hadamard32_s24_fold4 ("
+            },
+            {
+              "line": 8,
+              "text": "    input  wire                  clk,"
+            },
+            {
+              "line": 9,
+              "text": "    input  wire                  rst_n,"
+            },
+            {
+              "line": 10,
+              "text": "    input  wire                  clear,"
+            },
+            {
+              "line": 11,
+              "text": "    input  wire                  in_valid,"
+            },
+            {
+              "line": 12,
+              "text": "    output wire                  in_ready,"
+            },
+            {
+              "line": 13,
+              "text": "    input  wire [32*24-1:0]      in_s24,"
+            },
+            {
+              "line": 14,
+              "text": "    output wire                  out_valid,"
+            },
+            {
+              "line": 15,
+              "text": "    input  wire                  out_ready,"
+            },
+            {
+              "line": 16,
+              "text": "    output wire [32*27-1:0]      out_s27,"
+            },
+            {
+              "line": 17,
+              "text": "    output reg  [31:0]           input_group_count,"
+            },
+            {
+              "line": 18,
+              "text": "    output reg  [31:0]           output_group_count,"
+            },
+            {
+              "line": 19,
+              "text": "    output reg  [31:0]           saturation_count,"
+            },
+            {
+              "line": 20,
+              "text": "    output reg                   error"
+            },
+            {
+              "line": 21,
+              "text": ");"
+            },
+            {
+              "line": 22,
+              "text": "    localparam [13:0] INV_SQRT32_Q16=14'd11585;"
+            },
+            {
+              "line": 23,
+              "text": "    reg valid_s1,valid_s2,valid_s3,valid_s4,valid_s5;"
+            },
+            {
+              "line": 24,
+              "text": "    reg signed [24:0] data_s1[0:31];"
+            },
+            {
+              "line": 25,
+              "text": "    reg signed [25:0] data_s2[0:31];"
+            },
+            {
+              "line": 26,
+              "text": "    reg signed [26:0] data_s3[0:31];"
+            },
+            {
+              "line": 27,
+              "text": "    reg signed [27:0] data_s4[0:31];"
+            },
+            {
+              "line": 28,
+              "text": "    reg signed [28:0] data_s5[0:31];"
+            },
+            {
+              "line": 29,
+              "text": "    (* use_dsp=\"yes\" *)reg signed [42:0] norm_product[0:3];"
+            },
+            {
+              "line": 30,
+              "text": "    reg norm_active_r,norm_capture_valid_r,out_valid_r;"
+            },
+            {
+              "line": 31,
+              "text": "    reg [5:0] issue_base_r,capture_base_r;"
+            },
+            {
+              "line": 32,
+              "text": "    reg [32*27-1:0] out_s27_r;"
+            },
+            {
+              "line": 33,
+              "text": "    wire in_fire=in_valid&&in_ready;"
+            },
+            {
+              "line": 34,
+              "text": "    wire out_fire=out_valid&&out_ready;"
+            },
+            {
+              "line": 35,
+              "text": "    wire pipeline_busy=valid_s1||valid_s2||valid_s3||valid_s4||valid_s5;"
+            },
+            {
+              "line": 36,
+              "text": "    assign in_ready=rst_n&&!clear&&!pipeline_busy&&!norm_active_r&&"
+            },
+            {
+              "line": 37,
+              "text": "        !norm_capture_valid_r&&!out_valid_r;"
+            },
+            {
+              "line": 38,
+              "text": "    assign out_valid=rst_n&&!clear&&out_valid_r;"
+            },
+            {
+              "line": 39,
+              "text": "    assign out_s27=out_s27_r;"
+            },
+            {
+              "line": 40,
+              "text": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_full_command16_v5_s54.sv",
+      "bytes": 17920,
+      "sha256": "d6cade95ca971c10332f4c2353bec101498c582e235b4b4263246196e748a8b1",
+      "freeze_match": true,
+      "evidence": [
+        {
+          "start_line": 191,
+          "end_line": 240,
+          "lines": [
+            {
+              "line": 191,
+              "text": "    hap_mlp_input_frontend16_compact_cache u_input_frontend ("
+            },
+            {
+              "line": 192,
+              "text": "        .clk(core_clk), .rst_n(core_rst_n), .clear(core_clear),"
+            },
+            {
+              "line": 193,
+              "text": "        .in_valid(input_valid), .in_ready(input_ready), .in_bank(input_bank),"
+            },
+            {
+              "line": 194,
+              "text": "        .in_group(input_group), .in_s24x16x32(input_s24x16x32),"
+            },
+            {
+              "line": 195,
+              "text": "        .rd_req_valid(cache_rd_req_valid),"
+            },
+            {
+              "line": 196,
+              "text": "        .rd_req_ready(cache_rd_req_ready), .rd_req_bank(cache_rd_req_bank),"
+            },
+            {
+              "line": 197,
+              "text": "        .rd_req_group(cache_rd_req_group), .rd_rsp_valid(cache_rd_rsp_valid),"
+            },
+            {
+              "line": 198,
+              "text": "        .rd_rsp_ready(cache_rd_rsp_ready), .rd_rsp_bank(cache_rd_rsp_bank),"
+            },
+            {
+              "line": 199,
+              "text": "        .rd_rsp_group(cache_rd_rsp_group),"
+            },
+            {
+              "line": 200,
+              "text": "        .rd_rsp_u8x16x32(cache_rd_rsp_u8),"
+            },
+            {
+              "line": 201,
+              "text": "        .rd_rsp_meta_u24x16(cache_rd_rsp_meta),"
+            },
+            {
+              "line": 202,
+              "text": "        .release_valid(cache_release_valid),"
+            },
+            {
+              "line": 203,
+              "text": "        .release_ready(cache_release_ready), .release_bank(active_bank_r),"
+            },
+            {
+              "line": 204,
+              "text": "        .bank_ready(input_bank_ready),"
+            },
+            {
+              "line": 205,
+              "text": "        .input_group_count(input_group_count),"
+            },
+            {
+              "line": 206,
+              "text": "        .read_group_count(input_cache_read_count),"
+            },
+            {
+              "line": 207,
+              "text": "        .release_count(input_cache_release_count),"
+            },
+            {
+              "line": 208,
+              "text": "        .hadamard_saturation_count(input_hadamard_saturation_count),"
+            },
+            {
+              "line": 209,
+              "text": "        .format_error(input_frontend_format_error),"
+            },
+            {
+              "line": 210,
+              "text": "        .error(input_frontend_error)"
+            },
+            {
+              "line": 211,
+              "text": "    );"
+            },
+            {
+              "line": 212,
+              "text": ""
+            },
+            {
+              "line": 213,
+              "text": "    hap_mlp_serial_ddr_command16_v5_s54 #("
+            },
+            {
+              "line": 214,
+              "text": "        .AXI_ADDR_W(AXI_ADDR_W),"
+            },
+            {
+              "line": 215,
+              "text": "        .INTERMEDIATE_COLUMNS(INTERMEDIATE_COLUMNS),"
+            },
+            {
+              "line": 216,
+              "text": "        .HIDDEN_GROUPS(HIDDEN_GROUPS), .DOWN_GROUPS(DOWN_GROUPS),"
+            },
+            {
+              "line": 217,
+              "text": "        .DOWN_OUTPUT_RECORDS(DOWN_TILES),"
+            },
+            {
+              "line": 218,
+              "text": "        .OUTSTANDING_DEPTH(OUTSTANDING_DEPTH),"
+            },
+            {
+              "line": 219,
+              "text": "        .SILU_LUT_FILE(SILU_LUT_FILE)"
+            },
+            {
+              "line": 220,
+              "text": "    ) u_serial_command ("
+            },
+            {
+              "line": 221,
+              "text": "        .core_clk(core_clk), .core_rst_n(core_rst_n),"
+            },
+            {
+              "line": 222,
+              "text": "        .core_clear(serial_clear), .command_pause(command_pause),"
+            },
+            {
+              "line": 223,
+              "text": "        .weight_source_quiescent(weight_source_quiescent),"
+            },
+            {
+              "line": 224,
+              "text": "        .command_valid(serial_command_valid),"
+            },
+            {
+              "line": 225,
+              "text": "        .command_ready(serial_command_ready), .activation_bank(active_bank_r),"
+            },
+            {
+              "line": 226,
+              "text": "        .activation_bank_ready(input_bank_ready[active_bank_r]),"
+            },
+            {
+              "line": 227,
+              "text": "        .gate_ddr0_base_addr(gate_base0_r),"
+            },
+            {
+              "line": 228,
+              "text": "        .gate_ddr1_base_addr(gate_base1_r),"
+            },
+            {
+              "line": 229,
+              "text": "        .down_ddr0_base_addr(down_base0_r),"
+            },
+            {
+              "line": 230,
+              "text": "        .down_ddr1_base_addr(down_base1_r),"
+            },
+            {
+              "line": 231,
+              "text": "        .cache_rd_req_valid(cache_rd_req_valid),"
+            },
+            {
+              "line": 232,
+              "text": "        .cache_rd_req_ready(cache_rd_req_ready),"
+            },
+            {
+              "line": 233,
+              "text": "        .cache_rd_req_bank(cache_rd_req_bank),"
+            },
+            {
+              "line": 234,
+              "text": "        .cache_rd_req_group(cache_rd_req_group),"
+            },
+            {
+              "line": 235,
+              "text": "        .cache_rd_rsp_valid(cache_rd_rsp_valid),"
+            },
+            {
+              "line": 236,
+              "text": "        .cache_rd_rsp_ready(cache_rd_rsp_ready),"
+            },
+            {
+              "line": 237,
+              "text": "        .cache_rd_rsp_bank(cache_rd_rsp_bank),"
+            },
+            {
+              "line": 238,
+              "text": "        .cache_rd_rsp_group(cache_rd_rsp_group),"
+            },
+            {
+              "line": 239,
+              "text": "        .cache_rd_rsp_u8x16x32(cache_rd_rsp_u8),"
+            },
+            {
+              "line": 240,
+              "text": "        .cache_rd_rsp_meta_u24x16(cache_rd_rsp_meta),"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_serial_ddr_command16_v5_s54.sv",
+      "bytes": 33372,
+      "sha256": "28d80270cf9aec35eb5bdd8bafc7da265600424b07dfe06b52d0d7436353490a",
+      "freeze_match": true,
+      "evidence": [
+        {
+          "start_line": 322,
+          "end_line": 365,
+          "lines": [
+            {
+              "line": 322,
+              "text": ""
+            },
+            {
+              "line": 323,
+              "text": "    hap_mlp_gate_up_v5_scheduler16_q4 #("
+            },
+            {
+              "line": 324,
+              "text": "        .INTERMEDIATE_COLUMNS(INTERMEDIATE_COLUMNS),"
+            },
+            {
+              "line": 325,
+              "text": "        .GROUPS(HIDDEN_GROUPS),"
+            },
+            {
+              "line": 326,
+              "text": "        .ENFORCE_PRODUCTION_SHAPE(ENFORCE_PRODUCTION_SHAPE),"
+            },
+            {
+              "line": 327,
+              "text": "        .SILU_LUT_FILE(SILU_LUT_FILE)"
+            },
+            {
+              "line": 328,
+              "text": "    ) u_gate_scheduler ("
+            },
+            {
+              "line": 329,
+              "text": "        .clk(core_clk), .rst_n(core_rst_n), .clear(core_clear),"
+            },
+            {
+              "line": 330,
+              "text": "        .command_valid(gate_command_valid),"
+            },
+            {
+              "line": 331,
+              "text": "        .command_ready(gate_command_ready),"
+            },
+            {
+              "line": 332,
+              "text": "        .activation_bank(active_bank_r),"
+            },
+            {
+              "line": 333,
+              "text": "        .activation_bank_ready(activation_bank_ready),"
+            },
+            {
+              "line": 334,
+              "text": "        .cache_rd_req_valid(cache_rd_req_valid),"
+            },
+            {
+              "line": 335,
+              "text": "        .cache_rd_req_ready(cache_rd_req_ready),"
+            },
+            {
+              "line": 336,
+              "text": "        .cache_rd_req_bank(cache_rd_req_bank),"
+            },
+            {
+              "line": 337,
+              "text": "        .cache_rd_req_group(cache_rd_req_group),"
+            },
+            {
+              "line": 338,
+              "text": "        .cache_rd_rsp_valid(cache_rd_rsp_valid),"
+            },
+            {
+              "line": 339,
+              "text": "        .cache_rd_rsp_ready(cache_rd_rsp_ready),"
+            },
+            {
+              "line": 340,
+              "text": "        .cache_rd_rsp_bank(cache_rd_rsp_bank),"
+            },
+            {
+              "line": 341,
+              "text": "        .cache_rd_rsp_group(cache_rd_rsp_group),"
+            },
+            {
+              "line": 342,
+              "text": "        .cache_rd_rsp_u8x16x32(cache_rd_rsp_u8x16x32),"
+            },
+            {
+              "line": 343,
+              "text": "        .cache_rd_rsp_meta_u24x16(cache_rd_rsp_meta_u24x16),"
+            },
+            {
+              "line": 344,
+              "text": "        .weight_valid(state_r == P_GATE_RUN && frontend_out_valid),"
+            },
+            {
+              "line": 345,
+              "text": "        .weight_ready(gate_weight_ready),"
+            },
+            {
+              "line": 346,
+              "text": "        .weights_s4x16x32(frontend_weights),"
+            },
+            {
+              "line": 347,
+              "text": "        .weight_meta_u224(frontend_weight_meta),"
+            },
+            {
+              "line": 348,
+              "text": "        .compute_valid(gate_compute_valid),"
+            },
+            {
+              "line": 349,
+              "text": "        .compute_ready(gate_compute_ready),"
+            },
+            {
+              "line": 350,
+              "text": "        .compute_first(gate_compute_first),"
+            },
+            {
+              "line": 351,
+              "text": "        .compute_last(gate_compute_last),"
+            },
+            {
+              "line": 352,
+              "text": "        .compute_activation_s9x16x32(gate_compute_activation),"
+            },
+            {
+              "line": 353,
+              "text": "        .compute_weights_s4x12x32(gate_compute_weights),"
+            },
+            {
+              "line": 354,
+              "text": "        .compute_activation_code_u8x16(gate_compute_acode),"
+            },
+            {
+              "line": 355,
+              "text": "        .compute_activation_shift_u6x16(gate_compute_ashift),"
+            },
+            {
+              "line": 356,
+              "text": "        .compute_weight_code_u8x12(gate_compute_wcode),"
+            },
+            {
+              "line": 357,
+              "text": "        .compute_weight_shift_u6x12(gate_compute_wshift),"
+            },
+            {
+              "line": 358,
+              "text": "        .compute_column_valid_u12(gate_compute_mask),"
+            },
+            {
+              "line": 359,
+              "text": "        .projection_valid(shared_gate_valid),"
+            },
+            {
+              "line": 360,
+              "text": "        .projection_ready(shared_gate_ready),"
+            },
+            {
+              "line": 361,
+              "text": "        .projection_s24x16x12(shared_gate_s24),"
+            },
+            {
+              "line": 362,
+              "text": "        .activation_out_valid(gate_activation_valid),"
+            },
+            {
+              "line": 363,
+              "text": "        .activation_out_ready(gate_activation_ready),"
+            },
+            {
+              "line": 364,
+              "text": "        .activation_out_u8x16x32(gate_activation_u8),"
+            },
+            {
+              "line": 365,
+              "text": "        .activation_out_meta_u24x16(gate_activation_meta),"
+            }
+          ]
+        },
+        {
+          "start_line": 388,
+          "end_line": 400,
+          "lines": [
+            {
+              "line": 388,
+              "text": "    hap_mlp_down_activation_cache16 #(.GROUPS(DOWN_GROUPS))"
+            },
+            {
+              "line": 389,
+              "text": "    u_down_activation_cache ("
+            },
+            {
+              "line": 390,
+              "text": "        .clk(core_clk), .rst_n(core_rst_n), .clear(core_clear),"
+            },
+            {
+              "line": 391,
+              "text": "        .in_valid(gate_activation_valid), .in_ready(gate_activation_ready),"
+            },
+            {
+              "line": 392,
+              "text": "        .in_u8x16x32(gate_activation_u8),"
+            },
+            {
+              "line": 393,
+              "text": "        .in_meta_u24x16(gate_activation_meta),"
+            },
+            {
+              "line": 394,
+              "text": "        .replay_enable(state_r == P_DOWN_RUN),"
+            },
+            {
+              "line": 395,
+              "text": "        .out_valid(down_activation_valid),"
+            },
+            {
+              "line": 396,
+              "text": "        .out_ready(down_activation_ready),"
+            },
+            {
+              "line": 397,
+              "text": "        .out_u8x16x32(down_activation_u8),"
+            },
+            {
+              "line": 398,
+              "text": "        .out_meta_u24x16(down_activation_meta),"
+            },
+            {
+              "line": 399,
+              "text": "        .full(activation_cache_full),"
+            },
+            {
+              "line": 400,
+              "text": "        .write_group_count(down_activation_write_count),"
+            }
+          ]
+        },
+        {
+          "start_line": 433,
+          "end_line": 453,
+          "lines": [
+            {
+              "line": 433,
+              "text": "        .ENFORCE_PRODUCTION_SHAPE(ENFORCE_PRODUCTION_SHAPE)"
+            },
+            {
+              "line": 434,
+              "text": "    ) u_down_scheduler ("
+            },
+            {
+              "line": 435,
+              "text": "        .clk(core_clk), .rst_n(core_rst_n), .clear(core_clear),"
+            },
+            {
+              "line": 436,
+              "text": "        .enable(state_r == P_DOWN_RUN),"
+            },
+            {
+              "line": 437,
+              "text": "        .activation_valid(down_activation_valid),"
+            },
+            {
+              "line": 438,
+              "text": "        .activation_ready(down_activation_ready),"
+            },
+            {
+              "line": 439,
+              "text": "        .activation_u8x16x32(down_activation_u8),"
+            },
+            {
+              "line": 440,
+              "text": "        .activation_meta_u24x16(down_activation_meta),"
+            },
+            {
+              "line": 441,
+              "text": "        .weight_valid(state_r == P_DOWN_RUN && frontend_out_valid),"
+            },
+            {
+              "line": 442,
+              "text": "        .weight_ready(down_weight_ready),"
+            },
+            {
+              "line": 443,
+              "text": "        .weights_s4x16x32(frontend_weights),"
+            },
+            {
+              "line": 444,
+              "text": "        .weight_meta_u224(frontend_weight_meta),"
+            },
+            {
+              "line": 445,
+              "text": "        .compute_valid(down_compute_valid),"
+            },
+            {
+              "line": 446,
+              "text": "        .compute_ready(down_compute_ready),"
+            },
+            {
+              "line": 447,
+              "text": "        .compute_first(down_compute_first),"
+            },
+            {
+              "line": 448,
+              "text": "        .compute_last(down_compute_last),"
+            },
+            {
+              "line": 449,
+              "text": "        .compute_tile(down_compute_tile),"
+            },
+            {
+              "line": 450,
+              "text": "        .compute_activation_s9x16x32(down_compute_activation),"
+            },
+            {
+              "line": 451,
+              "text": "        .compute_weights_s4x12x32(down_compute_weights),"
+            },
+            {
+              "line": 452,
+              "text": "        .compute_activation_code_u8x16(down_compute_acode),"
+            },
+            {
+              "line": 453,
+              "text": "        .compute_activation_shift_u6x16(down_compute_ashift),"
+            }
+          ]
+        },
+        {
+          "start_line": 492,
+          "end_line": 520,
+          "lines": [
+            {
+              "line": 492,
+              "text": "    hap_mlp_shared_dual_slice16x12_s44_s54 #("
+            },
+            {
+              "line": 493,
+              "text": "        .DOWN_TILES(DOWN_COMPUTE_TILES), .DOWN_GROUPS(DOWN_GROUPS),"
+            },
+            {
+              "line": 494,
+              "text": "        .TILE_W(DOWN_TILE_W)"
+            },
+            {
+              "line": 495,
+              "text": "    ) u_shared_compute ("
+            },
+            {
+              "line": 496,
+              "text": "        .clk(core_clk), .rst_n(core_rst_n), .clear(core_clear),"
+            },
+            {
+              "line": 497,
+              "text": "        .in_valid(shared_input_valid), .in_ready(shared_input_ready),"
+            },
+            {
+              "line": 498,
+              "text": "        .in_down(state_r == P_DOWN_RUN),"
+            },
+            {
+              "line": 499,
+              "text": "        .in_first(state_r == P_GATE_RUN ? gate_compute_first :"
+            },
+            {
+              "line": 500,
+              "text": "            down_compute_first),"
+            },
+            {
+              "line": 501,
+              "text": "        .in_last(state_r == P_GATE_RUN ? gate_compute_last :"
+            },
+            {
+              "line": 502,
+              "text": "            down_compute_last),"
+            },
+            {
+              "line": 503,
+              "text": "        .in_tile(state_r == P_DOWN_RUN ? down_compute_tile : '0),"
+            },
+            {
+              "line": 504,
+              "text": "        .activation_s9x16x32(state_r == P_GATE_RUN ?"
+            },
+            {
+              "line": 505,
+              "text": "            gate_compute_activation : down_compute_activation),"
+            },
+            {
+              "line": 506,
+              "text": "        .weights_s4x12x32(state_r == P_GATE_RUN ?"
+            },
+            {
+              "line": 507,
+              "text": "            gate_compute_weights : down_compute_weights),"
+            },
+            {
+              "line": 508,
+              "text": "        .activation_code_u8x16(state_r == P_GATE_RUN ?"
+            },
+            {
+              "line": 509,
+              "text": "            gate_compute_acode : down_compute_acode),"
+            },
+            {
+              "line": 510,
+              "text": "        .activation_shift_u6x16(state_r == P_GATE_RUN ?"
+            },
+            {
+              "line": 511,
+              "text": "            gate_compute_ashift : down_compute_ashift),"
+            },
+            {
+              "line": 512,
+              "text": "        .weight_code_u8x12(state_r == P_GATE_RUN ?"
+            },
+            {
+              "line": 513,
+              "text": "            gate_compute_wcode : down_compute_wcode),"
+            },
+            {
+              "line": 514,
+              "text": "        .weight_shift_u6x12(state_r == P_GATE_RUN ?"
+            },
+            {
+              "line": 515,
+              "text": "            gate_compute_wshift : down_compute_wshift),"
+            },
+            {
+              "line": 516,
+              "text": "        .column_valid_u12(state_r == P_GATE_RUN ?"
+            },
+            {
+              "line": 517,
+              "text": "            gate_compute_mask : down_compute_mask),"
+            },
+            {
+              "line": 518,
+              "text": "        .gate_valid(shared_gate_valid),"
+            },
+            {
+              "line": 519,
+              "text": "        .gate_ready(shared_gate_ready),"
+            },
+            {
+              "line": 520,
+              "text": "        .gate_s24x16x12(shared_gate_s24),"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_gate_up_v5_scheduler16_q4.sv",
+      "bytes": 26313,
+      "sha256": "7672f2841f68ed52bd56c2f7ab6b33629e32e6f569817cf73a1b0644c5e99cc8",
+      "freeze_match": true,
+      "evidence": [
+        {
+          "start_line": 242,
+          "end_line": 280,
+          "lines": [
+            {
+              "line": 242,
+              "text": "    wire compute_admissible = !request_empty && cache_rd_rsp_valid &&"
+            },
+            {
+              "line": 243,
+              "text": "        (!head_last || !projection_tag_full);"
+            },
+            {
+              "line": 244,
+              "text": "    wire compute_fire = compute_valid && compute_ready;"
+            },
+            {
+              "line": 245,
+              "text": ""
+            },
+            {
+              "line": 246,
+              "text": "    assign compute_valid = run_endpoint_bank_r[4] && compute_admissible;"
+            },
+            {
+              "line": 247,
+              "text": "    assign cache_rd_rsp_ready = run_endpoint_bank_r[5] && !request_empty &&"
+            },
+            {
+              "line": 248,
+              "text": "        (!head_last || !projection_tag_full) && compute_ready;"
+            },
+            {
+              "line": 249,
+              "text": "    assign compute_first = request_first[request_rd_ptr_r];"
+            },
+            {
+              "line": 250,
+              "text": "    assign compute_last = head_last;"
+            },
+            {
+              "line": 251,
+              "text": "    assign compute_weights_s4x12x32 = request_weights[request_rd_ptr_r];"
+            },
+            {
+              "line": 252,
+              "text": "    assign compute_weight_code_u8x12 ="
+            },
+            {
+              "line": 253,
+              "text": "        request_meta[request_rd_ptr_r][95:0];"
+            },
+            {
+              "line": 254,
+              "text": "    assign compute_weight_shift_u6x12 ="
+            },
+            {
+              "line": 255,
+              "text": "        request_meta[request_rd_ptr_r][167:96];"
+            },
+            {
+              "line": 256,
+              "text": "    assign compute_column_valid_u12 = request_mask[request_rd_ptr_r];"
+            },
+            {
+              "line": 257,
+              "text": ""
+            },
+            {
+              "line": 258,
+              "text": "    genvar activation_row;"
+            },
+            {
+              "line": 259,
+              "text": "    genvar activation_lane;"
+            },
+            {
+              "line": 260,
+              "text": "    generate"
+            },
+            {
+              "line": 261,
+              "text": "        for (activation_row = 0; activation_row < 16;"
+            },
+            {
+              "line": 262,
+              "text": "             activation_row = activation_row + 1) begin : gen_activation_row"
+            },
+            {
+              "line": 263,
+              "text": "            wire [7:0] zero_point = cache_rd_rsp_meta_u24x16["
+            },
+            {
+              "line": 264,
+              "text": "                activation_row*24 +: 8];"
+            },
+            {
+              "line": 265,
+              "text": "            assign compute_activation_code_u8x16["
+            },
+            {
+              "line": 266,
+              "text": "                activation_row*8 +: 8] = cache_rd_rsp_meta_u24x16["
+            },
+            {
+              "line": 267,
+              "text": "                activation_row*24+8 +: 8];"
+            },
+            {
+              "line": 268,
+              "text": "            assign compute_activation_shift_u6x16["
+            },
+            {
+              "line": 269,
+              "text": "                activation_row*6 +: 6] = cache_rd_rsp_meta_u24x16["
+            },
+            {
+              "line": 270,
+              "text": "                activation_row*24+16 +: 6];"
+            },
+            {
+              "line": 271,
+              "text": "            for (activation_lane = 0; activation_lane < 32;"
+            },
+            {
+              "line": 272,
+              "text": "                 activation_lane = activation_lane + 1) begin : gen_lane"
+            },
+            {
+              "line": 273,
+              "text": "                wire [7:0] value = cache_rd_rsp_u8x16x32["
+            },
+            {
+              "line": 274,
+              "text": "                    (activation_row*32+activation_lane)*8 +: 8];"
+            },
+            {
+              "line": 275,
+              "text": "                assign compute_activation_s9x16x32["
+            },
+            {
+              "line": 276,
+              "text": "                    (activation_row*32+activation_lane)*9 +: 9] ="
+            },
+            {
+              "line": 277,
+              "text": "                    $signed({1'b0, value}) -"
+            },
+            {
+              "line": 278,
+              "text": "                    $signed({1'b0, zero_point});"
+            },
+            {
+              "line": 279,
+              "text": "            end"
+            },
+            {
+              "line": 280,
+              "text": "        end"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_shared_dual_slice16x12_s44_s54.sv",
+      "bytes": 35274,
+      "sha256": "a9818a41ef29c1f9d364f7477fdd7128d477d7cb5feed630384d6eb727114db3",
+      "freeze_match": true,
+      "evidence": [
+        {
+          "start_line": 93,
+          "end_line": 141,
+          "lines": [
+            {
+              "line": 93,
+              "text": "    localparam integer PARENT_WEIGHT_LO = PARENT_ACTIVATION_LO + 16*32*9;"
+            },
+            {
+              "line": 94,
+              "text": "    localparam integer PARENT_ACODE_LO = PARENT_WEIGHT_LO + 12*32*4;"
+            },
+            {
+              "line": 95,
+              "text": "    localparam integer PARENT_ASHIFT_LO = PARENT_ACODE_LO + 16*8;"
+            },
+            {
+              "line": 96,
+              "text": "    localparam integer PARENT_WCODE_LO = PARENT_ASHIFT_LO + 16*6;"
+            },
+            {
+              "line": 97,
+              "text": "    localparam integer PARENT_WSHIFT_LO = PARENT_WCODE_LO + 12*8;"
+            },
+            {
+              "line": 98,
+              "text": "    localparam integer PARENT_MASK_LO = PARENT_WSHIFT_LO + 12*6;"
+            },
+            {
+              "line": 99,
+              "text": "    localparam integer PARENT_PAYLOAD_W = PARENT_MASK_LO + 12;"
+            },
+            {
+              "line": 100,
+              "text": ""
+            },
+            {
+              "line": 101,
+              "text": "    wire [PARENT_PAYLOAD_W-1:0] parent_input_payload = {"
+            },
+            {
+              "line": 102,
+              "text": "        column_valid_u12, weight_shift_u6x12, weight_code_u8x12,"
+            },
+            {
+              "line": 103,
+              "text": "        activation_shift_u6x16, activation_code_u8x16,"
+            },
+            {
+              "line": 104,
+              "text": "        weights_s4x12x32, activation_s9x16x32, in_tile,"
+            },
+            {
+              "line": 105,
+              "text": "        in_last, in_first, in_down"
+            },
+            {
+              "line": 106,
+              "text": "    };"
+            },
+            {
+              "line": 107,
+              "text": "    // A fixed head removes a payload-wide read-pointer mux from both SLR"
+            },
+            {
+              "line": 108,
+              "text": "    // crossings.  Tail moves into head only when a full FIFO drains."
+            },
+            {
+              "line": 109,
+              "text": "    (* ram_style = \"registers\", SHREG_EXTRACT = \"NO\" *)"
+            },
+            {
+              "line": 110,
+              "text": "    reg [PARENT_PAYLOAD_W-1:0] parent_head_r;"
+            },
+            {
+              "line": 111,
+              "text": "    (* ram_style = \"registers\", SHREG_EXTRACT = \"NO\" *)"
+            },
+            {
+              "line": 112,
+              "text": "    reg [PARENT_PAYLOAD_W-1:0] parent_tail_r;"
+            },
+            {
+              "line": 113,
+              "text": "    reg [1:0] parent_count_r;"
+            },
+            {
+              "line": 114,
+              "text": ""
+            },
+            {
+              "line": 115,
+              "text": "    wire parent_full = parent_count_r == 2;"
+            },
+            {
+              "line": 116,
+              "text": "    wire parent_empty = parent_count_r == 0;"
+            },
+            {
+              "line": 117,
+              "text": "    wire parent_valid = rst_n && !clear && !parent_empty;"
+            },
+            {
+              "line": 118,
+              "text": "    wire parent_pop = parent_valid && ready0 && ready1;"
+            },
+            {
+              "line": 119,
+              "text": ""
+            },
+            {
+              "line": 120,
+              "text": "    // A transaction is presented to either local ingress only when the other"
+            },
+            {
+              "line": 121,
+              "text": "    // branch also has credit.  Both local copies are consequently accepted on"
+            },
+            {
+              "line": 122,
+              "text": "    // the same edge without a central S37 or kernel-result fork.  Branch credit"
+            },
+            {
+              "line": 123,
+              "text": "    // controls only this FIFO's dequeue and cannot affect upstream in_ready."
+            },
+            {
+              "line": 124,
+              "text": "    assign in_ready = rst_n && !clear && !parent_full;"
+            },
+            {
+              "line": 125,
+              "text": "    assign gate_valid = rst_n && !clear && gate_valid0 && gate_valid1;"
+            },
+            {
+              "line": 126,
+              "text": "    // Each branch owns a two-entry down elastic queue below.  The central"
+            },
+            {
+              "line": 127,
+              "text": "    // consumer therefore sees only queue heads; its ready no longer reaches"
+            },
+            {
+              "line": 128,
+              "text": "    // either S54 accumulator through this atomic 16-row join."
+            },
+            {
+              "line": 129,
+              "text": "    assign down_valid = rst_n && !clear && down_valid0 && down_valid1;"
+            },
+            {
+              "line": 130,
+              "text": "    assign down_ready0 = down_ready && down_valid1;"
+            },
+            {
+              "line": 131,
+              "text": "    assign down_ready1 = down_ready && down_valid0;"
+            },
+            {
+              "line": 132,
+              "text": "    assign gate_s24x16x12 = {gate_s24_1, gate_s24_0};"
+            },
+            {
+              "line": 133,
+              "text": "    assign down_s32x16x12 = {down_s32_1, down_s32_0};"
+            },
+            {
+              "line": 134,
+              "text": "    assign down_tile = down_tile0;"
+            },
+            {
+              "line": 135,
+              "text": "    assign gate_saturation = gate_saturation0 + gate_saturation1;"
+            },
+            {
+              "line": 136,
+              "text": "    assign down_saturation = down_saturation0 + down_saturation1;"
+            },
+            {
+              "line": 137,
+              "text": "    assign guard_overflow = guard_overflow0 || guard_overflow1;"
+            },
+            {
+              "line": 138,
+              "text": "    assign total_shift_format_count = shift_format_count0 + shift_format_count1;"
+            },
+            {
+              "line": 139,
+              "text": "    assign format_error = format_error0 || format_error1;"
+            },
+            {
+              "line": 140,
+              "text": "    assign accumulator_overflow ="
+            },
+            {
+              "line": 141,
+              "text": "        accumulator_overflow0 || accumulator_overflow1;"
+            }
+          ]
+        },
+        {
+          "start_line": 158,
+          "end_line": 208,
+          "lines": [
+            {
+              "line": 158,
+              "text": "        .activation_code_u8x8(parent_head_r["
+            },
+            {
+              "line": 159,
+              "text": "            PARENT_ACODE_LO +: 8*8]),"
+            },
+            {
+              "line": 160,
+              "text": "        .activation_shift_u6x8(parent_head_r["
+            },
+            {
+              "line": 161,
+              "text": "            PARENT_ASHIFT_LO +: 8*6]),"
+            },
+            {
+              "line": 162,
+              "text": "        .weight_code_u8x12(parent_head_r["
+            },
+            {
+              "line": 163,
+              "text": "            PARENT_WCODE_LO +: 12*8]),"
+            },
+            {
+              "line": 164,
+              "text": "        .weight_shift_u6x12(parent_head_r["
+            },
+            {
+              "line": 165,
+              "text": "            PARENT_WSHIFT_LO +: 12*6]),"
+            },
+            {
+              "line": 166,
+              "text": "        .column_valid_u12(parent_head_r[PARENT_MASK_LO +: 12]),"
+            },
+            {
+              "line": 167,
+              "text": "        .gate_valid(gate_valid0), .gate_ready(gate_ready0),"
+            },
+            {
+              "line": 168,
+              "text": "        .gate_s24x8x12(gate_s24_0),"
+            },
+            {
+              "line": 169,
+              "text": "        .down_valid(down_valid0), .down_ready(down_ready0),"
+            },
+            {
+              "line": 170,
+              "text": "        .down_tile(down_tile0), .down_s32x8x12(down_s32_0),"
+            },
+            {
+              "line": 171,
+              "text": "        .gate_saturation(gate_saturation0),"
+            },
+            {
+              "line": 172,
+              "text": "        .down_saturation(down_saturation0),"
+            },
+            {
+              "line": 173,
+              "text": "        .guard_overflow(guard_overflow0),"
+            },
+            {
+              "line": 174,
+              "text": "        .total_shift_format_count(shift_format_count0),"
+            },
+            {
+              "line": 175,
+              "text": "        .format_error(format_error0),"
+            },
+            {
+              "line": 176,
+              "text": "        .accumulator_overflow(accumulator_overflow0), .error(error0)"
+            },
+            {
+              "line": 177,
+              "text": "    );"
+            },
+            {
+              "line": 178,
+              "text": ""
+            },
+            {
+              "line": 179,
+              "text": "    (* keep_hierarchy = \"yes\" *)"
+            },
+            {
+              "line": 180,
+              "text": "    hap_mlp_shared_local_slice8x12_s44_s54 #("
+            },
+            {
+              "line": 181,
+              "text": "        .DOWN_TILES(DOWN_TILES), .DOWN_GROUPS(DOWN_GROUPS),"
+            },
+            {
+              "line": 182,
+              "text": "        .TILE_W(TILE_W)"
+            },
+            {
+              "line": 183,
+              "text": "    ) u_branch1 ("
+            },
+            {
+              "line": 184,
+              "text": "        .clk(clk), .rst_n(rst_n), .clear(clear),"
+            },
+            {
+              "line": 185,
+              "text": "        .in_valid(parent_valid && ready0), .in_ready(ready1),"
+            },
+            {
+              "line": 186,
+              "text": "        .in_down(parent_head_r[PARENT_DOWN_LO]),"
+            },
+            {
+              "line": 187,
+              "text": "        .in_first(parent_head_r[PARENT_FIRST_LO]),"
+            },
+            {
+              "line": 188,
+              "text": "        .in_last(parent_head_r[PARENT_LAST_LO]),"
+            },
+            {
+              "line": 189,
+              "text": "        .in_tile(parent_head_r[PARENT_TILE_LO +: TILE_W]),"
+            },
+            {
+              "line": 190,
+              "text": "        .activation_s9x8x32(parent_head_r["
+            },
+            {
+              "line": 191,
+              "text": "            PARENT_ACTIVATION_LO + 8*32*9 +: 8*32*9]),"
+            },
+            {
+              "line": 192,
+              "text": "        .weights_s4x12x32(parent_head_r["
+            },
+            {
+              "line": 193,
+              "text": "            PARENT_WEIGHT_LO +: 12*32*4]),"
+            },
+            {
+              "line": 194,
+              "text": "        .activation_code_u8x8(parent_head_r["
+            },
+            {
+              "line": 195,
+              "text": "            PARENT_ACODE_LO + 8*8 +: 8*8]),"
+            },
+            {
+              "line": 196,
+              "text": "        .activation_shift_u6x8(parent_head_r["
+            },
+            {
+              "line": 197,
+              "text": "            PARENT_ASHIFT_LO + 8*6 +: 8*6]),"
+            },
+            {
+              "line": 198,
+              "text": "        .weight_code_u8x12(parent_head_r["
+            },
+            {
+              "line": 199,
+              "text": "            PARENT_WCODE_LO +: 12*8]),"
+            },
+            {
+              "line": 200,
+              "text": "        .weight_shift_u6x12(parent_head_r["
+            },
+            {
+              "line": 201,
+              "text": "            PARENT_WSHIFT_LO +: 12*6]),"
+            },
+            {
+              "line": 202,
+              "text": "        .column_valid_u12(parent_head_r[PARENT_MASK_LO +: 12]),"
+            },
+            {
+              "line": 203,
+              "text": "        .gate_valid(gate_valid1), .gate_ready(gate_ready1),"
+            },
+            {
+              "line": 204,
+              "text": "        .gate_s24x8x12(gate_s24_1),"
+            },
+            {
+              "line": 205,
+              "text": "        .down_valid(down_valid1), .down_ready(down_ready1),"
+            },
+            {
+              "line": 206,
+              "text": "        .down_tile(down_tile1), .down_s32x8x12(down_s32_1),"
+            },
+            {
+              "line": 207,
+              "text": "        .gate_saturation(gate_saturation1),"
+            },
+            {
+              "line": 208,
+              "text": "        .down_saturation(down_saturation1),"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_mlp_tensor_dma_bridge.sv",
+      "bytes": 15069,
+      "sha256": "dacbde500974fe89e9a9e6bce4b09925a335ea734f0279d04ec1bfd4645ad5f9",
+      "freeze_match": true,
+      "evidence": [
+        {
+          "start_line": 3,
+          "end_line": 39,
+          "lines": [
+            {
+              "line": 3,
+              "text": "// Scheme-A tensor boundary over a dedicated 256-bit AXI data master."
+            },
+            {
+              "line": 4,
+              "text": "// Input is 128 contiguous cohort16 group32 records (48 beats/record); output"
+            },
+            {
+              "line": 5,
+              "text": "// is 256 contiguous cohort16 tile16 records (32 beats/record)."
+            },
+            {
+              "line": 6,
+              "text": "module hap_mlp_tensor_dma_bridge #("
+            },
+            {
+              "line": 7,
+              "text": "    parameter integer INPUT_GROUPS = 128,"
+            },
+            {
+              "line": 8,
+              "text": "    parameter integer OUTPUT_TILES = 256,"
+            },
+            {
+              "line": 9,
+              "text": "    parameter integer PRODUCTION_SHAPE = 1"
+            },
+            {
+              "line": 10,
+              "text": ") ("
+            },
+            {
+              "line": 11,
+              "text": "    input wire clk,input wire rst_n,input wire clear,"
+            },
+            {
+              "line": 12,
+              "text": "    input wire load_valid,output wire load_ready,input wire load_bank,"
+            },
+            {
+              "line": 13,
+              "text": "    input wire [31:0] input_base_addr,"
+            },
+            {
+              "line": 14,
+              "text": "    input wire store_valid,output wire store_ready,"
+            },
+            {
+              "line": 15,
+              "text": "    input wire [31:0] output_base_addr,"
+            },
+            {
+              "line": 16,
+              "text": "    output wire mlp_input_valid,input wire mlp_input_ready,"
+            },
+            {
+              "line": 17,
+              "text": "    output wire mlp_input_bank,output wire [6:0] mlp_input_group,"
+            },
+            {
+              "line": 18,
+              "text": "    output wire [12287:0] mlp_input_s24x16x32,"
+            },
+            {
+              "line": 19,
+              "text": "    input wire mlp_out_valid,output wire mlp_out_ready,"
+            },
+            {
+              "line": 20,
+              "text": "    input wire [7:0] mlp_out_tile,input wire [8191:0] mlp_out_s32x16x16,"
+            },
+            {
+              "line": 21,
+              "text": "    output wire busy,output reg done,output reg load_done,"
+            },
+            {
+              "line": 22,
+              "text": "    output reg store_done,output wire store_armed,output wire axi_active,"
+            },
+            {
+              "line": 23,
+              "text": "    output reg error,"
+            },
+            {
+              "line": 24,
+              "text": "    output wire [2:0] phase,output reg [31:0] input_beat_count,"
+            },
+            {
+              "line": 25,
+              "text": "    output reg [31:0] input_group_count,"
+            },
+            {
+              "line": 26,
+              "text": "    output reg [31:0] output_beat_count,"
+            },
+            {
+              "line": 27,
+              "text": "    output reg [31:0] output_tile_count,"
+            },
+            {
+              "line": 28,
+              "text": ""
+            },
+            {
+              "line": 29,
+              "text": "    output wire m_axi_arvalid,input wire m_axi_arready,"
+            },
+            {
+              "line": 30,
+              "text": "    output wire [31:0] m_axi_araddr,output wire [7:0] m_axi_arlen,"
+            },
+            {
+              "line": 31,
+              "text": "    output wire [2:0] m_axi_arsize,output wire [1:0] m_axi_arburst,"
+            },
+            {
+              "line": 32,
+              "text": "    input wire m_axi_rvalid,output wire m_axi_rready,"
+            },
+            {
+              "line": 33,
+              "text": "    input wire [255:0] m_axi_rdata,input wire [1:0] m_axi_rresp,"
+            },
+            {
+              "line": 34,
+              "text": "    input wire m_axi_rlast,output wire m_axi_awvalid,"
+            },
+            {
+              "line": 35,
+              "text": "    input wire m_axi_awready,output wire [31:0] m_axi_awaddr,"
+            },
+            {
+              "line": 36,
+              "text": "    output wire [7:0] m_axi_awlen,output wire [2:0] m_axi_awsize,"
+            },
+            {
+              "line": 37,
+              "text": "    output wire [1:0] m_axi_awburst,output wire m_axi_wvalid,"
+            },
+            {
+              "line": 38,
+              "text": "    input wire m_axi_wready,output wire [255:0] m_axi_wdata,"
+            },
+            {
+              "line": 39,
+              "text": "    output wire [31:0] m_axi_wstrb,output wire m_axi_wlast,"
+            }
+          ]
+        },
+        {
+          "start_line": 49,
+          "end_line": 81,
+          "lines": [
+            {
+              "line": 49,
+              "text": "    // A 12288-bit shift register made rd_fire a 12288-load CE and Vivado"
+            },
+            {
+              "line": 50,
+              "text": "    // promoted that data/control net onto a BUFGCE in the full V5 place."
+            },
+            {
+              "line": 51,
+              "text": "    // Store each AXI beat directly in its final 256-bit bank instead.  The"
+            },
+            {
+              "line": 52,
+              "text": "    // bank decode has only 48 sinks and each local enable owns 256 FFs; the"
+            },
+            {
+              "line": 53,
+              "text": "    // flattened tensor order at the MLP boundary is unchanged."
+            },
+            {
+              "line": 54,
+              "text": "    (* DONT_TOUCH = \"yes\" *) reg [255:0] input_group_beat_r [0:47];"
+            },
+            {
+              "line": 55,
+              "text": "    (* DONT_TOUCH = \"yes\", KEEP = \"yes\" *)"
+            },
+            {
+              "line": 56,
+              "text": "    wire [47:0] input_beat_write_enable;"
+            },
+            {
+              "line": 57,
+              "text": "    reg input_group_valid_r;"
+            },
+            {
+              "line": 58,
+              "text": "    reg [7:0] expected_output_tile_r;"
+            },
+            {
+              "line": 59,
+              "text": "    reg [4:0] output_beat_r;"
+            },
+            {
+              "line": 60,
+              "text": "    // Likewise, shifting a complete 8192-bit output tile on every accepted"
+            },
+            {
+              "line": 61,
+              "text": "    // AXI beat created a second global data predicate.  Capture the 32 final"
+            },
+            {
+              "line": 62,
+              "text": "    // words into protected banks and advance only a 256-bit registered stream"
+            },
+            {
+              "line": 63,
+              "text": "    // word.  The per-bank hold bits are physical control copies; bit zero of"
+            },
+            {
+              "line": 64,
+              "text": "    // output_tile_valid_r remains the sole architectural protocol owner."
+            },
+            {
+              "line": 65,
+              "text": "    (* DONT_TOUCH = \"yes\" *) reg [255:0] output_tile_beat_r [0:31];"
+            },
+            {
+              "line": 66,
+              "text": "    (* DONT_TOUCH = \"yes\" *) reg [31:0] output_tile_hold_r;"
+            },
+            {
+              "line": 67,
+              "text": "    // A stallable two-stage 32-to-1 read pipeline keeps the beat selector and"
+            },
+            {
+              "line": 68,
+              "text": "    // data mux local.  It adds two startup cycles per tile but still retires"
+            },
+            {
+              "line": 69,
+              "text": "    // one AXI beat per cycle once full."
+            },
+            {
+              "line": 70,
+              "text": "    reg [5:0] output_issue_count_r;"
+            },
+            {
+              "line": 71,
+              "text": "    (* DONT_TOUCH = \"yes\" *) reg [255:0]"
+            },
+            {
+              "line": 72,
+              "text": "        output_mux_group_data_r [0:7];"
+            },
+            {
+              "line": 73,
+              "text": "    (* DONT_TOUCH = \"yes\", KEEP = \"yes\" *)"
+            },
+            {
+              "line": 74,
+              "text": "    wire [7:0] output_mux_group_write_enable;"
+            },
+            {
+              "line": 75,
+              "text": "    (* DONT_TOUCH = \"yes\" *) reg [2:0] output_mux_group_r;"
+            },
+            {
+              "line": 76,
+              "text": "    (* DONT_TOUCH = \"yes\" *) reg output_mux_stage0_valid_r;"
+            },
+            {
+              "line": 77,
+              "text": "    (* DONT_TOUCH = \"yes\" *) reg [255:0] output_stream_data_r;"
+            },
+            {
+              "line": 78,
+              "text": "    (* DONT_TOUCH = \"yes\" *) reg output_stream_valid_r;"
+            },
+            {
+              "line": 79,
+              "text": "    reg output_tile_valid_r;"
+            },
+            {
+              "line": 80,
+              "text": ""
+            },
+            {
+              "line": 81,
+              "text": "    wire dma_cmd_valid=(state_r==P_IDLE&&load_valid)||"
+            }
+          ]
+        },
+        {
+          "start_line": 88,
+          "end_line": 137,
+          "lines": [
+            {
+              "line": 88,
+              "text": "    wire [31:0] dma_cmd_base=state_r==P_IDLE?input_base_addr:output_base_addr;"
+            },
+            {
+              "line": 89,
+              "text": "    wire [31:0] dma_cmd_beats=state_r==P_IDLE?INPUT_GROUPS*48:OUTPUT_TILES*32;"
+            },
+            {
+              "line": 90,
+              "text": "    wire dma_rd_valid,dma_rd_ready,dma_rd_last;"
+            },
+            {
+              "line": 91,
+              "text": "    wire [255:0] dma_rd_data;"
+            },
+            {
+              "line": 92,
+              "text": "    wire dma_wr_valid,dma_wr_ready;"
+            },
+            {
+              "line": 93,
+              "text": "    wire [255:0] dma_wr_data;"
+            },
+            {
+              "line": 94,
+              "text": "    wire rd_fire=dma_rd_valid&&dma_rd_ready;"
+            },
+            {
+              "line": 95,
+              "text": "    wire wr_fire=dma_wr_valid&&dma_wr_ready;"
+            },
+            {
+              "line": 96,
+              "text": "    wire input_fire=input_group_valid_r&&mlp_input_ready;"
+            },
+            {
+              "line": 97,
+              "text": "    wire output_fire=mlp_out_valid&&mlp_out_ready;"
+            },
+            {
+              "line": 98,
+              "text": ""
+            },
+            {
+              "line": 99,
+              "text": "    assign load_ready=rst_n&&!clear&&state_r==P_IDLE&&dma_cmd_ready;"
+            },
+            {
+              "line": 100,
+              "text": "    assign store_ready=rst_n&&!clear&&state_r==P_IDLE&&!load_valid;"
+            },
+            {
+              "line": 101,
+              "text": "    assign busy=state_r!=P_IDLE;"
+            },
+            {
+              "line": 102,
+              "text": "    assign store_armed=state_r==P_STORE_ARM||state_r==P_STORE;"
+            },
+            {
+              "line": 103,
+              "text": "    assign axi_active=state_r==P_LOAD||state_r==P_LOAD_DRAIN||state_r==P_STORE;"
+            },
+            {
+              "line": 104,
+              "text": "    assign phase=state_r;"
+            },
+            {
+              "line": 105,
+              "text": "    assign dma_rd_ready=state_r==P_LOAD&&!input_group_valid_r;"
+            },
+            {
+              "line": 106,
+              "text": "    assign mlp_input_valid=input_group_valid_r;"
+            },
+            {
+              "line": 107,
+              "text": "    assign mlp_input_bank=active_bank_r;"
+            },
+            {
+              "line": 108,
+              "text": "    assign mlp_input_group=input_group_r;"
+            },
+            {
+              "line": 109,
+              "text": "    assign mlp_out_ready=state_r==P_STORE&&!output_tile_valid_r;"
+            },
+            {
+              "line": 110,
+              "text": "    wire output_stream_ready = !output_stream_valid_r || dma_wr_ready;"
+            },
+            {
+              "line": 111,
+              "text": "    wire output_mux_stage0_ready = !output_mux_stage0_valid_r ||"
+            },
+            {
+              "line": 112,
+              "text": "        output_stream_ready;"
+            },
+            {
+              "line": 113,
+              "text": "    wire output_issue_valid = state_r==P_STORE&&output_tile_valid_r&&"
+            },
+            {
+              "line": 114,
+              "text": "        output_issue_count_r<32;"
+            },
+            {
+              "line": 115,
+              "text": "    wire output_issue_fire = output_issue_valid&&output_mux_stage0_ready;"
+            },
+            {
+              "line": 116,
+              "text": ""
+            },
+            {
+              "line": 117,
+              "text": "    assign dma_wr_valid=state_r==P_STORE&&output_tile_valid_r&&"
+            },
+            {
+              "line": 118,
+              "text": "        output_stream_valid_r;"
+            },
+            {
+              "line": 119,
+              "text": "    assign dma_wr_data=output_stream_data_r;"
+            },
+            {
+              "line": 120,
+              "text": ""
+            },
+            {
+              "line": 121,
+              "text": "    genvar input_bank;"
+            },
+            {
+              "line": 122,
+              "text": "    generate"
+            },
+            {
+              "line": 123,
+              "text": "      for(input_bank=0;input_bank<48;input_bank=input_bank+1)begin:"
+            },
+            {
+              "line": 124,
+              "text": "          g_input_beat_bank"
+            },
+            {
+              "line": 125,
+              "text": "        assign mlp_input_s24x16x32[input_bank*256+:256]="
+            },
+            {
+              "line": 126,
+              "text": "          input_group_beat_r[input_bank];"
+            },
+            {
+              "line": 127,
+              "text": "        // Keep bank 47's payload CEs separate from the logically equivalent"
+            },
+            {
+              "line": 128,
+              "text": "        // input_group_valid update."
+            },
+            {
+              "line": 129,
+              "text": "        (* DONT_TOUCH = \"yes\", KEEP = \"yes\" *) LUT1 #(.INIT(2'h2))"
+            },
+            {
+              "line": 130,
+              "text": "        u_input_beat_write_enable ("
+            },
+            {
+              "line": 131,
+              "text": "          .I0(rd_fire&&(input_beat_r==input_bank)),"
+            },
+            {
+              "line": 132,
+              "text": "          .O(input_beat_write_enable[input_bank])"
+            },
+            {
+              "line": 133,
+              "text": "        );"
+            },
+            {
+              "line": 134,
+              "text": "        always @(posedge clk)begin"
+            },
+            {
+              "line": 135,
+              "text": "          if(input_beat_write_enable[input_bank])"
+            },
+            {
+              "line": 136,
+              "text": "            input_group_beat_r[input_bank]<=dma_rd_data;"
+            },
+            {
+              "line": 137,
+              "text": "        end"
+            }
+          ]
+        },
+        {
+          "start_line": 246,
+          "end_line": 264,
+          "lines": [
+            {
+              "line": 246,
+              "text": "          input_group_r<=0;input_beat_r<=0;input_group_valid_r<=0;"
+            },
+            {
+              "line": 247,
+              "text": "          input_beat_count<=0;input_group_count<=0;end"
+            },
+            {
+              "line": 248,
+              "text": "        if(arm_store)begin state_r<=P_STORE_ARM;expected_output_tile_r<=0;"
+            },
+            {
+              "line": 249,
+              "text": "          output_beat_r<=0;output_tile_valid_r<=0;"
+            },
+            {
+              "line": 250,
+              "text": "          output_issue_count_r<=0;output_mux_stage0_valid_r<=0;"
+            },
+            {
+              "line": 251,
+              "text": "          output_stream_valid_r<=0;"
+            },
+            {
+              "line": 252,
+              "text": "          output_tile_hold_r<=32'd0;output_beat_count<=0;"
+            },
+            {
+              "line": 253,
+              "text": "          output_tile_count<=0;end"
+            },
+            {
+              "line": 254,
+              "text": "        if(start_store_dma)state_r<=P_STORE;"
+            },
+            {
+              "line": 255,
+              "text": "        if(rd_fire)begin"
+            },
+            {
+              "line": 256,
+              "text": "          input_beat_count<=input_beat_count+1;"
+            },
+            {
+              "line": 257,
+              "text": "          if(input_beat_r==47)begin input_beat_r<=0;input_group_valid_r<=1;end"
+            },
+            {
+              "line": 258,
+              "text": "          else input_beat_r<=input_beat_r+1;end"
+            },
+            {
+              "line": 259,
+              "text": "        if(input_fire)begin input_group_valid_r<=0;"
+            },
+            {
+              "line": 260,
+              "text": "          input_group_count<=input_group_count+1;"
+            },
+            {
+              "line": 261,
+              "text": "          if(input_group_r+1==INPUT_GROUPS)begin"
+            },
+            {
+              "line": 262,
+              "text": "            if(dma_done)begin state_r<=P_IDLE;done<=1;load_done<=1;end"
+            },
+            {
+              "line": 263,
+              "text": "            else state_r<=P_LOAD_DRAIN;end"
+            },
+            {
+              "line": 264,
+              "text": "          else input_group_r<=input_group_r+1;end"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_attention_mlp_production_core.sv",
+      "bytes": 30879,
+      "sha256": "1e5d2ba60335e0c3f9c0b97ee6aa867a53ecad89ea3da0a483732ed889eeead3",
+      "freeze_match": true,
+      "evidence": [
+        {
+          "start_line": 214,
+          "end_line": 262,
+          "lines": [
+            {
+              "line": 214,
+              "text": " // MLP tensor and metadata DMA clients."
+            },
+            {
+              "line": 215,
+              "text": " wire tensor_load_valid,tensor_load_ready,tensor_store_valid,tensor_store_ready;"
+            },
+            {
+              "line": 216,
+              "text": " wire tensor_dma_load_ready,tensor_dma_store_ready;"
+            },
+            {
+              "line": 217,
+              "text": " wire mlp_input_valid,mlp_input_ready,mlp_input_bank;wire[6:0]mlp_input_group;"
+            },
+            {
+              "line": 218,
+              "text": " wire[12287:0]mlp_input_s24x16x32;wire mlp_out_valid,mlp_out_ready;wire[7:0]mlp_out_tile_index;"
+            },
+            {
+              "line": 219,
+              "text": " wire signed[8191:0]mlp_projection_s32x16x16;wire tensor_done,tensor_load_done;"
+            },
+            {
+              "line": 220,
+              "text": " wire tensor_error;wire[2:0]tensor_phase;wire[31:0]tib,tig,tob,tot;"
+            },
+            {
+              "line": 221,
+              "text": " wire tensor_cancelable_arm=tensor_phase==3'd3&&!tensor_axi_active&&"
+            },
+            {
+              "line": 222,
+              "text": "  !mlp_busy&&!mlp_transaction_busy_r;"
+            },
+            {
+              "line": 223,
+              "text": " wire meta_dma_done,meta_dma_error;wire[2:0]meta_dma_phase;"
+            },
+            {
+              "line": 224,
+              "text": " wire[31:0]meta_gate_base_addr,meta_down_base_addr,meta_gate_count,meta_down_count;"
+            },
+            {
+              "line": 225,
+              "text": " wire[63:0]meta_physical_bytes;wire meta_dma_start_ready;"
+            },
+            {
+              "line": 226,
+              "text": ""
+            },
+            {
+              "line": 227,
+              "text": " // Three AXI client bundles (c0 Attention, c1 tensor, c2 metadata)."
+            },
+            {
+              "line": 228,
+              "text": " wire c0_req,c1_req,c2_req;wire c0_arvalid,c0_arready,c0_rvalid,c0_rready,c0_rlast;"
+            },
+            {
+              "line": 229,
+              "text": " wire[31:0]c0_araddr;wire[7:0]c0_arlen;wire[2:0]c0_arsize;wire[1:0]c0_arburst,c0_rresp;"
+            },
+            {
+              "line": 230,
+              "text": " wire[255:0]c0_rdata;wire c0_awvalid,c0_awready,c0_wvalid,c0_wready,c0_wlast,c0_bvalid,c0_bready;"
+            },
+            {
+              "line": 231,
+              "text": " wire[31:0]c0_awaddr,c0_wstrb;wire[7:0]c0_awlen;wire[2:0]c0_awsize;wire[1:0]c0_awburst,c0_bresp;wire[255:0]c0_wdata;"
+            },
+            {
+              "line": 232,
+              "text": " wire c1_arvalid,c1_arready,c1_rvalid,c1_rready,c1_rlast,c1_awvalid,c1_awready,c1_wvalid,c1_wready,c1_wlast,c1_bvalid,c1_bready;"
+            },
+            {
+              "line": 233,
+              "text": " wire[31:0]c1_araddr,c1_awaddr,c1_wstrb;wire[7:0]c1_arlen,c1_awlen;wire[2:0]c1_arsize,c1_awsize;"
+            },
+            {
+              "line": 234,
+              "text": " wire[1:0]c1_arburst,c1_rresp,c1_awburst,c1_bresp;wire[255:0]c1_rdata,c1_wdata;"
+            },
+            {
+              "line": 235,
+              "text": " wire c2_arvalid,c2_arready,c2_rvalid,c2_rready,c2_rlast,c2_awvalid,c2_awready,c2_wvalid,c2_wready,c2_wlast,c2_bvalid,c2_bready;"
+            },
+            {
+              "line": 236,
+              "text": " wire[31:0]c2_araddr,c2_awaddr,c2_wstrb;wire[7:0]c2_arlen,c2_awlen;wire[2:0]c2_arsize,c2_awsize;"
+            },
+            {
+              "line": 237,
+              "text": " wire[1:0]c2_arburst,c2_rresp,c2_awburst,c2_bresp;wire[255:0]c2_rdata,c2_wdata;"
+            },
+            {
+              "line": 238,
+              "text": " hap_mlp_tensor_dma_bridge u_tensor(.clk(core_clk),.rst_n(core_rst_n),.clear(mlp_engine_clear),"
+            },
+            {
+              "line": 239,
+              "text": "  .load_valid(tensor_load_valid&&!early_pause),.load_ready(tensor_dma_load_ready),"
+            },
+            {
+              "line": 240,
+              "text": "  .load_bank(mlp_command_bank),.input_base_addr(mlp_input_base_addr),"
+            },
+            {
+              "line": 241,
+              "text": "  .store_valid(tensor_store_valid&&!early_pause),.store_ready(tensor_dma_store_ready),"
+            },
+            {
+              "line": 242,
+              "text": "  .output_base_addr(mlp_output_base_addr),.mlp_input_valid(mlp_input_valid),"
+            },
+            {
+              "line": 243,
+              "text": "  .mlp_input_ready(mlp_input_ready),.mlp_input_bank(mlp_input_bank),.mlp_input_group(mlp_input_group),"
+            },
+            {
+              "line": 244,
+              "text": "  .mlp_input_s24x16x32(mlp_input_s24x16x32),.mlp_out_valid(mlp_out_valid),"
+            },
+            {
+              "line": 245,
+              "text": "  .mlp_out_ready(mlp_out_ready),.mlp_out_tile(mlp_out_tile_index),"
+            },
+            {
+              "line": 246,
+              "text": "  .mlp_out_s32x16x16(mlp_projection_s32x16x16),.busy(tensor_busy),.done(tensor_done),"
+            },
+            {
+              "line": 247,
+              "text": "  .load_done(tensor_load_done),.store_done(tensor_store_done),.store_armed(tensor_store_armed),"
+            },
+            {
+              "line": 248,
+              "text": "  .axi_active(tensor_axi_active),.error(tensor_error),.phase(tensor_phase),"
+            },
+            {
+              "line": 249,
+              "text": "  .input_beat_count(tib),.input_group_count(tig),.output_beat_count(tob),.output_tile_count(tot),"
+            },
+            {
+              "line": 250,
+              "text": "  .m_axi_arvalid(c1_arvalid),.m_axi_arready(c1_arready),.m_axi_araddr(c1_araddr),"
+            },
+            {
+              "line": 251,
+              "text": "  .m_axi_arlen(c1_arlen),.m_axi_arsize(c1_arsize),.m_axi_arburst(c1_arburst),"
+            },
+            {
+              "line": 252,
+              "text": "  .m_axi_rvalid(c1_rvalid),.m_axi_rready(c1_rready),.m_axi_rdata(c1_rdata),"
+            },
+            {
+              "line": 253,
+              "text": "  .m_axi_rresp(c1_rresp),.m_axi_rlast(c1_rlast),.m_axi_awvalid(c1_awvalid),"
+            },
+            {
+              "line": 254,
+              "text": "  .m_axi_awready(c1_awready),.m_axi_awaddr(c1_awaddr),.m_axi_awlen(c1_awlen),"
+            },
+            {
+              "line": 255,
+              "text": "  .m_axi_awsize(c1_awsize),.m_axi_awburst(c1_awburst),.m_axi_wvalid(c1_wvalid),"
+            },
+            {
+              "line": 256,
+              "text": "  .m_axi_wready(c1_wready),.m_axi_wdata(c1_wdata),.m_axi_wstrb(c1_wstrb),"
+            },
+            {
+              "line": 257,
+              "text": " .m_axi_wlast(c1_wlast),.m_axi_bvalid(c1_bvalid),.m_axi_bready(c1_bready),.m_axi_bresp(c1_bresp));"
+            },
+            {
+              "line": 258,
+              "text": " assign tensor_load_ready=!early_pause&&tensor_dma_load_ready;"
+            },
+            {
+              "line": 259,
+              "text": " assign tensor_store_ready=!early_pause&&tensor_dma_store_ready;"
+            },
+            {
+              "line": 260,
+              "text": " hap_mlp_meta_dma_loader u_meta_dma(.clk(core_clk),.rst_n(core_rst_n),.clear(mlp_engine_clear),"
+            },
+            {
+              "line": 261,
+              "text": "  .start_valid(meta_load_start&&!early_pause),.start_ready(meta_dma_start_ready),.target_bank(meta_load_bank),"
+            },
+            {
+              "line": 262,
+              "text": "  .gate_base_addr(meta_gate_base_addr),.down_base_addr(meta_down_base_addr),"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_attention_mlp_resource_top.sv",
+      "bytes": 11764,
+      "sha256": "863f636d0ed759415a584e96f77644f9a6456769c24c5054fd76cd082cebff3c",
+      "freeze_match": true,
+      "evidence": [
+        {
+          "start_line": 153,
+          "end_line": 162,
+          "lines": [
+            {
+              "line": 153,
+              "text": "    hap_mlp_full_command16_s54 u_mlp("
+            },
+            {
+              "line": 154,
+              "text": "      .core_clk(core_clk),.core_rst_n(core_rst_n),"
+            },
+            {
+              "line": 155,
+              "text": "      .core_clear(mlp_engine_clear),"
+            },
+            {
+              "line": 156,
+              "text": "      .command_pause(command_pause),"
+            },
+            {
+              "line": 157,
+              "text": "      .weight_source_quiescent(mlp_weight_source_quiescent),"
+            },
+            {
+              "line": 158,
+              "text": "      .input_valid(mlp_input_valid),.input_ready(mlp_input_ready),"
+            },
+            {
+              "line": 159,
+              "text": "      .input_bank(mlp_input_bank),.input_group(mlp_input_group),"
+            },
+            {
+              "line": 160,
+              "text": "      .input_s24x16x32(mlp_input_s24x16x32),"
+            },
+            {
+              "line": 161,
+              "text": "      .input_bank_ready(mlp_input_bank_ready),"
+            },
+            {
+              "line": 162,
+              "text": "      .command_valid(mlp_command_valid),.command_ready(mlp_command_ready),"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "selector": {
+    "frontend_root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend",
+    "frontend_inclusion": "all primitive descendants of exact frontend root",
+    "frontend_exclusions": [
+      "u_cache0/ descendants",
+      "u_cache1/ descendants",
+      "root-relative cell name starts bundle_u8_bank_r, bundle_meta_bank_r, or g_bundle_row["
+    ],
+    "tensor_root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor",
+    "tensor_inclusion_prefixes": [
+      "g_input_beat_bank[",
+      "input_beat_r",
+      "input_group_r",
+      "input_group_valid_r",
+      "input_beat_count",
+      "input_group_count"
+    ],
+    "rules": "literal prefix comparisons implemented in this audit; no wildcard interpretation of brackets",
+    "matched_primitive_count": 77360,
+    "exact_sorted_cell_names_sha256": "a478123e7b8a5605017a4ecd1f423abe715a8715f2f3923c1eb056cd01782a73"
+  },
+  "exact_input_payload_indices": {
+    "tensor_complete_48x256": 12288,
+    "frontend_complete_16x768": 12288
+  },
+  "groups": [
+    {
+      "group": "frontend/S24_capture_and_local_enable",
+      "SLR": "SLR1",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 12385,
+        "logic_LUT_primitives_not_native_LUT_total": 97,
+        "CLB_FF_latch_primitives": 12288,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 5875
+      },
+      "REF_counts": {
+        "LUT1": 48,
+        "LUT5": 1,
+        "LUT2": 48,
+        "FDRE": 12288
+      },
+      "exact_sorted_cell_names_sha256": "769534cbfada3f79a9d0b96fffe05cae97674c46cbe96c1ccfa0a8e4ce40288b",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_input_capture[0].u_input_capture_enable",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_input_capture[0].u_input_capture_enable_i_1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_input_capture[10].u_input_capture_enable"
+      ]
+    },
+    {
+      "group": "frontend/bundle_payload_and_local_write",
+      "SLR": "SLR1",
+      "selected": false,
+      "metrics": {
+        "primitive_count": 4512,
+        "logic_LUT_primitives_not_native_LUT_total": 64,
+        "CLB_FF_latch_primitives": 4448,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 1262
+      },
+      "REF_counts": {
+        "LUT3": 32,
+        "FDRE": 4448,
+        "LUT1": 32
+      },
+      "exact_sorted_cell_names_sha256": "41e5e1a6f0b38bae05188aaccca114393ba551b41e82608bd82d0134b7b62fd1",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/bundle_meta_bank_r[0][21]_i_1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/bundle_meta_bank_r[10][21]_i_1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/bundle_meta_bank_r[11][21]_i_1"
+      ]
+    },
+    {
+      "group": "frontend/g_quant[0].u_quantizer",
+      "SLR": "SLR1",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 8840,
+        "logic_LUT_primitives_not_native_LUT_total": 5817,
+        "CLB_FF_latch_primitives": 2603,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 1515
+      },
+      "REF_counts": {
+        "LUT6": 2087,
+        "LUT2": 653,
+        "LUT4": 1181,
+        "LUT5": 1018,
+        "LUT3": 691,
+        "FDCE": 1712,
+        "FDPE": 27,
+        "CARRY8": 332,
+        "LUT1": 187,
+        "MUXF7": 88,
+        "FDRE": 864
+      },
+      "exact_sorted_cell_names_sha256": "01f2cb0f432c37c9370c37cab24d9151a1dcb8ee1fe93547fbf11859560f7c78",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[0].u_quantizer/FSM_onehot_state_r[0]_i_1__7",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[0].u_quantizer/FSM_onehot_state_r[0]_i_2__7",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[0].u_quantizer/FSM_onehot_state_r[10]_i_1__7"
+      ]
+    },
+    {
+      "group": "frontend/g_quant[0].u_quantizer",
+      "SLR": "UNPLACED",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 27,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 0
+      },
+      "REF_counts": {
+        "GND": 18,
+        "VCC": 9
+      },
+      "exact_sorted_cell_names_sha256": "218f2e21875aac57e97929236e08eb686a36ea3ac2c09cc9f4c08972e8621eae",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[0].u_quantizer/GND",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[0].u_quantizer/GND_1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[0].u_quantizer/VCC"
+      ]
+    },
+    {
+      "group": "frontend/g_quant[1].u_quantizer",
+      "SLR": "SLR1",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 8827,
+        "logic_LUT_primitives_not_native_LUT_total": 5804,
+        "CLB_FF_latch_primitives": 2603,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 1323
+      },
+      "REF_counts": {
+        "LUT6": 2077,
+        "LUT2": 653,
+        "LUT4": 1180,
+        "LUT5": 1016,
+        "LUT3": 691,
+        "FDCE": 1712,
+        "FDPE": 27,
+        "CARRY8": 332,
+        "LUT1": 187,
+        "MUXF7": 88,
+        "FDRE": 864
+      },
+      "exact_sorted_cell_names_sha256": "8bf3aa4bd2b692c1ba2a32c9b61de90924eff54c27e9baf59ed5b35e6f93169b",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[1].u_quantizer/FSM_onehot_state_r[0]_i_1__8",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[1].u_quantizer/FSM_onehot_state_r[0]_i_2__8",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[1].u_quantizer/FSM_onehot_state_r[10]_i_1__8"
+      ]
+    },
+    {
+      "group": "frontend/g_quant[1].u_quantizer",
+      "SLR": "UNPLACED",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 27,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 0
+      },
+      "REF_counts": {
+        "GND": 18,
+        "VCC": 9
+      },
+      "exact_sorted_cell_names_sha256": "b963526aebc6f52dd8947bec23475bad37be1d711843c8cf44b0dad8f5fc6a1c",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[1].u_quantizer/GND",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[1].u_quantizer/GND_1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[1].u_quantizer/VCC"
+      ]
+    },
+    {
+      "group": "frontend/g_quant[2].u_quantizer",
+      "SLR": "SLR1",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 8827,
+        "logic_LUT_primitives_not_native_LUT_total": 5804,
+        "CLB_FF_latch_primitives": 2603,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 1476
+      },
+      "REF_counts": {
+        "LUT6": 2077,
+        "LUT2": 653,
+        "LUT4": 1180,
+        "LUT5": 1016,
+        "LUT3": 691,
+        "FDCE": 1712,
+        "FDPE": 27,
+        "CARRY8": 332,
+        "LUT1": 187,
+        "MUXF7": 88,
+        "FDRE": 864
+      },
+      "exact_sorted_cell_names_sha256": "60139563d443202bd15c36017d3e962e153722174c9700252db730ef5b82e8cc",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[2].u_quantizer/FSM_onehot_state_r[0]_i_1__9",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[2].u_quantizer/FSM_onehot_state_r[0]_i_2__9",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[2].u_quantizer/FSM_onehot_state_r[10]_i_1__9"
+      ]
+    },
+    {
+      "group": "frontend/g_quant[2].u_quantizer",
+      "SLR": "UNPLACED",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 27,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 0
+      },
+      "REF_counts": {
+        "GND": 18,
+        "VCC": 9
+      },
+      "exact_sorted_cell_names_sha256": "f500e9260e9339307047b17669b5732ec35fa111509de6b1f6c6fb5b3f616893",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[2].u_quantizer/GND",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[2].u_quantizer/GND_1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[2].u_quantizer/VCC"
+      ]
+    },
+    {
+      "group": "frontend/g_quant[3].u_quantizer",
+      "SLR": "SLR1",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 8838,
+        "logic_LUT_primitives_not_native_LUT_total": 5815,
+        "CLB_FF_latch_primitives": 2603,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 1319
+      },
+      "REF_counts": {
+        "LUT6": 2084,
+        "LUT2": 654,
+        "LUT4": 1181,
+        "LUT5": 1016,
+        "LUT3": 693,
+        "FDCE": 1712,
+        "FDPE": 27,
+        "CARRY8": 332,
+        "LUT1": 187,
+        "MUXF7": 88,
+        "FDRE": 864
+      },
+      "exact_sorted_cell_names_sha256": "0791f8031b54b4f2f5ad65b04c19af27e6b1aa4762dcc4e9ac38f0bd1463f309",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[3].u_quantizer/FSM_onehot_state_r[0]_i_1__10",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[3].u_quantizer/FSM_onehot_state_r[0]_i_2__10",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[3].u_quantizer/FSM_onehot_state_r[10]_i_1__10"
+      ]
+    },
+    {
+      "group": "frontend/g_quant[3].u_quantizer",
+      "SLR": "UNPLACED",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 27,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 0
+      },
+      "REF_counts": {
+        "GND": 18,
+        "VCC": 9
+      },
+      "exact_sorted_cell_names_sha256": "ebdcaaaab7fc32daf423c676de913a2e434de6cf5be7e3f5b4b225e598c43099",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[3].u_quantizer/GND",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[3].u_quantizer/GND_1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[3].u_quantizer/VCC"
+      ]
+    },
+    {
+      "group": "frontend/other_control_and_glue",
+      "SLR": "SLR1",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 399,
+        "CLB_FF_latch_primitives": 260,
+        "logic_LUT_primitives_not_native_LUT_total": 125,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 114
+      },
+      "REF_counts": {
+        "FDRE": 260,
+        "LUT1": 34,
+        "LUT2": 37,
+        "LUT3": 26,
+        "LUT4": 13,
+        "LUT5": 4,
+        "CARRY8": 14,
+        "LUT6": 11
+      },
+      "exact_sorted_cell_names_sha256": "47b19e9e06e39df5d8aa48e6e3084b49892092adfb880e29e624bb0b87f3c095",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/active_bank_r_reg",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/active_bank_r_reg_rep",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/active_bank_r_reg_rep__0"
+      ]
+    },
+    {
+      "group": "frontend/other_control_and_glue",
+      "SLR": "UNPLACED",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 3,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 0
+      },
+      "REF_counts": {
+        "GND": 2,
+        "VCC": 1
+      },
+      "exact_sorted_cell_names_sha256": "ac8d1f11f90973d27711be638fe34760f164519ba3bac890115f905e49ed751d",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/GND",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/GND_1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/VCC"
+      ]
+    },
+    {
+      "group": "frontend/u_cache0",
+      "SLR": "SLR1",
+      "selected": false,
+      "metrics": {
+        "primitive_count": 10444,
+        "logic_LUT_primitives_not_native_LUT_total": 5551,
+        "CLB_FF_latch_primitives": 4796,
+        "BRAM_36K_equivalent": 33.0,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 2645
+      },
+      "REF_counts": {
+        "LUT5": 1125,
+        "LUT4": 277,
+        "LUT3": 2602,
+        "LUT6": 1528,
+        "LUT2": 1,
+        "FDCE": 292,
+        "RAMB36E2": 31,
+        "MUXF7": 43,
+        "MUXF8": 19,
+        "RAMB18E2": 4,
+        "FDRE": 4504,
+        "LUT1": 18
+      },
+      "exact_sorted_cell_names_sha256": "0bbba8ccd9f6cffd55ecdb5d8688f3c0ada35a60b92a5972e49e74c9edb45843",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0/bank_ready_r[0]_i_1__0",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0/bank_ready_r[0]_i_2__0",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0/bank_ready_r[1]_i_100__0"
+      ]
+    },
+    {
+      "group": "frontend/u_cache0",
+      "SLR": "UNPLACED",
+      "selected": false,
+      "metrics": {
+        "primitive_count": 3,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 0
+      },
+      "REF_counts": {
+        "GND": 1,
+        "VCC": 2
+      },
+      "exact_sorted_cell_names_sha256": "256b206bb1afb39e346ba164d2ab8a2df9e8cb0022a5f20a42c3b5e27cb1bae3",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0/GND",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0/VCC",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0/VCC_1"
+      ]
+    },
+    {
+      "group": "frontend/u_cache1",
+      "SLR": "SLR1",
+      "selected": false,
+      "metrics": {
+        "primitive_count": 10437,
+        "logic_LUT_primitives_not_native_LUT_total": 5546,
+        "CLB_FF_latch_primitives": 4796,
+        "BRAM_36K_equivalent": 33.0,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 2759
+      },
+      "REF_counts": {
+        "LUT4": 271,
+        "LUT2": 5,
+        "LUT3": 2601,
+        "LUT6": 1537,
+        "LUT5": 1114,
+        "FDCE": 292,
+        "RAMB36E2": 31,
+        "MUXF7": 42,
+        "MUXF8": 18,
+        "RAMB18E2": 4,
+        "FDRE": 4504,
+        "LUT1": 18
+      },
+      "exact_sorted_cell_names_sha256": "3fab58f09a23dd2fe77559ad8380786a8518bfb81775aad696bd91c15ed0cf11",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache1/active_bank_r_i_1__1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache1/active_command_id_r[31]_i_1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache1/active_command_id_r[31]_i_2"
+      ]
+    },
+    {
+      "group": "frontend/u_cache1",
+      "SLR": "UNPLACED",
+      "selected": false,
+      "metrics": {
+        "primitive_count": 3,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 0
+      },
+      "REF_counts": {
+        "GND": 1,
+        "VCC": 2
+      },
+      "exact_sorted_cell_names_sha256": "953b79243d8a22ec8f5e63ae877caf8094d565be67bb94ce9d1fcd5445b7af95",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache1/GND",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache1/VCC",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache1/VCC_1"
+      ]
+    },
+    {
+      "group": "frontend/u_hadamard",
+      "SLR": "SLR1",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 16660,
+        "logic_LUT_primitives_not_native_LUT_total": 8151,
+        "CLB_FF_latch_primitives": 5301,
+        "unique_DSP_sites": 8,
+        "touched_SLICE_sites_nonadditive": 1954
+      },
+      "REF_counts": {
+        "LUT2": 4321,
+        "FDCE": 49,
+        "LUT6": 3312,
+        "LUT1": 364,
+        "FDRE": 5252,
+        "MUXF7": 1652,
+        "CARRY8": 716,
+        "MUXF8": 768,
+        "LUT4": 19,
+        "LUT5": 131,
+        "LUT3": 4,
+        "DSP48E2": 8,
+        "DSP_ALU": 8,
+        "DSP_A_B_DATA": 8,
+        "DSP_C_DATA": 8,
+        "DSP_MULTIPLIER": 8,
+        "DSP_M_DATA": 8,
+        "DSP_OUTPUT": 8,
+        "DSP_PREADD_DATA": 8,
+        "DSP_PREADD": 8
+      },
+      "exact_sorted_cell_names_sha256": "694afc9dd42f856c0d95cae2a00fb066d035d023811fabdf4265543497af4b07",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_hadamard/capture_base_r[2]_i_1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_hadamard/capture_base_r[3]_i_1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_hadamard/capture_base_r[4]_i_1"
+      ]
+    },
+    {
+      "group": "frontend/u_hadamard",
+      "SLR": "UNPLACED",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 3,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 0
+      },
+      "REF_counts": {
+        "GND": 2,
+        "VCC": 1
+      },
+      "exact_sorted_cell_names_sha256": "9baed063f1f8ee5b60e8bfe32182c0af52287dbf481f50f58b91dd45d56d8e9f",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_hadamard/GND",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_hadamard/GND_1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_hadamard/VCC"
+      ]
+    },
+    {
+      "group": "tensor/input_beat_banks",
+      "SLR": "SLR1",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 12340,
+        "CLB_FF_latch_primitives": 12288,
+        "logic_LUT_primitives_not_native_LUT_total": 52,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 5692
+      },
+      "REF_counts": {
+        "FDRE": 12288,
+        "LUT1": 48,
+        "LUT2": 4
+      },
+      "exact_sorted_cell_names_sha256": "19717255d408b7f5269403a1e61941c6e220aca06df739c669310ad63de7a297",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/g_input_beat_bank[0].input_group_beat_r_reg[0][0]",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/g_input_beat_bank[0].input_group_beat_r_reg[0][100]",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/g_input_beat_bank[0].input_group_beat_r_reg[0][101]"
+      ]
+    },
+    {
+      "group": "tensor/input_control_and_counters",
+      "SLR": "SLR1",
+      "selected": true,
+      "metrics": {
+        "primitive_count": 130,
+        "CLB_FF_latch_primitives": 78,
+        "logic_LUT_primitives_not_native_LUT_total": 44,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 30
+      },
+      "REF_counts": {
+        "FDCE": 78,
+        "CARRY8": 8,
+        "LUT4": 36,
+        "LUT2": 1,
+        "LUT3": 1,
+        "LUT5": 2,
+        "LUT6": 4
+      },
+      "exact_sorted_cell_names_sha256": "23a8a91727544ea17adeaa41f48c5fc95ec5d76ec29d3eb2e022e2e28b0f5bd9",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/input_beat_count_reg[0]",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/input_beat_count_reg[10]",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/input_beat_count_reg[11]"
+      ]
+    },
+    {
+      "group": "tensor/other",
+      "SLR": "SLR0",
+      "selected": false,
+      "metrics": {
+        "primitive_count": 9325,
+        "logic_LUT_primitives_not_native_LUT_total": 2371,
+        "CLB_FF_latch_primitives": 6698,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 1911
+      },
+      "REF_counts": {
+        "LUT1": 25,
+        "FDRE": 6656,
+        "LUT6": 1792,
+        "LUT4": 533,
+        "FDCE": 42,
+        "MUXF7": 256,
+        "LUT3": 21
+      },
+      "exact_sorted_cell_names_sha256": "5f16a4bb042c6ec0dc6577ab1632e93700fb960c080100aafd52ac13f84365c8",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/g_output_beat_bank[0].output_tile_beat_r[0][255]_i_1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/g_output_beat_bank[0].output_tile_beat_r_reg[0][0]",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/g_output_beat_bank[0].output_tile_beat_r_reg[0][100]"
+      ]
+    },
+    {
+      "group": "tensor/other",
+      "SLR": "SLR1",
+      "selected": false,
+      "metrics": {
+        "primitive_count": 5998,
+        "logic_LUT_primitives_not_native_LUT_total": 1883,
+        "CLB_FF_latch_primitives": 4089,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 1720
+      },
+      "REF_counts": {
+        "LUT3": 110,
+        "FDCE": 249,
+        "LUT6": 928,
+        "LUT4": 583,
+        "LUT5": 113,
+        "LUT1": 46,
+        "FDRE": 3840,
+        "LUT2": 103,
+        "CARRY8": 26
+      },
+      "exact_sorted_cell_names_sha256": "3bdd0b3896c4c2b6448724d7e69a4b2a7768cd849d30c708f04c0b17d81bdeab",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/FSM_sequential_owner_r[1]_i_2",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/active_bank_r_reg",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/active_mode[1]_i_3"
+      ]
+    },
+    {
+      "group": "tensor/other",
+      "SLR": "UNPLACED",
+      "selected": false,
+      "metrics": {
+        "primitive_count": 6,
+        "unique_DSP_sites": 0,
+        "touched_SLICE_sites_nonadditive": 0
+      },
+      "REF_counts": {
+        "GND": 4,
+        "VCC": 2
+      },
+      "exact_sorted_cell_names_sha256": "1f9f7d34931593d7098c9a7a4290de4de53046d475e35af9b9c57145f56e8e2f",
+      "first_names": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/GND",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/GND_1",
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/VCC"
+      ]
+    }
+  ],
+  "candidate_SLR_metrics": {
+    "SLR1": {
+      "primitive_count": 77246,
+      "logic_LUT_primitives_not_native_LUT_total": 31709,
+      "CLB_FF_latch_primitives": 40627,
+      "unique_DSP_sites": 8,
+      "unique_touched_SLICE_sites": 13230,
+      "SLICE_sites_shared_with_retained_frontend_or_tensor": 1453,
+      "SLICE_sites_with_candidate_and_any_other_primitive": 12254,
+      "SLICE_sites_currently_only_candidate_primitives": 976
+    },
+    "UNPLACED": {
+      "primitive_count": 114,
+      "unique_DSP_sites": 0,
+      "unique_touched_SLICE_sites": 0,
+      "SLICE_sites_shared_with_retained_frontend_or_tensor": 0,
+      "SLICE_sites_with_candidate_and_any_other_primitive": 0,
+      "SLICE_sites_currently_only_candidate_primitives": 0
+    }
+  },
+  "interface_budget_bits": {
+    "original_frontend_input_S24": 12288,
+    "original_cache_response_payload": 4480,
+    "proposed_DMA_read_payload_into_group": 256,
+    "proposed_quantizer_payload_out": 1120,
+    "retained_tensor_output_payload": 8192,
+    "retained_bundle_to_cache_payload": 4480,
+    "retained_cache_to_gate_payload": 4480
+  },
+  "limits": [
+    "LUT primitive counts are not native CLB LUT totals; no summation with inclusive report LUT totals.",
+    "Payload bit widths are source interface budgets, not physical nets, active bits, leaf endpoints, SLL usage or traffic.",
+    "Current candidate-site occupancy does not predict sites freed or destination packing; other owners can share those sites.",
+    "Exact current physopt NAME selectors require native re-resolution and semantic preflight on any earlier OPT checkpoint.",
+    "Controller will decide next optimization contract after required E006 hotspot and endpoint evidence closes."
+  ]
+}

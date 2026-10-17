@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail;e="$(cd "$(dirname "${BASH_SOURCE[0]}")"&&pwd)";v="${VIVADO_BIN:-/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/vivado}";mkdir -p "$e/artifacts/ooc" "$e/artifacts/build";for s in '0 fixed hap_rope_pair_s24' '1 fp16 m5_fp16_rope' '2 fp32 m5_fp32_rope';do read -r i n t<<<"$s";(r="$e/artifacts/ooc/$n";b="$e/artifacts/build/$n";rm -rf "$r" "$b";mkdir -p "$r" "$b";M5_CASE_ID=$i M5_CASE_NAME=$n M5_TOP=$t M5_REPORT_DIR=$r M5_BUILD_DIR=$b "$v" -mode batch -notrace -source "$e/ooc.tcl" >"$e/artifacts/ooc/$n.console.log" 2>&1)&done;wait

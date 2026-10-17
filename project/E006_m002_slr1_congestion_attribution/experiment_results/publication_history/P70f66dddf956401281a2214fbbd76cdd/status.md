@@ -1,0 +1,41 @@
+# E006：执行状态
+
+execution_state: running
+verdict: unassessed
+
+工程诊断与候选选择继续，当前没有活动EDA。R003/AT001于北京时间2026-10-17 07:31:53自然结束native1/supervisor1；failure_samples、hotspot_ownership、exact_hierarchy_resources闭合0，hotspot_connections因单元属性批量对齐错误闭合1；具体属性及空值行为尚未原生定位，R004将用9对象probe确认。真实终态、输入身份、所有PID/start、单EDA锁和资源已核；不冒充全诊断成功。
+
+已根据真实热点/失败样本将原输入迁移组降为探索对照，当前不能生成E007 candidate_scope_supported。A007已交付两个更直接候选的exact targets和判断范围；A006准备R004独立只读入口：修复批量属性对齐，补必要连接并在同次DCP恢复中比较两候选资源/位置/完整边界。原R003/AT002连接-only授权和准备保留未执行，不能冒用为R004。R004尚未实际启动，不造管理骨架当运行。
+
+用户定向优化和完整implementation授权保持，普通修复与必要只读比较按合同继续，无新增用户批准门。选择获实测支持后再绑定对应实现合同/入口及实际收尾，连续布局布线；当前尚无新implementation。只有原R001那一次切换获用户停止例外，后续正常EDA无墙钟/静默强停，资源限制与无bitstream/板卡/GPU/PPL/ACC范围保持。
+
+R004合同与真实执行绑定已建立；[失败归因措辞更正](../../../mission/M002_ddr_separation_and_timing_recovery/exact_hotspot_candidate_comparison_evidence_correction_2026-10-17.md)保留具体原因待原生确认。原冻结合同及历史发布不覆盖。源包集中检查与实际单EDA准入后直接执行，无新用户批准门。
+
+
+---
+Published: 2026-10-16T23:46:46.113962+00:00
+Publication: P86b4dbba6081407eb74f26be7f884ff6
+Execution state: running
+Research verdict: unassessed
+Applicability: E005原physopt；R003已闭合热点/样本/资源支持MLP主热点和旧候选降级；连接缺失，R004两候选比较准备中，下一实现范围未定。
+Evidence:
+- project/E006_m002_slr1_congestion_attribution/experiment_source/protocol.md
+- project/E006_m002_slr1_congestion_attribution/experiment_results/slr_same_stage_comparison.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/route_failure_sample_targets.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/attempts/AT001_physopt_attribution/started.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/first_attention_mlp_native_review.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/metadata_uram_roles.md
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/failure_nodes_cpu_tile_intersection.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/peripheral_slr1_primitive_review.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/ddr_non_slice_ff_site_types.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/closed_primitive_ownership_review.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/input_frontend_locality_candidate.md
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/lean_candidate_source_review_20261017.md
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/attempts/AT001_physopt_attribution/controlled_terminal_facts_20261017.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/independent_switch_and_lean_review.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/attempts/AT001_lean_physopt_attribution/started.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/attempts/AT001_lean_physopt_attribution/terminal_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/attempts/AT001_lean_physopt_attribution/hotspot_ownership_closed_stage_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/attempts/AT001_lean_physopt_attribution/failure_samples_closed_stage_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/independent_candidate_raw_intersections.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/independent_candidate_targets.json

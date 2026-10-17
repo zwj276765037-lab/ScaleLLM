@@ -1,0 +1,260 @@
+{
+  "recorded_utc": "2026-10-17T07:39:56.280457+00:00",
+  "EDA_executed": false,
+  "checks": {
+    "one_actual_procedure_one_option_changed": true,
+    "physical_region_and_membership_readbacks_preserved": true,
+    "native_export_errors_propagated": true,
+    "failures_before_export_not_swallowed": true,
+    "all_9_cases": true
+  },
+  "cases": [
+    {
+      "case": "original_invalid_option",
+      "result_code": 1,
+      "result": "INVALID_CONSTRAINTS_PHYSICAL",
+      "export_calls": [
+        "('-constraints', 'physical', <path object: '/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/original_invalid_option/candidate_effective_physical.xdc'>)"
+      ],
+      "passed": true,
+      "artifacts": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/original_invalid_option/candidate_actual_SLR2_ranges.tsv",
+          "bytes": 131,
+          "sha256": "fccd1d270cf96796b5b6fc23952bbea516159f36960eb1aa67b7c966100f6101"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/original_invalid_option/candidate_constraint_conflicts.txt",
+          "bytes": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/original_invalid_option/candidate_existing_constraints.tsv",
+          "bytes": 169,
+          "sha256": "303e8ae7edb6da02d2755ea2de93db90f7a24996cf0420daf4f54d4a8845ce78"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/original_invalid_option/candidate_pblock_readback.txt",
+          "bytes": 198,
+          "sha256": "30bf8f7857cb8e4bac06f7406cb948a19b435321ee8cdc05ebd8b4411e3faac0"
+        }
+      ]
+    },
+    {
+      "case": "corrected_export",
+      "result_code": 0,
+      "result": "",
+      "export_calls": [
+        "('-type', 'physical', <path object: '/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/corrected_export/candidate_effective_physical.xdc'>)"
+      ],
+      "passed": true,
+      "artifacts": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/corrected_export/candidate_actual_SLR2_ranges.tsv",
+          "bytes": 131,
+          "sha256": "fccd1d270cf96796b5b6fc23952bbea516159f36960eb1aa67b7c966100f6101"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/corrected_export/candidate_constraint_conflicts.txt",
+          "bytes": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/corrected_export/candidate_effective_physical.xdc",
+          "bytes": 20,
+          "sha256": "feb626814fc9c44741ee09dc635b859a0bc865cbe82f15c73989accdb3bfec1e"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/corrected_export/candidate_existing_constraints.tsv",
+          "bytes": 169,
+          "sha256": "303e8ae7edb6da02d2755ea2de93db90f7a24996cf0420daf4f54d4a8845ce78"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/corrected_export/candidate_pblock_readback.txt",
+          "bytes": 198,
+          "sha256": "30bf8f7857cb8e4bac06f7406cb948a19b435321ee8cdc05ebd8b4411e3faac0"
+        }
+      ]
+    },
+    {
+      "case": "native_export_error",
+      "result_code": 1,
+      "result": "ACTUAL_EXPORT_ERROR",
+      "export_calls": [
+        "('-type', 'physical', <path object: '/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/native_export_error/candidate_effective_physical.xdc'>)"
+      ],
+      "passed": true,
+      "artifacts": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/native_export_error/candidate_actual_SLR2_ranges.tsv",
+          "bytes": 131,
+          "sha256": "fccd1d270cf96796b5b6fc23952bbea516159f36960eb1aa67b7c966100f6101"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/native_export_error/candidate_constraint_conflicts.txt",
+          "bytes": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/native_export_error/candidate_existing_constraints.tsv",
+          "bytes": 169,
+          "sha256": "303e8ae7edb6da02d2755ea2de93db90f7a24996cf0420daf4f54d4a8845ce78"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/native_export_error/candidate_pblock_readback.txt",
+          "bytes": 198,
+          "sha256": "30bf8f7857cb8e4bac06f7406cb948a19b435321ee8cdc05ebd8b4411e3faac0"
+        }
+      ]
+    },
+    {
+      "case": "member_readback",
+      "result_code": 1,
+      "result": "Pblock cell readback differs from normalized P",
+      "export_calls": [],
+      "passed": true,
+      "artifacts": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/member_readback/candidate_actual_SLR2_ranges.tsv",
+          "bytes": 131,
+          "sha256": "fccd1d270cf96796b5b6fc23952bbea516159f36960eb1aa67b7c966100f6101"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/member_readback/candidate_constraint_conflicts.txt",
+          "bytes": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/member_readback/candidate_existing_constraints.tsv",
+          "bytes": 169,
+          "sha256": "303e8ae7edb6da02d2755ea2de93db90f7a24996cf0420daf4f54d4a8845ce78"
+        }
+      ]
+    },
+    {
+      "case": "outside_site",
+      "result_code": 1,
+      "result": "Pblock range extends outside actual SLR2: SLICE_X9Y9",
+      "export_calls": [],
+      "passed": true,
+      "artifacts": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/outside_site/candidate_actual_SLR2_ranges.tsv",
+          "bytes": 131,
+          "sha256": "fccd1d270cf96796b5b6fc23952bbea516159f36960eb1aa67b7c966100f6101"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/outside_site/candidate_constraint_conflicts.txt",
+          "bytes": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/outside_site/candidate_existing_constraints.tsv",
+          "bytes": 169,
+          "sha256": "303e8ae7edb6da02d2755ea2de93db90f7a24996cf0420daf4f54d4a8845ce78"
+        }
+      ]
+    },
+    {
+      "case": "missing_site",
+      "result_code": 1,
+      "result": "SLR2 resource site absent from Pblock: RAMB36_X0Y0",
+      "export_calls": [],
+      "passed": true,
+      "artifacts": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/missing_site/candidate_actual_SLR2_ranges.tsv",
+          "bytes": 131,
+          "sha256": "fccd1d270cf96796b5b6fc23952bbea516159f36960eb1aa67b7c966100f6101"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/missing_site/candidate_constraint_conflicts.txt",
+          "bytes": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/missing_site/candidate_existing_constraints.tsv",
+          "bytes": 169,
+          "sha256": "303e8ae7edb6da02d2755ea2de93db90f7a24996cf0420daf4f54d4a8845ce78"
+        }
+      ]
+    },
+    {
+      "case": "soft_readback",
+      "result_code": 1,
+      "result": "Pblock policy readback failed: IS_SOFT",
+      "export_calls": [],
+      "passed": true,
+      "artifacts": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/soft_readback/candidate_actual_SLR2_ranges.tsv",
+          "bytes": 131,
+          "sha256": "fccd1d270cf96796b5b6fc23952bbea516159f36960eb1aa67b7c966100f6101"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/soft_readback/candidate_constraint_conflicts.txt",
+          "bytes": 1,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/soft_readback/candidate_existing_constraints.tsv",
+          "bytes": 169,
+          "sha256": "303e8ae7edb6da02d2755ea2de93db90f7a24996cf0420daf4f54d4a8845ce78"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/soft_readback/candidate_pblock_readback.txt",
+          "bytes": 197,
+          "sha256": "c2527639ac2304e02064e760453f8f8ab041091bed8b4db116b5bc4d93adc2c5"
+        }
+      ]
+    },
+    {
+      "case": "existing_pblock",
+      "result_code": 1,
+      "result": "Candidate Pblock already exists; do not modify existing constraints",
+      "export_calls": [],
+      "passed": true,
+      "artifacts": []
+    },
+    {
+      "case": "conflicting_LOC",
+      "result_code": 1,
+      "result": "Existing candidate constraints conflict; no constraints cleared",
+      "export_calls": [],
+      "passed": true,
+      "artifacts": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/conflicting_LOC/candidate_constraint_conflicts.txt",
+          "bytes": 40,
+          "sha256": "28c2585cf09f34f393aee5981e0a6d4d11433573239147291a8f8f72471902d4"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/conflicting_LOC/candidate_existing_constraints.tsv",
+          "bytes": 179,
+          "sha256": "3ce7f0f92c102a8d22226924dc07233423c4d1b6ca5e9f1bdfd19a873925ed7e"
+        }
+      ]
+    }
+  ],
+  "source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/candidate_hooks.tcl",
+    "bytes": 23602,
+    "sha256": "9dd5d7de1b11b99d51d402180587238167dc069f83ee0f2f9ae8ae11cc92c115"
+  },
+  "baseline": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_native_property_policy_fix/E008_entry/candidate_hooks.tcl",
+    "bytes": 23609,
+    "sha256": "06156c834c193a0f18a95134804857dc9c1da74c4c6bef7c83a44899db88a194"
+  },
+  "fixture": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/CPU_checks/CT002_physical_export/actual_region_fixture.tcl",
+    "bytes": 2476,
+    "sha256": "f6eae153a6eddf5a0ec041a10531f09102a74a2183f7de00d2c2d55a43ae5251"
+  },
+  "producer": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_physical_xdc_fix/E008_entry/check_xdc_export_CPU.py",
+    "bytes": 6181,
+    "sha256": "ca080a999ac33d5956c1b5741ab022d1278b206b83fa2e2d073f8d69da7e26c4"
+  },
+  "applicability": "Actual constrain_region in finite Tcl native API mocks; native help separately confirms supported syntax. No full design export/place/route claimed."
+}

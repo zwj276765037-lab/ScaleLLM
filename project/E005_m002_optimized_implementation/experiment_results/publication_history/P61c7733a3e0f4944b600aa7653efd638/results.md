@@ -1,0 +1,38 @@
+# E005：布局与physopt完整后检查通过，新route入口已启动
+
+SSI_SpreadSLLs布局原生返回0，耗时8387秒；新place DCP已保存，SHA32b4af05f2ba43c8f63ec8ee44f7fcd40dbc1d6f5012638d404bb0cb6678bdf2。完整placed POST通过：completed=1、diagnostic_eligible=1、gate_issues=[]、黑盒0、内部时钟覆盖完整、reset结构/fanout合格、688 BRAM时钟端点、8条已分类Critical CDC且新增未分类0。正式CDC/reset及外部IO安全仍OPEN。[完整阶段事实](runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/completed_place_POST_independent_physopt_command_facts.json)。
+
+独立Default physopt原生命令返回0，耗时25秒。原生日志明确setup无违例，跳过setup优化且网表未修改；不能据此宣称hold修复。新physopt DCP已保存，579969232字节，SHA766217926d5e8d01137d0ba39f4512dd2337f9fcbcb788525320b5bd0a810a2d。[检查点事实](runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/physopt_checkpoint_saved_observation.json)、[原生处置](runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/independent_physopt_native_disposition_observation.json)。完整physopt POST已通过：BB0、COMPLETE_INTERNAL、gate_issues=[]、当前8条CDC分类/新增未分类0，正式安全OPEN。AT003于08:57:32.868921 UTC自然结束，native/监督0、stop=null、无残留，144冻结输入保持；installed parent_place实际接受。[父链资格事实](runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/completed_physopt_POST_parent_qualification_facts.json)。
+
+R004/AT004_default_route已于08:58:51.015791 UTC实际启动，监督器611388、leader611402。当前正在打开本次physopt.dcp恢复设计，尚未观察到原生route_design启动，未取得任何新routed结果。[真实启动](runs/R004/attempts/AT004_default_route/started.json)。
+
+正式Physopt postPlace资源、时序12summary、80边界/14上游完整行以及48行拥塞与本次placed分别相同；整体仍hold FAIL、各类拥塞峰Level6。该等同关系来自两阶段各自实际报告，不以physopt值代填placed缺项。[physopt实际事实](runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/physopt_timing_utilization_report_facts.json)。
+
+以下仅为E003 placed→E005 placed同阶段比较：
+
+| 指标 | 旧placed | 本次placed |
+| --- | ---: | ---: |
+| LUT | 814911 | 801751 |
+| CLB站点占用 | 146472 / 99.11% | 143802 / 97.31% |
+| CLB Registers（非纯FF简称） | 1019696 | 1017050 |
+| SLL Used | 18263 | 18983 |
+| Setup WNS / TNS (ns) | -1.819 / -818.651 | +0.103 / 0 |
+| Setup失败端点 | 1014 | 0 |
+| Hold WHS / THS (ns) | -0.620 / -2150.556 | -0.695 / -2145.408 |
+| Hold失败端点 | 33141 | 30885 |
+| WPWS / TPWS (ns) | 0 / 0 | 0 / 0 |
+
+[资源独立核验](runs/R005/AT003_place_resource_pre_POST_review_evidence.json)、[时序独立核验](runs/R005/AT003_place_timing_pre_POST_review_evidence.json)。新SLR0/1/2的CLB占用99.00%/99.85%/93.07%，SLR1局部仍极满；SLL Used不等于目标控制网跨SLR负载或router需求。setup/PW在placed阶段通过，整体仍hold FAIL，互连仍为布线前估计；新旧global最坏setup均在PCIe→XDMA但端点不同，不能单独归因某个RTL改动。
+
+80个实际边界全部保持48input×256FDCE/CE、16Gate×384FDRE/CE、16Down×512FDRE/CE，共26624叶pin；原生issues=[]、LOC/BEL与DONT_TOUCH存在，A007逐行核同cell/INIT/REF。14个上游源负载数/类型保持。79组负载各在单SLR，Gate row5负载在SLR0/1为381/3；精确跨SLR量仍需driver映射。Attention各组虽均在SLR2，slice包络仍Xspan59–68/Yspan186–192，不能将同SLR等同紧凑。[80边界事实](runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/place_80_boundary_graph_facts.json)。
+
+实际拥塞报告48行相互重叠/嵌套，Global/Long/Short最高均Level6，四个Global方向峰均6。新热点位置变化，旧48个direction/type/window精确命中0；旧固定窗当前值NOT_MEASURED，不能填0或宣称改善。仍属Placer Final Level，非fresh routed估计。[实际拥塞](runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/place_congestion_report_facts.json)。当前支持资源和setup的同阶段改善、80局部控制机制保留；拥塞改善及合法布通未确立。完整placed POST现已通过；后续补充比较证据仍须在最终交付前完成。
+
+已完成的功能、综合及恢复证据：Attention AT001与生产Gate/Down AT003局部功能PASS；新create/综合自然成功，80局部控制逐项符合预期，Synthesized LUT841576→828763，342输入/45DCP父链已绑定。[功能事实](runs/R001/rtl_functional_final_facts.json)、[综合审核](runs/R005/synthesis_stage_review_facts.json)。原综合监督UNKNOWN及2097.384826秒观测缺口保留，原wrapper真实退出0单独有据。AT001显式debug准入缺失、AT002旧CDC报告hash适配失败保留；219项入口回归通过，AT003完整debug/pre_place已通过。[入口回归](runs/R002/attempts/AT010_current_CDC_recovery_cpu/completion_facts.json)。raw debug verified0、声明300MHz/实际50MHz、vendor异常约束及外部IO缺delay继续保留；OPT aux枚举coverage_limited不可由非OPT not_limited推断消除。
+
+调度：完整physopt POST/父链/结构/资源/约束资格已闭合，当前AT004继续一次完整Default route，负hold或Level6本身不新增停点。固定旧窗口、目标层次利用率、driver及上游负载位置/精确跨SLR比较，允许在route自然终态后从本次精确closed placed/physopt DCP按单EDA顺序补齐；仍属最终交付义务，不声称已经完成，不重做物理阶段。[报告覆盖范围](runs/R005/AT003_frozen_physical_reporting_coverage.json)。合法布通、时序及正式CDC安全独立验收；无bitstream/板卡/GPU/PPL/ACC。
+
+
+---
+Published: 2026-10-16T09:00:20.067653+00:00
+Publication: P60ef50c51c314a10aba7686c1498a405

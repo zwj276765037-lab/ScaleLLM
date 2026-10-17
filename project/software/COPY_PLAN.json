@@ -1,0 +1,48 @@
+{
+  "source_root": "/home/user/EDA-202/zhuowenjun/ScaleLLM",
+  "same_path_groups": {
+    "0_Software/fix_experiment/exp": [
+      "protocol.py", "run_eval_worker.py", "six_model_matrix.py",
+      "prepare_model_identity.py", "audit_tokenizer_boundaries.py",
+      "test_protocol.py", "test_tokenizer_boundary.py", "merge_eval_shards.py",
+      "summarize_plan.py", "summarize_six_models.py", "prepare_standard_data.py",
+      "run_six_model_eval.py", "run_extended_ppl_eval.py",
+      "run_extended_ppl_worker.py", "requirements.txt"
+    ],
+    "0_Software/FPtoQ/experiment": [
+      "fptoq_core.py", "torch_frontend.py", "v5_fullchain.py",
+      "test_fptoq_core.py", "test_v5_fullchain.py", "run_experiment.py",
+      "capture_model_activations.py", "requirements.txt"
+    ],
+    "0_Software/experiment/scripts/accuracy_MLP_4bit": ["mlp4_method_inference.py"],
+    "0_Software/experiment/scripts/scale_code_linear": ["scalepath4_method_inference.py"],
+    "model": ["__init__.py", "fixbit_v2.py", "mlp_fixed.py", "export_scalellm_llama31_artifacts.py"],
+    "0_Software/introduction": ["01_final_scalecode_algorithm.md"],
+    "0_Software/fix_experiment/source": [
+      "ScaleLLM_ACC_PPL_evaluation_alignment_standard.md",
+      "ScaleLLM_MLP_Down_S32_fix_handoff.md"
+    ],
+    "introduction": ["00_URGENT_online_a8_minmax_correction_notice.md"]
+  },
+  "remapped_files": {
+    "0_Software/fix_experiment/results/s32_candidate_validation/final_validation_summary.json": "evidence/format05/final_validation_summary.json",
+    "0_Software/fix_experiment/results/s32_candidate_validation/full_acc/mlp_s32_shift12_candidate/shard_arc_challenge/manifest.json": "evidence/format05/arc_challenge_manifest.json",
+    "0_Software/fix_experiment/results/s32_candidate_validation/full_acc/mlp_s32_shift12_candidate/shard_winogrande/manifest.json": "evidence/format05/winogrande_manifest.json",
+    "0_Software/fix_experiment/results/s32_candidate_validation/full_ppl/mlp_s32/manifest.json": "evidence/down_s32/mlp_ppl_manifest.json",
+    "0_Software/fix_experiment/results/s32_candidate_validation/full_ppl/full_s32/manifest.json": "evidence/down_s32/full_ppl_manifest.json",
+    "0_Software/fix_experiment/results/six_model_algorithm_literature_2048/experiment_manifest.json": "evidence/literature_2048/experiment_manifest.json",
+    "0_Software/fix_experiment/results/six_model_algorithm_literature_2048/data_manifest.json": "evidence/literature_2048/data_manifest.json",
+    "0_Software/fix_experiment/results/six_model_algorithm_literature_2048/six_model_summary.csv": "evidence/literature_2048/six_model_summary.csv",
+    "0_Software/fix_experiment/results/six_model_algorithm_literature_2048/five_config_delta.csv": "evidence/literature_2048/five_config_delta.csv"
+  },
+  "path_adaptations": [
+    "0_Software/fix_experiment/exp/protocol.py",
+    "0_Software/fix_experiment/exp/run_eval_worker.py",
+    "0_Software/fix_experiment/exp/run_six_model_eval.py",
+    "0_Software/fix_experiment/exp/summarize_six_models.py",
+    "0_Software/fix_experiment/exp/run_extended_ppl_eval.py",
+    "0_Software/fix_experiment/exp/run_extended_ppl_worker.py",
+    "0_Software/fix_experiment/exp/test_tokenizer_boundary.py",
+    "model/export_scalellm_llama31_artifacts.py"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "event_id": "EV_SM005_FRESH_CREATE_STARTED",
+  "small_mission": "SM005",
+  "trigger": "milestone",
+  "summary": "用户追加授权的E002正式流程已真实启动fresh create，独立项目/报告目录并启用受管CPU/内存/磁盘/时间保护。",
+  "impact": "进入正式综合准备；完成正常create后按授权自动synth，新网表完成后才适配物理入口并place/route。",
+  "evidence": [
+    "project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/attempts/AT001_fresh_create/started.json",
+    "project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/attempts/AT001_fresh_create/command.json"
+  ],
+  "affected": [
+    "SM005",
+    "SM006"
+  ],
+  "action": "保持综合输入冻结；并行只读核查物理策略和复位告警，按当前合同连续推进。",
+  "requires_decision": false
+}

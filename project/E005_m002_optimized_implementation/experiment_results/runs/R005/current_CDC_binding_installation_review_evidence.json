@@ -1,0 +1,295 @@
+{
+  "schema": "A007_E005_current_CDC_binding_installation_review_v1",
+  "reviewed_utc": "2026-10-16T04:47:36.598803+00:00",
+  "execution": "installed_binding_CPU_and_AT003_startup_review_completed",
+  "verdict": "current_complete_CDC_binding_and_same_OPT_reset_reuse_supported; explicit_debug_and_physical_results_pending",
+  "applicability": "exact a5643a9e 144-input freeze, same newOPT af634c,AT002 raw graph and current report binding859459c4",
+  "review": "bounded independent code/small-evidence/hash/proc review; A006 alone ran whole raw graph parser and tests/EDA",
+  "installation": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT002_native_OPT_POST_recovery_place_physopt/current_CDC_recovery_installation.json",
+    "bytes": 1776,
+    "sha256": "816762defdbb414c0f14609a39c5593ad2d24de8e111af469953e563ff961b30"
+  },
+  "source_freeze": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_source/frozen_inputs_before_current_CDC_recovery.json",
+    "bytes": 36069,
+    "sha256": "a5643a9e8adb13d6e76f3e78b2dfb6804b9b8ac193f7006f5ceff1b0c4f5a26f"
+  },
+  "all_144_hashes_verified": true,
+  "changed_entries": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/tests/test_m002_fresh_project_opt_recovery.py",
+      "bytes": 33634,
+      "sha256": "da7258a2c8b25334670ae5f48d9fdbaec291f5952e1138c862824c472dda8e85"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_fresh_project_opt_recovery.py",
+      "bytes": 36328,
+      "sha256": "22755988fa5f4ad75d31cb54ecccbffe623a230d93ffcbc1dbbda169e674cde6"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_physical_evidence.py",
+      "bytes": 154895,
+      "sha256": "9444d1a5127ec5e7c0174df1f70dc72f5bf77df124a307b939defcb25207dac9"
+    }
+  ],
+  "preserved_archive_entries": 5,
+  "binding": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/E005_targeted_OPT_CDC_report_binding.json",
+    "bytes": 11496,
+    "sha256": "859459c464e6badc502a5d80adee76e6758954b00337f6c8bd1b7d4a599f3fd3"
+  },
+  "binding_small_identity_checks": 26,
+  "large_sources_bound_by_identity_and_size_not_reread": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/opt.dcp",
+      "bytes": 218327530,
+      "sha256": "af634c358eecf869c83cb45c0755d0164b39d5a9f5aed316bcaa52cd3c02919e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/cdc_changed_reset_opt.tsv",
+      "bytes": 5962771,
+      "sha256": "87320c12406b45a77fa89e8621f27e14088970ba952a3b892824a8935a320bd8"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/reset_graph_opt.tsv",
+      "bytes": 119917902,
+      "sha256": "a575912aa3988eb1258d9b3033707572cebab022ab192d0f160c016a23fb67ae"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/cdc_opt.rpt",
+      "bytes": 3941229,
+      "sha256": "60fd2f4b92385eb46cbe65bf8a9285c5e6582367c46799466e0eb359922adb0b"
+    }
+  ],
+  "original_failed_integrity_preserved": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/integrity_opt.json",
+    "bytes": 89777,
+    "sha256": "be4eeb32464319ae164f95b7b2be3f998733b28443b161eb42acb044b5b6d528"
+  },
+  "same_OPT_requalification": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT002_native_OPT_POST_recovery_place_physopt/same_OPT_current_targeted_CDC_requalification.json",
+    "bytes": 8912,
+    "sha256": "b0fc93038f41992130a9e05954cbe59e94ab5488e9382f195f785e530ba9e66a"
+  },
+  "same_OPT_reset_reuse": {
+    "graph_and_fanout_match_original_integrity": true,
+    "exports": 14,
+    "export_hashes_verified": true,
+    "bram_port_clock_identity_verified": true,
+    "bram_endpoint_count": 688,
+    "complete_targeted_reports": 4,
+    "full_critical_rows": 8,
+    "scope": "A006 actual whole parser qualified; A007 verified unchanged originals/14exports/receipt identities and narrow parser changes, not whole graph reread"
+  },
+  "unknown_rule_review": {
+    "legacy_four_hashes_preserved": true,
+    "no_binding_keeps_legacy_rejection": true,
+    "pure_verify_missing_receipt_rejected": true,
+    "exact_command_phase_name_clock_pair_count_required": true,
+    "full_tuple_union_and_current_main_report_required": true,
+    "report_hashes_frozen_after_binding": true,
+    "raw_four_UNKNOWN_remain_coverage_limited": true,
+    "other_unknowns_still_fail_reset_fanout": true,
+    "formal_reset_cdc_safety": "OPEN"
+  },
+  "CPU": {
+    "status": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT010_current_CDC_recovery_cpu/status.json",
+      "bytes": 3525,
+      "sha256": "32c719475111c23601bc58a50f7a3ff78c57356420ba86234a8e15badc628c7b"
+    },
+    "log": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT010_current_CDC_recovery_cpu/launcher.log",
+      "bytes": 33925,
+      "sha256": "4f4f1489961e308abd2ee665874e8b052e5fd46b0750741fe5f9704f84b83369"
+    },
+    "completion": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT010_current_CDC_recovery_cpu/completion_facts.json",
+      "bytes": 1678,
+      "sha256": "874dd0b14df5587a77cf7049de2fbefcc9f927fdb13debff96572d89d2a63c2b"
+    },
+    "ended_utc": "2026-10-16T04:45:27.145327+00:00",
+    "native_exit_code": 0,
+    "supervisor_exit_code": 0,
+    "stop_reason": null,
+    "owned_survivors": [],
+    "actual_tests": 219,
+    "prior_tests": 198,
+    "new_tests": 21,
+    "new_test_records": [
+      "test_additional_critical_tuple_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_additional_critical_tuple_rejected) ... ok",
+      "test_changed_constraints_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_changed_constraints_rejected) ... ok",
+      "test_changed_dcp_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_changed_dcp_rejected) ... ok",
+      "test_changed_producer_archive_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_changed_producer_archive_rejected) ... ok",
+      "test_changed_raw_graph_after_binding_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_changed_raw_graph_after_binding_rejected) ... ok",
+      "test_changed_report_after_binding_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_changed_report_after_binding_rejected) ... ok",
+      "test_complete_current_reports_keep_raw_cap_and_legacy_hashes (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_complete_current_reports_keep_raw_cap_and_legacy_hashes) ... ok",
+      "test_full_report_changed_even_with_same_semantics_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_full_report_changed_even_with_same_semantics_rejected) ... ok",
+      "test_incomplete_full_union_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_incomplete_full_union_rejected) ... ok",
+      "test_missing_producer_binding_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_missing_producer_binding_rejected) ... ok",
+      "test_missing_report_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_missing_report_rejected) ... ok",
+      "test_new_report_without_binding_cannot_use_legacy_branch (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_new_report_without_binding_cannot_use_legacy_branch) ... ok",
+      "test_raw_count_must_remain_measured (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_raw_count_must_remain_measured) ... ok",
+      "test_read_only_cannot_create_receipt (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_read_only_cannot_create_receipt) ... ok",
+      "test_unknown_critical_tuple_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_unknown_critical_tuple_rejected) ... ok",
+      "test_wrong_design_state_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_wrong_design_state_rejected) ... ok",
+      "test_wrong_phase_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_wrong_phase_rejected) ... ok",
+      "test_wrong_report_command_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_wrong_report_command_rejected) ... ok",
+      "test_wrong_report_name_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_wrong_report_name_rejected) ... ok",
+      "test_wrong_report_pair_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_wrong_report_pair_rejected) ... ok",
+      "test_wrong_tool_rejected (test_m002_fresh_project_opt_recovery.CurrentTargetedCDC.test_wrong_tool_rejected) ... ok"
+    ],
+    "tracked_identities_gone": 6
+  },
+  "AT003": {
+    "started": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/started.json",
+      "bytes": 3828,
+      "sha256": "297784aae25c34bb02f309533a01bf9f7e990cd74ee686986a7cc810064312b1"
+    },
+    "command": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/command.json",
+      "bytes": 7391,
+      "sha256": "9930e78c4106a6b13a96d084ec8dbd6d51cfe00a68ba16a279c77e10d8d0254f"
+    },
+    "recovery_parent": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/recovery_parent.json",
+      "bytes": 210581,
+      "sha256": "a42211df625bb6761800fd04beda070f7fb3be51bf271eb9c39d1dd547b8cfd4"
+    },
+    "stage_manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/stage_inputs.sha256",
+      "bytes": 105925,
+      "sha256": "4c09a87894ba64f13abe94d3077851871f4e4ad2c832d5d269381384bd4d96c7"
+    },
+    "archive_manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/archived_sources.sha256",
+      "bytes": 5388,
+      "sha256": "4cc32a7c37306b17697bb0e4c8d10904afb5465771662cb14ab2d06876d112ce"
+    },
+    "stage_rows": 430,
+    "archive_rows": 22,
+    "all_new_archives_verified": true,
+    "binding_and_reset_input_rows_bound": 45,
+    "all_current_binding_direct_inputs_and_exports_bound": true,
+    "inherited_reset_equals_requalified_current_source": true,
+    "process_observations": [
+      {
+        "pid": 362464,
+        "ppid": 1,
+        "pgrp": 362464,
+        "state": "S",
+        "start_ticks": 923850572,
+        "nice": 5,
+        "cpu_ticks": 283,
+        "affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "cmd": "/usr/bin/python3 /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m002_optimized.py place --attempt /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt --report /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt --project /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh --synth-report /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R003_AT001_fresh_synth --synth-attempt /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth --opt-report /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt "
+      },
+      {
+        "pid": 362482,
+        "ppid": 362464,
+        "pgrp": 362482,
+        "state": "S",
+        "start_ticks": 923850699,
+        "nice": 5,
+        "cpu_ticks": 1495,
+        "affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "cmd": "/usr/bin/python3 /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m002_physical_stage.py place "
+      },
+      {
+        "pid": 362686,
+        "ppid": 362482,
+        "pgrp": 362482,
+        "state": "S",
+        "start_ticks": 923852196,
+        "nice": 5,
+        "cpu_ticks": 0,
+        "affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "cmd": "/bin/bash /home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/vivado -mode batch -notrace -source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_resume_physical.tcl -log /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/vivado.log -journal /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/vivado.jou "
+      },
+      {
+        "pid": 362706,
+        "ppid": 362686,
+        "pgrp": 362482,
+        "state": "S",
+        "start_ticks": 923852200,
+        "nice": 5,
+        "cpu_ticks": 2,
+        "affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "cmd": "/bin/bash /home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/loader -exec vivado -mode batch -notrace -source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_resume_physical.tcl -log /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/vivado.log -journal /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/vivado.jou "
+      },
+      {
+        "pid": 362779,
+        "ppid": 362706,
+        "pgrp": 362482,
+        "state": "S",
+        "start_ticks": 923852212,
+        "nice": 5,
+        "cpu_ticks": 10152,
+        "affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "cmd": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/unwrapped/lnx64.o/vivado -mode batch -notrace -source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_resume_physical.tcl -log /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/vivado.log -journal /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/vivado.jou "
+      }
+    ],
+    "eda_lock": [
+      "1: FLOCK  ADVISORY  WRITE 362464 103:02:169247080 0 EOF"
+    ],
+    "native_log_prefix": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/vivado.log",
+      "bytes": 7981,
+      "sha256": "dab92ecc1bf040f7076471f8070f38b087b3e7fd800e10bc5d7268757d66dc7f",
+      "same_OPT_open_command_present": true,
+      "new_OPT_command_absent": true
+    }
+  },
+  "limitations": [
+    "No promotion of AT002 failed POST/integrity.",
+    "Coverage_limited applies only to auxiliary get_cdc_violations object property enumeration; full Critical report rows were checked.",
+    "Debug-materialized/post-placement graph requires fresh actual evidence; same OPT reuse does not cover transformations."
+  ]
+}

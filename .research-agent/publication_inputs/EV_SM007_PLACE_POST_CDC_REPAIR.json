@@ -1,0 +1,22 @@
+{
+  "event_id": "EV_SM007_PLACE_POST_CDC_REPAIR",
+  "small_mission": "SM007",
+  "trigger": "anomaly",
+  "summary": "place命令/DCP及正式物理报告已完成；15:08:08 UTC POST因2条DDR1 AUX CDC报告源变化未获分类而自然退出1，Critical总数仍8。",
+  "impact": "AT001原失败保留，尚未独立physopt/route；新监督无timeout/资源触发，进程回收完成。可从真实closed place点修复缺失POST，需实际图证据，不能盲豁免或重跑place。",
+  "evidence": [
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_checkpoint_facts.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_timing_facts.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_physical_reports_facts.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/actual_place_CDC_delta.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/status.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/worker_terminal_before_old_supervisor_release.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/old_supervisor_released.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R004/architecture_review.md"
+  ],
+  "affected": [
+    "SM007"
+  ],
+  "action": "按既有授权连续窄修复、受影响验证与从placed点恢复physopt/route；A007独立核新CDC图/分类/恢复边界，正常运行无固定时长强停，不新增用户审批。",
+  "requires_decision": false
+}

@@ -1,0 +1,315 @@
+{
+  "reviewer": "A007 /root/m002_physical_architecture_review",
+  "recorded_utc": "2026-10-16T17:40:19.687253+00:00",
+  "execution": "completed bounded independent review of initial revision; repair review pending actual engineering delivery",
+  "verdict": "requires_correction_before_actual_launch",
+  "applicability": "initial E007 prepared entry only; no native/API/physical efficacy verdict",
+  "review": "internal; no added user permission gate",
+  "initial_revision": {
+    "delivery": {
+      "path": "project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/prepared_entry_delivery.json",
+      "bytes": 5839,
+      "sha256": "cad3b93ce1a44bac7e104650429e933f928b3e85925e9d4852184daebda0863a"
+    },
+    "manifest": {
+      "path": "agent/A006/slr2_input_locality/prepared_manifest.json",
+      "bytes": 8340,
+      "sha256": "807c1c67fae277df08147485e420c3e92d69aa711f26eb0df974062837fa1ccd"
+    },
+    "own_sources": [
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/candidate_hooks.tcl",
+        "bytes": 22133,
+        "sha256": "6f44bd85a8e972d01f754866d9b12858081de66bd442a6506860a4a585573cd6"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/evidence_adapter.py",
+        "bytes": 19282,
+        "sha256": "0ceab1fa25e7abbc9051a0bfaf018d3f7cffb90658093cc10c9ba8f7e8b7762a"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/implementation.tcl",
+        "bytes": 14188,
+        "sha256": "2fb10fae1b7af795196c80c747f1d75dfd25917843ca3fcc49b680a0ab58ef26"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/prepare.py",
+        "bytes": 6287,
+        "sha256": "cd8f72b14e4cd6f8079a731210921c8109f6466fb14936d43692177384f5d223"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/run_candidate.py",
+        "bytes": 16588,
+        "sha256": "36478536710ac2e651155421daafc5e3cbd99740811e1c5b035505f00632055b"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/validate_cpu.py",
+        "bytes": 7958,
+        "sha256": "3eefa206465c4b458533e62e9d1ab26b22497f4354e7b0ac8e5aa4a0c38fc479"
+      }
+    ],
+    "CPU_receipts": [
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/bounded_CPU_validation.json",
+        "bytes": 2729,
+        "sha256": "79cb55be0268d2e5e9b05f36fb8098b614d04dc3245ad08fb960f0aa6e7269ae"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/selector_before_S_terminology_revision.json",
+        "bytes": 653,
+        "sha256": "b118f4c43e17a176ae470706e217814bf1fd0d3f3011bae47a46fb91b754633d"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/bounded_CPU_validation_current.json",
+        "bytes": 2217,
+        "sha256": "358a541ea8e724ac708f76bdf6884bfe83371930ecb8e59765c29a641ecacb9c"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/parent_CPU_validation.json",
+        "bytes": 961,
+        "sha256": "ffef79a2b4451b473d2cf18b953f332d3deb484f5b4a4dbc5896af228fdd5937"
+      }
+    ],
+    "manifest_identity_records_verified": 30,
+    "Python_AST": "PASS"
+  },
+  "findings": [
+    {
+      "id": "F01",
+      "scope": "REF-aware endpoint classification",
+      "source": "candidate_hooks.tcl:239-243,288",
+      "severity": "required correction",
+      "finding": "DSP.C with IS_CLOCK=0 is classified CLOCK; unknown pins become DATA_OR_OTHER_CONTROL without REF evidence.",
+      "required": "Use REF/REF_PIN/native clock evidence; explicitly classify FD.C and DSP.C/clock-buffer outputs; retain unknown."
+    },
+    {
+      "id": "F02",
+      "scope": "unexpected selected resources",
+      "source": "candidate_hooks.tcl:72-74; evidence_adapter.py:49-51,159-162",
+      "severity": "required correction",
+      "finding": "Selected clock/IO cells are silently filtered while BRAM/URAM/unknown REFs are bindable.",
+      "required": "Explicitly reject unexpected selected resources and unrecognized REF; verify physical DSP parents under intended Hadamard; preserve RAW/S/P ledgers."
+    },
+    {
+      "id": "F03",
+      "scope": "stage lineage/compliance/full cut",
+      "source": "evidence_adapter.py:202-232; candidate_hooks.tcl:310-345",
+      "severity": "required correction",
+      "finding": "Compliance can be true with missing originals and unresolved added origins. Cut is emitted before reconciled Pblock clones join stage P.",
+      "required": "Reconcile actual native origin evidence and any proven removals first; unresolved missing/clone/membership cannot establish compliance. Use actual reconciled P for cut, property/member readback and all-object SLR2 compliance."
+    },
+    {
+      "id": "F04",
+      "scope": "preserve existing physical policy",
+      "source": "candidate_hooks.tcl:170-237",
+      "severity": "required correction",
+      "finding": "Macro/RLOC fields are only recorded; no check for excluded macro partners or explicit SLR assignment; no post-add comparison of prior memberships.",
+      "required": "Bounded native conflict and prior-policy readback checks; preserve existing constraints; unsupported/conflicting cases remain unqualified."
+    },
+    {
+      "id": "F05",
+      "scope": "declared cut diagnostics",
+      "source": "candidate_hooks.tcl:245-308; evidence_adapter.py:236-280; inherited m002_post global paths",
+      "severity": "required correction",
+      "finding": "No boundary-scoped min/max timing entry; cut endpoints lack BEL/site/tile and directly usable owner/clock evidence for declared boundary comparison. Global worst paths do not cover this cut.",
+      "required": "Add capped scoped min/max diagnostic with stated coverage; preserve endpoint physical/owner/domain evidence and CPU-derived unique-net/pin/cell/fanout/pair counts without large leaf utilization."
+    },
+    {
+      "id": "F06",
+      "scope": "final input identity",
+      "source": "run_candidate.py:238-245",
+      "severity": "required correction",
+      "finding": "Final stage_inputs contents are verified but not the manifest identity bound at launch; E006 closeout JSON identity is checked but not referenced terminal/evidence identities.",
+      "required": "Recheck captured manifest identity and retained dependency evidence identities at final cleanup."
+    },
+    {
+      "id": "N01",
+      "scope": "native clock-region spelling",
+      "source": "candidate_hooks.tcl:209-213",
+      "severity": "native compatibility risk, not an observed Vivado failure",
+      "finding": "Requires get_clock_regions NAME already contain CLOCKREGION_; resize token and native object name should be distinguished.",
+      "required": "Handle exact native XnYm/CLOCKREGION_XnYm forms with native object/readback validation; no historical coordinate assumption."
+    },
+    {
+      "id": "N02",
+      "scope": "explicit diagnostic receipt handling",
+      "source": "run_candidate.py:131-148; candidate_hooks.tcl:348-354",
+      "severity": "bounded strengthening of existing failure propagation",
+      "finding": "POST/locality exceptions rethrow and final native0 checks stage result/integrity/compliance, but existing phase receipt codes are not inspected by final_evidence.",
+      "required": "Check recorded post_code/locality_code so an explicit failed phase receipt cannot coexist with a positive aggregate."
+    }
+  ],
+  "positive_scope": [
+    "Genuine successful E005 debug_materialized parent is validated through parent_recovered_place and pre_place_evidence; no fabricated timeout or standalone OPT receipt.",
+    "175 inherited sources and 162 registered XDC checked; original live pre-place and full POST/clock/reset/CDC/IO/80-structure rules reused.",
+    "Single nonblocking EDA lock, actual managed E006 terminal references, recorded PID/start closure and user-authorized resource limits retained.",
+    "No wall-clock or silent-output stop; old/current running E006 not controlled by this reviewer.",
+    "Native0 does not alone yield success: all three stage result/integrity/compliance plus legal route must pass; Tcl POST/locality errors rethrow."
+  ],
+  "independent_counterexamples": {
+    "scope": "actual pure function bodies with synthetic in-memory inputs; not native graph validation",
+    "C_IS_CLOCK_0": "CLOCK",
+    "unknown_pin": "DATA_OR_OTHER_CONTROL",
+    "bindable": {
+      "BUFGCE": false,
+      "IBUF": false,
+      "RAMB36E2": true,
+      "URAM288": true,
+      "UNKNOWN_PRIMITIVE": true,
+      "FDRE": true
+    },
+    "compliance_with_one_missing_and_one_unknown_new_origin": true
+  },
+  "CPU_evidence_limits": [
+    "59 literal Python/Tcl selector cases and closed physopt export audit support that old export selection only.",
+    "RAW/S terminology bridge preserves selector bodies; it does not validate native pre-place objects or changed admission logic.",
+    "Parent CPU receipt identifies an earlier adapter hash; no current native API validation is inferred.",
+    "Independent review hashed only 30 bounded preparation manifest records; no large DCP or 676 MB primitive-export reread."
+  ],
+  "not_run": [
+    "EDA",
+    "DCP_open",
+    "native_API",
+    "actual_pre_place_membership",
+    "geometry_readback",
+    "complete_native_cut",
+    "physical_implementation",
+    "process_or_lock_control"
+  ],
+  "actual_model_configuration": "not independently verified; no change claimed",
+  "repair_review": {
+    "recorded_utc": "2026-10-16T17:58:33.142050+00:00",
+    "execution": "completed bounded repair review F01-F06/N01-N02",
+    "verdict": "supported_for_source_preparation_only",
+    "applicability": "final prepared manifest 236718abd0577d12c64369da9c8d1ed13ed3050b4473a8a4486d47e9cb47eca6; actual E007 graph/API/physical behavior NOT_RUN",
+    "review": "internal bounded acceptance of addressed source defects; no new user permission gate; actual launch dependencies not certified by this review",
+    "final_manifest": {
+      "path": "agent/A006/slr2_input_locality/prepared_manifest.json",
+      "bytes": 9059,
+      "sha256": "236718abd0577d12c64369da9c8d1ed13ed3050b4473a8a4486d47e9cb47eca6"
+    },
+    "final_delivery": {
+      "path": "project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/prepared_entry_delivery_tail_fixes.json",
+      "bytes": 2941,
+      "sha256": "0bda553fc0e6776abb745048cb3f0abee8ccab5bd48b862426601e8c6e50d96c"
+    },
+    "concentrated_delivery": {
+      "path": "project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/prepared_entry_delivery_runtime_fixes.json",
+      "bytes": 6202,
+      "sha256": "9ef67510610d5b5d5970799b0cd9cda0bee65a963f1191531a26c1441138d06e"
+    },
+    "own_sources": [
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/candidate_hooks.tcl",
+        "bytes": 25623,
+        "sha256": "8208a58b66b8140c9af486c93b607269f336da01f415cfab741a1c5652c3af9d"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/evidence_adapter.py",
+        "bytes": 26095,
+        "sha256": "59746f8d78d6b7e338ee84418809319863fc5461d4acbc7366c14062b61193bf"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/implementation.tcl",
+        "bytes": 14188,
+        "sha256": "2fb10fae1b7af795196c80c747f1d75dfd25917843ca3fcc49b680a0ab58ef26"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/prepare.py",
+        "bytes": 6312,
+        "sha256": "5920092611fa5a8d2e3d91ccecb11e46607f63efc79774f252cad53b81081508"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/run_candidate.py",
+        "bytes": 17253,
+        "sha256": "f786309f1b0902d08556493a2408d0bfc7e9822cb31c884c26f82f95e5868805"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/runtime_hooks.tcl",
+        "bytes": 15159,
+        "sha256": "09a79823bb635a5b2287ba8686dccdfbcc85d001164acab9116761b3b7144dcf"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/validate_cpu.py",
+        "bytes": 7958,
+        "sha256": "3eefa206465c4b458533e62e9d1ab26b22497f4354e7b0ac8e5aa4a0c38fc479"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/validate_runtime_fixes.py",
+        "bytes": 5929,
+        "sha256": "361d2744ff58dd2c6cf0567aa9d54b50688845d668e974c50e694cc29a16c175"
+      }
+    ],
+    "CPU_execution_receipts": [
+      {
+        "path": "project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/runtime_fix_CPU_execution_CT002.json",
+        "bytes": 8947,
+        "sha256": "ae5ed014536e2187ec4fb0f81c7d5f65e765158541823f05112c04c5a932d88e"
+      },
+      {
+        "path": "project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/runtime_fix_CPU_execution_CT003.json",
+        "bytes": 9200,
+        "sha256": "329efe0a09deab20e4bb688f01da8764559d00537c647ca7d0585934118f410e"
+      }
+    ],
+    "verified_identities": {
+      "initial_manifest_records": 30,
+      "concentrated_and_final_manifest_records_each": 33,
+      "CT002_original_and_archive_records_at_that_revision": 16,
+      "CT003_embedded_records": 17,
+      "initial_archived_manifest_plus_sources_receipts": 12,
+      "intermediate_729_manifest_preserved": true
+    },
+    "defect_closure": {
+      "F01": "CLOSED_SOURCE: REF-aware FD.C/DSP.C/clock-buffer classes, explicit unknown leaf semantics; CT003 cut_net_category also retains unknown-only/mixed categories and nonexclusive unknown incidence.",
+      "F02": "CLOSED_SOURCE: explicit physical allowlist and raw DSP REF/intended Hadamard guard; unexpected selected clock/IO/BRAM/URAM/unknown raises instead of silent drop.",
+      "F03": "CLOSED_SOURCE: native-origin reconciliation precedes actual P cut; unexplained missing/new or Pblock coverage differences reject; native-origin query property support/execution/code are mandatory in both Tcl and Python; reconciled P and effective policy enter compliance.",
+      "F04": "CLOSED_SOURCE: relevant cell/ancestor placement-policy before/after plus all original Pblock properties/members preserved; unsupported policy/macro enumeration or unproven relative placement rejects without clearing constraints.",
+      "F05": "CLOSED_SOURCE_ENTRY: full endpoint spatial/BEL/owner/clock evidence and capped min/max through actual P boundary pins are prepared; actual measurements and CPU fanout/pair aggregation remain to be produced from native exports.",
+      "F06": "CLOSED_SOURCE: tail checks bound stage_inputs manifest identity plus referenced E006 terminal/evidence identities.",
+      "N01": "CLOSED_SOURCE: exact native XnYm and CLOCKREGION_XnYm convert to resize token; region/site native validation remains mandatory.",
+      "N02": "CLOSED_SOURCE: explicit phase post_code/locality_code must both be zero before final native0 aggregation."
+    },
+    "intermediate_residuals_and_resolution": [
+      {
+        "revision": "729ca1737079f6edb71e5693e29d48dcba34bb88741ef6842b1aa5516471a84b",
+        "finding": "F03 native-origin query catch code was recorded but not propagated, allowing empty origins after failure.",
+        "resolution": "Final Tcl records executed/support/code and rejects failure; adapter require_origin_query independently rejects; receipt identity is bound to reconciliation."
+      },
+      {
+        "revision": "729ca1737079f6edb71e5693e29d48dcba34bb88741ef6842b1aa5516471a84b",
+        "finding": "F01 endpoint unknown retained but net summary fell back to data/control.",
+        "resolution": "Final cut_net_category has unknown/unclassified-only and mixed categories plus nonexclusive unknown incidence."
+      }
+    ],
+    "independent_tail_counterexamples": {
+      "scope": "actual pure function AST with in-memory inputs, no mocked native qualification",
+      "origin_fail_or_missing_proof_rejected": 4,
+      "valid_origin_receipt_accepted": 1,
+      "unknown_net_categories_retained": 4
+    },
+    "CPU_check_scope": {
+      "CT002": "23 existing REF distribution rows; 6 unexpected physical REF and 2 raw DSP/ancestry rejection cases; 11 REF-aware pin cases; 9 lineage/reconciliation cases; two region-name forms plus invalid form; AST/Tcl completeness.",
+      "CT003": "4 origin failure/missing-proof rejections +1 legitimate receipt; 4 unknown category cases; AST/Tcl completeness. Actual two steps exit0 at 17:55:32.710222–17:55:32.873539 UTC.",
+      "reuse": "59 literal selector cases and old physopt selection count were not rerun. selected function unchanged; bindable was changed and explicitly rechecked. CT003 preserves selected/bindable/accepted_raw_resource/reconcile_objects/successful_pre_place_parent/constraint_chain AST from CT002.",
+      "manifest_bookkeeping": "CT003 prepare stdout records intermediate manifest ba7ff6ec6ddc2170662f7430edb453c7aa33719601a59bb44df780f86ae33d5d; final 236718ab binds subsequently updated CPU receipt metadata. All final 8 execution sources match CT003 snapshots; this is not an additional native execution."
+    },
+    "preserved_invariants": [
+      "implementation.tcl unchanged from initial reviewed controller",
+      "16 reused production helpers unchanged",
+      "truthful successful E005 pre-place parent and 175-source constraints functions unchanged",
+      "all inherited clocks and original POST/80 boundary checks retained",
+      "single EDA lock/PID-start/resource/no-wall/no-output-stop policies retained"
+    ],
+    "scope_limits": [
+      "No native API/property/macro/SLR/relative-placement support claimed.",
+      "No actual pre-place selector counts, origin correspondence, full-SLR2 geometry/readback or complete cut measured.",
+      "Scoped timing is capped at16 per direction/delay type, not all paths or every clock-pair worst path; full-cut TNS remains NOT_MEASURED.",
+      "Endpoint records permit later CPU fanout/module-clock-SLR aggregation; no current native measurement or improved pressure claimed.",
+      "No new EDA, large-DCP read, process/lock control, engineering-source edit or descendant agent.",
+      "Source review does not certify actual E006 closeout/hotspot applicability, resource release, or future route/timing success."
+    ],
+    "remaining_source_defects_in_reviewed_scope": [],
+    "actual_model_configuration": "not independently verified; unchanged"
+  }
+}

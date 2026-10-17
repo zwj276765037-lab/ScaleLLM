@@ -1,0 +1,11 @@
+{
+  "source": "# E008：热点卸载与完整实现\n\n沿用[SM012合同](../../../mission/M002_ddr_separation_and_timing_recovery/exact_hotspot_offload_implementation_contract_2026-10-17.md)、[有向边界范围](../../../mission/M002_ddr_separation_and_timing_recovery/directed_candidate_cut_scope_revision_2026-10-17.md)和[端口索引获取补充](../../../mission/M002_ddr_separation_and_timing_recovery/top_port_reverse_index_acquisition_revision_2026-10-17.md)。E005 debug_materialized DCP为父图，C01/C02至多选一个移至SLR2，RTL/IP/ABI/时钟/数值和完整物理验收保持。单EDA，正常进程无墙钟/无输出强停。\n",
+  "results": "# E008：当前结果\n\n同覆盖端口索引入口已完成集中独立审核：[精确manifest](../../../agent/A006/directed_candidate_top_port_index/E008_entry/prepared_manifest.json)，13466B / dcc64a59876e46fa75309cc3bf963cc545e7e4d144caa8c773ce08b27a97a78c。[最终审核](../../../agent/A007/top_port_index_preparation_review_20261017/final_review.md)核查双包身份、实际只读verifier、16正16反、112同图语义账本与32个E008阶段组合；发现的来源身份缺口已修复并独立复测。此前da34入口与全部原证据保持。\n\n这是准备源码和CPU验证，尚无本实验原生资格、布局布线或收益结果。每个真实阶段重新验证完整端口索引、候选成员/物理父/祖先约束与80保护边界，保持SLR2 hard非排他且不限制走线的Pblock，以及完整place/physopt/route与setup/hold/PW/DRC/CDC/reset/IO检查。\n",
+  "status": "# E008：当前状态\n\nexecution_state: planned\nverdict: unassessed\n\n用户已授权定向优化及完整implementation；候选尚未选定，没有实际E008 R/AT/native。C01真实cut和有界时序已闭合，存在兄弟分支控制耦合与原图hold失败；C02完整对照待诊断完成。用户现已单独允许切换R005/AT003，工程正在保全收尾并准备R006实测。选型与真实前置收尾闭合后直接绑定并连续执行完整implementation，无新增用户批准门。\n\n本次停止许可只用于R005/AT003，不扩展到R006或implementation。原单EDA和资源保护保持，无bitstream/GPU/板卡/PPL/ACC。\n",
+  "execution_state": "planned",
+  "verdict": "unassessed",
+  "applicability": "dcc64同覆盖索引入口准备审核通过；候选未选，原生implementation未启动。",
+  "evidence": [
+    "project/E008_m002_exact_hotspot_offload_implementation/experiment_source/protocol.md"
+  ]
+}

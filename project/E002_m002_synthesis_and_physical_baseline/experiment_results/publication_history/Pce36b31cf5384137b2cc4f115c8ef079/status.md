@@ -1,0 +1,42 @@
+# E002：执行状态
+
+execution_state: running
+verdict: unassessed
+applicability: 正式综合、OPT、debug与完整pre_place已完成；实际布局中，尚无完成布局、phys_opt或route结果。
+
+AT008从2026-10-15 07:08:25 UTC运行，唯一EDA执行者A006；supervisor3336831 / group3336832。08:22:43 UTC归档观察到Phase2.1.1.2 Clock Region Placement，无place完成receipt/DCP。[最新不可变观察](../experiment_results/runs/R003/attempts/AT008_complete_opt_gate_debug_place_physopt/place_30_1229_warning_facts.json)。
+
+新异常Place30-1229：部分USER_SLL_REG放置意图不能满足，工具忽略该属性继续。日志100条后抑制，完整受影响数量未知；来源已定位当前AXI Register Slice配置/vendor HDL，后续结合实际SLR/Laguna位置与时序评估。冻结运行保持不变。
+
+102项CPU、实际OPT组合门、显式debug和完整新阶段pre_place已通过；零黑盒/内部clock覆盖完整，14链/完整fanout/688端口取证完成。8项Critical仅限定诊断分类，正式reset/CDC安全仍OPEN。新debug辅助枚举未运行，旧枚举coverage_limited保留；原not_limited字段已有独立澄清。
+
+未布局时序WNS+0.904ns/WHS−0.814ns，timing FAIL；这些不是布局结果。布局结束后读取实际资源分布、路径/时序，再按真实产物继续phys_opt和诊断route。
+
+本次原2小时截止09:08:25.884970 UTC不变，08:22:43观察时剩2741.95秒。保持1个EDA/8CPU及内存/磁盘保护；不盲目扩时或循环换seed。route须依赖实际完成physopt DCP和核验父链，单独上限2小时。无bitstream/板卡/GPU/PPL/ACC或最终签核结论。
+
+
+---
+Published: 2026-10-15T08:25:12.978718+00:00
+Publication: P35331f42eb6d4f7e8fbb25afbb901f44
+Execution state: running
+Research verdict: unassessed
+Applicability: AT008实际布局进行中，USER_SLL_REG警告已定位来源但物理影响待测；无布局/phys_opt/route完成结果，正式CDC与时序未签核
+Evidence:
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/synthesis_stage_facts.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/attempts/AT002_fresh_synth/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT004_complete_recovery_preflight_opt_place_physopt/opt_command_facts.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT004_complete_recovery_preflight_opt_place_physopt/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT005_opt_recovery_debug_materialized_place_physopt/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT006_cdc_reset_proof_debug_place_physopt/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R005/architecture_review.md
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R005/reset_warning_review.md
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT006_cdc_reset_proof_debug_place_physopt/offline_qualification_v1/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT010_actual_reset_graph_bram_clock_cpu/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT007_bram_port_clock_debug_place_physopt/started.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT007_bram_port_clock_debug_place_physopt/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT011_auxiliary_cdc_full_gate_cpu/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT011_auxiliary_cdc_full_gate_cpu/actual_combined_status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT008_complete_opt_gate_debug_place_physopt/started.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT008_complete_opt_gate_debug_place_physopt/place_started_facts.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT008_complete_opt_gate_debug_place_physopt/place_30_1229_warning_facts.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT008_complete_opt_gate_debug_place_physopt/auxiliary_cdc_scope_clarification.json

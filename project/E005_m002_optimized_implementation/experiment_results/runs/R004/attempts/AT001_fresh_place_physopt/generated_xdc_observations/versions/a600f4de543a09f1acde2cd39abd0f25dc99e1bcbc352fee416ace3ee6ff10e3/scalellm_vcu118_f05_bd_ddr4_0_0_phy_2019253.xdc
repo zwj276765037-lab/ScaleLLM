@@ -1,0 +1,5 @@
+set_property LOC MMCM_X1Y13 [get_cells -hier -filter {NAME =~ */u_ddr4_infrastructure/gen_mmcme*.u_mmcme_adv_inst}]
+set_property CLOCK_DEDICATED_ROUTE BACKBONE [get_pins -hier -filter {NAME =~ */u_ddr4_infrastructure/gen_mmcme*.u_mmcme_adv_inst/CLKIN1}]
+set_property INTERNAL_VREF {0.84} [get_iobanks 73] 
+set_property INTERNAL_VREF {0.84} [get_iobanks 72] 
+set_property INTERNAL_VREF {0.84} [get_iobanks 71] 

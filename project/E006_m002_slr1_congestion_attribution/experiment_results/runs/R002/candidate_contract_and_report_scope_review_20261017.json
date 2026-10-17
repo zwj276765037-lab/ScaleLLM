@@ -1,0 +1,174 @@
+{
+  "created_utc": "2026-10-16T16:46:14.462779+00:00",
+  "execution": "completed bounded CPU review only",
+  "verdict": "planned contract scope supported; physical applicability pending E006 hotspots/endpoints",
+  "applicability": {
+    "path": "mission/M002_ddr_separation_and_timing_recovery/slr2_input_locality_candidate_contract_2026-10-17.md",
+    "bytes": 5205,
+    "sha256": "f1aa98d6621ac687b307ca72101be142a8ba622e9e24ce56bcf871088295df94"
+  },
+  "contract_review": {
+    "blocking_issues": [],
+    "execution_version_clarifications_delivered": [
+      "Retain timing acceptance for all inherited clocks, including core100MHz and dual DDR UI200MHz, not only core.",
+      "Do not bypass existing new-graph qualification/major DRC gates on the way to route; ordinary repairs remain continuously authorized."
+    ],
+    "controller_response": "Parent reports both clarifications incorporated; contract hash reflects current file.",
+    "retained_boundaries": [
+      "One physical placement-group variable, identical RTL/IP/numeric/SSI directives.",
+      "Re-resolve semantic selector on actual pre-place graph; constants and DSP internal objects excluded from direct binding.",
+      "No new EDA until E006 natural closure and single-resource release unless user explicitly revises continuation/stop authorization.",
+      "Full route and failure evidence preserved; no early success claims or routine user approval gates."
+    ]
+  },
+  "scope_correction": {
+    "path": "project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/attempts/AT001_physopt_attribution/closed_owner_batch001_resource_scope_correction.json",
+    "bytes": 18646,
+    "sha256": "6dbbc8a3ffd2ef956254d9e53f3abf056b4d07e26ae24d7618cddffb8e1296b1"
+  },
+  "original_facts_retained": {
+    "path": "project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/attempts/AT001_physopt_attribution/closed_owner_batch001_facts.json",
+    "bytes": 31285,
+    "sha256": "2c2352c0bff332ea225470fe321ad1f5d755a1f7414e2e89facb3489dcfdcdd0"
+  },
+  "native_checks": [
+    {
+      "owner": "global",
+      "report": {
+        "path": "project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_global_SLR.rpt",
+        "bytes": 6889,
+        "sha256": "2dfe2df39c2892272dffe30dc887e47b7b5f9938723f7dc70c76a38dc72e11c5"
+      },
+      "single_SLR_header": 67,
+      "whitelisted_metrics_equal": {
+        "CLB": true,
+        "CLB LUTs": true,
+        "LUT as Logic": true,
+        "LUT as Memory": true,
+        "CLB Registers": true,
+        "Block RAM Tile": true,
+        "RAMB36/FIFO": true,
+        "RAMB18": true,
+        "URAM": true,
+        "DSPs": true,
+        "Unique Control Sets": true
+      }
+    },
+    {
+      "owner": "attention",
+      "report": {
+        "path": "project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_attention_SLR.rpt",
+        "bytes": 7029,
+        "sha256": "0980e02edaa8d0f0aea1d572ca1fb70403c3468c72543cdb26bfbfe81e3127b9"
+      },
+      "single_SLR_header": 71,
+      "whitelisted_metrics_equal": {
+        "CLB": true,
+        "CLB LUTs": true,
+        "LUT as Logic": true,
+        "LUT as Memory": true,
+        "CLB Registers": true,
+        "Block RAM Tile": true,
+        "RAMB36/FIFO": true,
+        "RAMB18": true,
+        "URAM": true,
+        "DSPs": true,
+        "Unique Control Sets": true
+      }
+    },
+    {
+      "owner": "mlp",
+      "report": {
+        "path": "project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_mlp_SLR.rpt",
+        "bytes": 7169,
+        "sha256": "f182097a2bd1d568b946a71c4efcc437c7585f29ec8c6d723a675ad39a9190b9"
+      },
+      "single_SLR_header": 71,
+      "whitelisted_metrics_equal": {
+        "CLB": true,
+        "CLB LUTs": true,
+        "LUT as Logic": true,
+        "LUT as Memory": true,
+        "CLB Registers": true,
+        "Block RAM Tile": true,
+        "RAMB36/FIFO": true,
+        "RAMB18": true,
+        "URAM": true,
+        "DSPs": true,
+        "Unique Control Sets": true
+      }
+    },
+    {
+      "owner": "weight_metadata",
+      "report": {
+        "path": "project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_weight_metadata_SLR.rpt",
+        "bytes": 6775,
+        "sha256": "0f7dea552f794ecf893c131de79e1f9bd0d4b12291e9e5def8245f925cd0e92a"
+      },
+      "single_SLR_header": 71,
+      "whitelisted_metrics_equal": {
+        "CLB": true,
+        "CLB LUTs": true,
+        "LUT as Logic": true,
+        "LUT as Memory": true,
+        "CLB Registers": true,
+        "Block RAM Tile": true,
+        "RAMB36/FIFO": true,
+        "RAMB18": true,
+        "URAM": true,
+        "DSPs": true,
+        "Unique Control Sets": true
+      }
+    },
+    {
+      "owner": "weight_loader",
+      "report": {
+        "path": "project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_weight_loader_SLR.rpt",
+        "bytes": 6872,
+        "sha256": "2a375590bbf58a6242b8197b0c8e76344b75d9a2cb4e0ef6d36322fdc06a8b2e"
+      },
+      "single_SLR_header": 71,
+      "whitelisted_metrics_equal": {
+        "CLB": true,
+        "CLB LUTs": true,
+        "LUT as Logic": true,
+        "LUT as Memory": true,
+        "CLB Registers": true,
+        "Block RAM Tile": true,
+        "RAMB36/FIFO": true,
+        "RAMB18": true,
+        "URAM": true,
+        "DSPs": true,
+        "Unique Control Sets": true
+      }
+    }
+  ],
+  "parser_improvements": [
+    "Require exactly one SLR resource header and stop at its table border.",
+    "Preserve native bounded percentages such as <0.01 as strings; do not coerce them into exact numbers."
+  ],
+  "detail_row_limit": "Engineering corrected dict still uses stripped row labels; repeated O5/O6 subrows must not be interpreted as a complete hierarchy-qualified table. Main whitelist is unaffected; engineering actually notified.",
+  "review": "Actually delivered to root/A006; internal review, not user acceptance",
+  "original_native_report_identity_checks": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_global_SLR.rpt",
+      "original_native_bytes_and_hash_match": true
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_attention_SLR.rpt",
+      "original_native_bytes_and_hash_match": true
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_mlp_SLR.rpt",
+      "original_native_bytes_and_hash_match": true
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_weight_metadata_SLR.rpt",
+      "original_native_bytes_and_hash_match": true
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_weight_loader_SLR.rpt",
+      "original_native_bytes_and_hash_match": true
+    }
+  ]
+}

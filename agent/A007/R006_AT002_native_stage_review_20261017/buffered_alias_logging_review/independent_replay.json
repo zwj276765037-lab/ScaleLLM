@@ -1,0 +1,245 @@
+{
+  "recorded_utc": "2026-10-17T03:26:34.472621+00:00",
+  "EDA_executed": false,
+  "identity_entries_checked": 23,
+  "engineering_checks": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_top_port_index_logging_fix/E008_entry/CPU_checks/CT003_dual_logging/results.json",
+    "bytes": 7696,
+    "sha256": "e6d21e67664f6237f0d7cfd4a24d837d1d18dd0ed51813f27627edcbbb85f654"
+  },
+  "independent_actual_collector_replay": [
+    {
+      "label": "E008",
+      "fixture": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/E008_actual_fixture.tcl",
+        "bytes": 13187,
+        "sha256": "4b6e03824ec4141c8e73406bf8e637d9765e1c00f0beb7d767dc05633110d47b"
+      },
+      "source": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E008_top_port_index_logging_fix/E008_entry/directed_exporter.tcl",
+        "bytes": 29138,
+        "sha256": "d02097ea518dc847bdcbdc8e9a210a9f2c96836dff4bc995f15ae38b140251a6"
+      },
+      "actual_cases": [
+        [
+          "LOGGING_CASE",
+          "normal",
+          "PASS"
+        ],
+        [
+          "LOGGING_CASE",
+          "native_error",
+          "PASS"
+        ],
+        [
+          "LOGGING_CASE",
+          "log_error",
+          "PASS"
+        ],
+        [
+          "LOGGING_CASE",
+          "native_and_log_error",
+          "PASS"
+        ],
+        [
+          "LOGGING_CASE",
+          "open_existing",
+          "PASS"
+        ],
+        [
+          "LOGGING_CASE",
+          "configure_error",
+          "PASS"
+        ]
+      ],
+      "validator_returncode": 0,
+      "ten_semantic_ledgers_equal": [
+        "candidate_RAW_pre_place.tsv",
+        "candidate_S_pre_place.tsv",
+        "candidate_P_pre_place.tsv",
+        "candidate_pins_pre_place.tsv",
+        "candidate_local_owners_pre_place.tsv",
+        "candidate_segments_pre_place.tsv",
+        "candidate_local_pin_net_pre_place.tsv",
+        "candidate_nets_pre_place.tsv",
+        "candidate_endpoints_pre_place.tsv",
+        "candidate_boundary_timing_scope_pre_place.tsv"
+      ],
+      "normal_complete_sidecar_events": [
+        {
+          "operation": "ALIAS_NET_NAME",
+          "event": "BEGIN",
+          "epoch_ms": "1792207594152",
+          "point": "pre_place",
+          "sequence": "1",
+          "detail": ""
+        },
+        {
+          "operation": "ALIAS_NET_NAME",
+          "event": "END",
+          "epoch_ms": "1792207594152",
+          "point": "pre_place",
+          "sequence": "2",
+          "detail": ""
+        },
+        {
+          "operation": "ALIAS_NATIVE_SEGMENTS",
+          "event": "BEGIN",
+          "epoch_ms": "1792207594152",
+          "point": "pre_place",
+          "sequence": "3",
+          "detail": "n1"
+        },
+        {
+          "operation": "ALIAS_NATIVE_SEGMENTS",
+          "event": "END",
+          "epoch_ms": "1792207594152",
+          "point": "pre_place",
+          "sequence": "4",
+          "detail": "n1"
+        },
+        {
+          "operation": "ALIAS_SEGMENT_NAME",
+          "event": "BEGIN",
+          "epoch_ms": "1792207594152",
+          "point": "pre_place",
+          "sequence": "5",
+          "detail": "n1"
+        },
+        {
+          "operation": "ALIAS_SEGMENT_NAME",
+          "event": "END",
+          "epoch_ms": "1792207594152",
+          "point": "pre_place",
+          "sequence": "6",
+          "detail": "n1"
+        }
+      ],
+      "actual_raw_result_paths": {
+        "normal": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/E008_collector/normal/actual_result.tcllist",
+        "native_error": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/E008_collector/native_error/actual_result.tcllist",
+        "log_error": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/E008_collector/log_error/actual_result.tcllist",
+        "native_and_log_error": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/E008_collector/native_and_log_error/actual_result.tcllist",
+        "open_existing": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/E008_collector/open_existing/actual_result.tcllist",
+        "configure_error": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/E008_collector/configure_error/actual_result.tcllist"
+      }
+    },
+    {
+      "label": "R006",
+      "fixture": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/R006_actual_fixture.tcl",
+        "bytes": 12696,
+        "sha256": "27cbe77ac0290d6d5978c32009c6a8b2b63ba50d7f343466d337bdb138c469e2"
+      },
+      "source": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/top_port_index_buffered_alias/directed_exporter.tcl",
+        "bytes": 29138,
+        "sha256": "d02097ea518dc847bdcbdc8e9a210a9f2c96836dff4bc995f15ae38b140251a6"
+      },
+      "actual_cases": [
+        [
+          "LOGGING_CASE",
+          "normal",
+          "PASS"
+        ],
+        [
+          "LOGGING_CASE",
+          "native_error",
+          "PASS"
+        ],
+        [
+          "LOGGING_CASE",
+          "log_error",
+          "PASS"
+        ],
+        [
+          "LOGGING_CASE",
+          "native_and_log_error",
+          "PASS"
+        ],
+        [
+          "LOGGING_CASE",
+          "open_existing",
+          "PASS"
+        ],
+        [
+          "LOGGING_CASE",
+          "configure_error",
+          "PASS"
+        ]
+      ],
+      "validator_returncode": 0,
+      "ten_semantic_ledgers_equal": [
+        "candidate_RAW_test.tsv",
+        "candidate_S_test.tsv",
+        "candidate_P_test.tsv",
+        "candidate_pins_test.tsv",
+        "candidate_local_owners_test.tsv",
+        "candidate_segments_test.tsv",
+        "candidate_local_pin_net_test.tsv",
+        "candidate_nets_test.tsv",
+        "candidate_endpoints_test.tsv",
+        "candidate_boundary_timing_scope_test.tsv"
+      ],
+      "normal_complete_sidecar_events": [
+        {
+          "operation": "ALIAS_NET_NAME",
+          "event": "BEGIN",
+          "epoch_ms": "1792207594335",
+          "point": "test",
+          "sequence": "1",
+          "detail": ""
+        },
+        {
+          "operation": "ALIAS_NET_NAME",
+          "event": "END",
+          "epoch_ms": "1792207594335",
+          "point": "test",
+          "sequence": "2",
+          "detail": ""
+        },
+        {
+          "operation": "ALIAS_NATIVE_SEGMENTS",
+          "event": "BEGIN",
+          "epoch_ms": "1792207594335",
+          "point": "test",
+          "sequence": "3",
+          "detail": "n1"
+        },
+        {
+          "operation": "ALIAS_NATIVE_SEGMENTS",
+          "event": "END",
+          "epoch_ms": "1792207594335",
+          "point": "test",
+          "sequence": "4",
+          "detail": "n1"
+        },
+        {
+          "operation": "ALIAS_SEGMENT_NAME",
+          "event": "BEGIN",
+          "epoch_ms": "1792207594335",
+          "point": "test",
+          "sequence": "5",
+          "detail": "n1"
+        },
+        {
+          "operation": "ALIAS_SEGMENT_NAME",
+          "event": "END",
+          "epoch_ms": "1792207594335",
+          "point": "test",
+          "sequence": "6",
+          "detail": "n1"
+        }
+      ],
+      "actual_raw_result_paths": {
+        "normal": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/R006_collector/normal/actual_result.tcllist",
+        "native_error": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/R006_collector/native_error/actual_result.tcllist",
+        "log_error": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/R006_collector/log_error/actual_result.tcllist",
+        "native_and_log_error": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/R006_collector/native_and_log_error/actual_result.tcllist",
+        "open_existing": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/R006_collector/open_existing/actual_result.tcllist",
+        "configure_error": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/R006_collector/configure_error/actual_result.tcllist"
+      }
+    }
+  ],
+  "scope": "Only affected logging lifecycle, actual unchanged collectors/adapters with existing finite native fixture. No broad semantic rerun or native speed claim."
+}

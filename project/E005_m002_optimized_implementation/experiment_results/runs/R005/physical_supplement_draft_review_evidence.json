@@ -1,0 +1,54 @@
+{
+  "schema": "A007_E005_physical_supplement_draft_review_v1",
+  "recorded_utc": "2026-10-16T05:20:30.785394+00:00",
+  "drafts": [
+    {
+      "source": "agent/A006/physical_supplement/readonly_physical_supplement.tcl",
+      "snapshot": "project/E005_m002_optimized_implementation/experiment_results/runs/R005/physical_supplement_draft_20261016_readonly_physical_supplement.tcl",
+      "bytes": 10440,
+      "sha256": "355e6e1bee851832d154465f1b6edcf3eb6f974a68cfead4b1a2fb8ac73f9948"
+    },
+    {
+      "source": "agent/A006/physical_supplement/targets.tcl",
+      "snapshot": "project/E005_m002_optimized_implementation/experiment_results/runs/R005/physical_supplement_draft_20261016_targets.tcl",
+      "bytes": 3969,
+      "sha256": "f960f1a2858d7855c7af97d730a3d3a9bf5b72ee32658285000705aa6983fd83"
+    }
+  ],
+  "scope": "code inspection only; no tests/EDA, production modifications or graph scan",
+  "supported": [
+    "only80 boundaries and unique input source nets selected",
+    "leaf pin and unique cell/ref counts separate",
+    "actual driver site/SLR with unavailable source resolution; per-SLR pin histograms and slice envelopes",
+    "fixed48 native tile endpoints use actual GRID_POINT tile/site/SLR mapping",
+    "fixed-window resource occupancy/attached segments distinct from unavailable congestion levels",
+    "query failures recorded with original Tcl error options; no repeated physical commands"
+  ],
+  "followups_sent_to_A006": [
+    "Require exact one target hierarchy before report_utilization -cells to avoid empty scope interpreted as global.",
+    "Emit upstream driver REF_NAME alongside exact driver identities.",
+    "Optionally catch each fixed window independently so one bad object/API does not skip later windows."
+  ],
+  "execution": "draft inspection completed; execution NOT_RUN",
+  "verdict": "scope supported with small followups; no claim of actual tool/API success",
+  "review": "real message sent to A006; no approval gate",
+  "followup_review": {
+    "recorded_utc": "2026-10-16T05:21:09.386362+00:00",
+    "source": "agent/A006/physical_supplement/readonly_physical_supplement.tcl",
+    "snapshot": "project/E005_m002_optimized_implementation/experiment_results/runs/R005/physical_supplement_draft_followup_20261016.tcl",
+    "bytes": 10440,
+    "sha256": "355e6e1bee851832d154465f1b6edcf3eb6f974a68cfead4b1a2fb8ac73f9948",
+    "old_window_literal_mapping": {
+      "parsed_rows": 48,
+      "expected_rows": 48,
+      "all_ordered_native_fields_equal": true
+    },
+    "scope": "Static source/literal comparison only; no Tcl tests or EDA executed by A007.",
+    "changes_observed": [
+      "Exact unique target hierarchy and NAME guard before scoped utilization",
+      "upstream driver_REF_NAMEs emitted",
+      "per-window query/catch preserves later windows"
+    ],
+    "implementation_status": "draft outside production; actual Vivado APIs and resulting data still unvalidated"
+  }
+}

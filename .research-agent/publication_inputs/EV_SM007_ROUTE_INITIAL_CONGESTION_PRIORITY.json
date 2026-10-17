@@ -1,0 +1,16 @@
+{
+  "event_id": "EV_SM007_ROUTE_INITIAL_CONGESTION_PRIORITY",
+  "small_mission": "SM007",
+  "trigger": "milestone",
+  "summary": "详细路由阶段Route35-447提示拥塞妨碍全布通，工具内部优先布通全部网络；后续正常推进至Phase4.6。",
+  "impact": "默认路由内部取舍可能影响最终时序，尚无真实route失败或全布通结果；未人工修改策略/seed/LOC/XDC。",
+  "evidence": [
+    "project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_completion_priority_facts.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_completion_priority_log_snapshot.txt"
+  ],
+  "affected": [
+    "SM007"
+  ],
+  "action": "按用户要求继续唯一正常路由，保留最终计数与时序；不因耗时或告警强停，不更换策略。",
+  "requires_decision": false
+}

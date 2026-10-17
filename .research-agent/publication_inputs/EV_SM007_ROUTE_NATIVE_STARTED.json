@@ -1,0 +1,18 @@
+{
+  "event_id": "EV_SM007_ROUTE_NATIVE_STARTED",
+  "small_mission": "SM007",
+  "trigger": "milestone",
+  "summary": "已真实进入route_design并推进全局时钟网络布线；同native PID/start连续，CPU0–7/nice5，无wall期限。",
+  "impact": "route恢复检查范围已按实际代码/报告澄清：共用live preflight加合格physopt父点，不重跑place专用完整guard。至少97 CLBs高pin告警保留，当前无路由失败。",
+  "evidence": [
+    "project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_native_started_facts.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_native_started_log_snapshot.txt",
+    "project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_restore_scope.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/startup_no_wall_facts.json"
+  ],
+  "affected": [
+    "SM007"
+  ],
+  "action": "继续唯一正常route直到真实结果，核最终DCP/POST及布通计数；不因时长、短时无日志或普通告警停止。",
+  "requires_decision": false
+}

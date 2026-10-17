@@ -1,0 +1,3 @@
+canonical_net n0 query_kind NONLOAD_LEAF command {get_pins -leaf -of_objects {n0 n1} -filter {DIRECTION != IN}} actual_segment_NAMES {n0 n1} native_tcl_code 0 result {} raw_objects 1 actual_NAMES candidate/Q actual_DIRECTIONS OUT
+canonical_net n0 query_kind ALL_TOP_PORTS command {get_ports -of_objects {n0 n1}} native_tcl_code 0 result {} actual_segment_NAMES {n0 n1} raw_objects 1 actual_NAMES TOP_OUT actual_DIRECTIONS OUT
+canonical_net n0 query_kind FULL_LEAF command {get_pins -leaf -of_objects {n0 n1}} actual_segment_NAMES {n0 n1} native_tcl_code 0 raw_objects 4 unique_objects 4 actual_NAMES {candidate/D external/O peer/D candidate/Q}

@@ -1,0 +1,28 @@
+{
+  "argv": [
+    [
+      "/usr/bin/python3",
+      "-m",
+      "unittest",
+      "tests.test_vcu118_builder_sources",
+      "tests.test_vcu118_builder_rom_staging",
+      "tests.test_rebuild_contract",
+      "-v"
+    ],
+    [
+      "/usr/bin/python3",
+      "vivado/scripts/check_rebuild_static.py",
+      "--xdc",
+      "vivado/constraints/attention_mlp_production_v5_ooc_clocks_100mhz.xdc",
+      "--define",
+      "HAP_BOARD_BUILD",
+      "--define",
+      "HAP_BOARD_V5",
+      "--define",
+      "HAP_MLP_FULL_COMMAND_V5_MODULE=hap_mlp_full_command16_s54",
+      "--define",
+      "HAP_ATTENTION_BOARD_MODULE=hap_attention_board_cohort16_core"
+    ]
+  ],
+  "cwd": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware"
+}

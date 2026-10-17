@@ -1,0 +1,1184 @@
+{
+  "schema": "E006_A007_hierarchy_attribution_targets_v1",
+  "recorded_utc": "2026-10-16T15:46:21.958108+00:00",
+  "hierarchy_source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R006_AT002_closed_place_physopt_readonly/physopt/utilization_hierarchy_depth7.rpt",
+    "bytes": 173803,
+    "sha256": "f221556a73bfe178af6c3efa10a5bdd18a4d35ea9bb485bd026b1f2796c26d40"
+  },
+  "global_report_row": {
+    "native_line": 25,
+    "depth": 0,
+    "display_name": "scalellm_vcu118_f05_bd_wrapper",
+    "full_path": "",
+    "is_local_self_row": false,
+    "module": "(top)",
+    "metrics": {
+      "Total LUTs": 801751,
+      "Logic LUTs": 764121,
+      "LUTRAMs": 28580,
+      "SRLs": 9050,
+      "FFs": 1017050,
+      "RAMB36": 929,
+      "RAMB18": 24,
+      "URAM": 752,
+      "DSP Blocks": 5451
+    }
+  },
+  "scope": "existing whole-design totals guide exact hierarchy targets; no SLR distribution inferred",
+  "owner_rules": [
+    {
+      "owner": "attention",
+      "exact_hierarchy_roots": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention"
+      ],
+      "selection": "descendant primitives of exact roots"
+    },
+    {
+      "owner": "mlp",
+      "exact_hierarchy_roots": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp"
+      ],
+      "selection": "descendant primitives of exact roots"
+    },
+    {
+      "owner": "weight_metadata",
+      "exact_hierarchy_roots": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_meta_bank"
+      ],
+      "selection": "descendant primitives of exact roots"
+    },
+    {
+      "owner": "weight_loader",
+      "exact_hierarchy_roots": [
+        "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight"
+      ],
+      "selection": "descendant primitives of exact roots"
+    },
+    {
+      "owner": "core_other",
+      "exact_hierarchy_roots": [
+        "scalellm_vcu118_f05_bd_i/core"
+      ],
+      "selection": "longest matching hierarchy prefix, then core_other remainder"
+    },
+    {
+      "owner": "ddr0",
+      "exact_hierarchy_roots": [
+        "scalellm_vcu118_f05_bd_i/ddr4_0",
+        "scalellm_vcu118_f05_bd_i/d0_smc",
+        "scalellm_vcu118_f05_bd_i/d0_mig_slice"
+      ],
+      "selection": "descendant primitives of exact roots"
+    },
+    {
+      "owner": "ddr1",
+      "exact_hierarchy_roots": [
+        "scalellm_vcu118_f05_bd_i/ddr4_1",
+        "scalellm_vcu118_f05_bd_i/d1_smc",
+        "scalellm_vcu118_f05_bd_i/d1_mig_slice"
+      ],
+      "selection": "descendant primitives of exact roots"
+    },
+    {
+      "owner": "pcie",
+      "exact_hierarchy_roots": [
+        "scalellm_vcu118_f05_bd_i/xdma_0"
+      ],
+      "selection": "descendant primitives of exact roots"
+    },
+    {
+      "owner": "debug",
+      "exact_hierarchy_roots": [
+        "dbg_hub"
+      ],
+      "selection": "descendant primitives of exact roots"
+    },
+    {
+      "owner": "interconnect_other",
+      "exact_hierarchy_roots": [],
+      "selection": "all primitives not matched above, including top-level primitives; retain actual NAME"
+    }
+  ],
+  "native_report_roots": [
+    {
+      "target_id": "H001",
+      "owner": "attention",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention",
+      "evidence": "native depth7 hierarchy row; actual native lookup must still verify exact NAME",
+      "source_row": {
+        "native_line": 83,
+        "depth": 6,
+        "display_name": "u_attention",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_attention_board_cohort16_core",
+        "metrics": {
+          "Total LUTs": 227958,
+          "Logic LUTs": 223468,
+          "LUTRAMs": 4490,
+          "SRLs": 0,
+          "FFs": 271784,
+          "RAMB36": 347,
+          "RAMB18": 12,
+          "URAM": 80,
+          "DSP Blocks": 2296
+        }
+      },
+      "report_scope": "inclusive subtree, not exclusive owner cut"
+    },
+    {
+      "target_id": "H002",
+      "owner": "mlp",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp",
+      "evidence": "native depth7 hierarchy row; actual native lookup must still verify exact NAME",
+      "source_row": {
+        "native_line": 92,
+        "depth": 6,
+        "display_name": "u_mlp",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_full_command16_s54",
+        "metrics": {
+          "Total LUTs": 481854,
+          "Logic LUTs": 464069,
+          "LUTRAMs": 12406,
+          "SRLs": 5379,
+          "FFs": 583541,
+          "RAMB36": 482,
+          "RAMB18": 10,
+          "URAM": 0,
+          "DSP Blocks": 3149
+        }
+      },
+      "report_scope": "inclusive subtree, not exclusive owner cut"
+    },
+    {
+      "target_id": "H003",
+      "owner": "weight_metadata",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_meta_bank",
+      "evidence": "native depth7 hierarchy row; actual native lookup must still verify exact NAME",
+      "source_row": {
+        "native_line": 99,
+        "depth": 5,
+        "display_name": "u_meta_bank",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_meta_bank",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_weight_meta_resident_ab",
+        "metrics": {
+          "Total LUTs": 3566,
+          "Logic LUTs": 3566,
+          "LUTRAMs": 0,
+          "SRLs": 0,
+          "FFs": 4476,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 672,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree, not exclusive owner cut"
+    },
+    {
+      "target_id": "H004",
+      "owner": "weight_loader",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+      "evidence": "native depth7 hierarchy row; actual native lookup must still verify exact NAME",
+      "source_row": {
+        "native_line": 128,
+        "depth": 5,
+        "display_name": "u_paired_weight",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_axi512_dual_engine_dedicated_read",
+        "metrics": {
+          "Total LUTs": 3514,
+          "Logic LUTs": 3282,
+          "LUTRAMs": 232,
+          "SRLs": 0,
+          "FFs": 6541,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 0,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree, not exclusive owner cut"
+    },
+    {
+      "target_id": "H005",
+      "owner": "core_other",
+      "full_path": "scalellm_vcu118_f05_bd_i/core",
+      "evidence": "native depth7 hierarchy row; actual native lookup must still verify exact NAME",
+      "source_row": {
+        "native_line": 77,
+        "depth": 2,
+        "display_name": "core",
+        "full_path": "scalellm_vcu118_f05_bd_i/core",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0",
+        "metrics": {
+          "Total LUTs": 722964,
+          "Logic LUTs": 700457,
+          "LUTRAMs": 17128,
+          "SRLs": 5379,
+          "FFs": 891822,
+          "RAMB36": 829,
+          "RAMB18": 22,
+          "URAM": 752,
+          "DSP Blocks": 5445
+        }
+      },
+      "report_scope": "inclusive subtree, not exclusive owner cut"
+    },
+    {
+      "target_id": "H006",
+      "owner": "ddr0",
+      "full_path": "scalellm_vcu118_f05_bd_i/ddr4_0",
+      "evidence": "native depth7 hierarchy row; actual native lookup must still verify exact NAME",
+      "source_row": {
+        "native_line": 440,
+        "depth": 2,
+        "display_name": "ddr4_0",
+        "full_path": "scalellm_vcu118_f05_bd_i/ddr4_0",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_ddr4_0_0",
+        "metrics": {
+          "Total LUTs": 13264,
+          "Logic LUTs": 11876,
+          "LUTRAMs": 816,
+          "SRLs": 572,
+          "FFs": 17562,
+          "RAMB36": 25,
+          "RAMB18": 1,
+          "URAM": 0,
+          "DSP Blocks": 3
+        }
+      },
+      "report_scope": "inclusive subtree, not exclusive owner cut"
+    },
+    {
+      "target_id": "H007",
+      "owner": "ddr0",
+      "full_path": "scalellm_vcu118_f05_bd_i/d0_smc",
+      "evidence": "native depth7 hierarchy row; actual native lookup must still verify exact NAME",
+      "source_row": {
+        "native_line": 193,
+        "depth": 2,
+        "display_name": "d0_smc",
+        "full_path": "scalellm_vcu118_f05_bd_i/d0_smc",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_d0_smc_0",
+        "metrics": {
+          "Total LUTs": 8543,
+          "Logic LUTs": 5801,
+          "LUTRAMs": 2702,
+          "SRLs": 40,
+          "FFs": 16457,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 0,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree, not exclusive owner cut"
+    },
+    {
+      "target_id": "H008",
+      "owner": "ddr0",
+      "full_path": "scalellm_vcu118_f05_bd_i/d0_mig_slice",
+      "evidence": "native depth7 hierarchy row; actual native lookup must still verify exact NAME",
+      "source_row": {
+        "native_line": 162,
+        "depth": 2,
+        "display_name": "d0_mig_slice",
+        "full_path": "scalellm_vcu118_f05_bd_i/d0_mig_slice",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_d0_mig_slice_0",
+        "metrics": {
+          "Total LUTs": 2479,
+          "Logic LUTs": 1277,
+          "LUTRAMs": 0,
+          "SRLs": 1202,
+          "FFs": 7449,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 0,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree, not exclusive owner cut"
+    },
+    {
+      "target_id": "H009",
+      "owner": "ddr1",
+      "full_path": "scalellm_vcu118_f05_bd_i/ddr4_1",
+      "evidence": "native depth7 hierarchy row; actual native lookup must still verify exact NAME",
+      "source_row": {
+        "native_line": 505,
+        "depth": 2,
+        "display_name": "ddr4_1",
+        "full_path": "scalellm_vcu118_f05_bd_i/ddr4_1",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_ddr4_1_0",
+        "metrics": {
+          "Total LUTs": 13343,
+          "Logic LUTs": 11955,
+          "LUTRAMs": 816,
+          "SRLs": 572,
+          "FFs": 17555,
+          "RAMB36": 25,
+          "RAMB18": 1,
+          "URAM": 0,
+          "DSP Blocks": 3
+        }
+      },
+      "report_scope": "inclusive subtree, not exclusive owner cut"
+    },
+    {
+      "target_id": "H010",
+      "owner": "ddr1",
+      "full_path": "scalellm_vcu118_f05_bd_i/d1_smc",
+      "evidence": "native depth7 hierarchy row; actual native lookup must still verify exact NAME",
+      "source_row": {
+        "native_line": 332,
+        "depth": 2,
+        "display_name": "d1_smc",
+        "full_path": "scalellm_vcu118_f05_bd_i/d1_smc",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_d1_smc_0",
+        "metrics": {
+          "Total LUTs": 8598,
+          "Logic LUTs": 5856,
+          "LUTRAMs": 2702,
+          "SRLs": 40,
+          "FFs": 16458,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 0,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree, not exclusive owner cut"
+    },
+    {
+      "target_id": "H011",
+      "owner": "ddr1",
+      "full_path": "scalellm_vcu118_f05_bd_i/d1_mig_slice",
+      "evidence": "native depth7 hierarchy row; actual native lookup must still verify exact NAME",
+      "source_row": {
+        "native_line": 301,
+        "depth": 2,
+        "display_name": "d1_mig_slice",
+        "full_path": "scalellm_vcu118_f05_bd_i/d1_mig_slice",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_d1_mig_slice_0",
+        "metrics": {
+          "Total LUTs": 2488,
+          "Logic LUTs": 1286,
+          "LUTRAMs": 0,
+          "SRLs": 1202,
+          "FFs": 7675,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 0,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree, not exclusive owner cut"
+    },
+    {
+      "target_id": "H012",
+      "owner": "pcie",
+      "full_path": "scalellm_vcu118_f05_bd_i/xdma_0",
+      "evidence": "native depth7 hierarchy row; actual native lookup must still verify exact NAME",
+      "source_row": {
+        "native_line": 41,
+        "depth": 2,
+        "display_name": "xdma_0",
+        "full_path": "scalellm_vcu118_f05_bd_i/xdma_0",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_xdma_0_0",
+        "metrics": {
+          "Total LUTs": 22961,
+          "Logic LUTs": 20948,
+          "LUTRAMs": 1996,
+          "SRLs": 17,
+          "FFs": 25894,
+          "RAMB36": 50,
+          "RAMB18": 0,
+          "URAM": 0,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree, not exclusive owner cut"
+    },
+    {
+      "target_id": "H013",
+      "owner": "debug",
+      "full_path": "dbg_hub",
+      "evidence": "native depth7 hierarchy row; actual native lookup must still verify exact NAME",
+      "source_row": {
+        "native_line": 27,
+        "depth": 1,
+        "display_name": "dbg_hub",
+        "full_path": "dbg_hub",
+        "is_local_self_row": false,
+        "module": "dbg_hub",
+        "metrics": {
+          "Total LUTs": 481,
+          "Logic LUTs": 461,
+          "LUTRAMs": 20,
+          "SRLs": 0,
+          "FFs": 753,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 0,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree, not exclusive owner cut"
+    },
+    {
+      "target_id": "H014",
+      "owner": "submodule",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute",
+      "evidence": "native depth7 direct child",
+      "source_row": {
+        "native_line": 85,
+        "depth": 7,
+        "display_name": "u_compute",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_attention_compute_cohort16_top",
+        "metrics": {
+          "Total LUTs": 215990,
+          "Logic LUTs": 211500,
+          "LUTRAMs": 4490,
+          "SRLs": 0,
+          "FFs": 241767,
+          "RAMB36": 207,
+          "RAMB18": 6,
+          "URAM": 0,
+          "DSP Blocks": 2296
+        }
+      },
+      "report_scope": "inclusive subtree"
+    },
+    {
+      "target_id": "H015",
+      "owner": "submodule",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_control",
+      "evidence": "native depth7 direct child",
+      "source_row": {
+        "native_line": 86,
+        "depth": 7,
+        "display_name": "u_control",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_control",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_attention_cohort16_axil_control",
+        "metrics": {
+          "Total LUTs": 282,
+          "Logic LUTs": 282,
+          "LUTRAMs": 0,
+          "SRLs": 0,
+          "FFs": 587,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 0,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree"
+    },
+    {
+      "target_id": "H016",
+      "owner": "submodule",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma",
+      "evidence": "native depth7 direct child",
+      "source_row": {
+        "native_line": 87,
+        "depth": 7,
+        "display_name": "u_dma",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_axi256_dma_3699",
+        "metrics": {
+          "Total LUTs": 391,
+          "Logic LUTs": 391,
+          "LUTRAMs": 0,
+          "SRLs": 0,
+          "FFs": 85,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 0,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree"
+    },
+    {
+      "target_id": "H017",
+      "owner": "submodule",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer",
+      "evidence": "native depth7 direct child",
+      "source_row": {
+        "native_line": 88,
+        "depth": 7,
+        "display_name": "u_input_buffer",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_tensor24_input_buffer16",
+        "metrics": {
+          "Total LUTs": 6422,
+          "Logic LUTs": 6422,
+          "LUTRAMs": 0,
+          "SRLs": 0,
+          "FFs": 12383,
+          "RAMB36": 42,
+          "RAMB18": 2,
+          "URAM": 0,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree"
+    },
+    {
+      "target_id": "H018",
+      "owner": "submodule",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta",
+      "evidence": "native depth7 direct child",
+      "source_row": {
+        "native_line": 89,
+        "depth": 7,
+        "display_name": "u_meta",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_weight_meta_resident",
+        "metrics": {
+          "Total LUTs": 344,
+          "Logic LUTs": 344,
+          "LUTRAMs": 0,
+          "SRLs": 0,
+          "FFs": 11,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 80,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree"
+    },
+    {
+      "target_id": "H019",
+      "owner": "submodule",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_output_buffer",
+      "evidence": "native depth7 direct child",
+      "source_row": {
+        "native_line": 90,
+        "depth": 7,
+        "display_name": "u_output_buffer",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_output_buffer",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_tensor24_output_buffer16",
+        "metrics": {
+          "Total LUTs": 3919,
+          "Logic LUTs": 3919,
+          "LUTRAMs": 0,
+          "SRLs": 0,
+          "FFs": 12327,
+          "RAMB36": 42,
+          "RAMB18": 2,
+          "URAM": 0,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree"
+    },
+    {
+      "target_id": "H020",
+      "owner": "submodule",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_weight_frontend",
+      "evidence": "native depth7 direct child",
+      "source_row": {
+        "native_line": 91,
+        "depth": 7,
+        "display_name": "u_weight_frontend",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_weight_frontend",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_dual_ddr_weight_frontend",
+        "metrics": {
+          "Total LUTs": 483,
+          "Logic LUTs": 483,
+          "LUTRAMs": 0,
+          "SRLs": 0,
+          "FFs": 3976,
+          "RAMB36": 56,
+          "RAMB18": 2,
+          "URAM": 0,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree"
+    },
+    {
+      "target_id": "H021",
+      "owner": "submodule",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend",
+      "evidence": "native depth7 direct child",
+      "source_row": {
+        "native_line": 94,
+        "depth": 7,
+        "display_name": "u_input_frontend",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_input_frontend16_compact_cache",
+        "metrics": {
+          "Total LUTs": 35075,
+          "Logic LUTs": 35075,
+          "LUTRAMs": 0,
+          "SRLs": 0,
+          "FFs": 42301,
+          "RAMB36": 62,
+          "RAMB18": 8,
+          "URAM": 0,
+          "DSP Blocks": 8
+        }
+      },
+      "report_scope": "inclusive subtree"
+    },
+    {
+      "target_id": "H022",
+      "owner": "submodule",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command",
+      "evidence": "native depth7 direct child",
+      "source_row": {
+        "native_line": 95,
+        "depth": 7,
+        "display_name": "u_serial_command",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_serial_ddr_command16_v5_s54",
+        "metrics": {
+          "Total LUTs": 446819,
+          "Logic LUTs": 429034,
+          "LUTRAMs": 12406,
+          "SRLs": 5379,
+          "FFs": 541074,
+          "RAMB36": 420,
+          "RAMB18": 2,
+          "URAM": 0,
+          "DSP Blocks": 3141
+        }
+      },
+      "report_scope": "inclusive subtree"
+    },
+    {
+      "target_id": "H023",
+      "owner": "submodule",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_meta_bank/u_down_bank0",
+      "evidence": "native depth7 direct child",
+      "source_row": {
+        "native_line": 101,
+        "depth": 6,
+        "display_name": "u_down_bank0",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_meta_bank/u_down_bank0",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_weight_meta_uram_leaf__parameterized1",
+        "metrics": {
+          "Total LUTs": 715,
+          "Logic LUTs": 715,
+          "LUTRAMs": 0,
+          "SRLs": 0,
+          "FFs": 1064,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 112,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree"
+    },
+    {
+      "target_id": "H024",
+      "owner": "submodule",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_meta_bank/u_down_bank1",
+      "evidence": "native depth7 direct child",
+      "source_row": {
+        "native_line": 106,
+        "depth": 6,
+        "display_name": "u_down_bank1",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_meta_bank/u_down_bank1",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_weight_meta_uram_leaf__parameterized2",
+        "metrics": {
+          "Total LUTs": 734,
+          "Logic LUTs": 734,
+          "LUTRAMs": 0,
+          "SRLs": 0,
+          "FFs": 1064,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 112,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree"
+    },
+    {
+      "target_id": "H025",
+      "owner": "submodule",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_meta_bank/u_gate_bank0",
+      "evidence": "native depth7 direct child",
+      "source_row": {
+        "native_line": 111,
+        "depth": 6,
+        "display_name": "u_gate_bank0",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_meta_bank/u_gate_bank0",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_weight_meta_uram_leaf",
+        "metrics": {
+          "Total LUTs": 973,
+          "Logic LUTs": 973,
+          "LUTRAMs": 0,
+          "SRLs": 0,
+          "FFs": 1086,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 224,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree"
+    },
+    {
+      "target_id": "H026",
+      "owner": "submodule",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_meta_bank/u_gate_bank1",
+      "evidence": "native depth7 direct child",
+      "source_row": {
+        "native_line": 117,
+        "depth": 6,
+        "display_name": "u_gate_bank1",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_meta_bank/u_gate_bank1",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_weight_meta_uram_leaf__parameterized0",
+        "metrics": {
+          "Total LUTs": 952,
+          "Logic LUTs": 952,
+          "LUTRAMs": 0,
+          "SRLs": 0,
+          "FFs": 1086,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 224,
+          "DSP Blocks": 0
+        }
+      },
+      "report_scope": "inclusive subtree"
+    }
+  ],
+  "bounded_deeper_candidates": [
+    {
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_w4_frontend",
+      "role": "MLP weight frontend",
+      "RTL_source": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/mlp/hap_mlp_serial_ddr_command16_v5_s54.sv",
+        "bytes": 33372,
+        "sha256": "28d80270cf9aec35eb5bdd8bafc7da265600424b07dfe06b52d0d7436353490a"
+      },
+      "RTL_native_line": 241,
+      "RTL_raw": "    ) u_w4_frontend (",
+      "failed_route_net_prefix_present": false,
+      "status": "below depth7: candidate exact root requires native unique lookup; preserve NOT_FOUND or MULTIPLE"
+    },
+    {
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler",
+      "role": "MLP Gate/Up scheduler",
+      "RTL_source": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/mlp/hap_mlp_serial_ddr_command16_v5_s54.sv",
+        "bytes": 33372,
+        "sha256": "28d80270cf9aec35eb5bdd8bafc7da265600424b07dfe06b52d0d7436353490a"
+      },
+      "RTL_native_line": 328,
+      "RTL_raw": "    ) u_gate_scheduler (",
+      "failed_route_net_prefix_present": true,
+      "status": "below depth7: candidate exact root requires native unique lookup; preserve NOT_FOUND or MULTIPLE"
+    },
+    {
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler",
+      "role": "MLP Down scheduler",
+      "RTL_source": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/mlp/hap_mlp_serial_ddr_command16_v5_s54.sv",
+        "bytes": 33372,
+        "sha256": "28d80270cf9aec35eb5bdd8bafc7da265600424b07dfe06b52d0d7436353490a"
+      },
+      "RTL_native_line": 434,
+      "RTL_raw": "    ) u_down_scheduler (",
+      "failed_route_net_prefix_present": true,
+      "status": "below depth7: candidate exact root requires native unique lookup; preserve NOT_FOUND or MULTIPLE"
+    },
+    {
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+      "role": "MLP shared projection compute",
+      "RTL_source": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/mlp/hap_mlp_serial_ddr_command16_v5_s54.sv",
+        "bytes": 33372,
+        "sha256": "28d80270cf9aec35eb5bdd8bafc7da265600424b07dfe06b52d0d7436353490a"
+      },
+      "RTL_native_line": 495,
+      "RTL_raw": "    ) u_shared_compute (",
+      "failed_route_net_prefix_present": true,
+      "status": "below depth7: candidate exact root requires native unique lookup; preserve NOT_FOUND or MULTIPLE"
+    },
+    {
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection",
+      "role": "Attention projection, actual native generate-name form",
+      "RTL_source": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_attention_compute_cohort16_top.sv",
+        "bytes": 40008,
+        "sha256": "47efde7fa22651a52d1f88c10cbf99f8471b411d8e54a9ddc8c56b80d2738235"
+      },
+      "RTL_native_line": 207,
+      "RTL_raw": "    hap_projection_core16x16_w8_reuse u_projection (",
+      "failed_route_net_prefix_present": true,
+      "status": "below depth7: candidate exact root requires native unique lookup; preserve NOT_FOUND or MULTIPLE"
+    },
+    {
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store",
+      "role": "Attention postprocess storage",
+      "RTL_source": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_attention_compute_cohort16_top.sv",
+        "bytes": 40008,
+        "sha256": "47efde7fa22651a52d1f88c10cbf99f8471b411d8e54a9ddc8c56b80d2738235"
+      },
+      "RTL_native_line": 307,
+      "RTL_raw": "    hap_attention_cohort16_postprocess_store u_postprocess_store (",
+      "failed_route_net_prefix_present": false,
+      "status": "below depth7: candidate exact root requires native unique lookup; preserve NOT_FOUND or MULTIPLE"
+    },
+    {
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_context_store",
+      "role": "Attention context storage",
+      "RTL_source": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_attention_compute_cohort16_top.sv",
+        "bytes": 40008,
+        "sha256": "47efde7fa22651a52d1f88c10cbf99f8471b411d8e54a9ddc8c56b80d2738235"
+      },
+      "RTL_native_line": 504,
+      "RTL_raw": "    hap_attention_cohort16_context_store u_context_store (",
+      "failed_route_net_prefix_present": false,
+      "status": "below depth7: candidate exact root requires native unique lookup; preserve NOT_FOUND or MULTIPLE"
+    },
+    {
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1",
+      "role": "MLP branch1 appears in native failed-route samples",
+      "failed_route_net_prefix_present": true,
+      "status": "bounded deeper attribution candidate; native unique lookup required"
+    },
+    {
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu",
+      "role": "Gate SwiGLU appears in native failed-route samples",
+      "failed_route_net_prefix_present": true,
+      "status": "bounded deeper attribution candidate; native unique lookup required"
+    },
+    {
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+      "role": "Gate repack, exact E005 native hierarchy target previously verified",
+      "failed_route_net_prefix_present": false,
+      "status": "bounded deeper attribution candidate; native unique lookup required"
+    },
+    {
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack",
+      "role": "Down repack, exact E005 native hierarchy target previously verified",
+      "failed_route_net_prefix_present": false,
+      "status": "bounded deeper attribution candidate; native unique lookup required"
+    },
+    {
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack",
+      "role": "Down weight repack appears in native failed-route samples",
+      "failed_route_net_prefix_present": true,
+      "status": "bounded deeper attribution candidate; native unique lookup required"
+    },
+    {
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+      "role": "Attention projection region appears in native peak report and failed samples",
+      "failed_route_net_prefix_present": true,
+      "status": "bounded deeper attribution candidate; native unique lookup required"
+    }
+  ],
+  "required_owner_matching": "match NAME equal root or prefix root+/; deepest explicit owner root wins, with remaining core and design objects retained",
+  "selected_core_direct_children": [
+    {
+      "native_line": 82,
+      "depth": 5,
+      "display_name": "u_compute",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute",
+      "is_local_self_row": false,
+      "module": "scalellm_vcu118_f05_bd_core_0_hap_attention_mlp_resource_top",
+      "metrics": {
+        "Total LUTs": 709798,
+        "Logic LUTs": 687523,
+        "LUTRAMs": 16896,
+        "SRLs": 5379,
+        "FFs": 855325,
+        "RAMB36": 829,
+        "RAMB18": 22,
+        "URAM": 80,
+        "DSP Blocks": 5445
+      }
+    },
+    {
+      "native_line": 96,
+      "depth": 5,
+      "display_name": "u_ctrl_router",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_ctrl_router",
+      "is_local_self_row": false,
+      "module": "scalellm_vcu118_f05_bd_core_0_hap_attention_mlp_axil_router",
+      "metrics": {
+        "Total LUTs": 468,
+        "Logic LUTs": 468,
+        "LUTRAMs": 0,
+        "SRLs": 0,
+        "FFs": 89,
+        "RAMB36": 0,
+        "RAMB18": 0,
+        "URAM": 0,
+        "DSP Blocks": 0
+      }
+    },
+    {
+      "native_line": 97,
+      "depth": 5,
+      "display_name": "u_data_router",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_data_router",
+      "is_local_self_row": false,
+      "module": "scalellm_vcu118_f05_bd_core_0_hap_axi256_dedicated_data_router",
+      "metrics": {
+        "Total LUTs": 154,
+        "Logic LUTs": 154,
+        "LUTRAMs": 0,
+        "SRLs": 0,
+        "FFs": 5,
+        "RAMB36": 0,
+        "RAMB18": 0,
+        "URAM": 0,
+        "DSP Blocks": 0
+      }
+    },
+    {
+      "native_line": 99,
+      "depth": 5,
+      "display_name": "u_meta_bank",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_meta_bank",
+      "is_local_self_row": false,
+      "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_weight_meta_resident_ab",
+      "metrics": {
+        "Total LUTs": 3566,
+        "Logic LUTs": 3566,
+        "LUTRAMs": 0,
+        "SRLs": 0,
+        "FFs": 4476,
+        "RAMB36": 0,
+        "RAMB18": 0,
+        "URAM": 672,
+        "DSP Blocks": 0
+      }
+    },
+    {
+      "native_line": 123,
+      "depth": 5,
+      "display_name": "u_meta_dma",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_meta_dma",
+      "is_local_self_row": false,
+      "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_meta_dma_loader",
+      "metrics": {
+        "Total LUTs": 358,
+        "Logic LUTs": 358,
+        "LUTRAMs": 0,
+        "SRLs": 0,
+        "FFs": 281,
+        "RAMB36": 0,
+        "RAMB18": 0,
+        "URAM": 0,
+        "DSP Blocks": 0
+      }
+    },
+    {
+      "native_line": 126,
+      "depth": 5,
+      "display_name": "u_meta_sched",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_meta_sched",
+      "is_local_self_row": false,
+      "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_metadata_scheduler",
+      "metrics": {
+        "Total LUTs": 446,
+        "Logic LUTs": 446,
+        "LUTRAMs": 0,
+        "SRLs": 0,
+        "FFs": 1008,
+        "RAMB36": 0,
+        "RAMB18": 0,
+        "URAM": 0,
+        "DSP Blocks": 0
+      }
+    },
+    {
+      "native_line": 127,
+      "depth": 5,
+      "display_name": "u_mlp_ctrl",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_mlp_ctrl",
+      "is_local_self_row": false,
+      "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_axil_control",
+      "metrics": {
+        "Total LUTs": 507,
+        "Logic LUTs": 507,
+        "LUTRAMs": 0,
+        "SRLs": 0,
+        "FFs": 833,
+        "RAMB36": 0,
+        "RAMB18": 0,
+        "URAM": 0,
+        "DSP Blocks": 0
+      }
+    },
+    {
+      "native_line": 128,
+      "depth": 5,
+      "display_name": "u_paired_weight",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+      "is_local_self_row": false,
+      "module": "scalellm_vcu118_f05_bd_core_0_hap_axi512_dual_engine_dedicated_read",
+      "metrics": {
+        "Total LUTs": 3514,
+        "Logic LUTs": 3282,
+        "LUTRAMs": 232,
+        "SRLs": 0,
+        "FFs": 6541,
+        "RAMB36": 0,
+        "RAMB18": 0,
+        "URAM": 0,
+        "DSP Blocks": 0
+      }
+    },
+    {
+      "native_line": 145,
+      "depth": 5,
+      "display_name": "u_tensor",
+      "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor",
+      "is_local_self_row": false,
+      "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_tensor_dma_bridge",
+      "metrics": {
+        "Total LUTs": 4194,
+        "Logic LUTs": 4194,
+        "LUTRAMs": 0,
+        "SRLs": 0,
+        "FFs": 23153,
+        "RAMB36": 0,
+        "RAMB18": 0,
+        "URAM": 0,
+        "DSP Blocks": 0
+      }
+    }
+  ],
+  "native_hierarchy_nonadditivity": {
+    "footnote": {
+      "native_line": 665,
+      "raw": "* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining"
+    },
+    "example": {
+      "parent": {
+        "native_line": 92,
+        "depth": 6,
+        "display_name": "u_mlp",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp",
+        "is_local_self_row": false,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_full_command16_s54",
+        "metrics": {
+          "Total LUTs": 481854,
+          "Logic LUTs": 464069,
+          "LUTRAMs": 12406,
+          "SRLs": 5379,
+          "FFs": 583541,
+          "RAMB36": 482,
+          "RAMB18": 10,
+          "URAM": 0,
+          "DSP Blocks": 3149
+        }
+      },
+      "children": [
+        {
+          "native_line": 94,
+          "depth": 7,
+          "display_name": "u_input_frontend",
+          "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend",
+          "is_local_self_row": false,
+          "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_input_frontend16_compact_cache",
+          "metrics": {
+            "Total LUTs": 35075,
+            "Logic LUTs": 35075,
+            "LUTRAMs": 0,
+            "SRLs": 0,
+            "FFs": 42301,
+            "RAMB36": 62,
+            "RAMB18": 8,
+            "URAM": 0,
+            "DSP Blocks": 8
+          }
+        },
+        {
+          "native_line": 95,
+          "depth": 7,
+          "display_name": "u_serial_command",
+          "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command",
+          "is_local_self_row": false,
+          "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_serial_ddr_command16_v5_s54",
+          "metrics": {
+            "Total LUTs": 446819,
+            "Logic LUTs": 429034,
+            "LUTRAMs": 12406,
+            "SRLs": 5379,
+            "FFs": 541074,
+            "RAMB36": 420,
+            "RAMB18": 2,
+            "URAM": 0,
+            "DSP Blocks": 3141
+          }
+        }
+      ],
+      "local_self": {
+        "native_line": 93,
+        "depth": 7,
+        "display_name": "(u_mlp)",
+        "full_path": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp",
+        "is_local_self_row": true,
+        "module": "scalellm_vcu118_f05_bd_core_0_hap_mlp_full_command16_s54",
+        "metrics": {
+          "Total LUTs": 2,
+          "Logic LUTs": 2,
+          "LUTRAMs": 0,
+          "SRLs": 0,
+          "FFs": 166,
+          "RAMB36": 0,
+          "RAMB18": 0,
+          "URAM": 0,
+          "DSP Blocks": 0
+        }
+      },
+      "child_plus_local_Total_LUTs": 481896,
+      "parent_Total_LUTs": 481854
+    }
+  },
+  "resource_semantics": [
+    "Primitive ownership must partition actual unique cell NAMEs. Parent inclusive report is separate and never added to descendants.",
+    "Native Total LUTs/Logic LUTs/LUTRAM/SRL/FF/BRAM/DSP columns are native report quantities, not generic primitive row counts.",
+    "Native footnote explicitly permits child LUT totals above parent from cross-hierarchy combining. Preserve, do not force reconciliation by editing counts.",
+    "DSP_ALU/A_B_DATA/C_DATA/MULTIPLIER/M_DATA/OUTPUT/PREADD/PREADD_DATA may share one DSP48E2 site; count unique physical site or native DSP Blocks.",
+    "BRAM RAMB36/RAMB181/RAMBFIFO18 are alternative site modes; do not add site capacity as block equivalents.",
+    "One SLICE can contain cells owned by multiple modules. Report module-touched sites, exclusive sites and shared-owner sets separately; their sum is not physical unique sites.",
+    "Per-NW rows overlap; compute actual union cells/sites by unique identity rather than summing10regions.",
+    "u_meta_bank is MLP weight metadata residency672URAM; Attention/u_meta is another80URAM inside Attention. Do not double-count or describe these as full weight payload cache without RTL evidence.",
+    "u_paired_weight is shared dedicated AXI read/loader logic; u_tensor is tensor DMA/control. Separate these from compute and from DDR IP.",
+    "Depth7 truncates MLP serial-command and Attention compute children. Candidate deeper roots are verified only by actual native lookup; source presence alone is not preserved netlist hierarchy."
+  ]
+}

@@ -1,0 +1,12 @@
+result {A007_EXPECTED_BEFORE_NATIVE_OPEN
+SECOND_LINE	TAB} options {-code 1 -level 0 -errorstack {INNER {returnImm {A007_EXPECTED_BEFORE_NATIVE_OPEN
+SECOND_LINE	TAB} {}} CALL {open_checkpoint NO_DCP_READ_ALLOWED} UP 1 CALL {query open_checkpoint {open_checkpoint $::env(E006_DCP)}}} -errorcode NONE -errorinfo {A007_EXPECTED_BEFORE_NATIVE_OPEN
+SECOND_LINE	TAB
+    while executing
+"error "A007_EXPECTED_BEFORE_NATIVE_OPEN\nSECOND_LINE\tTAB""
+    (procedure "open_checkpoint" line 1)
+    invoked from within
+"open_checkpoint $::env(E006_DCP)"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel 1 $body"} -errorline 4}

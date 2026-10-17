@@ -1,0 +1,148 @@
+{
+  "schema": "A007_E005_draft_review_v1",
+  "observed_utc": "2026-10-16T03:44:15.341053+00:00",
+  "reviewer": "/root/m002_physical_architecture_review",
+  "scope": "bounded design/code inspection only; no imported validators, tests, EDA, production edits, or binary checkpoint reads",
+  "execution": "draft_review_completed_with_integration_followups",
+  "verdict": "source-proof design supported; installation and CPU/native qualification pending",
+  "applicability": "these exact uninstalled A006 draft snapshots; original R004/AT001 remains running per owner report",
+  "review": "findings delivered to A006 with real collaboration messages; not user/global acceptance",
+  "snapshot_files": [
+    {
+      "source": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/pending_project_opt_recovery/design_notes.md",
+      "snapshot": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R005/draft_review_snapshot_20261016T0346Z/design_notes.md",
+      "bytes": 2064,
+      "sha256": "55c5fcedb73525d7d14f1e712cc9342a3baddffaca93d3827cfc15589ac9ddbc",
+      "lines": 13
+    },
+    {
+      "source": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/pending_project_opt_recovery/m002_fresh_project_opt_recovery.py",
+      "snapshot": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R005/draft_review_snapshot_20261016T0346Z/m002_fresh_project_opt_recovery.py",
+      "bytes": 22970,
+      "sha256": "2be2ff26a5f587bd0455ae9b77a40b9e49004174341ce6cea0a60a44f1263016",
+      "lines": 331
+    },
+    {
+      "source": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/pending_project_opt_recovery/integration_DRAFT.diff",
+      "snapshot": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R005/draft_review_snapshot_20261016T0346Z/integration_DRAFT.diff",
+      "bytes": 17436,
+      "sha256": "fa44b1db1164b4ba54a66872a1f6af460a74e7010823e91edd2784e594ae9135",
+      "lines": 208
+    },
+    {
+      "source": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/pending_project_opt_recovery/m002_physical_evidence.py",
+      "snapshot": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R005/draft_review_snapshot_20261016T0346Z/m002_physical_evidence.py",
+      "bytes": 152432,
+      "sha256": "d278c315378952da306b6b8606302491ca98264f787864af14b8b0c71e816544",
+      "lines": 2069
+    },
+    {
+      "source": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/pending_project_opt_recovery/run_m002_physical_stage.py",
+      "snapshot": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R005/draft_review_snapshot_20261016T0346Z/run_m002_physical_stage.py",
+      "bytes": 15658,
+      "sha256": "fe3f97d87b481eca804b43fdb5cd11b9835d86a6c17c2bcaa8cdab26f441764f",
+      "lines": 206
+    },
+    {
+      "source": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/pending_project_opt_recovery/m002_diagnostic_common.tcl",
+      "snapshot": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R005/draft_review_snapshot_20261016T0346Z/m002_diagnostic_common.tcl",
+      "bytes": 47786,
+      "sha256": "56af4b162bd4d51df787b6f790d08815876a18dcc60628262ef52dde5a490564",
+      "lines": 785
+    },
+    {
+      "source": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/pending_project_opt_recovery/m002_resume_physical.tcl",
+      "snapshot": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R005/draft_review_snapshot_20261016T0346Z/m002_resume_physical.tcl",
+      "bytes": 12775,
+      "sha256": "91cd2750632f7adaf6543bda53e16208255052b5026b44239e192e03032c95fd",
+      "lines": 183
+    },
+    {
+      "source": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/pending_project_opt_recovery/run_m002_optimized.py",
+      "snapshot": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R005/draft_review_snapshot_20261016T0346Z/run_m002_optimized.py",
+      "bytes": 8880,
+      "sha256": "7c1a8709ff6180d5d5d9f51bd19325b66d9cddd31784588663c6c8afe7905e20",
+      "lines": 131
+    }
+  ],
+  "accepted_design": [
+    "Keep original failed native/POST status and all raw evidence; no native OPT command receipt exists or is manufactured.",
+    "Use separate schema E005_native_project_OPT_log_derived_v1 for original successful opt_design followed by failed POST.",
+    "Preserve actual disabled-cache PHY produced/result pairs with complete script/log/module/VLNV/part/output/repo/constraint ownership; legacy triple-copy path remains strict.",
+    "Requalify actual debug, clock, CDC/reset graph and pre_place before physical commands.",
+    "Explicit restored E005 commands: place_design -directive SSI_SpreadSLLs; phys_opt_design -directive Default; route_design -directive Default."
+  ],
+  "addressed_findings": [
+    {
+      "id": "D01",
+      "finding": "PHY exact literal assignment identity",
+      "state": "draft addressed",
+      "evidence": "literal_assignment compares unique literal scalar/list values in both script and traced log for eight exact assignments"
+    },
+    {
+      "id": "D02",
+      "finding": "constraint registry/read completeness",
+      "state": "draft addressed",
+      "evidence": "bind registry/read-file identities; exact 162 metadata rows; recompute all Parsing XDC log records with line/path/scope/hash"
+    },
+    {
+      "id": "D03",
+      "finding": "authorization and actual manager attempt linkage",
+      "state": "draft addressed",
+      "evidence": "auth managed_attempt equality and manager command-started-status chain"
+    },
+    {
+      "id": "D04",
+      "finding": "historical provenance depended on mutable live repo file list",
+      "state": "draft addressed",
+      "evidence": "fixed terminal_repository_observation identity; preserve native cache-addition message and no measured third copy"
+    },
+    {
+      "id": "D05",
+      "finding": "actual Critical CDC source selection excluded fresh complete raw OPT reports",
+      "state": "draft addressed",
+      "evidence": "explicit native_project_log_derived plus opt_reports_complete selects current cdc_opt.rpt"
+    },
+    {
+      "id": "D06",
+      "finding": "supervisor HAP_* sanitization strips recovery parent without CLI support",
+      "state": "draft addressed",
+      "evidence": "explicit --init-report/--opt-report/--pre-place-report/--physical-report, mutually exclusive place-only selection and post-sanitization environment mapping"
+    },
+    {
+      "id": "D07",
+      "finding": "write=False indirectly created missing PID/repo observation receipts",
+      "state": "draft addressed during snapshot",
+      "evidence": "331-line helper guards PID creation with write; propagates create_terminal_observation=write; PHY helper defaults create_observation=False and requires it before write. Snapshotted evidence adapter propagates same boolean."
+    }
+  ],
+  "remaining_findings": [
+    {
+      "id": "D08",
+      "finding": "historical log-derived OPT proof/new-command scopes do not yet propagate through failure continuation",
+      "evidence": [
+        "recovery_opt_parent unconditionally reads opt_command_result.txt",
+        "recovery_pre_place_parent unconditionally places opt receipt in historical map",
+        "parent_recovered_place unconditionally requires debug/place/physopt set whenever inherited proof exists, conflicting with later phase scopes",
+        "finalize initial fresh branch still calls scope original_stage_flow"
+      ],
+      "action": "keep separate inherited proof identity across eligible continuation and select new receipt set by actual restored phase; preserve old terminal-source conditions"
+    },
+    {
+      "id": "D09",
+      "finding": "remaining directive-sensitive placed-parent validation accepts only bare place_design",
+      "action": "check exact authorized E005 directive while preserving strict legacy form"
+    },
+    {
+      "id": "D10",
+      "finding": "complete immutable binding of new proof copy/observations/direct sources pending",
+      "action": "include actual report proof copy and observation/direct proof inputs in stage inputs/archive, preserve original source identities"
+    }
+  ],
+  "limitations": [
+    "No genuine terminal has yet been independently reviewed; expected project-mode guard must not be declared actual terminal cause prematurely.",
+    "No execution eligibility, implementation success, timing convergence or formal reset/CDC safety is inferred from this draft review.",
+    "owned_before_reap records list after signaling and is not proof no cleanup happened; withdrawn suggestion to require this empty field is not an acceptance condition.",
+    "Native .vivado.begin.rst records wrapper PID, not necessarily native PID; do not equate them."
+  ]
+}

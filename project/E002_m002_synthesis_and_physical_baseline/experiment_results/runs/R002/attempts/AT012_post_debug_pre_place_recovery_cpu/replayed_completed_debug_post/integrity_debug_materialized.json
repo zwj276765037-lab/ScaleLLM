@@ -1,0 +1,233 @@
+{
+  "observed_utc": "2026-10-15T09:38:39.641921+00:00",
+  "phase": "debug_materialized",
+  "synthesis": {
+    "project": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E002_R001_AT001_fresh",
+    "source_rows": 339,
+    "checkpoint_paths": 45,
+    "manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R001_AT002_fresh_synth/inputs.sha256",
+      "bytes": 87188,
+      "sha256": "1dc14fef9dbe62ba0a55a7eebef3a5c0a277574c674e2d3310d5d69e10f711d3"
+    },
+    "identity": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R001_AT002_fresh_synth/build_identity.txt",
+      "bytes": 207003,
+      "sha256": "4647130ebdfe11b9b853698a30d1cc6455e06e551307867421978411c71baa10"
+    },
+    "completion": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R001_AT002_fresh_synth/fresh_synth_complete.txt",
+      "bytes": 276,
+      "sha256": "346cceddd7180ad519b5862da92994c7067284568b3d1b765d50c28a886444b6"
+    },
+    "checkpoint_manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/attempts/AT002_fresh_synth/synth_checkpoint_bindings.sha256",
+      "bytes": 13186,
+      "sha256": "9f2fffaca87d3afe0bb512cb381c72902239a3c57418b95579bafc73cb365f46"
+    },
+    "checkpoint_bindings": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/attempts/AT002_fresh_synth/synth_checkpoint_bindings.json",
+      "bytes": 50644,
+      "sha256": "68ab2cf88b4462a574cfff3b4abb6b088ab672402f7533fad622afcbc38eb39d"
+    },
+    "managed_status": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/attempts/AT002_fresh_synth/status.json",
+      "bytes": 1575,
+      "sha256": "877b0eecf2736cb954aa72b2f37465ca4dd957f08f0587c27f98858e8b508937"
+    }
+  },
+  "resources": {
+    "CLB LUTs": {
+      "used": 828255.0,
+      "available": 1182240.0,
+      "percent": 70.06
+    },
+    "CLB Registers": {
+      "used": 1021363.0,
+      "available": 2364480.0,
+      "percent": 43.2
+    },
+    "Block RAM Tile": {
+      "used": 941.0,
+      "available": 2160.0,
+      "percent": 43.56
+    },
+    "URAM": {
+      "used": 752.0,
+      "available": 960.0,
+      "percent": 78.33
+    },
+    "DSPs": {
+      "used": 5451.0,
+      "available": 6840.0,
+      "percent": 79.69
+    }
+  },
+  "constraints": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT012_post_debug_pre_place_recovery_cpu/replayed_completed_debug_post/constraints_debug_materialized.json",
+    "bytes": 195107,
+    "sha256": "2d3311e57e47e0aa209abf6f5dca8c115ce332870ca9a0b41d078c1e7a940ca3"
+  },
+  "cdc_classification": null,
+  "reset_io_classification": {
+    "known_async_reset_inputs": [
+      "pcie_perstn"
+    ],
+    "known_ddr_reset_outputs": [
+      "ddr4_sdram_c1_reset_n",
+      "ddr4_sdram_c2_reset_n"
+    ]
+  },
+  "reset_structure": {
+    "qualified": false,
+    "issues": [
+      "structural parsing failed; see gate_issues"
+    ]
+  },
+  "debug_clock_observation": {
+    "source": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT012_post_debug_pre_place_recovery_cpu/replayed_completed_debug_post/debug_debug_materialized.tsv",
+      "bytes": 412711,
+      "sha256": "c077a8af95eaf19f2d1f9ba3da99e613a5677728d348ff91b5649d58790679bb"
+    },
+    "input_clocks": [
+      "mmcm_clkout5_1"
+    ],
+    "outputs": {
+      "dbg_hub/sl_iport0_o[1]": [
+        "mmcm_clkout5_1"
+      ],
+      "dbg_hub/sl_iport1_o[1]": [
+        "mmcm_clkout5_1"
+      ]
+    },
+    "clocks": {
+      "default_250mhz_clk2_clk_p": {
+        "PERIOD": "4.000",
+        "MASTER_CLOCK": "",
+        "SOURCE_PINS": "default_250mhz_clk2_clk_p",
+        "IS_GENERATED": "0",
+        "WAVEFORM": "0.000 2.000"
+      },
+      "mmcm_clkout5_1": {
+        "PERIOD": "20.000",
+        "MASTER_CLOCK": "default_250mhz_clk2_clk_p",
+        "SOURCE_PINS": "scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_infrastructure/gen_mmcme4.u_mmcme_adv_inst/CLKOUT5",
+        "IS_GENERATED": "1",
+        "WAVEFORM": "0.000 10.000"
+      }
+    },
+    "actual_output_drivers": {
+      "dbg_hub/sl_iport0_o[1]": [
+        {
+          "pin": "scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_infrastructure/u_bufg_dbg_clk/O",
+          "ref": "BUFGCE",
+          "refpin": "O"
+        }
+      ],
+      "dbg_hub/sl_iport1_o[1]": [
+        {
+          "pin": "scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_infrastructure/u_bufg_dbg_clk/O",
+          "ref": "BUFGCE",
+          "refpin": "O"
+        }
+      ]
+    },
+    "actual_output_startpoints": {
+      "dbg_hub/sl_iport0_o[1]": [
+        "scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_infrastructure/gen_mmcme4.u_mmcme_adv_inst/CLKOUT5"
+      ],
+      "dbg_hub/sl_iport1_o[1]": [
+        "scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_infrastructure/gen_mmcme4.u_mmcme_adv_inst/CLKOUT5"
+      ]
+    },
+    "relationship_qualified": true,
+    "relationship_issues": [],
+    "effective_hub_constraints": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT012_post_debug_pre_place_recovery_cpu/replayed_completed_debug_post/debug_hub_effective_debug_materialized.xdc",
+      "bytes": 14003,
+      "sha256": "e847680aeae1eeb36cf831ae7731d6049f4c78776847580ef4fb48a70a68ae80"
+    },
+    "fanout_endpoint_count": 530,
+    "fanout_by_output": {
+      "dbg_hub/sl_iport0_o[1]": 265,
+      "dbg_hub/sl_iport1_o[1]": 265
+    },
+    "fanout_clock_names": [
+      "mmcm_clkout5_1"
+    ],
+    "declared_input_hz": 300000000.0,
+    "actual_input_hz": 50000000.0,
+    "divider": "false",
+    "declared_matches_actual_input": false,
+    "review": "diagnostic relation only; declared frequency mismatch retained; unknown output ancestry or undivided period mismatch blocks place"
+  },
+  "reset_fanout_observation": {
+    "qualified": true,
+    "issues": [],
+    "source": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT012_post_debug_pre_place_recovery_cpu/replayed_completed_debug_post/cdc_changed_reset_debug_materialized.tsv",
+      "bytes": 5960757,
+      "sha256": "b3b5e36463819e52fddc34beb869ac2298d348ac4de553f0741e0ce7f8318494"
+    },
+    "xdma_ui_branches": {
+      "mmcm_clkout0": [
+        "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]/CLR",
+        "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]/CLR",
+        "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]/CLR",
+        "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/CLR",
+        "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D"
+      ],
+      "mmcm_clkout0_1": [
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]/CLR",
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]/CLR",
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]/CLR",
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/CLR",
+        "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D",
+        "scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk2/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D"
+      ]
+    },
+    "bram_port_clock_source": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT012_post_debug_pre_place_recovery_cpu/replayed_completed_debug_post/bram_port_clocks_debug_materialized.tsv",
+      "bytes": 263752,
+      "sha256": "1a4704be88423f55a1825911fce1c57ce24cce83624d78244aeeea386593b69c"
+    },
+    "bram_port_clock_endpoints": 688,
+    "auxiliary_cdc_observation": {
+      "coverage": "not_limited",
+      "raw_sentinels": [],
+      "reports": []
+    },
+    "bram_models": [
+      {
+        "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/verilog/src/unisims/RAMB36E2.v",
+        "bytes": 188935,
+        "sha256": "de300b57debd3f31771fa1d7a343f12200658cea6317e4da2a8c3d2f8e61519d"
+      },
+      {
+        "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/verilog/src/unisims/RAMB18E2.v",
+        "bytes": 145218,
+        "sha256": "5b5824a9a33980c7019ca4ea18d272134da4e1e3b8a0ba6b576e485eedb27dc5"
+      }
+    ],
+    "consumer_counts": {
+      "SOURCE_Q:scalellm_vcu118_f05_bd_i/d0_gate/inst/u_ready_cdc/arststages_ff_reg[3]/Q": 6362,
+      "SOURCE_Q:scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[3]/Q": 5282,
+      "SOURCE_Q:scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_ddr_cal_top/calDone_gated_reg/Q": 938,
+      "SOURCE_Q:scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_ddr_cal_top/calDone_gated_reg/Q": 938,
+      "SOURCE_Q:scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q": 73,
+      "BASE_RESET_Q:scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/Q": 6362,
+      "BASE_RESET_Q:scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/Q": 5282,
+      "HOST_RESET_Q:scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[3]/Q": 1,
+      "HOST_RESET_Q:scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[3]/Q": 1,
+      "HOST_RESET_Q:scalellm_vcu118_f05_bd_i/host_split/inst/clk_map/psr_aclk2/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[3]/Q": 1
+    },
+    "formal_reset_cdc_safety": "OPEN",
+    "scope": "diagnostic only; downstream release/transaction safety remains OPEN"
+  },
+  "gate_issues": [
+    "reset_structure: ValueError: reset primitive export outside current stage reports",
+    "known reset CDC/IO structural conditions not established: ['structural parsing failed; see gate_issues']",
+    "critical_CDC: ValueError: exact OPT reset CDC requires actual chain/polarity/HostSplit/fanout diagnostic proof"
+  ]
+}

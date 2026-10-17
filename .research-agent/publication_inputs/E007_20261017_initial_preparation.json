@@ -1,0 +1,11 @@
+{
+  "source": "# E007：SLR1定向卸载与完整implementation依据\n\n用户明确要求“进行针对性优化后开启下一轮implementation 我希望下一次就能成功”。执行[SM011合同](../../../mission/M002_ddr_separation_and_timing_recovery/slr2_input_locality_candidate_contract_2026-10-17.md)，以E005已资格debug_materialized图为共同起点，将tensor输入bank与MLP capture/Hadamard/四量化器成组硬约束到SLR2。其余RTL/IP/数值/接口/时钟与物理directive保持。前期CPU资源与边界分析来自[E006候选](../../E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/input_frontend_locality_candidate.md)，不是迁移效果证据。\n",
+  "results": "# E007：当前结果\n\n尚无新EDA结果，未改变生产RTL或开始新implementation。已明确候选选择、DSP物理父归一、完整canonical cut和hard Pblock的非排他/无routing containment语义；A006正在准备可执行入口及真实E005父链的薄层恢复适配。原生API、实际pre-place对象、约束冲突、热点关联和完整边界连接仍待核验。\n\nE005原失败终态保持。E006实际资源显示候选组包含40627 CLB FF、31709 raw逻辑LUT、8DSP、无BRAM/URAM；这些是原图规模，不是新迁移收益，不能按触及站点数宣称已释放面积。\n",
+  "status": "# E007：执行状态\n\nexecution_state: planned\nverdict: unassessed\n\n工程入口CPU准备已开始；实际EDA尚未启动。A006独占执行入口，A007已有边界语义审核，主控整合合同/摘要。E006 R001原只读诊断继续，单EDA资源未释放；用户最新明确优化与新implementation授权未被伪记成已答复中止当前正常诊断的例外。后继需实际热点/连接适用性和前置真实收尾。\n\n启动后按同一父链完整place/physopt/route，普通适配/修复连续完成，无逐项批准门；正常进程无墙钟/静默强停。以实际位置、合法路由和全部原时钟setup/hold/PW分别验收，不预先保证布通。不运行bitstream、板卡、GPU、PPL/ACC。\n",
+  "execution_state": "planned",
+  "verdict": "unassessed",
+  "applicability": "E005同RTL/IP已资格pre-place父图；CPU入口准备中，实际迁移/完整cut/物理实现尚未执行",
+  "evidence": [
+    "project/E007_m002_slr2_input_locality_implementation/experiment_source/protocol.md"
+  ]
+}

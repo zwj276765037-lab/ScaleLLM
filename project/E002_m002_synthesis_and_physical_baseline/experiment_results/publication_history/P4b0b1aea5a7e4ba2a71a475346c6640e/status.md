@@ -1,0 +1,37 @@
+# E002：执行状态
+
+execution_state: running
+verdict: unassessed
+applicability: 正式综合与OPT已完成；完整真实OPT诊断准入及102项CPU通过，AT008恢复执行中，尚未place。
+
+R003/AT008于2026-10-15 07:08:25 UTC实际启动，supervisor3336831、owned group3336832、执行会话10802。唯一EDA执行者A006。当前是恢复阶段；尚未执行place/phys_opt/route，不能把启动命令stage=place当作实际布局已经开始。
+
+从AT007相同397273730-byte OPT（SHA b209decf…71021）恢复；继承14份完成报告、119909158-byte闭合复位图、14份原语导出、完整扇出、4份完整定向CDC报告及AT007实际688端口证据。不重综合/OPT。339输入/45综合DCP与完整递归父链已经核验。
+
+R002/AT011完整真实组合gate_issues=[]、14链结构和完整fanout均true，688实际BRAM端口clock属于对应UI；精确8项CDC只作诊断分类，4辅助枚举上限保留coverage_limited。102项CPU通过（96物理+6隔离）。AT006/AT007原失败1与后继离线资格分别保留，不回写原终态。
+
+恢复后的实际检查通过后，按授权连续显式debug→pre_place→place→phys_opt，再依真实产物route。A007复核限定证据和阶段结果，无新增人工停点。维持1个EDA、8CPU、内存/磁盘保护以及place/phys_opt和route各2h上限；最终reset/CDC安全、物理时序及板级目标未通过。无bitstream/板卡/GPU/PPL/ACC授权。
+
+
+---
+Published: 2026-10-15T07:10:04.706421+00:00
+Publication: P4304343e5f4f45078632a8bdc496af6e
+Execution state: running
+Research verdict: unassessed
+Applicability: AT011完整真实OPT诊断准入/102项CPU通过；AT008于07:08:25 UTC启动同OPT恢复，尚未place；正式CDC/物理签核未通过
+Evidence:
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/synthesis_stage_facts.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/attempts/AT002_fresh_synth/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT004_complete_recovery_preflight_opt_place_physopt/opt_command_facts.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT004_complete_recovery_preflight_opt_place_physopt/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT005_opt_recovery_debug_materialized_place_physopt/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT006_cdc_reset_proof_debug_place_physopt/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R005/architecture_review.md
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R005/reset_warning_review.md
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT006_cdc_reset_proof_debug_place_physopt/offline_qualification_v1/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT010_actual_reset_graph_bram_clock_cpu/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT007_bram_port_clock_debug_place_physopt/started.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT007_bram_port_clock_debug_place_physopt/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT011_auxiliary_cdc_full_gate_cpu/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT011_auxiliary_cdc_full_gate_cpu/actual_combined_status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT008_complete_opt_gate_debug_place_physopt/started.json

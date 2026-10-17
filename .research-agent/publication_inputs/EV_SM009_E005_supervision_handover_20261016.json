@@ -1,0 +1,15 @@
+{
+  "event_id": "EV_SM009_E005_supervision_handover_20261016",
+  "small_mission": "SM009",
+  "trigger": "anomaly",
+  "summary": "工程代理曾因登录凭据错误中断；恢复后实时发现原综合监督进程消失、原leader/Vivado仍存活，已为同PID树恢复资源guard与单EDA锁。",
+  "impact": "原资源记录最后01:42:20 UTC至接管02:17:17 UTC存在记录/监督缺口，原native退出码不能由非父进程补造。23/23原生综合子运行已有成功回执，但外层报告阶段尚未完整结束。设计输入未改，未重跑或中断原Vivado。",
+  "evidence": [
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/supervision_handover_20261016T021717Z/started.json"
+  ],
+  "affected": [
+    "SM009"
+  ],
+  "action": "保留原始记录及未知退出码；同PID无墙钟资源监督继续。待当前报告完成，必要时新报告AT从成功综合DCP补完整父链，不重跑已成功综合。A007独立核移交和适用范围。",
+  "requires_decision": false
+}

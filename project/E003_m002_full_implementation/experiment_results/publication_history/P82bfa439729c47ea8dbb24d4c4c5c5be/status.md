@@ -1,0 +1,32 @@
+# E003：执行状态
+
+execution_state: running
+verdict: unassessed
+
+按用户最新“不要设置强行停止 只要进程还在正常继续”，无固定墙钟上限的监督已于2026-10-15 12:32:57 UTC实际生效。旧supervisor3677862/start917946821仅被暂停为T、仍持lane锁、不再运行原deadline；新watchdog3687878/start918013654（会话36338）负责资源保护及后继调度。当前worker3677864/start917946826、Vivado启动wrapper3678158/start917949115及native计算3678249/start917949130均连续，同PG3677864未重启。接管后native CPU实增17749 ticks。[接管事实](../experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/handoff_effective.json)、[后继连续性](../experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/post_handoff_continuity.json)。
+
+原12h/24h预算文件与启动合同保持原字节，仅作为启动历史；[新补充](../../../mission/M002_ddr_separation_and_timing_recovery/full_implementation_continuation_2026-10-15.md)优先。当前及后继route的实际监督timeout/global_deadline均null，正常推进持续运行，短时无日志不等于异常。真实工具/进程/资源异常仍处理。未热改冻结生产代码；接管语法与两个真实隔离进程自检通过，旧manager实际退出、新监督终态与native命令结果必须分别保全。
+
+本次EDA于12:22:11.492419 UTC实际启动，同R002/AT001恢复AT008完整debug/pre_place；open_checkpoint已完成8分17秒，本次fresh guard native0/174秒、零blackbox/DRC blockers，内部时钟/约束覆盖通过；实际place_design已启动并完成Phase1.1。尚无新的完整place/physopt/route DCP。129项入口CPU与真实339/45/AT008资格已通过；实际阶段成功后自动继续后继。单EDA/8CPU/nice5及原内存磁盘保护保持，无bitstream/板卡/GPU/PPL/ACC。
+
+[本轮布局启动事实](../experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_started.json)保存不可变日志前缀、实际guard及无wall接管身份。正式reset/CDC安全仍OPEN；此前OPT/debug/POST只作明确继承，没有伪造新命令。
+
+
+---
+Published: 2026-10-15T12:38:54.920292+00:00
+Publication: P08ac918ff5964903aa6c41604c7d7a00
+Execution state: running
+Research verdict: unassessed
+Applicability: 本次live恢复检查通过，已实际进入place；同EDA无wall监督继续，尚无完整物理DCP
+Evidence:
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT001_full_implementation_profile_cpu/validation_result.json
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT001_full_implementation_profile_cpu/actual_source_qualification.json
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT001_full_implementation_profile_cpu/installation.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/started.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/execution_authorization.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/actual_eda_started.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/effective_budget.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/handoff_effective.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/validation.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/post_handoff_continuity.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_started.json

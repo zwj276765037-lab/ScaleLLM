@@ -1,0 +1,432 @@
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_execution_profile.py
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT001_full_implementation_profile_cpu/source_archive/m002_execution_profile.py
+@@ -0,0 +1,122 @@
++"""Explicit E003 authorization and cumulative physical wall budgets (legacy opt-in)."""
++from __future__ import annotations
++import datetime as dt
++import hashlib
++import json
++from pathlib import Path
++
++PROFILE = 'm002_full_implementation'
++CONTRACT = 'mission/M002_ddr_separation_and_timing_recovery/full_implementation_contract_2026-10-15.md'
++CONTRACT_SHA = '8461a1ff702b33f95cd03100086d2c1bb58ae590430598adb59818ffa2c0794b'
++EXPERIMENT = 'project/E003_m002_full_implementation'
++STAGE_SECONDS = 43200
++GLOBAL_SECONDS = 86400
++
++
++def check(condition, message):
++    if not condition:
++        raise ValueError(message)
++
++
++def stamp(value):
++    return dt.datetime.fromisoformat(value)
++
++
++def now():
++    return dt.datetime.now(dt.timezone.utc)
++
++
++def save(path, value):
++    temp = path.with_suffix(path.suffix + '.tmp')
++    temp.write_text(json.dumps(value, indent=2) + '\n')
++    temp.replace(path)
++
++
++def identity(path):
++    return {'path': str(path), 'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'bytes': path.stat().st_size}
++
++
++def authorization(workspace, stage, attempt, report):
++    check(stage in {'place','route'}, 'E003 authorizes only physical stages')
++    expected = workspace / EXPERIMENT / 'experiment_results/runs' / ('R002' if stage == 'place' else 'R003') / 'attempts'
++    check(attempt.parent == expected and attempt.name.startswith('AT'), 'E003 stage/attempt root mismatch')
++    contract = identity(workspace / CONTRACT)
++    check(contract['sha256'] == CONTRACT_SHA, 'E003 authorization contract identity changed')
++    return {'profile': PROFILE, 'contract': contract, 'user_instruction': '进行一次完整的implementation',
++            'stage': stage, 'managed_attempt': str(attempt), 'report': str(report),
++            'stage_cumulative_seconds': STAGE_SECONDS, 'global_wall_seconds': GLOBAL_SECONDS,
++            'single_bounded_restart': False, 'workspace': str(workspace)}
++
++
++def budget(workspace, stage, current_time=None):
++    """Called under the exclusive EDA lane lock; no unfinished attempt is free."""
++    current_time = current_time or now()
++    base = workspace / EXPERIMENT / 'experiment_results'
++    used = 0.0
++    launches = []
++    for run in ('R002','R003'):
++        for command in sorted((base / 'runs' / run / 'attempts').glob('AT*/command.json')):
++            meta = json.loads(command.read_text())
++            check(meta.get('execution_profile') == PROFILE, 'foreign command in E003 physical ledger')
++            status_path = command.parent / 'status.json'
++            check(status_path.is_file(), 'unclosed E003 attempt; account its actual cost before restart')
++            status = json.loads(status_path.read_text())
++            check(status.get('execution_state') == 'completed' and not status.get('owned_survivors'), 'unclosed E003 process ownership')
++            elapsed = (stamp(status['ended_utc']) - stamp(meta['started_utc'])).total_seconds()
++            check(elapsed >= 0 and status['stage'] == meta['stage'], 'invalid E003 stage cost')
++            if meta['stage'] == stage:
++                used += elapsed
++            launch = command.parent / 'actual_eda_started.json'
++            if launch.exists():
++                launches.append(json.loads(launch.read_text()))
++    anchor_path = base / 'physical_budget_anchor.json'
++    anchor = json.loads(anchor_path.read_text()) if anchor_path.exists() else None
++    if launches:
++        earliest = min(launches, key=lambda row: stamp(row['launched_utc']))
++        check(anchor == earliest, 'E003 first actual EDA anchor missing/changed')
++    elif anchor:
++        raise ValueError('E003 budget anchor without actual launch receipt')
++    stage_remaining = STAGE_SECONDS - used
++    deadline = stamp(anchor['launched_utc']) + dt.timedelta(seconds=GLOBAL_SECONDS) if anchor else None
++    global_remaining = (deadline-current_time).total_seconds() if deadline else GLOBAL_SECONDS
++    effective = min(stage_remaining, global_remaining)
++    check(effective > 0, 'E003 cumulative/global physical budget exhausted')
++    return {'stage_used_seconds': used, 'stage_remaining_seconds': stage_remaining,
++            'global_anchor': anchor, 'global_deadline_utc': deadline.isoformat() if deadline else None,
++            'global_remaining_seconds': global_remaining, 'effective_timeout_seconds': effective}
++
++
++def report_authorization(report):
++    path = report / 'execution_authorization.json'
++    if not path.exists():
++        return None
++    value = json.loads(path.read_text())
++    expected = authorization(Path(value['workspace']), value['stage'], Path(value['managed_attempt']), report)
++    check(value == expected, 'E003 report authorization changed')
++    attempt = Path(value['managed_attempt'])
++    check(json.loads((attempt/'execution_authorization.json').read_text()) == expected, 'E003 manager authorization mismatch')
++    command = json.loads((attempt/'command.json').read_text())
++    check(command.get('execution_profile') == PROFILE and command.get('stage') == value['stage'] and
++          command.get('report') == str(report) and command.get('authorization') == identity(attempt/'execution_authorization.json'),
++          'E003 manager command/profile binding mismatch')
++    return value
++
++
++def record_launch(report, pid):
++    auth = report_authorization(report)
++    check(auth is not None, 'actual launch needs E003 authorization')
++    attempt = Path(auth['managed_attempt'])
++    receipt = {'profile': PROFILE, 'managed_attempt': str(attempt), 'report': str(report),
++               'pid': pid, 'launched_utc': now().isoformat(), 'contract_sha256': CONTRACT_SHA}
++    anchor = Path(auth['workspace']) / EXPERIMENT / 'experiment_results/physical_budget_anchor.json'
++    if not anchor.exists():
++        save(anchor, receipt)
++    save(report/'actual_eda_started.json', receipt)
++    # Publish the manager-visible receipt last, after its required anchor exists.
++    save(attempt/'actual_eda_started.json', receipt)
++    return receipt
++
++
++def require_complete_route(counts):
++    check(counts['routable'] > 0 and counts['fully_routed'] == counts['routable'] and
++          all(counts[k] == 0 for k in ('unrouted','partially_routed','routing_errors')), 'E003 route is not fully routed')
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_physical_evidence.py
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT001_full_implementation_profile_cpu/source_archive/m002_physical_evidence.py
+@@ -1,6 +1,8 @@
+ #!/usr/bin/env python3
+ """Identity and diagnostic evidence for M002. Never qualifies physical signoff."""
+ from __future__ import annotations
++
++import m002_execution_profile as full_impl
+ 
+ import datetime as dt
+ from functools import cache
+@@ -1151,6 +1153,10 @@
+         generated_source_candidates=constraints.get('generated_source_candidates',{}),actual_reads=old['actual_reads'],
+         constraint_mode='embedded_checkpoint_inherited',generated_phy=old['generated_phy'],generated_debug=old['generated_debug'],
+         inherited_POST_scope='original completed measurements, not this restart measurements',formal_reset_cdc_safety='OPEN')
++    auth=full_impl.report_authorization(report)
++    if auth:
++        value.update(execution_authorization=auth,single_bounded_restart=False,
++            restart_scope="E003 new full implementation authorization; saved pre-place restore; partial placement is not inherited")
+     if _write:(report/'recovery_parent.json').write_text(json.dumps(value,indent=2)+'\n')
+     return value
+ 
+@@ -1584,6 +1590,8 @@
+ 
+ def parent_recovered_place(path: Path, project: Path, lineage: dict) -> dict:
+     value=json.loads(path.read_text());report=path.parent
++    auth=full_impl.report_authorization(report)
++    if auth:require(value.get('execution_authorization')==auth,'recovered E003 parent authorization mismatch')
+     require(value.get('schema')==SCHEMA and value.get('stage')=='place' and value.get('execution_mode')=='checkpoint_restored_commands', 'wrong recovered parent mode/schema')
+     require(value.get('execution_state')=='completed' and value.get('diagnostic_eligible') is True and value.get('physical_signoff') is False and
+             value.get('project')==str(project) and value.get('synthesis')==lineage,'recovered parent is not a completed qualified diagnostic')
+@@ -1769,6 +1777,10 @@
+             json.loads((report/f'constraints_{point}.json').read_text()) if restored else None),
+         "parent": parent,
+     }
++    auth=full_impl.report_authorization(report)
++    if auth:
++        evidence["execution_authorization"]=auth
++        if stage=="route":full_impl.require_complete_route(evidence["route"])
+     (report / "diagnostic_evidence.json").write_text(json.dumps(evidence, indent=2) + "\n")
+     return evidence
+ 
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_managed_eda.py
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT001_full_implementation_profile_cpu/source_archive/run_managed_eda.py
+@@ -13,6 +13,11 @@
+ import signal
+ import subprocess
+ import time
++
++try:
++    from . import m002_execution_profile as full_impl
++except ImportError:
++    import m002_execution_profile as full_impl
+ 
+ ROOT = Path(__file__).resolve().parents[2]
+ GIB = 1024 ** 3
+@@ -101,6 +106,7 @@
+     parser.add_argument("--init-report", type=Path)
+     parser.add_argument("--opt-report", type=Path)
+     parser.add_argument("--pre-place-report", type=Path)
++    parser.add_argument("--execution-profile", choices=[full_impl.PROFILE])
+     args = parser.parse_args()
+     if sum(bool(x) for x in (args.init_report,args.opt_report,args.pre_place_report))>1:
+         raise ValueError("Choose one exact recovery checkpoint phase")
+@@ -108,19 +114,24 @@
+         raise ValueError("INIT/OPT checkpoint continuation is a place-stage input")
+     attempt, project, report = (p.resolve() for p in (args.attempt, args.project, args.report))
+     evidence_root = ROOT.parent / "E002_m002_synthesis_and_physical_baseline/experiment_results/runs"
+-    if not attempt.is_relative_to(evidence_root) or attempt.exists():
+-        raise ValueError("Attempt must be a new E002 run directory")
++    auth = full_impl.authorization(ROOT.parent.parent, args.stage, attempt, report) if args.execution_profile else None
++    if attempt.exists() or (not auth and not attempt.is_relative_to(evidence_root)):
++        raise ValueError("Attempt must be a new authorized run directory")
+     if not project.is_relative_to(ROOT / "vivado/project") or not report.is_relative_to(ROOT / "vivado/reports"):
+         raise ValueError("Project/report must remain in the hardware root")
+     if report.exists() or (args.stage == "create" and project.exists()):
+         raise ValueError("Project/report attempt already used")
+     cpus = sorted(os.sched_getaffinity(0))[:8]
++    if auth and cpus != list(range(8)):
++        raise RuntimeError("E003 requires CPUs 0-7")
+     if len(cpus) != 8:
+         raise RuntimeError("Eight allowed logical CPUs are required")
+     if mem_available() < 48 * GIB or shutil.disk_usage(ROOT).free < 30 * GIB:
+         raise RuntimeError("Preflight memory/disk reserve is unavailable")
+     lock = (ROOT / "vivado/.m002_eda.lock").open("a+")
+     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
++    balance = full_impl.budget(ROOT.parent.parent, args.stage) if auth else None
++    timeout = balance["effective_timeout_seconds"] if balance else LIMITS[args.stage]
+     os.sched_setaffinity(0, cpus)
+     os.setpriority(os.PRIO_PROCESS, 0, 5)
+     attempt.mkdir(parents=True)
+@@ -128,6 +139,10 @@
+            "HAP_PROJECT_DIR": str(project), "HAP_REPORT_DIR": str(report),
+            "HAP_CURRENT_ATTEMPT_DIR": str(attempt),
+            "OMP_NUM_THREADS": "4", "OPENBLAS_NUM_THREADS": "1"}
++    env.pop("HAP_EXECUTION_PROFILE", None)
++    if auth:
++        full_impl.save(attempt / "execution_authorization.json", auth)
++        env["HAP_EXECUTION_PROFILE"] = full_impl.PROFILE
+     env.pop("HAP_BD_VALIDATE_ONLY", None)
+     if args.synth_report:
+         env["HAP_SYNTH_REPORT_DIR"] = str(args.synth_report.resolve())
+@@ -149,7 +164,9 @@
+                 "report": str(report), "environment": {k: v for k, v in env.items() if k.startswith("HAP_")},
+                 "cpu_affinity": cpus, "nice": 5, "rss_limit_bytes": 192 * GIB,
+                 "mem_available_floor_bytes": 48 * GIB, "mem_low_grace_seconds": 30,
+-                "disk_free_floor_bytes": 30 * GIB, "timeout_seconds": LIMITS[args.stage], "started_utc": started}
++                "disk_free_floor_bytes": 30 * GIB, "timeout_seconds": timeout, "started_utc": started}
++    if auth:
++        metadata.update(execution_profile=full_impl.PROFILE, authorization=full_impl.identity(attempt/"execution_authorization.json"), budget=balance)
+     write_json(attempt / "command.json", metadata)
+     (attempt / "runner.sha256").write_text(f"{hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}  {Path(__file__)}\n")
+     tracked = {}
+@@ -206,8 +223,17 @@
+                     stopped = "system_mem_available_below_48GiB_for_30s"
+                 elif disk < 30 * GIB:
+                     stopped = "disk_free_below_30GiB"
+-                elif elapsed >= LIMITS[args.stage]:
++                elif elapsed >= timeout:
+                     stopped = "stage_wall_timeout"
++                if auth and (attempt / "actual_eda_started.json").exists():
++                    anchor = json.loads((ROOT.parent.parent / full_impl.EXPERIMENT / "experiment_results/physical_budget_anchor.json").read_text())
++                    global_deadline = full_impl.stamp(anchor["launched_utc"]) + dt.timedelta(seconds=full_impl.GLOBAL_SECONDS)
++                    metadata["actual_global_deadline_utc"] = global_deadline.isoformat()
++                    metadata["effective_deadline_utc"] = min(full_impl.stamp(started)+dt.timedelta(seconds=timeout),global_deadline).isoformat()
++                    if not (attempt / "effective_budget.json").exists():
++                        write_json(attempt / "effective_budget.json", {"budget":balance,"started_utc":started,"global_anchor":anchor, "actual_global_deadline_utc":metadata["actual_global_deadline_utc"], "effective_deadline_utc":metadata["effective_deadline_utc"]})
++                    if full_impl.now() >= global_deadline:
++                        stopped = "stage_wall_timeout"
+                 native_rc = proc.poll()
+                 if stopped or native_rc is not None:
+                     break
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m002_physical_stage.py
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT001_full_implementation_profile_cpu/source_archive/run_m002_physical_stage.py
+@@ -10,6 +10,7 @@
+ import shutil
+ import subprocess
+ import sys
++import m002_execution_profile as full_impl
+ 
+ from m002_physical_evidence import (ROOT, file_id, finalize, input_manifest, parent_place,
+                                     require, sha256, synth_lineage, recovery_parent, recovery_opt_parent, recovery_pre_place_parent, cdc_critical_records,
+@@ -35,6 +36,11 @@
+         parent_value = parent_place(parent_path, project, lineage)
+         parent = {"evidence": file_id(parent_path), "checkpoint": parent_value["checkpoint"]}
+     report.mkdir(parents=True)
++    profile = os.environ.get("HAP_EXECUTION_PROFILE")
++    if profile:
++        require(profile == full_impl.PROFILE, "unknown execution profile")
++        shutil.copy2(Path(os.environ["HAP_CURRENT_ATTEMPT_DIR"])/"execution_authorization.json", report/"execution_authorization.json")
++        full_impl.report_authorization(report)
+     recovery = bool(os.environ.get("HAP_INIT_REPORT_DIR") or os.environ.get("HAP_OPT_REPORT_DIR") or os.environ.get("HAP_PRE_PLACE_REPORT_DIR")) or bool(parent and parent_value.get("execution_mode") == "checkpoint_restored_commands")
+     if recovery:
+         os.environ["HAP_EXECUTION_MODE"] = "checkpoint_restored_commands"
+@@ -62,7 +68,7 @@
+     code = sorted([*scripts.glob("m002_diagnostic*.tcl"), scripts / "m002_physical.tcl",
+                    scripts / "m002_impl_threads.tcl", scripts / "m002_resume_physical.tcl", scripts / "m002_physical_evidence.py",
+                    scripts / "emit_current_board_evidence.py",
+-                   Path(__file__), scripts / "run_managed_eda.py"])
++                   Path(__file__), scripts / "run_managed_eda.py", scripts / "m002_execution_profile.py"])
+     archive = report / "stage_sources"
+     archive.mkdir()
+     for path in code:
+@@ -95,6 +101,8 @@
+                 generated = inherited[kind]
+                 identities += [Path(generated[k]['path']) for k in ('evidence','manifest')]
+                 identities += list(input_manifest(Path(generated['manifest']['path'])))
++    if profile:
++        identities += [report/"execution_authorization.json", Path(full_impl.report_authorization(report)["contract"]["path"])]
+     if parent:
+         identities += [Path(parent["evidence"]["path"]), Path(parent["checkpoint"]["path"])]
+     (report / "stage_inputs.sha256").write_text("".join(
+@@ -132,7 +140,12 @@
+     (report / "command.json").write_text(json.dumps({"argv": command, "stage": stage,
+         "environment": {k:v for k,v in env.items() if k.startswith("HAP_")},
+         "started_utc": dt.datetime.now(dt.timezone.utc).isoformat(), "execution_mode": "checkpoint_restored_commands" if recovery else "project_runs", "synthesis": lineage, "managed_attempt": os.environ["HAP_CURRENT_ATTEMPT_DIR"]}, indent=2) + "\n")
+-    native = subprocess.run(command, cwd=ROOT / "vivado", env=env).returncode
++    if profile:
++        child = subprocess.Popen(command, cwd=ROOT / "vivado", env=env)
++        full_impl.record_launch(report, child.pid)
++        native = child.wait()
++    else:
++        native = subprocess.run(command, cwd=ROOT / "vivado", env=env).returncode
+     run_dir = project / "scalellm_vcu118_f05.runs/impl_1"
+     # Freeze child evidence even if a POST check deliberately stopped the run.
+     if recovery:
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/tests/test_m002_full_implementation.py
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT001_full_implementation_profile_cpu/source_archive/test_m002_full_implementation.py
+@@ -0,0 +1,118 @@
++"""E003 authorization, cross-attempt budget and full-route completion checks; no EDA."""
++import datetime as dt
++import json
++from pathlib import Path
++import tempfile
++import unittest
++from unittest.mock import patch
++from test_m002_physical_diagnostic import m
++import test_m002_pre_place_recovery as recovery_tests
++import m002_execution_profile as p
++from vivado.scripts import run_managed_eda as manager
++
++
++class FullImplementationProfile(unittest.TestCase):
++    def setUp(self):
++        self.temp=tempfile.TemporaryDirectory();self.addCleanup(self.temp.cleanup)
++        self.root=Path(self.temp.name);self.base=self.root/p.EXPERIMENT/'experiment_results'
++        self.contract=self.root/p.CONTRACT;self.contract.parent.mkdir(parents=True);self.contract.write_text('frozen contract')
++        self.patch=patch.object(p,'CONTRACT_SHA',p.identity(self.contract)['sha256']);self.patch.start();self.addCleanup(self.patch.stop)
++        self.attempt=self.base/'runs/R002/attempts/AT001_place';self.attempt.mkdir(parents=True)
++        self.report=self.root/'report';self.report.mkdir()
++        self.t0=dt.datetime(2026,10,15,tzinfo=dt.timezone.utc)
++
++    def bind(self):
++        auth=p.authorization(self.root,'place',self.attempt,self.report)
++        p.save(self.attempt/'execution_authorization.json',auth);p.save(self.report/'execution_authorization.json',auth)
++        p.save(self.attempt/'command.json',dict(execution_profile=p.PROFILE,stage='place',report=str(self.report),
++            authorization=p.identity(self.attempt/'execution_authorization.json'),started_utc=self.t0.isoformat()))
++        return auth
++
++    def closed(self,stage='place',number=1,start=0,duration=100,launch=True):
++        run='R002' if stage=='place' else 'R003';a=self.base/f'runs/{run}/attempts/AT{number:03d}_cost';a.mkdir(parents=True)
++        p.save(a/'command.json',dict(stage=stage,execution_profile=p.PROFILE,started_utc=(self.t0+dt.timedelta(seconds=start)).isoformat()))
++        p.save(a/'status.json',dict(stage=stage,execution_state='completed',owned_survivors=[],ended_utc=(self.t0+dt.timedelta(seconds=start+duration)).isoformat()))
++        if launch:
++            receipt=dict(launched_utc=(self.t0+dt.timedelta(seconds=start+10)).isoformat(),pid=123,managed_attempt=str(a))
++            p.save(a/'actual_eda_started.json',receipt)
++            if not (self.base/'physical_budget_anchor.json').exists():p.save(self.base/'physical_budget_anchor.json',receipt)
++        return a
++
++    def test_explicit_contract_and_manager_record_bind_report(self):
++        auth=self.bind();self.assertEqual(p.report_authorization(self.report),auth);self.assertFalse(auth['single_bounded_restart'])
++
++    def test_changed_contract_and_wrong_stage_root_rejected(self):
++        self.contract.write_text('changed')
++        with self.assertRaisesRegex(ValueError,'contract identity'):self.bind()
++        with self.assertRaisesRegex(ValueError,'stage/attempt'):p.authorization(self.root,'route',self.attempt,self.report)
++
++    def test_env_or_report_marker_alone_cannot_authorize(self):
++        auth=p.authorization(self.root,'place',self.attempt,self.report);p.save(self.report/'execution_authorization.json',auth)
++        with self.assertRaises(FileNotFoundError):p.report_authorization(self.report)
++        self.bind();command=json.loads((self.attempt/'command.json').read_text());command['execution_profile']='legacy';p.save(self.attempt/'command.json',command)
++        with self.assertRaisesRegex(ValueError,'binding mismatch'):p.report_authorization(self.report)
++
++    def test_mutated_report_authorization_rejected(self):
++        auth=self.bind();auth['stage_cumulative_seconds']=999999;p.save(self.report/'execution_authorization.json',auth)
++        with self.assertRaisesRegex(ValueError,'authorization changed'):p.report_authorization(self.report)
++
++    def test_pre_eda_failure_cost_counts_without_starting_global_clock(self):
++        self.closed(duration=31,launch=False);b=p.budget(self.root,'place',self.t0+dt.timedelta(days=5))
++        self.assertEqual(b['stage_used_seconds'],31);self.assertIsNone(b['global_deadline_utc'])
++
++    def test_retry_cannot_reset_stage_cost_and_global_includes_repair_gaps(self):
++        self.closed(duration=100);self.closed(number=2,start=500,duration=200)
++        b=p.budget(self.root,'place',self.t0+dt.timedelta(seconds=900))
++        self.assertEqual(b['stage_remaining_seconds'],42900);self.assertEqual(b['global_remaining_seconds'],85510)
++        self.assertEqual(b['effective_timeout_seconds'],42900)
++
++    def test_route_separate_stage_cost_but_shared_global_deadline(self):
++        self.closed(duration=42000);self.closed('route',start=50000,duration=1000)
++        b=p.budget(self.root,'route',self.t0+dt.timedelta(seconds=80000))
++        self.assertEqual(b['stage_used_seconds'],1000);self.assertEqual(b['effective_timeout_seconds'],6410)
++
++    def test_unclosed_or_live_survivor_never_counts_as_free(self):
++        a=self.closed();(a/'status.json').unlink()
++        with self.assertRaisesRegex(ValueError,'unclosed E003 attempt'):p.budget(self.root,'place',self.t0)
++        p.save(a/'status.json',dict(execution_state='completed',owned_survivors=[123]))
++        with self.assertRaisesRegex(ValueError,'process ownership'):p.budget(self.root,'place',self.t0)
++
++    def test_stage_or_global_exhaustion_rejected(self):
++        self.closed(duration=43201)
++        with self.assertRaisesRegex(ValueError,'exhausted'):p.budget(self.root,'place',self.t0)
++        with self.assertRaisesRegex(ValueError,'exhausted'):p.budget(self.root,'route',self.t0+dt.timedelta(seconds=86411))
++
++    def test_anchor_loss_or_rewrite_rejected(self):
++        self.closed();p.save(self.base/'physical_budget_anchor.json',{'launched_utc':self.t0.isoformat()})
++        with self.assertRaisesRegex(ValueError,'anchor missing/changed'):p.budget(self.root,'place',self.t0)
++
++    def test_real_spawn_receipt_sets_anchor_once_and_later_launch_preserves_it(self):
++        self.bind()
++        with patch.object(p,'now',return_value=self.t0):first=p.record_launch(self.report,100)
++        self.assertEqual(json.loads((self.base/'physical_budget_anchor.json').read_text()),first)
++        # Subsequent successful spawn uses a different managed/report identity.
++        second=self.base/'runs/R002/attempts/AT002_place';second.mkdir();other=self.root/'report2';other.mkdir()
++        auth=p.authorization(self.root,'place',second,other);p.save(second/'execution_authorization.json',auth);p.save(other/'execution_authorization.json',auth)
++        p.save(second/'command.json',dict(stage='place',execution_profile=p.PROFILE,report=str(other),authorization=p.identity(second/'execution_authorization.json')))
++        with patch.object(p,'now',return_value=self.t0+dt.timedelta(seconds=100)):p.record_launch(other,101)
++        self.assertEqual(json.loads((self.base/'physical_budget_anchor.json').read_text()),first)
++
++    def test_route_requires_positive_exact_fully_routed_and_all_zero_errors(self):
++        complete=dict(routable=10,fully_routed=10,unrouted=0,partially_routed=0,routing_errors=0)
++        p.require_complete_route(complete)
++        for key,value in [('routable',0),('fully_routed',9),('unrouted',1),('partially_routed',1),('routing_errors',1)]:
++            with self.assertRaisesRegex(ValueError,'not fully routed'):p.require_complete_route({**complete,key:value})
++
++    def test_legacy_limits_remain_two_hours(self):
++        self.assertEqual(manager.LIMITS,dict(create=1800,synth=10800,place=7200,route=7200))
++
++
++class NewAuthorizedRestore(unittest.TestCase):
++    def test_new_authorization_changes_only_policy_and_keeps_original_receipts(self):
++        fixture=recovery_tests.CompletedPrePlaceParent("test_timeout_restarts_saved_pre_place_and_keeps_history_at_original_paths")
++        fixture.setUp();self.addCleanup(fixture.doCleanups)
++        auth={'profile':p.PROFILE,'contract':{'sha256':p.CONTRACT_SHA}}
++        with patch.object(p,'report_authorization',return_value=auth):value=fixture.check()
++        self.assertEqual(value['execution_authorization'],auth);self.assertFalse(value['single_bounded_restart'])
++        self.assertEqual(value['checkpoint'],fixture.saved)
++        self.assertTrue(all(Path(row['path']).parent==fixture.source for row in value['historical_command_receipts'].values()))

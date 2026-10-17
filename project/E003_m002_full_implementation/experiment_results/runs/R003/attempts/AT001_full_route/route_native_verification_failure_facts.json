@@ -1,0 +1,74 @@
+{
+  "observed_utc": "2026-10-15T22:40:37.811293+00:00",
+  "native_log_snapshot": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_native_verification_failure_log_snapshot.txt",
+    "bytes": 49915,
+    "sha256": "580911f155c1dc6eaef51739d8a02ccd5db81dce8ea01b92560c072cbaf09283"
+  },
+  "native_verification_and_phases": [
+    {
+      "line": 399,
+      "text": "INFO: [Route 35-448] Estimated Global/Short routing congestion is level 7 (128x128). Congestion levels of 5 and greater can reduce routability and impact timing closure."
+    },
+    {
+      "line": 401,
+      "text": "INFO: [Route 35-581] Estimated Timing congestion is level 7 (128x128). Congestion levels of 5 and greater may impact timing closure."
+    },
+    {
+      "line": 469,
+      "text": "Phase 8 Route finalize"
+    },
+    {
+      "line": 481,
+      "text": "  Number of Node Overlaps             = 245279"
+    },
+    {
+      "line": 532,
+      "text": "Phase 8 Route finalize | Checksum: f71ac76f"
+    },
+    {
+      "line": 536,
+      "text": "Phase 9 Verifying routed nets"
+    },
+    {
+      "line": 636,
+      "text": " Verification failed"
+    },
+    {
+      "line": 637,
+      "text": "Phase 9 Verifying routed nets | Checksum: f71ac76f"
+    },
+    {
+      "line": 640,
+      "text": "ERROR: [Route 35-2] Design is not legally routed. There are 245279 node overlaps."
+    },
+    {
+      "line": 643,
+      "text": "Phase 10 Depositing Routes"
+    }
+  ],
+  "actual_legality_verdict": "FAIL: native Route35-2 Design is not legally routed",
+  "native_reported_node_overlaps": 245279,
+  "previous_phase5_facts": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_ripup_phase_completed_facts.json",
+    "bytes": 4056,
+    "sha256": "ac8fd6bad958e19917881d384f35fa845a883ace881754889e1c5536e9564a89"
+  },
+  "native_process": {
+    "pid": 3964652,
+    "start_ticks": 919724289,
+    "same_original_identity": true,
+    "still_present_at_observation": true
+  },
+  "resource_sample": {
+    "utc": "2026-10-15T22:40:37.028015+00:00",
+    "elapsed_seconds": 19389.321028282866,
+    "rss_bytes": 27605299200,
+    "mem_available_bytes": 435038846976,
+    "disk_free_bytes": 487913594880
+  },
+  "native_route_command_receipt_present": false,
+  "route_checkpoint_present": false,
+  "stage_terminal_status_present": false,
+  "scope": "actual native Phase9 Verifying routed nets failed; Route35-2 reports245279 overlapping routing nodes and design not legally routed. This is a concrete native legality failure, not inferred from earlier intermediate estimates; overlap nodes remain distinct from final unrouted/failed-net counts. Native now deposits routes (Phase10) and terminal/command receipt/final available reports still pending. Preserve natural exit and all raw evidence; no repeat route, strategy/seed/RTL/XDC change or forced time stop."
+}

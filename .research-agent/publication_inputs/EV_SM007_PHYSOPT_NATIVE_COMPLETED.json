@@ -1,0 +1,17 @@
+{
+  "event_id": "EV_SM007_PHYSOPT_NATIVE_COMPLETED",
+  "small_mission": "SM007",
+  "trigger": "milestone",
+  "summary": "独立physopt于16:38:12 UTC native0/18分26秒，closed DCP已保存；正式WNS−1.290ns，较place改善0.529ns，setup失败980，时序仍FAIL。",
+  "impact": "完成本轮独立物理优化命令；完整physopt POST仍在进行，尚非合格route父链。hold33141失败及正式安全OPEN保留，不以setup改善替代最终route/时序结论。",
+  "evidence": [
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_native_command_facts.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_checkpoint_facts.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_timing_facts.json"
+  ],
+  "affected": [
+    "SM007"
+  ],
+  "action": "继续正常无wall完整POST，实际合格父链后自动route；独立审核具体路径/拥塞变化，不新增审批，不改时钟或数值合同。",
+  "requires_decision": false
+}

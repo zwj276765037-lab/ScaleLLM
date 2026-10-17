@@ -1,0 +1,346 @@
+{
+  "observed_utc": "2026-10-17T00:59:17.393936+00:00",
+  "execution": "independent_CPU_method_specification_and_central_scope_consistency_review_completed",
+  "verdict": "mathematical_directed_boundary_preserved_under_explicit_qualification; native_qualification_and_performance_NOT_RUN",
+  "applicability": "E006 new R005 C01/C02 on same DCP and E008 pre-place/place/physopt/route same-stage exact membership",
+  "review": "specification_delivered_via_real_messages_to_root_and_A006; no_new_per_code_approval_gate",
+  "coverage_version": "candidate_directed_cut_v1",
+  "specification": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_candidate_cut_scope_review_20261017.md",
+    "bytes": 14040,
+    "sha256": "59473b7c7d13549dcf95a8e3948097f5999f824968d1a2889f7b62e1e5262c51"
+  },
+  "central_scope_draft_reviewed": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/mission/M002_ddr_separation_and_timing_recovery/directed_candidate_cut_scope_revision_2026-10-17.md",
+    "bytes": 6471,
+    "sha256": "516f9fd469c1d5b8cf4018dc0637c29122fb3cd894adbc0a48846014b406248e"
+  },
+  "central_scope_consistency": "consistent; unify field names/version and explicitly forbid full unfiltered leaf query in qualified external-driver branch; local known non-LOAD inventory must be present",
+  "native_filter": "get_pins -leaf -of_objects $segments -filter {DIRECTION != IN}",
+  "native_ports": "get_ports -of_objects $segments",
+  "runtime_class_qualification": "PENDING; installed class schema docs plus actual successful class property/enum receipts required, never sample-only proof",
+  "qualification_caveat": "filter excludes objects missing a referenced property; != IN does not catch absent DIRECTION. Unsupported/failed schema or role/member mapping uses full fallback or explicit unqualified failure.",
+  "keep": [
+    "all actual candidate native leaf pins including DSP primitive children and native-origin copies",
+    "all actual drivers",
+    "all top ports",
+    "RAW-only constant associations and original nonleaf/disconnected ledger",
+    "unknowns with full fallback when direction/membership unresolved"
+  ],
+  "may_omit_only": "outside peer native leaf IN loads on unique external-driver nets with complete member/alias/role qualification",
+  "scope_flags": [
+    "directed_boundary_complete",
+    "candidate_leaf_coverage_complete",
+    "native_role_gate_qualified",
+    "full_net_endpoint_coverage"
+  ],
+  "pruned_values": {
+    "outside_peer_leaf_loads": "NOT_ENUMERATED",
+    "full_native_leaf_count": "NOT_MEASURED",
+    "full_net_endpoint_coverage": false
+  },
+  "timing": "retain exact ingress inside-load and egress outside-load sets, max/min, -max_paths 16 -nworst 1 on unchanged complete design; no full-cut TNS claim",
+  "lost_claims": [
+    "full incoming-driver external peer list and positions/SLR/REF/clock distribution",
+    "whole-net endpoint/fanout/unknown totals",
+    "outside-to-outside routing/congestion attribution"
+  ],
+  "finite_model_check": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_cut_scope_model_check_20261017.json",
+    "bytes": 1674,
+    "sha256": "50afacd78b65be93f614bab3a8cd19f32f656c7a01b5d46739363093400756c2"
+  },
+  "finite_model_producer": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/check_directed_cut_scope_model.py",
+    "bytes": 4545,
+    "sha256": "ba659201c098c99d635a3382a5974e170801bc4350583c8d61cb609fdcb2706e"
+  },
+  "finite_model_counts": {
+    "cases": 139808,
+    "FULL_FALLBACK_OR_CANDIDATE_DRIVER": 138869,
+    "COMPLETE_DIRECTED_CUT_INGRESS_PEERS_OMITTED": 939,
+    "cases_with_actual_peer_omission": 513
+  },
+  "api_documents": [
+    {
+      "source": {
+        "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/doc/eng/man/common/list_property",
+        "bytes": 2030,
+        "sha256": "029153ccc083cb84c39b659e4eecb82d4bbda2a653aec6f2e47e1285b9f483f1"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_candidate_cut_api_evidence_20261017/man_common_list_property.txt",
+        "bytes": 2030,
+        "sha256": "029153ccc083cb84c39b659e4eecb82d4bbda2a653aec6f2e47e1285b9f483f1"
+      },
+      "anchors": [
+        {
+          "line": 11,
+          "text": "  -class <arg> - (Optional) Return the properties of the specified class"
+        },
+        {
+          "line": 18,
+          "text": "  the command. The command also returns TCL_OK regardless of any errors"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/doc/eng/man/common/list_property_value",
+        "bytes": 2356,
+        "sha256": "694aecd1a5bec968526c3c0dc391c6bc2b163b13e0678708f7f084fb8df8f9ad"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_candidate_cut_api_evidence_20261017/man_common_list_property_value.txt",
+        "bytes": 2356,
+        "sha256": "694aecd1a5bec968526c3c0dc391c6bc2b163b13e0678708f7f084fb8df8f9ad"
+      },
+      "anchors": [
+        {
+          "line": 8,
+          "text": "  other than Enum properties. The report_property command will return the"
+        },
+        {
+          "line": 9,
+          "text": "  type of property to help you identify Enum properties."
+        },
+        {
+          "line": 16,
+          "text": "  -class <arg> - (Optional) Return the property values of the specified class"
+        },
+        {
+          "line": 23,
+          "text": "  the command. The command also returns TCL_OK regardless of any errors"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/doc/eng/man/filter",
+        "bytes": 4150,
+        "sha256": "b380e88184ae4eccf9ff7832587ef689d0542a23eef6b8d712c442ac48aaa887"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_candidate_cut_api_evidence_20261017/man_filter.txt",
+        "bytes": 4150,
+        "sha256": "b380e88184ae4eccf9ff7832587ef689d0542a23eef6b8d712c442ac48aaa887"
+      },
+      "anchors": [
+        {
+          "line": 57,
+          "text": "  Note: The filter returns an object if a specified property exists on the"
+        },
+        {
+          "line": 60,
+          "text": "  a defined value of \"\"."
+        },
+        {
+          "line": 63,
+          "text": "  expressions are \"equal\" (==), \"not-equal\" (!=), \"match\" (=~), and"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/doc/eng/man/get_pins",
+        "bytes": 8510,
+        "sha256": "6513b141862f6f0be3860822c7b24264436357eb213baa821b764b4a4598954e"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_candidate_cut_api_evidence_20261017/man_get_pins.txt",
+        "bytes": 8510,
+        "sha256": "6513b141862f6f0be3860822c7b24264436357eb213baa821b764b4a4598954e"
+      },
+      "anchors": [
+        {
+          "line": 52,
+          "text": "  regular expressions. Both search <patterns> and -filter expressions must be"
+        },
+        {
+          "line": 67,
+          "text": "  -leaf - (Optional) Include leaf pins, from primitive or black box cells,"
+        },
+        {
+          "line": 70,
+          "text": "  -filter <args> - (Optional) Filter the results list with the specified"
+        },
+        {
+          "line": 71,
+          "text": "  expression. The -filter argument filters the list of objects returned by"
+        },
+        {
+          "line": 96,
+          "text": "    get_pins * -filter {DIRECTION == IN && NAME !~ \"*RESET*\"} "
+        },
+        {
+          "line": 99,
+          "text": "  -of_objects <arg> - (Optional) Get the pins connected to the specified"
+        },
+        {
+          "line": 103,
+          "text": "  Note: The -of_objects option requires objects to be specified using the"
+        },
+        {
+          "line": 105,
+          "text": "  objects by name. In addition, -of_objects cannot be used with a search"
+        },
+        {
+          "line": 142,
+          "text": "    get_pins -of_objects [get_cells usb*] "
+        },
+        {
+          "line": 151,
+          "text": "    [get_pins -hier * -filter {NAME=~xx*/yy*}] "
+        },
+        {
+          "line": 156,
+          "text": "    [get_pins -filter {REF_PIN_NAME=~yy*} -of [get_cells -hier xx*]]  "
+        },
+        {
+          "line": 163,
+          "text": "       -filter name=~*/aclk_dpram_reg*/*/CLK] \\  "
+        },
+        {
+          "line": 164,
+          "text": "       -to [get_cells -hier -filter name=~*/bclk_dout_reg*] -datapath_only "
+        },
+        {
+          "line": 170,
+          "text": "       [get_cells -hier -filter name=~*aclk_dpram_reg*/*] \\  "
+        },
+        {
+          "line": 171,
+          "text": "       -filter {REF_PIN_NAME == CLK}] \\  "
+        },
+        {
+          "line": 172,
+          "text": "       -to [get_pins -of [get_cells -hier -filter {name =~ */bclk_dout_reg*}] \\  "
+        },
+        {
+          "line": 173,
+          "text": "       -filter {REF_PIN_NAME == D}] -datapath_only "
+        },
+        {
+          "line": 183,
+          "text": "    get_pins -of_objects [get_drc_violations] "
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/doc/eng/man/get_ports",
+        "bytes": 6277,
+        "sha256": "a9a476fe7db2c2a005044e05fa1456c1cc8290d5abb0505a04499f0167d86d03"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_candidate_cut_api_evidence_20261017/man_get_ports.txt",
+        "bytes": 6277,
+        "sha256": "a9a476fe7db2c2a005044e05fa1456c1cc8290d5abb0505a04499f0167d86d03"
+      },
+      "anchors": [
+        {
+          "line": 17,
+          "text": "  regular expressions. Both search <patterns> and -filter expressions must be"
+        },
+        {
+          "line": 32,
+          "text": "  -filter <args> - (Optional) Filter the results list with the specified"
+        },
+        {
+          "line": 33,
+          "text": "  expression. The -filter argument filters the list of objects returned by"
+        },
+        {
+          "line": 58,
+          "text": "    get_pins * -filter {DIRECTION == IN && NAME !~ \"*RESET*\"} "
+        },
+        {
+          "line": 64,
+          "text": "    -filter {IS_PRIMITIVE && !IS_LOC_FIXED} "
+        },
+        {
+          "line": 67,
+          "text": "  -of_objects <arg> - (Optional) Get the ports connected to the specified"
+        },
+        {
+          "line": 71,
+          "text": "  Note: The -of_objects option requires objects to be specified using the"
+        },
+        {
+          "line": 73,
+          "text": "  objects by name. In addition, -of_objects cannot be used with a search"
+        },
+        {
+          "line": 114,
+          "text": "    get_ports -of_objects [lindex [get_cells] 1] "
+        },
+        {
+          "line": 127,
+          "text": "    get_ports -of_objects [get_drc_violations -name drc_1 NSTD*] "
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/doc/eng/class/pin",
+        "bytes": 3445,
+        "sha256": "bb907a4bb7b4e2d5cbf316897d9ea671877d0680ea889dd74d999ed45f0020b5"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_candidate_cut_api_evidence_20261017/class_pin.txt",
+        "bytes": 3445,
+        "sha256": "bb907a4bb7b4e2d5cbf316897d9ea671877d0680ea889dd74d999ed45f0020b5"
+      },
+      "anchors": [
+        {
+          "line": 19,
+          "text": "BUS_DIRECTION                   enum     true       true     "
+        },
+        {
+          "line": 27,
+          "text": "DIRECTION                       enum     true       true     IN"
+        },
+        {
+          "line": 43,
+          "text": "IS_LEAF                         bool     true       true     1"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/doc/eng/class/port",
+        "bytes": 6216,
+        "sha256": "89bdec19d6fbcd91f7d108c9d02fecdd0e4a8b9b355eae87b49fa58cf20a473d"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/directed_candidate_cut_api_evidence_20261017/class_port.txt",
+        "bytes": 6216,
+        "sha256": "89bdec19d6fbcd91f7d108c9d02fecdd0e4a8b9b355eae87b49fa58cf20a473d"
+      },
+      "anchors": [
+        {
+          "line": 26,
+          "text": "BUS_DIRECTION                   enum         true       true     "
+        },
+        {
+          "line": 38,
+          "text": "DIRECTION                       enum         false      true     IN"
+        },
+        {
+          "line": 78,
+          "text": "PIO_DIRECTION                   enum         false      true     "
+        }
+      ]
+    }
+  ],
+  "boundaries": {
+    "R004": "unchanged; normal authorized execution continues, no stop authorization",
+    "E008_b59": "unchanged; new implementation in separate version/directory",
+    "EDA_calls": 0,
+    "production_or_engineering_source_edits": 0,
+    "process_or_lock_control": false,
+    "large_DCP_reads": false,
+    "descendants": 0,
+    "global_formal_acceptance": "unchanged"
+  }
+}

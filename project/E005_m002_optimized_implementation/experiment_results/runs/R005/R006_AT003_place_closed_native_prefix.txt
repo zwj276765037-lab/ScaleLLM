@@ -1,0 +1,133 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Fri Oct 16 22:46:18 2026
+# Process ID         : 899901
+# Current directory  : /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R006_AT003_new_peak_windows_readonly
+# Command line       : vivado -mode batch -notrace -source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R006/attempts/AT003_new_peak_windows_readonly/sources/readonly_two_phase_driver.tcl -log /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R006_AT003_new_peak_windows_readonly/vivado.log -journal /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R006_AT003_new_peak_windows_readonly/vivado.jou
+# Log file           : /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R006_AT003_new_peak_windows_readonly/vivado.log
+# Journal file       : /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R006_AT003_new_peak_windows_readonly/vivado.jou
+# Running On         : user
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.4 LTS
+# Processor Detail   : Intel(R) Xeon(R) Gold 6248R CPU @ 3.00GHz
+# CPU Frequency      : 2399.909 MHz
+# CPU Physical cores : 48
+# CPU Logical cores  : 96
+# Host memory        : 540587 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 549177 MB
+# Available Virtual  : 415110 MB
+#-----------------------------------------------------------
+Sourcing tcl script '/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/scripts/Vivado_init.tcl'
+vivado-mcp server ready on port 10000
+source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R006/attempts/AT003_new_peak_windows_readonly/sources/readonly_two_phase_driver.tcl -notrace
+Command: open_checkpoint /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/place.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 1566.914 ; gain = 0.000 ; free physical = 34851 ; free virtual = 395396
+INFO: [Device 21-403] Loading part xcvu9p-flga2104-2L-e
+Netlist sorting complete. Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 5624.340 ; gain = 81.289 ; free physical = 30762 ; free virtual = 391428
+INFO: [Netlist 29-17] Analyzing 78731 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 41 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Constraints 18-550] Could not create 'DRIVE' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'DRIVE' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'SLEW' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'SLEW' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/sys_clk_in' is not directly connected to top level port. 'IBUF_LOW_PWR' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'DRIVE' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'DRIVE' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'SLEW' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'SLEW' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/sys_clk_in' is not directly connected to top level port. 'IBUF_LOW_PWR' is ignored for synthesis but preserved for implementation.
+Read ShapeDB Complete: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 8261.613 ; gain = 610.320 ; free physical = 27958 ; free virtual = 388740
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Power 33-23] Power model is not available for xiphy_riu_or
+INFO: [Power 33-23] Power model is not available for genVref.u_hpio_vref
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 22007.457 ; gain = 184.531 ; free physical = 13869 ; free virtual = 375079
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.02 . Memory (MB): peak = 22007.457 ; gain = 0.000 ; free physical = 13853 ; free virtual = 375063
+Read PlaceDB: Time (s): cpu = 00:01:06 ; elapsed = 00:01:07 . Memory (MB): peak = 22245.199 ; gain = 237.742 ; free physical = 13487 ; free virtual = 374780
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 22245.199 ; gain = 0.000 ; free physical = 13487 ; free virtual = 374780
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:00.27 ; elapsed = 00:00:00.2 . Memory (MB): peak = 22245.199 ; gain = 0.000 ; free physical = 13576 ; free virtual = 374869
+Read Physdb Files: Time (s): cpu = 00:01:09 ; elapsed = 00:01:10 . Memory (MB): peak = 22245.199 ; gain = 422.273 ; free physical = 13481 ; free virtual = 374774
+Restored from archive | CPU: 71.500000 secs | Memory: 1796.756462 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:01:10 ; elapsed = 00:01:11 . Memory (MB): peak = 22245.199 ; gain = 422.273 ; free physical = 13569 ; free virtual = 374864
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/ip'.
+Netlist sorting complete. Time (s): cpu = 00:00:00.51 ; elapsed = 00:00:00.53 . Memory (MB): peak = 22245.199 ; gain = 0.000 ; free physical = 13420 ; free virtual = 374835
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 9790 instances were transformed.
+  DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 6 instances
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 2373 instances
+  DSP48E2 => DSP48E2 (inverted pins: OPMODE[5], OPMODE[4], RSTA, RSTB) (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 3072 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 1 instance 
+  IBUFDS => IBUFDS (DIFFINBUF, IBUFCTRL): 2 instances
+  IOBUFDS => IOBUFDS (DIFFINBUF, IBUFCTRL, INV, OBUFT(x2)): 16 instances
+  IOBUFE3 => IOBUFE3 (IBUFCTRL, INBUF, OBUFT_DCIEN): 144 instances
+  LUT6_2 => LUT6_2 (LUT5, LUT6): 62 instances
+  OBUFDS => OBUFDS_DUAL_BUF (INV, OBUF(x2)): 2 instances
+  RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 2 instances
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 232 instances
+  RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 9 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 453 instances
+  RAM32M16 => RAM32M16 (RAMD32(x14), RAMS32(x2)): 3138 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 148 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 4 instances
+  RAM64M8 => RAM64M8 (RAMD64E(x8)): 110 instances
+  RAM64X1D => RAM64X1D (RAMD64E(x2)): 16 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2025.2 (64-bit) build 6299465
+open_checkpoint: Time (s): cpu = 00:20:24 ; elapsed = 00:09:48 . Memory (MB): peak = 22245.234 ; gain = 20678.320 ; free physical = 13390 ; free virtual = 374808
+E005_READONLY_QUERY open_checkpoint native_tcl_code=0
+E005_READONLY_QUERY identity native_tcl_code=0
+E005_READONLY_QUERY topology native_tcl_code=0
+E005_READONLY_QUERY target_scope native_tcl_code=0
+E005_READONLY_QUERY region_NW001 native_tcl_code=0
+E005_READONLY_QUERY region_NW002 native_tcl_code=0
+E005_READONLY_QUERY region_NW003 native_tcl_code=0
+E005_READONLY_QUERY region_NW004 native_tcl_code=0
+E005_READONLY_QUERY region_NW005 native_tcl_code=0
+E005_READONLY_QUERY region_NW006 native_tcl_code=0
+E005_READONLY_QUERY region_NW007 native_tcl_code=0
+E005_READONLY_QUERY region_NW008 native_tcl_code=0
+E005_READONLY_QUERY region_NW009 native_tcl_code=0
+E005_READONLY_QUERY region_NW010 native_tcl_code=0
+E005_READONLY_QUERY new_peak_native_regions native_tcl_code=0
+close_design: Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 23306.449 ; gain = 0.000 ; free physical = 12698 ; free virtual = 374206
+E005_READONLY_NEW_PEAK_SUPPLEMENT_COMPLETED
+E005_READONLY_PHASE_COMPLETED place native_tcl_code=0
+Command: open_checkpoint /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/physopt.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 23306.449 ; gain = 0.000 ; free physical = 12698 ; free virtual = 374206
+Netlist sorting complete. Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 23306.449 ; gain = 0.000 ; free physical = 12566 ; free virtual = 374164
+INFO: [Netlist 29-17] Analyzing 78731 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 42 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Constraints 18-550] Could not create 'DRIVE' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'DRIVE' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'SLEW' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'SLEW' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/sys_clk_in' is not directly connected to top level port. 'IBUF_LOW_PWR' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'DRIVE' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'DRIVE' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'SLEW' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'SLEW' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/sys_clk_in' is not directly connected to top level port. 'IBUF_LOW_PWR' is ignored for synthesis but preserved for implementation.
+Read ShapeDB Complete: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 23306.449 ; gain = 0.000 ; free physical = 12380 ; free virtual = 374086
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 23740.465 ; gain = 0.000 ; free physical = 11142 ; free virtual = 373274
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 23740.465 ; gain = 0.000 ; free physical = 11142 ; free virtual = 373274

@@ -1,0 +1,23 @@
+{
+  "recorded_utc": "2026-10-16T23:31:42.068076+00:00",
+  "purpose": "Preserve exact CPU REF helper used by already-closed candidate facts before correcting separate graph driver-position field decoder",
+  "candidate_facts": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/attempts/AT001_lean_physopt_attribution/failure_samples_candidate_observed_scope_facts.json",
+  "recorded_helper_identity": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E006_lean_capture/capture_graph_stage.py",
+    "bytes": 18021,
+    "sha256": "ffe74c6af1ea3148c5dd07f5535bfd8ac21264ed33613aa8720b0ccec410ad2f"
+  },
+  "exact_archived_helper": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E006_lean_capture/review_before_positions_decode_fix/capture_graph_stage.py",
+    "bytes": 18021,
+    "sha256": "ffe74c6af1ea3148c5dd07f5535bfd8ac21264ed33613aa8720b0ccec410ad2f"
+  },
+  "archive_reconstruction": "Reverse exact subsequent decoder-only patch; bytes/SHA independently matched recorded prior source identity",
+  "observed_parser_error": {
+    "error": "AssertionError at positions len7",
+    "reason": "Native TSV driver_positions is one Tcl-list outer field wrapping an entire list of 7-field driver rows; original copied parser omitted that field wrapper",
+    "raw_modified": false,
+    "EDA_executed": false
+  },
+  "current_graph_parser": "Corrects exactly one documented field wrapper; no endpoint/drop/coverage relaxation"
+}

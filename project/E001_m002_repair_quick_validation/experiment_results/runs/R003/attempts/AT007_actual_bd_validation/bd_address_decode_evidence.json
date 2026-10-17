@@ -1,0 +1,1073 @@
+{
+  "scope": "Independent saved BD/IP-configuration inspection after actual validate_bd_design; no SmartConnect transactional simulation or critical-warning waiver",
+  "master_address_spaces": {
+    "/xdma_0": {
+      "address_spaces": {
+        "M_AXI": {
+          "segments": {
+            "SEG_ddr4_0_C0_DDR4_ADDRESS_BLOCK": {
+              "address_block": "/ddr4_0/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK",
+              "offset": "0x0000000000000000",
+              "range": "2G",
+              "offset_base_param": "C0_DDR4_MEMORY_MAP_BASEADDR",
+              "offset_high_param": "C0_DDR4_MEMORY_MAP_HIGHADDR"
+            },
+            "SEG_ddr4_1_C0_DDR4_ADDRESS_BLOCK": {
+              "address_block": "/ddr4_1/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK",
+              "offset": "0x0000000080000000",
+              "range": "2G",
+              "offset_base_param": "C0_DDR4_MEMORY_MAP_BASEADDR",
+              "offset_high_param": "C0_DDR4_MEMORY_MAP_HIGHADDR"
+            }
+          }
+        },
+        "M_AXI_LITE": {
+          "segments": {
+            "SEG_core_reg0": {
+              "address_block": "/core/S_AXIL/reg0",
+              "offset": "0x00000000",
+              "range": "4K"
+            }
+          }
+        }
+      }
+    },
+    "/core": {
+      "address_spaces": {
+        "M_AXI_DATA": {
+          "segments": {
+            "SEG_ddr4_0_C0_DDR4_ADDRESS_BLOCK": {
+              "address_block": "/ddr4_0/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK",
+              "offset": "0x00000000",
+              "range": "2G",
+              "offset_base_param": "C0_DDR4_MEMORY_MAP_BASEADDR",
+              "offset_high_param": "C0_DDR4_MEMORY_MAP_HIGHADDR"
+            }
+          }
+        },
+        "M_AXI_MLP_DATA": {
+          "segments": {
+            "SEG_ddr4_1_C0_DDR4_ADDRESS_BLOCK": {
+              "address_block": "/ddr4_1/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK",
+              "offset": "0x00000000",
+              "range": "2G",
+              "offset_base_param": "C0_DDR4_MEMORY_MAP_BASEADDR",
+              "offset_high_param": "C0_DDR4_MEMORY_MAP_HIGHADDR"
+            }
+          }
+        },
+        "M_AXI_WEIGHT_C0": {
+          "segments": {
+            "SEG_ddr4_0_C0_DDR4_ADDRESS_BLOCK": {
+              "address_block": "/ddr4_0/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK",
+              "offset": "0x00000000",
+              "range": "2G",
+              "offset_base_param": "C0_DDR4_MEMORY_MAP_BASEADDR",
+              "offset_high_param": "C0_DDR4_MEMORY_MAP_HIGHADDR"
+            }
+          }
+        },
+        "M_AXI_WEIGHT_C1": {
+          "segments": {
+            "SEG_ddr4_1_C0_DDR4_ADDRESS_BLOCK": {
+              "address_block": "/ddr4_1/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK",
+              "offset": "0x00000000",
+              "range": "2G",
+              "offset_base_param": "C0_DDR4_MEMORY_MAP_BASEADDR",
+              "offset_high_param": "C0_DDR4_MEMORY_MAP_HIGHADDR"
+            }
+          }
+        }
+      }
+    }
+  },
+  "interface_nets": {
+    "core_M_AXI_DATA": {
+      "interface_ports": [
+        "core/M_AXI_DATA",
+        "d0_smc/S00_AXI"
+      ]
+    },
+    "core_M_AXI_MLP_DATA": {
+      "interface_ports": [
+        "core/M_AXI_MLP_DATA",
+        "d1_smc/S00_AXI"
+      ]
+    },
+    "core_M_AXI_WEIGHT_C0": {
+      "interface_ports": [
+        "core/M_AXI_WEIGHT_C0",
+        "d0_smc/S01_AXI"
+      ]
+    },
+    "core_M_AXI_WEIGHT_C1": {
+      "interface_ports": [
+        "core/M_AXI_WEIGHT_C1",
+        "d1_smc/S02_AXI"
+      ]
+    },
+    "d0_mig_slice_M_AXI": {
+      "interface_ports": [
+        "d0_mig_slice/M_AXI",
+        "ddr4_0/C0_DDR4_S_AXI"
+      ]
+    },
+    "d0_smc_M00_AXI": {
+      "interface_ports": [
+        "d0_smc/M00_AXI",
+        "d0_mig_slice/S_AXI"
+      ]
+    },
+    "d1_mig_slice_M_AXI": {
+      "interface_ports": [
+        "d1_mig_slice/M_AXI",
+        "ddr4_1/C0_DDR4_S_AXI"
+      ]
+    },
+    "d1_smc_M00_AXI": {
+      "interface_ports": [
+        "d1_smc/M00_AXI",
+        "d1_mig_slice/S_AXI"
+      ]
+    },
+    "host_split_M00_AXI": {
+      "interface_ports": [
+        "host_split/M00_AXI",
+        "d0_smc/S02_AXI"
+      ]
+    },
+    "host_split_M01_AXI": {
+      "interface_ports": [
+        "host_split/M01_AXI",
+        "d1_smc/S01_AXI"
+      ]
+    },
+    "xdma_0_M_AXI": {
+      "interface_ports": [
+        "xdma_0/M_AXI",
+        "host_split/S00_AXI"
+      ]
+    }
+  },
+  "smartconnect_internal_parameters": {
+    "d0_smc": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_R003_AT007_actual_bd_validation/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_d0_smc_0/bd_0/bd_ea2b.bd",
+      "parameters": {
+        "s00_entry_pipeline/s00_mmu": {
+          "vlnv": "xilinx.com:ip:sc_mmu:1.0",
+          "parameters": {
+            "ADDR_WIDTH": "32",
+            "ID_WIDTH": "0",
+            "IS_CASCADED": "0",
+            "MSC000_ROUTE": "0b1",
+            "MSC_ROUTE_WIDTH": "1",
+            "NUM_MSC": "1",
+            "NUM_READ_OUTSTANDING": "2",
+            "NUM_SEG": "1",
+            "NUM_WRITE_OUTSTANDING": "2",
+            "RDATA_WIDTH": "256",
+            "READ_WRITE_MODE": "READ_WRITE",
+            "SEG000_BASE_ADDR": "0x0000000000000000",
+            "SEG000_SECURE_READ": "0",
+            "SEG000_SECURE_WRITE": "0",
+            "SEG000_SEP_ROUTE": "0b0000000000000000000000000000000000000000000000000000000000000000",
+            "SEG000_SIZE": "31",
+            "SEG000_SUPPORTS_READ": "1",
+            "SEG000_SUPPORTS_WRITE": "1",
+            "SUPPORTS_NARROW": "0",
+            "S_ARUSER_WIDTH": "0",
+            "S_AWUSER_WIDTH": "0",
+            "S_BUSER_WIDTH": "0",
+            "S_PROTOCOL": "AXI4",
+            "S_RUSER_WIDTH": "0",
+            "S_WUSER_WIDTH": "0",
+            "WDATA_WIDTH": "256"
+          }
+        },
+        "s00_axi2sc": {
+          "vlnv": "xilinx.com:ip:sc_axi2sc:1.0",
+          "parameters": {
+            "AXI_ADDR_WIDTH": "32",
+            "AXI_ID_WIDTH": "3",
+            "AXI_RDATA_WIDTH": "256",
+            "AXI_WDATA_WIDTH": "256",
+            "MSC_ROUTE_WIDTH": "1",
+            "READ_WRITE_MODE": "READ_WRITE",
+            "SC_ADDR_WIDTH": "64",
+            "SC_ARUSER_WIDTH": "114",
+            "SC_AWUSER_WIDTH": "114",
+            "SC_BUSER_WIDTH": "114",
+            "SC_ID_WIDTH": "3",
+            "SC_RDATA_WIDTH": "512",
+            "SC_RUSER_BITS_PER_BYTE": "0",
+            "SC_WDATA_WIDTH": "512",
+            "SC_WUSER_BITS_PER_BYTE": "0",
+            "SSC_ROUTE_WIDTH": "3"
+          }
+        },
+        "s01_entry_pipeline/s01_mmu": {
+          "vlnv": "xilinx.com:ip:sc_mmu:1.0",
+          "parameters": {
+            "ADDR_WIDTH": "32",
+            "ID_WIDTH": "0",
+            "IS_CASCADED": "0",
+            "MSC000_ROUTE": "0b1",
+            "MSC_ROUTE_WIDTH": "1",
+            "NUM_MSC": "1",
+            "NUM_READ_OUTSTANDING": "2",
+            "NUM_SEG": "1",
+            "NUM_WRITE_OUTSTANDING": "2",
+            "RDATA_WIDTH": "512",
+            "READ_WRITE_MODE": "READ_ONLY",
+            "SEG000_BASE_ADDR": "0x0000000000000000",
+            "SEG000_SECURE_READ": "0",
+            "SEG000_SECURE_WRITE": "0",
+            "SEG000_SEP_ROUTE": "0b0000000000000000000000000000000000000000000000000000000000000000",
+            "SEG000_SIZE": "31",
+            "SEG000_SUPPORTS_READ": "1",
+            "SEG000_SUPPORTS_WRITE": "1",
+            "SUPPORTS_NARROW": "0",
+            "S_ARUSER_WIDTH": "0",
+            "S_PROTOCOL": "AXI4",
+            "S_RUSER_WIDTH": "0",
+            "S_WUSER_WIDTH": "0",
+            "WDATA_WIDTH": "512"
+          }
+        },
+        "s01_axi2sc": {
+          "vlnv": "xilinx.com:ip:sc_axi2sc:1.0",
+          "parameters": {
+            "AXI_ADDR_WIDTH": "32",
+            "AXI_ID_WIDTH": "3",
+            "AXI_RDATA_WIDTH": "512",
+            "AXI_WDATA_WIDTH": "512",
+            "MSC_ROUTE_WIDTH": "1",
+            "READ_WRITE_MODE": "READ_ONLY",
+            "SC_ADDR_WIDTH": "64",
+            "SC_ARUSER_WIDTH": "114",
+            "SC_AWUSER_WIDTH": "114",
+            "SC_BUSER_WIDTH": "114",
+            "SC_ID_WIDTH": "3",
+            "SC_RDATA_WIDTH": "512",
+            "SC_RUSER_BITS_PER_BYTE": "0",
+            "SC_WDATA_WIDTH": "512",
+            "SC_WUSER_BITS_PER_BYTE": "0",
+            "SSC_ROUTE_WIDTH": "3"
+          }
+        },
+        "s02_entry_pipeline/s02_mmu": {
+          "vlnv": "xilinx.com:ip:sc_mmu:1.0",
+          "parameters": {
+            "ADDR_WIDTH": "64",
+            "ID_WIDTH": "3",
+            "IS_CASCADED": "1",
+            "MSC000_ROUTE": "0b1",
+            "MSC_ROUTE_WIDTH": "1",
+            "NUM_MSC": "1",
+            "NUM_READ_OUTSTANDING": "32",
+            "NUM_WRITE_OUTSTANDING": "16",
+            "RDATA_WIDTH": "512",
+            "READ_WRITE_MODE": "READ_WRITE",
+            "S_ARUSER_WIDTH": "114",
+            "S_AWUSER_WIDTH": "114",
+            "S_BUSER_WIDTH": "114",
+            "S_PROTOCOL": "AXI4",
+            "S_RUSER_WIDTH": "14",
+            "S_WUSER_WIDTH": "14",
+            "WDATA_WIDTH": "512"
+          }
+        },
+        "s02_axi2sc": {
+          "vlnv": "xilinx.com:ip:sc_axi2sc:1.0",
+          "parameters": {
+            "AXI_ADDR_WIDTH": "64",
+            "AXI_ID_WIDTH": "3",
+            "AXI_RDATA_WIDTH": "512",
+            "AXI_WDATA_WIDTH": "512",
+            "MSC_ROUTE_WIDTH": "1",
+            "READ_WRITE_MODE": "READ_WRITE",
+            "SC_ADDR_WIDTH": "64",
+            "SC_ARUSER_WIDTH": "114",
+            "SC_AWUSER_WIDTH": "114",
+            "SC_BUSER_WIDTH": "114",
+            "SC_ID_WIDTH": "3",
+            "SC_RDATA_WIDTH": "512",
+            "SC_RUSER_BITS_PER_BYTE": "0",
+            "SC_WDATA_WIDTH": "512",
+            "SC_WUSER_BITS_PER_BYTE": "0",
+            "SSC_ROUTE_WIDTH": "3"
+          }
+        },
+        "m00_sc2axi": {
+          "vlnv": "xilinx.com:ip:sc_sc2axi:1.0",
+          "parameters": {
+            "AXI_ADDR_WIDTH": "31",
+            "AXI_ID_WIDTH": "3",
+            "AXI_RDATA_WIDTH": "512",
+            "AXI_WDATA_WIDTH": "512",
+            "MSC_ROUTE_WIDTH": "1",
+            "READ_WRITE_MODE": "READ_WRITE",
+            "SC_ADDR_WIDTH": "64",
+            "SC_ARUSER_WIDTH": "114",
+            "SC_AWUSER_WIDTH": "114",
+            "SC_BUSER_WIDTH": "114",
+            "SC_ID_WIDTH": "3",
+            "SC_RDATA_WIDTH": "512",
+            "SC_RUSER_BITS_PER_BYTE": "0",
+            "SC_WDATA_WIDTH": "512",
+            "SC_WUSER_BITS_PER_BYTE": "0",
+            "SSC_ROUTE_WIDTH": "3"
+          }
+        }
+      },
+      "interfaces": {
+        "S00_AXI": {
+          "ADDR_WIDTH": "32",
+          "ARUSER_WIDTH": "0",
+          "AWUSER_WIDTH": "0",
+          "BUSER_WIDTH": "0",
+          "CLK_DOMAIN": "scalellm_vcu118_f05_bd_clk_core_0_clk_out1",
+          "DATA_WIDTH": "256",
+          "FREQ_HZ": "100000000",
+          "HAS_BRESP": "1",
+          "HAS_BURST": "1",
+          "HAS_CACHE": "0",
+          "HAS_LOCK": "0",
+          "HAS_PROT": "0",
+          "HAS_QOS": "0",
+          "HAS_REGION": "0",
+          "HAS_RRESP": "1",
+          "HAS_WSTRB": "1",
+          "ID_WIDTH": "0",
+          "INSERT_VIP": "0",
+          "MAX_BURST_LENGTH": "256",
+          "NUM_READ_OUTSTANDING": "2",
+          "NUM_READ_THREADS": "1",
+          "NUM_WRITE_OUTSTANDING": "2",
+          "NUM_WRITE_THREADS": "1",
+          "PHASE": "0.0",
+          "PROTOCOL": "AXI4",
+          "READ_WRITE_MODE": "READ_WRITE",
+          "RUSER_BITS_PER_BYTE": "0",
+          "RUSER_WIDTH": "0",
+          "SUPPORTS_NARROW_BURST": "0",
+          "WUSER_BITS_PER_BYTE": "0",
+          "WUSER_WIDTH": "0"
+        },
+        "S01_AXI": {
+          "ADDR_WIDTH": "32",
+          "ARUSER_WIDTH": "0",
+          "AWUSER_WIDTH": "0",
+          "BUSER_WIDTH": "0",
+          "CLK_DOMAIN": "scalellm_vcu118_f05_bd_ddr4_0_0_c0_ddr4_ui_clk",
+          "DATA_WIDTH": "512",
+          "FREQ_HZ": "200000000",
+          "HAS_BRESP": "0",
+          "HAS_BURST": "1",
+          "HAS_CACHE": "0",
+          "HAS_LOCK": "0",
+          "HAS_PROT": "0",
+          "HAS_QOS": "0",
+          "HAS_REGION": "0",
+          "HAS_RRESP": "1",
+          "HAS_WSTRB": "0",
+          "ID_WIDTH": "0",
+          "INSERT_VIP": "0",
+          "MAX_BURST_LENGTH": "16",
+          "NUM_READ_OUTSTANDING": "2",
+          "NUM_READ_THREADS": "1",
+          "NUM_WRITE_OUTSTANDING": "2",
+          "NUM_WRITE_THREADS": "1",
+          "PHASE": "0.00",
+          "PROTOCOL": "AXI4",
+          "READ_WRITE_MODE": "READ_ONLY",
+          "RUSER_BITS_PER_BYTE": "0",
+          "RUSER_WIDTH": "0",
+          "SUPPORTS_NARROW_BURST": "0",
+          "WUSER_BITS_PER_BYTE": "0",
+          "WUSER_WIDTH": "0"
+        },
+        "S02_AXI": {
+          "ADDR_WIDTH": "64",
+          "ARUSER_WIDTH": "114",
+          "AWUSER_WIDTH": "114",
+          "BUSER_WIDTH": "114",
+          "CLK_DOMAIN": "scalellm_vcu118_f05_bd_ddr4_0_0_c0_ddr4_ui_clk",
+          "DATA_WIDTH": "512",
+          "FREQ_HZ": "200000000",
+          "HAS_BRESP": "1",
+          "HAS_BURST": "1",
+          "HAS_CACHE": "1",
+          "HAS_LOCK": "1",
+          "HAS_PROT": "1",
+          "HAS_QOS": "1",
+          "HAS_REGION": "0",
+          "HAS_RRESP": "1",
+          "HAS_WSTRB": "1",
+          "ID_WIDTH": "3",
+          "INSERT_VIP": "0",
+          "MAX_BURST_LENGTH": "128",
+          "NUM_READ_OUTSTANDING": "32",
+          "NUM_READ_THREADS": "1",
+          "NUM_WRITE_OUTSTANDING": "16",
+          "NUM_WRITE_THREADS": "1",
+          "PHASE": "0.00",
+          "PROTOCOL": "AXI4",
+          "READ_WRITE_MODE": "READ_WRITE",
+          "RUSER_BITS_PER_BYTE": "0",
+          "RUSER_WIDTH": "14",
+          "SUPPORTS_NARROW_BURST": "0",
+          "WUSER_BITS_PER_BYTE": "0",
+          "WUSER_WIDTH": "14"
+        },
+        "M00_AXI": {
+          "ADDR_WIDTH": "31",
+          "ARUSER_WIDTH": "0",
+          "AWUSER_WIDTH": "0",
+          "BUSER_WIDTH": "0",
+          "CLK_DOMAIN": "scalellm_vcu118_f05_bd_ddr4_0_0_c0_ddr4_ui_clk",
+          "DATA_WIDTH": "512",
+          "FREQ_HZ": "200000000",
+          "HAS_BRESP": "1",
+          "HAS_BURST": "1",
+          "HAS_CACHE": "1",
+          "HAS_LOCK": "1",
+          "HAS_PROT": "1",
+          "HAS_QOS": "1",
+          "HAS_REGION": "0",
+          "HAS_RRESP": "1",
+          "HAS_WSTRB": "1",
+          "ID_WIDTH": "0",
+          "INSERT_VIP": "0",
+          "MAX_BURST_LENGTH": "128",
+          "NUM_READ_OUTSTANDING": "32",
+          "NUM_READ_THREADS": "1",
+          "NUM_WRITE_OUTSTANDING": "16",
+          "NUM_WRITE_THREADS": "1",
+          "PHASE": "0.00",
+          "PROTOCOL": "AXI4",
+          "READ_WRITE_MODE": "READ_WRITE",
+          "RUSER_BITS_PER_BYTE": "0",
+          "RUSER_WIDTH": "0",
+          "SUPPORTS_NARROW_BURST": "0",
+          "WUSER_BITS_PER_BYTE": "0",
+          "WUSER_WIDTH": "0"
+        }
+      }
+    },
+    "d1_smc": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_R003_AT007_actual_bd_validation/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_d1_smc_0/bd_0/bd_2a3b.bd",
+      "parameters": {
+        "s00_entry_pipeline/s00_mmu": {
+          "vlnv": "xilinx.com:ip:sc_mmu:1.0",
+          "parameters": {
+            "ADDR_WIDTH": "32",
+            "ID_WIDTH": "0",
+            "IS_CASCADED": "0",
+            "MSC000_ROUTE": "0b1",
+            "MSC_ROUTE_WIDTH": "1",
+            "NUM_MSC": "1",
+            "NUM_READ_OUTSTANDING": "2",
+            "NUM_SEG": "1",
+            "NUM_WRITE_OUTSTANDING": "2",
+            "RDATA_WIDTH": "256",
+            "READ_WRITE_MODE": "READ_WRITE",
+            "SEG000_BASE_ADDR": "0x0000000000000000",
+            "SEG000_SECURE_READ": "0",
+            "SEG000_SECURE_WRITE": "0",
+            "SEG000_SEP_ROUTE": "0b0000000000000000000000000000000000000000000000000000000000000000",
+            "SEG000_SIZE": "31",
+            "SEG000_SUPPORTS_READ": "1",
+            "SEG000_SUPPORTS_WRITE": "1",
+            "SUPPORTS_NARROW": "0",
+            "S_ARUSER_WIDTH": "0",
+            "S_AWUSER_WIDTH": "0",
+            "S_BUSER_WIDTH": "0",
+            "S_PROTOCOL": "AXI4",
+            "S_RUSER_WIDTH": "0",
+            "S_WUSER_WIDTH": "0",
+            "WDATA_WIDTH": "256"
+          }
+        },
+        "s00_axi2sc": {
+          "vlnv": "xilinx.com:ip:sc_axi2sc:1.0",
+          "parameters": {
+            "AXI_ADDR_WIDTH": "32",
+            "AXI_ID_WIDTH": "3",
+            "AXI_RDATA_WIDTH": "256",
+            "AXI_WDATA_WIDTH": "256",
+            "MSC_ROUTE_WIDTH": "1",
+            "READ_WRITE_MODE": "READ_WRITE",
+            "SC_ADDR_WIDTH": "64",
+            "SC_ARUSER_WIDTH": "114",
+            "SC_AWUSER_WIDTH": "114",
+            "SC_BUSER_WIDTH": "114",
+            "SC_ID_WIDTH": "3",
+            "SC_RDATA_WIDTH": "512",
+            "SC_RUSER_BITS_PER_BYTE": "0",
+            "SC_WDATA_WIDTH": "512",
+            "SC_WUSER_BITS_PER_BYTE": "0",
+            "SSC_ROUTE_WIDTH": "3"
+          }
+        },
+        "s01_entry_pipeline/s01_mmu": {
+          "vlnv": "xilinx.com:ip:sc_mmu:1.0",
+          "parameters": {
+            "ADDR_WIDTH": "64",
+            "ID_WIDTH": "3",
+            "IS_CASCADED": "1",
+            "MSC000_ROUTE": "0b1",
+            "MSC_ROUTE_WIDTH": "1",
+            "NUM_MSC": "1",
+            "NUM_READ_OUTSTANDING": "32",
+            "NUM_WRITE_OUTSTANDING": "16",
+            "RDATA_WIDTH": "512",
+            "READ_WRITE_MODE": "READ_WRITE",
+            "S_ARUSER_WIDTH": "114",
+            "S_AWUSER_WIDTH": "114",
+            "S_BUSER_WIDTH": "114",
+            "S_PROTOCOL": "AXI4",
+            "S_RUSER_WIDTH": "14",
+            "S_WUSER_WIDTH": "14",
+            "WDATA_WIDTH": "512"
+          }
+        },
+        "s01_axi2sc": {
+          "vlnv": "xilinx.com:ip:sc_axi2sc:1.0",
+          "parameters": {
+            "AXI_ADDR_WIDTH": "64",
+            "AXI_ID_WIDTH": "3",
+            "AXI_RDATA_WIDTH": "512",
+            "AXI_WDATA_WIDTH": "512",
+            "MSC_ROUTE_WIDTH": "1",
+            "READ_WRITE_MODE": "READ_WRITE",
+            "SC_ADDR_WIDTH": "64",
+            "SC_ARUSER_WIDTH": "114",
+            "SC_AWUSER_WIDTH": "114",
+            "SC_BUSER_WIDTH": "114",
+            "SC_ID_WIDTH": "3",
+            "SC_RDATA_WIDTH": "512",
+            "SC_RUSER_BITS_PER_BYTE": "0",
+            "SC_WDATA_WIDTH": "512",
+            "SC_WUSER_BITS_PER_BYTE": "0",
+            "SSC_ROUTE_WIDTH": "3"
+          }
+        },
+        "s02_entry_pipeline/s02_mmu": {
+          "vlnv": "xilinx.com:ip:sc_mmu:1.0",
+          "parameters": {
+            "ADDR_WIDTH": "32",
+            "ID_WIDTH": "0",
+            "IS_CASCADED": "0",
+            "MSC000_ROUTE": "0b1",
+            "MSC_ROUTE_WIDTH": "1",
+            "NUM_MSC": "1",
+            "NUM_READ_OUTSTANDING": "2",
+            "NUM_SEG": "1",
+            "NUM_WRITE_OUTSTANDING": "2",
+            "RDATA_WIDTH": "512",
+            "READ_WRITE_MODE": "READ_ONLY",
+            "SEG000_BASE_ADDR": "0x0000000000000000",
+            "SEG000_SECURE_READ": "0",
+            "SEG000_SECURE_WRITE": "0",
+            "SEG000_SEP_ROUTE": "0b0000000000000000000000000000000000000000000000000000000000000000",
+            "SEG000_SIZE": "31",
+            "SEG000_SUPPORTS_READ": "1",
+            "SEG000_SUPPORTS_WRITE": "1",
+            "SUPPORTS_NARROW": "0",
+            "S_ARUSER_WIDTH": "0",
+            "S_PROTOCOL": "AXI4",
+            "S_RUSER_WIDTH": "0",
+            "S_WUSER_WIDTH": "0",
+            "WDATA_WIDTH": "512"
+          }
+        },
+        "s02_axi2sc": {
+          "vlnv": "xilinx.com:ip:sc_axi2sc:1.0",
+          "parameters": {
+            "AXI_ADDR_WIDTH": "32",
+            "AXI_ID_WIDTH": "3",
+            "AXI_RDATA_WIDTH": "512",
+            "AXI_WDATA_WIDTH": "512",
+            "MSC_ROUTE_WIDTH": "1",
+            "READ_WRITE_MODE": "READ_ONLY",
+            "SC_ADDR_WIDTH": "64",
+            "SC_ARUSER_WIDTH": "114",
+            "SC_AWUSER_WIDTH": "114",
+            "SC_BUSER_WIDTH": "114",
+            "SC_ID_WIDTH": "3",
+            "SC_RDATA_WIDTH": "512",
+            "SC_RUSER_BITS_PER_BYTE": "0",
+            "SC_WDATA_WIDTH": "512",
+            "SC_WUSER_BITS_PER_BYTE": "0",
+            "SSC_ROUTE_WIDTH": "3"
+          }
+        },
+        "m00_sc2axi": {
+          "vlnv": "xilinx.com:ip:sc_sc2axi:1.0",
+          "parameters": {
+            "AXI_ADDR_WIDTH": "31",
+            "AXI_ID_WIDTH": "3",
+            "AXI_RDATA_WIDTH": "512",
+            "AXI_WDATA_WIDTH": "512",
+            "MSC_ROUTE_WIDTH": "1",
+            "READ_WRITE_MODE": "READ_WRITE",
+            "SC_ADDR_WIDTH": "64",
+            "SC_ARUSER_WIDTH": "114",
+            "SC_AWUSER_WIDTH": "114",
+            "SC_BUSER_WIDTH": "114",
+            "SC_ID_WIDTH": "3",
+            "SC_RDATA_WIDTH": "512",
+            "SC_RUSER_BITS_PER_BYTE": "0",
+            "SC_WDATA_WIDTH": "512",
+            "SC_WUSER_BITS_PER_BYTE": "0",
+            "SSC_ROUTE_WIDTH": "3"
+          }
+        }
+      },
+      "interfaces": {
+        "S00_AXI": {
+          "ADDR_WIDTH": "32",
+          "ARUSER_WIDTH": "0",
+          "AWUSER_WIDTH": "0",
+          "BUSER_WIDTH": "0",
+          "CLK_DOMAIN": "scalellm_vcu118_f05_bd_clk_core_0_clk_out1",
+          "DATA_WIDTH": "256",
+          "FREQ_HZ": "100000000",
+          "HAS_BRESP": "1",
+          "HAS_BURST": "1",
+          "HAS_CACHE": "0",
+          "HAS_LOCK": "0",
+          "HAS_PROT": "0",
+          "HAS_QOS": "0",
+          "HAS_REGION": "0",
+          "HAS_RRESP": "1",
+          "HAS_WSTRB": "1",
+          "ID_WIDTH": "0",
+          "INSERT_VIP": "0",
+          "MAX_BURST_LENGTH": "256",
+          "NUM_READ_OUTSTANDING": "2",
+          "NUM_READ_THREADS": "1",
+          "NUM_WRITE_OUTSTANDING": "2",
+          "NUM_WRITE_THREADS": "1",
+          "PHASE": "0.0",
+          "PROTOCOL": "AXI4",
+          "READ_WRITE_MODE": "READ_WRITE",
+          "RUSER_BITS_PER_BYTE": "0",
+          "RUSER_WIDTH": "0",
+          "SUPPORTS_NARROW_BURST": "0",
+          "WUSER_BITS_PER_BYTE": "0",
+          "WUSER_WIDTH": "0"
+        },
+        "S01_AXI": {
+          "ADDR_WIDTH": "64",
+          "ARUSER_WIDTH": "114",
+          "AWUSER_WIDTH": "114",
+          "BUSER_WIDTH": "114",
+          "CLK_DOMAIN": "scalellm_vcu118_f05_bd_ddr4_1_0_c0_ddr4_ui_clk",
+          "DATA_WIDTH": "512",
+          "FREQ_HZ": "200000000",
+          "HAS_BRESP": "1",
+          "HAS_BURST": "1",
+          "HAS_CACHE": "1",
+          "HAS_LOCK": "1",
+          "HAS_PROT": "1",
+          "HAS_QOS": "1",
+          "HAS_REGION": "0",
+          "HAS_RRESP": "1",
+          "HAS_WSTRB": "1",
+          "ID_WIDTH": "3",
+          "INSERT_VIP": "0",
+          "MAX_BURST_LENGTH": "128",
+          "NUM_READ_OUTSTANDING": "32",
+          "NUM_READ_THREADS": "1",
+          "NUM_WRITE_OUTSTANDING": "16",
+          "NUM_WRITE_THREADS": "1",
+          "PHASE": "0.00",
+          "PROTOCOL": "AXI4",
+          "READ_WRITE_MODE": "READ_WRITE",
+          "RUSER_BITS_PER_BYTE": "0",
+          "RUSER_WIDTH": "14",
+          "SUPPORTS_NARROW_BURST": "0",
+          "WUSER_BITS_PER_BYTE": "0",
+          "WUSER_WIDTH": "14"
+        },
+        "S02_AXI": {
+          "ADDR_WIDTH": "32",
+          "ARUSER_WIDTH": "0",
+          "AWUSER_WIDTH": "0",
+          "BUSER_WIDTH": "0",
+          "CLK_DOMAIN": "scalellm_vcu118_f05_bd_ddr4_1_0_c0_ddr4_ui_clk",
+          "DATA_WIDTH": "512",
+          "FREQ_HZ": "200000000",
+          "HAS_BRESP": "0",
+          "HAS_BURST": "1",
+          "HAS_CACHE": "0",
+          "HAS_LOCK": "0",
+          "HAS_PROT": "0",
+          "HAS_QOS": "0",
+          "HAS_REGION": "0",
+          "HAS_RRESP": "1",
+          "HAS_WSTRB": "0",
+          "ID_WIDTH": "0",
+          "INSERT_VIP": "0",
+          "MAX_BURST_LENGTH": "16",
+          "NUM_READ_OUTSTANDING": "2",
+          "NUM_READ_THREADS": "1",
+          "NUM_WRITE_OUTSTANDING": "2",
+          "NUM_WRITE_THREADS": "1",
+          "PHASE": "0.00",
+          "PROTOCOL": "AXI4",
+          "READ_WRITE_MODE": "READ_ONLY",
+          "RUSER_BITS_PER_BYTE": "0",
+          "RUSER_WIDTH": "0",
+          "SUPPORTS_NARROW_BURST": "0",
+          "WUSER_BITS_PER_BYTE": "0",
+          "WUSER_WIDTH": "0"
+        },
+        "M00_AXI": {
+          "ADDR_WIDTH": "31",
+          "ARUSER_WIDTH": "0",
+          "AWUSER_WIDTH": "0",
+          "BUSER_WIDTH": "0",
+          "CLK_DOMAIN": "scalellm_vcu118_f05_bd_ddr4_1_0_c0_ddr4_ui_clk",
+          "DATA_WIDTH": "512",
+          "FREQ_HZ": "200000000",
+          "HAS_BRESP": "1",
+          "HAS_BURST": "1",
+          "HAS_CACHE": "1",
+          "HAS_LOCK": "1",
+          "HAS_PROT": "1",
+          "HAS_QOS": "1",
+          "HAS_REGION": "0",
+          "HAS_RRESP": "1",
+          "HAS_WSTRB": "1",
+          "ID_WIDTH": "0",
+          "INSERT_VIP": "0",
+          "MAX_BURST_LENGTH": "128",
+          "NUM_READ_OUTSTANDING": "32",
+          "NUM_READ_THREADS": "1",
+          "NUM_WRITE_OUTSTANDING": "16",
+          "NUM_WRITE_THREADS": "1",
+          "PHASE": "0.00",
+          "PROTOCOL": "AXI4",
+          "READ_WRITE_MODE": "READ_WRITE",
+          "RUSER_BITS_PER_BYTE": "0",
+          "RUSER_WIDTH": "0",
+          "SUPPORTS_NARROW_BURST": "0",
+          "WUSER_BITS_PER_BYTE": "0",
+          "WUSER_WIDTH": "0"
+        }
+      }
+    },
+    "host_split": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_R003_AT007_actual_bd_validation/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_host_split_0/bd_0/bd_8cce.bd",
+      "parameters": {
+        "s00_entry_pipeline/s00_mmu": {
+          "vlnv": "xilinx.com:ip:sc_mmu:1.0",
+          "parameters": {
+            "ADDR_WIDTH": "64",
+            "ID_WIDTH": "4",
+            "IS_CASCADED": "0",
+            "MSC000_ROUTE": "0b01",
+            "MSC001_ROUTE": "0b10",
+            "MSC_ROUTE_WIDTH": "2",
+            "NUM_MSC": "2",
+            "NUM_READ_OUTSTANDING": "32",
+            "NUM_SEG": "2",
+            "NUM_WRITE_OUTSTANDING": "16",
+            "RDATA_WIDTH": "256",
+            "READ_WRITE_MODE": "READ_WRITE",
+            "SEG000_BASE_ADDR": "0x0000000000000000",
+            "SEG000_SECURE_READ": "0",
+            "SEG000_SECURE_WRITE": "0",
+            "SEG000_SEP_ROUTE": "0b0000000000000000000000000000000000000000000000000000000000000000",
+            "SEG000_SIZE": "31",
+            "SEG000_SUPPORTS_READ": "1",
+            "SEG000_SUPPORTS_WRITE": "1",
+            "SEG001_BASE_ADDR": "0x0000000080000000",
+            "SEG001_SECURE_READ": "0",
+            "SEG001_SECURE_WRITE": "0",
+            "SEG001_SEP_ROUTE": "0b0000000000000000000000000000000000000000000000000000000000000001",
+            "SEG001_SIZE": "31",
+            "SEG001_SUPPORTS_READ": "1",
+            "SEG001_SUPPORTS_WRITE": "1",
+            "SUPPORTS_NARROW": "0",
+            "S_ARUSER_WIDTH": "0",
+            "S_AWUSER_WIDTH": "0",
+            "S_BUSER_WIDTH": "0",
+            "S_PROTOCOL": "AXI4",
+            "S_RUSER_WIDTH": "0",
+            "S_WUSER_WIDTH": "0",
+            "WDATA_WIDTH": "256"
+          }
+        },
+        "s00_axi2sc": {
+          "vlnv": "xilinx.com:ip:sc_axi2sc:1.0",
+          "parameters": {
+            "AXI_ADDR_WIDTH": "64",
+            "AXI_ID_WIDTH": "3",
+            "AXI_RDATA_WIDTH": "256",
+            "AXI_WDATA_WIDTH": "256",
+            "MSC_ROUTE_WIDTH": "2",
+            "READ_WRITE_MODE": "READ_WRITE",
+            "SC_ADDR_WIDTH": "64",
+            "SC_ARUSER_WIDTH": "0",
+            "SC_AWUSER_WIDTH": "0",
+            "SC_BUSER_WIDTH": "0",
+            "SC_ID_WIDTH": "3",
+            "SC_RDATA_WIDTH": "512",
+            "SC_RUSER_BITS_PER_BYTE": "0",
+            "SC_WDATA_WIDTH": "512",
+            "SC_WUSER_BITS_PER_BYTE": "0",
+            "SSC_ROUTE_WIDTH": "1"
+          }
+        },
+        "m00_sc2axi": {
+          "vlnv": "xilinx.com:ip:sc_sc2axi:1.0",
+          "parameters": {
+            "AXI_ADDR_WIDTH": "64",
+            "AXI_ID_WIDTH": "3",
+            "AXI_RDATA_WIDTH": "512",
+            "AXI_WDATA_WIDTH": "512",
+            "MSC_ROUTE_WIDTH": "2",
+            "READ_WRITE_MODE": "READ_WRITE",
+            "SC_ADDR_WIDTH": "64",
+            "SC_ARUSER_WIDTH": "0",
+            "SC_AWUSER_WIDTH": "0",
+            "SC_BUSER_WIDTH": "0",
+            "SC_ID_WIDTH": "3",
+            "SC_RDATA_WIDTH": "512",
+            "SC_RUSER_BITS_PER_BYTE": "0",
+            "SC_WDATA_WIDTH": "512",
+            "SC_WUSER_BITS_PER_BYTE": "0",
+            "SSC_ROUTE_WIDTH": "1"
+          }
+        },
+        "m01_sc2axi": {
+          "vlnv": "xilinx.com:ip:sc_sc2axi:1.0",
+          "parameters": {
+            "AXI_ADDR_WIDTH": "64",
+            "AXI_ID_WIDTH": "3",
+            "AXI_RDATA_WIDTH": "512",
+            "AXI_WDATA_WIDTH": "512",
+            "MSC_ROUTE_WIDTH": "2",
+            "READ_WRITE_MODE": "READ_WRITE",
+            "SC_ADDR_WIDTH": "64",
+            "SC_ARUSER_WIDTH": "0",
+            "SC_AWUSER_WIDTH": "0",
+            "SC_BUSER_WIDTH": "0",
+            "SC_ID_WIDTH": "3",
+            "SC_RDATA_WIDTH": "512",
+            "SC_RUSER_BITS_PER_BYTE": "0",
+            "SC_WDATA_WIDTH": "512",
+            "SC_WUSER_BITS_PER_BYTE": "0",
+            "SSC_ROUTE_WIDTH": "1"
+          }
+        }
+      },
+      "interfaces": {
+        "S00_AXI": {
+          "ADDR_WIDTH": "64",
+          "ARUSER_WIDTH": "0",
+          "AWUSER_WIDTH": "0",
+          "BUSER_WIDTH": "0",
+          "CLK_DOMAIN": "scalellm_vcu118_f05_bd_xdma_0_0_axi_aclk",
+          "DATA_WIDTH": "256",
+          "FREQ_HZ": "250000000",
+          "HAS_BRESP": "1",
+          "HAS_BURST": "0",
+          "HAS_CACHE": "1",
+          "HAS_LOCK": "1",
+          "HAS_PROT": "1",
+          "HAS_QOS": "0",
+          "HAS_REGION": "0",
+          "HAS_RRESP": "1",
+          "HAS_WSTRB": "1",
+          "ID_WIDTH": "4",
+          "INSERT_VIP": "0",
+          "MAX_BURST_LENGTH": "256",
+          "NUM_READ_OUTSTANDING": "32",
+          "NUM_READ_THREADS": "1",
+          "NUM_WRITE_OUTSTANDING": "16",
+          "NUM_WRITE_THREADS": "1",
+          "PHASE": "0.0",
+          "PROTOCOL": "AXI4",
+          "READ_WRITE_MODE": "READ_WRITE",
+          "RUSER_BITS_PER_BYTE": "0",
+          "RUSER_WIDTH": "0",
+          "SUPPORTS_NARROW_BURST": "0",
+          "WUSER_BITS_PER_BYTE": "0",
+          "WUSER_WIDTH": "0"
+        },
+        "M00_AXI": {
+          "ADDR_WIDTH": "64",
+          "ARUSER_WIDTH": "114",
+          "AWUSER_WIDTH": "114",
+          "BUSER_WIDTH": "114",
+          "CLK_DOMAIN": "scalellm_vcu118_f05_bd_ddr4_0_0_c0_ddr4_ui_clk",
+          "DATA_WIDTH": "512",
+          "FREQ_HZ": "200000000",
+          "HAS_BRESP": "1",
+          "HAS_BURST": "1",
+          "HAS_CACHE": "1",
+          "HAS_LOCK": "1",
+          "HAS_PROT": "1",
+          "HAS_QOS": "1",
+          "HAS_REGION": "0",
+          "HAS_RRESP": "1",
+          "HAS_WSTRB": "1",
+          "ID_WIDTH": "3",
+          "INSERT_VIP": "0",
+          "MAX_BURST_LENGTH": "128",
+          "NUM_READ_OUTSTANDING": "32",
+          "NUM_READ_THREADS": "1",
+          "NUM_WRITE_OUTSTANDING": "16",
+          "NUM_WRITE_THREADS": "1",
+          "PHASE": "0.00",
+          "PROTOCOL": "AXI4",
+          "READ_WRITE_MODE": "READ_WRITE",
+          "RUSER_BITS_PER_BYTE": "0",
+          "RUSER_WIDTH": "14",
+          "SUPPORTS_NARROW_BURST": "0",
+          "WUSER_BITS_PER_BYTE": "0",
+          "WUSER_WIDTH": "14"
+        },
+        "M01_AXI": {
+          "ADDR_WIDTH": "64",
+          "ARUSER_WIDTH": "114",
+          "AWUSER_WIDTH": "114",
+          "BUSER_WIDTH": "114",
+          "CLK_DOMAIN": "scalellm_vcu118_f05_bd_ddr4_1_0_c0_ddr4_ui_clk",
+          "DATA_WIDTH": "512",
+          "FREQ_HZ": "200000000",
+          "HAS_BRESP": "1",
+          "HAS_BURST": "1",
+          "HAS_CACHE": "1",
+          "HAS_LOCK": "1",
+          "HAS_PROT": "1",
+          "HAS_QOS": "1",
+          "HAS_REGION": "0",
+          "HAS_RRESP": "1",
+          "HAS_WSTRB": "1",
+          "ID_WIDTH": "3",
+          "INSERT_VIP": "0",
+          "MAX_BURST_LENGTH": "128",
+          "NUM_READ_OUTSTANDING": "32",
+          "NUM_READ_THREADS": "1",
+          "NUM_WRITE_OUTSTANDING": "16",
+          "NUM_WRITE_THREADS": "1",
+          "PHASE": "0.00",
+          "PROTOCOL": "AXI4",
+          "READ_WRITE_MODE": "READ_WRITE",
+          "RUSER_BITS_PER_BYTE": "0",
+          "RUSER_WIDTH": "14",
+          "SUPPORTS_NARROW_BURST": "0",
+          "WUSER_BITS_PER_BYTE": "0",
+          "WUSER_WIDTH": "14"
+        }
+      }
+    }
+  },
+  "mig_terminal_config": {
+    "ddr4_0": {
+      "parameters": {
+        "C0.DDR4_AxiAddressWidth": "31",
+        "C0.DDR4_AxiDataWidth": "512",
+        "C0.DDR4_AxiIDWidth": "4",
+        "C0.DDR4_Capacity": "512",
+        "C0.DDR4_ChipSelect": "true",
+        "C0.DDR4_Clamshell": "false",
+        "C0.DDR4_DataMask": "DM_NO_DBI",
+        "C0.DDR4_DataWidth": "64",
+        "C0.DDR4_InputClockPeriod": "4000",
+        "C0.DDR4_MCS_ECC": "false",
+        "C0.DDR4_Mem_Add_Map": "ROW_COLUMN_BANK",
+        "C0.DDR4_MemoryPart": "MT40A256M16GE-083E",
+        "C0.DDR4_MemoryType": "Components",
+        "C0.DDR4_MemoryVoltage": "1.2V",
+        "C0.DDR4_PhyClockRatio": "4:1",
+        "C0.DDR4_Slot": "Single",
+        "C0.DDR4_TimePeriod": "1250",
+        "C0_CLOCK_BOARD_INTERFACE": "Custom",
+        "C0_DDR4_BOARD_INTERFACE": "Custom",
+        "System_Clock": "Differential"
+      },
+      "addressing": {
+        "memory_maps": {
+          "C0_DDR4_MEMORY_MAP": {
+            "address_blocks": {
+              "C0_DDR4_ADDRESS_BLOCK": {
+                "base_address": "0",
+                "range": "2G",
+                "width": "31",
+                "usage": "memory",
+                "offset_base_param": "C0_DDR4_MEMORY_MAP_BASEADDR",
+                "offset_high_param": "C0_DDR4_MEMORY_MAP_HIGHADDR"
+              }
+            }
+          }
+        }
+      }
+    },
+    "ddr4_1": {
+      "parameters": {
+        "C0.DDR4_AxiAddressWidth": "31",
+        "C0.DDR4_AxiDataWidth": "512",
+        "C0.DDR4_AxiIDWidth": "4",
+        "C0.DDR4_Capacity": "512",
+        "C0.DDR4_ChipSelect": "true",
+        "C0.DDR4_Clamshell": "false",
+        "C0.DDR4_DataMask": "DM_NO_DBI",
+        "C0.DDR4_DataWidth": "64",
+        "C0.DDR4_InputClockPeriod": "4000",
+        "C0.DDR4_MCS_ECC": "false",
+        "C0.DDR4_Mem_Add_Map": "ROW_COLUMN_BANK",
+        "C0.DDR4_MemoryPart": "MT40A256M16GE-083E",
+        "C0.DDR4_MemoryType": "Components",
+        "C0.DDR4_MemoryVoltage": "1.2V",
+        "C0.DDR4_PhyClockRatio": "4:1",
+        "C0.DDR4_Slot": "Single",
+        "C0.DDR4_TimePeriod": "1250",
+        "C0_CLOCK_BOARD_INTERFACE": "Custom",
+        "C0_DDR4_BOARD_INTERFACE": "Custom",
+        "System_Clock": "Differential"
+      },
+      "addressing": {
+        "memory_maps": {
+          "C0_DDR4_MEMORY_MAP": {
+            "address_blocks": {
+              "C0_DDR4_ADDRESS_BLOCK": {
+                "base_address": "0",
+                "range": "2G",
+                "width": "31",
+                "usage": "memory",
+                "offset_base_param": "C0_DDR4_MEMORY_MAP_BASEADDR",
+                "offset_high_param": "C0_DDR4_MEMORY_MAP_HIGHADDR"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "excluded_segments": "No explicit excluded segments are serialized. Each core master has exactly one assigned slave segment; directed topology physically reaches only its dedicated DDR. Host M_AXI has two assigned slave segments.",
+  "source_identities": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_R003_AT007_actual_bd_validation/scalellm_vcu118_f05.srcs/sources_1/bd/scalellm_vcu118_f05_bd/scalellm_vcu118_f05_bd.bd",
+      "sha256": "0826629e50d99ea496a2831bd290903a61458be49f0dadd70380be3178c03471"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_R003_AT007_actual_bd_validation/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_d0_smc_0/bd_0/bd_ea2b.bd",
+      "sha256": "ed9c26580de0ac547d01d84de00ae914f6d1b67f334abf08631799b6e135a8cf"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_R003_AT007_actual_bd_validation/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_d1_smc_0/bd_0/bd_2a3b.bd",
+      "sha256": "7e9f81e940a076218aa19c4cec74e186a75db3af287d999770f1cfb525ee617f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_R003_AT007_actual_bd_validation/scalellm_vcu118_f05.gen/sources_1/bd/scalellm_vcu118_f05_bd/ip/scalellm_vcu118_f05_bd_host_split_0/bd_0/bd_8cce.bd",
+      "sha256": "9e6ba30bc970f2f96289fdc7f8609c93bdac5ca1766bd6888d358f00108b18ff"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "started_utc": "2026-10-15T23:27:39.004785+00:00",
+  "host": "127.0.0.1",
+  "port": 10000,
+  "native_pid_guard": 93382,
+  "request": "if {[pid] != 93382} {error {wrong native identity}}; set e004_help_results [list]; foreach e004_help_cmd {help place_design phys_opt_design opt_design route_design report_utilization report_control_sets report_high_fanout_nets report_slr_crossing report_qor_suggestions report_design_analysis get_slrs get_sites get_tiles} {set e004_help_rc [catch {help $e004_help_cmd} e004_help_text]; lappend e004_help_results [list $e004_help_cmd $e004_help_rc $e004_help_text]}; set e004_help_results",
+  "scope": "read-only help in same original native instance via init-provided local Tcl server; no DCP reopen, no source hot change or implementation command",
+  "client_error": "timed out",
+  "ended_utc": "2026-10-15T23:27:59.026293+00:00"
+}

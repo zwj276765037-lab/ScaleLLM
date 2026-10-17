@@ -1,0 +1,9 @@
+mode open_existing code 1 result {couldn't open "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/R006_collector/open_existing/candidate_alias_api_trace_test.tcllist": file already exists} options {-code 1 -level 0 -errorstack {INNER {invokeStk1 open /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/R006_collector/open_existing/candidate_alias_api_trace_test.tcllist {WRONLY CREAT EXCL}} CALL {directed_alias_trace_open test} CALL {slr2::cut test}} -errorcode {POSIX EEXIST {file already exists}} -errorinfo {couldn't open "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R006_AT002_native_stage_review_20261017/buffered_alias_logging_review/R006_collector/open_existing/candidate_alias_api_trace_test.tcllist": file already exists
+    while executing
+"open [file join $::m002_report_dir candidate_alias_api_trace_${point}.tcllist] {WRONLY CREAT EXCL}"
+    (procedure "directed_alias_trace_open" line 5)
+    invoked from within
+"directed_alias_trace_open $point"
+    (procedure "slr2::cut" line 6)
+    invoked from within
+"slr2::cut $point"} -errorline 1} sidecar_channel {}

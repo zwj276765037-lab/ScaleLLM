@@ -1,0 +1,60 @@
+PIN 
+
+Description: 
+A pin is a point of logical connectivity on a cell. A pin allows the internals of a 
+cell to be abstracted away and simplified for easier use. Pins can be scalar or bus pins, 
+and can appear on hierarchical or primitive cells. 
+
+Related Objects: 
+A pin is attached to a CELL, and can be connected to other PINs by a NET. On the device, 
+depending on the placement of the CELL the PIN is associated with, a PIN is assigned to 
+a BEL_PIN, or a SITE_PIN on a SITE object. PINs can also be associated with CLOCKs and TIMING_PATHs in 
+the design. 
+
+Properties:
+The properties of a pin object are as follows, with example values:
+
+Property                        Type     Read-only  Visible  Value
+BEL                             string   false      true     
+BUS_DIRECTION                   enum     true       true     
+BUS_NAME                        string   true       true     
+BUS_START                       int      true       true     
+BUS_STOP                        int      true       true     
+BUS_WIDTH                       int      true       true     
+CLASS                           string   true       true     pin
+CLOCK_DEDICATED_ROUTE           enum     false      true     
+DCI_VALUE                       int      false      true     
+DIRECTION                       enum     true       true     IN
+ESSENTIAL_CLASSIFICATION_VALUE  int      false      true     
+FB_ACTIVE                       bool     false      true     
+HD.ASSIGNED_PPLOCS              string*  true       true     
+HD.CLK_SRC                      string   false      true     
+HD.LOC_FIXED                    bool     false      false    0
+HD.PARTPIN_LOCS                 string*  false      true     
+HD.PARTPIN_RANGE                string*  false      true     
+HIERARCHICALNAME                string   true       false    sinegen_demo.DONT_EAT0_reg.C
+HOLD_DETOUR                     int      false      true     
+HOLD_SLACK                      double   true       true     needs timing update***
+IS_CLEAR                        bool     true       true     0
+IS_CLOCK                        bool     true       true     1
+IS_CONNECTED                    bool     true       true     1
+IS_ENABLE                       bool     true       true     0
+IS_INVERTED                     bool     false      true     0
+IS_LEAF                         bool     true       true     1
+IS_PRESET                       bool     true       true     0
+IS_RESET                        bool     true       true     0
+IS_REUSED                       bool     true       true     0
+IS_SETRESET                     bool     true       true     0
+LOGIC_VALUE                     string   true       true     needs timing update***
+NAME                            string   true       true     DONT_EAT0_reg/C
+PARENT_CELL                     cell     true       true     DONT_EAT0_reg
+REF_NAME                        string   true       true     FDRE
+REF_PIN_NAME                    string   true       true     C
+SETUP_SLACK                     double   true       true     needs timing update***
+TARGET_SITE_PINS                string*  false      true     
+XLNX_LINE_COL                   int      false      false    
+XLNX_LINE_FILE                  long     false      false    
+
+The properties of pins can be listed with the following command:
+
+	report_property -all [lindex [get_pins] 0 ]

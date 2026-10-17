@@ -1,0 +1,31 @@
+# E006：执行状态
+
+execution_state: running
+verdict: unassessed
+
+用户已对窄范围确认明确回答“允许切换这次只读诊断”。A006正按实际PID/start控制原R001/AT001、保全已有数据，随后独立核对144输入、原DCP、外部输入、原归档、进程/锁与资源。R003/AT001轻量范围已登记，尚无新原生启动证据；不能把管理骨架当运行。
+
+原会话在用户答复前继续推进，23:09 UTC日志已显示native_owner_debug闭合；更多owner报告将按真实闭合收据复用。新轻量诊断将优先取得失败样本、真实热点归属和canonical连接，原生资源仅用exact hierarchy；大leaf报告不再重复。原wrapper已知new_peak_sources缺陷若实际触发，保留真实异常与独立终态补证，不能冒充原status成功。
+
+E007最终入口CPU准备和独立源码审核已完成，实际implementation未启动；依赖真实热点/端点适用性、诊断收尾及单EDA通道释放。仅本次只读切换获停止例外，后续正常进程仍无墙钟/静默强停，其余资源与算法/接口/时钟不变量保持。
+
+
+---
+Published: 2026-10-16T23:10:32.210662+00:00
+Publication: P1c905053a1ee4a5ea6dbe44755ab0b2f
+Execution state: running
+Research verdict: unassessed
+Applicability: E005当前physopt首批原生模块资源已核；热点/连接待完成，后继优化已获用户授权
+Evidence:
+- project/E006_m002_slr1_congestion_attribution/experiment_source/protocol.md
+- project/E006_m002_slr1_congestion_attribution/experiment_results/slr_same_stage_comparison.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/route_failure_sample_targets.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/attempts/AT001_physopt_attribution/started.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/first_attention_mlp_native_review.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/metadata_uram_roles.md
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/failure_nodes_cpu_tile_intersection.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/peripheral_slr1_primitive_review.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/ddr_non_slice_ff_site_types.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/closed_primitive_ownership_review.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/input_frontend_locality_candidate.md
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/lean_candidate_source_review_20261017.md

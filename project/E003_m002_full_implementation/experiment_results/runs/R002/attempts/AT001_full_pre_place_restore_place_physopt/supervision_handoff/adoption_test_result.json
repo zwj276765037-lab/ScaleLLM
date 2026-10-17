@@ -1,0 +1,53 @@
+{
+  "verdict": "PASS",
+  "scope": "isolated CPU-only owned dummy supervisor/child; no EDA signals",
+  "ready": {
+    "utc": "2026-10-15T12:31:24.036895+00:00",
+    "rss_bytes": 12083200,
+    "mem_available_bytes": 428284313600,
+    "disk_free_bytes": 521067560960,
+    "processes": {
+      "3686277": {
+        "ppid": 3686276,
+        "pgrp": 3686277,
+        "start_ticks": 918004358,
+        "rss_bytes": 12083200,
+        "cpu_ticks": 2,
+        "nice": 0
+      }
+    }
+  },
+  "proof": {
+    "before": {
+      "pid": 3686277,
+      "state": "S",
+      "ppid": 3686276,
+      "pgrp": 3686277,
+      "start_ticks": 918004358,
+      "cpu_ticks": 2,
+      "exit_wait_status": 0
+    },
+    "after": {
+      "pid": 3686277,
+      "state": "S",
+      "ppid": 3686276,
+      "pgrp": 3686277,
+      "start_ticks": 918004358,
+      "cpu_ticks": 2,
+      "exit_wait_status": 0
+    },
+    "old_supervisor_after": {
+      "pid": 3686276,
+      "state": "T",
+      "ppid": 3686270,
+      "pgrp": 3686276,
+      "start_ticks": 918004354,
+      "cpu_ticks": 2,
+      "exit_wait_status": 19
+    }
+  },
+  "child_tick_before": 1,
+  "child_tick_after": 7,
+  "reused_pid_rejected": true,
+  "terminal_wait_decode": true
+}

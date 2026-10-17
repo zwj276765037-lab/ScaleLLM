@@ -1,0 +1,58 @@
+{
+  "recorded_utc": "2026-10-17T02:38:08.930433+00:00",
+  "execution": "completed_C01_closed_directed_cut_independent_review",
+  "verdict": "cut_coverage_supported; candidate_selection_inconclusive_pending_C01_timing_C02_comparison",
+  "applicability": "Original R005 AT003 b330 on same E005 physopt design; R004 resources reused",
+  "review": "actual cut evidence accepted; no candidate selected; timing and physical benefit not accepted",
+  "native_query_and_stage_code": 0,
+  "actual_archived_adapter_replay_equal": true,
+  "canonical_nets": 14307,
+  "candidate_leaf_pins": 55605,
+  "boundary_nets": {
+    "INGRESS": 3087,
+    "EGRESS": 55
+  },
+  "boundary_pairs": 21479,
+  "known_data_select_ingress": {
+    "nets": 3072,
+    "pairs": 6144,
+    "current_known_cross_SLR_pairs": 0,
+    "hypothetical_all_P_SLR2_outside_fixed_cross_SLR_pairs": 6144
+  },
+  "all_egress": {
+    "nets": 55,
+    "pairs": 945,
+    "to_outside_row_ring_BRAM_pairs": 896
+  },
+  "nonclock_placed_boundary_pairs_hypothetical_cross": 7124,
+  "boundary_pairs_with_unplaced_driver": 8014,
+  "unique_timing_loads": {
+    "INGRESS": 20534,
+    "EGRESS": 945
+  },
+  "top_port_rows": 0,
+  "failure_sample_alias_matches": 0,
+  "failure_sample_count": 40,
+  "review_artifact": {
+    "path": "agent/A007/R005_AT003_native_stage_review_20261017/C01_cut_review.md",
+    "bytes": 4931,
+    "sha256": "a6eaae862bb920174972984253475db48ca76ceb06b93fe9ec4a3a9188840ac8"
+  },
+  "replay": {
+    "path": "agent/A007/R005_AT003_native_stage_review_20261017/C01_cut_replay_identity_evidence.json",
+    "bytes": 9153,
+    "sha256": "09f0b83846e9185757da197e8fda8612c861ea198e1b6b9bedf1193e55a5a8b4"
+  },
+  "cost_breakdown": {
+    "path": "agent/A007/R005_AT003_native_stage_review_20261017/C01_cut_cost_breakdown.json",
+    "bytes": 6952,
+    "sha256": "9f7dcbc585e9b3589039ff73561aefec9d1ce741e70623883a9835861634c6f1"
+  },
+  "limitations": [
+    "no full outside peer load fanout",
+    "logical pairs not SLL or actual routes",
+    "unplaced constant/clock/reset sources are unknown position, not zero cost",
+    "bounded timing and C02 comparison pending",
+    "no EDA/DCP/process/lock operations"
+  ]
+}

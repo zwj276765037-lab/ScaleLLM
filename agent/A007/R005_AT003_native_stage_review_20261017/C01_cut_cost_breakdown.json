@@ -1,0 +1,216 @@
+{
+  "actual_zero_receipts": {
+    "stage_receipts.tsv": {
+      "stage": "candidate_C01_directed_cut",
+      "native_tcl_code": "0",
+      "started_epoch": "1792202473",
+      "ended_epoch": "1792204418",
+      "failed_queries": "{}"
+    },
+    "query_receipts.tsv": {
+      "query": "candidate_C01_directed_cut",
+      "native_tcl_code": "0",
+      "started_epoch": "1792202473",
+      "ended_epoch": "1792204418",
+      "result": "{}"
+    }
+  },
+  "boundary_pair_counts": [
+    {
+      "category": "clock",
+      "direction": "INGRESS",
+      "pairs": 7770,
+      "nets": 3
+    },
+    {
+      "category": "constant",
+      "direction": "INGRESS",
+      "pairs": 429,
+      "nets": 5
+    },
+    {
+      "category": "known_data_or_select_control",
+      "direction": "INGRESS",
+      "pairs": 6144,
+      "nets": 3072
+    },
+    {
+      "category": "mixed_known_unknown",
+      "direction": "EGRESS",
+      "pairs": 941,
+      "nets": 53
+    },
+    {
+      "category": "mixed_known_unknown",
+      "direction": "INGRESS",
+      "pairs": 9,
+      "nets": 3
+    },
+    {
+      "category": "reset_set",
+      "direction": "INGRESS",
+      "pairs": 6156,
+      "nets": 1
+    },
+    {
+      "category": "unknown_or_unclassified",
+      "direction": "EGRESS",
+      "pairs": 4,
+      "nets": 2
+    },
+    {
+      "category": "unknown_or_unclassified",
+      "direction": "INGRESS",
+      "pairs": 26,
+      "nets": 3
+    }
+  ],
+  "top_port_endpoint_rows": 0,
+  "timing_rows": [
+    {
+      "direction": "EGRESS",
+      "kind": "LEAF_PIN",
+      "rows": 945
+    },
+    {
+      "direction": "INGRESS",
+      "kind": "LEAF_PIN",
+      "rows": 20534
+    }
+  ],
+  "unique_timing_endpoints": {
+    "INGRESS": 20534,
+    "EGRESS": 945
+  },
+  "unknown_position_pairs": [
+    {
+      "category": "clock",
+      "driver_SLR": "UNPLACED",
+      "load_SLR": "SLR1",
+      "pairs": 1429
+    },
+    {
+      "category": "constant",
+      "driver_SLR": "UNPLACED",
+      "load_SLR": "SLR1",
+      "pairs": 429
+    },
+    {
+      "category": "reset_set",
+      "driver_SLR": "UNPLACED",
+      "load_SLR": "SLR1",
+      "pairs": 6156
+    }
+  ],
+  "outside_families": [
+    {
+      "category": "clock",
+      "direction": "INGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/clk_core/inst/clkout1_buf",
+      "pairs": 6335
+    },
+    {
+      "category": "reset_set",
+      "direction": "INGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[].u_branch_leaf/GND",
+      "pairs": 6156
+    },
+    {
+      "category": "known_data_or_select_control",
+      "direction": "INGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack/g_output_payload_row[].out_payload_r_reg[]",
+      "pairs": 6144
+    },
+    {
+      "category": "clock",
+      "direction": "INGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[].u_branch_leaf/u_silu/GND",
+      "pairs": 1429
+    },
+    {
+      "category": "mixed_known_unknown",
+      "direction": "EGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_ring_column[].u_row_ring_bram/xpm_memory_base_inst/gen_wr_a.gen_word_wide.mem_reg_bram_0",
+      "pairs": 896
+    },
+    {
+      "category": "constant",
+      "direction": "INGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[].u_branch_leaf/u_silu/VCC",
+      "pairs": 390
+    },
+    {
+      "category": "constant",
+      "direction": "INGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[].u_branch_leaf/u_silu/GND_1",
+      "pairs": 23
+    },
+    {
+      "category": "unknown_or_unclassified",
+      "direction": "INGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[].u_branch_leaf_i_1",
+      "pairs": 15
+    },
+    {
+      "category": "constant",
+      "direction": "INGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[].u_branch_leaf/u_silu/VCC_1",
+      "pairs": 12
+    },
+    {
+      "category": "mixed_known_unknown",
+      "direction": "INGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack/out_matrix_r_reg[]",
+      "pairs": 6
+    },
+    {
+      "category": "unknown_or_unclassified",
+      "direction": "INGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[].u_branch_leaf_i_2",
+      "pairs": 6
+    },
+    {
+      "category": "clock",
+      "direction": "INGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core_gate/inst/aresetn_BUFG_inst",
+      "pairs": 6
+    },
+    {
+      "category": "unknown_or_unclassified",
+      "direction": "INGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core_gate/inst/aresetn__0",
+      "pairs": 5
+    },
+    {
+      "category": "mixed_known_unknown",
+      "direction": "EGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[].u_branch_leaf_i_15",
+      "pairs": 3
+    },
+    {
+      "category": "mixed_known_unknown",
+      "direction": "EGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[].u_branch_leaf_i_14",
+      "pairs": 3
+    },
+    {
+      "category": "mixed_known_unknown",
+      "direction": "EGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[].u_branch_leaf_i_16",
+      "pairs": 3
+    },
+    {
+      "category": "mixed_known_unknown",
+      "direction": "EGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[].u_branch_leaf_i_13",
+      "pairs": 3
+    },
+    {
+      "category": "mixed_known_unknown",
+      "direction": "EGRESS",
+      "outside_cell_family": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[].u_branch_leaf_i_28",
+      "pairs": 3
+    }
+  ],
+  "limitations": "Independent aggregation of closed retained directed endpoints; category function reused unchanged; no full outside peer fanout or native timing signoff"
+}

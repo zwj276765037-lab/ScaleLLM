@@ -1,0 +1,73 @@
+{
+  "execution": "pure_finite_graph_model",
+  "partitions": 15,
+  "complete_incidence_alias_comparisons": 9472,
+  "direction_identity_comparisons": 36,
+  "all_complete_projection_equal": true,
+  "counterexamples": {
+    "partial_candidate_alias_scope": {
+      "full_group": [
+        "top",
+        "child"
+      ],
+      "direct_port_segment": "top",
+      "partial_query": [
+        "child"
+      ],
+      "direct_has_port": false,
+      "closure_join_has_port": true
+    },
+    "one_representative_without_complete_closure": {
+      "full_group": [
+        "a",
+        "z"
+      ],
+      "canonical": "a",
+      "port_attached_segment": "z",
+      "full_join": true,
+      "representative_only_join": false
+    },
+    "bus_name_collapse": {
+      "real_ports": [
+        "data[0]",
+        "data[1]"
+      ],
+      "real_attached": [
+        "net0",
+        "net1"
+      ],
+      "collapsed": "data",
+      "preserved_endpoint_identities": false
+    },
+    "missing_global_port": {
+      "native_ports": [
+        "a",
+        "b"
+      ],
+      "global_inventory": [
+        "a"
+      ],
+      "candidate_net_port": "b",
+      "projection_wrongly_empty": true
+    },
+    "buffer_or_clock_relation_substituted": {
+      "port_net": "external_clk",
+      "candidate_net": "buffered_clk",
+      "same_clock_object": true,
+      "same_electrical_alias_group": false,
+      "clock_source_join_wrongly_adds_port": true
+    },
+    "unknown_direction_filter": {
+      "native_direction": "MIXED",
+      "expected_role": "UNKNOWN",
+      "filtering_to_known_directions_loses_boundary": true
+    },
+    "cache_crosses_design_mutation": {
+      "before_port_net": "old",
+      "after_port_net": "new",
+      "reused_old_index_omits_current_boundary": true
+    }
+  },
+  "statement": "For a complete port universe P, reciprocal incidence R, equivalence-class alias closure C, and complete candidate group S=C(s), {p: exists n in S, R(p,n)} equals {p: union(C(n) for R(p,n)) intersects S}.",
+  "limitations": "Mathematical finite model only; native Vivado API universe/reciprocity/bus/closure qualification and performance are not tested."
+}

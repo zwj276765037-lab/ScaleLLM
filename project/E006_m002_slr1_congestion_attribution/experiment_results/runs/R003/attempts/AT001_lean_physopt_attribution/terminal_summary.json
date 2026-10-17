@@ -1,0 +1,84 @@
+{
+  "recorded_utc": "2026-10-16T23:32:51.783731+00:00",
+  "engineering_execution_verified": false,
+  "checks": {
+    "native_zero": false,
+    "supervisor_zero": false,
+    "natural_terminal": true,
+    "no_stop": true,
+    "no_cleanup": true,
+    "no_survivors": true,
+    "no_original_live": true,
+    "lane_released": true,
+    "four_stages_complete": true,
+    "all_stage_codes_zero": false,
+    "all_query_codes_zero": false,
+    "production_144_unchanged": true,
+    "source_physopt_DCP_unchanged": true,
+    "archived_5_sources_unchanged": true,
+    "external_14_targets_sources_unchanged": true,
+    "reused_17_closed_inputs_unchanged": true,
+    "replacement_authorization_unchanged": true,
+    "contract_unchanged": true,
+    "no_post_integrity_error": true,
+    "wrapper_after_freeze_agrees": true,
+    "no_physical_commands": true,
+    "no_checkpoint_write": true,
+    "resource_extrema_agree": true
+  },
+  "started_utc": "2026-10-16T23:17:11.973924+00:00",
+  "ended_utc": "2026-10-16T23:31:53.060210+00:00",
+  "native_exit_code": 1,
+  "supervisor_exit_code": 1,
+  "stop_reason": null,
+  "attempt_seconds": 881.086286,
+  "stages": [
+    {
+      "stage": "failure_samples",
+      "native_tcl_code": "0",
+      "started_epoch": "1792193210",
+      "ended_epoch": "1792193307",
+      "failed_queries": "{}"
+    },
+    {
+      "stage": "hotspot_ownership",
+      "native_tcl_code": "0",
+      "started_epoch": "1792193307",
+      "ended_epoch": "1792193323",
+      "failed_queries": "{}"
+    },
+    {
+      "stage": "hotspot_connections",
+      "native_tcl_code": "1",
+      "started_epoch": "1792193323",
+      "ended_epoch": "1792193329",
+      "failed_queries": "hotspot_union_connections"
+    },
+    {
+      "stage": "exact_hierarchy_resources",
+      "native_tcl_code": "0",
+      "started_epoch": "1792193329",
+      "ended_epoch": "1792193468",
+      "failed_queries": "{}"
+    }
+  ],
+  "production_files_checked": 144,
+  "production_mismatches": [],
+  "resources": {
+    "samples": 174,
+    "first_sample": "2026-10-16T23:17:12.034362+00:00",
+    "last_sample": "2026-10-16T23:31:50.131978+00:00",
+    "sampled_peak_tree_rss_bytes": 22124105728,
+    "minimum_mem_available_bytes": 446419869696,
+    "minimum_disk_free_bytes": 420977381376,
+    "maximum_sample_gap_seconds": 5.173292
+  },
+  "endpoint_scope": "Primitive leaf DIRECTION IN/OUT; excludes INOUT and top ports; NO_PRIMITIVE_DRIVER is not proof of no real driver",
+  "fixed_window_congestion": "UNAVAILABLE; occupancy is not congestion",
+  "formal_signoff": false,
+  "full_facts": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/attempts/AT001_lean_physopt_attribution/terminal_facts.json",
+    "bytes": 24627,
+    "sha256": "d1584942041cedba77a2863f7c65b605aa270de7f59e3a4cab92cd637e3a9741"
+  }
+}

@@ -1,0 +1,650 @@
+{
+  "schema": "A007_E005_OPT_recovery_startup_review_v1",
+  "observed_utc": "2026-10-16T04:22:25.875793+00:00",
+  "execution": "actual_recovered_attempt_running",
+  "verdict": "startup_and_source_bindings_supported; new_graph_and_physical_results_pending",
+  "applicability": "R004/AT002 exact installed entry and new OPT parent",
+  "review": "read-only inspection; no EDA/test/process control",
+  "started": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT002_native_OPT_POST_recovery_place_physopt/started.json",
+    "bytes": 3824,
+    "sha256": "ddde21f75e685b2adfe91bd3cd68ea5455bdcc46fd26f11955edbf3c64c555ac"
+  },
+  "command": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/command.json",
+    "bytes": 6744,
+    "sha256": "34acee39ecbea2e63a8ca1581d112102bf26435ea62b09538d151a1bfadd0e7c"
+  },
+  "actual_eda_started": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/actual_eda_started.json",
+    "bytes": 564,
+    "sha256": "8150adfeb1ab931bc717e6b2a8a803b3379365e7af8b5c123c94c308a6f847ee"
+  },
+  "process_observations": [
+    {
+      "pid": 345108,
+      "ppid": 1,
+      "pgrp": 345108,
+      "state": "S",
+      "start_ticks": 923696505,
+      "nice": 5,
+      "cpu_ticks": 320,
+      "affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cmd": "/usr/bin/python3 /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m002_optimized.py place --attempt /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT002_native_OPT_POST_recovery_place_physopt --report /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt --project /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh --synth-report /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R003_AT001_fresh_synth --synth-attempt /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth --opt-report /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT001_fresh_place_physopt "
+    },
+    {
+      "pid": 345119,
+      "ppid": 345108,
+      "pgrp": 345119,
+      "state": "S",
+      "start_ticks": 923696626,
+      "nice": 5,
+      "cpu_ticks": 462,
+      "affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cmd": "/usr/bin/python3 /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m002_physical_stage.py place "
+    },
+    {
+      "pid": 345181,
+      "ppid": 345119,
+      "pgrp": 345119,
+      "state": "S",
+      "start_ticks": 923697089,
+      "nice": 5,
+      "cpu_ticks": 0,
+      "affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cmd": "/bin/bash /home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/vivado -mode batch -notrace -source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_resume_physical.tcl -log /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/vivado.log -journal /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/vivado.jou "
+    },
+    {
+      "pid": 345200,
+      "ppid": 345181,
+      "pgrp": 345119,
+      "state": "S",
+      "start_ticks": 923697093,
+      "nice": 5,
+      "cpu_ticks": 2,
+      "affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cmd": "/bin/bash /home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/loader -exec vivado -mode batch -notrace -source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_resume_physical.tcl -log /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/vivado.log -journal /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/vivado.jou "
+    },
+    {
+      "pid": 345274,
+      "ppid": 345200,
+      "pgrp": 345119,
+      "state": "S",
+      "start_ticks": 923697105,
+      "nice": 5,
+      "cpu_ticks": 14179,
+      "affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "cmd": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/unwrapped/lnx64.o/vivado -mode batch -notrace -source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_resume_physical.tcl -log /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/vivado.log -journal /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/vivado.jou "
+    }
+  ],
+  "eda_lock": {
+    "inode": 169247080,
+    "records": [
+      "20: FLOCK  ADVISORY  WRITE 345108 103:02:169247080 0 EOF"
+    ]
+  },
+  "source_binding": {
+    "recovery_parent": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/recovery_parent.json",
+      "bytes": 191396,
+      "sha256": "d00bbf6cef1b1f64c8047225df5c4b1b4b60d20b447e8c87eb077ac23b924a30"
+    },
+    "original_OPT_proof": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/native_project_opt_execution_proof.json",
+      "bytes": 97627,
+      "sha256": "458a75098c185500684514bd68c8341f1bdc30ebe55e3a0979ec72f12fb240d1"
+    },
+    "local_OPT_proof": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/inherited_opt_execution_proof.json",
+      "bytes": 97627,
+      "sha256": "458a75098c185500684514bd68c8341f1bdc30ebe55e3a0979ec72f12fb240d1"
+    },
+    "stage_manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/stage_inputs.sha256",
+      "bytes": 91948,
+      "sha256": "956522257534c830739c8b9a1a657c06754f0f338c26bfe2dbc0a5e442de940d"
+    },
+    "archive_manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/archived_sources.sha256",
+      "bytes": 5454,
+      "sha256": "2d72bc4f81e7d8ffbf789a465f7e3c8093280ceb30c6093ec3b63df483408f4b"
+    },
+    "stage_rows": 373,
+    "archive_rows": 22,
+    "archive_all_hashes_verified": true,
+    "proof_direct_recursive_sources_and_original_archive_rows": 194,
+    "all_proof_sources_bound_in_stage": true,
+    "local_proof_copy_bound": true,
+    "independent_small_text_hash_count": 298,
+    "unread_large_or_binary": [
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/resources.jsonl",
+        "bytes": 1503232,
+        "sha256_from_stage_manifest": "29ce8043a28a9c30a309b041492358240ad012f2ccb97e16303a98ed9e1d5d61",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/supervision_handover_20261016T021717Z/resources.jsonl",
+        "bytes": 121756,
+        "sha256_from_stage_manifest": "c34e48ce6dbf7db893df7620c9caa95d834c599b2ccb4b6f9927f6fa0bcfb1ed",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_debug_snapshot/dbg_hub_CV.0/out/dcp/dbg_hub.incr",
+        "bytes": 142,
+        "sha256_from_stage_manifest": "1954e82a2a5c9f5c92e1cb199bdf059df5d44c26137ab48fefbbb1d90c7a0dc3",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_debug_snapshot/dbg_hub_CV.0/out/dcp/dbg_hub.rda",
+        "bytes": 18332,
+        "sha256_from_stage_manifest": "8a74c5ca90979a0a159bfaeb54fffcd02c43593da068b56007f251eda06b3bce",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_debug_snapshot/dbg_hub_CV.0/out/dcp/dbg_hub.rda.zst",
+        "bytes": 2939,
+        "sha256_from_stage_manifest": "8929040ad7fa93b27cfbf55e47ea3d2356ac5b9b96090c3e056a90754b6d0295",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_debug_snapshot/dbg_hub_CV.0/out/dcp/dbg_hub.resources",
+        "bytes": 313,
+        "sha256_from_stage_manifest": "9e096d4408634c24197dbb04ab865602d1078d5203b3dc513173ac4eade96d41",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_debug_snapshot/dbg_hub_CV.0/out/dcp/dbg_hub.shape",
+        "bytes": 90557,
+        "sha256_from_stage_manifest": "966571911a318c2e66fff28bad47c08c470f342d133476be6c0d8a7a69bd74b6",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_debug_snapshot/dbg_hub_CV.0/out/dcp/dbg_hub.wdf",
+        "bytes": 11923,
+        "sha256_from_stage_manifest": "641abee376659bcb8962192eeb36ef1abb48010b2667653fe80bf56fbca1505d",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_debug_snapshot/dbg_hub_CV.0/out/dcp/dbg_hub.xn",
+        "bytes": 155480,
+        "sha256_from_stage_manifest": "03b51a1c6f3dff2d6dc5716a198203c6cdad43c9f61b0be745a92e06785ffd8e",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_debug_snapshot/dbg_hub_CV.0/out/dcp/dbg_hub_0.edf",
+        "bytes": 124016,
+        "sha256_from_stage_manifest": "d32ebb282c84aff9c461be7a95edff77b645f4d8cfee63c02bc94d828768e40d",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_debug_snapshot/dbg_hub_CV.0/out/result.dcp",
+        "bytes": 305407,
+        "sha256_from_stage_manifest": "4a1854c2c45b9748c5ad98592084f77a79daaafc8393b663046728e5bc795392",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/messagePromote.pb",
+        "bytes": 273264,
+        "sha256_from_stage_manifest": "add281aac8c21305e40f4cbdbd7c2e2b00e4243a0324e621e7837191ee37fbe1",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_0_0_phy.edf.zst",
+        "bytes": 337940,
+        "sha256_from_stage_manifest": "67093a91ab4a3a3ae9134d9f645231e288364f4144f54f29c19095a88caf23ec",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_0_0_phy.incr",
+        "bytes": 142,
+        "sha256_from_stage_manifest": "1954e82a2a5c9f5c92e1cb199bdf059df5d44c26137ab48fefbbb1d90c7a0dc3",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_0_0_phy.rda",
+        "bytes": 14737,
+        "sha256_from_stage_manifest": "c2d3154141dc60287f201b119ac03a3d0f863e43a60369df4f09e77107a78c41",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_0_0_phy.rda.zst",
+        "bytes": 1905,
+        "sha256_from_stage_manifest": "6620b6ad1042e7d30d9ed69b6dfc06200c49674b1b49f50d25c79d8fb04aaba8",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_0_0_phy.shape",
+        "bytes": 94836,
+        "sha256_from_stage_manifest": "9e2af2b52ac6d918c945a2370efb0e4c5411169742c99b6916bcb503a6cf7fd8",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_0_0_phy.sta",
+        "bytes": 51589,
+        "sha256_from_stage_manifest": "3264e950d3bb87dab6af8bb824111d64406b33c524cbcbf23c5cfe641e3f67eb",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_0_0_phy.sta.zst",
+        "bytes": 9739,
+        "sha256_from_stage_manifest": "3d4799c4ad2e53f63d425f00d796da4333535c08718f1fcf300b195022ffcf0e",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_0_0_phy.synth",
+        "bytes": 1141129,
+        "sha256_from_stage_manifest": "060c773c9c8a1400b2fe2d3d7220bdb60395d0441c059d73059aea56a758d2a6",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_0_0_phy.wdf",
+        "bytes": 13398,
+        "sha256_from_stage_manifest": "7383834d2d5654ae9dab9ad8321e03716fa9773771df70ae5b77c7d7b7997358",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_0_0_phy.xbdc",
+        "bytes": 68345,
+        "sha256_from_stage_manifest": "2923ebd99cc2394edc6bd018d8136fe019df1622e461cfccb25cb16ba4dcf603",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_0_0_phy.xbdc.zst",
+        "bytes": 10538,
+        "sha256_from_stage_manifest": "ba7118f5ae4093ae4361409284bdff94c6dbdcd270e9245126946d7c5546fc26",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_0_0_phy.xn",
+        "bytes": 782976,
+        "sha256_from_stage_manifest": "299f10b9f733ae286c1f9bf98ddff990ed36355aa1bfefc12b2b24c53731f851",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_0_0_phy_2019253.edf",
+        "bytes": 21600599,
+        "sha256_from_stage_manifest": "839123c746c270318206ea736d9e547be52ca8d6efc9e81806d4d2dab62d1e38",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_0_0_phy.0/result.dcp",
+        "bytes": 2318792,
+        "sha256_from_stage_manifest": "fc9a413b10f6e685a2cd3a3ced8726e8a242e20cc7f377104b7de70bdff7102c",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_1_0_phy.edf.zst",
+        "bytes": 355794,
+        "sha256_from_stage_manifest": "e5dc0483ebe2b5e720f2b43ef948b13a06047426dbb7185d5db599811c2483f6",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_1_0_phy.incr",
+        "bytes": 142,
+        "sha256_from_stage_manifest": "1954e82a2a5c9f5c92e1cb199bdf059df5d44c26137ab48fefbbb1d90c7a0dc3",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_1_0_phy.rda",
+        "bytes": 10390,
+        "sha256_from_stage_manifest": "13e9b3fc799499215e3b440577f059685fdb435a9de7a3af756aacd147f2fcf0",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_1_0_phy.rda.zst",
+        "bytes": 1700,
+        "sha256_from_stage_manifest": "da196dbca02d0d9f0fc8f9642948c4e348899465794ba3764a3d3b5a5cd9860a",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_1_0_phy.shape",
+        "bytes": 94169,
+        "sha256_from_stage_manifest": "3720fc713f2d30a51c5a11097f315429e0326dc90d6feeb5795f00fddbf26262",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_1_0_phy.sta",
+        "bytes": 51154,
+        "sha256_from_stage_manifest": "de354e14dda4247832fdbba8bc199fadd08aa47942cc87eabc4a42eec01f1793",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_1_0_phy.sta.zst",
+        "bytes": 9638,
+        "sha256_from_stage_manifest": "5b1147e1b620eb7e9c34d3e97cf851a743eb61c26cd5b1830ea64c8f77d371e3",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_1_0_phy.synth",
+        "bytes": 1100063,
+        "sha256_from_stage_manifest": "04a1a46d05285a4e4e71f34de713edd3153bd9322b6f1d02d72429f6573e3a08",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_1_0_phy.wdf",
+        "bytes": 13136,
+        "sha256_from_stage_manifest": "907d4161529af529430049dcbd9b1f6fc385c196f06910e371752b68bfafff51",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_1_0_phy.xbdc",
+        "bytes": 69673,
+        "sha256_from_stage_manifest": "90c614bd54ef7780744d4d6c570103810c203db76ed3f3e261c5881dcf976fc4",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_1_0_phy.xbdc.zst",
+        "bytes": 10587,
+        "sha256_from_stage_manifest": "66980af9a4a61138b9889880ce40938729ed940c96760be624319a9c55933e19",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_1_0_phy.xn",
+        "bytes": 791184,
+        "sha256_from_stage_manifest": "3b911fc350a121f50cdc9a0e69ace38b3e91da27cf9f11828ba504f74ac2746d",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/dcp/scalellm_vcu118_f05_bd_ddr4_1_0_phy_2057059.edf",
+        "bytes": 21584539,
+        "sha256_from_stage_manifest": "a400eb7ae8c884cdf2c4b6f81386c12f83a8ff150bf80b303f9ba9c1b2469888",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/out/scalellm_vcu118_f05_bd_ddr4_1_0_phy.0/result.dcp",
+        "bytes": 2303362,
+        "sha256_from_stage_manifest": "344efdbbeaf832bb228a97267b39835abb618c7390bff7f1cba505c4a1f91237",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_0_0_phy.dcp",
+        "bytes": 2318792,
+        "sha256_from_stage_manifest": "fc9a413b10f6e685a2cd3a3ced8726e8a242e20cc7f377104b7de70bdff7102c",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_0_0_phy_1.cache/wt/project.wpc",
+        "bytes": 62,
+        "sha256_from_stage_manifest": "e1bd4932faa3b707d55b82fc531e93592f7959f5d97a41973e4457952530179d",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_0_0_phy_1.cache/wt/synthesis.wdf",
+        "bytes": 7413,
+        "sha256_from_stage_manifest": "b391bbfa60f19fdcb19651e2b5016717c92e97afbc50b700f623df2acb3dc049",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_0_0_phy_1.cache/wt/synthesis_details.wdf",
+        "bytes": 97,
+        "sha256_from_stage_manifest": "c4ff454719c26184e19f790ac079af74fd805d9258f840ccda7b1a362f705859",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_0_0_phy_1.gen/sources_1/ip/scalellm_vcu118_f05_bd_ddr4_0_0_phy/scalellm_vcu118_f05_bd_ddr4_0_0_phy.veo",
+        "bytes": 13308,
+        "sha256_from_stage_manifest": "9e3d17db26662535eab0839abf371102a6da09f2072aa315a25487efdf2f7ce6",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_0_0_phy_1.gen/sources_1/ip/scalellm_vcu118_f05_bd_ddr4_0_0_phy/scalellm_vcu118_f05_bd_ddr4_0_0_phy.vho",
+        "bytes": 12697,
+        "sha256_from_stage_manifest": "b2b0e4bd8e7df05a96503d2e4fb145edceba58bcc23d916ce04dfa8879dd564c",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_0_0_phy_1.gen/sources_1/ip/scalellm_vcu118_f05_bd_ddr4_0_0_phy/scalellm_vcu118_f05_bd_ddr4_0_0_phy_sv.sveo",
+        "bytes": 11277,
+        "sha256_from_stage_manifest": "7d67e6e0ef22567d19d87f01b2c6d16a12c0a1a3250ee6f69fbac4dec4922413",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_0_0_phy_1.hw/scalellm_vcu118_f05_bd_ddr4_0_0_phy_1.lpr",
+        "bytes": 418,
+        "sha256_from_stage_manifest": "1887037597fcd32e28a0251a2d918e03fddd494d074294dbeea6955d86267b44",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_0_0_phy_1.xpr",
+        "bytes": 12735,
+        "sha256_from_stage_manifest": "f518239a225469a83ecd15318339a1f6f57bd646be815e95f02f567758e1e664",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_1_0_phy.dcp",
+        "bytes": 2303362,
+        "sha256_from_stage_manifest": "344efdbbeaf832bb228a97267b39835abb618c7390bff7f1cba505c4a1f91237",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_1_0_phy_0.cache/wt/project.wpc",
+        "bytes": 62,
+        "sha256_from_stage_manifest": "e1bd4932faa3b707d55b82fc531e93592f7959f5d97a41973e4457952530179d",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_1_0_phy_0.cache/wt/synthesis.wdf",
+        "bytes": 7417,
+        "sha256_from_stage_manifest": "2e5cd080ec43795c5c13eb13280b5baa9b5637cb32f8cff91c2272c92413c466",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_1_0_phy_0.cache/wt/synthesis_details.wdf",
+        "bytes": 97,
+        "sha256_from_stage_manifest": "c4ff454719c26184e19f790ac079af74fd805d9258f840ccda7b1a362f705859",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_1_0_phy_0.gen/sources_1/ip/scalellm_vcu118_f05_bd_ddr4_1_0_phy/scalellm_vcu118_f05_bd_ddr4_1_0_phy.veo",
+        "bytes": 13308,
+        "sha256_from_stage_manifest": "ea54bb34d6f3141a7907cdf71a612d9a294dcd3cd7de7e78c032bc524aa5f3c8",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_1_0_phy_0.gen/sources_1/ip/scalellm_vcu118_f05_bd_ddr4_1_0_phy/scalellm_vcu118_f05_bd_ddr4_1_0_phy.vho",
+        "bytes": 12697,
+        "sha256_from_stage_manifest": "cdb199fada7bcf03d963fec4698d5d908ef2cdd07926ed9a0dafb57622cdc50b",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_1_0_phy_0.gen/sources_1/ip/scalellm_vcu118_f05_bd_ddr4_1_0_phy/scalellm_vcu118_f05_bd_ddr4_1_0_phy_sv.sveo",
+        "bytes": 11277,
+        "sha256_from_stage_manifest": "b9e2e833719b053ec33d80e170daaa5e40c83ec07245d5267d1f6788215716b5",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_1_0_phy_0.hw/scalellm_vcu118_f05_bd_ddr4_1_0_phy_0.lpr",
+        "bytes": 418,
+        "sha256_from_stage_manifest": "1887037597fcd32e28a0251a2d918e03fddd494d074294dbeea6955d86267b44",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/generated_phy_snapshot/scalellm_vcu118_f05_bd_ddr4_1_0_phy_0.xpr",
+        "bytes": 12735,
+        "sha256_from_stage_manifest": "267efff74161551a6b4911dc685defb35f9d4784d188c934ec5302ee7cf67890",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/manifests/attention_board_cohort16_sources.list",
+        "bytes": 1901,
+        "sha256_from_stage_manifest": "c061c432c85608d8f386b7c92ed491b77a68c7ab8fac1684aceca288db904ca7",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/manifests/attention_mlp_board_core_v5_sources.list",
+        "bytes": 264,
+        "sha256_from_stage_manifest": "4e524c9e010e346d4149c9bfbd437b53c8fcc7452541e378eb2d78e583f66f32",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/manifests/attention_mlp_production_v5_cohort16_sources.list",
+        "bytes": 207,
+        "sha256_from_stage_manifest": "66a0fe03f7dc30c295bfc7b41c469cdd1a79b381c80950dc7007b662e7142df6",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/manifests/attention_mlp_production_v5_sources.list",
+        "bytes": 751,
+        "sha256_from_stage_manifest": "73a16ff71e81ad681a9ef4b59b12874d1301a42388bd3dad7b2997753967c030",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/manifests/attention_mlp_resource_top_v5_sources.list",
+        "bytes": 1649,
+        "sha256_from_stage_manifest": "b335c5959d8eb5cdd4adf70fb5d22c7fbe72e441420a7e783c5c51d63a107910",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/manifests/m002_E005_attention_slot_ce.list",
+        "bytes": 201,
+        "sha256_from_stage_manifest": "b9ef841382ebc8e92aaaf31e57a1e74545c8cb9548ab8b94364f7bea9d157701",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/manifests/m002_E005_mlp_output_ce.list",
+        "bytes": 268,
+        "sha256_from_stage_manifest": "f457a44a0f5f6bf301a8cb4e83826f9cd61df3d9b27111e5d6d7049e03ba0918",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/manifests/m002_dedicated_data_tb_sources.list",
+        "bytes": 141,
+        "sha256_from_stage_manifest": "7bd90faffd52a9811c66a93029bd94da72c37afbd17903c010fa5a9dc68e8661",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/manifests/m002_dedicated_frontends_tb_sources.list",
+        "bytes": 535,
+        "sha256_from_stage_manifest": "1c7e6169c5719a4c31dfe96f89c91190e0a7b07ffe6789defd4cebc02fa8c1a2",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/manifests/m002_dedicated_weight_tb_sources.list",
+        "bytes": 250,
+        "sha256_from_stage_manifest": "358e732529880a4efe8e890c3b93e62f60d2df673c623457efae0bb9d6f8be8e",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/manifests/m002_memory_layout_csr_tb_sources.list",
+        "bytes": 86,
+        "sha256_from_stage_manifest": "7839b0818a83916e14e624701a5231bf9b1bc8773b7ae5fe0c588445b2bc4bdd",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT005_opt_recovery_debug_materialized_place_physopt/cdc_opt.rpt",
+        "bytes": 3941307,
+        "sha256_from_stage_manifest": "7451c566ed781bcc67e2bbc5484378980045df170acb9b2ad884a7d20b94ff67",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R003_AT001_fresh_synth/cdc_post_synth.rpt",
+        "bytes": 4247999,
+        "sha256_from_stage_manifest": "0e25465a38f7c31b4d2c20a3a74a0b5081de501b95d83888c8a19d95b59ae8b7",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT001_fresh_place_physopt/cdc_opt.rpt",
+        "bytes": 3941229,
+        "sha256_from_stage_manifest": "60fd2f4b92385eb46cbe65bf8a9285c5e6582367c46799466e0eb359922adb0b",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT001_fresh_place_physopt/drc_opt.rpt",
+        "bytes": 10320367,
+        "sha256_from_stage_manifest": "38e6b71b3d4aadb4a182239d5d2d62b914274620bbcc4842a1ae2483bed31054",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT001_fresh_place_physopt/opt.dcp",
+        "bytes": 218327530,
+        "sha256_from_stage_manifest": "af634c358eecf869c83cb45c0755d0164b39d5a9f5aed316bcaa52cd3c02919e",
+        "reason": "binary or >2MiB; reviewer does not read"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT001_fresh_place_physopt/timing_opt.rpt",
+        "bytes": 2368342,
+        "sha256_from_stage_manifest": "e0c1672d76efb5e963c42dd1530b558c8b2c557730cb66626272dbf4c716a0c2",
+        "reason": "binary or >2MiB; reviewer does not read"
+      }
+    ]
+  },
+  "actual_CDC_probe": {
+    "current_source_report": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT001_fresh_place_physopt/cdc_opt.rpt",
+      "bytes": 3941229,
+      "sha256": "60fd2f4b92385eb46cbe65bf8a9285c5e6582367c46799466e0eb359922adb0b"
+    },
+    "unique_sources": 5,
+    "unique_targets": 8,
+    "exact_current_raw_source_target_sets_match": true,
+    "probe": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/probe_targets.tcl",
+      "bytes": 2815,
+      "sha256": "68a9309748c7af20950b2ca22ef9bc36d15ee013937aa21b9e0120ffa7f5ff4a"
+    }
+  },
+  "native_log_prefix": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT002_native_OPT_POST_recovery_place_physopt/vivado.log",
+    "bytes": 8046,
+    "sha256": "41e8f0889877775ef7763918caba061bd17e74a83a23fddbf7f58b71d41fb9f9",
+    "open_OPT_command_present": true,
+    "new_opt_command_absent": true,
+    "scope": "growing prefix; loading began, completion/debug not inferred"
+  },
+  "original_state_preserved": {
+    "original_impl_run": "FAIL",
+    "original_POST": "incomplete",
+    "parent_coverage": "NOT_QUALIFIED_INCOMPLETE_NATIVE_OPT_POST",
+    "formal_reset_cdc_safety": "OPEN"
+  },
+  "limitations": [
+    "Expected actual explicit debug, current graph qualification, pre_place and physical commands still pending.",
+    "Large report and binary stage members bound by manifest/proof and sizes; their hashes supplied by engineering, not recomputed by A007."
+  ]
+}

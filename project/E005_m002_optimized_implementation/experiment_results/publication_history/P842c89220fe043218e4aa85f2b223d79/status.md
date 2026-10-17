@@ -1,0 +1,37 @@
+# E005：执行状态
+
+execution_state: running
+verdict: unassessed
+
+原生新综合和OPT成功。R004/AT001因fresh project缺少显式pre-place debug准入，在04:15:48 UTC自然返回1，原失败和新OPT检查点保留，无强停/残留。
+
+窄恢复入口已安装；R002/AT009实际198项CPU通过、native/监督0、144输入未变。R004/AT002_native_OPT_POST_recovery_place_physopt于2026-10-16 04:20:06 UTC实际启动，独立监督器345108、leader345119，从本轮新OPT接续未闭合POST/debug及布局前检查，随后显式SSI_SpreadSLLs布局、Default独立physopt和完整route。不重综合/INIT/OPT，原失败不改写。
+
+A006唯一重工具调度，A007集中审核实际安装/恢复来源及新图，主控整合。保持CPU0–7/nice5及原内存/磁盘保护，正常进程无墙钟/无输出强停。新布局布通/时序/CDC安全尚未通过，原综合监督UNKNOWN与观测缺口保持；无bitstream/板卡/GPU/PPL/ACC。
+
+
+---
+Published: 2026-10-16T04:21:37.640208+00:00
+Publication: P031ce56f5441466188c93e69517cbcbd
+Execution state: running
+Research verdict: unassessed
+Applicability: 安装恢复入口198CPU通过，R004/AT002从本轮OPT实际运行；原POST失败保留，物理/安全未验收
+Evidence:
+- project/E005_m002_optimized_implementation/experiment_results/runs/R001/rtl_functional_final_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R001/mlp_functional_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R002/entry_preparation_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT006_fresh_create/status.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/started.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/supervision_handover_20261016T021717Z/started.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/supervision_handover_20261016T021717Z/status.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R005/synthesis_structure_preterminal_review_evidence.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R005/synthesis_utilization_preterminal_review_evidence.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/synth_recovery_completion_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/detached_launch_handoff.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R005/synthesis_stage_review_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R005/physical_startup_review_evidence.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/status.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/new_OPT_checkpoint_observation.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/completed_OPT_timing_resources_observation.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT009_project_OPT_recovery_cpu/completion_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT002_native_OPT_POST_recovery_place_physopt/started.json

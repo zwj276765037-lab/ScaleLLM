@@ -1,0 +1,70 @@
+{
+  "started_utc": "2026-10-16T23:59:19.492929+00:00",
+  "ended_utc": "2026-10-16T23:59:19.541770+00:00",
+  "status": "PASS_CPU_SOURCE_BRIDGE_ONLY",
+  "EDA_executed": false,
+  "prior_manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/review_before_directional_timing_fix/prepared_manifest.json",
+    "bytes": 10951,
+    "sha256": "7f6bfd3766c4c5e7b49004dcb80667f89836e301cc474cb2a294c8cb92ef8558"
+  },
+  "prior_hook_archives": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/review_before_directional_timing_fix/candidate_hooks.tcl",
+      "bytes": 25728,
+      "sha256": "2082e6b674058954f784b2e49e45cc2c592453735e23e79f463dbfd860c1d3cc"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/review_before_directional_timing_fix/runtime_hooks.tcl",
+      "bytes": 15062,
+      "sha256": "b332e07cf8bcb6afb6e11621cab6dbd9bd03473088d20d6f311f7135b6575c5f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/review_before_directional_timing_fix/property_alignment.tcl",
+      "bytes": 1997,
+      "sha256": "f4a2937792487ae771c0016af6ded187152d882d90f0f0b63e8b9c9af86d65bb"
+    }
+  ],
+  "archive_recovery": "Candidate/runtime old hook bytes recovered by reversing only the subsequent directional-selection patch; full bytes/SHA match old7f6 manifest identities exactly",
+  "current_hook_sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/candidate_hooks.tcl",
+      "bytes": 26658,
+      "sha256": "8adc5acc595f3ef3cfa9c1137bafcb7c44aa696c9287c4a0f187e4b727e1a6b3"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/runtime_hooks.tcl",
+      "bytes": 15081,
+      "sha256": "df4bcf42fcf75d8a2a228ef418ec35c91e2452acc2dfe1d40e9c7968d8e473d2"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/property_alignment.tcl",
+      "bytes": 1997,
+      "sha256": "f4a2937792487ae771c0016af6ded187152d882d90f0f0b63e8b9c9af86d65bb"
+    }
+  ],
+  "unchanged_procedure_names": [
+    "prefix",
+    "group",
+    "selected",
+    "bindable",
+    "pin_class",
+    "physical",
+    "resolve"
+  ],
+  "unchanged_procedure_bodies_sha256": "d88cd04f29d447e1e395c51fca0437462c5a5649414db5600cb2d75a11f5f351",
+  "directional_selector_body_equal_actual_R004_archive": true,
+  "R004_archived_inspector": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/attempts/AT001_exact_candidate_comparison/sources/candidate_inspector.tcl",
+    "bytes": 26331,
+    "sha256": "58625397b5816730ab88e9cab9f5527b1cdce4c041c8e307943dcd1c30ad9274"
+  },
+  "focused_CPU_check": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/E006_exact_candidates/bounded_CPU_validation_CT003.json",
+    "bytes": 6037,
+    "sha256": "e43f7ccb4f4ae761057e3bf9811d710084f779f6ea307acf2c9c672fda0865bb"
+  },
+  "scope": "EGRESS outside leaf/top LOAD only, INGRESS inside LOAD, INOUT/unknown unresolved; no selector/resource allowlist/RTL/constraints/physical command changes",
+  "candidate_priority": "EXPLORATORY_CONTROL_NOT_DEFAULT; no E007 readiness or native implementation",
+  "native_API_qualification": "NOT_RUN"
+}

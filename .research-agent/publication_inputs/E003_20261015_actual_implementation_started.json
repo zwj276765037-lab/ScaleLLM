@@ -1,0 +1,17 @@
+{
+  "source": "# E003：完整implementation依据\n\n用户新指令“进行一次完整的implementation”。按[合同](../../../mission/M002_ddr_separation_and_timing_recovery/full_implementation_contract_2026-10-15.md)复用E002正式综合及AT008完整debug/pre_place，保持core100MHz/UI200+200、数值/接口/工具/约束身份，完成place→独立physopt→route及最终DCP/报告。E002历史超时保留。\n",
+  "results": "# E003：阶段结果\n\n129项CPU检查已通过：14项新profile、13项既有恢复、6项隔离和96项既有物理检查本次均执行。真实339综合输入、45 DCP路径及AT008完整debug/pre_place资格通过；5份生产/测试文件已安装，Tcl、RTL、XDC不改。主控独立核5份安装后hash一致。[检查结果](runs/R001/attempts/AT001_full_implementation_profile_cpu/validation_result.json)、[实际源资格](runs/R001/attempts/AT001_full_implementation_profile_cpu/actual_source_qualification.json)、[安装身份](runs/R001/attempts/AT001_full_implementation_profile_cpu/installation.json)。\n\n本次实际Vivado于2026-10-15 12:22:11.492419 UTC启动，正在恢复原AT008完整debug/pre_place检查点。尚无新的place/physopt/route完成结果。[实际启动](runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/actual_eda_started.json)。\n\n监督起点12:21:48.608023 UTC；place/physopt阶段截止2026-10-16 00:21:48.608023 UTC，总物理截止2026-10-16 12:22:11.492419 UTC。8CPU/nice5/原资源保护保持，重试不得重置预算。[实际预算](runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/effective_budget.json)。\n\n基线来自[E002总报告](../../E002_m002_synthesis_and_physical_baseline/experiment_results/engineering_final_report_2026-10-15.md)：综合、OPT/debug/pre_place已完成，原AT009无完整布局DCP，不能继承部分布局。新授权与E002旧政策、原失败均分开。负时序可继续诊断布线，完整物理与最终时序/安全验收分别判断。无bitstream/板卡/GPU/PPL/ACC。\n",
+  "status": "# E003：执行状态\n\nexecution_state: running\nverdict: unassessed\n\nR002/AT001实际Vivado于2026-10-15 12:22:11.492419 UTC启动，当前open_checkpoint恢复AT008完整debug/pre_place。监督PID3677862、worker/group3677864、Vivado启动PID3678158、工具会话92285。唯一EDA执行者A006；后继独立physopt及route须依赖实际成功父阶段，尚未开始。\n\n实际place/physopt截止2026-10-16 00:21:48.608023 UTC；总物理24小时从首Vivado起点计，截止2026-10-16 12:22:11.492419 UTC。route取其12小时阶段余额与总余额较小者。保持8CPU/nice5/RSS192GiB、系统可用内存48GiB持续30秒/磁盘30GiB保护。新AT累计扣费，E002旧限制不改。[预算记录](../experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/effective_budget.json)。\n\nR001/AT001的129项本次CPU测试与真实339/45/AT008源资格通过，5份安装身份已核；原完整POST明确复用E002/AT012真实回放，不伪称本次重新生成。新live guard待实际恢复完成。负时序允许诊断route；真实全布通、时序和正式安全分列。无bitstream/板卡/GPU/PPL/ACC。\n",
+  "execution_state": "running",
+  "verdict": "unassessed",
+  "applicability": "E003实际Vivado已启动恢复；129项CPU及源资格完成，尚无本轮完整物理DCP，预算按12h阶段/24h总墙钟累计",
+  "evidence": [
+    "project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT001_full_implementation_profile_cpu/validation_result.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT001_full_implementation_profile_cpu/actual_source_qualification.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT001_full_implementation_profile_cpu/installation.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/started.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/execution_authorization.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/actual_eda_started.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/effective_budget.json"
+  ]
+}

@@ -1,0 +1,100 @@
+PORT
+
+Description: 
+A port is a special type of hierarchical pin, a pin on the top-level netlist 
+object, module or entity. Ports can be either primary ports, which represent the 
+external connection of the design or block, and are the end point of the netlist, 
+or secondary ports which connect through the hierarchy of the design, but are 
+resolved into the final netlist. 
+
+Related Objects: 
+Primary ports connect to package_pins on the target part. Ports are grouped 
+together into iobanks, and into sites on the device. Ports are associated with 
+the IOSTANDARDs of the bank they are assigned to. 
+
+Secondary ports connect to hierarchical pins on cells. Ports connect to nets in 
+the netlist of the design. PORTs can also carry CLOCK definitions onto the design 
+from the system or BOARD. PORTs are associated with TIMING_PATHs in the design. 
+
+Properties: 
+The various properties on a port object include the following, with example values:
+
+Property                        Type         Read-only  Visible  Value
+BOARD_PART_PIN                  string       false      true     
+BOARD_PIN                       string       false      false    
+BUFFER_TYPE                     enum         false      true     
+BUS_DIRECTION                   enum         true       true     
+BUS_NAME                        string       true       true     
+BUS_START                       int          true       true     
+BUS_STOP                        int          true       true     
+BUS_WIDTH                       int          true       true     
+CLASS                           string       true       true     port
+CLOCK_BUFFER_TYPE               enum         false      true     
+DIFFTERMTYPE                    bool         false      false    0
+DIFF_PAIR_PORT                  port         true       true     CLK_P
+DIFF_PAIR_TYPE                  enum         true       true     N
+DIFF_TERM                       bool         false      true     0
+DIFF_TERM_ADV                   enum         false      true     
+DIRECTION                       enum         false      true     IN
+DQS_BIAS                        enum         false      true     
+DRIVE                           enum         false      true     0
+DRIVE_ADV                       enum         false      false    
+DRIVE_STRENGTH                  enum         false      false    0
+EQUALIZATION                    enum         false      true     
+ESSENTIAL_CLASSIFICATION_VALUE  int          false      true     
+HD.ASSIGNED_PPLOCS              string*      true       true     
+HD.CLK_SRC                      string       false      true     
+HD.LOC_FIXED                    bool         false      false    0
+HD.PARTPIN_LOCS                 string*      false      true     
+HD.PARTPIN_RANGE                string*      false      true     
+HOLD_SLACK                      double       true       true     needs timing update***
+IBUF_LOW_PWR                    bool         false      true     1
+INTERFACE                       string       false      true     
+INTERMTYPE                      enum         false      false    NONE
+IN_TERM                         enum         false      true     NONE
+IOB                             enum         false      true     
+IOBANK                          int          true       true     33
+IOSTANDARD                      enum         false      true     LVDS
+IOSTD                           enum         false      false    LVDS
+IO_BUFFER_TYPE                  enum         false      true     
+IS_BEL_FIXED                    bool         false      false    1
+IS_FIXED                        bool         false      false    1
+IS_GT_TERM                      bool         true       true     0
+IS_LOC_FIXED                    bool         false      true     1
+IS_REUSED                       bool         true       true     
+KEEPER                          bool         false      false    0
+LOAD                            double       false      true     
+LOC                             site         false      true     IOB_X1Y75
+LOGIC_VALUE                     string       true       true     needs timing update***
+LVDS_PRE_EMPHASIS               enum         false      true     
+NAME                            string       false      true     CLK_N
+ODT                             enum         false      true     
+OFFCHIP_TERM                    string       false      true     NONE
+OFFSET_CNTRL                    enum         false      true     
+OUTPUT_IMPEDANCE                enum         false      true     
+OUT_TERM                        enum         false      true     
+PACKAGE_PIN                     package_pin  false      true     AD11
+PIN_TYPE                        enum         true       false    
+PIO_DIRECTION                   enum         false      true     
+PRE_EMPHASIS                    enum         false      true     
+PULLDOWN                        bool         false      false    0
+PULLTYPE                        string       false      true     
+PULLUP                          bool         false      false    0
+SETUP_SLACK                     double       true       true     needs timing update***
+SITE                            site         false      false    IOB_X1Y75
+SLEW                            enum         false      true     
+SLEWTYPE                        enum         false      false    
+SLEW_ADV                        enum         false      false    
+UNCONNECTED                     bool         true       true     0
+USE_INTERNAL_VREF               enum         false      true     
+VCCAUX_IO                       enum         false      true     
+XLNX_LINE_COL                   int          false      false    
+XLNX_LINE_FILE                  long         false      false    139264
+X_IFC_LOGICAL_NAME              string       true       true     CLK
+x_interface_info                string       false      true     
+
+To report the properties for the port object, you can copy and paste the 
+following command into the Vivado Design Suite Tcl shell or Tcl console:
+
+	report_property -all [lindex [get_ports] 0]
+

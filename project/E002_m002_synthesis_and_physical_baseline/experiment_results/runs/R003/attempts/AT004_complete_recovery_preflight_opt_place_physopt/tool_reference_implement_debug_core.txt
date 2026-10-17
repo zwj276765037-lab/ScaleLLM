@@ -1,0 +1,55 @@
+
+Description:
+
+  Implements the AMD Vivado logic analyzer debug cores in the current
+  project. The tools will be run once for any ILA debug cores specified, and
+  run one more time for the Debug Hub core if all cores are specified. The
+  ILA core (labtools_ila_v3) is the only core type currently supported by the
+  create_debug_core command. The tool automatically adds a Debug Hub core
+  (labtools_xsdbmasterlib_v2) to contain and configure the ILA cores in the
+  project.
+
+  The Vivado tool creates Debug Hub core and ILA cores initially as black
+  boxes. These cores must be implemented prior to running through place and
+  route. After the core is created with create_debug_core, and while ports
+  are being added and connected with create_debug_port and
+  connect_debug_port, the content of the debug core is not defined or visible
+  within the design.
+
+  Debug core implementation is automatic when you launch an implementation
+  run using the launch_runs command, or during design optimization using
+  opt_design. However, you can also use the implement_debug_core command to
+  implement one or more of the cores in the design without having to
+  implement the whole design.
+
+Arguments:
+
+  -quiet - (Optional) Execute the command quietly, returning no messages from
+  the command. The command also returns TCL_OK regardless of any errors
+  encountered during execution.
+
+  Note: Any errors encountered on the command-line, while launching the
+  command, will be returned. Only errors occurring inside the command will be
+  trapped.
+
+  -verbose - (Optional) Temporarily override any message limits and return
+  all messages from this command.
+
+  Note: Message limits can be defined with the set_msg_config command.
+
+  <cores> - (Optional) One or more debug cores to implement. All debug cores
+  will be implemented if no cores are specified.
+
+Examples:
+
+  The following example implements all debug cores in the current project:
+
+    implement_debug_core [get_debug_cores]
+
+See Also:
+
+   *  connect_debug_port
+   *  create_debug_core
+   *  create_debug_port
+   *  get_debug_cores
+   *  launch_runs

@@ -1,0 +1,55 @@
+{
+  "observed_utc": "2026-10-16T13:26:11.115534+00:00",
+  "full_facts": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT004_default_route/native_route_progress_captures/capture_009_facts.json",
+    "bytes": 7583,
+    "sha256": "fb1225d4791d2f8b44e84cbdb3878350ce3a5e80026af81077c3c006de711a2a"
+  },
+  "prefix": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT004_default_route/native_route_progress_captures/capture_009_log_prefix.txt",
+    "bytes": 43531,
+    "sha256": "cdd51e0449451260fb0f42005416177552257c6fef183bb8767632ec01600dfa"
+  },
+  "retained_producer": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT004_default_route/native_route_progress_captures/producer_v3.py",
+    "bytes": 5493,
+    "sha256": "8eced708eff962fc5df5d07a8e08767dc2686260b5a269111c8f23b8a0216f8a"
+  },
+  "route_legality": "FAIL_actual_native_Phase9",
+  "execution": "original_native_command_and_supervisor_still_running_failure_followup",
+  "congestion_failed_signals": 758463,
+  "node_overlaps": 1148579,
+  "selected_records": [
+    {
+      "native_line": 519,
+      "raw": "Phase 9 Verifying routed nets",
+      "native_phase": "Phase 9 Verifying routed nets",
+      "native_phase_line": 519,
+      "kind": "phase"
+    },
+    {
+      "native_line": 520,
+      "raw": "CRITICAL WARNING: [Route 35-162] 758463 signals failed to route due to routing congestion. Please run report_route_status to get a full summary of the design's routing.",
+      "native_phase": "Phase 9 Verifying routed nets",
+      "native_phase_line": 519,
+      "kind": "native_condition",
+      "scope": "raw_native_message_with_phase; not_independent_terminal_verdict"
+    },
+    {
+      "native_line": 630,
+      "raw": "ERROR: [Route 35-2] Design is not legally routed. There are 1148579 node overlaps.",
+      "native_phase": "Phase 9 Verifying routed nets",
+      "native_phase_line": 519,
+      "kind": "native_condition",
+      "scope": "raw_native_message_with_phase; not_independent_terminal_verdict"
+    },
+    {
+      "native_line": 633,
+      "raw": "Phase 10 Depositing Routes",
+      "native_phase": "Phase 10 Depositing Routes",
+      "native_phase_line": 633,
+      "kind": "phase"
+    }
+  ],
+  "interpretation": "Signals and overlapping routing nodes are distinct native counters. Actual error determines failed route legality; full native return, failed-DCP/diagnostic capture and supervisor terminal still pending. Do not stop normal followup or run R006 before closure."
+}

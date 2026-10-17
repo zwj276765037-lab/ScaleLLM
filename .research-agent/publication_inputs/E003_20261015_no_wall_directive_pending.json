@@ -1,0 +1,17 @@
+{
+  "source": "# E003：完整implementation依据\n\n用户新指令“进行一次完整的implementation”。按[合同](../../../mission/M002_ddr_separation_and_timing_recovery/full_implementation_contract_2026-10-15.md)复用E002正式综合及AT008完整debug/pre_place，保持core100MHz/UI200+200、数值/接口/工具/约束身份，完成place→独立physopt→route及最终DCP/报告。E002历史超时保留。\n\n用户在实际启动后追加“不要设置强行停止 只要进程还在正常继续”，[最新补充](../../../mission/M002_ddr_separation_and_timing_recovery/full_implementation_continuation_2026-10-15.md)取消固定墙钟强停，原启动合同字节保留。正常推进则持续完成全流程，资源异常仍按事实处理。\n",
+  "results": "# E003：阶段结果\n\n129项CPU检查已通过：14项新profile、13项既有恢复、6项隔离和96项既有物理检查本次均执行。真实339综合输入、45 DCP路径及AT008完整debug/pre_place资格通过；5份生产/测试文件已安装，Tcl、RTL、XDC不改。主控独立核5份安装后hash一致。[检查结果](runs/R001/attempts/AT001_full_implementation_profile_cpu/validation_result.json)、[实际源资格](runs/R001/attempts/AT001_full_implementation_profile_cpu/actual_source_qualification.json)、[安装身份](runs/R001/attempts/AT001_full_implementation_profile_cpu/installation.json)。\n\n本次实际Vivado于2026-10-15 12:22:11.492419 UTC启动，正在恢复原AT008完整debug/pre_place检查点。尚无新的place/physopt/route完成结果。[实际启动](runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/actual_eda_started.json)。\n\n启动时记录的监督起点12:21:48.608023 UTC及12h/24h预算属于原配置；用户随后明确取消固定墙钟强停。工程正在安全接管监督，具体生效以新增运行回执为准，不能由文档变更推定旧计时器已失效。8CPU/nice5/原资源保护保持。[实际预算](runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/effective_budget.json)。\n\n基线来自[E002总报告](../../E002_m002_synthesis_and_physical_baseline/experiment_results/engineering_final_report_2026-10-15.md)：综合、OPT/debug/pre_place已完成，原AT009无完整布局DCP，不能继承部分布局。新授权与E002旧政策、原失败均分开。负时序可继续诊断布线，完整物理与最终时序/安全验收分别判断。无bitstream/板卡/GPU/PPL/ACC。\n",
+  "status": "# E003：执行状态\n\nexecution_state: running\nverdict: unassessed\n\n用户最新要求“不要设置强行停止 只要进程还在正常继续”。按[补充](../../../mission/M002_ddr_separation_and_timing_recovery/full_implementation_continuation_2026-10-15.md)取消E003固定墙钟终止，正常推进即继续place/独立physopt/route及报告。旧冻结合同、原启动预算和日志保留为历史；不能通过改它们假称运行设置已生效。\n\n当前仍为同一R002/AT001 Vivado，12:22:11.492419 UTC实际启动，原supervisor3677862、worker/group3677864、Vivado启动PID3678158。工程正实施不打断EDA的无wall监督接管：旧监督器没有现成动态deadline接口，计划新watchdog握手后仅暂停旧supervisor并保留lane锁，维持同一worker/Vivado；实际生效待回执。后继route也须取消固定wall强停，真实父链和结果检查保持。\n\n129项CPU与真实339/45/AT008资格已经通过，5份原安装身份已核；原完整POST复用E002/AT012实际回放，当前恢复live结果待完成。无新的完整place/physopt/route DCP。保持8CPU/单EDA/nice5与原内存磁盘保护；短时无日志不算进程异常。无bitstream/板卡/GPU/PPL/ACC。\n",
+  "execution_state": "running",
+  "verdict": "unassessed",
+  "applicability": "用户取消固定wall强停；同一Vivado正常继续，工程正在安全接管监督，具体生效待实际回执",
+  "evidence": [
+    "project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT001_full_implementation_profile_cpu/validation_result.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT001_full_implementation_profile_cpu/actual_source_qualification.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT001_full_implementation_profile_cpu/installation.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/started.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/execution_authorization.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/actual_eda_started.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/effective_budget.json"
+  ]
+}

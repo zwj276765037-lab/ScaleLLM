@@ -1,0 +1,73 @@
+{
+  "recorded_utc": "2026-10-16T07:49:14.435975+00:00",
+  "phase": "place internal reporting/cleanup; completed POST not yet observed",
+  "observations": [
+    {
+      "identity": {
+        "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/place_congestion_risk_observation.json",
+        "bytes": 863,
+        "sha256": "6bad1bbc111368a28575fbb5529d862ebcb1e65846ddf157681d699018fac318"
+      },
+      "native_rows": [
+        {
+          "line": 1005,
+          "text": "WARNING: [Place 46-14] The placer has determined that this design is highly congested and may have difficulty routing. Run report_design_analysis -congestion for a detailed report.",
+          "matches_actual_log": true
+        }
+      ],
+      "scope": "placer risk warning only; no native place success/checkpoint/current congestion-window result or route verdict yet"
+    },
+    {
+      "identity": {
+        "path": "project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/place_internal_remaining_fanout_observation.json",
+        "bytes": 2950,
+        "sha256": "39be08ae67aa240f7d368661d7a41c95f4a3d6ec83c6dfcc0dd16fd2945b5033"
+      },
+      "native_rows": [
+        {
+          "line": 558,
+          "text": "INFO: [Physopt 32-1132] Very high fanout net 'scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch0/ingress_wr_ptr_r' is not considered as a candidate in VHFN optimization. The fanout considered for this optimization is changed from 2067 to 133 due to a timing constraint or macro primitives that prevent optimization on all of the loads. To force replication, set the FORCE_MAX_FANOUT property on the net to a number less than 133.",
+          "matches_actual_log": true
+        },
+        {
+          "line": 559,
+          "text": "INFO: [Physopt 32-1132] Very high fanout net 'scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch0/ingress_wr_ptr_r_reg_rep_n_0' is not considered as a candidate in VHFN optimization. The fanout considered for this optimization is changed from 1968 to 124 due to a timing constraint or macro primitives that prevent optimization on all of the loads. To force replication, set the FORCE_MAX_FANOUT property on the net to a number less than 124.",
+          "matches_actual_log": true
+        },
+        {
+          "line": 562,
+          "text": "INFO: [Physopt 32-1132] Very high fanout net 'scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/ingress_wr_ptr_r' is not considered as a candidate in VHFN optimization. The fanout considered for this optimization is changed from 2067 to 133 due to a timing constraint or macro primitives that prevent optimization on all of the loads. To force replication, set the FORCE_MAX_FANOUT property on the net to a number less than 133.",
+          "matches_actual_log": true
+        },
+        {
+          "line": 563,
+          "text": "INFO: [Physopt 32-1132] Very high fanout net 'scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/ingress_wr_ptr_r_reg_rep_n_0_repN' is not considered as a candidate in VHFN optimization. The fanout considered for this optimization is changed from 1632 to 103 due to a timing constraint or macro primitives that prevent optimization on all of the loads. To force replication, set the FORCE_MAX_FANOUT property on the net to a number less than 103.",
+          "matches_actual_log": true
+        }
+      ],
+      "scope": "observed native lines only; not final native logfile identity or final placed fanout scan",
+      "prefix_hash_matches": true,
+      "actual_prefix_sha256": "49e181d49a4a71fb49b1a083c77f1bd6b552c75a6c213cb44f11f0613f5722b3"
+    }
+  ],
+  "place_artifact_existence": {
+    "place_command_result.txt": true,
+    "place.dcp": false,
+    "place_result.txt": false,
+    "optimized_boundaries_place.tsv": false,
+    "congestion_place.rpt": false,
+    "utilization_place.rpt": false,
+    "timing_place.rpt": false,
+    "integrity_place.json": false
+  },
+  "interpretation": [
+    "Place46-14 is native high-congestion risk, not native place failure or final routing verdict.",
+    "Shared_compute ingress pointer VHFN constraints do not establish failure of80 optimized output CE boundaries.",
+    "No FORCE_MAX_FANOUT or frozen-source change requested.",
+    "Current64x64 region-size tables are process evidence without fixed tile window coordinates; wait actual congestion_place.rpt for same-stage comparison."
+  ],
+  "execution": "bounded physical-stage review running; native implementation continues",
+  "verdict": "physical benefit pending",
+  "formal_safety": "OPEN",
+  "review": "No added approval gate; waiting actual stage artifacts"
+}

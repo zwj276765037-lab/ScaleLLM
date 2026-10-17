@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "scope": "destination_only_path_changes_no_algorithm_numeric_or_acceptance_change",
+  "files": [
+    {
+      "path": "model/generate_scalellm_workload_reference.py",
+      "change": "SOFTWARE_ROOT uses the new sibling software/0_Software; numerical functions and approved golden identity unchanged",
+      "source_text": "SOFTWARE_ROOT = HAP_ROOT.parent / \"0_Software\"",
+      "destination_text": "SOFTWARE_ROOT = HAP_ROOT.parent / \"software\" / \"0_Software\""
+    },
+    {
+      "path": "host/scalellm_board.py",
+      "change": "current-reference source validation uses new sibling software/0_Software; frozen artifacts/reports are not rewritten or requalified",
+      "source_text": "    scalellm_root = hardware_root.parent",
+      "destination_text": "    scalellm_root = hardware_root.parent / \"software\""
+    },
+    {
+      "path": "tests/test_rebuild_contract.py",
+      "change": "golden source lookup follows new sibling software/0_Software; expected SHA256 and assertions unchanged",
+      "source_text": "        golden = root.parent / \"0_Software\" / \"FPtoQ\" / \"experiment\" / \"v5_fullchain.py\"",
+      "destination_text": "        golden = root.parent / \"software\" / \"0_Software\" / \"FPtoQ\" / \"experiment\" / \"v5_fullchain.py\""
+    },
+    {
+      "path": "tests/test_scalellm_board.py",
+      "change": "reference-fixture source lookup follows new sibling software/0_Software; acceptance unchanged",
+      "source_text": "        software_root = hardware_root.parent / \"0_Software\"",
+      "destination_text": "        software_root = hardware_root.parent / \"software\" / \"0_Software\""
+    }
+  ],
+  "current_software_reference": "../software/0_Software/FPtoQ/experiment/v5_fullchain.py",
+  "approved_golden_sha256": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+  "frozen_evidence_policy": "retain original source paths inside historical reports/artifacts; no rewriting or new PASS",
+  "relocations": [
+    {
+      "source_directory": "vivado/reports/mission0008_e2_diagnostic_native_025",
+      "destination_directory": "evidence/native025",
+      "files": ["worker_final_receipt.txt", "diagnostic_timing_deltas.tsv", "candidate_placed_state.txt"],
+      "change": "byte-identical small terminal evidence copies; relative DCP/report references inside them still resolve against the external source directory"
+    }
+  ],
+  "unchanged": ["all copied RTL", "production manifests", "XDC", "Vivado build scripts", "numerical model functions", "format/ABI", "acceptance thresholds"]
+}

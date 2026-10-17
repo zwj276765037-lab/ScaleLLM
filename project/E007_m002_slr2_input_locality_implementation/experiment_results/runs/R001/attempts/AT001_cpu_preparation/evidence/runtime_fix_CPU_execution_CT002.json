@@ -1,0 +1,124 @@
+{
+  "stage": "CPU_runtime_entry_review_fixes",
+  "argv": [
+    "python3",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/validate_runtime_fixes.py"
+  ],
+  "cwd": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM",
+  "started_utc": "2026-10-16T17:49:58.354965+00:00",
+  "ended_utc": "2026-10-16T17:49:58.477198+00:00",
+  "exit_code": 0,
+  "EDA_executed": false,
+  "native_checkpoint_opened": false,
+  "CPU_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "nice": 5,
+  "stdout": "{\"status\": \"PASS_CPU_ONLY\", \"EDA_executed\": false, \"literal_selector_unchanged\": true, \"reused_prior_59_cases\": true, \"full_primitive_export_rescanned\": false, \"bindable_changed\": true, \"original_REF_distribution_checks\": [{\"raw_REF\": \"GND\", \"physical_REF\": \"GND\", \"raw_count\": 76, \"bindable\": false}, {\"raw_REF\": \"VCC\", \"physical_REF\": \"VCC\", \"raw_count\": 38, \"bindable\": false}, {\"raw_REF\": \"FDRE\", \"physical_REF\": \"FDRE\", \"raw_count\": 33544, \"bindable\": true}, {\"raw_REF\": \"LUT1\", \"physical_REF\": \"LUT1\", \"raw_count\": 1242, \"bindable\": true}, {\"raw_REF\": \"LUT2\", \"physical_REF\": \"LUT2\", \"raw_count\": 7024, \"bindable\": true}, {\"raw_REF\": \"LUT3\", \"physical_REF\": \"LUT3\", \"raw_count\": 2797, \"bindable\": true}, {\"raw_REF\": \"LUT4\", \"physical_REF\": \"LUT4\", \"raw_count\": 4790, \"bindable\": true}, {\"raw_REF\": \"LUT5\", \"physical_REF\": \"LUT5\", \"raw_count\": 4204, \"bindable\": true}, {\"raw_REF\": \"CARRY8\", \"physical_REF\": \"CARRY8\", \"raw_count\": 2066, \"bindable\": true}, {\"raw_REF\": \"LUT6\", \"physical_REF\": \"LUT6\", \"raw_count\": 11652, \"bindable\": true}, {\"raw_REF\": \"FDCE\", \"physical_REF\": \"FDCE\", \"raw_count\": 6975, \"bindable\": true}, {\"raw_REF\": \"FDPE\", \"physical_REF\": \"FDPE\", \"raw_count\": 108, \"bindable\": true}, {\"raw_REF\": \"MUXF7\", \"physical_REF\": \"MUXF7\", \"raw_count\": 2004, \"bindable\": true}, {\"raw_REF\": \"MUXF8\", \"physical_REF\": \"MUXF8\", \"raw_count\": 768, \"bindable\": true}, {\"raw_REF\": \"DSP48E2\", \"physical_REF\": \"DSP48E2\", \"raw_count\": 8, \"bindable\": true}, {\"raw_REF\": \"DSP_ALU\", \"physical_REF\": \"DSP48E2\", \"raw_count\": 8, \"bindable\": true}, {\"raw_REF\": \"DSP_A_B_DATA\", \"physical_REF\": \"DSP48E2\", \"raw_count\": 8, \"bindable\": true}, {\"raw_REF\": \"DSP_C_DATA\", \"physical_REF\": \"DSP48E2\", \"raw_count\": 8, \"bindable\": true}, {\"raw_REF\": \"DSP_MULTIPLIER\", \"physical_REF\": \"DSP48E2\", \"raw_count\": 8, \"bindable\": true}, {\"raw_REF\": \"DSP_M_DATA\", \"physical_REF\": \"DSP48E2\", \"raw_count\": 8, \"bindable\": true}, {\"raw_REF\": \"DSP_OUTPUT\", \"physical_REF\": \"DSP48E2\", \"raw_count\": 8, \"bindable\": true}, {\"raw_REF\": \"DSP_PREADD_DATA\", \"physical_REF\": \"DSP48E2\", \"raw_count\": 8, \"bindable\": true}, {\"raw_REF\": \"DSP_PREADD\", \"physical_REF\": \"DSP48E2\", \"raw_count\": 8, \"bindable\": true}], \"raw_DSP_REF_or_Hadamard_ancestor_rejection_cases\": 2, \"unsupported_REF_rejection_cases\": [\"RAMB36E2\", \"URAM288\", \"UNKNOWN\", \"BUFGCE\", \"IBUF\", \"DSP_ALU\"], \"REF_aware_pin_cases\": 11, \"reconciliation_checks\": {\"surviving_original\": true, \"missing_rejected\": true, \"unknown_new_rejected\": true, \"native_origin_replacement_accepted\": true, \"off_prefix_clone_in_actual_P\": true, \"known_clone_outside_Pblock_rejected\": true, \"literal_missing_from_Pblock_rejected\": true, \"unrelated_DSP_rejected\": true, \"missing_and_unknown_together_rejected\": true}, \"native_clock_region_token_forms_checked\": 2, \"native_API_geometry_policy_timing\": \"NOT_RUN; unsupported required checks reject rather than claim native qualification\"}\n",
+  "stderr": "",
+  "checked_sources": [
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/candidate_hooks.tcl",
+        "bytes": 25623,
+        "sha256": "8208a58b66b8140c9af486c93b607269f336da01f415cfab741a1c5652c3af9d"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/runtime_fix_CPU_CT002_sources/candidate_hooks.tcl",
+        "bytes": 25623,
+        "sha256": "8208a58b66b8140c9af486c93b607269f336da01f415cfab741a1c5652c3af9d"
+      }
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/evidence_adapter.py",
+        "bytes": 24899,
+        "sha256": "a7e57f319a553b2dbe59e52a806c2f0c5f7ea88ff8bfd57d069cd72ef56abea2"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/runtime_fix_CPU_CT002_sources/evidence_adapter.py",
+        "bytes": 24899,
+        "sha256": "a7e57f319a553b2dbe59e52a806c2f0c5f7ea88ff8bfd57d069cd72ef56abea2"
+      }
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/implementation.tcl",
+        "bytes": 14188,
+        "sha256": "2fb10fae1b7af795196c80c747f1d75dfd25917843ca3fcc49b680a0ab58ef26"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/runtime_fix_CPU_CT002_sources/implementation.tcl",
+        "bytes": 14188,
+        "sha256": "2fb10fae1b7af795196c80c747f1d75dfd25917843ca3fcc49b680a0ab58ef26"
+      }
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/prepare.py",
+        "bytes": 6312,
+        "sha256": "5920092611fa5a8d2e3d91ccecb11e46607f63efc79774f252cad53b81081508"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/runtime_fix_CPU_CT002_sources/prepare.py",
+        "bytes": 6312,
+        "sha256": "5920092611fa5a8d2e3d91ccecb11e46607f63efc79774f252cad53b81081508"
+      }
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/run_candidate.py",
+        "bytes": 17253,
+        "sha256": "f786309f1b0902d08556493a2408d0bfc7e9822cb31c884c26f82f95e5868805"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/runtime_fix_CPU_CT002_sources/run_candidate.py",
+        "bytes": 17253,
+        "sha256": "f786309f1b0902d08556493a2408d0bfc7e9822cb31c884c26f82f95e5868805"
+      }
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/runtime_hooks.tcl",
+        "bytes": 14461,
+        "sha256": "5259047525dfd034b42f6516c9b53a2288c66abe36d63cf51047fb59e43072bd"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/runtime_fix_CPU_CT002_sources/runtime_hooks.tcl",
+        "bytes": 14461,
+        "sha256": "5259047525dfd034b42f6516c9b53a2288c66abe36d63cf51047fb59e43072bd"
+      }
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/validate_cpu.py",
+        "bytes": 7958,
+        "sha256": "3eefa206465c4b458533e62e9d1ab26b22497f4354e7b0ac8e5aa4a0c38fc479"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/runtime_fix_CPU_CT002_sources/validate_cpu.py",
+        "bytes": 7958,
+        "sha256": "3eefa206465c4b458533e62e9d1ab26b22497f4354e7b0ac8e5aa4a0c38fc479"
+      }
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/slr2_input_locality/validate_runtime_fixes.py",
+        "bytes": 5929,
+        "sha256": "361d2744ff58dd2c6cf0567aa9d54b50688845d668e974c50e694cc29a16c175"
+      },
+      "archive": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/attempts/AT001_cpu_preparation/evidence/runtime_fix_CPU_CT002_sources/validate_runtime_fixes.py",
+        "bytes": 5929,
+        "sha256": "361d2744ff58dd2c6cf0567aa9d54b50688845d668e974c50e694cc29a16c175"
+      }
+    }
+  ]
+}

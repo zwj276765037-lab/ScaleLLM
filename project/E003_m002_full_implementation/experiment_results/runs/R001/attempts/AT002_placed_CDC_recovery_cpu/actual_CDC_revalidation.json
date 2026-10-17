@@ -1,0 +1,81 @@
+{
+  "known_original": 6,
+  "remaining_original_identities": 2,
+  "classified_opt_reset": 8,
+  "changed_vs_synthesis": 6,
+  "new_critical": 0,
+  "classification": "classified_reset_cdc_diagnostic_only",
+  "formal_reset_cdc_safety": "OPEN",
+  "proof_sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E003_R002_AT001_full_pre_place_restore_place_physopt/cdc_place.rpt",
+      "bytes": 3941289,
+      "sha256": "68843ca360813f9bde5f6c79884d248567de59d384b35d27cbae83500a882fce"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT005_opt_recovery_debug_materialized_place_physopt/cdc_opt.rpt",
+      "bytes": 3941307,
+      "sha256": "7451c566ed781bcc67e2bbc5484378980045df170acb9b2ad884a7d20b94ff67"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E003_R002_AT001_full_pre_place_restore_place_physopt/reset_graph_place.tsv",
+      "bytes": 119919819,
+      "sha256": "8eddbbdd7a6d90f51bc9497310fc59ba29e2c2a7d4747e45a773dd7381eac542"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E003_R002_AT001_full_pre_place_restore_place_physopt/cdc_changed_reset_place.tsv",
+      "bytes": 5958917,
+      "sha256": "8e39c5db240e3a494e0c3c8a7f3309d0b9136d51cae5966b59fc7229de4c5ac8"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E003_R002_AT001_full_pre_place_restore_place_physopt/bram_port_clocks_place.tsv",
+      "bytes": 263752,
+      "sha256": "c7e331c9448f7131a509757716db2af24e7c37861b470a402b2439eeadf6a6ce"
+    }
+  ],
+  "auxiliary_cdc_report_sources": [],
+  "actual_aux_representative_sources": [
+    {
+      "actual_tuple": [
+        "CDC-10",
+        "mmcm_clkout0_1",
+        "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/C",
+        "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D"
+      ],
+      "canonical_tuple": [
+        "CDC-10",
+        "mmcm_clkout0_1",
+        "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[3]/C",
+        "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D"
+      ],
+      "actual_same_cone_data_terms": [
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/Q",
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[3]/Q"
+      ],
+      "scope": "report representative selection only; diagnostic reset/CDC safety remains OPEN"
+    },
+    {
+      "actual_tuple": [
+        "CDC-10",
+        "mmcm_clkout0_1",
+        "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/C",
+        "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D"
+      ],
+      "canonical_tuple": [
+        "CDC-10",
+        "mmcm_clkout0_1",
+        "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[3]/C",
+        "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D"
+      ],
+      "actual_same_cone_data_terms": [
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/Q",
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[3]/Q"
+      ],
+      "scope": "report representative selection only; diagnostic reset/CDC safety remains OPEN"
+    }
+  ]
+}

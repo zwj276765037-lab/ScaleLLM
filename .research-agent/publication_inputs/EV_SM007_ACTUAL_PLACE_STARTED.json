@@ -1,0 +1,15 @@
+{
+  "event_id": "EV_SM007_ACTUAL_PLACE_STARTED",
+  "small_mission": "SM007",
+  "trigger": "milestone",
+  "summary": "E003本次live guard native0/174秒，零blackbox/DRC blockers、内部clock覆盖通过；已实际执行place_design，日志记录Phase1.1完成。",
+  "impact": "从原完整debug/pre_place取得本次真实恢复准入，保持同EDA在无wall监督下继续；尚无完整place/physopt/route结果，正式reset/CDC安全仍OPEN。",
+  "evidence": [
+    "project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_started.json"
+  ],
+  "affected": [
+    "SM007"
+  ],
+  "action": "按用户正常推进不停的指令继续冻结place/physopt，实际成功后route；阶段结果据原报告，不重跑已完成OPT/debug。",
+  "requires_decision": false
+}

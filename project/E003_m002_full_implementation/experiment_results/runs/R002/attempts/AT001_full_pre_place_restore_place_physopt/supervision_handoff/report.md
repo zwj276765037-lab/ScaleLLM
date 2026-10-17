@@ -1,0 +1,11 @@
+# E003 实际无wall监督接管
+
+用户追加“不要设置强行停止 只要进程还在正常继续”，补充SHA `17acf92465c4e0f3256a40ff78f953bc7398b1a9a68ed53da79ae23fb8db8363`。原合同、command/start/actual_eda_started/effective_budget及生产源码全部保持原字节；旧12h/24h数值保留为启动历史，不再控制正常运行停止。
+
+2026-10-15T12:32:57.101864Z实际生效：无wall watchdog3687878（session36338）先真实资源采样和身份握手，然后仅SIGSTOP旧supervisor3677862/start917946821；核旧状态T。worker3677864/start917946826，Vivado启动wrapper3678158/start917949115，实际计算native3678249/start917949130，均PG3677864连续。接管后同native CPU实际增加17749 ticks，见post_handoff_continuity.json。没有停止/重启EDA、改变策略或热改输入。
+
+旧停止supervisor保留lane flock且永不SIGCONT恢复旧timer。新监督只检查RSS192GiB、MemAvailable48GiB连续30s和disk30GiB；没有elapsed/global/no-output停止分支。核心monitor异常会落盘并持续重试；主流程暂停后异常由外层保留同子树的资源监督，绝不恢复旧deadline；外部SIGTERM/INT显式记录并保留监督。
+
+阶段结束须读取实际worker zombie wait status，并等待所有已跟踪同身份活子进程消失。此后只终结旧已停止supervisor PID，避免Python finally对子树执行清理；独立接管状态记录真实worker退出、原supervisor管理性交接退出，绝不伪称原manager exit0。释放原锁后取得真实lane锁、确认旧worker被收养reap，方可封闭place状态并由同冻结worker独立检查真实合格physopt父链。route的独立监督profile=m002_no_wall_continuation、timeout=null及补充身份落盘；不调用原限时manager，不重新施加12h/24h。
+
+两个独立实际CPU进程测试通过：仅暂停模拟sup时子进程持续推进/错误ticks拒绝；真实zombie wait7解码、无活跃子进程后只结束模拟sup、孤儿reap。测试未向EDA发信号。validation/frozen_supervisor以及每个原始回执保留。本记录不是物理完成、时序或安全验收。

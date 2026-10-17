@@ -1,0 +1,360 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Thu Oct 15 15:08:43 2026
+# Process ID         : 3337095
+# Current directory  : /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado
+# Command line       : vivado -mode batch -notrace -source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_resume_physical.tcl -log /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT008_complete_opt_gate_debug_place_physopt/vivado.log -journal /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT008_complete_opt_gate_debug_place_physopt/vivado.jou
+# Log file           : /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT008_complete_opt_gate_debug_place_physopt/vivado.log
+# Journal file       : /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT008_complete_opt_gate_debug_place_physopt/vivado.jou
+# Running On         : user
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.4 LTS
+# Processor Detail   : Intel(R) Xeon(R) Gold 6248R CPU @ 3.00GHz
+# CPU Frequency      : 1199.914 MHz
+# CPU Physical cores : 48
+# CPU Logical cores  : 96
+# Host memory        : 540587 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 549177 MB
+# Available Virtual  : 441888 MB
+#-----------------------------------------------------------
+Sourcing tcl script '/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/scripts/Vivado_init.tcl'
+vivado-mcp server ready on port 10000
+source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_resume_physical.tcl -notrace
+Scanning sources...
+Finished scanning sources
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280:part0:1.0 available at /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/production/1.0/board.xml as part xcve2802-vsvh1760-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280:part0:1.1 available at /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/production/1.1/board.xml as part xcve2802-vsvh1760-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280:part0:1.2 available at /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/production/1.2/board.xml as part xcve2802-vsvh1760-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vhk158:part0:1.0 available at /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vhk158/production/1.0/board.xml as part xcvh1582-vsva3697-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vhk158:part0:1.1 available at /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vhk158/production/1.1/board.xml as part xcvh1582-vsva3697-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vhk158:part0:1.2 available at /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vhk158/production/1.2/board.xml as part xcvh1582-vsva3697-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vrk160:part0:1.0 available at /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vrk160/1.0/board.xml as part xcvr1602-vsva2488-2mp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vrk160:part0:1.1 available at /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vrk160/1.1/board.xml as part xcvr1602-vsva2488-2mp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu208ld:part0:2.0 available at /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu208ld/production/2.0/board.xml as part xczu58dr-fsvg1517-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216ld:part0:2.0 available at /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216ld/production/2.0/board.xml as part xczu59dr-ffvf1760-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670ld:part0:1.0 available at /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670ld/1.0/board.xml as part xczu57dr-fsve1156-2-i specified in board_part file is either invalid or not available
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/ip'.
+WARNING: [filemgmt 56-443] The ECC Algorithm string is empty. Setting the Memory Map to default ECC value to ECC_NONE.
+WARNING: [filemgmt 56-443] The ECC Algorithm string is empty. Setting the Memory Map to default ECC value to ECC_NONE.
+WARNING: [filemgmt 56-443] The ECC Algorithm string is empty. Setting the Memory Map to default ECC value to ECC_NONE.
+WARNING: [filemgmt 56-443] The ECC Algorithm string is empty. Setting the Memory Map to default ECC value to ECC_NONE.
+INFO: [Project 1-5698] Found the below utility IPs instantiated in block design /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E002_R001_AT001_fresh/scalellm_vcu118_f05.srcs/sources_1/bd/scalellm_vcu118_f05_bd/scalellm_vcu118_f05_bd.bd which have equivalent inline hdl with improved performance and reduced diskspace.
+It is recommended to migrate these utility IPs to inline hdl  using the command upgrade_project -migrate_to_inline_hdl.  The utility IPs may be deprecated in future releases.
+More information on inline hdl is available in UG994.
+Utility IP Component Instances:
+ scalellm_vcu118_f05_bd_ddr0_not_0
+scalellm_vcu118_f05_bd_ddr0_and_0
+scalellm_vcu118_f05_bd_ddr1_not_0
+scalellm_vcu118_f05_bd_ddr1_and_0
+scalellm_vcu118_f05_bd_irqcat_0
+scalellm_vcu118_f05_bd_irq0_0
+open_project: Time (s): cpu = 00:00:20 ; elapsed = 00:00:14 . Memory (MB): peak = 1749.074 ; gain = 182.676 ; free physical = 104746 ; free virtual = 420550
+INFO: [Vivado 12-3442] The output from report_compile_order is primarily targeted for human readability and ease of use. The 'get_files' command, with the -compile_order and -used_in options, produces this same information in a format that is better suited for automated scripts.
+Command: open_checkpoint /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT007_bram_port_clock_debug_place_physopt/opt.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 1783.824 ; gain = 0.000 ; free physical = 104719 ; free virtual = 420525
+INFO: [Device 21-403] Loading part xcvu9p-flga2104-2L-e
+Netlist sorting complete. Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 5691.676 ; gain = 82.578 ; free physical = 101627 ; free virtual = 417434
+INFO: [Netlist 29-17] Analyzing 78742 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 40 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Constraints 18-550] Could not create 'DRIVE' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'DRIVE' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'SLEW' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'SLEW' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/sys_clk_in' is not directly connected to top level port. 'IBUF_LOW_PWR' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'DRIVE' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'DRIVE' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'SLEW' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'SLEW' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/sys_clk_in' is not directly connected to top level port. 'IBUF_LOW_PWR' is ignored for synthesis but preserved for implementation.
+Read ShapeDB Complete: Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 8160.191 ; gain = 446.828 ; free physical = 97877 ; free virtual = 413856
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Power 33-23] Power model is not available for xiphy_riu_or
+INFO: [Power 33-23] Power model is not available for genVref.u_hpio_vref
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 83050 ; free virtual = 399438
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.03 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 83026 ; free virtual = 399414
+Read PlaceDB: Time (s): cpu = 00:00:00.63 ; elapsed = 00:00:00.63 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 82987 ; free virtual = 399375
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 82979 ; free virtual = 399367
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 82979 ; free virtual = 399367
+Read Physdb Files: Time (s): cpu = 00:00:00.7 ; elapsed = 00:00:00.7 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 82979 ; free virtual = 399367
+Restored from archive | CPU: 0.750000 secs | Memory: 4.682091 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00.74 ; elapsed = 00:00:00.75 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 82979 ; free virtual = 399367
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/ip'.
+Netlist sorting complete. Time (s): cpu = 00:00:00.49 ; elapsed = 00:00:00.49 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 84348 ; free virtual = 400851
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 9790 instances were transformed.
+  DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 6 instances
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 2373 instances
+  DSP48E2 => DSP48E2 (inverted pins: OPMODE[5], OPMODE[4], RSTA, RSTB) (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 3072 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 1 instance 
+  IBUFDS => IBUFDS (DIFFINBUF, IBUFCTRL): 2 instances
+  IOBUFDS => IOBUFDS (DIFFINBUF, IBUFCTRL, INV, OBUFT(x2)): 16 instances
+  IOBUFE3 => IOBUFE3 (IBUFCTRL, INBUF, OBUFT_DCIEN): 144 instances
+  LUT6_2 => LUT6_2 (LUT5, LUT6): 62 instances
+  OBUFDS => OBUFDS_DUAL_BUF (INV, OBUF(x2)): 2 instances
+  RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 2 instances
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 232 instances
+  RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 9 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 453 instances
+  RAM32M16 => RAM32M16 (RAMD32(x14), RAMS32(x2)): 3138 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 148 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 4 instances
+  RAM64M8 => RAM64M8 (RAMD64E(x8)): 110 instances
+  RAM64X1D => RAM64X1D (RAMD64E(x2)): 16 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2025.2 (64-bit) build 6299465
+open_checkpoint: Time (s): cpu = 00:17:58 ; elapsed = 00:08:21 . Memory (MB): peak = 21859.215 ; gain = 20075.391 ; free physical = 84674 ; free virtual = 401177
+INFO: [Vivado 12-3442] The output from report_compile_order is primarily targeted for human readability and ease of use. The 'get_files' command, with the -compile_order and -used_in options, produces this same information in a format that is better suited for automated scripts.
+Command: report_drc -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT008_complete_opt_gate_debug_place_physopt/drc_opt_live.rpt
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT008_complete_opt_gate_debug_place_physopt/drc_opt_live.rpt.
+report_drc completed successfully
+report_drc: Time (s): cpu = 00:02:39 ; elapsed = 00:00:52 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 83881 ; free virtual = 400793
+REAL_CLOCK_FAMILIES core=pcie_refclk qpll0outclk_out[0] qpll0outrefclk_out[0] qpll1outclk_out[0] qpll1outrefclk_out[0] qpll0outclk_out[0]_1 qpll0outrefclk_out[0]_1 qpll1outclk_out[0]_1 qpll1outrefclk_out[0]_1 GTYE4_CHANNEL_TXOUTCLK[0] GTYE4_CHANNEL_TXOUTCLK[1] GTYE4_CHANNEL_TXOUTCLK[2] GTYE4_CHANNEL_TXOUTCLK[3] GTYE4_CHANNEL_TXOUTCLK[0]_1 GTYE4_CHANNEL_TXOUTCLK[1]_1 GTYE4_CHANNEL_TXOUTCLK[2]_1 GTYE4_CHANNEL_TXOUTCLK[3]_1 scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i_n_541 pipe_clk xdma_0_axi_aclk clk_out1_scalellm_vcu118_f05_bd_clk_core_0 ddr0=default_250mhz_clk1_clk_p mmcm_clkout0 mmcm_clkout6 pll_clk[0] pll_clk[1] pll_clk[2] pll_clk[0]_DIV pll_clk[2]_DIV pll_clk[1]_DIV ddr1=default_250mhz_clk2_clk_p mmcm_clkout0_1 mmcm_clkout5_1 mmcm_clkout6_1 pll_clk[0]_1 pll_clk[1]_1 pll_clk[2]_1 pll_clk[0]_1_DIV pll_clk[2]_1_DIV pll_clk[1]_1_DIV
+M002_DIAGNOSTIC_OPT_INHERITED debug_materialization_only=true
+INFO: [Chipscope 16-240] Debug cores have already been implemented
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Wrote PlaceDB: Time (s): cpu = 00:00:00.75 ; elapsed = 00:00:00.16 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 83599 ; free virtual = 400519
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 83599 ; free virtual = 400519
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Write ShapeDB Complete: Time (s): cpu = 00:00:18 ; elapsed = 00:00:04 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 83682 ; free virtual = 400933
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:45 ; elapsed = 00:00:11 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 83789 ; free virtual = 401183
+Wrote Netlist Cache: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.01 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 83788 ; free virtual = 401183
+Wrote Device Cache: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.02 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 83781 ; free virtual = 401180
+Write Physdb Complete: Time (s): cpu = 00:00:45 ; elapsed = 00:00:11 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 83780 ; free virtual = 401180
+INFO: [Common 17-1381] The checkpoint '/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT008_complete_opt_gate_debug_place_physopt/debug_materialized.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:02:58 ; elapsed = 00:01:41 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 80930 ; free virtual = 398157
+report_utilization: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 21859.215 ; gain = 0.000 ; free physical = 82045 ; free virtual = 399259
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+WARNING: [Timing 38-436] There are set_bus_skew constraint(s) in this design. Please run report_bus_skew to ensure that bus skew requirements are met.
+report_timing_summary: Time (s): cpu = 00:12:53 ; elapsed = 00:03:22 . Memory (MB): peak = 23040.199 ; gain = 1180.984 ; free physical = 81841 ; free virtual = 399076
+Command: report_drc -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT008_complete_opt_gate_debug_place_physopt/drc_debug_materialized.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E002_R003_AT008_complete_opt_gate_debug_place_physopt/drc_debug_materialized.rpt.
+report_drc completed successfully
+report_drc: Time (s): cpu = 00:02:10 ; elapsed = 00:00:44 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 82320 ; free virtual = 399560
+check_timing: Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 82089 ; free virtual = 399330
+INFO: [Vivado 12-3442] The output from report_compile_order is primarily targeted for human readability and ease of use. The 'get_files' command, with the -compile_order and -used_in options, produces this same information in a format that is better suited for automated scripts.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+INFO: [Timing 38-433] Consider using Xilinx recommended XPM_CDC modules to avoid Critical severities
+INFO: [Timing 38-314] The report_cdc command only analyzes and reports clock domain crossing paths where clocks have been defined on both source and destination sides. Ports with no input delay constraint are skipped. Please run check_timing to verify there are no missing clock definitions in your design, nor any unconstrained input port.
+report_cdc: Time (s): cpu = 00:02:28 ; elapsed = 00:00:25 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 81731 ; free virtual = 398976
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+WARNING: [Timing 38-164] This design has multiple clocks. Inter clock paths are considered valid unless explicitly excluded by timing constraints such as set_clock_groups or set_false_path.
+report_clock_interaction: Time (s): cpu = 00:02:33 ; elapsed = 00:00:20 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 81305 ; free virtual = 398551
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+report_exceptions: Time (s): cpu = 00:11:11 ; elapsed = 00:03:48 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 80188 ; free virtual = 397481
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+report_pulse_width: Time (s): cpu = 00:07:45 ; elapsed = 00:02:29 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 78012 ; free virtual = 395336
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+report_bus_skew: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 77779 ; free virtual = 395107
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+report_exceptions: Time (s): cpu = 00:11:01 ; elapsed = 00:03:27 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 80333 ; free virtual = 397683
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+report_exceptions: Time (s): cpu = 00:03:24 ; elapsed = 00:01:05 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 80487 ; free virtual = 397839
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+report_exceptions: Time (s): cpu = 00:03:21 ; elapsed = 00:01:04 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 80186 ; free virtual = 397546
+CRITICAL WARNING: [Vivado 12-1569] report_timing: The -nets option to is deprecated. The default behavior is to display net names if the timing path format allows it.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-78] ReportTimingParams: -to_pins  -max_paths 4 -nworst 4 -delay_type max -sort_by slack.
+report_timing: Time (s): cpu = 00:07:21 ; elapsed = 00:02:18 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 79465 ; free virtual = 398138
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+report_exceptions: Time (s): cpu = 00:11:06 ; elapsed = 00:03:36 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 78784 ; free virtual = 397572
+report_exceptions: Time (s): cpu = 00:03:36 ; elapsed = 00:01:11 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 79596 ; free virtual = 398337
+report_exceptions: Time (s): cpu = 00:03:49 ; elapsed = 00:01:13 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 78870 ; free virtual = 397622
+CRITICAL WARNING: [Vivado 12-1569] report_timing: The -nets option to is deprecated. The default behavior is to display net names if the timing path format allows it.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-78] ReportTimingParams: -to_pins  -max_paths 4 -nworst 4 -delay_type max -sort_by slack.
+report_timing: Time (s): cpu = 00:07:36 ; elapsed = 00:02:21 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 78763 ; free virtual = 397527
+REAL_CLOCK_FAMILIES core=pcie_refclk qpll0outclk_out[0] qpll0outrefclk_out[0] qpll1outclk_out[0] qpll1outrefclk_out[0] qpll0outclk_out[0]_1 qpll0outrefclk_out[0]_1 qpll1outclk_out[0]_1 qpll1outrefclk_out[0]_1 GTYE4_CHANNEL_TXOUTCLK[0] GTYE4_CHANNEL_TXOUTCLK[1] GTYE4_CHANNEL_TXOUTCLK[2] GTYE4_CHANNEL_TXOUTCLK[3] GTYE4_CHANNEL_TXOUTCLK[0]_1 GTYE4_CHANNEL_TXOUTCLK[1]_1 GTYE4_CHANNEL_TXOUTCLK[2]_1 GTYE4_CHANNEL_TXOUTCLK[3]_1 scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i_n_541 pipe_clk xdma_0_axi_aclk clk_out1_scalellm_vcu118_f05_bd_clk_core_0 ddr0=default_250mhz_clk1_clk_p mmcm_clkout0 mmcm_clkout6 pll_clk[0] pll_clk[1] pll_clk[2] pll_clk[0]_DIV pll_clk[2]_DIV pll_clk[1]_DIV ddr1=default_250mhz_clk2_clk_p mmcm_clkout0_1 mmcm_clkout5_1 mmcm_clkout6_1 pll_clk[0]_1 pll_clk[1]_1 pll_clk[2]_1 pll_clk[0]_1_DIV pll_clk[2]_1_DIV pll_clk[1]_1_DIV
+M002_DIAGNOSTIC_STEP_COMPLETED debug_materialized coverage=COMPLETE_INTERNAL physical_signoff=false
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xcvu9p'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcvu9p'
+INFO: [Common 17-83] Releasing license: Implementation
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 8 CPUs
+
+Starting Placer Task
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00.52 ; elapsed = 00:00:00.59 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 78619 ; free virtual = 397632
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 1f9be8a04
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 78466 ; free virtual = 397556
+Netlist sorting complete. Time (s): cpu = 00:00:00.48 ; elapsed = 00:00:00.48 . Memory (MB): peak = 23040.199 ; gain = 0.000 ; free physical = 78531 ; free virtual = 397544
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 15705e5ad
+
+Time (s): cpu = 00:03:03 ; elapsed = 00:02:04 . Memory (MB): peak = 23048.203 ; gain = 8.004 ; free physical = 80390 ; free virtual = 399456
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: 1dd45fae5
+
+Time (s): cpu = 00:28:23 ; elapsed = 00:13:20 . Memory (MB): peak = 29266.402 ; gain = 6226.203 ; free physical = 77257 ; free virtual = 391507
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: 1dd45fae5
+
+Time (s): cpu = 00:28:26 ; elapsed = 00:13:23 . Memory (MB): peak = 29266.402 ; gain = 6226.203 ; free physical = 77034 ; free virtual = 391284
+Phase 1 Placer Initialization | Checksum: 1dd45fae5
+
+Time (s): cpu = 00:28:35 ; elapsed = 00:13:32 . Memory (MB): peak = 29266.402 ; gain = 6226.203 ; free physical = 76830 ; free virtual = 391080
+
+Phase 2 Global Placement
+
+Phase 2.1 Floorplanning
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.laguna_s_handshake_asyncclear_inst
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.laguna_s_handshake_asyncclear_inst
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.laguna_m_ready_d_reg
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_master/common.laguna_m_ready_d_reg
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/laguna_s_reset_in_d_reg
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.laguna_s_reset_in_d_reg
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[0]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[0]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[10]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[10]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[11]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[11]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[12]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[12]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[13]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[13]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[14]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[14]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[15]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[15]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[16]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[16]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[17]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[17]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[18]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[18]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[19]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[19]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[1]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[1]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[20]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[20]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[21]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[21]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[22]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[22]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[23]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[23]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[24]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[24]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[25]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[25]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[26]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[26]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[27]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[27]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[28]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[28]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[29]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[29]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[2]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[2]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[30]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[30]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[31]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[31]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[32]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[32]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[33]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[33]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[34]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[34]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[35]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[35]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[36]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[36]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[37]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[37]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[39]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[39]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[3]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[3]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[40]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[40]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[41]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[41]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[42]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[42]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[43]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[43]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[44]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[44]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[45]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[45]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[46]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[46]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[47]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[47]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[48]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[48]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[49]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[49]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[4]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[4]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[50]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[50]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[53]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[53]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.pipe[0].laguna_s_payload_d_reg[54]
+WARNING: [Place 30-1229] Ignored property. SLR partitioner was not able to find solution that obeys USER_SLL_REG property for cell: scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_slave/common.pipe[0].laguna_s_payload_d_reg[54]
+INFO: [Common 17-14] Message 'Place 30-1229' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Place 30-1906] Running placement in ultrathreads mode using maximum of 8 CPUs
+
+Phase 2.1.1 Partition Driven Placement
+
+Phase 2.1.1.1 PBP: Partition Driven Placement
+Phase 2.1.1.1 PBP: Partition Driven Placement | Checksum: 17ed42e36
+
+Time (s): cpu = 01:02:29 ; elapsed = 00:28:26 . Memory (MB): peak = 29410.473 ; gain = 6370.273 ; free physical = 77253 ; free virtual = 392278
+
+Phase 2.1.1.2 PBP: Clock Region Placement

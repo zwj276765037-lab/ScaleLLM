@@ -1,0 +1,1773 @@
+{
+  "created_utc": "2026-10-16T15:54:42.704027+00:00",
+  "execution": "completed CPU source tracing only",
+  "verdict": "supported only for contents/ownership/capacity",
+  "applicability": "E005 frozen source and native whole-design hierarchy counts; no SLR placement inference",
+  "review": "delivered for controller review; not user acceptance",
+  "freeze": {
+    "path": "project/E005_m002_optimized_implementation/experiment_source/frozen_inputs_before_current_CDC_recovery.json",
+    "bytes": 36069,
+    "sha256": "a5643a9e8adb13d6e76f3e78b2dfb6804b9b8ac193f7006f5ceff1b0c4f5a26f"
+  },
+  "sources": [
+    {
+      "path": "project/hardware/rtl/attention/hap_weight_meta_resident.sv",
+      "bytes": 4933,
+      "sha256": "a0ccf69e9ebb1d952a9cc5d043c78ab3bf56e1f6622ad9f246fdf02a858f7153",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_weight_meta_resident.sv",
+        "bytes": 4933,
+        "sha256": "a0ccf69e9ebb1d952a9cc5d043c78ab3bf56e1f6622ad9f246fdf02a858f7153"
+      },
+      "evidence": [
+        {
+          "start_line": 3,
+          "end_line": 8,
+          "lines": [
+            {
+              "line": 3,
+              "text": "// Complete Q/K/V/Wo meta16 store: 640 tiles x 128 groups x 16 columns."
+            },
+            {
+              "line": 4,
+              "text": "// Data is only 2.5 MiB and fits comfortably in VU9P URAM; W8 data remains in"
+            },
+            {
+              "line": 5,
+              "text": "// the two external DDR channels."
+            },
+            {
+              "line": 6,
+              "text": "module hap_weight_meta_resident #("
+            },
+            {
+              "line": 7,
+              "text": "    parameter integer DEPTH = 81920,"
+            },
+            {
+              "line": 8,
+              "text": "    parameter integer ADDR_W = 17"
+            }
+          ]
+        },
+        {
+          "start_line": 29,
+          "end_line": 29,
+          "lines": [
+            {
+              "line": 29,
+              "text": "    (* ram_style = \"ultra\" *) reg [255:0] meta_mem [0:DEPTH-1];"
+            }
+          ]
+        },
+        {
+          "start_line": 63,
+          "end_line": 68,
+          "lines": [
+            {
+              "line": 63,
+              "text": "            for (column = 0; column < 16; column = column + 1) begin"
+            },
+            {
+              "line": 64,
+              "text": "                code = value[column*16 +: 8];"
+            },
+            {
+              "line": 65,
+              "text": "                shift = value[column*16+8 +: 6];"
+            },
+            {
+              "line": 66,
+              "text": "                if ((value[column*16+14 +: 2] != 0) ||"
+            },
+            {
+              "line": 67,
+              "text": "                    ((code == 0) && (shift != 0)))"
+            },
+            {
+              "line": 68,
+              "text": "                    invalid = 1'b1;"
+            }
+          ]
+        },
+        {
+          "start_line": 74,
+          "end_line": 78,
+          "lines": [
+            {
+              "line": 74,
+              "text": "    always @(posedge clk) begin"
+            },
+            {
+              "line": 75,
+              "text": "        if (wr_fire)"
+            },
+            {
+              "line": 76,
+              "text": "            meta_mem[wr_addr] <= wr_meta16;"
+            },
+            {
+              "line": 77,
+              "text": "        if (rd_fire)"
+            },
+            {
+              "line": 78,
+              "text": "            rsp_meta_r <= meta_mem[rd_addr];"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_attention_board_cohort16_core.sv",
+      "bytes": 40528,
+      "sha256": "c40e986c0c0371bb5f86715ddfea0d0731b8ec3fe3324340e11c4571a42b842e",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_attention_board_cohort16_core.sv",
+        "bytes": 40528,
+        "sha256": "c40e986c0c0371bb5f86715ddfea0d0731b8ec3fe3324340e11c4571a42b842e"
+      },
+      "evidence": [
+        {
+          "start_line": 272,
+          "end_line": 285,
+          "lines": [
+            {
+              "line": 272,
+              "text": "    wire meta_rd_valid = state_r==ST_RUN &&"
+            },
+            {
+              "line": 273,
+              "text": "        (meta_read_addr_r < 17'd81920) && !meta_read_pending_r;"
+            },
+            {
+              "line": 274,
+              "text": "    wire meta_rd_fire = meta_rd_valid && meta_rd_ready;"
+            },
+            {
+              "line": 275,
+              "text": "    wire meta_rsp_fire = meta_rsp_valid && meta_rsp_ready;"
+            },
+            {
+              "line": 276,
+              "text": ""
+            },
+            {
+              "line": 277,
+              "text": "    hap_weight_meta_resident u_meta ("
+            },
+            {
+              "line": 278,
+              "text": "        .clk(core_clk), .rst_n(core_rst_n), .clear(datapath_clear),"
+            },
+            {
+              "line": 279,
+              "text": "        .wr_valid(meta_wr_valid), .wr_ready(meta_wr_ready),"
+            },
+            {
+              "line": 280,
+              "text": "        .wr_addr(artifact_index_r), .wr_meta16(dma_rd_data),"
+            },
+            {
+              "line": 281,
+              "text": "        .rd_valid(meta_rd_valid), .rd_ready(meta_rd_ready),"
+            },
+            {
+              "line": 282,
+              "text": "        .rd_addr(meta_read_addr_r), .rsp_valid(meta_rsp_valid),"
+            },
+            {
+              "line": 283,
+              "text": "        .rsp_ready(meta_rsp_ready), .rsp_meta16(meta_rsp_data),"
+            },
+            {
+              "line": 284,
+              "text": "        .write_count(), .read_count(), .format_error_count(),"
+            },
+            {
+              "line": 285,
+              "text": "        .error(meta_store_error)"
+            }
+          ]
+        },
+        {
+          "start_line": 352,
+          "end_line": 359,
+          "lines": [
+            {
+              "line": 352,
+              "text": "        .ddr1_axi_rresp(ddr1_axi_rresp), .ddr1_axi_rlast(ddr1_axi_rlast),"
+            },
+            {
+              "line": 353,
+              "text": "        .meta_valid(meta_rsp_valid), .meta_ready(meta_rsp_ready),"
+            },
+            {
+              "line": 354,
+              "text": "        .meta_tile(meta_read_addr_r[16:7]),"
+            },
+            {
+              "line": 355,
+              "text": "        .meta_group(meta_read_addr_r[6:0]), .meta16(meta_rsp_data),"
+            },
+            {
+              "line": 356,
+              "text": "        .out_valid(weight_valid), .out_ready(weight_ready),"
+            },
+            {
+              "line": 357,
+              "text": "        .out_tile(weight_tile), .out_group(weight_group),"
+            },
+            {
+              "line": 358,
+              "text": "        .out_weight_s8(weight_s8), .out_meta16(weight_meta16),"
+            },
+            {
+              "line": 359,
+              "text": "        .busy(weight_frontend_busy), .error(weight_frontend_error)"
+            }
+          ]
+        },
+        {
+          "start_line": 413,
+          "end_line": 417,
+          "lines": [
+            {
+              "line": 413,
+              "text": "        .activation_s24(activation_s24), .weight_valid(weight_valid),"
+            },
+            {
+              "line": 414,
+              "text": "        .weight_ready(weight_ready), .weight_tile(weight_tile),"
+            },
+            {
+              "line": 415,
+              "text": "        .weight_group(weight_group), .weight_s8(weight_s8),"
+            },
+            {
+              "line": 416,
+              "text": "        .weight_meta16(weight_meta16), .out_valid(compute_out_valid),"
+            },
+            {
+              "line": 417,
+              "text": "        .out_ready(compute_out_ready), .out_wave(compute_out_wave),"
+            }
+          ]
+        },
+        {
+          "start_line": 540,
+          "end_line": 570,
+          "lines": [
+            {
+              "line": 540,
+              "text": "                        if (control_reload_metadata) begin"
+            },
+            {
+              "line": 541,
+              "text": "                            metadata_loaded_r <= 1'b0;"
+            },
+            {
+              "line": 542,
+              "text": "                            state_r <= ST_META_CMD;"
+            },
+            {
+              "line": 543,
+              "text": "                        end else if (control_reload_rope) begin"
+            },
+            {
+              "line": 544,
+              "text": "                            rope_loaded_r <= 1'b0;"
+            },
+            {
+              "line": 545,
+              "text": "                            state_r <= ST_ROPE_CMD;"
+            },
+            {
+              "line": 546,
+              "text": "                        end else state_r <= ST_INPUT_CMD;"
+            },
+            {
+              "line": 547,
+              "text": "                    end"
+            },
+            {
+              "line": 548,
+              "text": "                    ST_META_CMD: if (dma_cmd_valid && dma_cmd_ready) begin"
+            },
+            {
+              "line": 549,
+              "text": "                        artifact_index_r <= 17'd0;"
+            },
+            {
+              "line": 550,
+              "text": "                        state_r <= ST_META_DATA;"
+            },
+            {
+              "line": 551,
+              "text": "                    end"
+            },
+            {
+              "line": 552,
+              "text": "                    ST_META_DATA: begin"
+            },
+            {
+              "line": 553,
+              "text": "                        if (dma_rd_valid && dma_rd_ready)"
+            },
+            {
+              "line": 554,
+              "text": "                            artifact_index_r <= artifact_index_r + 1'b1;"
+            },
+            {
+              "line": 555,
+              "text": "                        if (dma_done) begin"
+            },
+            {
+              "line": 556,
+              "text": "                            if (artifact_index_r +"
+            },
+            {
+              "line": 557,
+              "text": "                                (dma_rd_valid && dma_rd_ready) !="
+            },
+            {
+              "line": 558,
+              "text": "                                17'd81920) begin"
+            },
+            {
+              "line": 559,
+              "text": "                                board_error_code_r <= 32'h0000_0002;"
+            },
+            {
+              "line": 560,
+              "text": "                                board_completion_status_r <="
+            },
+            {
+              "line": 561,
+              "text": "                                    COMPLETION_PROTOCOL_ERROR;"
+            },
+            {
+              "line": 562,
+              "text": "                                command_abort_clear_r <= 1'b1;"
+            },
+            {
+              "line": 563,
+              "text": "                                state_r <= ST_ERROR;"
+            },
+            {
+              "line": 564,
+              "text": "                            end else begin"
+            },
+            {
+              "line": 565,
+              "text": "                                metadata_loaded_r <= 1'b1;"
+            },
+            {
+              "line": 566,
+              "text": "                                if (active_reload_rope_r) begin"
+            },
+            {
+              "line": 567,
+              "text": "                                    rope_loaded_r <= 1'b0;"
+            },
+            {
+              "line": 568,
+              "text": "                                    state_r <= ST_ROPE_CMD;"
+            },
+            {
+              "line": 569,
+              "text": "                                end else state_r <= ST_INPUT_CMD;"
+            },
+            {
+              "line": 570,
+              "text": "                            end"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_attention_compute_cohort16_top.sv",
+      "bytes": 40008,
+      "sha256": "47efde7fa22651a52d1f88c10cbf99f8471b411d8e54a9ddc8c56b80d2738235",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_attention_compute_cohort16_top.sv",
+        "bytes": 40008,
+        "sha256": "47efde7fa22651a52d1f88c10cbf99f8471b411d8e54a9ddc8c56b80d2738235"
+      },
+      "evidence": [
+        {
+          "start_line": 206,
+          "end_line": 209,
+          "lines": [
+            {
+              "line": 206,
+              "text": "    generate if (USE_PROJECTION_STUB == 0) begin : g_projection_rtl"
+            },
+            {
+              "line": 207,
+              "text": "    hap_projection_core16x16_w8_reuse u_projection ("
+            },
+            {
+              "line": 208,
+              "text": "        .clk(clk), .rst_n(rst_n), .clear(clear),"
+            },
+            {
+              "line": 209,
+              "text": "        .activation_valid(projection_activation_valid),"
+            }
+          ]
+        },
+        {
+          "start_line": 225,
+          "end_line": 230,
+          "lines": [
+            {
+              "line": 225,
+              "text": "        .weight_ready(projection_weight_ready),"
+            },
+            {
+              "line": 226,
+              "text": "        .weight_valid(weight_valid && (state_r == ST_WEIGHT) &&"
+            },
+            {
+              "line": 227,
+              "text": "            (weight_tile == projection_tile_r)),"
+            },
+            {
+              "line": 228,
+              "text": "        .weight_group(weight_group), .weight_s8(weight_s8),"
+            },
+            {
+              "line": 229,
+              "text": "        .weight_meta16(weight_meta16),"
+            },
+            {
+              "line": 230,
+              "text": "        .out_valid(projection_out_valid),"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_projection_core16x16_w8_reuse.sv",
+      "bytes": 26424,
+      "sha256": "9d0b6fe5e1239f1e89d023106d3546d369afcef78ef77db1441519de4680fe06",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_projection_core16x16_w8_reuse.sv",
+        "bytes": 26424,
+        "sha256": "9d0b6fe5e1239f1e89d023106d3546d369afcef78ef77db1441519de4680fe06"
+      },
+      "evidence": [
+        {
+          "start_line": 322,
+          "end_line": 327,
+          "lines": [
+            {
+              "line": 322,
+              "text": "        for (col = 0; col < 16; col = col + 1) begin : g_col_meta"
+            },
+            {
+              "line": 323,
+              "text": "            assign col_scale_code[col*8 +: 8] ="
+            },
+            {
+              "line": 324,
+              "text": "                group_stage_weight_meta16_r[col*16 +: 8];"
+            },
+            {
+              "line": 325,
+              "text": "            assign col_scale_shift[col*6 +: 6] ="
+            },
+            {
+              "line": 326,
+              "text": "                group_stage_weight_meta16_r[col*16+8 +: 6];"
+            },
+            {
+              "line": 327,
+              "text": "        end"
+            }
+          ]
+        },
+        {
+          "start_line": 350,
+          "end_line": 355,
+          "lines": [
+            {
+              "line": 350,
+              "text": "        .row_act_scale_code(row_scale_code),"
+            },
+            {
+              "line": 351,
+              "text": "        .row_act_scale_shift(row_scale_shift),"
+            },
+            {
+              "line": 352,
+              "text": "        .col_wgt_s8(group_stage_weight_s8_r),"
+            },
+            {
+              "line": 353,
+              "text": "        .col_wgt_scale_code(col_scale_code),"
+            },
+            {
+              "line": 354,
+              "text": "        .col_wgt_scale_shift(col_scale_shift),"
+            },
+            {
+              "line": 355,
+              "text": "        .out_valid(array_out_valid),"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_attention_mlp_production_core.sv",
+      "bytes": 30879,
+      "sha256": "1e5d2ba60335e0c3f9c0b97ee6aa867a53ecad89ea3da0a483732ed889eeead3",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/integration/hap_attention_mlp_production_core.sv",
+        "bytes": 30879,
+        "sha256": "1e5d2ba60335e0c3f9c0b97ee6aa867a53ecad89ea3da0a483732ed889eeead3"
+      },
+      "evidence": [
+        {
+          "start_line": 185,
+          "end_line": 212,
+          "lines": [
+            {
+              "line": 185,
+              "text": " hap_mlp_metadata_scheduler u_meta_sched(.clk(core_clk),.rst_n(core_rst_n),.clear(mlp_engine_clear),"
+            },
+            {
+              "line": 186,
+              "text": "  .command_start(mlp_command_fire),.command_done(mlp_compute_done),.gate_enable(gate_phase),"
+            },
+            {
+              "line": 187,
+              "text": "  .down_enable(down_phase),.gate_rd_valid(gate_rd_valid),.gate_rd_ready(gate_rd_ready),"
+            },
+            {
+              "line": 188,
+              "text": "  .gate_rd_addr(gate_rd_addr),.gate_rsp_valid(gate_rsp_valid),.gate_rsp_ready(gate_rsp_ready),"
+            },
+            {
+              "line": 189,
+              "text": "  .gate_rsp_meta(gate_rsp_meta),.gate_meta_valid(gate_meta_valid),.gate_meta_ready(gate_meta_ready),"
+            },
+            {
+              "line": 190,
+              "text": "  .gate_meta(gate_meta_u224),.down_rd_valid(down_rd_valid),.down_rd_ready(down_rd_ready),"
+            },
+            {
+              "line": 191,
+              "text": "  .down_rd_addr(down_rd_addr),.down_rsp_valid(down_rsp_valid),.down_rsp_ready(down_rsp_ready),"
+            },
+            {
+              "line": 192,
+              "text": "  .down_rsp_meta(down_rsp_meta),.down_meta_valid(down_meta_valid),.down_meta_ready(down_meta_ready),"
+            },
+            {
+              "line": 193,
+              "text": "  .down_meta(down_meta_u224),.active(scheduler_active),.gate_issue_count(sgi),"
+            },
+            {
+              "line": 194,
+              "text": "  .gate_delivery_count(sgd),.down_issue_count(sdi),.down_delivery_count(sdd),"
+            },
+            {
+              "line": 195,
+              "text": "  .done(scheduler_done),.error(scheduler_error));"
+            },
+            {
+              "line": 196,
+              "text": " hap_mlp_weight_meta_resident_ab u_meta_bank(.clk(core_clk),.rst_n(core_rst_n),.clear(mlp_engine_clear),"
+            },
+            {
+              "line": 197,
+              "text": "  .load_begin_valid(bank_load_begin_valid),.load_begin_ready(bank_load_begin_ready),"
+            },
+            {
+              "line": 198,
+              "text": "  .load_begin_bank(bank_load_begin_bank),.gate_wr_valid(gate_wr_valid),.gate_wr_ready(gate_wr_ready),"
+            },
+            {
+              "line": 199,
+              "text": "  .gate_wr_bank(gate_wr_bank),.gate_wr_addr(gate_wr_addr),.gate_wr_meta_u224(gate_wr_meta),"
+            },
+            {
+              "line": 200,
+              "text": "  .down_wr_valid(down_wr_valid),.down_wr_ready(down_wr_ready),.down_wr_bank(down_wr_bank),"
+            },
+            {
+              "line": 201,
+              "text": "  .down_wr_addr(down_wr_addr),.down_wr_meta_u224(down_wr_meta),.commit_valid(meta_commit_valid),"
+            },
+            {
+              "line": 202,
+              "text": "  .commit_ready(meta_commit_ready),.commit_bank(meta_commit_bank),"
+            },
+            {
+              "line": 203,
+              "text": "  .commit_generation(meta_commit_generation),.consumer_quiescent(!mlp_busy&&!scheduler_active),"
+            },
+            {
+              "line": 204,
+              "text": "  .active_bank(meta_active_bank),.active_generation(meta_active_generation),"
+            },
+            {
+              "line": 205,
+              "text": "  .bank_valid(meta_bank_valid),.bank_loading(meta_bank_loading),"
+            },
+            {
+              "line": 206,
+              "text": "  .gate_rd_valid(gate_rd_valid),.gate_rd_ready(gate_rd_ready),.gate_rd_addr(gate_rd_addr),"
+            },
+            {
+              "line": 207,
+              "text": "  .gate_rsp_valid(gate_rsp_valid),.gate_rsp_ready(gate_rsp_ready),.gate_rsp_meta_u224(gate_rsp_meta),"
+            },
+            {
+              "line": 208,
+              "text": "  .down_rd_valid(down_rd_valid),.down_rd_ready(down_rd_ready),.down_rd_addr(down_rd_addr),"
+            },
+            {
+              "line": 209,
+              "text": "  .down_rsp_valid(down_rsp_valid),.down_rsp_ready(down_rsp_ready),.down_rsp_meta_u224(down_rsp_meta),"
+            },
+            {
+              "line": 210,
+              "text": "  .gate_write_count_bank0(mgw0),.gate_write_count_bank1(mgw1),"
+            },
+            {
+              "line": 211,
+              "text": "  .down_write_count_bank0(mdw0),.down_write_count_bank1(mdw1),"
+            },
+            {
+              "line": 212,
+              "text": "  .gate_read_count(),.down_read_count(),.error(meta_error));"
+            }
+          ]
+        },
+        {
+          "start_line": 345,
+          "end_line": 348,
+          "lines": [
+            {
+              "line": 345,
+              "text": " wire mlp_gate_meta_valid=gate_meta_valid;wire mlp_gate_meta_ready;"
+            },
+            {
+              "line": 346,
+              "text": " wire[223:0]mlp_gate_meta_u224=gate_meta_u224;"
+            },
+            {
+              "line": 347,
+              "text": " wire mlp_down_meta_valid=down_meta_valid;wire mlp_down_meta_ready;"
+            },
+            {
+              "line": 348,
+              "text": " wire[223:0]mlp_down_meta_u224=down_meta_u224;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_attention_mlp_resource_top.sv",
+      "bytes": 11764,
+      "sha256": "863f636d0ed759415a584e96f77644f9a6456769c24c5054fd76cd082cebff3c",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/integration/hap_attention_mlp_resource_top.sv",
+        "bytes": 11764,
+        "sha256": "863f636d0ed759415a584e96f77644f9a6456769c24c5054fd76cd082cebff3c"
+      },
+      "evidence": [
+        {
+          "start_line": 153,
+          "end_line": 155,
+          "lines": [
+            {
+              "line": 153,
+              "text": "    hap_mlp_full_command16_s54 u_mlp("
+            },
+            {
+              "line": 154,
+              "text": "      .core_clk(core_clk),.core_rst_n(core_rst_n),"
+            },
+            {
+              "line": 155,
+              "text": "      .core_clear(mlp_engine_clear),"
+            }
+          ]
+        },
+        {
+          "start_line": 168,
+          "end_line": 171,
+          "lines": [
+            {
+              "line": 168,
+              "text": "      .gate_meta_valid(mlp_gate_meta_valid),"
+            },
+            {
+              "line": 169,
+              "text": "      .gate_meta_ready(mlp_gate_meta_ready),.gate_meta_u224(mlp_gate_meta_u224),"
+            },
+            {
+              "line": 170,
+              "text": "      .down_meta_valid(mlp_down_meta_valid),"
+            },
+            {
+              "line": 171,
+              "text": "      .down_meta_ready(mlp_down_meta_ready),.down_meta_u224(mlp_down_meta_u224),"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_mlp_meta_dma_loader.sv",
+      "bytes": 5838,
+      "sha256": "3e9c219199156efef25972cfb8a520142ede39d185164dc600d608ba54b5f054",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/integration/hap_mlp_meta_dma_loader.sv",
+        "bytes": 5838,
+        "sha256": "3e9c219199156efef25972cfb8a520142ede39d185164dc600d608ba54b5f054"
+      },
+      "evidence": [
+        {
+          "start_line": 3,
+          "end_line": 11,
+          "lines": [
+            {
+              "line": 3,
+              "text": "// Loads one padded-256 MLP metadata image from board DDR into an inactive"
+            },
+            {
+              "line": 4,
+              "text": "// URAM bank.  Each AXI beat contains one 224-bit record in bits [223:0] and"
+            },
+            {
+              "line": 5,
+              "text": "// reserved zero padding in [255:224]."
+            },
+            {
+              "line": 6,
+              "text": "module hap_mlp_meta_dma_loader #("
+            },
+            {
+              "line": 7,
+              "text": "    parameter integer GATE_RECORDS=229376,"
+            },
+            {
+              "line": 8,
+              "text": "    parameter integer DOWN_RECORDS=114688,"
+            },
+            {
+              "line": 9,
+              "text": "    parameter integer GATE_ADDR_W=18,"
+            },
+            {
+              "line": 10,
+              "text": "    parameter integer DOWN_ADDR_W=17,"
+            },
+            {
+              "line": 11,
+              "text": "    parameter integer PRODUCTION_SHAPE=1"
+            }
+          ]
+        },
+        {
+          "start_line": 45,
+          "end_line": 55,
+          "lines": [
+            {
+              "line": 45,
+              "text": " assign bank_load_begin_valid=state_r==P_BEGIN;assign bank_load_begin_bank=target_bank_r;"
+            },
+            {
+              "line": 46,
+              "text": " assign gate_wr_valid=state_r==P_GATE&&dma_rd_valid;assign dma_rd_ready="
+            },
+            {
+              "line": 47,
+              "text": "   state_r==P_GATE?gate_wr_ready:state_r==P_DOWN?down_wr_ready:1'b0;"
+            },
+            {
+              "line": 48,
+              "text": " assign gate_wr_bank=target_bank_r;assign gate_wr_addr=gate_record_count[GATE_ADDR_W-1:0];"
+            },
+            {
+              "line": 49,
+              "text": " assign gate_wr_meta=dma_rd_data[223:0];assign down_wr_valid=state_r==P_DOWN&&dma_rd_valid;"
+            },
+            {
+              "line": 50,
+              "text": " assign down_wr_bank=target_bank_r;assign down_wr_addr=down_record_count[DOWN_ADDR_W-1:0];"
+            },
+            {
+              "line": 51,
+              "text": " assign down_wr_meta=dma_rd_data[223:0];"
+            },
+            {
+              "line": 52,
+              "text": " hap_axi256_dma u_dma(.clk(clk),.rst_n(rst_n),.clear(clear),.cmd_valid(dma_cmd_valid),"
+            },
+            {
+              "line": 53,
+              "text": "  .cmd_ready(dma_cmd_ready),.cmd_write(1'b0),"
+            },
+            {
+              "line": 54,
+              "text": "  .cmd_base_addr(state_r==P_GATE_CMD?gate_base_r:down_base_r),"
+            },
+            {
+              "line": 55,
+              "text": "  .cmd_beat_count(state_r==P_GATE_CMD?GATE_RECORDS:DOWN_RECORDS),"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_mlp_metadata_scheduler.sv",
+      "bytes": 10290,
+      "sha256": "91a1015fc8ae3d0c08baccb7dd14512796eeeb8fc525bf3e49e02092ffa27636",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/integration/hap_mlp_metadata_scheduler.sv",
+        "bytes": 10290,
+        "sha256": "91a1015fc8ae3d0c08baccb7dd14512796eeeb8fc525bf3e49e02092ffa27636"
+      },
+      "evidence": [
+        {
+          "start_line": 72,
+          "end_line": 94,
+          "lines": [
+            {
+              "line": 72,
+              "text": "    assign active = active_r;"
+            },
+            {
+              "line": 73,
+              "text": "    assign gate_rd_valid = active_r && gate_enable &&"
+            },
+            {
+              "line": 74,
+              "text": "        gate_issue_count < GATE_RECORDS;"
+            },
+            {
+              "line": 75,
+              "text": "    assign gate_rd_addr = gate_issue_count[GATE_ADDR_W-1:0];"
+            },
+            {
+              "line": 76,
+              "text": "    // The response FIFOs are a physical timing boundary.  In particular,"
+            },
+            {
+              "line": 77,
+              "text": "    // rsp_ready depends only on registered occupancy, never combinationally"
+            },
+            {
+              "line": 78,
+              "text": "    // on the MLP consumer ready chain.  This prevents kernel backpressure"
+            },
+            {
+              "line": 79,
+              "text": "    // from propagating across SLRs into a cascaded URAM enable input."
+            },
+            {
+              "line": 80,
+              "text": "    assign gate_rsp_ready = active_r && gate_enable &&"
+            },
+            {
+              "line": 81,
+              "text": "        gate_fifo_count_r < RESPONSE_FIFO_DEPTH;"
+            },
+            {
+              "line": 82,
+              "text": "    assign gate_meta_valid = active_r && gate_enable &&"
+            },
+            {
+              "line": 83,
+              "text": "        gate_fifo_count_r != 0;"
+            },
+            {
+              "line": 84,
+              "text": "    assign gate_meta = gate_fifo_rd_ptr_r ?"
+            },
+            {
+              "line": 85,
+              "text": "        gate_fifo_slot1_r : gate_fifo_slot0_r;"
+            },
+            {
+              "line": 86,
+              "text": "    assign down_rd_valid = active_r && down_enable &&"
+            },
+            {
+              "line": 87,
+              "text": "        down_issue_count < DOWN_RECORDS;"
+            },
+            {
+              "line": 88,
+              "text": "    assign down_rd_addr = down_issue_count[DOWN_ADDR_W-1:0];"
+            },
+            {
+              "line": 89,
+              "text": "    assign down_rsp_ready = active_r && down_enable &&"
+            },
+            {
+              "line": 90,
+              "text": "        down_fifo_count_r < RESPONSE_FIFO_DEPTH;"
+            },
+            {
+              "line": 91,
+              "text": "    assign down_meta_valid = active_r && down_enable &&"
+            },
+            {
+              "line": 92,
+              "text": "        down_fifo_count_r != 0;"
+            },
+            {
+              "line": 93,
+              "text": "    assign down_meta = down_fifo_rd_ptr_r ?"
+            },
+            {
+              "line": 94,
+              "text": "        down_fifo_slot1_r : down_fifo_slot0_r;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_weight_meta_resident_ab.sv",
+      "bytes": 20439,
+      "sha256": "4b557a1a588b94ba1b2135d1960f8b1b9d07ce4bc62ba4339000a6123f3c200b",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/mlp/hap_mlp_weight_meta_resident_ab.sv",
+        "bytes": 20439,
+        "sha256": "4b557a1a588b94ba1b2135d1960f8b1b9d07ce4bc62ba4339000a6123f3c200b"
+      },
+      "evidence": [
+        {
+          "start_line": 23,
+          "end_line": 23,
+          "lines": [
+            {
+              "line": 23,
+              "text": "    (* ram_style = \"ultra\" *) reg [WIDTH-1:0] mem [0:DEPTH-1];"
+            }
+          ]
+        },
+        {
+          "start_line": 106,
+          "end_line": 119,
+          "lines": [
+            {
+              "line": 106,
+              "text": "    genvar width_index;"
+            },
+            {
+              "line": 107,
+              "text": "    generate for(width_index=0;width_index<4;width_index=width_index+1) begin : g_width"
+            },
+            {
+              "line": 108,
+              "text": "        localparam integer WIDTH = width_index==3 ? 8 : 72;"
+            },
+            {
+              "line": 109,
+              "text": "        (* KEEP_HIERARCHY = \"yes\" *)"
+            },
+            {
+              "line": 110,
+              "text": "        hap_mlp_weight_meta_uram_width_local #("
+            },
+            {
+              "line": 111,
+              "text": "            .DEPTH(DEPTH),.ADDR_W(ADDR_W),.WIDTH(WIDTH)"
+            },
+            {
+              "line": 112,
+              "text": "        ) u_width_local ("
+            },
+            {
+              "line": 113,
+              "text": "            .clk(clk),.rst_n(rst_n),.clear(clear),.wr_fire(wr_fire),"
+            },
+            {
+              "line": 114,
+              "text": "            .wr_addr(wr_addr),.wr_data(wr_data[width_index*72+:WIDTH]),"
+            },
+            {
+              "line": 115,
+              "text": "            .write_pending(width_write_pending[width_index]),"
+            },
+            {
+              "line": 116,
+              "text": "            .rd_fire(rd_fire),.rd_addr(rd_addr),"
+            },
+            {
+              "line": 117,
+              "text": "            .read_landing(width_read_landing[width_index]),"
+            },
+            {
+              "line": 118,
+              "text": "            .rd_data(rd_data_uram_r[width_index*72+:WIDTH])"
+            },
+            {
+              "line": 119,
+              "text": "        );"
+            }
+          ]
+        },
+        {
+          "start_line": 186,
+          "end_line": 196,
+          "lines": [
+            {
+              "line": 186,
+              "text": "// Two resident MLP metadata images.  Gate/up and down have independent read"
+            },
+            {
+              "line": 187,
+              "text": "// ports because their physical schedules and address widths differ.  The"
+            },
+            {
+              "line": 188,
+              "text": "// inactive bank can be loaded through the two write ports while the active"
+            },
+            {
+              "line": 189,
+              "text": "// bank serves the current layer.  A bank becomes selectable only after both"
+            },
+            {
+              "line": 190,
+              "text": "// exact write counts have been observed and software commits its generation."
+            },
+            {
+              "line": 191,
+              "text": "module hap_mlp_weight_meta_resident_ab #("
+            },
+            {
+              "line": 192,
+              "text": "    parameter integer GATE_DEPTH = 229376,"
+            },
+            {
+              "line": 193,
+              "text": "    parameter integer DOWN_DEPTH = 114688,"
+            },
+            {
+              "line": 194,
+              "text": "    parameter integer GATE_ADDR_W = 18,"
+            },
+            {
+              "line": 195,
+              "text": "    parameter integer DOWN_ADDR_W = 17,"
+            },
+            {
+              "line": 196,
+              "text": "    parameter integer PRODUCTION_SHAPE = 1"
+            }
+          ]
+        },
+        {
+          "start_line": 287,
+          "end_line": 308,
+          "lines": [
+            {
+              "line": 287,
+              "text": "        down_wr_bank != active_bank && bank_loading[down_wr_bank] &&"
+            },
+            {
+              "line": 288,
+              "text": "        down_target_write_count < DOWN_DEPTH && down_wr_addr < DOWN_DEPTH &&"
+            },
+            {
+              "line": 289,
+              "text": "        down_wr_addr == down_target_write_count[DOWN_ADDR_W-1:0];"
+            },
+            {
+              "line": 290,
+              "text": "    assign commit_ready = rst_n && !clear &&"
+            },
+            {
+              "line": 291,
+              "text": "        commit_bank != active_bank && bank_loading[commit_bank] &&"
+            },
+            {
+              "line": 292,
+              "text": "        selected_gate_write_count == GATE_DEPTH &&"
+            },
+            {
+              "line": 293,
+              "text": "        selected_down_write_count == DOWN_DEPTH && consumer_quiescent &&"
+            },
+            {
+              "line": 294,
+              "text": "        !gate_rd_valid && !down_rd_valid && gate_bank0_idle &&"
+            },
+            {
+              "line": 295,
+              "text": "        gate_bank1_idle && down_bank0_idle && down_bank1_idle &&"
+            },
+            {
+              "line": 296,
+              "text": "        (commit_bank ? gate_bank1_write_idle : gate_bank0_write_idle) &&"
+            },
+            {
+              "line": 297,
+              "text": "        (commit_bank ? down_bank1_write_idle : down_bank0_write_idle);"
+            },
+            {
+              "line": 298,
+              "text": ""
+            },
+            {
+              "line": 299,
+              "text": "    assign gate_rd_ready = gate_read_allowed && (active_bank ?"
+            },
+            {
+              "line": 300,
+              "text": "        gate_bank1_rd_ready : gate_bank0_rd_ready);"
+            },
+            {
+              "line": 301,
+              "text": "    assign down_rd_ready = down_read_allowed && (active_bank ?"
+            },
+            {
+              "line": 302,
+              "text": "        down_bank1_rd_ready : down_bank0_rd_ready);"
+            },
+            {
+              "line": 303,
+              "text": "    // Select only payload that has already crossed the bank-local capture FF."
+            },
+            {
+              "line": 304,
+              "text": "    assign gate_rsp_valid = rst_n && !clear && (active_bank ?"
+            },
+            {
+              "line": 305,
+              "text": "        gate_bank1_rsp_valid : gate_bank0_rsp_valid);"
+            },
+            {
+              "line": 306,
+              "text": "    assign down_rsp_valid = rst_n && !clear && (active_bank ?"
+            },
+            {
+              "line": 307,
+              "text": "        down_bank1_rsp_valid : down_bank0_rsp_valid);"
+            },
+            {
+              "line": 308,
+              "text": "    assign gate_rsp_meta_u224 = active_bank ? gate_bank1_rsp_data :"
+            }
+          ]
+        },
+        {
+          "start_line": 324,
+          "end_line": 378,
+          "lines": [
+            {
+              "line": 324,
+              "text": "        .write_idle(gate_bank0_write_idle)"
+            },
+            {
+              "line": 325,
+              "text": "    );"
+            },
+            {
+              "line": 326,
+              "text": "    hap_mlp_weight_meta_uram_leaf #("
+            },
+            {
+              "line": 327,
+              "text": "        .DEPTH(GATE_DEPTH),.ADDR_W(GATE_ADDR_W),.BANK_ID(1)"
+            },
+            {
+              "line": 328,
+              "text": "    ) u_gate_bank1 ("
+            },
+            {
+              "line": 329,
+              "text": "        .clk(clk),.wr_valid(gate_wr_fire),.wr_bank(gate_wr_bank),"
+            },
+            {
+              "line": 330,
+              "text": "        .wr_addr(gate_wr_addr),.wr_data(gate_wr_meta_u224),"
+            },
+            {
+              "line": 331,
+              "text": "        .rst_n(rst_n),.clear(clear),"
+            },
+            {
+              "line": 332,
+              "text": "        .rd_valid(gate_rd_valid&&gate_read_allowed&&active_bank),"
+            },
+            {
+              "line": 333,
+              "text": "        .rd_ready(gate_bank1_rd_ready),.rd_addr(gate_rd_addr),"
+            },
+            {
+              "line": 334,
+              "text": "        .rsp_valid(gate_bank1_rsp_valid),"
+            },
+            {
+              "line": 335,
+              "text": "        .rsp_ready(gate_rsp_ready&&active_bank),"
+            },
+            {
+              "line": 336,
+              "text": "        .rsp_data(gate_bank1_rsp_data),.response_idle(gate_bank1_idle),"
+            },
+            {
+              "line": 337,
+              "text": "        .write_idle(gate_bank1_write_idle)"
+            },
+            {
+              "line": 338,
+              "text": "    );"
+            },
+            {
+              "line": 339,
+              "text": "    hap_mlp_weight_meta_uram_leaf #("
+            },
+            {
+              "line": 340,
+              "text": "        .DEPTH(DOWN_DEPTH),.ADDR_W(DOWN_ADDR_W),.BANK_ID(0)"
+            },
+            {
+              "line": 341,
+              "text": "    ) u_down_bank0 ("
+            },
+            {
+              "line": 342,
+              "text": "        .clk(clk),.wr_valid(down_wr_fire),.wr_bank(down_wr_bank),"
+            },
+            {
+              "line": 343,
+              "text": "        .wr_addr(down_wr_addr),.wr_data(down_wr_meta_u224),"
+            },
+            {
+              "line": 344,
+              "text": "        .rst_n(rst_n),.clear(clear),"
+            },
+            {
+              "line": 345,
+              "text": "        .rd_valid(down_rd_valid&&down_read_allowed&&!active_bank),"
+            },
+            {
+              "line": 346,
+              "text": "        .rd_ready(down_bank0_rd_ready),.rd_addr(down_rd_addr),"
+            },
+            {
+              "line": 347,
+              "text": "        .rsp_valid(down_bank0_rsp_valid),"
+            },
+            {
+              "line": 348,
+              "text": "        .rsp_ready(down_rsp_ready&&!active_bank),"
+            },
+            {
+              "line": 349,
+              "text": "        .rsp_data(down_bank0_rsp_data),.response_idle(down_bank0_idle),"
+            },
+            {
+              "line": 350,
+              "text": "        .write_idle(down_bank0_write_idle)"
+            },
+            {
+              "line": 351,
+              "text": "    );"
+            },
+            {
+              "line": 352,
+              "text": "    hap_mlp_weight_meta_uram_leaf #("
+            },
+            {
+              "line": 353,
+              "text": "        .DEPTH(DOWN_DEPTH),.ADDR_W(DOWN_ADDR_W),.BANK_ID(1)"
+            },
+            {
+              "line": 354,
+              "text": "    ) u_down_bank1 ("
+            },
+            {
+              "line": 355,
+              "text": "        .clk(clk),.wr_valid(down_wr_fire),.wr_bank(down_wr_bank),"
+            },
+            {
+              "line": 356,
+              "text": "        .wr_addr(down_wr_addr),.wr_data(down_wr_meta_u224),"
+            },
+            {
+              "line": 357,
+              "text": "        .rst_n(rst_n),.clear(clear),"
+            },
+            {
+              "line": 358,
+              "text": "        .rd_valid(down_rd_valid&&down_read_allowed&&active_bank),"
+            },
+            {
+              "line": 359,
+              "text": "        .rd_ready(down_bank1_rd_ready),.rd_addr(down_rd_addr),"
+            },
+            {
+              "line": 360,
+              "text": "        .rsp_valid(down_bank1_rsp_valid),"
+            },
+            {
+              "line": 361,
+              "text": "        .rsp_ready(down_rsp_ready&&active_bank),"
+            },
+            {
+              "line": 362,
+              "text": "        .rsp_data(down_bank1_rsp_data),.response_idle(down_bank1_idle),"
+            },
+            {
+              "line": 363,
+              "text": "        .write_idle(down_bank1_write_idle)"
+            },
+            {
+              "line": 364,
+              "text": "    );"
+            },
+            {
+              "line": 365,
+              "text": ""
+            },
+            {
+              "line": 366,
+              "text": "    always @(posedge clk or negedge rst_n) begin"
+            },
+            {
+              "line": 367,
+              "text": "        if (!rst_n) begin"
+            },
+            {
+              "line": 368,
+              "text": "            active_bank <= 1'b0;"
+            },
+            {
+              "line": 369,
+              "text": "            active_generation <= 32'd0;"
+            },
+            {
+              "line": 370,
+              "text": "            bank_valid <= 2'b00;"
+            },
+            {
+              "line": 371,
+              "text": "            bank_loading <= 2'b00;"
+            },
+            {
+              "line": 372,
+              "text": "            gate_write_count_bank0 <= 32'd0;"
+            },
+            {
+              "line": 373,
+              "text": "            gate_write_count_bank1 <= 32'd0;"
+            },
+            {
+              "line": 374,
+              "text": "            down_write_count_bank0 <= 32'd0;"
+            },
+            {
+              "line": 375,
+              "text": "            down_write_count_bank1 <= 32'd0;"
+            },
+            {
+              "line": 376,
+              "text": "            gate_read_count <= 32'd0;"
+            },
+            {
+              "line": 377,
+              "text": "            down_read_count <= 32'd0;"
+            },
+            {
+              "line": 378,
+              "text": "            error <= 1'b0;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_serial_ddr_command16_v5_s54.sv",
+      "bytes": 33372,
+      "sha256": "28d80270cf9aec35eb5bdd8bafc7da265600424b07dfe06b52d0d7436353490a",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/mlp/hap_mlp_serial_ddr_command16_v5_s54.sv",
+        "bytes": 33372,
+        "sha256": "28d80270cf9aec35eb5bdd8bafc7da265600424b07dfe06b52d0d7436353490a"
+      },
+      "evidence": [
+        {
+          "start_line": 212,
+          "end_line": 215,
+          "lines": [
+            {
+              "line": 212,
+              "text": "    wire frontend_meta_valid = state_r == P_GATE_RUN ? gate_meta_valid :"
+            },
+            {
+              "line": 213,
+              "text": "        state_r == P_DOWN_RUN ? down_meta_valid : 1'b0;"
+            },
+            {
+              "line": 214,
+              "text": "    wire [223:0] frontend_meta = state_r == P_GATE_RUN ? gate_meta_u224 :"
+            },
+            {
+              "line": 215,
+              "text": "        down_meta_u224;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_w4_dual_ddr_frontend.sv",
+      "bytes": 22049,
+      "sha256": "ea7e9ecc9e1c49932be9a8f4a56ffa3f5a8fe0a96383846deba92dc03d7ff0c2",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/mlp/hap_mlp_w4_dual_ddr_frontend.sv",
+        "bytes": 22049,
+        "sha256": "ea7e9ecc9e1c49932be9a8f4a56ffa3f5a8fe0a96383846deba92dc03d7ff0c2"
+      },
+      "evidence": [
+        {
+          "start_line": 493,
+          "end_line": 503,
+          "lines": [
+            {
+              "line": 493,
+              "text": "    hap_mlp_w4_dual_channel_join u_join ("
+            },
+            {
+              "line": 494,
+              "text": "        .clk(core_clk), .rst_n(core_rst_n), .clear(core_clear),"
+            },
+            {
+              "line": 495,
+              "text": "        .half0_valid(half0_valid), .half0_ready(half0_ready),"
+            },
+            {
+              "line": 496,
+              "text": "        .half0_data(half0_data), .half1_valid(half1_valid),"
+            },
+            {
+              "line": 497,
+              "text": "        .half1_ready(half1_ready), .half1_data(half1_data),"
+            },
+            {
+              "line": 498,
+              "text": "        .meta_valid(meta_valid), .meta_ready(meta_ready),"
+            },
+            {
+              "line": 499,
+              "text": "        .meta_u224(meta_u224), .out_valid(out_valid),"
+            },
+            {
+              "line": 500,
+              "text": "        .out_ready(out_ready), .weights_s4x16x32(weights_s4x16x32),"
+            },
+            {
+              "line": 501,
+              "text": "        .weight_meta_u224(weight_meta_u224),"
+            },
+            {
+              "line": 502,
+              "text": "        .useful_group_count(), .useful_weight_byte_count(),"
+            },
+            {
+              "line": 503,
+              "text": "        .error(join_error)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_gate_up_gather_pingpong12.sv",
+      "bytes": 28198,
+      "sha256": "f1bb66caa61fe90f3c01aac93ab6cb5692d075ccc2b9b46a75f0ad2d2108f6a3",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/mlp/hap_mlp_gate_up_gather_pingpong12.sv",
+        "bytes": 28198,
+        "sha256": "f1bb66caa61fe90f3c01aac93ab6cb5692d075ccc2b9b46a75f0ad2d2108f6a3"
+      },
+      "evidence": [
+        {
+          "start_line": 282,
+          "end_line": 295,
+          "lines": [
+            {
+              "line": 282,
+              "text": "            source_column = fill_source_a[map_lane];"
+            },
+            {
+              "line": 283,
+              "text": "            fill_address_a[map_lane] = bank_address("
+            },
+            {
+              "line": 284,
+              "text": "                fill_matrix_r, fill_pass_a[map_lane], fill_group_r);"
+            },
+            {
+              "line": 285,
+              "text": "            fill_data_a[map_lane] = {"
+            },
+            {
+              "line": 286,
+              "text": "                in_weight_meta_u224[128+source_column*6 +: 6],"
+            },
+            {
+              "line": 287,
+              "text": "                in_weight_meta_u224[source_column*8 +: 8],"
+            },
+            {
+              "line": 288,
+              "text": "                in_weights_s4x16x32[source_column*128 +: 128]};"
+            },
+            {
+              "line": 289,
+              "text": "            source_column = fill_source_b[map_lane];"
+            },
+            {
+              "line": 290,
+              "text": "            fill_address_b[map_lane] = bank_address("
+            },
+            {
+              "line": 291,
+              "text": "                fill_matrix_r, fill_pass_b[map_lane], fill_group_r);"
+            },
+            {
+              "line": 292,
+              "text": "            fill_data_b[map_lane] = {"
+            },
+            {
+              "line": 293,
+              "text": "                in_weight_meta_u224[128+source_column*6 +: 6],"
+            },
+            {
+              "line": 294,
+              "text": "                in_weight_meta_u224[source_column*8 +: 8],"
+            },
+            {
+              "line": 295,
+              "text": "                in_weights_s4x16x32[source_column*128 +: 128]};"
+            }
+          ]
+        },
+        {
+          "start_line": 389,
+          "end_line": 389,
+          "lines": [
+            {
+              "line": 389,
+              "text": "    assign out_weight_meta_u168 = {out_shift_r, out_code_r};"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_w4_repack48_to12.sv",
+      "bytes": 22262,
+      "sha256": "7b72ab2c79a2b3e906a7d45ffd13041dd2b16dafb5c7c834c8976d74c19a3003",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/mlp/hap_mlp_w4_repack48_to12.sv",
+        "bytes": 22262,
+        "sha256": "7b72ab2c79a2b3e906a7d45ffd13041dd2b16dafb5c7c834c8976d74c19a3003"
+      },
+      "evidence": [
+        {
+          "start_line": 212,
+          "end_line": 219,
+          "lines": [
+            {
+              "line": 212,
+              "text": "                                    out_weights_r[col*32*4 +: 32*4] <="
+            },
+            {
+              "line": 213,
+              "text": "                                        in_weights_s4x16x32["
+            },
+            {
+              "line": 214,
+              "text": "                                            col*32*4 +: 32*4];"
+            },
+            {
+              "line": 215,
+              "text": "                                    out_code_r[col*8 +: 8] <="
+            },
+            {
+              "line": 216,
+              "text": "                                        in_weight_meta_u224[col*8 +: 8];"
+            },
+            {
+              "line": 217,
+              "text": "                                    out_shift_r[col*6 +: 6] <="
+            },
+            {
+              "line": 218,
+              "text": "                                        in_weight_meta_u224["
+            },
+            {
+              "line": 219,
+              "text": "                                            128+col*6 +: 6];"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_gate_up_v5_scheduler16_q4.sv",
+      "bytes": 26313,
+      "sha256": "7672f2841f68ed52bd56c2f7ab6b33629e32e6f569817cf73a1b0644c5e99cc8",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/mlp/hap_mlp_gate_up_v5_scheduler16_q4.sv",
+        "bytes": 26313,
+        "sha256": "7672f2841f68ed52bd56c2f7ab6b33629e32e6f569817cf73a1b0644c5e99cc8"
+      },
+      "evidence": [
+        {
+          "start_line": 251,
+          "end_line": 255,
+          "lines": [
+            {
+              "line": 251,
+              "text": "    assign compute_weights_s4x12x32 = request_weights[request_rd_ptr_r];"
+            },
+            {
+              "line": 252,
+              "text": "    assign compute_weight_code_u8x12 ="
+            },
+            {
+              "line": 253,
+              "text": "        request_meta[request_rd_ptr_r][95:0];"
+            },
+            {
+              "line": 254,
+              "text": "    assign compute_weight_shift_u6x12 ="
+            },
+            {
+              "line": 255,
+              "text": "        request_meta[request_rd_ptr_r][167:96];"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_down_v5_scheduler16_s54.sv",
+      "bytes": 16524,
+      "sha256": "3aaf1f43f969de6b25ff6a4c6dc13580af76646919cc05d6431905ae25174801",
+      "freeze_match": true,
+      "frozen_entry": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/mlp/hap_mlp_down_v5_scheduler16_s54.sv",
+        "bytes": 16524,
+        "sha256": "3aaf1f43f969de6b25ff6a4c6dc13580af76646919cc05d6431905ae25174801"
+      },
+      "evidence": [
+        {
+          "start_line": 188,
+          "end_line": 192,
+          "lines": [
+            {
+              "line": 188,
+              "text": "    assign compute_weights_s4x12x32 = repack_out_weights;"
+            },
+            {
+              "line": 189,
+              "text": "    assign compute_activation_code_u8x16 = activation_code_r;"
+            },
+            {
+              "line": 190,
+              "text": "    assign compute_activation_shift_u6x16 = activation_shift_r;"
+            },
+            {
+              "line": 191,
+              "text": "    assign compute_weight_code_u8x12 = repack_out_meta[95:0];"
+            },
+            {
+              "line": 192,
+              "text": "    assign compute_weight_shift_u6x12 = repack_out_meta[167:96];"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "all_15_sources_match_E005_freeze": true,
+  "native_report": {
+    "path": "project/hardware/vivado/reports/m002_E005_R006_AT002_closed_place_physopt_readonly/physopt/utilization_hierarchy_depth7.rpt",
+    "bytes": 173803,
+    "sha256": "f221556a73bfe178af6c3efa10a5bdd18a4d35ea9bb485bd026b1f2796c26d40",
+    "evidence": [
+      {
+        "line": 89,
+        "text": "|               u_meta                                                    |                                             scalellm_vcu118_f05_bd_core_0_hap_weight_meta_resident |        344 |        344 |       0 |    0 |      11 |      0 |      0 |   80 |          0 |"
+      },
+      {
+        "line": 99,
+        "text": "|           u_meta_bank                                                   |                                      scalellm_vcu118_f05_bd_core_0_hap_mlp_weight_meta_resident_ab |       3566 |       3566 |       0 |    0 |    4476 |      0 |      0 |  672 |          0 |"
+      },
+      {
+        "line": 101,
+        "text": "|             u_down_bank0                                                |                        scalellm_vcu118_f05_bd_core_0_hap_mlp_weight_meta_uram_leaf__parameterized1 |        715 |        715 |       0 |    0 |    1064 |      0 |      0 |  112 |          0 |"
+      },
+      {
+        "line": 106,
+        "text": "|             u_down_bank1                                                |                        scalellm_vcu118_f05_bd_core_0_hap_mlp_weight_meta_uram_leaf__parameterized2 |        734 |        734 |       0 |    0 |    1064 |      0 |      0 |  112 |          0 |"
+      },
+      {
+        "line": 111,
+        "text": "|             u_gate_bank0                                                |                                        scalellm_vcu118_f05_bd_core_0_hap_mlp_weight_meta_uram_leaf |        973 |        973 |       0 |    0 |    1086 |      0 |      0 |  224 |          0 |"
+      },
+      {
+        "line": 117,
+        "text": "|             u_gate_bank1                                                |                        scalellm_vcu118_f05_bd_core_0_hap_mlp_weight_meta_uram_leaf__parameterized0 |        952 |        952 |       0 |    0 |    1086 |      0 |      0 |  224 |          0 |"
+      }
+    ]
+  },
+  "capacity_reasoning": {
+    "URAM_geometry_bits": [
+      4096,
+      72
+    ],
+    "MLP_gate_records_per_image": 229376,
+    "MLP_down_records_per_image": 114688,
+    "MLP_record_bits": 224,
+    "MLP_images": 2,
+    "MLP_payload_bytes": 19267584,
+    "MLP_payload_MiB": 18.375,
+    "MLP_gate_blocks_per_image": 224,
+    "MLP_down_blocks_per_image": 112,
+    "MLP_blocks": 672,
+    "MLP_physical_MiB": 23.625,
+    "Attention_records": 81920,
+    "Attention_record_bits_including_reserved": 256,
+    "Attention_payload_MiB": 2.5,
+    "Attention_blocks": 80,
+    "Attention_physical_MiB": 2.8125,
+    "total_blocks": 752
+  }
+}

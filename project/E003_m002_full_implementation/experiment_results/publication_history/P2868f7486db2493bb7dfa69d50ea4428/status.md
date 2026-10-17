@@ -1,0 +1,48 @@
+# E003：执行状态
+
+execution_state: running
+verdict: unassessed
+
+R002/AT002完成：独立physopt native0、完整DCP/POST、55阶段文件封闭；worker/native/supervisor0，无survivors。主控核4项终态小证据身份、独立复算1205资源样本并确认13 tracked进程身份均退出。完整POST实际结构/fanout合格、Critical8/new0、内部覆盖完整，正式安全OPEN。
+
+R003/AT001_full_route已顺序实际启动，Vivado launch于2026-10-15 17:18:03.079268 UTC；当前恢复physopt检查点，fresh检查和实际route_design尚待后续结果。manager3964207/worker3964212/native3964652，单EDA/8CPU/nice5与内存磁盘保护不变，timeout/global_deadline=null，不因耗时或短时无日志强停。
+
+前阶段正式physopt WNS−1.290/TNS−762.165ns、setup980；WHS−0.620/THS−2150.556ns、hold33141，仍FAIL且为布线前估计。core100MHz setup0但WNS仅0.000ns；placer-final Level6拥塞仍存。最终路由完整性和时序待取得，不改RTL/XDC/接口/算法/时钟，无bitstream/板卡/GPU/PPL/ACC。
+
+
+---
+Published: 2026-10-15T17:21:17.361700+00:00
+Publication: Pe10198a89c874d73829c1576450fe727
+Execution state: running
+Research verdict: unassessed
+Applicability: 布局/独立physopt完整成功，route阶段Vivado已启动恢复，尚无实际route完成或最终布通结果；时序FAIL与安全OPEN保留
+Evidence:
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_checkpoint_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_timing_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/place_physical_reports_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/actual_place_CDC_delta.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/status.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/worker_terminal_before_old_supervisor_release.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT001_full_pre_place_restore_place_physopt/supervision_handoff/old_supervisor_released.json
+- project/E003_m002_full_implementation/experiment_results/runs/R004/architecture_review.md
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/cpu_tests_final.log
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/validated_sources.sha256
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/installation.json
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/actual_CDC_revalidation.json
+- project/E003_m002_full_implementation/experiment_results/runs/R001/attempts/AT002_placed_CDC_recovery_cpu/actual_worker_entry_preflight.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/actual_eda_started.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/command.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/completed_place_POST_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/completed_place_POST.sha256
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/place_POST_and_physopt_start_log_snapshot.txt
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_native_command_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_checkpoint_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_timing_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/completed_physopt_POST_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/completed_physopt_POST.sha256
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/completed_physopt_POST_log_snapshot.txt
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/physopt_physical_reports_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/terminal_facts.json
+- project/E003_m002_full_implementation/experiment_results/runs/R002/attempts/AT002_closed_place_POST_physopt/status.json
+- project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/actual_eda_started.json
+- project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/command.json

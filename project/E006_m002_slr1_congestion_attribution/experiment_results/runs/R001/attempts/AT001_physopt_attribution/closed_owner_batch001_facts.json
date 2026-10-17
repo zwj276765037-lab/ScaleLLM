@@ -1,0 +1,1254 @@
+{
+  "recorded_utc": "2026-10-16T16:14:12.850930+00:00",
+  "milestone": "closed_owner_batch001",
+  "status": "PARTIAL_CLOSED_QUERIES_NATIVE_RUN_CONTINUES",
+  "closed_query_receipts_snapshot": [
+    {
+      "query": "complete_exclusive_ownership",
+      "native_tcl_code": "0",
+      "started_epoch": "1792166494",
+      "ended_epoch": "1792166887",
+      "result": "{}"
+    },
+    {
+      "query": "native_global_SLR",
+      "native_tcl_code": "0",
+      "started_epoch": "1792166887",
+      "ended_epoch": "1792166986",
+      "result": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_global_SLR.rpt"
+    },
+    {
+      "query": "native_owner_attention",
+      "native_tcl_code": "0",
+      "started_epoch": "1792166986",
+      "ended_epoch": "1792167019",
+      "result": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_attention_SLR.rpt"
+    },
+    {
+      "query": "native_owner_mlp",
+      "native_tcl_code": "0",
+      "started_epoch": "1792167019",
+      "ended_epoch": "1792167080",
+      "result": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_mlp_SLR.rpt"
+    },
+    {
+      "query": "native_owner_weight_metadata",
+      "native_tcl_code": "0",
+      "started_epoch": "1792167080",
+      "ended_epoch": "1792167086",
+      "result": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_weight_metadata_SLR.rpt"
+    },
+    {
+      "query": "native_owner_weight_loader",
+      "native_tcl_code": "0",
+      "started_epoch": "1792167086",
+      "ended_epoch": "1792167092",
+      "result": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_weight_loader_SLR.rpt"
+    }
+  ],
+  "input_bindings": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/attempts/AT001_physopt_attribution/input_bindings.json",
+    "bytes": 8420,
+    "sha256": "4dbaf3d6aabf1996cbabe7064dab5d955360f88fe2447a124bf967105f9c0c2f"
+  },
+  "archived_native_sources_unchanged": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/attempts/AT001_physopt_attribution/sources/attribution.tcl",
+      "bytes": 18157,
+      "sha256": "f4c6442a19d6eb70fc60c711646b5d10864077ebbc3cf7f0ee37b0bc8210912c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/attempts/AT001_physopt_attribution/sources/run_attribution.py",
+      "bytes": 14213,
+      "sha256": "5d8348c0269d0d8137c6d5121adb123d4f06a44172dc54c627ad620e219398d6"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/attempts/AT001_physopt_attribution/sources/targets.tcl",
+      "bytes": 12844,
+      "sha256": "26c2cf3d220e84720d06cee8b452354b361c10a6b7cc32374bd3a0cc9e89d79a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/attempts/AT001_physopt_attribution/sources/targets_manifest.json",
+      "bytes": 13678,
+      "sha256": "9080f355db11c8be8d63a7aa3ec9b73cb56db23134a5b5c2f83e1b2c64448b38"
+    }
+  ],
+  "contract_unchanged": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/mission/M002_ddr_separation_and_timing_recovery/slr1_attribution_contract_2026-10-16.md",
+    "bytes": 4728,
+    "sha256": "cf53ff562b1894620ab0d6cc4398e17718cf815b32b8d2d8fd491adb17754263"
+  },
+  "primitive_independent_review": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/closed_primitive_ownership_review.json",
+    "bytes": 11911,
+    "sha256": "a26114b00563ce10ab085ba65b6b350a7b79c779b239affc36e679955501db65"
+  },
+  "completed_owner_queries": [
+    "attention",
+    "mlp",
+    "weight_metadata",
+    "weight_loader"
+  ],
+  "pending_owner_queries": [
+    "core_other",
+    "ddr0",
+    "ddr1",
+    "pcie",
+    "debug",
+    "interconnect_other"
+  ],
+  "native_resource_tables": {
+    "global": {
+      "CLB": {
+        "native_line": 69,
+        "SLR0": 48769.0,
+        "SLR1": 49185.0,
+        "SLR2": 45848.0
+      },
+      "CLBL": {
+        "native_line": 70,
+        "SLR0": 24288.0,
+        "SLR1": 24548.0,
+        "SLR2": 22871.0
+      },
+      "CLBM": {
+        "native_line": 71,
+        "SLR0": 24481.0,
+        "SLR1": 24637.0,
+        "SLR2": 22977.0
+      },
+      "CLB LUTs": {
+        "native_line": 72,
+        "SLR0": 251963.0,
+        "SLR1": 336107.0,
+        "SLR2": 213681.0
+      },
+      "LUT as Logic": {
+        "native_line": 73,
+        "SLR0": 240119.0,
+        "SLR1": 315988.0,
+        "SLR2": 208014.0
+      },
+      "using O5 output only": {
+        "native_line": 74,
+        "SLR0": 807.0,
+        "SLR1": 1634.0,
+        "SLR2": 1023.0
+      },
+      "using O6 output only": {
+        "native_line": 82,
+        "SLR0": 1120.0,
+        "SLR1": 1265.0,
+        "SLR2": 1222.0
+      },
+      "using O5 and O6": {
+        "native_line": 83,
+        "SLR0": 3104.0,
+        "SLR1": 2304.0,
+        "SLR2": 35.0
+      },
+      "LUT as Memory": {
+        "native_line": 77,
+        "SLR0": 11844.0,
+        "SLR1": 20119.0,
+        "SLR2": 5667.0
+      },
+      "LUT as Distributed RAM": {
+        "native_line": 78,
+        "SLR0": 7620.0,
+        "SLR1": 16550.0,
+        "SLR2": 4410.0
+      },
+      "LUT as Shift Register": {
+        "native_line": 81,
+        "SLR0": 4224.0,
+        "SLR1": 3569.0,
+        "SLR2": 1257.0
+      },
+      "CLB Registers": {
+        "native_line": 84,
+        "SLR0": 324527.0,
+        "SLR1": 435367.0,
+        "SLR2": 257156.0
+      },
+      "CARRY8": {
+        "native_line": 85,
+        "SLR0": 20984.0,
+        "SLR1": 21406.0,
+        "SLR2": 11830.0
+      },
+      "F7 Muxes": {
+        "native_line": 86,
+        "SLR0": 1680.0,
+        "SLR1": 4517.0,
+        "SLR2": 5712.0
+      },
+      "F8 Muxes": {
+        "native_line": 87,
+        "SLR0": 384.0,
+        "SLR1": 1424.0,
+        "SLR2": 1026.0
+      },
+      "F9 Muxes": {
+        "native_line": 88,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "Block RAM Tile": {
+        "native_line": 89,
+        "SLR0": 151.5,
+        "SLR1": 468.0,
+        "SLR2": 321.5
+      },
+      "RAMB36/FIFO": {
+        "native_line": 90,
+        "SLR0": 151.0,
+        "SLR1": 462.0,
+        "SLR2": 316.0
+      },
+      "RAMB18": {
+        "native_line": 91,
+        "SLR0": 1.0,
+        "SLR1": 12.0,
+        "SLR2": 11.0
+      },
+      "URAM": {
+        "native_line": 92,
+        "SLR0": 280.0,
+        "SLR1": 280.0,
+        "SLR2": 192.0
+      },
+      "DSPs": {
+        "native_line": 93,
+        "SLR0": 1861.0,
+        "SLR1": 1835.0,
+        "SLR2": 1755.0
+      },
+      "Unique Control Sets": {
+        "native_line": 94,
+        "SLR0": 9024.0,
+        "SLR1": 9529.0,
+        "SLR2": 3912.0
+      },
+      "SLR2": {
+        "native_line": 105,
+        "SLR0": 117.0,
+        "SLR1": 56.25,
+        "SLR2": 0.0
+      },
+      "SLR1": {
+        "native_line": 106,
+        "SLR0": 1.0,
+        "SLR1": 0.24,
+        "SLR2": 0.0
+      },
+      "SLR0": {
+        "native_line": 107,
+        "SLR0": 117.0,
+        "SLR1": 56.25,
+        "SLR2": 0.0
+      }
+    },
+    "attention": {
+      "CLB": {
+        "native_line": 73,
+        "SLR0": 0.0,
+        "SLR1": 8286.0,
+        "SLR2": 43515.0
+      },
+      "CLBL": {
+        "native_line": 74,
+        "SLR0": 0.0,
+        "SLR1": 4180.0,
+        "SLR2": 21699.0
+      },
+      "CLBM": {
+        "native_line": 75,
+        "SLR0": 0.0,
+        "SLR1": 4106.0,
+        "SLR2": 21816.0
+      },
+      "CLB LUTs": {
+        "native_line": 76,
+        "SLR0": 0.0,
+        "SLR1": 29578.0,
+        "SLR2": 198380.0
+      },
+      "LUT as Logic": {
+        "native_line": 77,
+        "SLR0": 0.0,
+        "SLR1": 28682.0,
+        "SLR2": 194786.0
+      },
+      "using O5 output only": {
+        "native_line": 78,
+        "SLR0": 0.0,
+        "SLR1": 111.0,
+        "SLR2": 788.0
+      },
+      "using O6 output only": {
+        "native_line": 83,
+        "SLR0": 0.0,
+        "SLR1": 128.0,
+        "SLR2": 682.0
+      },
+      "using O5 and O6": {
+        "native_line": 84,
+        "SLR0": 0.0,
+        "SLR1": 768.0,
+        "SLR2": 2912.0
+      },
+      "LUT as Memory": {
+        "native_line": 81,
+        "SLR0": 0.0,
+        "SLR1": 896.0,
+        "SLR2": 3594.0
+      },
+      "LUT as Distributed RAM": {
+        "native_line": 82,
+        "SLR0": 0.0,
+        "SLR1": 896.0,
+        "SLR2": 3594.0
+      },
+      "LUT as Shift Register": {
+        "native_line": 85,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "CLB Registers": {
+        "native_line": 86,
+        "SLR0": 0.0,
+        "SLR1": 38447.0,
+        "SLR2": 233337.0
+      },
+      "CARRY8": {
+        "native_line": 87,
+        "SLR0": 0.0,
+        "SLR1": 2278.0,
+        "SLR2": 11695.0
+      },
+      "F7 Muxes": {
+        "native_line": 88,
+        "SLR0": 0.0,
+        "SLR1": 14.0,
+        "SLR2": 5233.0
+      },
+      "F8 Muxes": {
+        "native_line": 89,
+        "SLR0": 0.0,
+        "SLR1": 7.0,
+        "SLR2": 1026.0
+      },
+      "F9 Muxes": {
+        "native_line": 90,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "Block RAM Tile": {
+        "native_line": 91,
+        "SLR0": 0.0,
+        "SLR1": 57.0,
+        "SLR2": 296.0
+      },
+      "RAMB36/FIFO": {
+        "native_line": 92,
+        "SLR0": 0.0,
+        "SLR1": 56.0,
+        "SLR2": 291.0
+      },
+      "RAMB18": {
+        "native_line": 93,
+        "SLR0": 0.0,
+        "SLR1": 2.0,
+        "SLR2": 10.0
+      },
+      "URAM": {
+        "native_line": 94,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 80.0
+      },
+      "DSPs": {
+        "native_line": 95,
+        "SLR0": 0.0,
+        "SLR1": 544.0,
+        "SLR2": 1752.0
+      },
+      "Unique Control Sets": {
+        "native_line": 96,
+        "SLR0": 0.0,
+        "SLR1": 697.0,
+        "SLR2": 3325.0
+      },
+      "SLR2": {
+        "native_line": 107,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "SLR1": {
+        "native_line": 108,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "SLR0": {
+        "native_line": 109,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      }
+    },
+    "mlp": {
+      "CLB": {
+        "native_line": 73,
+        "SLR0": 46507.0,
+        "SLR1": 42934.0,
+        "SLR2": 0.0
+      },
+      "CLBL": {
+        "native_line": 74,
+        "SLR0": 23149.0,
+        "SLR1": 21916.0,
+        "SLR2": 0.0
+      },
+      "CLBM": {
+        "native_line": 75,
+        "SLR0": 23358.0,
+        "SLR1": 21018.0,
+        "SLR2": 0.0
+      },
+      "CLB LUTs": {
+        "native_line": 76,
+        "SLR0": 233499.0,
+        "SLR1": 248355.0,
+        "SLR2": 0.0
+      },
+      "LUT as Logic": {
+        "native_line": 77,
+        "SLR0": 223620.0,
+        "SLR1": 240449.0,
+        "SLR2": 0.0
+      },
+      "using O5 output only": {
+        "native_line": 78,
+        "SLR0": 596.0,
+        "SLR1": 644.0,
+        "SLR2": 0.0
+      },
+      "using O6 output only": {
+        "native_line": 86,
+        "SLR0": 6.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "using O5 and O6": {
+        "native_line": 87,
+        "SLR0": 3069.0,
+        "SLR1": 2304.0,
+        "SLR2": 0.0
+      },
+      "LUT as Memory": {
+        "native_line": 81,
+        "SLR0": 9879.0,
+        "SLR1": 7906.0,
+        "SLR2": 0.0
+      },
+      "LUT as Distributed RAM": {
+        "native_line": 82,
+        "SLR0": 6804.0,
+        "SLR1": 5602.0,
+        "SLR2": 0.0
+      },
+      "LUT as Shift Register": {
+        "native_line": 85,
+        "SLR0": 3075.0,
+        "SLR1": 2304.0,
+        "SLR2": 0.0
+      },
+      "CLB Registers": {
+        "native_line": 88,
+        "SLR0": 294608.0,
+        "SLR1": 288933.0,
+        "SLR2": 0.0
+      },
+      "CARRY8": {
+        "native_line": 89,
+        "SLR0": 20928.0,
+        "SLR1": 18606.0,
+        "SLR2": 0.0
+      },
+      "F7 Muxes": {
+        "native_line": 90,
+        "SLR0": 816.0,
+        "SLR1": 3947.0,
+        "SLR2": 0.0
+      },
+      "F8 Muxes": {
+        "native_line": 91,
+        "SLR0": 384.0,
+        "SLR1": 1381.0,
+        "SLR2": 0.0
+      },
+      "F9 Muxes": {
+        "native_line": 92,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "Block RAM Tile": {
+        "native_line": 93,
+        "SLR0": 126.0,
+        "SLR1": 361.0,
+        "SLR2": 0.0
+      },
+      "RAMB36/FIFO": {
+        "native_line": 94,
+        "SLR0": 126.0,
+        "SLR1": 356.0,
+        "SLR2": 0.0
+      },
+      "RAMB18": {
+        "native_line": 95,
+        "SLR0": 0.0,
+        "SLR1": 10.0,
+        "SLR2": 0.0
+      },
+      "URAM": {
+        "native_line": 96,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "DSPs": {
+        "native_line": 97,
+        "SLR0": 1858.0,
+        "SLR1": 1291.0,
+        "SLR2": 0.0
+      },
+      "Unique Control Sets": {
+        "native_line": 98,
+        "SLR0": 8405.0,
+        "SLR1": 6325.0,
+        "SLR2": 0.0
+      },
+      "SLR2": {
+        "native_line": 109,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "SLR1": {
+        "native_line": 110,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "SLR0": {
+        "native_line": 111,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      }
+    },
+    "weight_metadata": {
+      "CLB": {
+        "native_line": 73,
+        "SLR0": 1017.0,
+        "SLR1": 1346.0,
+        "SLR2": 285.0
+      },
+      "CLBL": {
+        "native_line": 74,
+        "SLR0": 559.0,
+        "SLR1": 723.0,
+        "SLR2": 173.0
+      },
+      "CLBM": {
+        "native_line": 75,
+        "SLR0": 458.0,
+        "SLR1": 623.0,
+        "SLR2": 112.0
+      },
+      "CLB LUTs": {
+        "native_line": 76,
+        "SLR0": 1579.0,
+        "SLR1": 1425.0,
+        "SLR2": 562.0
+      },
+      "LUT as Logic": {
+        "native_line": 77,
+        "SLR0": 1579.0,
+        "SLR1": 1425.0,
+        "SLR2": 562.0
+      },
+      "using O5 output only": {
+        "native_line": 78,
+        "SLR0": 1.0,
+        "SLR1": 4.0,
+        "SLR2": 0.0
+      },
+      "using O6 output only": {
+        "native_line": 79,
+        "SLR0": 1566.0,
+        "SLR1": 1365.0,
+        "SLR2": 558.0
+      },
+      "using O5 and O6": {
+        "native_line": 80,
+        "SLR0": 12.0,
+        "SLR1": 56.0,
+        "SLR2": 4.0
+      },
+      "LUT as Memory": {
+        "native_line": 81,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "LUT as Distributed RAM": {
+        "native_line": 82,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "LUT as Shift Register": {
+        "native_line": 83,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "CLB Registers": {
+        "native_line": 84,
+        "SLR0": 1844.0,
+        "SLR1": 2050.0,
+        "SLR2": 582.0
+      },
+      "CARRY8": {
+        "native_line": 85,
+        "SLR0": 0.0,
+        "SLR1": 16.0,
+        "SLR2": 0.0
+      },
+      "F7 Muxes": {
+        "native_line": 86,
+        "SLR0": 192.0,
+        "SLR1": 198.0,
+        "SLR2": 58.0
+      },
+      "F8 Muxes": {
+        "native_line": 87,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "F9 Muxes": {
+        "native_line": 88,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "Block RAM Tile": {
+        "native_line": 89,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "RAMB36/FIFO": {
+        "native_line": 90,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "RAMB18": {
+        "native_line": 91,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "URAM": {
+        "native_line": 92,
+        "SLR0": 280.0,
+        "SLR1": 280.0,
+        "SLR2": 112.0
+      },
+      "DSPs": {
+        "native_line": 93,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "Unique Control Sets": {
+        "native_line": 94,
+        "SLR0": 29.0,
+        "SLR1": 56.0,
+        "SLR2": 14.0
+      },
+      "SLR2": {
+        "native_line": 105,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "SLR1": {
+        "native_line": 106,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "SLR0": {
+        "native_line": 107,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      }
+    },
+    "weight_loader": {
+      "CLB": {
+        "native_line": 73,
+        "SLR0": 0.0,
+        "SLR1": 1613.0,
+        "SLR2": 3.0
+      },
+      "CLBL": {
+        "native_line": 74,
+        "SLR0": 0.0,
+        "SLR1": 816.0,
+        "SLR2": 3.0
+      },
+      "CLBM": {
+        "native_line": 75,
+        "SLR0": 0.0,
+        "SLR1": 797.0,
+        "SLR2": 0.0
+      },
+      "CLB LUTs": {
+        "native_line": 76,
+        "SLR0": 0.0,
+        "SLR1": 3512.0,
+        "SLR2": 2.0
+      },
+      "LUT as Logic": {
+        "native_line": 77,
+        "SLR0": 0.0,
+        "SLR1": 3280.0,
+        "SLR2": 2.0
+      },
+      "using O5 output only": {
+        "native_line": 78,
+        "SLR0": 0.0,
+        "SLR1": 109.0,
+        "SLR2": 0.0
+      },
+      "using O6 output only": {
+        "native_line": 79,
+        "SLR0": 0.0,
+        "SLR1": 2887.0,
+        "SLR2": 2.0
+      },
+      "using O5 and O6": {
+        "native_line": 83,
+        "SLR0": 0.0,
+        "SLR1": 232.0,
+        "SLR2": 0.0
+      },
+      "LUT as Memory": {
+        "native_line": 81,
+        "SLR0": 0.0,
+        "SLR1": 232.0,
+        "SLR2": 0.0
+      },
+      "LUT as Distributed RAM": {
+        "native_line": 82,
+        "SLR0": 0.0,
+        "SLR1": 232.0,
+        "SLR2": 0.0
+      },
+      "LUT as Shift Register": {
+        "native_line": 84,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "CLB Registers": {
+        "native_line": 85,
+        "SLR0": 0.0,
+        "SLR1": 6540.0,
+        "SLR2": 1.0
+      },
+      "CARRY8": {
+        "native_line": 86,
+        "SLR0": 0.0,
+        "SLR1": 12.0,
+        "SLR2": 0.0
+      },
+      "F7 Muxes": {
+        "native_line": 87,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "F8 Muxes": {
+        "native_line": 88,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "F9 Muxes": {
+        "native_line": 89,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "Block RAM Tile": {
+        "native_line": 90,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "RAMB36/FIFO": {
+        "native_line": 91,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "RAMB18": {
+        "native_line": 92,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "URAM": {
+        "native_line": 93,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "DSPs": {
+        "native_line": 94,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "Unique Control Sets": {
+        "native_line": 95,
+        "SLR0": 0.0,
+        "SLR1": 117.0,
+        "SLR2": 1.0
+      },
+      "SLR2": {
+        "native_line": 106,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "SLR1": {
+        "native_line": 107,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      },
+      "SLR0": {
+        "native_line": 108,
+        "SLR0": 0.0,
+        "SLR1": 0.0,
+        "SLR2": 0.0
+      }
+    }
+  },
+  "independent_primitive_site_checks": {
+    "attention": {
+      "CLB": {
+        "SLR0": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 8286.0,
+          "independent_primitive_or_site": 8286,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 43515.0,
+          "independent_primitive_or_site": 43515,
+          "equal": true
+        }
+      },
+      "CLB Registers": {
+        "SLR0": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 38447.0,
+          "independent_primitive_or_site": 38447,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 233337.0,
+          "independent_primitive_or_site": 233337,
+          "equal": true
+        }
+      },
+      "Block RAM Tile": {
+        "SLR0": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 57.0,
+          "independent_primitive_or_site": 57.0,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 296.0,
+          "independent_primitive_or_site": 296.0,
+          "equal": true
+        }
+      },
+      "URAM": {
+        "SLR0": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 80.0,
+          "independent_primitive_or_site": 80,
+          "equal": true
+        }
+      },
+      "DSPs": {
+        "SLR0": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 544.0,
+          "independent_primitive_or_site": 544,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 1752.0,
+          "independent_primitive_or_site": 1752,
+          "equal": true
+        }
+      }
+    },
+    "mlp": {
+      "CLB": {
+        "SLR0": {
+          "native": 46507.0,
+          "independent_primitive_or_site": 46507,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 42934.0,
+          "independent_primitive_or_site": 42934,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        }
+      },
+      "CLB Registers": {
+        "SLR0": {
+          "native": 294608.0,
+          "independent_primitive_or_site": 294608,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 288933.0,
+          "independent_primitive_or_site": 288933,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        }
+      },
+      "Block RAM Tile": {
+        "SLR0": {
+          "native": 126.0,
+          "independent_primitive_or_site": 126,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 361.0,
+          "independent_primitive_or_site": 361.0,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        }
+      },
+      "URAM": {
+        "SLR0": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        }
+      },
+      "DSPs": {
+        "SLR0": {
+          "native": 1858.0,
+          "independent_primitive_or_site": 1858,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 1291.0,
+          "independent_primitive_or_site": 1291,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        }
+      }
+    },
+    "weight_metadata": {
+      "CLB": {
+        "SLR0": {
+          "native": 1017.0,
+          "independent_primitive_or_site": 1017,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 1346.0,
+          "independent_primitive_or_site": 1346,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 285.0,
+          "independent_primitive_or_site": 285,
+          "equal": true
+        }
+      },
+      "CLB Registers": {
+        "SLR0": {
+          "native": 1844.0,
+          "independent_primitive_or_site": 1844,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 2050.0,
+          "independent_primitive_or_site": 2050,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 582.0,
+          "independent_primitive_or_site": 582,
+          "equal": true
+        }
+      },
+      "Block RAM Tile": {
+        "SLR0": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        }
+      },
+      "URAM": {
+        "SLR0": {
+          "native": 280.0,
+          "independent_primitive_or_site": 280,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 280.0,
+          "independent_primitive_or_site": 280,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 112.0,
+          "independent_primitive_or_site": 112,
+          "equal": true
+        }
+      },
+      "DSPs": {
+        "SLR0": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        }
+      }
+    },
+    "weight_loader": {
+      "CLB": {
+        "SLR0": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 1613.0,
+          "independent_primitive_or_site": 1613,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 3.0,
+          "independent_primitive_or_site": 3,
+          "equal": true
+        }
+      },
+      "CLB Registers": {
+        "SLR0": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 6540.0,
+          "independent_primitive_or_site": 6540,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 1.0,
+          "independent_primitive_or_site": 1,
+          "equal": true
+        }
+      },
+      "Block RAM Tile": {
+        "SLR0": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        }
+      },
+      "URAM": {
+        "SLR0": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        }
+      },
+      "DSPs": {
+        "SLR0": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR1": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        },
+        "SLR2": {
+          "native": 0.0,
+          "independent_primitive_or_site": 0,
+          "equal": true
+        }
+      }
+    }
+  },
+  "all_comparisons_equal": true,
+  "artifacts": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_global_SLR.rpt",
+      "bytes": 6889,
+      "sha256": "2dfe2df39c2892272dffe30dc887e47b7b5f9938723f7dc70c76a38dc72e11c5"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_attention_SLR.rpt",
+      "bytes": 7029,
+      "sha256": "0980e02edaa8d0f0aea1d572ca1fb70403c3468c72543cdb26bfbfe81e3127b9"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_mlp_SLR.rpt",
+      "bytes": 7169,
+      "sha256": "f182097a2bd1d568b946a71c4efcc437c7585f29ec8c6d723a675ad39a9190b9"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_weight_metadata_SLR.rpt",
+      "bytes": 6775,
+      "sha256": "0f7dea552f794ecf893c131de79e1f9bd0d4b12291e9e5def8245f925cd0e92a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E006_R001_AT001_physopt_attribution/utilization_exclusive_weight_loader_SLR.rpt",
+      "bytes": 6872,
+      "sha256": "2a375590bbf58a6242b8197b0c8e76344b75d9a2cb4e0ef6d36322fdc06a8b2e"
+    }
+  ],
+  "producer": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/attempts/AT001_physopt_attribution/closed_owner_batch001_producer.py",
+    "bytes": 6283,
+    "sha256": "9d2e61ff7e5b646d95fc95049616e74f5dc50ec49fad9461e7d7f02f5bfbd395"
+  },
+  "limits": [
+    "Milestone is based only on naturally closed native queries; module stage and full native/supervisor terminal may remain pending.",
+    "Native resource tables and primitive counts are separate metrics. Raw logic LUT primitive rows are not native CLB LUTs.",
+    "Native CLB Registers use SLICE-site FF/latch subset; all-site counts contain DDR PHY non-CLB FFs.",
+    "Per-owner occupied CLB sites, physical LUT slots, and control sets can overlap between owners and must not be summed as unique global allocation.",
+    "BRAM uses 36K equivalents; DSP uses actual occupied DSP sites rather than split primitive rows.",
+    "DCP/144 input/PID/FLOCK/resource final closure is separately verified at actual native terminal.",
+    "No congestion API, causal optimization validation, legal routed timing, CDC or board signoff is implied."
+  ]
+}

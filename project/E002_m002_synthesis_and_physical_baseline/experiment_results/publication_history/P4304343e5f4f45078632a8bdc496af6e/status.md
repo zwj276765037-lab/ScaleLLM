@@ -1,0 +1,33 @@
+# E002：执行状态
+
+execution_state: running
+verdict: unassessed
+applicability: 正式综合及OPT完成；99项受影响CPU回归通过，AT007正在恢复OPT并补端口时钟证据，尚未place。
+
+R003/AT007于2026-10-15 06:53:52 UTC真实启动，supervisor3325484、owned group3325485。唯一EDA执行者A006，从AT006相同397273730-byte OPT（SHA b209decf…71021）恢复，不重综合/OPT。复用同身份14份完成报告、119909158-byte闭合复位图、14份小块原语导出和完整扇出，只补88个BRAM的688个WEBWE端点实际CLKBWRCLK时钟；实际端口/完整诊断门尚待结果。
+
+R002/AT010的99项CPU通过（93物理+6隔离），含真实图结构资格、默认参数/别名及BRAM端口错误负例；339输入/45综合DCP与同OPT完整证据继承核验通过。14链实际结构与源语义限定PASS，正式reset/CDC安全仍OPEN。AT006原native/managed1与独立离线qualification分别保留，无遗留进程，不能将其改写为整体通过。
+
+当前恢复/取证不等于place已经执行。既有限定结构/时钟/黑盒/DRC等门满足后，按授权自动debug→pre_place→place→phys_opt，再依真实产物route。A007只读复核变化及实际端口门，无新增人工停点。
+
+维持1个EDA、8CPU、内存/磁盘保护，以及place/phys_opt和route各2h上限。最终物理时序、reset/CDC安全及板级目标未通过；无bitstream/板卡/GPU/PPL/ACC授权。
+
+
+---
+Published: 2026-10-15T06:55:02.753294+00:00
+Publication: P286d20d1b1a6442e8c2543976fecb192
+Execution state: running
+Research verdict: unassessed
+Applicability: AT010的99项CPU与实际证据继承通过；AT007于06:53:52 UTC启动OPT恢复/688端口取证，尚未place；最终CDC/物理签核未通过
+Evidence:
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/synthesis_stage_facts.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R001/attempts/AT002_fresh_synth/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT004_complete_recovery_preflight_opt_place_physopt/opt_command_facts.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT004_complete_recovery_preflight_opt_place_physopt/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT005_opt_recovery_debug_materialized_place_physopt/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT006_cdc_reset_proof_debug_place_physopt/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R005/architecture_review.md
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R005/reset_warning_review.md
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT006_cdc_reset_proof_debug_place_physopt/offline_qualification_v1/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R002/attempts/AT010_actual_reset_graph_bram_clock_cpu/status.json
+- project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT007_bram_port_clock_debug_place_physopt/started.json

@@ -1,0 +1,18 @@
+{
+  "event_id": "EV_SM007_FULL_IMPLEMENTATION_NATURAL_FAILURE_FINAL",
+  "small_mission": "SM007",
+  "trigger": "milestone",
+  "summary": "完整物理尝试自然结束：place/独立physopt成功，route命令19065秒后Tcl1，245279重叠节点/248289拥塞失败信号；无route DCP/完整POST。",
+  "impact": "本次冻结设计/默认策略合法布通明确FAIL，未达到完整implementation成功条件；无时间或资源终止，六个原进程退出，锁释放。方法普遍性inconclusive，正式时序/安全未签核。",
+  "evidence": [
+    "project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/route_terminal_completion_facts.json",
+    "project/E003_m002_full_implementation/experiment_results/runs/R003/attempts/AT001_full_route/terminal_facts.json",
+    "results/reviews/SM007_route_terminal_check_20261016.json",
+    "results/reviews/SM007_route_completion_check_20261016.json"
+  ],
+  "affected": [
+    "SM007"
+  ],
+  "action": "保留所有成功父点和失败证据，完成本轮归档；后续依据真实拥塞/冲突定位形成新修复候选，不自动重跑或扩大策略/架构范围。",
+  "requires_decision": false
+}

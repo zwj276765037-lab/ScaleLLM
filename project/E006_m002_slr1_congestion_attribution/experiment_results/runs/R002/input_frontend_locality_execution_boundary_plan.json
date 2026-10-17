@@ -1,0 +1,219 @@
+{
+  "created_utc": "2026-10-16T17:13:30.969635+00:00",
+  "execution": "completed bounded CPU plan only; no EDA, process control, production or engineering-entry edits",
+  "verdict": "concrete selection/measurement semantics; native object/API behavior and candidate physical efficacy unverified",
+  "applicability": {
+    "candidate_facts": {
+      "path": "project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/input_frontend_locality_candidate_facts.json",
+      "bytes": 131911,
+      "sha256": "337dc83533a959343ae798a845059d14bed1e7dd0a127763abd0e71aae0a49a5"
+    },
+    "planned_contract": {
+      "path": "mission/M002_ddr_separation_and_timing_recovery/slr2_input_locality_candidate_contract_2026-10-17.md",
+      "bytes": 5795,
+      "sha256": "8a775f3584d35394a521ae35c01ce70e9d61c0db95fc4e80897702888035cf7c"
+    },
+    "baseline_checkpoint_sha256": "8451b2a86885d5ebb7bcb58dc24c352ac442492425c174269f9a803bb39c202f"
+  },
+  "review": "internal bounded completion; no user switch decision, new approval gate or implementation success inferred",
+  "actual_model_configuration": "not independently verified; unchanged",
+  "selection": {
+    "sets": {
+      "matched_raw": "all exact-root literal-prefix matches before REF exclusions; preserve inclusion/exclusion ledger",
+      "S": "selected nonconstant logical primitive objects after role exclusions, before DSP physical-parent normalization",
+      "P": "unique placeable logic leaves plus unique DSP48E2 physical parents; only P receives the new pblock"
+    },
+    "frontend_root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend",
+    "frontend_rule": "include all primitive descendants; exclude exact u_cache0/ and u_cache1/ descendant sets and relative NAME prefixes below",
+    "frontend_exclude_relative_prefixes": [
+      "bundle_u8_bank_r",
+      "bundle_meta_bank_r",
+      "g_bundle_row["
+    ],
+    "tensor_root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor",
+    "tensor_include_relative_prefixes": [
+      "g_input_beat_bank[",
+      "input_beat_r",
+      "input_group_r",
+      "input_group_valid_r",
+      "input_beat_count",
+      "input_group_count"
+    ],
+    "matching": "literal string prefixes only; brackets are characters, not glob syntax; resolve exact roots and actual object NAME",
+    "constant_REF_exclusion": [
+      "GND",
+      "VCC"
+    ],
+    "unexpected_resource_policy": "Any selected clock buffer, I/O, BRAM/URAM or unsupported REF is an unexpected-selection error, not silently discarded to force expected counts.",
+    "current_observed_logic_REF_allowlist": [
+      "LUT1",
+      "LUT2",
+      "LUT3",
+      "LUT4",
+      "LUT5",
+      "LUT6",
+      "FDRE",
+      "FDCE",
+      "FDPE",
+      "CARRY8",
+      "MUXF7",
+      "MUXF8"
+    ],
+    "DSP_REFs_to_normalize": [
+      "DSP48E2",
+      "DSP_ALU",
+      "DSP_A_B_DATA",
+      "DSP_C_DATA",
+      "DSP_MULTIPLIER",
+      "DSP_M_DATA",
+      "DSP_OUTPUT",
+      "DSP_PREADD_DATA",
+      "DSP_PREADD"
+    ],
+    "DSP_normalization": "For every selected DSP object, walk native hierarchy ancestry (or exact lookup of candidate ancestor paths, with REF verification) to exactly one DSP48E2 object within intended u_hadamard. Deduplicate by actual parent NAME. No suffix guessing, no LOC grouping before placement, no direct binding of DSP internal objects; preserve raw child -> physical parent map.",
+    "semantic_invariants": [
+      "Two complete independently indexed payload sets: tensor48x256 and frontend16x768, each12288 registers; distinguish real clones from missing original bits.",
+      "Exactly four intended quantizer hierarchy roots and one Hadamard root; eight unique intended physical DSP parents.",
+      "No cache/bundle payload or bundle-local CE, tensor output/DMA, SMC/MIG/PCIe, clock buffer or unrelated root in P.",
+      "Changes from physopt selector count must be explained by actual stage graph; do not force pre-place count to match physopt."
+    ],
+    "current_physopt_reference_only": {
+      "matched_raw_records": 77360,
+      "GND_VCC_exclusions": 114,
+      "S_records": 77246,
+      "DSP_internal_records_folded_into_parent": 64,
+      "P_placeable_objects": 77182,
+      "P_logic_leaves": 77174,
+      "P_DSP48E2_parents": 8
+    },
+    "ledger_fields": [
+      "raw_NAME",
+      "REF_NAME",
+      "IS_PRIMITIVE",
+      "include_rule",
+      "exclude_reason",
+      "physical_parent_NAME",
+      "native_ancestry_evidence",
+      "source_graph_id",
+      "stage",
+      "LOC",
+      "BEL",
+      "IS_LOC_FIXED",
+      "IS_BEL_FIXED",
+      "existing_pblocks_and_properties",
+      "SLR_assignment_properties_if_supported",
+      "RLOC_or_macro_membership_if_present"
+    ]
+  },
+  "pblock": {
+    "name": "m002_input_locality_slr2",
+    "target_SLR": "SLR2",
+    "properties": {
+      "IS_SOFT": false,
+      "EXCLUDE_PLACEMENT": false,
+      "CONTAIN_ROUTING": false
+    },
+    "meaning": "P must be placed inside target region; other logic may share its sites and routes may leave the region. No site exclusivity or route containment is introduced.",
+    "geometry": "Enumerate actual SLR2 device sites, select all SLICE and DSP48E2 resource sites needed by P, encode their exact set as resource ranges, and verify the expanded pblock site set/SLR membership from native objects. Do not copy historical CLOCKREGION coordinates or assume arbitrary name-coordinate conversion.",
+    "precondition_rejections": [
+      "Target pblock already exists with unqualified source; no delete/reuse.",
+      "Missing/ambiguous SLR2, empty resource class or inability to verify region expansion/SLR membership.",
+      "Existing fixed LOC/BEL, hard region/SLR assignment or relative-placement macro conflicts with new region; a macro requiring excluded partners is not silently broken.",
+      "Adding P would silently remove or change existing pblock membership or any noncandidate placement policy; compatible memberships must remain demonstrably preserved.",
+      "Required pblock properties absent, command failure, readback not all false, or actual member set different from P."
+    ],
+    "repair_policy": "Reject the conflicting constraint application and correct the local selector/boundary/entry in the existing authorized scope; preserve existing constraints/evidence. Do not clear LOCs, soften the pblock, disable DRC or change global timing to hide conflicts. No new per-step user approval.",
+    "post_place_acceptance": "All reconciled actual placeable P descendants/clones placed in SLR2; 100% compliance with zero unexplained missing/unplaced/outside objects. Record stage correspondence and effective pblock properties, not only original NAME count. Native unavailable clone correspondence remains unresolved; do not infer solely from _rep suffix."
+  },
+  "complete_cut": {
+    "selection_scope": "All pins on all P logic leaves and DSP parent external interfaces, supplemented with selected DSP internal leaf views as required by native model. Any internal DSP leaf is classified inside by normalized physical-parent membership.",
+    "net_scope": "All connected segments from these pins; merge complete native hierarchical segment closure into unique canonical electrical nets. A cut net has endpoints on both inside(P) and outside(P), including top ports; retain internal-only nets separately for coverage.",
+    "endpoint_coverage": [
+      "leaf IN",
+      "leaf OUT",
+      "leaf INOUT",
+      "connected top-level ports with native directions"
+    ],
+    "classification": [
+      "single-driver ingress",
+      "single-driver egress",
+      "internal-only",
+      "bidirectional/tri-state or multiple-driver unresolved direction",
+      "no resolved driver",
+      "constant-driven",
+      "clock"
+    ],
+    "top_port_semantics": "Native top-level input may be an external design driver and output an external load; never count port direction exactly like a leaf cell pin. INOUT remains explicitly bidirectional/ambiguous. Missing primitive driver does not prove an undriven net.",
+    "endpoint_fields": [
+      "canonical_net",
+      "all_segment_names",
+      "pin_or_port_NAME",
+      "native_direction",
+      "endpoint_kind",
+      "logical_parent_NAME",
+      "REF_NAME",
+      "REF_PIN_NAME",
+      "normalized_physical_parent",
+      "inside_or_outside",
+      "owner_and_detail",
+      "LOC",
+      "BEL",
+      "native_site_and_tile",
+      "actual_SLR",
+      "clock_region_if_available",
+      "native_clock_or_timing_domain_evidence",
+      "unresolved_reason"
+    ],
+    "coverage_fields": [
+      "selected_S_and_P_counts",
+      "queried_unique_pins_by_direction",
+      "unconnected_pins",
+      "attached_segments",
+      "complete_canonical_nets",
+      "closed_segment_coverage",
+      "missing_parent_or_endpoint",
+      "no_driver",
+      "multiple_driver",
+      "INOUT",
+      "top_ports",
+      "unplaced_or_unknown_location",
+      "query_errors_and_truncation"
+    ],
+    "measurement_fields": [
+      "unique_cut_nets_by_direction_and_REF_aware_pin_class",
+      "boundary_leaf_load_pin_counts",
+      "unique_physical_driver_and_load_cells",
+      "inside_and_outside_fanout_per_net",
+      "module_pair_and_clock_pair_groups",
+      "actual_SLR_pair_net_and_pin_counts_post_place",
+      "native_site/tile/clock-region span where mapped",
+      "complete_source_identity_and_phase"
+    ],
+    "pin_semantics": "Classify CE/enable, reset/set, clock, data/address and handshake/status using REF plus REF_PIN_NAME and source mapping. DSP.C is data, FD.C is clock; LUT input meaning is not inferred from I0/I1 alone. Keep unknown/coarse categories explicit.",
+    "pre_place_spatial_rule": "Record empty LOC/SLR as UNPLACED/UNKNOWN; targetSLR2 is a separate proposed-constraint field and never a measured position. The logical cut can be complete without placed spatial metrics.",
+    "SLL_rule": "Report canonical cut nets and leaf pins separately from actual native global SLL utilization. Neither widths nor pin/net counts are SLL consumption or throughput; no large leaf-list utilization report for P.",
+    "timing": "Retain full-design native setup/hold/pulse-width summaries for all inherited clocks. Obtain scoped worst min/max paths through boundary pins, grouped by direction/clock pair with endpoints, slack, logic/net delay and applied exceptions. Declare max_paths/filter coverage; never compute full-cut TNS or claim complete timing-path enumeration from a capped path list.",
+    "comparison": "Use the same semantic S/P selection on original current physopt as the baseline if existing graph exports cover it, otherwise mark baseline cut NOT_MEASURED. Re-enumerate from actual pre-place and placed/physopt graph; do not join changed stages solely by canonical strings.",
+    "static_payload_widths": "256 and1120 are source-interface reference budgets only; optimized constants, fanout, copies, shared mux/control and external consumers can change actual cut."
+  },
+  "candidate_revision_triggers": {
+    "before_qualification": [
+      "Ambiguous/incomplete selector, unresolved DSP parent, missing semantic payload bit, excluded resource selected, incompatible fixed/region/macro constraint, or unreliable geometry/property readback must be corrected before applying an unqualified boundary.",
+      "Native cut exposes unintended raw-input/output payload crossings or shared logic/control outside the supposed producer group: explain and amend local boundary or candidate mechanism before claiming the narrow interface benefit.",
+      "New unclocked endpoints, unintended clock/reset topology change or a new qualification/major DRC failure must be addressed through existing qualification rules."
+    ],
+    "evidence_and_result": [
+      "No measured overlap/connection with target hotspot requires revising the claimed hotspot applicability or candidate priority; ten sampled windows do not cover all congestion, so absence is not universal refutation.",
+      "A legal run with increased cross-SLR control delay, worse receiving-region pressure or route failure does not validate the candidate. Finish the contracted complete route unless an existing stop/qualification condition applies, preserve results, and revise the next candidate from evidence.",
+      "A required FIFO/RTL/IP/pipeline change leaves this pure-placement variable and needs a consolidated contract/verification scope update, not a silent extension or automatic global constraint relaxation."
+    ]
+  },
+  "CPU_preparation_only": [
+    "A006 may prepare an unexecuted literal selector/physical-parent normalization and exclusion-ledger builder in its owned engineering area.",
+    "Prepare actual-site -> exact resource-range compression and property/member readback/rejection code; no manufactured current geometry or object results.",
+    "Prepare complete-cut endpoint/canonical schema, REF-aware CPU classifier, phase comparison and scoped timing report entry, with explicit unknown/truncation handling.",
+    "Prepare attempt/source/freeze/parent/contract bindings, same-SSI+Default flow entry and output directories as plans only; no checkpoint opening, pblock application, EDA or process control until existing dependency/authorization conditions actually hold.",
+    "Only bounded CPU syntax/identity and directly relevant parser/selector edge-case checks; no new staged approval gates or broad regression solely for this plan."
+  ],
+  "ownership": "A007 writes only this plan and append-only candidate section plus own agent records. A006 owns engineering entry; parent owns contract/index/results. Existing work preserved; no descendants."
+}

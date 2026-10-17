@@ -1,0 +1,11 @@
+{
+  "source": "# E008：热点卸载与完整实现准备\n\n按[原SM012合同](../../../mission/M002_ddr_separation_and_timing_recovery/exact_hotspot_offload_implementation_contract_2026-10-17.md)及[有向cut范围修订](../../../mission/M002_ddr_separation_and_timing_recovery/directed_candidate_cut_scope_revision_2026-10-17.md)共同执行。以E005 debug_materialized DCP为父图，C01/C02至多实际选择一个移至SLR2，其他物理directive、RTL/IP/时钟/数值及正式验收保持。资源引用R004闭合结果，边界/时序和选型等待R005实际通过。\n",
+  "results": "# E008：当前结果\n\n原1d612有向cut入口基础上的运行环境适配已完成并独立核查：[当前manifest](../../../agent/A006/directed_candidate_cut_system_python/E008_entry/prepared_manifest.json)，12275B / da34c310，14自有源、16复用源、3CPU记录、2个运行二进制身份。[独立最终核验](../../../agent/A007/R005_python_environment_review_20261017/E008_final_da34_identity_review.json)。\n\n所有实际Python适配调用使用显式系统解释器及隔离的子进程环境，在打开设计前先导入完整adapter。污染工具环境下的真实完整入口测试通过（原生open_project被mock，未执行EDA）；Tcl列表解析、图验证语义、actual-P/literal-P保护与全POST保持。原1d612全部13源及原b59/9f证据保留，资源监督和单EDA规则未变。\n\n此为源码/CPU准备，不是原生物理资格。候选尚未选择，native/pre-place/implementation全部NOT_RUN。R005 AT003已真实通过载图前环境预检，当前继续两候选比较；最终选择与实际终态收尾仍待完成。\n",
+  "status": "# E008：当前状态\n\nexecution_state: planned\nverdict: unassessed\n\n最终da34c310环境修复入口已准备并独立核查，无实际R/AT/EDA。R005 AT003真实启动且载图前系统Python预检通过；依赖其实际候选cut/时序、范围判断及自然终态/输入/PID/锁收尾，再绑定一个实际候选连续执行完整implementation。\n\n本次沿用已有定向优化与完整implementation授权，没有新增用户批准门。原R001、R004停止例外均已执行，不扩展至后续正常进程。算法/数值/接口/时钟及原物理验收、单EDA和资源保护保持。\n",
+  "execution_state": "planned",
+  "verdict": "unassessed",
+  "applicability": "当前E008环境修复da34c310入口及独立核查通过；R005 AT003真实预检通过并继续候选诊断，尚无实际选择或新implementation。",
+  "evidence": [
+    "project/E008_m002_exact_hotspot_offload_implementation/experiment_source/protocol.md"
+  ]
+}

@@ -1,0 +1,43 @@
+# E005：执行状态
+
+execution_state: running
+verdict: unassessed
+
+新综合及原生OPT成功，新opt.dcp SHA af634c358eecf869c83cb45c0755d0164b39d5a9f5aed316bcaa52cd3c02919e保持。AT001显式debug入口失败和AT002旧CDC报告身份失败均保留；实际复位结构通过，正式安全仍OPEN。
+
+当前CDC来源适配已安装，R002/AT010实际219项CPU通过（198+21）、native/监督0、无残留，144新冻结输入未变。同OPT原始图/14导出/688BRAM/fanout及8条Critical范围按新解析器重核通过，原failed integrity不改写，原枚举UNKNOWN cap和覆盖限定保持。
+
+R004/AT003_current_CDC_bound_OPT_place_physopt已于2026-10-16 04:45:47 UTC真实启动，supervisor362464/leader362482，CPU0–7/nice5、无墙钟/无输出期限。从AT002同OPT及完整原始图证据接续debug/pre_place→显式SSI_SpreadSLLs布局→Default独立physopt，后续完整route；不重综合/INIT/OPT或已完成探针。A007集中审核当前绑定/安装/启动；主控持续整合。
+
+仍无新place/physopt/route完成结论，时序和正式CDC/reset安全未通过。保持单EDA/原资源保护；无bitstream/板卡/GPU/PPL/ACC，原综合监督UNKNOWN与观测缺口保留。
+
+
+---
+Published: 2026-10-16T04:47:21.698929+00:00
+Publication: Pdd98ca38a5aa40f0b4ccbd5fa1b14089
+Execution state: running
+Research verdict: unassessed
+Applicability: 当前CDC身份适配219CPU及同OPT实际图重核通过，AT003实际接续；原两次POST失败保留，布局布通未验收
+Evidence:
+- project/E005_m002_optimized_implementation/experiment_results/runs/R001/rtl_functional_final_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R001/mlp_functional_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R002/entry_preparation_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT006_fresh_create/status.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/started.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/supervision_handover_20261016T021717Z/started.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/supervision_handover_20261016T021717Z/status.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R005/synthesis_structure_preterminal_review_evidence.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R005/synthesis_utilization_preterminal_review_evidence.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R003/attempts/AT001_fresh_synth/synth_recovery_completion_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/detached_launch_handoff.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R005/synthesis_stage_review_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R005/physical_startup_review_evidence.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/status.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/new_OPT_checkpoint_observation.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT001_fresh_place_physopt/completed_OPT_timing_resources_observation.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT009_project_OPT_recovery_cpu/completion_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT002_native_OPT_POST_recovery_place_physopt/started.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT002_native_OPT_POST_recovery_place_physopt/status.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT010_current_CDC_recovery_cpu/completion_facts.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT002_native_OPT_POST_recovery_place_physopt/same_OPT_current_targeted_CDC_requalification.json
+- project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT003_current_CDC_bound_OPT_place_physopt/started.json

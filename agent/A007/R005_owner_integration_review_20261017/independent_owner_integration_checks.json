@@ -1,0 +1,95 @@
+{
+  "recorded_utc": "2026-10-17T01:33:07.082645+00:00",
+  "execution": "completed_independent_CPU_actual_source_integration",
+  "verdict": "owner_fix_supported_CPU_only",
+  "producer_script": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R005_owner_integration_review_20261017/reviewed_check_readonly_resolve_mock.tcl",
+    "bytes": 3178,
+    "sha256": "24d2502ff449331ca76b1a724987959f01cd4f8c4527a9d61dc49bdf842480cc"
+  },
+  "engineering_original_script": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/directed_candidate_cut_owner_fix/check_readonly_resolve_mock.tcl",
+    "bytes": 3178,
+    "sha256": "24d2502ff449331ca76b1a724987959f01cd4f8c4527a9d61dc49bdf842480cc"
+  },
+  "cases": [
+    {
+      "case": "old_558c_missing_owner",
+      "source": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/directed_candidate_cut/candidate_inspector.tcl",
+        "bytes": 18376,
+        "sha256": "b98703f34b76a6bf08d88a39cacb7a2aa45012af8022d5abae3cabfc38d89ced"
+      },
+      "expected_code": 1,
+      "actual_code": 1,
+      "stdout": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R005_owner_integration_review_20261017/old_558c_missing_owner.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R005_owner_integration_review_20261017/old_558c_missing_owner.stderr",
+        "bytes": 406,
+        "sha256": "fd1774188e2b4352d1c18ad50099a206f3354fc613653c41d39b787e936aa8a2"
+      },
+      "closed_marker": false
+    },
+    {
+      "case": "fixed_actual_owner",
+      "source": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/directed_candidate_cut_owner_fix/candidate_inspector.tcl",
+        "bytes": 18703,
+        "sha256": "a63d1ace7f7e00a05be2d21bc2ee42971773302d62c3b6cd483d315097731640"
+      },
+      "expected_code": 0,
+      "actual_code": 0,
+      "stdout": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R005_owner_integration_review_20261017/fixed_actual_owner.stdout",
+        "bytes": 147,
+        "sha256": "f5582801e707a314336be5531eeda3507d368f22d54692cb6da0664bddb8410b"
+      },
+      "stderr": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/R005_owner_integration_review_20261017/fixed_actual_owner.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "closed_marker": true
+    }
+  ],
+  "actual_composed_source_procedures": [
+    "::slr2::clock_domains",
+    "::slr2::cut",
+    "::slr2::directed_alias",
+    "::slr2::directed_choose_scope",
+    "::slr2::directed_local_scope",
+    "::slr2::directed_pin_columns",
+    "::slr2::directed_role",
+    "::slr2::directed_schema_gate",
+    "::slr2::directed_trace",
+    "::slr2::domains",
+    "::slr2::ensure_cells",
+    "::slr2::objects",
+    "::slr2::owner",
+    "::slr2::physical",
+    "::slr2::pin_class",
+    "::slr2::pin_columns",
+    "::slr2::prefix",
+    "::slr2::property_values",
+    "::slr2::readonly_resolve",
+    "::slr2::retained_reason",
+    "::slr2::scoped_timing",
+    "::slr2::slr",
+    "::slr2::spatial",
+    "::slr2::timing_boundary_selection",
+    "::slr2::value"
+  ],
+  "all_original_R004_procedures_present": true,
+  "restored_owner_args_body_equal_frozen_R004": true,
+  "other_composed_procedure_args_bodies_equal_original_558c": true,
+  "source_helpers_not_stubbed": true,
+  "native_APIs_mocked_only": true,
+  "actual_readonly_resolve_completed": true,
+  "old_source_negative_control_reproduced": true,
+  "no_shared_collector_validator_runner_change": true,
+  "limitations": "CPU integration fixture only; native schema/role/local membership/cut/timing still require new actual attempt. No EDA, DCP reads, production changes, signals or locks."
+}

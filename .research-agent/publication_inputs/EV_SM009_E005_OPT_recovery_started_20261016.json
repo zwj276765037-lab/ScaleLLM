@@ -1,0 +1,16 @@
+{
+  "event_id": "EV_SM009_E005_OPT_recovery_started_20261016",
+  "small_mission": "SM009",
+  "trigger": "milestone",
+  "summary": "物理恢复入口已安装，198项CPU通过且144输入冻结；R004/AT002于04:20:06 UTC从本轮新OPT检查点实际接续。",
+  "impact": "原POST失败保留，未重复成功综合/INIT/OPT；当前补全debug和布局前检查，尚无新布局/布通完成结论。",
+  "evidence": [
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R002/attempts/AT009_project_OPT_recovery_cpu/completion_facts.json",
+    "project/E005_m002_optimized_implementation/experiment_results/runs/R004/attempts/AT002_native_OPT_POST_recovery_place_physopt/started.json"
+  ],
+  "affected": [
+    "SM009"
+  ],
+  "action": "按现有授权继续当前图检查、显式SSI_SpreadSLLs布局、Default独立physopt及完整route，正常进程无墙钟/无输出强停。",
+  "requires_decision": false
+}

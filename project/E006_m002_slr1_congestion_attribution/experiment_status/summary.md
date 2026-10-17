@@ -1,0 +1,25 @@
+# E006：完成
+
+execution_state: completed
+verdict: supported
+
+R006 AT003自然成功收尾，25项工程检查通过；A007独立复核231个非DCP身份及真实收尾，完整C01/C02比较接受。主控选定C01，已向A006实际派发E008完整implementation。[后继实际状态](../../E008_m002_exact_hotspot_offload_implementation/experiment_status/summary.md)。
+
+supported仅指C01作为本轮单变量卸载实验获当前证据支持；C02未选择不等于被反驳，E008布通和正式时序未验证。资源/热点复用R004原身份，固定窗拥塞和完整cut TNS未测。
+
+此前单次停止例外均已用。单EDA、资源保护、正常无墙钟/无输出强停、数值/接口/时钟及无bitstream/GPU/板卡/PPL/ACC保持。
+
+
+---
+Published: 2026-10-17T04:51:34.492335+00:00
+Publication: P124524e4d3404c68bd13aa4db86ab57d
+Execution state: completed
+Research verdict: supported
+Applicability: 同一E005 physopt图R004资源及R006 AT003完整有向cut/有界时序支持只选择C01做E008单变量SLR2卸载；不代表迁移后打包、减压、布通或时序通过。
+Evidence:
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT003_buffered_alias_directed_cut/terminal_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT003_buffered_alias_directed_cut/terminal_summary.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT003_buffered_alias_directed_cut/candidate_C01_directed_cut_closed_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT003_buffered_alias_directed_cut/candidate_C02_directed_cut_closed_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT003_buffered_alias_directed_cut/candidate_C01_bounded_timing_closed_facts.json
+- project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/attempts/AT003_buffered_alias_directed_cut/candidate_C02_bounded_timing_closed_facts.json

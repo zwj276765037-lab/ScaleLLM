@@ -1,0 +1,20 @@
+{
+  "event_id": "EV_SM010_R005_owner_integration_failure_and_retry_20261017",
+  "small_mission": "SM010",
+  "trigger": "anomaly",
+  "summary": "R005 AT001因清理入口时遗漏owner辅助函数自然失败，原局部mock未覆盖完整readonly_resolve；根因和审核局限已独立订正，恢复原函数并补完整入口正负对照后AT002于09:34:23真实启动。",
+  "impact": "AT001未进入class/role/cut，候选和有向方法未被实际检验。旧原始失败及558c证据保持；E008自身owner完整，1d612准备结论保持。",
+  "evidence": [
+    "project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT001_candidate_directed_cut/status.json",
+    "project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT001_candidate_directed_cut/terminal_facts.json",
+    "project/E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/attempts/AT002_owner_helper_repaired_directed_cut/native_start_verified.json",
+    "agent/A007/R005_owner_integration_review_20261017/root_cause_and_review_correction.json",
+    "agent/A007/R005_owner_integration_review_20261017/review_addendum.md"
+  ],
+  "affected": [
+    "SM010",
+    "SM012"
+  ],
+  "action": "同范围常规修复已执行，无新用户门；继续真实候选采集、独立评判及已授权完整implementation。",
+  "requires_decision": false
+}

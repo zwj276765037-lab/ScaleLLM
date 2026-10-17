@@ -1,0 +1,14 @@
+{
+  "source": "# E001：M002修复与快速验证依据\n\n关联M002；SM004负责整合，SM002 RTL及SM003 Host为并行依赖。\n\n问题：修复被禁用的权重半组、共享数据口、Host/API/地址重叠和无效构建约束后，专属DDR架构能否通过快速功能验证？\n\n方法：保留双逻辑权重流及原数值模块，将其路由到各引擎专属物理DDR；分离MLP数据口；重建无相交地址布局和在飞保护；修正构建与约束。平台目标xcvu9p-flga2104-2L-e，core100/UI200，工具版本以实际尝试记录为准。\n\n基线：2026-10-15静态审核发现缺陷的当前源，不能用native025作新候选基线。验收为Host合同回归、RTL完整elaboration、事务和数值的限定快速验证；不覆盖综合/时序/上板或完整32层模型。\n\n权威来源：[执行合同](../../../mission/M002_ddr_separation_and_timing_recovery/repair_contract_2026-10-15.md)、[审核](../../../results/reviews/M002_readiness_2026-10-15.md)、[完整协议](protocol.md)。\n\n\n---\nPublished: 2026-10-14T23:57:06.163204+00:00\nPublication: Pce3dbae6592446aabd6779488fbb9bc5\n",
+  "results": "# E001：修复与快速功能验证结果\n\n本轮完成，结论 supported 仅适用于当前源的限定快速验证；M002 时序恢复及最终部署尚未验收。\n\n| 范围 | 已核实结果 | 证据 |\n| --- | --- | --- |\n| Host/API/布局/生命周期 | 106 项 CPU 测试 PASS | [R001](runs/R001/worker_report.md) |\n| 四套定向 XSim | data 11、CSR 10、权重 38、真实 frontend 7 项主检查 PASS；真实 reader 各64组、背压与维护排空通过 | [R002](runs/R002/worker_report.md) |\n| 构建/完整展开 | 49 项 CPU 回归和静态合同 PASS；完整 board 88 RTL、0黑盒 | [R003](runs/R003/worker_report.md) |\n| 真实 BD | 构造/validate退出0；保留4条地址别名及1条性能critical，生成译码配置已核查 | [BD原始证据](runs/R003/attempts/AT007_actual_bd_validation/bd_address_decode_evidence.json) |\n| 数值合同/源身份 | 9项整数参考PASS，170个数值/软件文件hash保持 | [R004](runs/R004/run.md) |\n\n最终输入hash一致；所有失败尝试保留。首组oracle全X问题只修测试台初始化触发并加非X断言，未改数据/地址期望或golden。完整展开仍有历史reset优先级等普通告警；真实BD译码结构支持跨主地址别名解释，但未执行真实SmartConnect/MIG事务，不作critical豁免。\n\n可进入fresh synthesis取新资源/时钟/告警证据；implementation需当前物理检查、互连事务及告警核查。无正式综合、setup/hold、DRC、bitstream、板卡、完整32层/双cohort数值或性能结论。KV仅保留地址；MLP单层流送开销尚未测量。详见[M002阶段报告](../../../results/missions/M002_summary.md)。\n",
+  "status": "# E001：执行状态\n\nexecution_state: completed\nverdict: supported\napplicability: 本轮源hash对应的Host/构建CPU回归、四套定向XSim、完整board RTL展开和实际BD配置核查；不包含告警豁免、完整模型、正式综合或物理验收。\nreview: 主控已核查原始日志、退出码、源身份和边界；用户全局验收未发生。\n\nSM002/SM003/SM004本轮任务全部交付，A004/A005/A006已结束；单路EDA流程均已结束，无后台监控。失败AT、阶段事件与最终worker报告均保留。\n\n下一阶段可fresh create+synth获取新基线；implementation前需适配物理检查、验证真实互连事务和处理告警。本轮没有继续运行正式综合、实现、GPU或板卡。M002长期目标保持未完成。\n",
+  "execution_state": "completed",
+  "verdict": "supported",
+  "applicability": "当前源hash下Host/构建CPU、4套定向XSim、完整board RTL展开及实际BD配置核查；无告警豁免/完整模型/正式综合/物理验收",
+  "evidence": [
+    "project/E001_m002_repair_quick_validation/experiment_results/runs/R001/worker_report.md",
+    "project/E001_m002_repair_quick_validation/experiment_results/runs/R002/worker_report.md",
+    "project/E001_m002_repair_quick_validation/experiment_results/runs/R003/worker_report.md",
+    "project/E001_m002_repair_quick_validation/experiment_results/runs/R004/run.md"
+  ]
+}

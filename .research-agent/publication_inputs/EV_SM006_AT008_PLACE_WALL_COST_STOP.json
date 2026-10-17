@@ -1,0 +1,17 @@
+{
+  "event_id": "EV_SM006_AT008_PLACE_WALL_COST_STOP",
+  "small_mission": "SM006",
+  "trigger": "blocker",
+  "summary": "AT008于09:08:31 UTC按原2小时上限受控结束，124/native−15、无survivors。实际布局已到细化Phase3.3，但无place/physopt成功回执或完整DCP，route未开始。",
+  "impact": "当前尝试未获得完成物理基线；工具超时不证明架构无效。原debug DCP和完整pre_place仍是可核恢复点，部分布局内存进度不能续接。",
+  "evidence": [
+    "project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R003/attempts/AT008_complete_opt_gate_debug_place_physopt/status.json",
+    "project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R005/architecture_review.md",
+    "project/hardware/vivado/reports/m002_E002_R003_AT008_complete_opt_gate_debug_place_physopt/pre_place_evidence.json"
+  ],
+  "affected": [
+    "SM006"
+  ],
+  "action": "原终态不改。按既有授权修复一次post-debug/pre-place恢复入口，继承同身份POST并保留必要live sanity/DRC，受影响CPU核验后可启动一次新有界AT；仍2小时/8CPU/单EDA，实际收益待测，若无新完整物理恢复点不再重复place。",
+  "requires_decision": false
+}
