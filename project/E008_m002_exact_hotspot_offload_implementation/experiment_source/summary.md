@@ -1,13 +1,16 @@
-# E008：C01定向卸载与完整实现
+# E008：C01 定向卸载与完整物理实现来源
 
-按[SM012合同](../../../mission/M002_ddr_separation_and_timing_recovery/exact_hotspot_offload_implementation_contract_2026-10-17.md)、[有向边界范围](../../../mission/M002_ddr_separation_and_timing_recovery/directed_candidate_cut_scope_revision_2026-10-17.md)及[端口索引获取补充](../../../mission/M002_ddr_separation_and_timing_recovery/top_port_reverse_index_acquisition_revision_2026-10-17.md)执行。唯一主动变量为C01 `g_row_branch[1].u_branch_leaf` → SLR2；hard Pblock非排他、不限制走线，保持原约束。
+当前批次 R001/AT004 已自然失败结束；本摘要仅覆盖该次实现。唯一主动变量为 SwiGLU `g_row_branch[1].u_branch_leaf` 的合格物理对象硬约束至 SLR2。place=SSI_SpreadSLLs、physopt=Default、route=Default，关闭增量实现。Vivado2025.2/build6299465，VCU118/xcvu9p-flga2104-2L-e；core100MHz、双DDR UI200MHz不变。
 
-父图为E005 `debug_materialized.dcp`，396068466B / 8451b2a86885d5ebb7bcb58dc24c352ac442492425c174269f9a803bb39c202f，沿用144冻结生产输入和175约束来源。复用原综合/OPT/debug与未受影响功能结果，不冒充本次新测。place=SSI_SpreadSLLs、physopt=Default、route=Default，无incremental。每实际阶段重新验证成员/物理父/origin-copy/祖先macro、80保护边界、完整端口索引及有向cut，全部实际P需落SLR2。
+父图为 E005/R004/AT003 debug_materialized.dcp（396068466B/SHA8451b2a8…）。AT004消费已审包b9dcabf4…/39实际归档源及144冻结生产输入，原约束/接口/RTL/IP、Hadamard、ScaleCode、format05不变。本次未重复综合/OPT/debug，也未运行bitstream/GPU/板卡/PPL/ACC。用户PDU恢复授权与[本次执行绑定](../../../.research-agent/decision_inputs/E008_R001_AT004_C01_PDU_resume_execution_20261017.json)保持，历史AT001/2入口失败和AT003受控停止均保留。
 
-45bbc原生属性兼容修复已独立接受，保留原缓冲日志修复；仅RLOC_ORIGIN明确不受支持且原生读取成功为空时兼容，其他属性/祖先/macro/伙伴/前后一致性和完整物理门保持。26有限用例（3成功/23预期拒绝）通过；AT002实际before读取已通过，after一致性仍待原生结果。RTL/IP、Hadamard、ScaleCode、format05、Host ABI与时钟不变。单EDA，CPU0–7/nice5/max8；保留资源保护，正常进程无墙钟/无输出强停。无bitstream/GPU/板卡/PPL/ACC。
+资格包含完整preplace、每成功阶段全局POST、fresh80保护、RAW/S/P原生对应、全部9491 P落SLR2、完整native端口索引、有向cut及四组through-LOAD有界时序。合格外部driver网省略外部peer LOAD；cap16不是完整cutTNS/SLL/带宽或安全签核。失败后的locality与诊断不代替成功route全局POST。正式reset/CDC/IO安全仍OPEN。
 
-当前消费b9dc源码包，仅将物理约束导出选项 `-constraints physical` 改为本机2025.2支持的 `-type physical`，输出路径不变；不加quiet/force/no_fixed_only、不重载约束。9有限实际region用例及115身份/真实入口[独立delta审核](../../../agent/A007/E008_R001_AT002_actual_stage_review_20261017/physical_xdc_fix_review/review.json)接受，其余策略/时序/覆盖/物理流程全复用不变。AT003使用39实际归档源，当前实际export/after策略已独立接受；完整restored pre-place实际门已通过；独立全门审核与物理阶段验证继续。
+单EDA/CPU0–7/nice5/max8；RSS192GiB、MemAvailable48GiB/30s、disk30GiB保护，正常无墙钟/静默强停。本次自然失败，无资源强停。当前仅终态核验与发布，不重跑、不原样重试、不增新AT。
+
+[完整物理合同](../../../mission/M002_ddr_separation_and_timing_recovery/exact_hotspot_offload_implementation_contract_2026-10-17.md) · [启动绑定与原始证据](../experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/input_bindings.json) · [输入/源/进程/锁终态核验](../experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/terminal_facts.json)。旧逐阶段摘要见publication_history，原始证据不覆盖。
+
 
 ---
-Published: 2026-10-17T08:36:22.149411+00:00
-Publication: Pce8a717db5e548aea73f34e07968f344
+Published: 2026-10-17T22:58:24.632449+00:00
+Publication: P9e290ff193074fdb81e0b9242f3f822d

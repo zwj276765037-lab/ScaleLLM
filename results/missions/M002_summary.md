@@ -1,6 +1,6 @@
 # M002：阶段报告
 
-> 最新进度：E008同C01→SLR2重试AT002已于北京时间2026-10-17 15:14:16实际启动，当前恢复父网表。AT001在13:12因入口原生属性不兼容自然失败，37源修复/26例及独立审核通过，续跑衔接缺口已纠正；尚无完整pre-place、place/route成功结果。[E008状态](../../project/E008_m002_exact_hotspot_offload_implementation/experiment_status/summary.md)。
+> 最新进度：**最新实态：E008/AT004布线因拥塞自然失败；2026-10-18北京时间05:18:30监督器结束，native1/supervisor1、stop_reason=null，无强停。最终702396重叠节点、547548拥塞失败信号；相对E005终态分别减少38.85%和27.81%，仍未合法布通。完整place/physopt已独立审核，C01的9491物理对象已落SLR2；失败图仍保持该落区。place/physopt/route_failed三个检查点及诊断已保存。此前running摘要因工程代理容量错误未及时更新，现按原始终态纠正；工程与独立审核正完成最终收尾，当前未启动新尝试。** [续接记录](../../mission/M002_ddr_separation_and_timing_recovery/pdu_shutdown_handoff_2026-10-17.md)。
 
 下文保留E005已结束基线及更早阶段记录。
 

@@ -1,0 +1,59 @@
+{
+  "recorded_utc": "2026-10-17T13:48:44.028871+00:00",
+  "actual_observation": {
+    "utc": "2026-10-17T13:48:44.005984+00:00",
+    "supervisor_identity_matches": true,
+    "sample_age_s": 0.02,
+    "rss_GiB": 32.68,
+    "mem_GiB": 461.62,
+    "disk_GiB": 389.32,
+    "cpu_tick_growth": 504,
+    "terminal": null,
+    "tail": [
+      "E005_OPTIMIZED_STRUCTURE_COMPLETED physopt 48/16/16 boundary CE graphs",
+      "report_utilization: Time (s): cpu = 00:01:38 ; elapsed = 00:01:41 . Memory (MB): peak = 34589.367 ; gain = 0.000 ; free physical = 457281 ; free virtual = 481601"
+    ]
+  },
+  "reviewed_substeps": [
+    "actual outer physopt native0/149s/unmodified-netlist statement and saved checkpoint metadata",
+    "fresh actual complete physopt timing report",
+    "fresh physopt80 protected structure"
+  ],
+  "independent_reviews": [
+    {
+      "path": "agent/A007/E008_R001_AT004_actual_stage_review_20261017/physopt_command_and_full_timing_review.json",
+      "bytes": 76260,
+      "sha256": "7105a1c0f74b275248fc24808b01e75405ca394f90c8dd4fde64f57d6db8e3f0"
+    },
+    {
+      "path": "agent/A007/E008_R001_AT004_actual_stage_review_20261017/physopt_command_and_full_timing_review.md",
+      "bytes": 1354,
+      "sha256": "109ab6aac038670a47dcefcf327131339be323aec27801ae0388e606a020cb4e"
+    },
+    {
+      "path": "agent/A007/E008_R001_AT004_actual_stage_review_20261017/physopt_fresh80_structure_review.json",
+      "bytes": 8538,
+      "sha256": "2fa032cc4bb47325c9c9001821acab62f3f3c0d44ff9440057ee4d53415df04b"
+    },
+    {
+      "path": "agent/A007/E008_R001_AT004_actual_stage_review_20261017/physopt_fresh80_structure_review.md",
+      "bytes": 1147,
+      "sha256": "c952ad453d9055f6ebc1b371d2cf06243fa9ad136b874e1a138dc945c62da277"
+    }
+  ],
+  "actual_fresh_timing_facts": {
+    "path": "project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/physopt_full_timing_report_available_facts.json",
+    "bytes": 1799,
+    "sha256": "1e3e084d80e26f61865035f938cb88e2e73fb651bdb149f6a388d38d5d39b6d4"
+  },
+  "actual_checkpoint_saved_facts": {
+    "path": "project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/physopt_checkpoint_saved_identity.json",
+    "bytes": 847,
+    "sha256": "035af7694e0b8520a85fc163b0a7b96d238d19cc22a2e726bf8069f77b00b0cd"
+  },
+  "full_physopt_POST_locality": "NOT_YET_QUALIFIED",
+  "timing_verdict": "FAIL_HOLD_UNCHANGED",
+  "formal_safety": "OPEN",
+  "route": "NOT_YET_REACHED",
+  "scope": "Fresh timing/80 independent substeps only. Global POST, current candidate origin correspondence/all-P-in-SLR2/cut/bounded timing/combined receipt must still close in this phase; unmodified netlist does not waive current-phase evidence."
+}

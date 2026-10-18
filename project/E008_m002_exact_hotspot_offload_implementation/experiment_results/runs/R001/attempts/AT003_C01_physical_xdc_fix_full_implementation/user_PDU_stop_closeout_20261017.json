@@ -1,0 +1,248 @@
+{
+  "recorded_utc": "2026-10-17T08:45:59.678094+00:00",
+  "classification": "USER_REQUESTED_PDU_SHUTDOWN_PAUSE",
+  "execution_state": "paused",
+  "method_verdict": "unassessed",
+  "authority": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/.research-agent/decision_inputs/E008_user_PDU_shutdown_stop_and_pause_20261017.json",
+    "bytes": 1376,
+    "sha256": "0fde428d7cc45d8d62538cb7eb140b1291c1c6cf458ba5a213ac951eb4c66d70"
+  },
+  "actual_signal_sent": {
+    "sent_utc": "2026-10-17T08:44:00.987566+00:00",
+    "pid": 1560167,
+    "start_ticks": 933552991,
+    "signal": "SIGTERM",
+    "request": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/user_PDU_stop_request_20261017.json"
+  },
+  "actual_terminal_utc": "2026-10-17T08:44:09.782954+00:00",
+  "native_exit_code": -15,
+  "supervisor_exit_code": 125,
+  "stop_reason": "KeyboardInterrupt:signal 15",
+  "all_14_terminal_closure_checks": {
+    "no_survivors": true,
+    "no_original_live": true,
+    "lane_released": true,
+    "production_144_unchanged": true,
+    "wrapper_after_freeze_agrees": true,
+    "preparation_manifest_unchanged": true,
+    "all_bound_source_CPU_and_docs_unchanged": true,
+    "stage_manifest_unchanged": true,
+    "stage_manifest_all_actual_input_hashes_match": true,
+    "source_contract_unchanged": true,
+    "scope_revision_unchanged": true,
+    "attribution_selection_evidence_unchanged": true,
+    "no_post_integrity_error": true,
+    "resource_extrema_agree": true
+  },
+  "all_original_PID_start_identities_gone": [
+    {
+      "pid": 1560167,
+      "expected_start_ticks": 933552991,
+      "original_identity_live": false
+    },
+    {
+      "pid": 1560294,
+      "expected_start_ticks": 933554199,
+      "original_identity_live": false
+    },
+    {
+      "pid": 1560313,
+      "expected_start_ticks": 933554202,
+      "original_identity_live": false
+    },
+    {
+      "pid": 1560345,
+      "expected_start_ticks": 933554208,
+      "original_identity_live": false
+    },
+    {
+      "pid": 1560347,
+      "expected_start_ticks": 933554208,
+      "original_identity_live": false
+    },
+    {
+      "pid": 1560348,
+      "expected_start_ticks": 933554208,
+      "original_identity_live": false
+    },
+    {
+      "pid": 1560384,
+      "expected_start_ticks": 933554214,
+      "original_identity_live": false
+    },
+    {
+      "pid": 1565697,
+      "expected_start_ticks": 933605504,
+      "original_identity_live": false
+    },
+    {
+      "pid": 1565698,
+      "expected_start_ticks": 933605504,
+      "original_identity_live": false
+    },
+    {
+      "pid": 1593422,
+      "expected_start_ticks": 933825926,
+      "original_identity_live": false
+    },
+    {
+      "pid": 1594583,
+      "expected_start_ticks": 933837394,
+      "original_identity_live": false
+    },
+    {
+      "pid": 1594735,
+      "expected_start_ticks": 933838422,
+      "original_identity_live": false
+    },
+    {
+      "pid": 1595666,
+      "expected_start_ticks": 933846808,
+      "original_identity_live": false
+    }
+  ],
+  "project_EDA_processes_remaining": [],
+  "A006_observer_or_runner_processes_remaining": [],
+  "observer_sessions": {
+    "resource65187": "actual exit0 observed",
+    "automatic_capture12141": "actual exit0 observed"
+  },
+  "lane_released": true,
+  "other_projects_tool_processes_not_controlled": 4,
+  "production_144_unchanged": true,
+  "consumed_sources_and_contracts_unchanged": true,
+  "last_completed_stage": "AT003 full restored preplace accepted and independently reviewed",
+  "interrupted_stage": "place_design SSI_SpreadSLLs Phase1.3 Build Placer Netlist Model; no place closed command/POST/locality",
+  "current_E008_DCPs": [],
+  "same_C01_restart_checkpoint": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/debug_materialized.dcp",
+    "bytes": 396068466,
+    "sha256": "8451b2a86885d5ebb7bcb58dc24c352ac442492425c174269f9a803bb39c202f"
+  },
+  "baseline_later_physopt_checkpoint": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/physopt.dcp",
+    "bytes": 579969232,
+    "sha256": "766217926d5e8d01137d0ba39f4512dd2337f9fcbcb788525320b5bd0a810a2d"
+  },
+  "baseline_later_physopt_scope": "E005 baseline only; not this moved-C01 partial place and not a drop-in E008 resume point",
+  "cannot_resume_partial_place": true,
+  "new_checkpoint_not_requested_or_waited_for": true,
+  "full_place_physopt_route_completed": false,
+  "formal_signoff": false,
+  "automatic_restart_or_retry_enabled": false,
+  "resume_gate": "WAIT_FOR_EXPLICIT_NEW_USER_RESUME; no new AT/native/audits until resumed except this required final closure preservation",
+  "future_resume_boundary": "After user resume, recheck host/tool/source/144/locks and recorded C01/b9dc/c8c3 authority; use a new attempt from saved debug_materialized preplace DCP, reapply same hard Pblock and requalify all required gates, then redo full place/physopt/route. Prior audits can be reused only within their actual scope. Do not reinterpret partial place as a usable checkpoint.",
+  "artifacts": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/user_PDU_stop_request_20261017.json",
+      "bytes": 2285,
+      "sha256": "f186b916222de875f41490c4b0c371d73cc5458ad0c911b62ba1f8f3e2ee3e6c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/user_PDU_supervisor_signal_sent_20261017.json",
+      "bytes": 363,
+      "sha256": "59e606a7399a143fb55eeb061cd66036ba771924d83c87afec2ddb6641401fa4"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/user_PDU_observer_stop_20261017.json",
+      "bytes": 139,
+      "sha256": "b281fed4e6dc587ec0373e1e32dbe083108b12643c6cbf5fb7e190f2a5e3d96f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/status.json",
+      "bytes": 3700,
+      "sha256": "2f496325e2e0c4925045c23212edb8b11bd4b0a021c3bbd8cd622d41c528ab8b"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/terminal_facts.json",
+      "bytes": 6516,
+      "sha256": "ed000baf22e8e16cd48dbe5f1c950bdb7dfd4c0988cf459dffb2534ca7a5a798"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/terminal_summary.json",
+      "bytes": 2340,
+      "sha256": "6c07687cfbab93fea45d0101e846df3fe3feceed61b8d7085db15c2ab7201b8f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/input_bindings.json",
+      "bytes": 16677,
+      "sha256": "b3a9a3ccb26c1d74e7f803f650271239a7bdbec6d7fe74cdaf4cd82664dad464"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/started.json",
+      "bytes": 1918,
+      "sha256": "ccef61ef9c80dc90e7ff1335372d5d6f72464f5c22bd184514a56c662b21d353"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/native_start_verified.json",
+      "bytes": 18463,
+      "sha256": "580da1bee0f58ad4b072398c074cc2b34a7c267a9e38b40f04e7b49e80eedb7b"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/pre_place_closed_stage_facts.json",
+      "bytes": 11473,
+      "sha256": "e6345ee51e9aeb5882cf605e93212166df925c71c4fc2864e7739799cb4d20ca"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT003_C01_physical_xdc_fix_full_implementation/vivado.log",
+      "bytes": 20877935,
+      "sha256": "911e312e0f5959c69901c2f09035ff6b7e729e3496ec80e7a4c63d2efaef5f30"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT003_C01_physical_xdc_fix_full_implementation/vivado.jou",
+      "bytes": 2040,
+      "sha256": "889c0cf9f3edb4e220f2f13be8d411199e8a155d2580e93738995f5945e1d2f3"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT003_C01_physical_xdc_fix_full_implementation/implementation_run.log",
+      "bytes": 20877935,
+      "sha256": "911e312e0f5959c69901c2f09035ff6b7e729e3496ec80e7a4c63d2efaef5f30"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT003_C01_physical_xdc_fix_full_implementation/archived_sources.sha256",
+      "bytes": 9639,
+      "sha256": "6379db92ae9110d1ed984cee5fbae8dd334681a40f89cb2d4bc4405d7abb1e6f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT003_C01_physical_xdc_fix_full_implementation/stage_inputs.sha256",
+      "bytes": 20345,
+      "sha256": "0aaf7cacf197ac9e7a77fab5d3aabcfc3b0c449c74bf1c31facf8fce026494ab"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT003_C01_physical_xdc_fix_full_implementation/E008_physical_evidence.json",
+      "bytes": 162,
+      "sha256": "b00d3f7574551e9421f41b6017461be6af0dd1cefe9b39f881bbae60479eac30"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT003_C01_physical_xdc_fix_full_implementation/pre_place_evidence.json",
+      "bytes": 7522,
+      "sha256": "769e4e8a6eeb8da1a9484b6981e6d74d4d8ef3187984b50277a3e4fedef140f1"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT003_C01_physical_xdc_fix_full_implementation/candidate_policy_preservation.txt",
+      "bytes": 157,
+      "sha256": "498044b68e8a455a47ca10e3b7e8a868719abc1232ca1fe6bbf63721b20c9973"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT003_C01_physical_xdc_fix_full_implementation/candidate_cut_summary_pre_place.json",
+      "bytes": 11995,
+      "sha256": "1cc93de4a375c53f38a7144e925f04eef72d33684a637b05838e7a1d0445d6e8"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT003_C01_physical_xdc_fix_full_implementation/candidate_timing_validation_pre_place.json",
+      "bytes": 3566520,
+      "sha256": "3c650c3a0d4dbceb5ece999bd833a4be45bf157f48a35a91bf7bc6b1d023b824"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT003_actual_stage_review_20261017/restored_pre_place_global_review.json",
+      "bytes": 283595,
+      "sha256": "0d65c9a34111765bcb61e887f07fd40531ab537636e8d68b521fb2e71a588841"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT003_actual_stage_review_20261017/pre_place_directed_cut_timing_review.json",
+      "bytes": 12749,
+      "sha256": "3fd4120659d5d384c551d623ca63d6aaa1a09ff39ecd6c1f74fda46853acffd5"
+    }
+  ]
+}

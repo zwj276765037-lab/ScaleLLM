@@ -1,0 +1,34 @@
+{
+  "recorded_utc": "2026-10-17T13:28:49.287039+00:00",
+  "actual_observation": {
+    "utc": "2026-10-17T13:28:46.563262+00:00",
+    "supervisor_identity_matches": true,
+    "sample_age_s": 2.72,
+    "rss_GiB": 32.72,
+    "mem_GiB": 461.3,
+    "disk_GiB": 389.34,
+    "cpu_tick_growth": 504,
+    "terminal": null,
+    "tail": [
+      "INFO: [Common 17-1381] The checkpoint '/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/physopt.dcp' has been generated.",
+      "write_checkpoint: Time (s): cpu = 00:04:29 ; elapsed = 00:02:21 . Memory (MB): peak = 34589.367 ; gain = 0.000 ; free physical = 456958 ; free virtual = 481247"
+    ]
+  },
+  "actual_command_receipt": {
+    "phase": "physopt",
+    "command": "phys_opt_design -directive Default",
+    "started_epoch": "1792243426",
+    "ended_epoch": "1792243575",
+    "native_tcl_code": "0"
+  },
+  "receipt_identity": {
+    "path": "project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/physopt_command_result.txt",
+    "bytes": 123,
+    "sha256": "02a19d58d06fd7129215d82bc5a537409783afd33b8b8b2d56ed5c1c832544d7"
+  },
+  "duration_seconds": 149,
+  "actual_native_closed_command_excerpt": "Command: phys_opt_design -directive Default\nAttempting to get a license for feature 'Implementation' and/or device 'xcvu9p'\nINFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcvu9p'\nINFO: [Vivado_Tcl 4-137] Directive used for phys_opt_design is: Default\n\nStarting Initial Update Timing Task\n\nTime (s): cpu = 00:08:40 ; elapsed = 00:02:07 . Memory (MB): peak = 34589.367 ; gain = 0.000 ; free physical = 457732 ; free virtual = 481467\nINFO: [Vivado_Tcl 4-2279] Estimated Timing Summary | WNS= 0.147 | TNS= 0.000 | \nINFO: [Vivado_Tcl 4-383] Design worst setup slack (WNS) is greater than or equal to 0.000 ns. All physical synthesis setup optimizations will be skipped.\nINFO: [Vivado_Tcl 4-232] No setup violation found. The netlist was not modified.\nINFO: [Common 17-83] Releasing license: Implementation\n360 Infos, 355 Warnings, 8 Critical Warnings and 0 Errors encountered.\nphys_opt_design completed successfully\nphys_opt_design: Time (s): cpu = 00:09:01 ; elapsed = 00:02:29 . Memory (MB): peak = 34589.367 ; gain = 0.000 ; free physical = 457743 ; free virtual = 481478",
+  "native_declares_netlist_unmodified": true,
+  "complete_physopt_POST_locality_qualified": false,
+  "scope": "Actual outer phys_opt_design Default native0 only. Native skipped setup optimizations because WNS>=0, did not modify netlist. Saving physopt checkpoint/full POST/locality separately pending. Place hold FAIL is not fixed or superseded by this command success; no routed/formal safety signoff."
+}

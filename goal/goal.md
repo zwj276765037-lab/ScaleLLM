@@ -1,8 +1,12 @@
 # ScaleLLM：项目目标与硬件-软件对齐规范
 
-> 最新工作：SM012/E008同C01→SLR2重试AT002已于北京时间2026-10-17 15:14:16实际启动。AT001于13:12因入口属性不兼容自然失败，修复与26例独立审核通过；原失败和输入保持。当前恢复父网表/布局前流程，尚无place/route成功结果。[当前状态](../project/E008_m002_exact_hotspot_offload_implementation/experiment_status/summary.md)。
+> **当前任务（2026-10-18）：[M003联合可布线改造与完整实现验收](../mission/M003_joint_routability_closure/contract.md)已定义，工程planned、verdict unassessed。** 本轮仅登记主合同、SM013–SM019及验收矩阵，未启动新RTL/仿真/EDA。M002架构与E008失败证据为前置，原数值/接口/时钟/验收目标不变；下一技术入口SM013。
 
-> 执行边界保持：同C01常规入口修复已委派工程完成来源登记后连续重试，避免等待idle主控；实质选型/架构/验收变化仍由主控处理。正常进程不设墙钟/静默强停，算法、接口、时钟和全局验收不变。
+> **最近实际实验：E008/AT004自然失败，14项收尾与独立审核已完成，无活动EDA。** 下列M002过程文字为历史，不覆盖当前M003定义和E008终态。
+
+> **最新实态：E008/AT004布线因拥塞自然失败；2026-10-18北京时间05:18:30监督器结束，native1/supervisor1、stop_reason=null，无强停。最终702396重叠节点、547548拥塞失败信号；相对E005终态分别减少38.85%和27.81%，仍未合法布通。完整place/physopt已独立审核，C01的9491物理对象已落SLR2；失败图仍保持该落区。place/physopt/route_failed三个检查点及诊断已保存。此前running摘要因工程代理容量错误未及时更新，现按原始终态纠正；工程与独立审核正完成最终收尾，当前未启动新尝试。**
+
+> [续接记录](../mission/M002_ddr_separation_and_timing_recovery/pdu_shutdown_handoff_2026-10-17.md)保存候选、合同、原始终态、父DCP、修复包和恢复步骤。M002目标未完成；本次用户停机不构成方法否定。用户现已恢复执行授权，保持原合同与验收。
 
 > 当前阶段（2026-10-16）：E005优化后的完整implementation及补采已全部结束，合法布通失败：1148579重叠路由节点、758463拥塞失败信号，失败DCP和诊断已保存。局部功能通过，新综合及完整place/physopt流程完成；布线前setup改善，hold仍失败。R006两批只读补采均自然成功、独立复核完成，144冻结输入与原检查点保持。整体执行failed、方法判断inconclusive，用户结果审核未记录；M002全局目标未完成。[E005当前结果](../project/E005_m002_optimized_implementation/experiment_results/summary.md)。本次依据[SM009合同](../mission/M002_ddr_separation_and_timing_recovery/optimized_implementation_contract_2026-10-16.md)，正常进程无墙钟/无输出强停；算法、数值、ABI、双DDR和时钟保持。
 
@@ -254,7 +258,7 @@ T3      L2 MLP         L3 Attn         Active    Active  ← 并行
 - [x] Down-S32 修复与完整 Llama-3.1-8B 软件孪生验证
 - [x] 硬件-软件对齐验证完成（5451 DSP, 性能瓶颈分析）
 
-### Phase 2：DDR 分离架构与布线时序修复（当前 M002）
+### Phase 2：DDR 分离架构与布线时序修复（M002架构；M003承接收敛）
 - [ ] 布线前时序修复
   - Setup slack: -5.1ns → ≥ +0.5ns
   - Hold slack: -3.1ns → ≥ +0.5ns
@@ -304,13 +308,13 @@ T3      L2 MLP         L3 Attn         Active    Active  ← 并行
 
 ## 当前任务与交付
 
-**当前 mission：** M002目标仍未完成；SM012/E008 C01定向卸载与完整实现已实际运行，最新状态见上方入口。以下为已结束E005基线：SM009/E005本次优化与完整implementation、只读补证据及内部审核已结束；合法布通FAIL，尚无成功routed签核。[本次结果](../project/E005_m002_optimized_implementation/experiment_results/summary.md)、[主控审核](../results/reviews/SM009.md)。不自动原样重复route，后续依据真实热点/连接证据选择受控对照；数值、接口、时钟和全局验收不变。
+**当前 mission：** [M003联合可布线改造与完整实现验收](../mission/M003_joint_routability_closure/contract.md)，定义完成、工程planned。SM013–SM019覆盖归因、冻结、联合改造/回归、新综合、完整实现与最终验收；未启动新E/R/AT。M002全局目标未完成，E008/AT004自然route失败且收尾/独立审核完成，原证据保持。不原样重复route，下一版具体修改先由归因和四表集中冻结。
 
 E001快速验证和E002正式综合/OPT/debug/pre_place为前置。E003已完成place及独立physopt的DCP/完整POST，正式physopt时序仍FAIL；R003/AT001 route实际19065秒后自然exit1，245279重叠节点、248289拥塞失败信号，没有最终route DCP/完整报告。全部进程已自然退出，无时间/资源强停。原证据保留，[E003状态](../project/E003_m002_full_implementation/experiment_status/summary.md)为失败终态。完整数值、时序和板级目标未验收。
 
 **当前地址与兼容合同：** Attention 32 层 1280 MiB 常驻 DDR0；KV 96 MiB 仅保留地址，未新增外部 KV 生命周期；MLP 四 artifact 共 84 MiB 在 DDR1 按层加载并由 lease 保护。六个逻辑权重 CSR 保持 local offsets，layout ID 0x2B8=0x4D303032 与数值 format05/ABI 分开验证。
 
-**执行边界：** 允许首选两项RTL、受影响测试与构建/物理入口修复、新综合和完整implementation；不扩大为bitstream、GPU、PPL/ACC或板卡，不改变数值/接口/时钟合同。
+**执行边界：** 后继按M003合同集中选择MLP/Attention局部化、必要算术结构及配套物理入口/测试，再新综合和完整实现；本轮仅定义任务。保持既有授权与技术依赖，不扩大为bitstream、GPU、PPL/ACC或板卡，不改变数值/接口/时钟及验收目标。
 
 ---
 
@@ -330,3 +334,5 @@ E001快速验证和E002正式综合/OPT/debug/pre_place为前置。E003已完成
 - **2026-10-14**：硬件-软件对齐核心检查完成，纳入强制性对齐规范和验证标准
 
 - **2026-10-15**：更新 M002 修复合同和实际地址图；将历史性能预测与验收目标和当前证据明确分开。
+
+- **2026-10-18**：登记M003联合可布线改造合同与SM013–SM019，承接M002/E008证据；仅定义完成，工程未启动，原全局目标保持。

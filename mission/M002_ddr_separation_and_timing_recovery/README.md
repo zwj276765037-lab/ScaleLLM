@@ -4,7 +4,7 @@
 当前执行依据：[2026-10-15 正式综合及布局布线实验合同](implementation_contract_2026-10-15.md)。[修复与快速功能验证合同](repair_contract_2026-10-15.md)对应已完成的E001前置阶段。旧方案/验收模板见上方历史原文，不能作为当前通过证据。
 
 <!-- research-agent:navigation:begin -->
-生成时间（UTC）：2026-10-17T08:36:24.995092+00:00。来源修订：`400c5b08f7ef`。
+生成时间（UTC）：2026-10-18T00:06:15.625771+00:00。来源修订：`943abfac7fc3`。
 
 # M002 · ddr_separation_and_timing_recovery
 
@@ -35,14 +35,14 @@
 - [E005 · m002_optimized_implementation](../../project/E005_m002_optimized_implementation/README.md) — failed
 - [E006 · m002_slr1_congestion_attribution](../../project/E006_m002_slr1_congestion_attribution/README.md) — completed
 - [E007 · m002_slr2_input_locality_implementation](../../project/E007_m002_slr2_input_locality_implementation/README.md) — planned
-- [E008 · m002_exact_hotspot_offload_implementation](../../project/E008_m002_exact_hotspot_offload_implementation/README.md) — running
+- [E008 · m002_exact_hotspot_offload_implementation](../../project/E008_m002_exact_hotspot_offload_implementation/README.md) — failed
 - 前置：[M001 · clean_project_migration](../M001_clean_project_migration/README.md)
 
 ## 任务总结原文摘录
 
 # M002：阶段报告
 
-> 最新进度：E008同C01→SLR2重试AT002已于北京时间2026-10-17 15:14:16实际启动，当前恢复父网表。AT001在13:12因入口原生属性不兼容自然失败，37源修复/26例及独立审核通过，续跑衔接缺口已纠正；尚无完整pre-place、place/route成功结果。[E008状态](../../project/E008_m002_exact_hotspot_offload_implementation/experiment_status/summary.md)。
+> 最新进度：**最新实态：E008/AT004布线因拥塞自然失败；2026-10-18北京时间05:18:30监督器结束，native1/supervisor1、stop_reason=null，无强停。最终702396重叠节点、547548拥塞失败信号；相对E005终态分别减少38.85%和27.81%，仍未合法布通。完整place/physopt已独立审核，C01的9491物理对象已落SLR2；失败图仍保持该落区。place/physopt/route_failed三个检查点及诊断已保存。此前running摘要因工程代理容量错误未及时更新，现按原始终态纠正；工程与独立审核正完成最终收尾，当前未启动新尝试。** [续接记录](pdu_shutdown_handoff_2026-10-17.md)。
 
 下文保留E005已结束基线及更早阶段记录。
 
@@ -56,7 +56,7 @@
 
 > E003已结束基线：本轮完整implementation尝试已自然结束，执行FAILED；place/独立physopt命令、DCP和完整POST通过，R003/AT001 route实际19065秒后于22:45:40 UTC返回Tcl1。Phase9合法布通FAIL：245279重叠路由节点、248289拥塞失败信号（不同指标）。22:45:51 UTC监督/driver自然结束，stop_reason=null，无时间或资源终止，六个原进程退出且单EDA锁释放。没有生成route DCP/完整route_status/正式routed时序/POST；最后有效恢复点是AT002 physopt.dcp。原失败保留，无新EDA尝试，未改变算法/RTL/XDC/接口/时钟/默认策略。 下文E002/E001为前置历史，不能当作本轮最终结果。
 
-150项CPU/实际图与来源验证后，新原生place POST已真正完成；此前两条DDR1 AUX代表源适配问题已在真实新图分类中关闭。独立physopt命令/DCP已完成，正式WNS−1.290/TNS−762.165ns，setup980；WHS−0.620/THS−2150.556ns及hold33141不变，仍FAIL且互连仍为布线前估计。完整physopt POST已通过，55份阶段文件封闭；本轮route已自然失败，245279重
+150项CPU/实际图与来源验证后，新原生place POST已真正完成；此前两条DDR1 AUX代表源适配问题已在真实新图
 
 （摘录截断；完整记录见链接。）
 

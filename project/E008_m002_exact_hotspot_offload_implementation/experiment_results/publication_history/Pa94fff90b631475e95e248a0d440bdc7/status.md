@@ -1,0 +1,30 @@
+# E008：AT004 place命令成功，完整POST运行中，hold仍FAIL
+
+execution_state: running
+verdict: unassessed
+
+AT004实际place命令于12:17:58Z自然native0（7858秒），本轮place.dcp580662986B/4ce14ed6已保存；完整POST/locality尚未闭合。本轮完整place时序报告已实际产出，12:38Z读取：WNS+0.147ns/TNS0/setup违例0；WHS−0.562ns/THS−1879.853ns/hold违例34042，setup/hold总端点3209762/3208318；WPWS/TPWS0、PW-skew表头违例0。当前正式报告timing FAIL。旧E005同阶段为WNS+0.103ns、WHS−0.695ns、THS−2145.408ns、hold30885；最差值变好但hold端点增加3157，记录混合变化，不判整体改善或C01因果。此为布线前结果，非routed签核。
+
+12:38Z已见bus_skew及fresh结构48/16/16输出，完整80保护/global integrity/实际成员与全部P落SLR2/cut/时序资格仍待；A007有界增量审核继续，无新门。高度拥塞风险保留；下一步连续关闭完整place POST/locality，再外层physopt→route及真实终态输入/源/PID/start/lane/资源审计。
+
+用户PDU暂停已解除；原同C01常规修复/独立delta/新AT连续重试委派保持，选型/架构/验收变化归Root。源b9dc/39、144生产/父8451及原合同不变。单EDA CPU0–7/nice5/max8、RSS192GiB/Mem48GiB30s/disk30GiB保护，正常无墙钟/静默强停；无bitstream/GPU/板卡/PPL/ACC。
+
+
+---
+Published: 2026-10-17T12:39:53.776400+00:00
+Publication: P7cec44a2ee8d4cdf9a4d7007dab7a8e8
+Execution state: running
+Research verdict: unassessed
+Applicability: AT004 place native command0 and saved DCP verified. Full place timing report setup0 violations/hold34042 FAIL; mixed same-phase changes not causality or routed signoff. Complete POST/80-protection/locality/actual P in SLR2 and outer physopt/route pending; independent incremental timing/structure review running, formal safety OPEN.
+Evidence:
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/started.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/input_bindings.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/native_start_verified.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/candidate_pre_place_native_port_index_closed_facts.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/pre_place_closed_stage_facts.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/place_PBP_warning_observed_facts_20261017.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/place_postcommit_clock_BUFG_observed_facts_20261017.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/place_command_zero_POST_pending_facts_20261017.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/place_checkpoint_saved_identity.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/place_full_timing_report_available_facts.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/place_full_timing_report_observation_clarification.json

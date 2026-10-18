@@ -1,0 +1,271 @@
+{
+  "recorded_utc": "2026-10-17T12:09:06.482471+00:00",
+  "reviewer": "A007",
+  "execution": "completed_bounded_native_message_and_same_stage_prior_log_review",
+  "verdict": "retain_as_actual_placer_decisions_under_existing_POST_route_acceptance_no_new_gate",
+  "applicability": "AT004 currently inside place_design Phase4.1 post-placement optimization; not external physopt, place completion or POST qualification",
+  "review": "complete_readonly_message_scope",
+  "evidence_excerpt": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT004_actual_stage_review_20261017/AT004_clock_bufg_observed_excerpt_20261017.json",
+    "bytes": 17503,
+    "sha256": "6b8d3360e2afc90a89c2e3dfad78e888d333f11195ab70d686f82db49eedb8e3"
+  },
+  "prior_warning_review": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT004_actual_stage_review_20261017/place_warning_contract_impact_review.json",
+    "bytes": 8656,
+    "sha256": "4563192b58d2096f08a3f363403359317a0d986448148fbc134bb61568ac5070"
+  },
+  "actual_stage": {
+    "last_phase": "Phase 4.1.1.3 Post Placement Timing Optimization",
+    "active_outer_command": "place_design",
+    "top_level_commands": [
+      {
+        "line": 84484,
+        "text": "Command: place_design -directive SSI_SpreadSLLs"
+      }
+    ],
+    "place_success_observed": false
+  },
+  "BUFCE_ROW_cap": {
+    "current_actual_messages": [
+      {
+        "line": 84643,
+        "text": "WARNING: [Place 30-1995] Horizontal BUFCE_ROW programmable delay is capped at 6 for clock net scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/c0_riu_clk due to BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "severity": "WARNING",
+        "cap": 6,
+        "net": "scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/c0_riu_clk",
+        "reason": "BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "phase": "Phase 2.1.1.2 PBP: Clock Region Placement",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 84644,
+        "text": "WARNING: [Place 30-1995] Horizontal BUFCE_ROW programmable delay is capped at 5 for clock net scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0 due to BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "severity": "WARNING",
+        "cap": 5,
+        "net": "scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0",
+        "reason": "BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "phase": "Phase 2.1.1.2 PBP: Clock Region Placement",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 85216,
+        "text": "WARNING: [Place 30-1995] Horizontal BUFCE_ROW programmable delay is capped at 3 for clock net scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/c0_riu_clk due to BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "severity": "WARNING",
+        "cap": 3,
+        "net": "scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/c0_riu_clk",
+        "reason": "BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "phase": "Phase 4.1 Post Commit Optimization",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 85217,
+        "text": "WARNING: [Place 30-1995] Horizontal BUFCE_ROW programmable delay is capped at 3 for clock net scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0 due to BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "severity": "WARNING",
+        "cap": 3,
+        "net": "scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0",
+        "reason": "BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "phase": "Phase 4.1 Post Commit Optimization",
+        "active_outer_command": "place_design"
+      }
+    ],
+    "prior_same_stage_messages": [
+      {
+        "line": 937,
+        "text": "WARNING: [Place 30-1995] Horizontal BUFCE_ROW programmable delay is capped at 3 for clock net scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/c0_riu_clk due to BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "severity": "WARNING",
+        "cap": 3,
+        "net": "scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/c0_riu_clk",
+        "reason": "BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "phase": "Phase 4.1 Post Commit Optimization",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 938,
+        "text": "WARNING: [Place 30-1995] Horizontal BUFCE_ROW programmable delay is capped at 3 for clock net scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0 due to BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "severity": "WARNING",
+        "cap": 3,
+        "net": "scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0",
+        "reason": "BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "phase": "Phase 4.1 Post Commit Optimization",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 1006,
+        "text": "WARNING: [Place 30-1995] Horizontal BUFCE_ROW programmable delay is capped at 3 for clock net scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/c0_riu_clk due to BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "severity": "WARNING",
+        "cap": 3,
+        "net": "scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/c0_riu_clk",
+        "reason": "BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "phase": "Phase 4.1.1.4 Replication",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 1007,
+        "text": "WARNING: [Place 30-1995] Horizontal BUFCE_ROW programmable delay is capped at 3 for clock net scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0 due to BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "severity": "WARNING",
+        "cap": 3,
+        "net": "scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0",
+        "reason": "BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements",
+        "phase": "Phase 4.1.1.4 Replication",
+        "active_outer_command": "place_design"
+      }
+    ],
+    "same_two_phase4_nets_cap_and_reason": true,
+    "interpretation": "The placer caps horizontal BUFCE_ROW programmable delay to honor the named BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirement. This is a reported constraint-handling decision; it is not a measured skew violation or proof of skew closure.",
+    "numeric_units": "No physical time unit is specified. Cap 3 must not be reported as 3 ns, clock frequency or timing slack.",
+    "early_stage_difference": "Current Phase2.1.1.2 reported caps 6 and 5 on the same two nets; later Phase4.1 reports 3 and 3, matching old E005 Phase4.1. Do not treat evolving placer settings or repeated messages as independent failures.",
+    "scope": "Both named DDR0 infrastructure nets are outside literal C01. No measured impact on DDR timing or final clock skew is established."
+  },
+  "BUFG_insertion": {
+    "current_message_count": 11,
+    "current_actual_messages": [
+      {
+        "line": 85232,
+        "text": "INFO: [Place 46-33] Processed net scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_tail_r[0], BUFG insertion was skipped due to placement/routing conflicts.",
+        "severity": "INFO",
+        "net": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_tail_r[0]",
+        "reason": "placement/routing conflicts",
+        "phase": "Phase 1 Physical Synthesis Initialization",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 85233,
+        "text": "INFO: [Place 46-33] Processed net scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[0], BUFG insertion was skipped due to placement/routing conflicts.",
+        "severity": "INFO",
+        "net": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[0]",
+        "reason": "placement/routing conflicts",
+        "phase": "Phase 1 Physical Synthesis Initialization",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 85234,
+        "text": "INFO: [Place 46-33] Processed net scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/input_fire, BUFG insertion was skipped due to placement/routing conflicts.",
+        "severity": "INFO",
+        "net": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/input_fire",
+        "reason": "placement/routing conflicts",
+        "phase": "Phase 1 Physical Synthesis Initialization",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 85235,
+        "text": "INFO: [Place 46-33] Processed net scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack/input_fire, BUFG insertion was skipped due to placement/routing conflicts.",
+        "severity": "INFO",
+        "net": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack/input_fire",
+        "reason": "placement/routing conflicts",
+        "phase": "Phase 1 Physical Synthesis Initialization",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 85236,
+        "text": "INFO: [Place 46-33] Processed net scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_gather/out_matrix_r, BUFG insertion was skipped due to placement/routing conflicts.",
+        "severity": "INFO",
+        "net": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_gather/out_matrix_r",
+        "reason": "placement/routing conflicts",
+        "phase": "Phase 1 Physical Synthesis Initialization",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 85237,
+        "text": "INFO: [Place 46-33] Processed net scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region2_cols8_11/g_dual_accumulator.u_accumulator/g_physical_split.g_buffered_input.lower_head_guard_s42_r[0], BUFG insertion was skipped due to placement/routing conflicts.",
+        "severity": "INFO",
+        "net": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region2_cols8_11/g_dual_accumulator.u_accumulator/g_physical_split.g_buffered_input.lower_head_guard_s42_r[0]",
+        "reason": "placement/routing conflicts",
+        "phase": "Phase 1 Physical Synthesis Initialization",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 85238,
+        "text": "INFO: [Place 46-33] Processed net scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region2_cols8_11/g_dual_accumulator.u_accumulator/g_physical_split.g_buffered_input.lower_tail_guard_s42_r[0], BUFG insertion was skipped due to placement/routing conflicts.",
+        "severity": "INFO",
+        "net": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region2_cols8_11/g_dual_accumulator.u_accumulator/g_physical_split.g_buffered_input.lower_tail_guard_s42_r[0]",
+        "reason": "placement/routing conflicts",
+        "phase": "Phase 1 Physical Synthesis Initialization",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 85239,
+        "text": "INFO: [Place 46-33] Processed net scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch0/u_kernel/gen_row[1].gen_pair[4].u_lane/u_dot/gen_leaf[31].u_leaf/clear_kernel_row_r_reg[1], BUFG insertion was skipped due to placement/routing conflicts.",
+        "severity": "INFO",
+        "net": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch0/u_kernel/gen_row[1].gen_pair[4].u_lane/u_dot/gen_leaf[31].u_leaf/clear_kernel_row_r_reg[1]",
+        "reason": "placement/routing conflicts",
+        "phase": "Phase 1 Physical Synthesis Initialization",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 85240,
+        "text": "INFO: [Place 46-33] Processed net scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_attention_row/u_qk/u_dot/in_fire_1, BUFG insertion was skipped due to placement/routing conflicts.",
+        "severity": "INFO",
+        "net": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_attention_row/u_qk/u_dot/in_fire_1",
+        "reason": "placement/routing conflicts",
+        "phase": "Phase 1 Physical Synthesis Initialization",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 85241,
+        "text": "INFO: [Place 46-33] Processed net scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[5].gen_pair[4].u_lane/u_dot/gen_leaf[31].u_leaf/clear_kernel_row_r_reg[5], BUFG insertion was skipped due to placement/routing conflicts.",
+        "severity": "INFO",
+        "net": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[5].gen_pair[4].u_lane/u_dot/gen_leaf[31].u_leaf/clear_kernel_row_r_reg[5]",
+        "reason": "placement/routing conflicts",
+        "phase": "Phase 1 Physical Synthesis Initialization",
+        "active_outer_command": "place_design"
+      },
+      {
+        "line": 85242,
+        "text": "INFO: [Place 46-33] Processed net scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch0/u_kernel/gen_row[3].gen_pair[4].u_lane/u_dot/gen_leaf[31].u_leaf/clear_kernel_row_r_reg[3], BUFG insertion was skipped due to placement/routing conflicts.",
+        "severity": "INFO",
+        "net": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch0/u_kernel/gen_row[3].gen_pair[4].u_lane/u_dot/gen_leaf[31].u_leaf/clear_kernel_row_r_reg[3]",
+        "reason": "placement/routing conflicts",
+        "phase": "Phase 1 Physical Synthesis Initialization",
+        "active_outer_command": "place_design"
+      }
+    ],
+    "current_pass_summary": {
+      "line": 85243,
+      "text": "INFO: [Place 46-56] BUFG insertion identified 11 candidate nets. Inserted BUFG: 0, Replicated BUFG Driver: 0, Skipped due to Placement/Routing Conflicts: 11, Skipped due to Timing Degradation: 0, Skipped due to netlist editing failed: 0.",
+      "candidate_nets": 11,
+      "inserted": 0,
+      "replicated_driver": 0,
+      "conflict_skipped": 11,
+      "timing_degradation_skipped": 0,
+      "editing_failed_skipped": 0,
+      "active_outer_command": "place_design"
+    },
+    "prior_message_count": 22,
+    "prior_pass_summary": {
+      "line": 975,
+      "text": "INFO: [Place 46-56] BUFG insertion identified 22 candidate nets. Inserted BUFG: 0, Replicated BUFG Driver: 0, Skipped due to Placement/Routing Conflicts: 22, Skipped due to Timing Degradation: 0, Skipped due to netlist editing failed: 0.",
+      "candidate_nets": 22,
+      "inserted": 0,
+      "replicated_driver": 0,
+      "conflict_skipped": 22,
+      "timing_degradation_skipped": 0,
+      "editing_failed_skipped": 0,
+      "active_outer_command": "place_design"
+    },
+    "same_exact_net_overlap": 9,
+    "parent_tail_r0_present_in_both": true,
+    "current_targets_inside_literal_C01": 0,
+    "severity": "INFO, not WARNING or ERROR",
+    "interpretation": "The internal BUFG-insertion optimization pass considered 11 nets and skipped all 11 due to placement/routing conflicts. It inserted no BUFG and replicated no BUFG driver in this pass. These counters are pass-local, not a count of all design BUFGs or all physical optimization changes.",
+    "failure_boundary": "Skipped optimization does not itself prove a required user clock buffer is missing, a signal is unrouted, or design functionality is broken; it also supplies no timing benefit from this pass.",
+    "prior_comparison": "The prior pass considered/skipped 22 nets, with 9 exact names common, including shared_compute/parent_tail_r[0]. Different candidate sets and evolving placement do not show reduced congestion, resource improvement, or C01 causation.",
+    "actual_optimization_execution": "Physical Synthesis messages and internal Phase1 initialization are nested within place_design Phase4.1; no external phys_opt_design command or place completion exists in the observed current prefix."
+  },
+  "contract_effect": {
+    "source_constraints": "No input edit, clock-frequency relaxation, MAX_SKEW relaxation or C01 Pblock softening is indicated by these messages. No settings are changed by this review.",
+    "acceptance": "Keep existing fresh complete POST/locality and 80-boundary protection checks; assess complete clocks/DRC/setup/hold/PW and applicable skew evidence, actual per-SLR/connectivity/congestion, and finally legal route status under unchanged requirements.",
+    "unresolved": "Actual DDR skew/timing, final BUFG topology, C01 resolved P landing, complete placement/POST and route remain unestablished by these messages.",
+    "action": "Normal process continues. Retain the bounded messages and pass counters for later same-stage interpretation; no EDA query, new gate, forced stop or new agent."
+  },
+  "limits": [
+    "Prior E005 place success establishes these message classes were nonfatal then, not that current routing/timing will succeed.",
+    "Counts describe the frozen observed prefix and this completed BUFG insertion pass only; later repeat messages require separate bounded observation.",
+    "No raw log, production, consumed package or engineering summary changed; no DCP/EDA/process/lock operations."
+  ],
+  "audit_program": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT004_actual_stage_review_20261017/audit_clock_bufg_message_contract_impact.py",
+    "bytes": 13696,
+    "sha256": "4688046ad1cba4ad80e36baf13bd4663f062d4c0bb358fe892a7be3d295861b9"
+  }
+}

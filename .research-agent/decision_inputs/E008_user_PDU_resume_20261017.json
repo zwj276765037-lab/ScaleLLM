@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-10-17T09:21:19.137898+00:00",
+  "authority": "Latest explicit user message in active project-controller conversation",
+  "user_message": "可以继续了",
+  "supersedes_pause_only": ".research-agent/decision_inputs/E008_user_PDU_shutdown_stop_and_pause_20261017.json",
+  "mission": "M002",
+  "small_mission": "SM012",
+  "experiment": "E008",
+  "run": "R001",
+  "decision": "Resume the previously authorized same-C01 full implementation after PDU maintenance",
+  "authorization_active": true,
+  "actual_new_attempt_started": false,
+  "execution_state_at_recording": "restoration_preflight",
+  "selected_candidate": "C01",
+  "selected_root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+  "target_SLR": "SLR2",
+  "prepared_manifest": "agent/A006/E008_physical_xdc_fix/E008_entry/prepared_manifest.json",
+  "prepared_manifest_sha256": "b9dcabf46f82b505e0a49de9a2c14eb013b7d71937e2d2805a9538f7545227bb",
+  "sole_EDA_executor": "A006 /root/m002_build_verify",
+  "independent_reviewer": "A007 /root/m002_physical_architecture_review",
+  "ordinary_same_C01_retry_delegation_restored": true,
+  "required_work": [
+    "Revalidate restart environment, tool/license, resource lane, 144 frozen production inputs, parent DCP and accepted sources",
+    "Register fresh actual attempt without rewriting AT003; expected AT004 subject to registry",
+    "Reload preserved debug_materialized parent, reapply same C01 SLR2 constraints and run complete pre-place/place/physopt/route"
+  ],
+  "invariants": [
+    "Original contracts and formal acceptance unchanged",
+    "Single project EDA CPU0-7 nice5 max8; RSS192GiB; MemAvailable48GiB for30s; disk30GiB",
+    "No normal wall-clock/silence forced stop",
+    "No bitstream/GPU/board/PPL/ACC; old project read-only",
+    "Max3 active agents including Root; no descendants; no external chat rebinding"
+  ],
+  "pause_snapshot": ".research-agent/manual_status_history/PDU_resume_20261017T092119Z/.research-agent/project_pause.json"
+}

@@ -1,0 +1,54 @@
+{
+  "recorded_utc": "2026-10-17T14:10:06.845158+00:00",
+  "actual_observation": {
+    "utc": "2026-10-17T14:10:05.705237+00:00",
+    "supervisor_identity_matches": true,
+    "sample_age_s": 1.13,
+    "rss_GiB": 32.67,
+    "mem_GiB": 461.5,
+    "disk_GiB": 388.97,
+    "cpu_tick_growth": 505,
+    "terminal": null,
+    "tail": [
+      "DIRECTED_API operation FULL_LEAF_FALLBACK event BEGIN epoch_ms 1792246206715 detail {physopt {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/p_70_in[14]}}",
+      "DIRECTED_API operation FULL_LEAF_FALLBACK event END epoch_ms 1792246206758 detail {physopt {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/p_70_in[14]} raw_objects 2}"
+    ]
+  },
+  "independent_review": [
+    {
+      "path": "agent/A007/E008_R001_AT004_actual_stage_review_20261017/physopt_global_POST_review.json",
+      "bytes": 170296,
+      "sha256": "e5dacc52b15e8e7a55d488bf4b110b1c73e630639d5612884ef97052b1b6a600"
+    },
+    {
+      "path": "agent/A007/E008_R001_AT004_actual_stage_review_20261017/physopt_global_POST_review.md",
+      "bytes": 1475,
+      "sha256": "d558b07e5aa7d625369e24e73d7f8d3b7f16fe0a7d872dcd8e5d7634db1c8eaa"
+    },
+    {
+      "path": "agent/A007/E008_R001_AT004_actual_stage_review_20261017/physopt_membership_reconciliation_review.json",
+      "bytes": 28383,
+      "sha256": "b6c88902361eea767d779078a7fe9344260218fd9f18be7cc99a0480ab553d8f"
+    },
+    {
+      "path": "agent/A007/E008_R001_AT004_actual_stage_review_20261017/physopt_native_index_alias_review.json",
+      "bytes": 8429,
+      "sha256": "d45b1a28d093a9e930e4be4feb2577a2d1b3307c3263438c102efc9ddde70920"
+    }
+  ],
+  "actual_native_index_facts": {
+    "path": "project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/candidate_physopt_native_port_index_closed_facts.json",
+    "bytes": 6253,
+    "sha256": "ec9fadad07f90ead97669f3cd519b22cf9ce3c182f03578514e7ea0d1169ea1b"
+  },
+  "accepted_substeps": [
+    "fresh physopt globalPOST diagnostic qualification",
+    "fresh current literal membership/native origin/all9491 P SLR2",
+    "complete current native index and buffered alias"
+  ],
+  "combined_physopt_phase": "PENDING_CURRENT_DIRECTED_CUT_BOUNDED_TIMING_COMPLIANCE_RECEIPT",
+  "formal_timing": "FAIL_HOLD",
+  "formal_safety": "OPEN",
+  "route": "NOT_YET_REACHED",
+  "scope": "Current actual closed substeps independently accepted; not complete physopt phase, causal congestion benefit or routed signoff. Current cut continues normally without extra wait gate."
+}

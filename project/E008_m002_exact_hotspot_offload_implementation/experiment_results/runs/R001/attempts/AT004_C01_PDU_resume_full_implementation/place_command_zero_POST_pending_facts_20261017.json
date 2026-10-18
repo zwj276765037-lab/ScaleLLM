@@ -1,0 +1,56 @@
+{
+  "recorded_utc": "2026-10-17T12:20:45.845789+00:00",
+  "actual_observation": {
+    "utc": "2026-10-17T12:20:40.951367+00:00",
+    "supervisor_identity_matches": true,
+    "sample_age_s": 4.89,
+    "rss_GiB": 32.76,
+    "mem_GiB": 461.45,
+    "disk_GiB": 390.41,
+    "cpu_tick_growth": 505,
+    "terminal": null,
+    "tail": [
+      "INFO: [Common 17-1381] The checkpoint '/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/place.dcp' has been generated.",
+      "write_checkpoint: Time (s): cpu = 00:04:30 ; elapsed = 00:02:20 . Memory (MB): peak = 34589.367 ; gain = 0.000 ; free physical = 459354 ; free virtual = 481596"
+    ]
+  },
+  "actual_native_command_receipt": {
+    "phase": "place",
+    "command": "place_design -directive SSI_SpreadSLLs",
+    "started_epoch": "1792231620",
+    "ended_epoch": "1792239478",
+    "native_tcl_code": "0"
+  },
+  "receipt_identity": {
+    "path": "project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/place_command_result.txt",
+    "bytes": 125,
+    "sha256": "18a0c7f896016dfb9022a3a59b55fb5ee87c6ab122055b6fe72e2e4c1a4bb413"
+  },
+  "actual_command_duration_seconds": 7858,
+  "command_success_only": true,
+  "complete_POST_locality_qualified": false,
+  "independent_review": [
+    {
+      "path": "agent/A007/E008_R001_AT004_actual_stage_review_20261017/congestion_provisional_timing_review.json",
+      "bytes": 10623,
+      "sha256": "a6f21ebd3817deff98ac225cab4840ca17b502c1a0b61841ec8bd34dc847d7c1"
+    },
+    {
+      "path": "agent/A007/E008_R001_AT004_actual_stage_review_20261017/congestion_provisional_timing_review.md",
+      "bytes": 2014,
+      "sha256": "40572a7fb489393ae8e98beacae51707f564ddfd7e9ea34ccc5cf574f2245160"
+    },
+    {
+      "path": "agent/A007/E008_R001_AT004_actual_stage_review_20261017/AT004_congestion_timing_observed_excerpt_20261017.json",
+      "bytes": 9841,
+      "sha256": "6ff0d84570850a89635ac3ba58ea57aae619bb7a7df449d9a0fed6f5b7cee79b"
+    }
+  ],
+  "artifact_presence_at_observation": {
+    "place.dcp": true,
+    "place_result.txt": true,
+    "integrity_place.json": false,
+    "candidate_phase_place_status.txt": false
+  },
+  "limits": "Highly congested/may have difficulty routing risk retained. Internal provisional WNS+0.147 not full timing or improvement. Fresh complete POST/locality/80 protections/reconciliation/all-P-in-SLR2/congestion/cut/timing pending; outer physopt/route and formal safety not established."
+}

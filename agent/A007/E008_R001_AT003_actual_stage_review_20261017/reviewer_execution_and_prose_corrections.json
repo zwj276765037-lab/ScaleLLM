@@ -1,0 +1,67 @@
+{
+  "recorded_utc": "2026-10-17T08:43:53.562917+00:00",
+  "reviewer": "A007",
+  "scope": "Reviewer-only execution and prose corrections; production unaffected",
+  "reviewer_first_replay": {
+    "program": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT003_actual_stage_review_20261017/replay_pre_place_directed.py",
+      "bytes": 11623,
+      "sha256": "78d29df42c0454d08ae920d049870ed7db48491e08fd72f83fb96c6295362cab"
+    },
+    "execution": "FAILED_REVIEWER_REPORT_HEADER_PARSER",
+    "error": "AssertionError: command and command[0] == report_timing",
+    "actual_header": "| Command : report_timing -of_objects [get_timing_paths ...] -nets -input_pins -file ...",
+    "completed_before_failure": [
+      "Actual directed.cut replay equal to all actual summary fields excluding declared adapter additions",
+      "Actual directed.timing replay equal to actual validation excluding phase"
+    ],
+    "original_outputs": [
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT003_actual_stage_review_20261017/directed_pre_place_replay/candidate_cut_summary_pre_place.json",
+        "bytes": 11601,
+        "sha256": "1a4dd37c389282047dff4bc726d31bd51e5f77c65861a2f2ae033b6626909788"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT003_actual_stage_review_20261017/directed_pre_place_replay/candidate_timing_validation_pre_place.json",
+        "bytes": 3566496,
+        "sha256": "3f866a03169a0b573e038e21d59333dd507d199a1b85b9336fc1a0d030bd6062"
+      }
+    ],
+    "interpretation": "Reviewer header parser assumption only; not an EDA or scientific failure. Original script and outputs preserved."
+  },
+  "successful_second_replay": {
+    "program": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT003_actual_stage_review_20261017/replay_pre_place_directed_v2.py",
+      "bytes": 11843,
+      "sha256": "49f7f8617b3677e9fa5001f5848a372b5b87ee5db80b4f56747a065aba6fec95"
+    },
+    "execution": "COMPLETED",
+    "review": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT003_actual_stage_review_20261017/pre_place_directed_cut_timing_review.json",
+      "bytes": 12749,
+      "sha256": "3fd4120659d5d384c551d623ca63d6aaa1a09ff39ecd6c1f74fda46853acffd5"
+    },
+    "change": "Parse native pipe-prefixed Command header and embedded get_timing_paths expression as data, without Tcl evaluation."
+  },
+  "prose_correction": {
+    "preserved_original": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT003_actual_stage_review_20261017/pre_place_directed_cut_timing_review.md",
+      "bytes": 1384,
+      "sha256": "0801b570af512ae43bcc589eae2568a6c75528b9ab19ee5a6e36e14ea7229072"
+    },
+    "corrected": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT003_actual_stage_review_20261017/pre_place_directed_cut_timing_review_corrected.md",
+      "bytes": 1521,
+      "sha256": "be0821cee14c7d4d9fdca629ac057eef3c1729bfaa5eea1b1fdca22e882d029a"
+    },
+    "initial_projection_inputs": 17,
+    "timing_projection_inputs": 24,
+    "machine_review_already_correct": true,
+    "verdict_changed": false
+  },
+  "global_pre_place_review": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT003_actual_stage_review_20261017/restored_pre_place_global_review.json",
+    "bytes": 283595,
+    "sha256": "0d65c9a34111765bcb61e887f07fd40531ab537636e8d68b521fb2e71a588841"
+  }
+}

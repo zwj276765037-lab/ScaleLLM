@@ -14,12 +14,15 @@
 <!-- research-agent:stage-events:begin -->
 ## Stage review index
 
-Active: 69. Resolved: 1. Newest events appear first. Full evidence and review history remain in the linked small-mission review pages.
+Active: 72. Resolved: 2. Newest events appear first. Full evidence and review history remain in the linked small-mission review pages.
 
 ### Pending / needs evidence / revise / paused
 
 | Event | Small mission | Trigger | Review | Decision required | Summary |
 |---|---|---|---|---|---|
+| [EV_SM012_E008_AT004_natural_route_failure_20261018](reviews/SM012.md) | SM012 | milestone | pending | false | AT004原始终态已核：route因拥塞自然失败，702396重叠节点/547548拥塞失败信号；native1/supervisor1，21:18:30Z监督器退出、无强停。旧running摘要因… |
+| [EV_SM012_E008_R001_AT004_native_resumed_20261017](reviews/SM012.md) | SM012 | milestone | pending | false | PDU恢复后AT004于09:23:05.136988Z真实原生启动；144生产、39归档源/b9dc、父DCP和single项目EDA身份已核，C01保持。 |
+| [EV_SM012_E008_user_PDU_shutdown_paused_20261017](reviews/SM012.md) | SM012 | milestone | paused | false | 用户明确要求服务器关机换PDU，授权停止并暂停。AT003于08:44:09.782954Z停止：native−15/supervisor125，14项收尾全通过，原PID退出、EDA锁释放，两ob… |
 | [EV_SM012_E008_AT001_schema_failure_AT002_resumed_20261017](reviews/SM012.md) | SM012 | anomaly | pending | false | AT001于05:12:22Z因布局前RLOC_ORIGIN schema入口错误自然exit1，未place；14项收尾通过。45bbc普通修复26例及独立审核接受，但Root来源绑定未及时接续；… |
 | [EV_SM012_E008_R001_AT001_actual_native_started_20261017](reviews/SM012.md) | SM012 | milestone | pending | false | E006 R006 AT003完整候选比较自然0/0结束并独立接受，主控仅选择C01；E008 R001 AT001于2026-10-17T04:50:44.658893Z实际原生启动，35归档源/… |
 | [EV_SM010_R005_AT002_python_environment_failure_20261017](reviews/SM010.md) | SM010 | anomaly | pending | false | R005 AT002真实owner导出通过，但Vivado派生Python缺少_tkinter导致资格adapter导入失败；01:45:04Z自然终态native/supervisor1，clas… |
@@ -94,6 +97,7 @@ Active: 69. Resolved: 1. Newest events appear first. Full evidence and review hi
 
 | Event | Small mission | Trigger | Review | Decision required | Summary |
 |---|---|---|---|---|---|
+| [EV_SM012_E008_user_PDU_resumed_20261017](reviews/SM012.md) | SM012 | milestone | approved | false | 用户最新明确“可以继续了”，PDU暂停解除，恢复同C01→SLR2完整implementation与原常规修复委派；恢复授权已持久化。此事件只记录授权恢复，尚不宣称新AT原生启动。 |
 | [EV_SM008_E004_routability_analysis_complete_20261016](reviews/SM008.md) | SM008 | milestone | approved | false | 详细可布性分析完成：原生确认Attention双wave10根6170–6174扇出索引与MLP8201/6145跨SLR输出控制；形成input48局部边界+MLP32同拍CE、SSI_Sprea… |
 
 Earlier resolved events omitted from this compact queue: 0. [Full per-mission review pages](reviews/).

@@ -1,7 +1,7 @@
 
 
 <!-- research-agent:navigation:begin -->
-生成时间（UTC）：2026-10-17T08:36:24.995092+00:00。来源修订：`400c5b08f7ef`。
+生成时间（UTC）：2026-10-18T00:06:15.625771+00:00。来源修订：`943abfac7fc3`。
 
 # E008 · m002_exact_hotspot_offload_implementation
 
@@ -16,9 +16,28 @@
 
 ## 当前结果摘录
 
-# E008：AT003布局前资格通过，已实际进入place
+# E008：AT004自然布线失败，收尾已核
 
-AT003_C01_physical_xdc_fix_full_implementation于2026-10-17T07:43:04.819321Z（北京时间15:43:04）实际启动。39个归档源、b9dc包、所有绑定依赖及144生产输入一致；supervisor1560167/start933552991、native1560384/start933554214，CPU0–7/nice5、项目唯一EDA和lane占用已核。[真实启动事实](experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/native_start_verified.json)。父网表恢复完成；07:52Z实际成员子步骤已闭合，RAW9514/S9507/P9491、16个DSP内部对象归一到2个物理父，全部P当前未布局。10份本次账本经[独立增量核查](../../agent/A007/E008_R001_AT003_actual_stage_review_20261017/pre_place_membership_incremental_review.json)与AT002已审内容逐字节相同，原生资源与before策略已通过，08:05Z实际硬Pblock/物理XDC导出通过且[独立核验](../../agent/A007/E008_R001_AT003_actual_stage_review_20261017/actual_before_pblock_export_review.json)接受：30个SLR2时钟区精确覆盖X0Y10:X5Y14，三项策略=0、P9491、sites78266；1,598,546B真实XDC的9491名字无重复且与P全等。08:18Z原策略保留已真实通过并[独立核查](../../agent/A007/E008_R001_AT003_actual_stage_review_20261017/actual_policy_preservation_review.json)：9525 after全fresh、17schema与before一致，策略值/支持态逐对象相等，前后policy文件字节同，原Pblock0→仅新增指定区域。08:19Z[实际完整端口索引](experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/candidate_pre_place_native_port_index_closed_facts.json)闭合并[独立接受](../../agent/A007/E008_R001_AT003_actual_stage_review_20261017/pre_place_native_index_alias_review.json)：269ports/269groups/2772aliases/2170nativecalls，unknown/disconnected/multigroup=0，167160个buffered alias事件完整。有向cut和四组有界时序已闭合；完整restor
+execution_state: failed  
+verdict: inconclusive
+
+**未合法布通。** 原生route于2026-10-17 19:09:25Z（北京时间10月18日03:09:25）失败；Phase9核验报告702396个重叠节点、547548个拥塞失败信号。native route报告耗时3h51m12s。五项失败诊断随后全部成功保存，19:28:37Z结束；失败图locality采集完成后保留原错误重抛。监督器于21:18:30.695127Z（北京时间05:18:30）自然结束，native1/supervisor1、stop_reason=null、无需清理；status的completed仅表示监督结束。
+
+| 当前失败图诊断 | 实测 |
+| --- | ---: |
+| 可路由网络 / 完全路由 | 2031733 / 1484185 |
+| 有路由错误 / 资源冲突 | 547548 / 547548 |
+| 全局WNS / TNS | −12.413 / −915419.312 ns |
+| setup违例端点 | 418798 |
+| 全局WHS / THS | −0.125 / −41.550 ns |
+| hold违例端点 | 3264 |
+| WPWS / TPWS | −0.664 / −2.171 ns |
+
+失败DCP765705446B（工程独立核SHA51679d9a…）及route status/timing/congestion/DRC已保存。timing页眉Routed不等于合法布通；DRC实际Partially Routed，RTSTAT-13/CW1+15917 Warning，不是DRC签核。失败图through-LOAD四组各16：入setup/hold−6.093/−0.055ns、出−6.093/+0.026ns，均不是全局时序或full-cutTNS。
+
+完整place与physopt已独立接受；失败图候选9491个原始P仍全SLR2、无缺失/替换，cut14307网/58361保留端点/21479边界逻辑对。定向落区成立，但本次合法布通失败；不能将全局重排、热点变化或失败归因全部算给C01。局部SLL超额、高拥塞、6个warned bus-skew目的pin与shared source覆盖缺口、正式reset/CDC/IO OPEN保留。未取得成功route全局POST或正式routed签核。
+
+[14项终态核验](experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/terminal_summary.json)全true：144输入/绑定源未变、原PID/start消失、EDA锁释放；8499资源样本，峰RSS33.301GiB，最低MemAvailable457.264GiB/disk383.524GiB，无强停。[两个观察器](experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/observer_terminal_facts.json)均真实exit0且无活动进程。[A00
 
 （摘录截断；完整记录见链接。）
 
@@ -26,7 +45,7 @@ AT003_C01_physical_xdc_fix_full_implementation于2026-10-17T07:43:04.819321Z（�
 
 | 批次 | 详情 | 具体尝试数量 |
 | --- | --- | --- |
-| R001 | [本批结果与证据](experiment_results/runs/R001/README.md) | 3 |
+| R001 | [本批结果与证据](experiment_results/runs/R001/README.md) | 4 |
 
 ## 原工程历史结果
 

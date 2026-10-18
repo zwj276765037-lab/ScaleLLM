@@ -283,3 +283,9 @@ applicability: 当前 M002 综合、源/约束、工具身份和已审核尝试�
 ## 历史：策略子阶段交付
 
 只读策略已交付：[R005](../../project/E002_m002_synthesis_and_physical_baseline/experiment_results/runs/R005/architecture_review.md)。当前无综合/物理验收结论，等待真实阶段报告后复用代理集中核查。
+
+
+2026-10-17 AT003 pre-place 独立增量审核完成：完整cut/4组有界timing重放、64原生路径表核对、全局restored pre-place均接受。证据目录 `E008_R001_AT003_actual_stage_review_20261017`；cut JSON `3fd41206…`，global JSON `0d65c9a3…`。175约束/162metadata/13保留原字节、144生产/39归档源保持；fresh clock/reset sanity/DRC无阻断，15914 warning保留。原80边界复用与当前fresh POST分别标明。全部44054 pairs UNPLACED，bounded通过pins查询不等于每条路径实际越候选边界；物理收益与place/route完成pending。真实place SSI启动已实发主控/A006。初版审核脚本原生report header解析假设失败，V2修复并成功；原人读版18项投影更正为17（机器记录一直正确），原件和更正新记录保全。
+
+
+2026-10-17 PDU恢复：用户“可以继续了”已由Root归档，A007独立审核角色恢复。旧AT003停止/输入增量审核dc5ec864…接受，14项闭合与721资源重算一致，13旧PID/start不存在；本次为用户停机，方法unassessed。AT004真实started09:23:05.136988Z，start_delta_review 45e54da1…接受，supervisor14547/69484、leader14590/70772、loader14609/70775、native14680/70786均CPU0–7/nice5，项目锁归监督器。ec12新绑定承接恢复授权、C01/b9dc/39归档/144与同8451父图；未重复26/9测试或AT003全量阶段审核。新AT实际pre-place/物理结果待自然产物；A006 sole EDA正常推进，A007无EDA/DCP内容访问/信号/锁控制。已实发主控/A006。

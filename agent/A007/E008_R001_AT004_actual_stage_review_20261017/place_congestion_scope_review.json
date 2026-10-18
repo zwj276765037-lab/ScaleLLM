@@ -1,0 +1,3643 @@
+{
+  "recorded_utc": "2026-10-17T12:45:42.738028+00:00",
+  "reviewer": "A007",
+  "execution": "completed_closed_native_congestion_text_parse_and_same_phase_comparison",
+  "verdict": "accept_reported_adaptive_window_evidence; no_fixed_window_or_candidate_pressure_improvement_established",
+  "applicability": "AT004 Fully Placed graph, native placer final level report with min_congestion_level3; no routed congestion or full POST/locality qualification",
+  "review": "accepted_substep_no_new_gate",
+  "actual_report": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/congestion_place.rpt",
+    "bytes": 35748,
+    "sha256": "3d97ea117077657e671da6a087e176d3ad7c2fd5cd25501a604164f321b76191"
+  },
+  "baseline_report": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/congestion_place.rpt",
+    "bytes": 32891,
+    "sha256": "0b95a7cc6612be99e5208b93bad917c5edb2387dc18e63cb76f226943b6af868"
+  },
+  "actual": {
+    "header": {
+      "Tool Version": "Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025",
+      "Date": "Sat Oct 17 20:43:01 2026",
+      "Host": "user running 64-bit Ubuntu 24.04.4 LTS",
+      "Command": "report_design_analysis -congestion -min_congestion_level 3 -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/congestion_place.rpt",
+      "Design": "scalellm_vcu118_f05_bd_wrapper",
+      "Device": "xcvu9p",
+      "Design State": "Fully Placed"
+    },
+    "rows": [
+      {
+        "Direction": "North",
+        "Type": "Global",
+        "Level": 3,
+        "Window": "(CLEL_R_X49Y382,CLEL_R_X52Y389)",
+        "Combined LUTs": "3%",
+        "Avg LUT Inputs": "4.208",
+        "LUT": "82%",
+        "LUTRAM": "8%",
+        "Flop": "50%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "6%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack(29%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(18%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(16%)",
+        "line": 24,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack",
+            "reported_percent": 29
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 18
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+            "reported_percent": 16
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Global",
+        "Level": 4,
+        "Window": "(CLEL_R_X41Y434,CLEL_R_X49Y449)",
+        "Combined LUTs": "9%",
+        "Avg LUT Inputs": "3.767",
+        "LUT": "74%",
+        "LUTRAM": "8%",
+        "Flop": "41%",
+        "MUXF": "2%",
+        "RAMB": "NA",
+        "URAM": "100%",
+        "DSP": "NA",
+        "CARRY": "15%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_gather(20%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack(14%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler(9%)",
+        "line": 25,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_gather",
+            "reported_percent": 20
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack",
+            "reported_percent": 14
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Global",
+        "Level": 5,
+        "Window": "(CLEL_R_X30Y435,CLEL_R_X44Y466)",
+        "Combined LUTs": "9%",
+        "Avg LUT Inputs": "3.859",
+        "LUT": "76%",
+        "LUTRAM": "1%",
+        "Flop": "38%",
+        "MUXF": "1%",
+        "RAMB": "92%",
+        "URAM": "100%",
+        "DSP": "64%",
+        "CARRY": "40%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[7].u_quantizer(23%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer(18%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(13%)",
+        "line": 26,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[7].u_quantizer",
+            "reported_percent": 23
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer",
+            "reported_percent": 18
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 13
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEL_R_X13Y439,CLEL_R_X43Y502)",
+        "Combined LUTs": "5%",
+        "Avg LUT Inputs": "3.974",
+        "LUT": "81%",
+        "LUTRAM": "1%",
+        "Flop": "39%",
+        "MUXF": "1%",
+        "RAMB": "94%",
+        "URAM": "100%",
+        "DSP": "88%",
+        "CARRY": "52%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region2_cols8_11(19%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer(14%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[7].u_quantizer(12%)",
+        "line": 27,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region2_cols8_11",
+            "reported_percent": 19
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer",
+            "reported_percent": 14
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[7].u_quantizer",
+            "reported_percent": 12
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Global",
+        "Level": 3,
+        "Window": "(CLEL_R_X50Y408,CLEM_X54Y415)",
+        "Combined LUTs": "1%",
+        "Avg LUT Inputs": "4.102",
+        "LUT": "90%",
+        "LUTRAM": "4%",
+        "Flop": "57%",
+        "MUXF": "0%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "10%",
+        "SRL": "8%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(43%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_w4_frontend(18%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack(12%)",
+        "line": 28,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+            "reported_percent": 43
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_w4_frontend",
+            "reported_percent": 18
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack",
+            "reported_percent": 12
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Global",
+        "Level": 4,
+        "Window": "(CLEL_R_X63Y480,CLEL_R_X70Y495)",
+        "Combined LUTs": "0%",
+        "Avg LUT Inputs": "4.525",
+        "LUT": "84%",
+        "LUTRAM": "0%",
+        "Flop": "53%",
+        "MUXF": "9%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "28%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store(50%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[1].u_quantizer(28%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_right2/u_shard(9%)",
+        "line": 29,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store",
+            "reported_percent": 50
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[1].u_quantizer",
+            "reported_percent": 28
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_right2/u_shard",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Global",
+        "Level": 5,
+        "Window": "(CLEL_R_X47Y471,CLEL_R_X62Y502)",
+        "Combined LUTs": "8%",
+        "Avg LUT Inputs": "3.566",
+        "LUT": "72%",
+        "LUTRAM": "8%",
+        "Flop": "42%",
+        "MUXF": "3%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "100%",
+        "CARRY": "36%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(32%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store(8%)",
+        "line": 30,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 32
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store",
+            "reported_percent": 8
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEM_X23Y461,BRAM_X53Y520)",
+        "Combined LUTs": "7%",
+        "Avg LUT Inputs": "4.025",
+        "LUT": "80%",
+        "LUTRAM": "2%",
+        "Flop": "37%",
+        "MUXF": "1%",
+        "RAMB": "94%",
+        "URAM": "100%",
+        "DSP": "95%",
+        "CARRY": "44%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(18%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer(15%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer(12%)",
+        "line": 31,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 18
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer",
+            "reported_percent": 15
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer",
+            "reported_percent": 12
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Global",
+        "Level": 3,
+        "Window": "(CLEL_R_X47Y518,CLEL_R_X50Y525)",
+        "Combined LUTs": "12%",
+        "Avg LUT Inputs": "3.795",
+        "LUT": "73%",
+        "LUTRAM": "12%",
+        "Flop": "42%",
+        "MUXF": "5%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "7%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(20%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack(11%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute(11%)",
+        "line": 32,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 20
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack",
+            "reported_percent": 11
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+            "reported_percent": 11
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Global",
+        "Level": 4,
+        "Window": "(CLEL_R_X44Y480,DSP_X51Y495)",
+        "Combined LUTs": "8%",
+        "Avg LUT Inputs": "3.741",
+        "LUT": "73%",
+        "LUTRAM": "0%",
+        "Flop": "40%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "27%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(36%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer(9%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack(6%)",
+        "line": 33,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 36
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer",
+            "reported_percent": 9
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack",
+            "reported_percent": 6
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Global",
+        "Level": 5,
+        "Window": "(CLEL_R_X44Y479,CLEM_X59Y510)",
+        "Combined LUTs": "8%",
+        "Avg LUT Inputs": "3.771",
+        "LUT": "74%",
+        "LUTRAM": "10%",
+        "Flop": "40%",
+        "MUXF": "3%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "29%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(36%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank(14%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection(4%)",
+        "line": 34,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 36
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank",
+            "reported_percent": 14
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection",
+            "reported_percent": 4
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEM_X23Y466,BRAM_X53Y525)",
+        "Combined LUTs": "7%",
+        "Avg LUT Inputs": "4.009",
+        "LUT": "80%",
+        "LUTRAM": "2%",
+        "Flop": "38%",
+        "MUXF": "1%",
+        "RAMB": "94%",
+        "URAM": "87%",
+        "DSP": "95%",
+        "CARRY": "44%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(19%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer(14%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer(10%)",
+        "line": 35,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 19
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer",
+            "reported_percent": 14
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer",
+            "reported_percent": 10
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Global",
+        "Level": 3,
+        "Window": "(CLEL_R_X46Y407,CLEM_X50Y414)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "4.190",
+        "LUT": "83%",
+        "LUTRAM": "8%",
+        "Flop": "31%",
+        "MUXF": "1%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "1%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack(26%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_w4_frontend(19%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(15%)",
+        "line": 36,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack",
+            "reported_percent": 26
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_w4_frontend",
+            "reported_percent": 19
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+            "reported_percent": 15
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Global",
+        "Level": 4,
+        "Window": "(CLEL_R_X54Y483,URAM_URAM_FT_X61Y495)",
+        "Combined LUTs": "11%",
+        "Avg LUT Inputs": "3.714",
+        "LUT": "74%",
+        "LUTRAM": "17%",
+        "Flop": "46%",
+        "MUXF": "7%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "100%",
+        "CARRY": "27%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(34%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank(17%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store(15%)",
+        "line": 37,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 34
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank",
+            "reported_percent": 17
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store",
+            "reported_percent": 15
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Global",
+        "Level": 5,
+        "Window": "(CLEL_R_X40Y483,CLEL_R_X55Y514)",
+        "Combined LUTs": "8%",
+        "Avg LUT Inputs": "3.950",
+        "LUT": "76%",
+        "LUTRAM": "6%",
+        "Flop": "40%",
+        "MUXF": "1%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "100%",
+        "CARRY": "31%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(37%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank(17%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer(6%)",
+        "line": 38,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 37
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank",
+            "reported_percent": 17
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer",
+            "reported_percent": 6
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEL_R_X27Y502,CLEM_X57Y565)",
+        "Combined LUTs": "8%",
+        "Avg LUT Inputs": "4.027",
+        "LUT": "78%",
+        "LUTRAM": "5%",
+        "Flop": "40%",
+        "MUXF": "1%",
+        "RAMB": "90%",
+        "URAM": "75%",
+        "DSP": "85%",
+        "CARRY": "32%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(24%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[5].u_quantizer(16%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection(9%)",
+        "line": 39,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 24
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[5].u_quantizer",
+            "reported_percent": 16
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Long",
+        "Level": 3,
+        "Window": "(CLEL_R_X49Y448,CLEL_R_X52Y455)",
+        "Combined LUTs": "0%",
+        "Avg LUT Inputs": "3.495",
+        "LUT": "69%",
+        "LUTRAM": "8%",
+        "Flop": "39%",
+        "MUXF": "2%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "6%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack(22%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(16%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(15%)",
+        "line": 40,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack",
+            "reported_percent": 22
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 16
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 15
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Long",
+        "Level": 4,
+        "Window": "(CLEM_X39Y448,CLEL_R_X46Y463)",
+        "Combined LUTs": "9%",
+        "Avg LUT Inputs": "4.001",
+        "LUT": "77%",
+        "LUTRAM": "3%",
+        "Flop": "37%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "100%",
+        "DSP": "100%",
+        "CARRY": "44%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer(32%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank(16%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(11%)",
+        "line": 41,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer",
+            "reported_percent": 32
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank",
+            "reported_percent": 16
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 11
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Long",
+        "Level": 5,
+        "Window": "(CLEL_R_X30Y436,CLEL_R_X44Y467)",
+        "Combined LUTs": "9%",
+        "Avg LUT Inputs": "3.890",
+        "LUT": "77%",
+        "LUTRAM": "1%",
+        "Flop": "37%",
+        "MUXF": "1%",
+        "RAMB": "91%",
+        "URAM": "100%",
+        "DSP": "62%",
+        "CARRY": "41%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[7].u_quantizer(23%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer(19%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(13%)",
+        "line": 42,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[7].u_quantizer",
+            "reported_percent": 23
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer",
+            "reported_percent": 19
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 13
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Long",
+        "Level": 6,
+        "Window": "(CLEM_X16Y441,CLEM_X46Y504)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "4.036",
+        "LUT": "81%",
+        "LUTRAM": "1%",
+        "Flop": "38%",
+        "MUXF": "1%",
+        "RAMB": "94%",
+        "URAM": "100%",
+        "DSP": "90%",
+        "CARRY": "49%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region2_cols8_11(15%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer(14%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer(14%)",
+        "line": 43,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region2_cols8_11",
+            "reported_percent": 15
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer",
+            "reported_percent": 14
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer",
+            "reported_percent": 14
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Long",
+        "Level": 3,
+        "Window": "(CLEL_R_X63Y480,CLEM_X67Y487)",
+        "Combined LUTs": "1%",
+        "Avg LUT Inputs": "4.331",
+        "LUT": "81%",
+        "LUTRAM": "0%",
+        "Flop": "64%",
+        "MUXF": "10%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "18%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store(67%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_right2/u_shard(14%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[1].u_quantizer(12%)",
+        "line": 44,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store",
+            "reported_percent": 67
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_right2/u_shard",
+            "reported_percent": 14
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[1].u_quantizer",
+            "reported_percent": 12
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Long",
+        "Level": 4,
+        "Window": "(CLEL_R_X62Y479,DSP_X69Y490)",
+        "Combined LUTs": "0%",
+        "Avg LUT Inputs": "4.337",
+        "LUT": "83%",
+        "LUTRAM": "0%",
+        "Flop": "56%",
+        "MUXF": "10%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "30%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store(52%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[1].u_quantizer(23%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_right2/u_shard(13%)",
+        "line": 45,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store",
+            "reported_percent": 52
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[1].u_quantizer",
+            "reported_percent": 23
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_right2/u_shard",
+            "reported_percent": 13
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Long",
+        "Level": 5,
+        "Window": "(CLEL_R_X48Y471,CLEL_R_X63Y502)",
+        "Combined LUTs": "7%",
+        "Avg LUT Inputs": "3.573",
+        "LUT": "73%",
+        "LUTRAM": "9%",
+        "Flop": "44%",
+        "MUXF": "4%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "100%",
+        "CARRY": "37%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(30%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store(14%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank(11%)",
+        "line": 46,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 30
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store",
+            "reported_percent": 14
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank",
+            "reported_percent": 11
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Long",
+        "Level": 6,
+        "Window": "(CLEL_R_X24Y460,CLEL_R_X54Y523)",
+        "Combined LUTs": "7%",
+        "Avg LUT Inputs": "4.032",
+        "LUT": "80%",
+        "LUTRAM": "3%",
+        "Flop": "37%",
+        "MUXF": "1%",
+        "RAMB": "94%",
+        "URAM": "100%",
+        "DSP": "94%",
+        "CARRY": "42%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(19%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer(14%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer(13%)",
+        "line": 47,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 19
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer",
+            "reported_percent": 14
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer",
+            "reported_percent": 13
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Long",
+        "Level": 3,
+        "Window": "(CLEL_R_X47Y520,CLEL_R_X50Y527)",
+        "Combined LUTs": "13%",
+        "Avg LUT Inputs": "3.864",
+        "LUT": "75%",
+        "LUTRAM": "12%",
+        "Flop": "42%",
+        "MUXF": "7%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "8%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(19%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute(15%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack(14%)",
+        "line": 48,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 19
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+            "reported_percent": 15
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack",
+            "reported_percent": 14
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Long",
+        "Level": 4,
+        "Window": "(CLEL_R_X47Y517,CLEL_R_X54Y532)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "3.906",
+        "LUT": "77%",
+        "LUTRAM": "8%",
+        "Flop": "39%",
+        "MUXF": "6%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "13%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(24%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_w4_frontend(11%)",
+        "line": 49,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 24
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_w4_frontend",
+            "reported_percent": 11
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Long",
+        "Level": 5,
+        "Window": "(CLEL_R_X47Y479,CLEL_R_X62Y510)",
+        "Combined LUTs": "8%",
+        "Avg LUT Inputs": "3.639",
+        "LUT": "73%",
+        "LUTRAM": "15%",
+        "Flop": "40%",
+        "MUXF": "5%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "100%",
+        "CARRY": "29%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(34%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store(8%)",
+        "line": 50,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 34
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store",
+            "reported_percent": 8
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Long",
+        "Level": 6,
+        "Window": "(CLEL_R_X22Y466,CLEL_R_X52Y529)",
+        "Combined LUTs": "7%",
+        "Avg LUT Inputs": "4.008",
+        "LUT": "80%",
+        "LUTRAM": "2%",
+        "Flop": "38%",
+        "MUXF": "1%",
+        "RAMB": "91%",
+        "URAM": "87%",
+        "DSP": "95%",
+        "CARRY": "44%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(19%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer(15%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer(10%)",
+        "line": 51,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 19
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer",
+            "reported_percent": 15
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer",
+            "reported_percent": 10
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Long",
+        "Level": 3,
+        "Window": "(CLEL_R_X65Y510,CLEL_R_X68Y517)",
+        "Combined LUTs": "1%",
+        "Avg LUT Inputs": "4.487",
+        "LUT": "82%",
+        "LUTRAM": "0%",
+        "Flop": "50%",
+        "MUXF": "6%",
+        "RAMB": "50%",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "22%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store(51%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[1].u_quantizer(28%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_right2/u_shard(7%)",
+        "line": 52,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store",
+            "reported_percent": 51
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[1].u_quantizer",
+            "reported_percent": 28
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_right2/u_shard",
+            "reported_percent": 7
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Long",
+        "Level": 4,
+        "Window": "(CLEL_R_X54Y548,URAM_URAM_FT_X61Y555)",
+        "Combined LUTs": "0%",
+        "Avg LUT Inputs": "4.363",
+        "LUT": "83%",
+        "LUTRAM": "0%",
+        "Flop": "54%",
+        "MUXF": "4%",
+        "RAMB": "100%",
+        "URAM": "0%",
+        "DSP": "75%",
+        "CARRY": "18%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store(64%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region3_cols12_13(16%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[0].u_quantizer(6%)",
+        "line": 53,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store",
+            "reported_percent": 64
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region3_cols12_13",
+            "reported_percent": 16
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[0].u_quantizer",
+            "reported_percent": 6
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Long",
+        "Level": 5,
+        "Window": "(CLEM_X42Y484,CLEL_R_X57Y515)",
+        "Combined LUTs": "8%",
+        "Avg LUT Inputs": "3.838",
+        "LUT": "76%",
+        "LUTRAM": "10%",
+        "Flop": "39%",
+        "MUXF": "1%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "100%",
+        "CARRY": "30%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(41%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank(16%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection(5%)",
+        "line": 54,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 41
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank",
+            "reported_percent": 16
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection",
+            "reported_percent": 5
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Long",
+        "Level": 6,
+        "Window": "(CLEL_R_X27Y506,CLEM_X57Y569)",
+        "Combined LUTs": "8%",
+        "Avg LUT Inputs": "4.034",
+        "LUT": "77%",
+        "LUTRAM": "4%",
+        "Flop": "41%",
+        "MUXF": "1%",
+        "RAMB": "91%",
+        "URAM": "75%",
+        "DSP": "84%",
+        "CARRY": "31%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(23%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[5].u_quantizer(15%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection(9%)",
+        "line": 55,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 23
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[5].u_quantizer",
+            "reported_percent": 15
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Short",
+        "Level": 3,
+        "Window": "(CLEM_X11Y663,CLEM_X14Y670)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "4.352",
+        "LUT": "76%",
+        "LUTRAM": "0%",
+        "Flop": "57%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "25%",
+        "CARRY": "27%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[4].gen_pair[5].u_lane/u_dot(33%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache1(15%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[1].u_quantizer(13%)",
+        "line": 56,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[4].gen_pair[5].u_lane/u_dot",
+            "reported_percent": 33
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache1",
+            "reported_percent": 15
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/g_quant[1].u_quantizer",
+            "reported_percent": 13
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Short",
+        "Level": 4,
+        "Window": "(CLEL_R_X3Y657,CLEM_X11Y672)",
+        "Combined LUTs": "12%",
+        "Avg LUT Inputs": "4.601",
+        "LUT": "76%",
+        "LUTRAM": "11%",
+        "Flop": "52%",
+        "MUXF": "0%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "7%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache1(21%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu(15%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler(8%)",
+        "line": 57,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache1",
+            "reported_percent": 21
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu",
+            "reported_percent": 15
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler",
+            "reported_percent": 8
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Short",
+        "Level": 5,
+        "Window": "(CLEL_R_X2Y643,CLEL_R_X17Y674)",
+        "Combined LUTs": "11%",
+        "Avg LUT Inputs": "4.217",
+        "LUT": "77%",
+        "LUTRAM": "4%",
+        "Flop": "56%",
+        "MUXF": "0%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "61%",
+        "CARRY": "23%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[4].gen_pair[5].u_lane/u_dot(25%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache1(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu(7%)",
+        "line": 58,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[4].gen_pair[5].u_lane/u_dot",
+            "reported_percent": 25
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache1",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu",
+            "reported_percent": 7
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Short",
+        "Level": 6,
+        "Window": "(CLEL_R_X2Y587,CLEM_X33Y650)",
+        "Combined LUTs": "15%",
+        "Avg LUT Inputs": "3.734",
+        "LUT": "70%",
+        "LUTRAM": "6%",
+        "Flop": "55%",
+        "MUXF": "0%",
+        "RAMB": "88%",
+        "URAM": "100%",
+        "DSP": "58%",
+        "CARRY": "25%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0(11%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[4].gen_pair[1].u_lane/u_dot(10%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute(9%)",
+        "line": 59,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0",
+            "reported_percent": 11
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[4].gen_pair[1].u_lane/u_dot",
+            "reported_percent": 10
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Short",
+        "Level": 3,
+        "Window": "(CLEL_R_X50Y386,CLEM_X54Y393)",
+        "Combined LUTs": "1%",
+        "Avg LUT Inputs": "3.258",
+        "LUT": "72%",
+        "LUTRAM": "18%",
+        "Flop": "44%",
+        "MUXF": "0%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "18%",
+        "SRL": "16%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(31%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(20%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_gather(15%)",
+        "line": 60,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+            "reported_percent": 31
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 20
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_gather",
+            "reported_percent": 15
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Short",
+        "Level": 4,
+        "Window": "(CLEL_R_X49Y390,DSP_X56Y405)",
+        "Combined LUTs": "4%",
+        "Avg LUT Inputs": "3.572",
+        "LUT": "75%",
+        "LUTRAM": "18%",
+        "Flop": "39%",
+        "MUXF": "0%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "75%",
+        "CARRY": "15%",
+        "SRL": "8%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_w4_frontend(22%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(15%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack(14%)",
+        "line": 61,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_w4_frontend",
+            "reported_percent": 22
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 15
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack",
+            "reported_percent": 14
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Short",
+        "Level": 5,
+        "Window": "(CLEL_R_X45Y480,CLEM_X60Y511)",
+        "Combined LUTs": "7%",
+        "Avg LUT Inputs": "3.645",
+        "LUT": "73%",
+        "LUTRAM": "14%",
+        "Flop": "39%",
+        "MUXF": "3%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "30%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(37%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank(14%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection(4%)",
+        "line": 62,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 37
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank",
+            "reported_percent": 14
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection",
+            "reported_percent": 4
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Short",
+        "Level": 6,
+        "Window": "(CLEL_R_X26Y461,CLEM_X56Y524)",
+        "Combined LUTs": "7%",
+        "Avg LUT Inputs": "3.972",
+        "LUT": "79%",
+        "LUTRAM": "4%",
+        "Flop": "37%",
+        "MUXF": "1%",
+        "RAMB": "95%",
+        "URAM": "100%",
+        "DSP": "93%",
+        "CARRY": "42%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(21%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer(12%)",
+        "line": 63,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 21
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer",
+            "reported_percent": 12
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Short",
+        "Level": 3,
+        "Window": "(CLEM_X28Y607,LAG_LAG_X30Y614)",
+        "Combined LUTs": "31%",
+        "Avg LUT Inputs": "3.909",
+        "LUT": "64%",
+        "LUTRAM": "20%",
+        "Flop": "53%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "0%",
+        "CARRY": "0%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute(27%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0(19%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler(11%)",
+        "line": 64,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+            "reported_percent": 27
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0",
+            "reported_percent": 19
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler",
+            "reported_percent": 11
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Short",
+        "Level": 4,
+        "Window": "(CLEM_X25Y598,CLEL_R_X32Y613)",
+        "Combined LUTs": "29%",
+        "Avg LUT Inputs": "3.720",
+        "LUT": "63%",
+        "LUTRAM": "6%",
+        "Flop": "57%",
+        "MUXF": "0%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "66%",
+        "CARRY": "6%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute(25%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0(20%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot(10%)",
+        "line": 65,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+            "reported_percent": 25
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0",
+            "reported_percent": 20
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot",
+            "reported_percent": 10
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Short",
+        "Level": 5,
+        "Window": "(CLEL_R_X9Y594,CLEM_X24Y625)",
+        "Combined LUTs": "15%",
+        "Avg LUT Inputs": "3.932",
+        "LUT": "73%",
+        "LUTRAM": "0%",
+        "Flop": "58%",
+        "MUXF": "0%",
+        "RAMB": "92%",
+        "URAM": "NA",
+        "DSP": "57%",
+        "CARRY": "27%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[4].gen_pair[1].u_lane/u_dot(29%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute(10%)",
+        "line": 66,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[4].gen_pair[1].u_lane/u_dot",
+            "reported_percent": 29
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+            "reported_percent": 10
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Short",
+        "Level": 6,
+        "Window": "(CLEL_R_X2Y576,CLEM_X33Y639)",
+        "Combined LUTs": "13%",
+        "Avg LUT Inputs": "3.744",
+        "LUT": "71%",
+        "LUTRAM": "5%",
+        "Flop": "53%",
+        "MUXF": "0%",
+        "RAMB": "87%",
+        "URAM": "75%",
+        "DSP": "65%",
+        "CARRY": "27%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(17%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[4].gen_pair[1].u_lane/u_dot(10%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0(10%)",
+        "line": 67,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 17
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[4].gen_pair[1].u_lane/u_dot",
+            "reported_percent": 10
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0",
+            "reported_percent": 10
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Short",
+        "Level": 3,
+        "Window": "(CLEL_R_X46Y506,CLEM_X50Y513)",
+        "Combined LUTs": "16%",
+        "Avg LUT Inputs": "4.306",
+        "LUT": "76%",
+        "LUTRAM": "0%",
+        "Flop": "40%",
+        "MUXF": "2%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "5%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank(21%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(20%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection(12%)",
+        "line": 68,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank",
+            "reported_percent": 21
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 20
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection",
+            "reported_percent": 12
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Short",
+        "Level": 4,
+        "Window": "(CLEL_R_X44Y485,DSP_X51Y500)",
+        "Combined LUTs": "9%",
+        "Avg LUT Inputs": "3.915",
+        "LUT": "74%",
+        "LUTRAM": "0%",
+        "Flop": "41%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "22%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(38%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection(8%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer(7%)",
+        "line": 69,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 38
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection",
+            "reported_percent": 8
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer",
+            "reported_percent": 7
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Short",
+        "Level": 5,
+        "Window": "(CLEL_R_X40Y482,CLEL_R_X55Y513)",
+        "Combined LUTs": "8%",
+        "Avg LUT Inputs": "3.936",
+        "LUT": "76%",
+        "LUTRAM": "6%",
+        "Flop": "40%",
+        "MUXF": "1%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "100%",
+        "CARRY": "30%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(36%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank(16%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection(6%)",
+        "line": 70,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 36
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7/g_dual_accumulator.u_accumulator/g_monolithic.u_bank",
+            "reported_percent": 16
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection",
+            "reported_percent": 6
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Short",
+        "Level": 6,
+        "Window": "(CLEM_X23Y481,BRAM_X53Y540)",
+        "Combined LUTs": "8%",
+        "Avg LUT Inputs": "4.017",
+        "LUT": "79%",
+        "LUTRAM": "3%",
+        "Flop": "39%",
+        "MUXF": "1%",
+        "RAMB": "86%",
+        "URAM": "87%",
+        "DSP": "90%",
+        "CARRY": "39%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(22%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[5].u_quantizer(11%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer(9%)",
+        "line": 71,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 22
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[5].u_quantizer",
+            "reported_percent": 11
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer",
+            "reported_percent": 9
+          }
+        ]
+      }
+    ],
+    "rows_count": 48,
+    "levels": {
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12
+    },
+    "types": {
+      "Global": 16,
+      "Long": 16,
+      "Short": 16
+    },
+    "highest_reported_level": 6,
+    "exact_C01_listed_rows": [],
+    "global_level6_windows": [
+      {
+        "Direction": "North",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEL_R_X13Y439,CLEL_R_X43Y502)",
+        "LUT": "81%",
+        "Flop": "39%",
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region2_cols8_11",
+            "reported_percent": 19
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer",
+            "reported_percent": 14
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[7].u_quantizer",
+            "reported_percent": 12
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEM_X23Y461,BRAM_X53Y520)",
+        "LUT": "80%",
+        "Flop": "37%",
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 18
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer",
+            "reported_percent": 15
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer",
+            "reported_percent": 12
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEM_X23Y466,BRAM_X53Y525)",
+        "LUT": "80%",
+        "Flop": "38%",
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 19
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer",
+            "reported_percent": 14
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[3].u_quantizer",
+            "reported_percent": 10
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEL_R_X27Y502,CLEM_X57Y565)",
+        "LUT": "78%",
+        "Flop": "40%",
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 24
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[5].u_quantizer",
+            "reported_percent": 16
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection",
+            "reported_percent": 9
+          }
+        ]
+      }
+    ]
+  },
+  "baseline": {
+    "header": {
+      "Tool Version": "Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025",
+      "Date": "Fri Oct 16 16:14:43 2026",
+      "Host": "user running 64-bit Ubuntu 24.04.4 LTS",
+      "Command": "report_design_analysis -congestion -min_congestion_level 3 -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/congestion_place.rpt",
+      "Design": "scalellm_vcu118_f05_bd_wrapper",
+      "Device": "xcvu9p",
+      "Design State": "Fully Placed"
+    },
+    "rows": [
+      {
+        "Direction": "North",
+        "Type": "Global",
+        "Level": 3,
+        "Window": "(CLEL_R_X46Y376,CLEM_X50Y383)",
+        "Combined LUTs": "30%",
+        "Avg LUT Inputs": "5.031",
+        "LUT": "87%",
+        "LUTRAM": "21%",
+        "Flop": "55%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "17%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute(20%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[0].u_lane(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[6].gen_pair[0].u_lane(13%)",
+        "line": 24,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+            "reported_percent": 20
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[0].u_lane",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[6].gen_pair[0].u_lane",
+            "reported_percent": 13
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Global",
+        "Level": 4,
+        "Window": "(CLEL_R_X55Y415,CLEM_X63Y430)",
+        "Combined LUTs": "34%",
+        "Avg LUT Inputs": "4.483",
+        "LUT": "87%",
+        "LUTRAM": "8%",
+        "Flop": "76%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "100%",
+        "DSP": "100%",
+        "CARRY": "31%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[5].u_lane/u_dot(15%),scalellm_vcu118_f05_bd_i/d1_smc/inst(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[0].u_lane/u_dot(12%)",
+        "line": 25,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[5].u_lane/u_dot",
+            "reported_percent": 15
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/d1_smc/inst",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[0].u_lane/u_dot",
+            "reported_percent": 12
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Global",
+        "Level": 5,
+        "Window": "(CLEL_R_X45Y417,CLEM_X60Y448)",
+        "Combined LUTs": "19%",
+        "Avg LUT Inputs": "3.504",
+        "LUT": "74%",
+        "LUTRAM": "28%",
+        "Flop": "68%",
+        "MUXF": "0%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "35%",
+        "SRL": "3%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/d1_smc/inst(24%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(11%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot(11%)",
+        "line": 26,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/d1_smc/inst",
+            "reported_percent": 24
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+            "reported_percent": 11
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot",
+            "reported_percent": 11
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEL_R_X12Y416,CLEL_R_X41Y479)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "3.319",
+        "LUT": "77%",
+        "LUTRAM": "5%",
+        "Flop": "54%",
+        "MUXF": "4%",
+        "RAMB": "100%",
+        "URAM": "75%",
+        "DSP": "91%",
+        "CARRY": "46%",
+        "SRL": "10%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(9%)",
+        "line": 27,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Global",
+        "Level": 3,
+        "Window": "(CLEL_R_X32Y430,HPIO_L_X35Y420)",
+        "Combined LUTs": "1%",
+        "Avg LUT Inputs": "3.622",
+        "LUT": "82%",
+        "LUTRAM": "4%",
+        "Flop": "75%",
+        "MUXF": "5%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "27%",
+        "SRL": "4%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(23%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(21%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot(13%)",
+        "line": 28,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 23
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 21
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot",
+            "reported_percent": 13
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Global",
+        "Level": 4,
+        "Window": "(CLEL_R_X26Y431,DSP_X33Y445)",
+        "Combined LUTs": "5%",
+        "Avg LUT Inputs": "3.256",
+        "LUT": "78%",
+        "LUTRAM": "4%",
+        "Flop": "63%",
+        "MUXF": "5%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "75%",
+        "CARRY": "46%",
+        "SRL": "11%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(22%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(20%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(15%)",
+        "line": 29,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 22
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 20
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 15
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Global",
+        "Level": 5,
+        "Window": "(CLEM_X28Y430,CLEL_R_X41Y461)",
+        "Combined LUTs": "2%",
+        "Avg LUT Inputs": "3.130",
+        "LUT": "73%",
+        "LUTRAM": "4%",
+        "Flop": "55%",
+        "MUXF": "3%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "76%",
+        "CARRY": "41%",
+        "SRL": "23%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(26%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(12%)",
+        "line": 30,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 26
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 12
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEM_X14Y417,CLEM_X44Y480)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "3.315",
+        "LUT": "77%",
+        "LUTRAM": "6%",
+        "Flop": "54%",
+        "MUXF": "4%",
+        "RAMB": "100%",
+        "URAM": "90%",
+        "DSP": "89%",
+        "CARRY": "45%",
+        "SRL": "10%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(9%)",
+        "line": 31,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Global",
+        "Level": 3,
+        "Window": "(CLEL_R_X47Y438,CLEL_R_X50Y445)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "3.127",
+        "LUT": "66%",
+        "LUTRAM": "55%",
+        "Flop": "65%",
+        "MUXF": "3%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "37%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/d1_smc/inst(25%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot(22%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(15%)",
+        "line": 32,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/d1_smc/inst",
+            "reported_percent": 25
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot",
+            "reported_percent": 22
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+            "reported_percent": 15
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Global",
+        "Level": 4,
+        "Window": "(CLEL_R_X44Y457,DSP_X51Y470)",
+        "Combined LUTs": "15%",
+        "Avg LUT Inputs": "3.464",
+        "LUT": "73%",
+        "LUTRAM": "21%",
+        "Flop": "52%",
+        "MUXF": "1%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "39%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/host_split/inst(17%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[1].gen_pair[1].u_lane/u_dot(10%),scalellm_vcu118_f05_bd_i/d1_smc/inst(10%)",
+        "line": 33,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/host_split/inst",
+            "reported_percent": 17
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[1].gen_pair[1].u_lane/u_dot",
+            "reported_percent": 10
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/d1_smc/inst",
+            "reported_percent": 10
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Global",
+        "Level": 5,
+        "Window": "(CLEM_X33Y443,CLEL_R_X47Y474)",
+        "Combined LUTs": "7%",
+        "Avg LUT Inputs": "3.328",
+        "LUT": "73%",
+        "LUTRAM": "11%",
+        "Flop": "52%",
+        "MUXF": "1%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "54%",
+        "CARRY": "44%",
+        "SRL": "8%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(9%),scalellm_vcu118_f05_bd_i/host_split/inst(8%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot(6%)",
+        "line": 34,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 9
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/host_split/inst",
+            "reported_percent": 8
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot",
+            "reported_percent": 6
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEL_R_X15Y412,CLEL_R_X45Y475)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "3.305",
+        "LUT": "77%",
+        "LUTRAM": "6%",
+        "Flop": "53%",
+        "MUXF": "4%",
+        "RAMB": "100%",
+        "URAM": "87%",
+        "DSP": "90%",
+        "CARRY": "45%",
+        "SRL": "10%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(9%)",
+        "line": 35,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Global",
+        "Level": 3,
+        "Window": "(CLEL_R_X52Y445,CLEM_X56Y452)",
+        "Combined LUTs": "10%",
+        "Avg LUT Inputs": "3.643",
+        "LUT": "94%",
+        "LUTRAM": "6%",
+        "Flop": "56%",
+        "MUXF": "0%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "56%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[1].gen_pair[5].u_lane/u_dot(24%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_w4_frontend(14%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_accum(11%)",
+        "line": 36,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[1].gen_pair[5].u_lane/u_dot",
+            "reported_percent": 24
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_w4_frontend",
+            "reported_percent": 14
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_accum",
+            "reported_percent": 11
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Global",
+        "Level": 4,
+        "Window": "(CLEL_R_X45Y445,CLEL_R_X52Y460)",
+        "Combined LUTs": "12%",
+        "Avg LUT Inputs": "3.803",
+        "LUT": "77%",
+        "LUTRAM": "18%",
+        "Flop": "59%",
+        "MUXF": "1%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "43%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[1].gen_pair[1].u_lane/u_dot(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot(10%),scalellm_vcu118_f05_bd_i/d1_smc/inst(10%)",
+        "line": 37,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[1].gen_pair[1].u_lane/u_dot",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot",
+            "reported_percent": 10
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/d1_smc/inst",
+            "reported_percent": 10
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Global",
+        "Level": 5,
+        "Window": "(CLEM_X28Y422,CLEL_R_X41Y453)",
+        "Combined LUTs": "3%",
+        "Avg LUT Inputs": "3.093",
+        "LUT": "72%",
+        "LUTRAM": "6%",
+        "Flop": "55%",
+        "MUXF": "5%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "86%",
+        "CARRY": "42%",
+        "SRL": "19%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(23%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(16%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot(14%)",
+        "line": 38,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 23
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 16
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot",
+            "reported_percent": 14
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEL_R_X13Y415,CLEL_R_X43Y478)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "3.323",
+        "LUT": "77%",
+        "LUTRAM": "5%",
+        "Flop": "54%",
+        "MUXF": "4%",
+        "RAMB": "100%",
+        "URAM": "87%",
+        "DSP": "91%",
+        "CARRY": "45%",
+        "SRL": "10%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(10%)",
+        "line": 39,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 10
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Long",
+        "Level": 3,
+        "Window": "(CLEL_R_X17Y457,CLEM_X21Y464)",
+        "Combined LUTs": "4%",
+        "Avg LUT Inputs": "3.419",
+        "LUT": "94%",
+        "LUTRAM": "0%",
+        "Flop": "53%",
+        "MUXF": "4%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "50%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/u_hadamard(33%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(19%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor(9%)",
+        "line": 40,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/u_hadamard",
+            "reported_percent": 33
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 19
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Long",
+        "Level": 4,
+        "Window": "(CLEL_R_X12Y453,CLEL_R_X19Y468)",
+        "Combined LUTs": "2%",
+        "Avg LUT Inputs": "3.240",
+        "LUT": "85%",
+        "LUTRAM": "0%",
+        "Flop": "60%",
+        "MUXF": "5%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "57%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/u_hadamard(31%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[3].u_lane/u_dot(19%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(13%)",
+        "line": 41,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/u_hadamard",
+            "reported_percent": 31
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[3].u_lane/u_dot",
+            "reported_percent": 19
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 13
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Long",
+        "Level": 5,
+        "Window": "(CLEM_X11Y446,URAM_URAM_DELAY_FT_X25Y465)",
+        "Combined LUTs": "3%",
+        "Avg LUT Inputs": "3.103",
+        "LUT": "81%",
+        "LUTRAM": "0%",
+        "Flop": "54%",
+        "MUXF": "5%",
+        "RAMB": "100%",
+        "URAM": "50%",
+        "DSP": "100%",
+        "CARRY": "54%",
+        "SRL": "5%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/u_hadamard(20%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[3].u_lane/u_dot(12%)",
+        "line": 42,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/u_hadamard",
+            "reported_percent": 20
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[3].u_lane/u_dot",
+            "reported_percent": 12
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Long",
+        "Level": 6,
+        "Window": "(CLEM_X11Y422,CLEL_R_X40Y485)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "3.246",
+        "LUT": "77%",
+        "LUTRAM": "4%",
+        "Flop": "55%",
+        "MUXF": "4%",
+        "RAMB": "100%",
+        "URAM": "75%",
+        "DSP": "90%",
+        "CARRY": "48%",
+        "SRL": "9%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(11%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(9%)",
+        "line": 43,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 11
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Long",
+        "Level": 3,
+        "Window": "(CLEL_R_X32Y439,HPIO_L_X35Y420)",
+        "Combined LUTs": "3%",
+        "Avg LUT Inputs": "3.177",
+        "LUT": "71%",
+        "LUTRAM": "0%",
+        "Flop": "62%",
+        "MUXF": "10%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "50%",
+        "CARRY": "33%",
+        "SRL": "41%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(32%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(25%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot(19%)",
+        "line": 44,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 32
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 25
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot",
+            "reported_percent": 19
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Long",
+        "Level": 4,
+        "Window": "(CLEL_R_X24Y440,BRAM_X32Y455)",
+        "Combined LUTs": "1%",
+        "Avg LUT Inputs": "3.208",
+        "LUT": "77%",
+        "LUTRAM": "6%",
+        "Flop": "57%",
+        "MUXF": "3%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "87%",
+        "CARRY": "43%",
+        "SRL": "19%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(32%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot(16%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(16%)",
+        "line": 45,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 32
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot",
+            "reported_percent": 16
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 16
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Long",
+        "Level": 5,
+        "Window": "(CLEM_X28Y435,CLEL_R_X41Y466)",
+        "Combined LUTs": "2%",
+        "Avg LUT Inputs": "3.192",
+        "LUT": "74%",
+        "LUTRAM": "5%",
+        "Flop": "54%",
+        "MUXF": "3%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "71%",
+        "CARRY": "40%",
+        "SRL": "25%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(27%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(9%)",
+        "line": 46,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 27
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Long",
+        "Level": 6,
+        "Window": "(CLEL_R_X18Y417,CLEL_R_X48Y480)",
+        "Combined LUTs": "7%",
+        "Avg LUT Inputs": "3.248",
+        "LUT": "75%",
+        "LUTRAM": "8%",
+        "Flop": "54%",
+        "MUXF": "3%",
+        "RAMB": "100%",
+        "URAM": "90%",
+        "DSP": "85%",
+        "CARRY": "45%",
+        "SRL": "10%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(10%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(7%)",
+        "line": 47,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 10
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 7
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Long",
+        "Level": 3,
+        "Window": "(CLEL_R_X45Y471,CLEM_X49Y478)",
+        "Combined LUTs": "18%",
+        "Avg LUT Inputs": "3.906",
+        "LUT": "83%",
+        "LUTRAM": "25%",
+        "Flop": "56%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "39%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot(31%),scalellm_vcu118_f05_bd_i/host_split/inst(27%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack(8%)",
+        "line": 48,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot",
+            "reported_percent": 31
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/host_split/inst",
+            "reported_percent": 27
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_weight_repack",
+            "reported_percent": 8
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Long",
+        "Level": 4,
+        "Window": "(CLEL_R_X38Y466,CLEM_X46Y481)",
+        "Combined LUTs": "13%",
+        "Avg LUT Inputs": "3.347",
+        "LUT": "74%",
+        "LUTRAM": "23%",
+        "Flop": "58%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "100%",
+        "DSP": "100%",
+        "CARRY": "45%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/host_split/inst(23%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot(14%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[4].u_lane/u_dot(10%)",
+        "line": 49,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/host_split/inst",
+            "reported_percent": 23
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot",
+            "reported_percent": 14
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[4].u_lane/u_dot",
+            "reported_percent": 10
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Long",
+        "Level": 5,
+        "Window": "(CLEL_R_X31Y450,CLEM_X46Y481)",
+        "Combined LUTs": "8%",
+        "Avg LUT Inputs": "3.458",
+        "LUT": "75%",
+        "LUTRAM": "16%",
+        "Flop": "54%",
+        "MUXF": "1%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "57%",
+        "CARRY": "43%",
+        "SRL": "5%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/host_split/inst(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot(7%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(7%)",
+        "line": 50,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/host_split/inst",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot",
+            "reported_percent": 7
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 7
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Long",
+        "Level": 6,
+        "Window": "(CLEL_R_X18Y426,CLEL_R_X48Y489)",
+        "Combined LUTs": "7%",
+        "Avg LUT Inputs": "3.224",
+        "LUT": "76%",
+        "LUTRAM": "8%",
+        "Flop": "54%",
+        "MUXF": "2%",
+        "RAMB": "100%",
+        "URAM": "87%",
+        "DSP": "85%",
+        "CARRY": "45%",
+        "SRL": "10%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(9%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(7%)",
+        "line": 51,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 9
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 7
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Long",
+        "Level": 3,
+        "Window": "(CLEL_R_X44Y357,CLEM_X48Y364)",
+        "Combined LUTs": "53%",
+        "Avg LUT Inputs": "5.330",
+        "LUT": "95%",
+        "LUTRAM": "0%",
+        "Flop": "66%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "23%",
+        "SRL": "1%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute(19%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler(16%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[2].gen_pair[0].u_lane/u_dot(15%)",
+        "line": 52,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+            "reported_percent": 19
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler",
+            "reported_percent": 16
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[2].gen_pair[0].u_lane/u_dot",
+            "reported_percent": 15
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Long",
+        "Level": 4,
+        "Window": "(CLEL_R_X31Y418,BRAM_X38Y430)",
+        "Combined LUTs": "7%",
+        "Avg LUT Inputs": "3.203",
+        "LUT": "67%",
+        "LUTRAM": "14%",
+        "Flop": "65%",
+        "MUXF": "11%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "83%",
+        "CARRY": "28%",
+        "SRL": "7%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(29%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(11%),scalellm_vcu118_f05_bd_i/d1_smc/inst(11%)",
+        "line": 53,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 29
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 11
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/d1_smc/inst",
+            "reported_percent": 11
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Long",
+        "Level": 5,
+        "Window": "(CLEL_R_X31Y447,CLEM_X46Y478)",
+        "Combined LUTs": "7%",
+        "Avg LUT Inputs": "3.450",
+        "LUT": "75%",
+        "LUTRAM": "13%",
+        "Flop": "53%",
+        "MUXF": "1%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "58%",
+        "CARRY": "43%",
+        "SRL": "6%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/host_split/inst(10%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(10%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot(7%)",
+        "line": 54,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/host_split/inst",
+            "reported_percent": 10
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 10
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot",
+            "reported_percent": 7
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Long",
+        "Level": 6,
+        "Window": "(CLEM_X14Y417,CLEM_X44Y480)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "3.315",
+        "LUT": "77%",
+        "LUTRAM": "6%",
+        "Flop": "54%",
+        "MUXF": "4%",
+        "RAMB": "100%",
+        "URAM": "90%",
+        "DSP": "89%",
+        "CARRY": "45%",
+        "SRL": "10%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(9%)",
+        "line": 55,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Short",
+        "Level": 3,
+        "Window": "(CLEL_R_X46Y378,CLEM_X50Y385)",
+        "Combined LUTs": "24%",
+        "Avg LUT Inputs": "4.938",
+        "LUT": "86%",
+        "LUTRAM": "26%",
+        "Flop": "49%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "23%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[0].u_lane(24%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute(18%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0(12%)",
+        "line": 56,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[0].u_lane",
+            "reported_percent": 24
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+            "reported_percent": 18
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0",
+            "reported_percent": 12
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Short",
+        "Level": 4,
+        "Window": "(CLEL_R_X45Y374,CLEL_R_X52Y389)",
+        "Combined LUTs": "26%",
+        "Avg LUT Inputs": "4.753",
+        "LUT": "83%",
+        "LUTRAM": "14%",
+        "Flop": "59%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "22%",
+        "SRL": "2%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute(15%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[0].u_lane(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler(9%)",
+        "line": 57,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+            "reported_percent": 15
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[0].u_lane",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Short",
+        "Level": 5,
+        "Window": "(CLEL_R_X45Y369,CLEM_X60Y400)",
+        "Combined LUTs": "22%",
+        "Avg LUT Inputs": "4.413",
+        "LUT": "83%",
+        "LUTRAM": "10%",
+        "Flop": "59%",
+        "MUXF": "0%",
+        "RAMB": "100%",
+        "URAM": "NA",
+        "DSP": "88%",
+        "CARRY": "38%",
+        "SRL": "1%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0(9%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler(8%)",
+        "line": 58,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0",
+            "reported_percent": 9
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler",
+            "reported_percent": 8
+          }
+        ]
+      },
+      {
+        "Direction": "North",
+        "Type": "Short",
+        "Level": 6,
+        "Window": "(CLEL_R_X12Y403,CLEL_R_X41Y466)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "3.465",
+        "LUT": "79%",
+        "LUTRAM": "4%",
+        "Flop": "54%",
+        "MUXF": "4%",
+        "RAMB": "100%",
+        "URAM": "80%",
+        "DSP": "92%",
+        "CARRY": "46%",
+        "SRL": "9%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(11%)",
+        "line": 59,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 11
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Short",
+        "Level": 3,
+        "Window": "(CLEL_R_X47Y437,CLEL_R_X50Y444)",
+        "Combined LUTs": "8%",
+        "Avg LUT Inputs": "3.022",
+        "LUT": "66%",
+        "LUTRAM": "56%",
+        "Flop": "67%",
+        "MUXF": "2%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "35%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/d1_smc/inst(24%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot(21%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(21%)",
+        "line": 60,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/d1_smc/inst",
+            "reported_percent": 24
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot",
+            "reported_percent": 21
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+            "reported_percent": 21
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Short",
+        "Level": 4,
+        "Window": "(CLEL_R_X45Y429,CLEL_R_X52Y444)",
+        "Combined LUTs": "8%",
+        "Avg LUT Inputs": "3.278",
+        "LUT": "68%",
+        "LUTRAM": "43%",
+        "Flop": "70%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "32%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/d1_smc/inst(27%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(24%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot(16%)",
+        "line": 61,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/d1_smc/inst",
+            "reported_percent": 27
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+            "reported_percent": 24
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot",
+            "reported_percent": 16
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Short",
+        "Level": 5,
+        "Window": "(CLEL_R_X29Y421,CLEL_R_X43Y452)",
+        "Combined LUTs": "4%",
+        "Avg LUT Inputs": "3.035",
+        "LUT": "70%",
+        "LUTRAM": "9%",
+        "Flop": "55%",
+        "MUXF": "5%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "83%",
+        "CARRY": "40%",
+        "SRL": "22%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(24%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(15%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot(13%)",
+        "line": 62,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 24
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 15
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot",
+            "reported_percent": 13
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Short",
+        "Level": 6,
+        "Window": "(CLEL_R_X13Y411,CLEL_R_X43Y474)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "3.361",
+        "LUT": "78%",
+        "LUTRAM": "5%",
+        "Flop": "54%",
+        "MUXF": "4%",
+        "RAMB": "100%",
+        "URAM": "87%",
+        "DSP": "91%",
+        "CARRY": "45%",
+        "SRL": "10%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(10%)",
+        "line": 63,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 10
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Short",
+        "Level": 3,
+        "Window": "(CLEL_R_X47Y438,CLEL_R_X50Y445)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "3.127",
+        "LUT": "66%",
+        "LUTRAM": "55%",
+        "Flop": "65%",
+        "MUXF": "3%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "37%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/d1_smc/inst(25%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot(22%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(15%)",
+        "line": 64,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/d1_smc/inst",
+            "reported_percent": 25
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot",
+            "reported_percent": 22
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+            "reported_percent": 15
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Short",
+        "Level": 4,
+        "Window": "(CLEL_R_X44Y429,DSP_X51Y440)",
+        "Combined LUTs": "4%",
+        "Avg LUT Inputs": "3.232",
+        "LUT": "70%",
+        "LUTRAM": "32%",
+        "Flop": "69%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "37%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(30%),scalellm_vcu118_f05_bd_i/d1_smc/inst(19%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot(15%)",
+        "line": 65,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+            "reported_percent": 30
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/d1_smc/inst",
+            "reported_percent": 19
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot",
+            "reported_percent": 15
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Short",
+        "Level": 5,
+        "Window": "(CLEL_R_X37Y442,CLEL_R_X52Y473)",
+        "Combined LUTs": "11%",
+        "Avg LUT Inputs": "3.553",
+        "LUT": "76%",
+        "LUTRAM": "16%",
+        "Flop": "56%",
+        "MUXF": "1%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "100%",
+        "CARRY": "43%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/host_split/inst(9%),scalellm_vcu118_f05_bd_i/d1_smc/inst(9%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[1].gen_pair[1].u_lane/u_dot(7%)",
+        "line": 66,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/host_split/inst",
+            "reported_percent": 9
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/d1_smc/inst",
+            "reported_percent": 9
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[1].gen_pair[1].u_lane/u_dot",
+            "reported_percent": 7
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Short",
+        "Level": 6,
+        "Window": "(CLEM_X11Y390,CLEL_R_X40Y453)",
+        "Combined LUTs": "7%",
+        "Avg LUT Inputs": "3.632",
+        "LUT": "81%",
+        "LUTRAM": "3%",
+        "Flop": "54%",
+        "MUXF": "4%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "95%",
+        "CARRY": "46%",
+        "SRL": "4%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(16%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(10%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot(6%)",
+        "line": 67,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 16
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 10
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[1].u_lane/u_dot",
+            "reported_percent": 6
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Short",
+        "Level": 3,
+        "Window": "(CLEL_R_X47Y375,CLEL_R_X50Y382)",
+        "Combined LUTs": "26%",
+        "Avg LUT Inputs": "5.223",
+        "LUT": "90%",
+        "LUTRAM": "13%",
+        "Flop": "65%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "NA",
+        "CARRY": "14%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute(15%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[0].u_lane(13%)",
+        "line": 68,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+            "reported_percent": 15
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_input_frontend/u_cache0",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[0].u_lane",
+            "reported_percent": 13
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Short",
+        "Level": 4,
+        "Window": "(CLEL_R_X45Y421,CLEL_R_X52Y436)",
+        "Combined LUTs": "9%",
+        "Avg LUT Inputs": "2.958",
+        "LUT": "68%",
+        "LUTRAM": "35%",
+        "Flop": "67%",
+        "MUXF": "0%",
+        "RAMB": "NA",
+        "URAM": "NA",
+        "DSP": "100%",
+        "CARRY": "42%",
+        "SRL": "0%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/d1_smc/inst(27%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(25%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot(19%)",
+        "line": 69,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/d1_smc/inst",
+            "reported_percent": 27
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+            "reported_percent": 25
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[3].gen_pair[2].u_lane/u_dot",
+            "reported_percent": 19
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Short",
+        "Level": 5,
+        "Window": "(CLEL_R_X35Y416,CLEM_X50Y447)",
+        "Combined LUTs": "4%",
+        "Avg LUT Inputs": "2.932",
+        "LUT": "70%",
+        "LUTRAM": "19%",
+        "Flop": "54%",
+        "MUXF": "1%",
+        "RAMB": "100%",
+        "URAM": "100%",
+        "DSP": "100%",
+        "CARRY": "41%",
+        "SRL": "12%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(20%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(15%),scalellm_vcu118_f05_bd_i/d1_smc/inst(12%)",
+        "line": 70,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight",
+            "reported_percent": 20
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 15
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/d1_smc/inst",
+            "reported_percent": 12
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Short",
+        "Level": 6,
+        "Window": "(CLEL_R_X13Y411,CLEL_R_X43Y474)",
+        "Combined LUTs": "6%",
+        "Avg LUT Inputs": "3.361",
+        "LUT": "78%",
+        "LUTRAM": "5%",
+        "Flop": "54%",
+        "MUXF": "4%",
+        "RAMB": "100%",
+        "URAM": "87%",
+        "DSP": "91%",
+        "CARRY": "45%",
+        "SRL": "10%",
+        "Cell Names": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7(10%)",
+        "line": 71,
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 10
+          }
+        ]
+      }
+    ],
+    "rows_count": 48,
+    "levels": {
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12
+    },
+    "types": {
+      "Global": 16,
+      "Long": 16,
+      "Short": 16
+    },
+    "highest_reported_level": 6,
+    "exact_C01_listed_rows": [
+      {
+        "line": 27,
+        "Direction": "North",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEL_R_X12Y416,CLEL_R_X41Y479)",
+        "C01_reported_percent": 12
+      },
+      {
+        "line": 28,
+        "Direction": "South",
+        "Type": "Global",
+        "Level": 3,
+        "Window": "(CLEL_R_X32Y430,HPIO_L_X35Y420)",
+        "C01_reported_percent": 21
+      },
+      {
+        "line": 29,
+        "Direction": "South",
+        "Type": "Global",
+        "Level": 4,
+        "Window": "(CLEL_R_X26Y431,DSP_X33Y445)",
+        "C01_reported_percent": 22
+      },
+      {
+        "line": 30,
+        "Direction": "South",
+        "Type": "Global",
+        "Level": 5,
+        "Window": "(CLEM_X28Y430,CLEL_R_X41Y461)",
+        "C01_reported_percent": 12
+      },
+      {
+        "line": 31,
+        "Direction": "South",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEM_X14Y417,CLEM_X44Y480)",
+        "C01_reported_percent": 12
+      },
+      {
+        "line": 35,
+        "Direction": "East",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEL_R_X15Y412,CLEL_R_X45Y475)",
+        "C01_reported_percent": 12
+      },
+      {
+        "line": 38,
+        "Direction": "West",
+        "Type": "Global",
+        "Level": 5,
+        "Window": "(CLEM_X28Y422,CLEL_R_X41Y453)",
+        "C01_reported_percent": 16
+      },
+      {
+        "line": 39,
+        "Direction": "West",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEL_R_X13Y415,CLEL_R_X43Y478)",
+        "C01_reported_percent": 12
+      },
+      {
+        "line": 40,
+        "Direction": "North",
+        "Type": "Long",
+        "Level": 3,
+        "Window": "(CLEL_R_X17Y457,CLEM_X21Y464)",
+        "C01_reported_percent": 19
+      },
+      {
+        "line": 41,
+        "Direction": "North",
+        "Type": "Long",
+        "Level": 4,
+        "Window": "(CLEL_R_X12Y453,CLEL_R_X19Y468)",
+        "C01_reported_percent": 13
+      },
+      {
+        "line": 42,
+        "Direction": "North",
+        "Type": "Long",
+        "Level": 5,
+        "Window": "(CLEM_X11Y446,URAM_URAM_DELAY_FT_X25Y465)",
+        "C01_reported_percent": 13
+      },
+      {
+        "line": 43,
+        "Direction": "North",
+        "Type": "Long",
+        "Level": 6,
+        "Window": "(CLEM_X11Y422,CLEL_R_X40Y485)",
+        "C01_reported_percent": 12
+      },
+      {
+        "line": 44,
+        "Direction": "South",
+        "Type": "Long",
+        "Level": 3,
+        "Window": "(CLEL_R_X32Y439,HPIO_L_X35Y420)",
+        "C01_reported_percent": 25
+      },
+      {
+        "line": 45,
+        "Direction": "South",
+        "Type": "Long",
+        "Level": 4,
+        "Window": "(CLEL_R_X24Y440,BRAM_X32Y455)",
+        "C01_reported_percent": 16
+      },
+      {
+        "line": 46,
+        "Direction": "South",
+        "Type": "Long",
+        "Level": 5,
+        "Window": "(CLEM_X28Y435,CLEL_R_X41Y466)",
+        "C01_reported_percent": 9
+      },
+      {
+        "line": 47,
+        "Direction": "South",
+        "Type": "Long",
+        "Level": 6,
+        "Window": "(CLEL_R_X18Y417,CLEL_R_X48Y480)",
+        "C01_reported_percent": 10
+      },
+      {
+        "line": 51,
+        "Direction": "East",
+        "Type": "Long",
+        "Level": 6,
+        "Window": "(CLEL_R_X18Y426,CLEL_R_X48Y489)",
+        "C01_reported_percent": 9
+      },
+      {
+        "line": 53,
+        "Direction": "West",
+        "Type": "Long",
+        "Level": 4,
+        "Window": "(CLEL_R_X31Y418,BRAM_X38Y430)",
+        "C01_reported_percent": 29
+      },
+      {
+        "line": 55,
+        "Direction": "West",
+        "Type": "Long",
+        "Level": 6,
+        "Window": "(CLEM_X14Y417,CLEM_X44Y480)",
+        "C01_reported_percent": 12
+      },
+      {
+        "line": 59,
+        "Direction": "North",
+        "Type": "Short",
+        "Level": 6,
+        "Window": "(CLEL_R_X12Y403,CLEL_R_X41Y466)",
+        "C01_reported_percent": 12
+      },
+      {
+        "line": 62,
+        "Direction": "South",
+        "Type": "Short",
+        "Level": 5,
+        "Window": "(CLEL_R_X29Y421,CLEL_R_X43Y452)",
+        "C01_reported_percent": 15
+      },
+      {
+        "line": 63,
+        "Direction": "South",
+        "Type": "Short",
+        "Level": 6,
+        "Window": "(CLEL_R_X13Y411,CLEL_R_X43Y474)",
+        "C01_reported_percent": 12
+      },
+      {
+        "line": 67,
+        "Direction": "East",
+        "Type": "Short",
+        "Level": 6,
+        "Window": "(CLEM_X11Y390,CLEL_R_X40Y453)",
+        "C01_reported_percent": 10
+      },
+      {
+        "line": 71,
+        "Direction": "West",
+        "Type": "Short",
+        "Level": 6,
+        "Window": "(CLEL_R_X13Y411,CLEL_R_X43Y474)",
+        "C01_reported_percent": 12
+      }
+    ],
+    "global_level6_windows": [
+      {
+        "Direction": "North",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEL_R_X12Y416,CLEL_R_X41Y479)",
+        "LUT": "77%",
+        "Flop": "54%",
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "South",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEM_X14Y417,CLEM_X44Y480)",
+        "LUT": "77%",
+        "Flop": "54%",
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "East",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEL_R_X15Y412,CLEL_R_X45Y475)",
+        "LUT": "77%",
+        "Flop": "53%",
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 9
+          }
+        ]
+      },
+      {
+        "Direction": "West",
+        "Type": "Global",
+        "Level": 6,
+        "Window": "(CLEL_R_X13Y415,CLEL_R_X43Y478)",
+        "LUT": "77%",
+        "Flop": "54%",
+        "listed_contributors": [
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack",
+            "reported_percent": 13
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+            "reported_percent": 12
+          },
+          {
+            "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region1_cols4_7",
+            "reported_percent": 10
+          }
+        ]
+      }
+    ]
+  },
+  "same_direction_type_level_same_window_count": 0,
+  "native_completed_report_lines": [
+    {
+      "line": 85396,
+      "text": "E005_OPTIMIZED_STRUCTURE_COMPLETED place 48/16/16 boundary CE graphs"
+    },
+    {
+      "line": 85398,
+      "text": "report_design_analysis: Time (s): cpu = 00:02:56 ; elapsed = 00:02:57 . Memory (MB): peak = 34589.367 ; gain = 0.000 ; free physical = 459370 ; free virtual = 481642"
+    }
+  ],
+  "observations": [
+    "Both reports contain 48 native rows: four directions, Global/Long/Short, levels3/4/5/6. Highest reported level remains6.",
+    "All48 matched direction/type/level windows differ physically from the old report; direct row percentage subtraction is not a fixed-region comparison.",
+    "The exact C01 hierarchy is named among the three listed contributors in0 current rows versus24 previous rows. This establishes only changed membership in the reported contributor lists; it does not prove zero candidate congestion, all-P landing, full absence from hot regions or causal relief.",
+    "Native windows and exact contributor strings are preserved. No SLR column is present; coordinate Y alone is not independently mapped to SLR in this review."
+  ],
+  "limits": [
+    "This is selected thresholded/adaptive placer window reporting, not an exhaustive fixed-bin demand/capacity map. Levels below3, unlisted windows and contributors are not a zero measurement.",
+    "Fixed original hotspot window congestion remains UNAVAILABLE in this evidence; no separate query is launched.",
+    "Listed LUT/Flop/BRAM/DSP/URAM percentages are native window resource fields, not SLL bandwidth, net demand, route completion probability or C01 resource fraction. NA remains NA.",
+    "Only three hierarchy contributors are listed per row; their percentages can involve nested scopes. No whole-device or exclusive attribution is inferred by summation.",
+    "Actual candidate reconciliation/SLR2 compliance and complete POST are separate. Full route status and routed timing remain required.",
+    "No EDA/DCP/process control or production/consumed-package/engineering-summary edits."
+  ],
+  "audit_program": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT004_actual_stage_review_20261017/audit_place_congestion_scope.py",
+    "bytes": 9578,
+    "sha256": "116ed2613b116b77bd9c0e2753142f17cd932758b469cbf042c55690c3d128b3"
+  }
+}

@@ -1,25 +1,32 @@
-# E008：AT003运行中，实际place阶段
+# E008：AT004已自然失败结束，无活动EDA
 
-execution_state: running
-verdict: unassessed
+execution_state: failed  
+verdict: inconclusive
 
-截至北京时间16:35，AT003已通过完整restored pre-place实际入口门并进入place_design -directive SSI_SpreadSLLs，当前Phase1.3模型构建。[阶段事实](../experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/pre_place_closed_stage_facts.json)。39归档源、144输入、单EDA/CPU0–7/nice5保持；RSS约21.79GiB、进程正常。
+原生route 19:09:25Z失败：702396重叠节点、547548拥塞失败信号。五项失败诊断与失败locality已完成；21:18:30.695127Z监督自然结束，native1/supervisor1/stop_reason=null。完整place/physopt成功不代替route成功；失败图全局setup/hold/PW均FAIL，正式reset/CDC/IO OPEN。
 
-成员/资源/原策略保留/Pblock/真实XDC导出/完整端口index已独立接受；cut、四组有界timing和全restored pre-place独立复核进行中，无新等待门。place尚未完成，后续physopt/route与全部P实际落SLR2及正式物理验收待实测。未布局有界hold −0.074ns不当作路由结果，formal reset/CDC/IO仍OPEN。
+工程14项终态收尾全true，144输入/冻结来源保持、PID/start消失、EDA锁释放；两个观察器均exit0、无活动进程。失败DCP和全部原始证据保持。A007独立终态审核已完成并接受工程收尾，工程证据整理及发布已完成；不重跑/不原样重试/不新AT。
 
-AT001/AT002自然失败证据及消费源保留；AT003仅同C01一行API兼容修复续跑，原合同与验收不变。正常无墙钟/无输出强停，保持资源保护，无bitstream/GPU/板卡/PPL/ACC。
+[当前结果与集中证据](../experiment_results/summary.md) · [终态核验](../experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/terminal_summary.json)。此前running文字及逐阶段过程属于历史，见publication_history/raw。
+
+此前running摘要因会话模型容量异常更新中断；本版已按原始终态回执校正。
+
+[独立审核与工程最终交付](../experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/terminal_engineering_delivery_facts.json)。
 
 
 ---
-Published: 2026-10-17T08:36:22.149411+00:00
-Publication: Pce8a717db5e548aea73f34e07968f344
-Execution state: running
-Research verdict: unassessed
-Applicability: AT003 full restored preplace actually qualified and real place_design SSI_SpreadSLLs running. Independent cut/timing/full global preplace review in progress; place/physopt/route not complete, no physical success or signoff.
+Published: 2026-10-17T22:58:24.632449+00:00
+Publication: P9e290ff193074fdb81e0b9242f3f822d
+Execution state: failed
+Research verdict: inconclusive
+Applicability: AT004 natural illegal-route failure and engineering closure independently reviewed and accepted. Candidate9491 P allSLR2/locality established; complete legal route/setupholdPW/DRC/global routePOST/exact bus-skew coverage and formal safety not established. DCP hashes engineering-attributed; method inconclusive; no EDA/retry/newAT.
 Evidence:
-- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/started.json
-- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/input_bindings.json
-- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/native_start_verified.json
-- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/run.md
-- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/candidate_pre_place_native_port_index_closed_facts.json
-- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT003_C01_physical_xdc_fix_full_implementation/pre_place_closed_stage_facts.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/status.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/terminal_facts.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/terminal_summary.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/observer_terminal_facts.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/place_combined_independent_review_accepted_facts.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/physopt_combined_independent_review_accepted_facts.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/failed_route_terminal_facts.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/failed_route_terminal_summary.json
+- project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/terminal_engineering_delivery_facts.json

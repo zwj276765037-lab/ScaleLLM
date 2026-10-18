@@ -1,0 +1,345 @@
+{
+  "recorded_utc": "2026-10-17T13:28:48.964566+00:00",
+  "reviewer": "A007",
+  "execution": "COMPLETED_CURRENT_PLACE_BOUNDED_TIMING_REPLAY_AND_64_NATIVE_ROWS",
+  "verdict": "ACCEPT_COMPLETE_DIRECTIONAL_QUERY_SETS_AND_BOUNDED_NATIVE_RESULTS; INGRESS_HOLD_HAS_NEGATIVE_SLACK",
+  "applicability": "AT004 actual Fully Placed graph; four max_paths16/nworst1 through-LOAD queries only",
+  "review": "INDEPENDENT_SUBSTEP_ACCEPTED_NO_NEW_GATE",
+  "actual_timing_validation": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_timing_validation_place.json",
+    "bytes": 3566482,
+    "sha256": "9954c7cb87766e1456f963db035caadb74a47704918975819a6fde351771d056"
+  },
+  "projection_revision": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_directed_validation_place/projection_identity_1.json",
+    "bytes": 9211,
+    "sha256": "91315f34c775f047e1e36e1da1ae37a2953a761536e8d98041659d31f1ff9f56"
+  },
+  "projection_inputs": 24,
+  "new_timing_inputs": 7,
+  "unchanged_cut_projection_inputs": 17,
+  "complete_replay_equal_actual": true,
+  "native64_start_end_clocks_slack_datapath_match": true,
+  "cut_review": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT004_actual_stage_review_20261017/place_directed_cut_review.json",
+    "bytes": 22740,
+    "sha256": "d50899bf2ef990f730d458f8a74a61cad585b06393e2798d28a6c0160a465f02"
+  },
+  "prior_parser_qualification": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT004_actual_stage_review_20261017/pre_place_bounded_timing_incremental_review.json",
+    "bytes": 16495,
+    "sha256": "29bb951a65d7c1086ac7edb7b1f4e4dbdbc91f700e0da660d2c37d18302ccb70"
+  },
+  "current_index_epoch": "place 1792241389616545 checkpoint_debug_materialized /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/debug_materialized.dcp",
+  "current_log_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/vivado.log",
+  "cut_completion_line": 169738,
+  "log_scope": "Only actual closed events with line numbers; no whole mutable log hash. Ledger has no per-row epoch; current projection, index/cut lineage, native report dates and completed events bind actual phase.",
+  "query_sets": {
+    "INGRESS": 20534,
+    "EGRESS": 945
+  },
+  "native_timing": [
+    {
+      "direction": "EGRESS",
+      "delay_type": "max",
+      "queried_pins": 945,
+      "returned_paths": 16,
+      "worst_slack_ns": 0.603,
+      "negative_slack_paths": 0,
+      "native_report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_cut_timing_place_EGRESS_max.rpt",
+        "bytes": 862853,
+        "sha256": "b3435b344be31325cd7d8e1a35064d4712a04a86b17196d56d3272bac8ce965b"
+      },
+      "header": {
+        "Tool Version": "Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025",
+        "Date": "Sat Oct 17 21:23:40 2026",
+        "Host": "user running 64-bit Ubuntu 24.04.4 LTS",
+        "Design": "scalellm_vcu118_f05_bd_wrapper",
+        "Device": "xcvu9p-flga2104",
+        "Speed File": "-2L  PRODUCTION 1.28 03-30-2022",
+        "Design State": "Fully Placed",
+        "Temperature Grade": "E"
+      },
+      "actual_log_events": {
+        "BEGIN": {
+          "line_number": 169747,
+          "text": "DIRECTED_API operation BOUNDED_TIMING event BEGIN point place direction EGRESS delay_type max epoch_ms 1792243419461",
+          "fields": {
+            "operation": "BOUNDED_TIMING",
+            "event": "BEGIN",
+            "point": "place",
+            "direction": "EGRESS",
+            "delay_type": "max",
+            "epoch_ms": "1792243419461"
+          }
+        },
+        "END": {
+          "line_number": 169748,
+          "text": "DIRECTED_API operation BOUNDED_TIMING event END point place direction EGRESS delay_type max returned_paths 16 epoch_ms 1792243420487",
+          "fields": {
+            "operation": "BOUNDED_TIMING",
+            "event": "END",
+            "point": "place",
+            "direction": "EGRESS",
+            "delay_type": "max",
+            "returned_paths": "16",
+            "epoch_ms": "1792243420487"
+          }
+        }
+      },
+      "all16_raw_identity_clocks_slack_datapath_matches": true
+    },
+    {
+      "direction": "EGRESS",
+      "delay_type": "min",
+      "queried_pins": 945,
+      "returned_paths": 16,
+      "worst_slack_ns": 0.057,
+      "negative_slack_paths": 0,
+      "native_report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_cut_timing_place_EGRESS_min.rpt",
+        "bytes": 751084,
+        "sha256": "75a755fc430a9c95da005f84332fc5f72f68dd0eecf5d0d09de6ac195fac80a2"
+      },
+      "header": {
+        "Tool Version": "Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025",
+        "Date": "Sat Oct 17 21:23:42 2026",
+        "Host": "user running 64-bit Ubuntu 24.04.4 LTS",
+        "Design": "scalellm_vcu118_f05_bd_wrapper",
+        "Device": "xcvu9p-flga2104",
+        "Speed File": "-2L  PRODUCTION 1.28 03-30-2022",
+        "Design State": "Fully Placed",
+        "Temperature Grade": "E"
+      },
+      "actual_log_events": {
+        "BEGIN": {
+          "line_number": 169751,
+          "text": "DIRECTED_API operation BOUNDED_TIMING event BEGIN point place direction EGRESS delay_type min epoch_ms 1792243421291",
+          "fields": {
+            "operation": "BOUNDED_TIMING",
+            "event": "BEGIN",
+            "point": "place",
+            "direction": "EGRESS",
+            "delay_type": "min",
+            "epoch_ms": "1792243421291"
+          }
+        },
+        "END": {
+          "line_number": 169752,
+          "text": "DIRECTED_API operation BOUNDED_TIMING event END point place direction EGRESS delay_type min returned_paths 16 epoch_ms 1792243422099",
+          "fields": {
+            "operation": "BOUNDED_TIMING",
+            "event": "END",
+            "point": "place",
+            "direction": "EGRESS",
+            "delay_type": "min",
+            "returned_paths": "16",
+            "epoch_ms": "1792243422099"
+          }
+        }
+      },
+      "all16_raw_identity_clocks_slack_datapath_matches": true
+    },
+    {
+      "direction": "INGRESS",
+      "delay_type": "max",
+      "queried_pins": 20534,
+      "returned_paths": 16,
+      "worst_slack_ns": 0.603,
+      "negative_slack_paths": 0,
+      "native_report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_cut_timing_place_INGRESS_max.rpt",
+        "bytes": 9813599,
+        "sha256": "32ad85c13bae2209155fb273d0443efb917699299efd740d13e88c102a3b6112"
+      },
+      "header": {
+        "Tool Version": "Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025",
+        "Date": "Sat Oct 17 21:23:36 2026",
+        "Host": "user running 64-bit Ubuntu 24.04.4 LTS",
+        "Design": "scalellm_vcu118_f05_bd_wrapper",
+        "Device": "xcvu9p-flga2104",
+        "Speed File": "-2L  PRODUCTION 1.28 03-30-2022",
+        "Design State": "Fully Placed",
+        "Temperature Grade": "E"
+      },
+      "actual_log_events": {
+        "BEGIN": {
+          "line_number": 169739,
+          "text": "DIRECTED_API operation BOUNDED_TIMING event BEGIN point place direction INGRESS delay_type max epoch_ms 1792243414858",
+          "fields": {
+            "operation": "BOUNDED_TIMING",
+            "event": "BEGIN",
+            "point": "place",
+            "direction": "INGRESS",
+            "delay_type": "max",
+            "epoch_ms": "1792243414858"
+          }
+        },
+        "END": {
+          "line_number": 169740,
+          "text": "DIRECTED_API operation BOUNDED_TIMING event END point place direction INGRESS delay_type max returned_paths 16 epoch_ms 1792243416230",
+          "fields": {
+            "operation": "BOUNDED_TIMING",
+            "event": "END",
+            "point": "place",
+            "direction": "INGRESS",
+            "delay_type": "max",
+            "returned_paths": "16",
+            "epoch_ms": "1792243416230"
+          }
+        }
+      },
+      "all16_raw_identity_clocks_slack_datapath_matches": true
+    },
+    {
+      "direction": "INGRESS",
+      "delay_type": "min",
+      "queried_pins": 20534,
+      "returned_paths": 16,
+      "worst_slack_ns": -0.221,
+      "negative_slack_paths": 16,
+      "native_report": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_cut_timing_place_INGRESS_min.rpt",
+        "bytes": 9698514,
+        "sha256": "0028060d2524dc1abf3f59b8c96a2a47d780d0f02b1a276931dec9c9c1bae297"
+      },
+      "header": {
+        "Tool Version": "Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025",
+        "Date": "Sat Oct 17 21:23:38 2026",
+        "Host": "user running 64-bit Ubuntu 24.04.4 LTS",
+        "Design": "scalellm_vcu118_f05_bd_wrapper",
+        "Device": "xcvu9p-flga2104",
+        "Speed File": "-2L  PRODUCTION 1.28 03-30-2022",
+        "Design State": "Fully Placed",
+        "Temperature Grade": "E"
+      },
+      "actual_log_events": {
+        "BEGIN": {
+          "line_number": 169743,
+          "text": "DIRECTED_API operation BOUNDED_TIMING event BEGIN point place direction INGRESS delay_type min epoch_ms 1792243417156",
+          "fields": {
+            "operation": "BOUNDED_TIMING",
+            "event": "BEGIN",
+            "point": "place",
+            "direction": "INGRESS",
+            "delay_type": "min",
+            "epoch_ms": "1792243417156"
+          }
+        },
+        "END": {
+          "line_number": 169744,
+          "text": "DIRECTED_API operation BOUNDED_TIMING event END point place direction INGRESS delay_type min returned_paths 16 epoch_ms 1792243418564",
+          "fields": {
+            "operation": "BOUNDED_TIMING",
+            "event": "END",
+            "point": "place",
+            "direction": "INGRESS",
+            "delay_type": "min",
+            "returned_paths": "16",
+            "epoch_ms": "1792243418564"
+          }
+        }
+      },
+      "all16_raw_identity_clocks_slack_datapath_matches": true
+    }
+  ],
+  "overlapping_start_end_clock_signatures_between_directions": {
+    "max": 16,
+    "min": 0
+  },
+  "identities": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_reconciled_P_place.tsv",
+      "bytes": 1510475,
+      "sha256": "3bd3fd7b17658f37c4b7b8d0e0b6926420c4023eeeeafca512c03401e259c919"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_P_place.tsv",
+      "bytes": 1510475,
+      "sha256": "3bd3fd7b17658f37c4b7b8d0e0b6926420c4023eeeeafca512c03401e259c919"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_cut_timing_place_EGRESS_max.rpt",
+      "bytes": 862853,
+      "sha256": "b3435b344be31325cd7d8e1a35064d4712a04a86b17196d56d3272bac8ce965b"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_cut_timing_place_EGRESS_min.rpt",
+      "bytes": 751084,
+      "sha256": "75a755fc430a9c95da005f84332fc5f72f68dd0eecf5d0d09de6ac195fac80a2"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_cut_timing_place_INGRESS_max.rpt",
+      "bytes": 9813599,
+      "sha256": "32ad85c13bae2209155fb273d0443efb917699299efd740d13e88c102a3b6112"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_cut_timing_place_INGRESS_min.rpt",
+      "bytes": 9698514,
+      "sha256": "0028060d2524dc1abf3f59b8c96a2a47d780d0f02b1a276931dec9c9c1bae297"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_scoped_timing_place.tsv",
+      "bytes": 30393,
+      "sha256": "0720bab9a5815c29678a7f297afb9d518b14c85ce5ffb366f4186fd2f5b7c7a2"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_scoped_timing_place_coverage.txt",
+      "bytes": 278,
+      "sha256": "10c64397afd4658650380680d8c69d0bf13f9ac01d2d0a117f397736321b5277"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_timing_queries_place.tcllist",
+      "bytes": 6830100,
+      "sha256": "aac47f2f2a2a0d1883c60a9427ac61b8b2fab155033f9f4b9fd782c6f577e1b7"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_boundary_timing_scope_place.tsv",
+      "bytes": 7972717,
+      "sha256": "4a3e793d5a4f41eca42cbb1dbde6c02f122280aade8a6546c8898ea9a6cd465f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_timing_validation_place.json",
+      "bytes": 3566482,
+      "sha256": "9954c7cb87766e1456f963db035caadb74a47704918975819a6fde351771d056"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT004_actual_stage_review_20261017/pre_place_bounded_timing_incremental_review.json",
+      "bytes": 16495,
+      "sha256": "29bb951a65d7c1086ac7edb7b1f4e4dbdbc91f700e0da660d2c37d18302ccb70"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/stage_sources/directed_evidence.py",
+      "bytes": 33882,
+      "sha256": "84b6456db6c0934c5aafae083dbaa9fcd71e3f853f585bf03bda5b4bb38c0976"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_directed_validation_place/projection_identity_1.json",
+      "bytes": 9211,
+      "sha256": "91315f34c775f047e1e36e1da1ae37a2953a761536e8d98041659d31f1ff9f56"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT004_actual_stage_review_20261017/place_directed_cut_review.json",
+      "bytes": 22740,
+      "sha256": "d50899bf2ef990f730d458f8a74a61cad585b06393e2798d28a6c0160a465f02"
+    }
+  ],
+  "replay_program": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT004_actual_stage_review_20261017/audit_place_bounded_timing.py",
+    "bytes": 12066,
+    "sha256": "a4a6dece1ae6c8a98c6a43b59b0297c6cdc1a883816005c0e19cfb94e99902de"
+  },
+  "replay_output": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT004_actual_stage_review_20261017/bounded_timing_place_replay/candidate_timing_validation_place.json",
+    "bytes": 3566462,
+    "sha256": "5a8e443f1912df5a43bb87ce2b5c2cf16e1f4d28182ccf834bd2c527ac00f3f8"
+  },
+  "limits": [
+    "64 returned report rows are four capped queries, not an exhaustive unique-path count.",
+    "Through-LOAD sets may return internal or externally driven paths; no assertion every result crosses the candidate boundary.",
+    "Full-cut TNS not measured; LOGIC_DELAY and NET_DELAY remain UNKNOWN_UNSUPPORTED_PROPERTY.",
+    "Bounded setup/hold observations do not replace global hold FAIL or routed timing signoff, and no causal improvement is inferred across stages.",
+    "No DCP content reads/hashes, native queries, process/lock control or engineering writes."
+  ]
+}

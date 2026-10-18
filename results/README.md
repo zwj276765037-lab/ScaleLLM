@@ -1,5 +1,7 @@
 # ScaleLLM Results 目录结构
 
+当前任务：[M003联合可布线改造](../mission/M003_joint_routability_closure/contract.md)，[定义与状态](missions/M003_summary.md)。工程尚未启动；最新实际结果仍是[E008自然布线失败](../project/E008_m002_exact_hotspot_offload_implementation/experiment_results/summary.md)。
+
 **最后更新：** 2026-10-14
 
 ---

@@ -1,0 +1,117 @@
+{
+  "recorded_utc": "2026-10-17T12:43:12.534122+00:00",
+  "reviewer": "A007",
+  "execution": "completed_fresh_current_place_80_boundary_and_control_source_text_review",
+  "verdict": "ACCEPT_CURRENT_PLACE_80_PROTECTED_BOUNDARY_SUBSTEP",
+  "applicability": "AT004 place native POST structure substep only; full POST/locality/route remain separate",
+  "review": "accepted_no_new_gate",
+  "actual_artifacts": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/optimized_boundaries_place.tsv",
+      "bytes": 18886,
+      "sha256": "d414f43b54dbfc41d6c24f0f5bb27f87377093380775917a53da99aaaed02089"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/optimized_control_sources_place.tsv",
+      "bytes": 4130,
+      "sha256": "b24b5a2e560d90ab9dd403f40170a5b6b09d0e63c831fb3df9e33ba458f6f130"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/optimized_structure_place_result.txt",
+      "bytes": 83,
+      "sha256": "38c98864c0a69e6a42fc7cb41606b7f977efc11723e2a6298b55113f838259dd"
+    }
+  ],
+  "native_collector": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/stage_sources/m002_optimized_structure.tcl",
+    "bytes": 4374,
+    "sha256": "28866b163981a9fa5c3051c2e45d13b35a1c3c04155d5a41bb633464312e455e"
+  },
+  "native_closed_marker": {
+    "line": 85396,
+    "text": "E005_OPTIMIZED_STRUCTURE_COMPLETED place 48/16/16 boundary CE graphs"
+  },
+  "observed_log_prefix_bytes": 21000686,
+  "observed_log_prefix_sha256": "2d9a03851f55f758c180a0fecbcb4997704f5a21b73abae8f9b26f8962f7b57d",
+  "log_scope": "Observed prefix and exact closed marker; no immutable whole-live-log claim",
+  "boundary_counts": {
+    "input": 48,
+    "gate": 16,
+    "down": 16
+  },
+  "all80_DONT_TOUCH_1": true,
+  "all80_REF_INIT_and_payload_CE_contracts_equal_previous_accepted_place": true,
+  "exact_widths": {
+    "input": 256,
+    "gate": 384,
+    "down": 512
+  },
+  "all_current_driver_locations_and_BEL_nonempty": true,
+  "all_payload_SLR_and_bounds_resolved": true,
+  "current_payload_pin_counts_by_scope_and_SLR": [
+    {
+      "scope": "down",
+      "SLR": "SLR0",
+      "load_pins": 4094
+    },
+    {
+      "scope": "down",
+      "SLR": "SLR1",
+      "load_pins": 19
+    },
+    {
+      "scope": "down",
+      "SLR": "SLR2",
+      "load_pins": 4079
+    },
+    {
+      "scope": "gate",
+      "SLR": "SLR1",
+      "load_pins": 3091
+    },
+    {
+      "scope": "gate",
+      "SLR": "SLR2",
+      "load_pins": 3053
+    },
+    {
+      "scope": "input",
+      "SLR": "SLR1",
+      "load_pins": 12288
+    }
+  ],
+  "physical_changes_from_old": {
+    "driver_LOC_or_BEL_changed": 80,
+    "load_SLR_counts_or_bounds_changed": 80,
+    "interpretation": "Observed placement differences only, not candidate causality or congestion/timing improvement"
+  },
+  "control_source_rows": 14,
+  "control_source_unique_nets": true,
+  "control_source_terminal_totals_and_driver_location_vectors_consistent": true,
+  "native_result": {
+    "phase": "place",
+    "issues": "",
+    "boundary_contract": "48input_16gate_16down",
+    "physical_signoff": "false"
+  },
+  "observed_post_status": {
+    "place_result.txt": "completed=0\ndiagnostic_eligible=0\nphase=place\nblackboxes=0\nphysical_signoff=false\n",
+    "candidate_phase_place_status.txt": "NOT_PRESENT_AT_OBSERVATION"
+  },
+  "inherited_comparison": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E005_R004_AT003_current_CDC_bound_OPT_place_physopt/optimized_boundaries_place.tsv",
+    "bytes": 18997,
+    "sha256": "8e60102f30cd66ba06ef33ba6391923accaff8376def1e8c29ce754c49a631ab"
+  },
+  "limits": [
+    "Fresh AT004 actual table, not reuse of the inherited pre_place 80-boundary claim.",
+    "These are the 48 input +16 gate +16 down protected boundaries, not the full C01 normalized P/locality population.",
+    "Does not close complete reset/CDC/BRAM/DRC/timing or candidate reconciliation/compliance. Later physopt/route require their own fresh80 evidence.",
+    "No EDA/DCP/process/lock/production operations."
+  ],
+  "audit_program": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/E008_R001_AT004_actual_stage_review_20261017/audit_place_timing_and_fresh80_v3.py",
+    "bytes": 18011,
+    "sha256": "ddd328a0c331cb3f760266a9361292d74e80f7db8be6a469a7de1bf39fad4361"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "recorded_utc": "2026-10-17T22:54:22.353650+00:00",
+  "execution_state": "failed",
+  "verdict": "inconclusive",
+  "native_route_original_failure_utc": "2026-10-17T19:09:25+00:00",
+  "native_route_reported_elapsed_seconds": 13872,
+  "supervisor_ended_utc": "2026-10-17T21:18:30.695127+00:00",
+  "final_native_failure_counts": {
+    "node_overlaps": 702396,
+    "congestion_failed_signals": 547548
+  },
+  "failed_route_status_counts": {
+    "logical_nets": 7145555,
+    "not_needing_routing": 5113822,
+    "internally_routed": 4340295,
+    "no_loads": 773527,
+    "routable_nets": 2031733,
+    "fully_routed_nets": 1484185,
+    "routing_errors": 547548,
+    "resource_conflicts": 547548
+  },
+  "legal_route_complete": false,
+  "failure_graph_global_timing": {
+    "wns": -12.413,
+    "tns": -915419.312,
+    "setup_failing_endpoints": 418798.0,
+    "setup_total_endpoints": 3209762.0,
+    "whs": -0.125,
+    "ths": -41.55,
+    "hold_failing_endpoints": 3264.0,
+    "hold_total_endpoints": 3208318.0,
+    "wpws": -0.664,
+    "tpws": -2.171,
+    "pw_skew_failing_endpoints": 8.0,
+    "pw_skew_total_endpoints": 1095440.0
+  },
+  "failure_graph_global_timing_verdict": "FAIL_SETUP_HOLD_AND_PULSE_WIDTH",
+  "failed_graph_bounded_through_LOAD_timing": {
+    "INGRESS_max": {
+      "paths": 16,
+      "worst_slack_ns": -6.093,
+      "queried_LOAD_pins": 20534
+    },
+    "INGRESS_min": {
+      "paths": 16,
+      "worst_slack_ns": -0.055,
+      "queried_LOAD_pins": 20534
+    },
+    "EGRESS_max": {
+      "paths": 16,
+      "worst_slack_ns": -6.093,
+      "queried_LOAD_pins": 945
+    },
+    "EGRESS_min": {
+      "paths": 16,
+      "worst_slack_ns": 0.026,
+      "queried_LOAD_pins": 945
+    }
+  },
+  "failed_checkpoint": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/route_failed.dcp",
+    "bytes": 765705446,
+    "sha256": "51679d9a4f8dc35c5e5b167ebbecd72260b0862f85ad8168782646f0fc16da21"
+  },
+  "archived_sources_count": 39,
+  "formal_reset_CDC_IO": "OPEN",
+  "limits": [
+    "Failed-graph global timing header Routed is not complete legal-route signoff; DRC says Partially Routed/RTSTAT-13.",
+    "Candidate failed-locality compliance is separate from missing successful-route global POST/fresh80/resetCDCIO/bus-skew coverage.",
+    "Four capped through-LOAD groups are not global timing/full-cut TNS/independent complete cut crossing paths.",
+    "Original six warned bus-skew destination pins and shared source lack a successful full-route coverage report; safety remains OPEN.",
+    "Place/physopt reviews are reused, not rerun; no EDA/retry/newAT and no attribution of all global deltas to C01.",
+    "Native success-phase route_counts parser does not accept the dotted failure-report labels; this audit matches the actual native labels explicitly without changing consumed sources."
+  ],
+  "facts": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/failed_route_terminal_facts.json",
+    "bytes": 26124,
+    "sha256": "cf03a19dbcc734b845575cf3d24e084f98e0cae99c338b04e1f4e1ea3d8aa122"
+  }
+}

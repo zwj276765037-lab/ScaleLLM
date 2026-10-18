@@ -1,0 +1,63 @@
+{
+  "recorded_utc": "2026-10-17T15:20:13.482903+00:00",
+  "actual_observation": {
+    "utc": "2026-10-17T15:20:12.080929+00:00",
+    "supervisor_identity_matches": true,
+    "sample_age_s": 1.44,
+    "rss_GiB": 32.66,
+    "mem_GiB": 461.14,
+    "disk_GiB": 388.43,
+    "cpu_tick_growth": 4034,
+    "terminal": null,
+    "tail": [
+      "Checksum: PlaceDB: e0c45b51 ConstDB: 0 ShapeSum: fbabe3d2 RouteDB: 4347e35d",
+      "Nodegraph reading from file.  Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 34589.367 ; gain = 0.000 ; free physical = 451994 ; free virtual = 481083"
+    ]
+  },
+  "physopt_phase_closed_facts": {
+    "path": "project/E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/attempts/AT004_C01_PDU_resume_full_implementation/physopt_closed_stage_facts.json",
+    "bytes": 3634705,
+    "sha256": "7118bf3eacb7dfea076f1e79f8f85b66152c5a1a2a4aec2fd2d1b4f6c90a764a"
+  },
+  "actual_physopt_phase_receipt": {
+    "post_code": "0",
+    "locality_code": "0",
+    "started_epoch": "1792243575",
+    "ended_epoch": "1792250294"
+  },
+  "physopt_compliance_established": true,
+  "physopt_actual_P_all_SLR2": 9491,
+  "physopt_full_timing_verdict": "FAIL",
+  "physopt_bounded_timing_groups": {
+    "INGRESS_max": {
+      "rows": 16,
+      "worst_slack_ns": 0.603,
+      "queried_pins": 20534
+    },
+    "INGRESS_min": {
+      "rows": 16,
+      "worst_slack_ns": -0.221,
+      "queried_pins": 20534
+    },
+    "EGRESS_max": {
+      "rows": 16,
+      "worst_slack_ns": 0.603,
+      "queried_pins": 945
+    },
+    "EGRESS_min": {
+      "rows": 16,
+      "worst_slack_ns": 0.057,
+      "queried_pins": 945
+    }
+  },
+  "route_command": "route_design -directive Default",
+  "route_native_log_path": "project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/vivado.log",
+  "route_native_start_excerpt_first_line": 254173,
+  "route_native_start_excerpt": "Command: route_design -directive Default\nAttempting to get a license for feature 'Implementation' and/or device 'xcvu9p'\nINFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcvu9p'\n\n\nStarting Routing Task\nINFO: [Route 35-270] Using Router directive 'Default'.\nINFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 8 CPUs\n\nPhase 1 Build RT Design\nChecksum: PlaceDB: e0c45b51 ConstDB: 0 ShapeSum: fbabe3d2 RouteDB: 4347e35d\nNodegraph reading from file.  Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 34589.367 ; gain = 0.000 ; free physical = 451994 ; free virtual = 481083",
+  "route_started_observed": true,
+  "exact_route_command_start_time": "NOT_SEPARATELY_TIMESTAMPED; after actual physopt combined receipt ended_epoch1792250294",
+  "route_result": "RUNNING_PENDING_NATIVE_TERMINAL",
+  "independent_combined_physopt_review": "RUNNING; prior accepted command/timing/fresh80/global/member/index substeps reused",
+  "formal_signoff": false,
+  "limits": "Physopt diagnostic qualification does not waive holdFAIL/high congestion/formal resetCDCIO OPEN. Bounded through LOAD timing is not full-cut TNS, guaranteed crossing or signoff. Route completion and all current actual gates/true terminal closure remain required."
+}

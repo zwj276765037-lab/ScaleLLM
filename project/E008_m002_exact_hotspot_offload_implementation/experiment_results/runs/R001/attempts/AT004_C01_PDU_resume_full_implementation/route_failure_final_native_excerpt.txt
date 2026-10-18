@@ -1,0 +1,156 @@
+Phase 9 Verifying routed nets
+CRITICAL WARNING: [Route 35-162] 547548 signals failed to route due to routing congestion. Please run report_route_status to get a full summary of the design's routing.
+Below is a list of the top 10 physical nodes with signal overlaps and up to 5 of the signals that were contending for this node resource:
+Resolution: Run report_route_status to get a full summary of the design's routing. To find the areas of the congestion, use the route congestion Metrics in the Device View and check the logfile for the Congestion Report.
+1. (347,229,8) NODE_PINBOUNCE Hist: 8 Tile Name: INT_X56Y678 Node: BYPASS_E10 Overlapping Nets: 4
+
+CLB Tiles: 
+	DSP_X56Y675
+		InstTerms: 
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot/gen_leaf[9].u_leaf/s1_dsp_product_s25_r0/DSP_ALU_INST/OPMODE[0]
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot/gen_leaf[9].u_leaf/s1_dsp_product_s25_r0/DSP_C_DATA_INST/C[28]
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot/gen_leaf[9].u_leaf/s1_dsp_product_s25_r0/DSP_C_DATA_INST/C[26]
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot/gen_leaf[10].u_leaf/s1_dsp_product_s25_r0/DSP_C_DATA_INST/C[26]
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot/gen_leaf[9].u_leaf/s1_dsp_product_s25_r0/DSP_A_B_DATA_INST/A[17]
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot/gen_leaf[9].u_leaf/s1_dsp_product_s25_r0/DSP_A_B_DATA_INST/A[15]
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot/gen_leaf[9].u_leaf/s1_dsp_product_s25_r0/DSP_A_B_DATA_INST/A[16]
+
+Nets:
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot/gen_leaf[9].u_leaf/s0_valid_r
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot/gen_leaf[9].u_leaf/s1_dsp_product_s25_r[24]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot/gen_leaf[10].u_leaf/s1_dsp_product_s25_r[24]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/ingress_weight1_s4x32_r[39]
+
+2. (491,434,13) NODE_PINBOUNCE Hist: 4 Tile Name: INT_X78Y480 Node: BYPASS_E3 Overlapping Nets: 6
+
+CLB Tiles: 
+	URAM_URAM_FT_X78Y480
+		InstTerms: 
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/meta_mem_reg_uram_36/ADDR_A[10]
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/meta_mem_reg_uram_36/ADDR_A[9]
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/meta_mem_reg_uram_36/ADDR_A[5]
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/meta_mem_reg_uram_36/ADDR_A[4]
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/meta_mem_reg_uram_36/ADDR_A[2]
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/meta_mem_reg_uram_36/ADDR_A[1]
+
+Nets:
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/meta_read_addr_r[10]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/meta_read_addr_r[9]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/meta_read_addr_r[5]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/meta_read_addr_r[4]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/meta_read_addr_r[2]
+
+3. (204,113,27) NODE_PINBOUNCE Hist: 7 Tile Name: INT_X34Y790 Node: BYPASS_W5 Overlapping Nets: 4
+
+CLB Tiles: 
+	CLEM_X34Y790
+		InstTerms: 
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_quantizer[3].u_quantizer/g_div[0].u_div/i___52_i_2__2/I3
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_quantizer[3].u_quantizer/g_div[0].u_div/i___62_i_9__2/I2
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_quantizer[3].u_quantizer/g_div[0].u_div/i___72_i_2__6/I4
+		scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_quantizer[3].u_quantizer/g_div[0].u_div/i___60_i_2__2/I0
+
+Nets:
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_quantizer[3].u_quantizer/g_div[0].u_div/remainder_r_reg[35]_1[0]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_quantizer[3].u_quantizer/g_div[0].u_div/remainder_r_reg[33]_0[6]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_quantizer[3].u_quantizer/g_div[0].u_div/remainder_r_reg[35]_2[12]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_quantizer[3].u_quantizer/g_div[0].u_div/remainder_r_reg[4]_1[3]
+
+4. (92,541,153) NODE_VLONG12 Hist: 9 Tile Name: INT_X8Y377 Node: SS12_BEG7 Overlapping Nets: 4
+
+Nets:
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[2032]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[1457]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[1458]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[1673]
+
+5. (92,553,153) NODE_VLONG12 Hist: 7 Tile Name: INT_X8Y365 Node: SS12_BEG7 Overlapping Nets: 4
+
+Nets:
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[2032]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[1457]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[1458]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[1673]
+
+6. (152,41,171) NODE_HLONG Hist: 4 Tile Name: INT_X22Y860 Node: WW12_BEG4 Overlapping Nets: 4
+
+Nets:
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[5].u_lane/core_clk_0[118]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[5].u_lane/core_clk[118]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[5].u_lane/core_clk_0[108]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[5].u_lane/core_clk_0[97]
+
+7. (283,554,180) NODE_VLONG12 Hist: 9 Tile Name: INT_X41Y364 Node: SS12_BEG6 Overlapping Nets: 4
+
+Nets:
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[5782]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[5820]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[5819]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[6092]
+
+8. (503,357,237) NODE_VSINGLE Hist: 5 Tile Name: INT_X81Y555 Node: NN1_E_BEG5 Overlapping Nets: 4
+
+Nets:
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_rope/fifo_mem_reg_0_7_14_27/DOC1
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_rope/fifo_mem_reg_0_7_0_13/DOB1
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[2].u_quantizer/source_mem_reg[30]_217[0]
+scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/w15.w_multi/triple_slr.fwd.slr_middle/Q[380]
+
+9. (187,403,273) NODE_VSINGLE Hist: 5 Tile Name: INT_X30Y510 Node: WW1_E_7_FT0 Overlapping Nets: 4
+
+Nets:
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer/g_div[4].u_div/p_divide.remainder_next0[20]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer/div_denominator_r_reg_n_0_[21]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer/g_div[4].u_div/remainder_r[23]_i_13__19_n_0
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer/g_div[4].u_div/divisor_r_reg_n_0_[19]
+
+10. (556,352,279) NODE_HQUAD Hist: 3 Tile Name: INT_X94Y560 Node: WW4_W_BEG0 Overlapping Nets: 4
+
+Nets:
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_left2/u_shard/g_row[6].g_col[1].u_lane/in_fire
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store/g_row_bank[14].u_bank/projection_pair_row_r[47]
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store/g_row_bank[10].u_bank/projection_pair_row_r[767]_i_1_n_0
+scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_left2/u_shard/g_row[7].g_col[0].u_lane/guard_s42_r[3]_i_5__13_n_0
+
+
+ Verification failed
+Phase 9 Verifying routed nets | Checksum: 1a897e522
+
+Time (s): cpu = 14:13:32 ; elapsed = 03:45:46 . Memory (MB): peak = 34589.367 ; gain = 0.000 ; free physical = 452750 ; free virtual = 483175
+ERROR: [Route 35-2] Design is not legally routed. There are 702396 node overlaps.
+Resolution: Run report_design_analysis -congestion and -complexity to find potential sources of congestion in the areas where nets are not fully routed and review UG906 for design closure techniques.
+
+Phase 10 Depositing Routes
+INFO: [Route 35-467] Router swapped GT pin scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[31].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[0].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y28/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[31].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[1].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y29/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[31].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[2].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y30/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[31].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[3].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y31/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[32].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[0].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y32/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[32].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[1].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y33/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[32].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[2].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y34/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[32].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[3].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y35/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_common.gen_common_container[31].gen_enabled_common.gtye4_common_wrapper_inst/common_inst/gtye4_common_gen.GTYE4_COMMON_PRIM_INST/GTREFCLK00 to physical pin GTYE4_COMMON_X1Y7/COM0_REFCLKOUT3
+INFO: [Route 35-467] Router swapped GT pin scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_common.gen_common_container[31].gen_enabled_common.gtye4_common_wrapper_inst/common_inst/gtye4_common_gen.GTYE4_COMMON_PRIM_INST/GTREFCLK01 to physical pin GTYE4_COMMON_X1Y7/COM2_REFCLKOUT3
+INFO: [Route 35-467] Router swapped GT pin scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_common.gen_common_container[32].gen_enabled_common.gtye4_common_wrapper_inst/common_inst/gtye4_common_gen.GTYE4_COMMON_PRIM_INST/GTREFCLK00 to physical pin GTYE4_COMMON_X1Y8/COM0_REFCLKOUT3
+INFO: [Route 35-467] Router swapped GT pin scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_common.gen_common_container[32].gen_enabled_common.gtye4_common_wrapper_inst/common_inst/gtye4_common_gen.GTYE4_COMMON_PRIM_INST/GTREFCLK01 to physical pin GTYE4_COMMON_X1Y8/COM2_REFCLKOUT3
+Phase 10 Depositing Routes | Checksum: 1a897e522
+
+Time (s): cpu = 14:16:10 ; elapsed = 03:47:15 . Memory (MB): peak = 34589.367 ; gain = 0.000 ; free physical = 452699 ; free virtual = 483125
+Total Elapsed time in route_design: 13632.1 secs
+
+Phase 11 Post-Route Event Processing
+Phase 11 Post-Route Event Processing | Checksum: 1a048abc3
+
+Time (s): cpu = 14:16:30 ; elapsed = 03:47:20 . Memory (MB): peak = 34589.367 ; gain = 0.000 ; free physical = 452757 ; free virtual = 483183
+INFO: [Route 35-17] Router encountered errors. Please check the log file for details
+Ending Routing Task | Checksum: 1a048abc3
+
+Time (s): cpu = 14:17:03 ; elapsed = 03:47:26 . Memory (MB): peak = 34589.367 ; gain = 0.000 ; free physical = 452757 ; free virtual = 483182
+Running DRC after route_design as it did not complete successfully
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+INFO: [Common 17-83] Releasing license: Implementation
+404 Infos, 469 Warnings, 15 Critical Warnings and 1 Errors encountered.
+route_design failed
+route_design: Time (s): cpu = 14:23:08 ; elapsed = 03:51:12 . Memory (MB): peak = 34589.367 ; gain = 0.000 ; free physical = 452765 ; free virtual = 483191

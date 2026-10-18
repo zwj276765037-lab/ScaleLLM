@@ -1,6 +1,6 @@
 ## 实现入口
 
-当前SM012/E008已实际启动C01→SLR2完整implementation，[状态](E008_m002_exact_hotspot_offload_implementation/experiment_status/summary.md)。下表E005为已结束基线。
+当前M003已定义，尚无新实验或实现启动。[M003合同](../mission/M003_joint_routability_closure/contract.md)。最新实际实验E008/AT004已自然失败且完成收尾：[状态](E008_m002_exact_hotspot_offload_implementation/experiment_status/summary.md)。下表E005为历史基线。
 
 | 目录 | 内容 | 当前边界 |
 | --- | --- | --- |
@@ -10,7 +10,7 @@
 代码直接位于这两个目录，不另建一套 E 编号源码副本。未来新实验只登记实验协议和证据，引用这两个实现根。
 
 <!-- research-agent:navigation:begin -->
-生成时间（UTC）：2026-10-17T08:36:24.995092+00:00。来源修订：`400c5b08f7ef`。
+生成时间（UTC）：2026-10-18T00:06:15.625771+00:00。来源修订：`943abfac7fc3`。
 
 # 实验与结果索引
 
@@ -23,7 +23,7 @@
 | E005 | [m002_optimized_implementation](E005_m002_optimized_implementation/README.md) | M002 / SM009 | failed / inconclusive | [R001](E005_m002_optimized_implementation/experiment_results/runs/R001/README.md) · [R002](E005_m002_optimized_implementation/experiment_results/runs/R002/README.md) · [R003](E005_m002_optimized_implementation/experiment_results/runs/R003/README.md) · [R004](E005_m002_optimized_implementation/experiment_results/runs/R004/README.md) · [R005](E005_m002_optimized_implementation/experiment_results/runs/R005/README.md) · [R006](E005_m002_optimized_implementation/experiment_results/runs/R006/README.md) |
 | E006 | [m002_slr1_congestion_attribution](E006_m002_slr1_congestion_attribution/README.md) | M002 / SM010 | completed / supported | [R001](E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/README.md) · [R002](E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/README.md) · [R003](E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/README.md) · [R004](E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/README.md) · [R005](E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/README.md) · [R006](E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/README.md) |
 | E007 | [m002_slr2_input_locality_implementation](E007_m002_slr2_input_locality_implementation/README.md) | M002 / SM011 | planned / unassessed | [R001](E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/README.md) · [R002](E007_m002_slr2_input_locality_implementation/experiment_results/runs/R002/README.md) |
-| E008 | [m002_exact_hotspot_offload_implementation](E008_m002_exact_hotspot_offload_implementation/README.md) | M002 / SM012 | running / unassessed | [R001](E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/README.md) |
+| E008 | [m002_exact_hotspot_offload_implementation](E008_m002_exact_hotspot_offload_implementation/README.md) | M002 / SM012 | failed / inconclusive | [R001](E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/README.md) |
 
 本页是原记录的导航投影；登记、送达及局部结果不代表整体验收。
 
