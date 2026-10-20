@@ -1,0 +1,215 @@
+{
+  "schema": "A007_bounded_INIT_recovery_adapter_review_v1",
+  "observed_utc": "2026-10-19T14:05:50.707764+00:00",
+  "reviewer": "A007 /root/m002_physical_architecture_review",
+  "execution": "completed_one_shot_review",
+  "verdict": "ACCEPT_PINNED_ADAPTER_AND_OFFLINE_INIT_REQUALIFICATION_WITHIN_SCOPE",
+  "review": "independent_source_and_small_receipt_review_complete",
+  "material_findings": [],
+  "G4": false,
+  "applicability": {
+    "attempt": "AT030_strict_zero_reuse_INIT_to_OPT",
+    "package": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/AT028_init_recovery/recovery_package_AT030_r3.json",
+      "bytes": 419477,
+      "sha256": "cc5239f2b0afe929b5037068f4138b1170ea520eafe757bb04793b1633409e0b"
+    },
+    "core48_manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_entry_manifest.json",
+      "bytes": 11688,
+      "sha256": "42dafce33f4727734dcf169b285a3decfcfa18d78d10f9a36463b4bea7c904d5"
+    },
+    "adapters": [
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/AT028_init_recovery/native_init_recovery.py",
+        "bytes": 22405,
+        "sha256": "75909c6078a867cd3ffe86009f9a29e25579235a7c26dba234bc647c6beb41a5"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/AT028_init_recovery/recover_init.tcl",
+        "bytes": 6530,
+        "sha256": "2506dd357f9c485bfa8ad15852dacbb2efb7ef151a22fb7c71e1ee786008b842"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/AT028_init_recovery/launch.py",
+        "bytes": 5097,
+        "sha256": "03e37884e652efaa18a3ed06990dd62e9fe58797159cbf13960509fad56f1310"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/AT028_offline_pblock_membership_check.py",
+        "bytes": 2605,
+        "sha256": "3572c171c5b9f9eebaa395dfca5dc76972cbbed4c986ce241ab90289484034b0"
+      }
+    ],
+    "checkpoint_metadata_only": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT028_native_init_opt_preplace/init.dcp",
+      "bytes": 225813781,
+      "sha256": "a6dedfc5f9743d4b4c3dd060e6680cd3c278253481cadc62f46bbc8ef3838a30"
+    },
+    "actual_INIT_snapshot_metadata_only": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT029_recovered_native_init_postcheck/m003_native_init.json",
+      "bytes": 68796629,
+      "sha256": "10cdbf940b6ac263d59caf57d17524c5bfe180934809eb79eebe8a937cc620d1"
+    }
+  },
+  "source_archive": {
+    "receipt": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT030_strict_zero_reuse_INIT_to_OPT/evidence/jobs/native_reuse_init_to_opt/source_archive.json",
+      "bytes": 150200,
+      "sha256": "5a226d0621ad076b7f30e3298aca9b1ab60ec63e908fffb11391368e9a6dc8dd"
+    },
+    "total_bindings": 200,
+    "all_current_and_preserved_input_hashes_verified": true,
+    "core_sources": 48,
+    "explicit_adapters": 4,
+    "launch_archive_arguments": 52,
+    "original_input_total_bytes": 15476117
+  },
+  "execution_evidence": {
+    "origin_terminals": {
+      "AT028": {
+        "receipt": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT028_native_init_opt_preplace/evidence/jobs/native_pre_place/status.json",
+          "bytes": 674,
+          "sha256": "14b611ebbbdfc0f919c832c4ef2061ac772e019219020334352a1ae6a6a0515d"
+        },
+        "ended_utc": "2026-10-19T11:56:29.726006+00:00",
+        "native_exit_code": 1,
+        "stop_reason": null,
+        "owned_survivors": {},
+        "source_unchanged": true
+      },
+      "AT029": {
+        "receipt": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT029_recovered_native_init_postcheck/evidence/jobs/native_init_recovery/status.json",
+          "bytes": 592,
+          "sha256": "5587b1f90e9ff939e200c48d8391c6c841930eff37b0c51aee167cd606c6f45e"
+        },
+        "ended_utc": "2026-10-19T13:44:12.873434+00:00",
+        "native_exit_code": 1,
+        "stop_reason": null,
+        "owned_survivors": {},
+        "source_unchanged": true
+      }
+    },
+    "AT030_activation_receipt": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT030_strict_zero_reuse_INIT_to_OPT/evidence/actual_native_activation.json",
+      "bytes": 21212,
+      "sha256": "c2e2b927a1f47bbb86fa8bb765b045e68f4ee7d8c85f4b294fbfc81ae74344b5"
+    },
+    "AT030_started_utc": "2026-10-19T13:56:14.448455+00:00",
+    "AT030_observation_scope": "Launch receipt only; no live polling or terminal claim"
+  },
+  "checks": {
+    "persistent_XPR": "Original m003::require_project called before close_project/open_checkpoint; 0/1 enabled global LATE TCL retained.",
+    "native_context": "Pinned generated in-memory GateLvl prefix; one unmanaged overlay read before LATE and link; unique unscoped LATE/unmanaged overlay in preserved SRC_FILE_INFO. Actual native INIT FILE_TYPE was not exported and is not inferred.",
+    "hook_preservation": "One exact Tcl hook call replaced. Python rebinds only base.constraint_chain then calls unchanged base.hook_batch. Other numeric/clock/reset/CDC/DRC/structure guard bodies retained.",
+    "same_checkpoint_reuse": "Package/lineage/terminal/report identities bound. Original native failures retained; offline r3 INIT_executed=false and snapshot_recollected=false. Runtime rechecks same DCP and live selected memberships/sites before OPT.",
+    "zero_reapply": {
+      "rule": "Exact int 0 or exact str 0 only, exact three keys",
+      "isolated_CPU_positive_cases": 8,
+      "isolated_CPU_negative_cases": 64,
+      "actual_INIT_raw": {
+        "before": "0",
+        "after": "0",
+        "delta": "0"
+      },
+      "engineering_regression_log": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/AT028_init_recovery/affected_regression_AT030_final.log",
+        "bytes": 107,
+        "sha256": "157777097d774a2d8a37d2e2ce4eebb237385fea924c0ac13fa301afa010688b"
+      },
+      "reviewed_test_source": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/AT028_init_recovery/test_recovery.py",
+        "bytes": 8083,
+        "sha256": "bbad0694100598c2f48e4051d5bb5dc4957bcfc5369f032c2959d2f5272e9bd2"
+      },
+      "test_scope": "Existing 9-test PASS log inspected; no suite rerun/DCP extraction. Independently exercised only pure decoder AST."
+    },
+    "C01": {
+      "passed": true,
+      "actual_c01_cells": 9492,
+      "C01_other_PBLOCKS": [],
+      "M2_payload": 13120,
+      "M2_buffers": 81,
+      "guard": "Require C01 SLR2 PBLOCK, reject every m003_parent_* membership; runtime equality compares all selected C01 memberships. Hard flags/native sites compared. No later-stage placement claim."
+    },
+    "INIT_qualification": {
+      "passed": true,
+      "fixture": false,
+      "gate_issues": [],
+      "clock_coverage": "PENDING_TOOL_DEBUG_MATERIALIZATION",
+      "blackboxes": 1,
+      "diagnostic_eligible": 1,
+      "physical_signoff": false
+    }
+  },
+  "limitations": [
+    "No EDA/simulation/observer/resident wait/process inspection or control/descendants.",
+    "No checkpoint contents or whole native snapshot read or hashed; their identity consistency uses bound metadata and owner evidence.",
+    "No actual AT030 preplace or G4 acceptance; the separately assigned consolidated preplace review remains necessary.",
+    "Original native INIT FILE_TYPE absent; narrow observed representation difference only."
+  ],
+  "next": "Root/A018 continue existing authorized execution; no added approval gate.",
+  "evidence": {
+    "requalification": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT030_strict_zero_reuse_INIT_to_OPT/evidence/INIT_POST_requalification_r3/offline_init_requalification.json",
+      "bytes": 62244,
+      "sha256": "9244d2aa28f68871c853298647ee6b513755aa58a0facde75f03aed44bdbf063"
+    },
+    "reports": {
+      "m003_qualification_init.json": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT030_strict_zero_reuse_INIT_to_OPT/evidence/INIT_POST_requalification_r3/m003_qualification_init.json",
+        "bytes": 927,
+        "sha256": "e6ee9bc54c0c687b6cd0666909be1e063048b5e5ac16334e8ea1afdd630b9389"
+      },
+      "effective_pblock_membership_init.json": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT030_strict_zero_reuse_INIT_to_OPT/evidence/INIT_POST_requalification_r3/effective_pblock_membership_init.json",
+        "bytes": 1946,
+        "sha256": "dba3bffc39653da655fba2d66574d0bb437b6596a0bc38ba1ac64d33dddcbd4c"
+      },
+      "restore_apply_attempts.json": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT030_strict_zero_reuse_INIT_to_OPT/evidence/INIT_POST_requalification_r3/restore_apply_attempts.json",
+        "bytes": 39,
+        "sha256": "af9e913d7f7aa35c224b05211eb66df1dbf401d78f742807eb6bd97f702390f3"
+      },
+      "integrity_init.json": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT030_strict_zero_reuse_INIT_to_OPT/evidence/INIT_POST_requalification_r3/integrity_init.json",
+        "bytes": 2975,
+        "sha256": "b5546a6691dd568276f0c07413e9fe4972841027607daf30c0679dc117c84871"
+      },
+      "admission_init.txt": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT030_strict_zero_reuse_INIT_to_OPT/evidence/INIT_POST_requalification_r3/admission_init.txt",
+        "bytes": 105,
+        "sha256": "6f76f1fd387876f401b282aadfbf508eeefd73c87ab56cb3f73605cc3be67347"
+      },
+      "init_result.txt": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT030_strict_zero_reuse_INIT_to_OPT/evidence/INIT_POST_requalification_r3/init_result.txt",
+        "bytes": 225,
+        "sha256": "786bb82c557c72e9a07d47c156451c6085d5fda2bfb4b2470a6ac019e60c3930"
+      },
+      "constraints_init.json": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT030_strict_zero_reuse_INIT_to_OPT/evidence/INIT_POST_requalification_r3/constraints_init.json",
+        "bytes": 117754,
+        "sha256": "3a760275287a2f00e43e4ee6e25b9cb18d04a80b49124c8954af4b631d58742c"
+      },
+      "actual_xdc_reads_init.json": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT030_strict_zero_reuse_INIT_to_OPT/evidence/INIT_POST_requalification_r3/actual_xdc_reads_init.json",
+        "bytes": 29750,
+        "sha256": "6bdae54d82d155d5aae2419884b1cb8dfa2e3ec28aee2eaef2dd92fefdd84223"
+      },
+      "xdc_registry_init_mode.txt": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT030_strict_zero_reuse_INIT_to_OPT/evidence/INIT_POST_requalification_r3/xdc_registry_init_mode.txt",
+        "bytes": 154,
+        "sha256": "a5d1537be821b2fb11a03fd19885fd6b05144c8272b2bd706fd4622e6924907a"
+      },
+      "M003_init_recovery_parent.json": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT030_strict_zero_reuse_INIT_to_OPT/evidence/INIT_POST_requalification_r3/M003_init_recovery_parent.json",
+        "bytes": 707,
+        "sha256": "79898637b6dbbcf037b74a642e550355329767db8e38300cab5057e090fb4b09"
+      }
+    },
+    "unique_bounded_hashed_artifacts": 421,
+    "unique_hashed_total_bytes": 31918032
+  }
+}

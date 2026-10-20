@@ -1,0 +1,427 @@
+{
+  "schema": "r007_independent_cpu_fp64_head_witness_v1",
+  "plan": {
+    "document_indices": [
+      0,
+      4,
+      35
+    ],
+    "positions": "sorted unique [0,T//2,T-1]",
+    "arms": [
+      "baseline",
+      "linear_last1",
+      "reference"
+    ],
+    "choice": "Fixed ordinal witnesses [0,4,35]; declared during validation, never selected by observed error",
+    "arithmetic": "CPU FP64 hidden@BF16-as-FP64 head, stable full-vocabulary softmax; differs from production FP32 head arithmetic",
+    "comparison_tv_atol": 1e-05
+  },
+  "witness_count": 18,
+  "passed": true,
+  "max_tv_abs_difference": 5.881417574037096e-07,
+  "all_top1_ids_equal": true,
+  "max_probability_mass_defect": 1.1102230246251565e-15,
+  "wall_seconds": 8.751082811009837,
+  "head_checkpoint_shard": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct/model-00004-of-00004.safetensors",
+  "checkpoint_index_sha256": "146776fce3f6db1103aa6f249e65ee5544c5923ce6f971b092eee79aa6e5d37b",
+  "source_sha256": "f0aec9d88c52b4bee14c1dc8625c2dff61e5982606a9c0c58ce6c17b90219143",
+  "witnesses": [
+    {
+      "index": 0,
+      "doc_id": "wikitext2_train:28168",
+      "arm": "baseline",
+      "position": 0,
+      "fp64_head_tv": 0.0028467386314715783,
+      "production_fp32_head_tv": 0.0028467325582403158,
+      "tv_abs_difference": 6.073231262511414e-09,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        14924,
+        14924
+      ],
+      "production_fp32_head_top1_ids": [
+        14924,
+        14924
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.007623372984792084,
+      "production_fp32_head_logit_rmse": 0.00762337336864558,
+      "probability_mass_defect": 0.0
+    },
+    {
+      "index": 0,
+      "doc_id": "wikitext2_train:28168",
+      "arm": "baseline",
+      "position": 64,
+      "fp64_head_tv": 0.012180614270210005,
+      "production_fp32_head_tv": 0.012180680590200913,
+      "tv_abs_difference": 6.631999090872531e-08,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        279,
+        279
+      ],
+      "production_fp32_head_top1_ids": [
+        279,
+        279
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.03939773697759294,
+      "production_fp32_head_logit_rmse": 0.039397733029080464,
+      "probability_mass_defect": 4.440892098500626e-16
+    },
+    {
+      "index": 0,
+      "doc_id": "wikitext2_train:28168",
+      "arm": "baseline",
+      "position": 127,
+      "fp64_head_tv": 8.548748899539839e-05,
+      "production_fp32_head_tv": 8.548859496407671e-05,
+      "tv_abs_difference": 1.1059686783195747e-09,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        4273,
+        4273
+      ],
+      "production_fp32_head_top1_ids": [
+        4273,
+        4273
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.06424473213749234,
+      "production_fp32_head_logit_rmse": 0.06424473362543058,
+      "probability_mass_defect": 5.551115123125783e-16
+    },
+    {
+      "index": 0,
+      "doc_id": "wikitext2_train:28168",
+      "arm": "linear_last1",
+      "position": 0,
+      "fp64_head_tv": 0.002837071395480386,
+      "production_fp32_head_tv": 0.0028371092710042143,
+      "tv_abs_difference": 3.78755238283901e-08,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        14924,
+        14924
+      ],
+      "production_fp32_head_top1_ids": [
+        14924,
+        14924
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.0076210585140771055,
+      "production_fp32_head_logit_rmse": 0.007621061550654919,
+      "probability_mass_defect": 0.0
+    },
+    {
+      "index": 0,
+      "doc_id": "wikitext2_train:28168",
+      "arm": "linear_last1",
+      "position": 64,
+      "fp64_head_tv": 0.011588580882764621,
+      "production_fp32_head_tv": 0.011588717404769567,
+      "tv_abs_difference": 1.3652200494575217e-07,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        279,
+        279
+      ],
+      "production_fp32_head_top1_ids": [
+        279,
+        279
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.03949758575112697,
+      "production_fp32_head_logit_rmse": 0.03949758427474746,
+      "probability_mass_defect": 4.440892098500626e-16
+    },
+    {
+      "index": 0,
+      "doc_id": "wikitext2_train:28168",
+      "arm": "linear_last1",
+      "position": 127,
+      "fp64_head_tv": 9.113977186349088e-05,
+      "production_fp32_head_tv": 9.114119798949229e-05,
+      "tv_abs_difference": 1.4261260014033312e-09,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        4273,
+        4273
+      ],
+      "production_fp32_head_top1_ids": [
+        4273,
+        4273
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.06441914625400395,
+      "production_fp32_head_logit_rmse": 0.06441914554964104,
+      "probability_mass_defect": 6.661338147750939e-16
+    },
+    {
+      "index": 4,
+      "doc_id": "wikitext2_train:7149",
+      "arm": "baseline",
+      "position": 0,
+      "fp64_head_tv": 0.0028467386314715783,
+      "production_fp32_head_tv": 0.0028467325582403158,
+      "tv_abs_difference": 6.073231262511414e-09,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        14924,
+        14924
+      ],
+      "production_fp32_head_top1_ids": [
+        14924,
+        14924
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.007623372984792084,
+      "production_fp32_head_logit_rmse": 0.00762337336864558,
+      "probability_mass_defect": 0.0
+    },
+    {
+      "index": 4,
+      "doc_id": "wikitext2_train:7149",
+      "arm": "baseline",
+      "position": 64,
+      "fp64_head_tv": 0.005441563546482597,
+      "production_fp32_head_tv": 0.005441769899920567,
+      "tv_abs_difference": 2.0635343796985423e-07,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        4435,
+        4435
+      ],
+      "production_fp32_head_top1_ids": [
+        4435,
+        4435
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.03370823132475493,
+      "production_fp32_head_logit_rmse": 0.03370822155073794,
+      "probability_mass_defect": 4.440892098500626e-16
+    },
+    {
+      "index": 4,
+      "doc_id": "wikitext2_train:7149",
+      "arm": "baseline",
+      "position": 127,
+      "fp64_head_tv": 0.0072033229295929745,
+      "production_fp32_head_tv": 0.007202876809736767,
+      "tv_abs_difference": 4.4611985620772454e-07,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        26765,
+        26765
+      ],
+      "production_fp32_head_top1_ids": [
+        26765,
+        26765
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.02737701126873992,
+      "production_fp32_head_logit_rmse": 0.027377010125237546,
+      "probability_mass_defect": 4.440892098500626e-16
+    },
+    {
+      "index": 4,
+      "doc_id": "wikitext2_train:7149",
+      "arm": "linear_last1",
+      "position": 0,
+      "fp64_head_tv": 0.002837071395480386,
+      "production_fp32_head_tv": 0.0028371092710042143,
+      "tv_abs_difference": 3.78755238283901e-08,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        14924,
+        14924
+      ],
+      "production_fp32_head_top1_ids": [
+        14924,
+        14924
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.0076210585140771055,
+      "production_fp32_head_logit_rmse": 0.007621061550654919,
+      "probability_mass_defect": 0.0
+    },
+    {
+      "index": 4,
+      "doc_id": "wikitext2_train:7149",
+      "arm": "linear_last1",
+      "position": 64,
+      "fp64_head_tv": 0.003967792356896007,
+      "production_fp32_head_tv": 0.003968015965842916,
+      "tv_abs_difference": 2.2360894690910682e-07,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        4435,
+        4435
+      ],
+      "production_fp32_head_top1_ids": [
+        4435,
+        4435
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.03406854647705448,
+      "production_fp32_head_logit_rmse": 0.03406853802521561,
+      "probability_mass_defect": 4.440892098500626e-16
+    },
+    {
+      "index": 4,
+      "doc_id": "wikitext2_train:7149",
+      "arm": "linear_last1",
+      "position": 127,
+      "fp64_head_tv": 0.0071194668260882365,
+      "production_fp32_head_tv": 0.0071194528237468096,
+      "tv_abs_difference": 1.40023414269691e-08,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        26765,
+        26765
+      ],
+      "production_fp32_head_top1_ids": [
+        26765,
+        26765
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.027919368673923986,
+      "production_fp32_head_logit_rmse": 0.027919372240033578,
+      "probability_mass_defect": 2.220446049250313e-16
+    },
+    {
+      "index": 35,
+      "doc_id": "wikitext2_train:16293",
+      "arm": "baseline",
+      "position": 0,
+      "fp64_head_tv": 0.0028467386314715783,
+      "production_fp32_head_tv": 0.0028467325582403158,
+      "tv_abs_difference": 6.073231262511414e-09,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        14924,
+        14924
+      ],
+      "production_fp32_head_top1_ids": [
+        14924,
+        14924
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.007623372984792084,
+      "production_fp32_head_logit_rmse": 0.00762337336864558,
+      "probability_mass_defect": 0.0
+    },
+    {
+      "index": 35,
+      "doc_id": "wikitext2_train:16293",
+      "arm": "baseline",
+      "position": 64,
+      "fp64_head_tv": 0.013386520407672686,
+      "production_fp32_head_tv": 0.013385932265915283,
+      "tv_abs_difference": 5.881417574037096e-07,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        3206,
+        3206
+      ],
+      "production_fp32_head_top1_ids": [
+        3206,
+        3206
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.04773054150104596,
+      "production_fp32_head_logit_rmse": 0.047730539822147394,
+      "probability_mass_defect": 1.1102230246251565e-15
+    },
+    {
+      "index": 35,
+      "doc_id": "wikitext2_train:16293",
+      "arm": "baseline",
+      "position": 127,
+      "fp64_head_tv": 6.745721102400102e-05,
+      "production_fp32_head_tv": 6.745530014135877e-05,
+      "tv_abs_difference": 1.910882642251104e-09,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        883,
+        883
+      ],
+      "production_fp32_head_top1_ids": [
+        883,
+        883
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.03229497955451479,
+      "production_fp32_head_logit_rmse": 0.03229497623162592,
+      "probability_mass_defect": 4.440892098500626e-16
+    },
+    {
+      "index": 35,
+      "doc_id": "wikitext2_train:16293",
+      "arm": "linear_last1",
+      "position": 0,
+      "fp64_head_tv": 0.002837071395480386,
+      "production_fp32_head_tv": 0.0028371092710042143,
+      "tv_abs_difference": 3.78755238283901e-08,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        14924,
+        14924
+      ],
+      "production_fp32_head_top1_ids": [
+        14924,
+        14924
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.0076210585140771055,
+      "production_fp32_head_logit_rmse": 0.007621061550654919,
+      "probability_mass_defect": 0.0
+    },
+    {
+      "index": 35,
+      "doc_id": "wikitext2_train:16293",
+      "arm": "linear_last1",
+      "position": 64,
+      "fp64_head_tv": 0.013630465466232764,
+      "production_fp32_head_tv": 0.013629946839500234,
+      "tv_abs_difference": 5.186267325301558e-07,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        3206,
+        3206
+      ],
+      "production_fp32_head_top1_ids": [
+        3206,
+        3206
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.048073119793353006,
+      "production_fp32_head_logit_rmse": 0.04807312554288485,
+      "probability_mass_defect": 1.1102230246251565e-15
+    },
+    {
+      "index": 35,
+      "doc_id": "wikitext2_train:16293",
+      "arm": "linear_last1",
+      "position": 127,
+      "fp64_head_tv": 4.537605693061111e-05,
+      "production_fp32_head_tv": 4.5368942310901336e-05,
+      "tv_abs_difference": 7.114619709775588e-09,
+      "tv_within_audit_atol": true,
+      "fp64_head_top1_ids": [
+        883,
+        883
+      ],
+      "production_fp32_head_top1_ids": [
+        883,
+        883
+      ],
+      "top1_ids_equal": true,
+      "fp64_head_logit_rmse": 0.031656575832177306,
+      "production_fp32_head_logit_rmse": 0.03165657516103815,
+      "probability_mass_defect": 4.440892098500626e-16
+    }
+  ],
+  "limitation": "FP64 independent audit of18 selected token/arm pairs, not all measured positions and not bitwise proof of production FP32 GEMM."
+}

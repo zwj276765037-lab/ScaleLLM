@@ -1,0 +1,621 @@
+{
+  "schema": "m005_r005_independent_extended_audit_v1",
+  "execution_state": "completed",
+  "review": "limited_evidence_verified",
+  "overall_precision_verdict": "inconclusive",
+  "attempt": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT065_formal_resident_b063",
+  "runtime_binding": {
+    "canonical_group": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT065_formal_resident_b063",
+    "session": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/session_S001",
+    "shared_process": true,
+    "shared_worker_identity": {
+      "pid": 330520,
+      "ppid": 330188,
+      "pgid": 330520,
+      "starttime": 8235802,
+      "argv": [
+        "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+        "-B",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_extended_numerical_session.py",
+        "--worker",
+        "--plan",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/qualification/persistent_source_v1/session_plan_final.json",
+        "--output-dir",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/session_S001"
+      ]
+    },
+    "group_receipt": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT065_formal_resident_b063/execution_receipt.json",
+      "sha256": "5e8b60b364cff48c4df3d1468a2b382669760ee72f101ea3a5f093b95fc9dc62"
+    },
+    "global_receipt": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/session_S001/session_gpu_receipt.json",
+      "sha256": "27c7c2241dc326101943a858d1c26169be3174db90c65c74341971740df36302"
+    },
+    "global_launch": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/session_S001/session_launch_manifest.json",
+      "sha256": "d959412515fec22fce75ee47f7f2e8af5de9a22c5219f801147097a264daa117"
+    },
+    "analysis_manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/session_S001/analysis_manifest.json",
+      "sha256": "a1f93ff0a5a3b717ec18f9700d6e64c24072fc69cc01c8d5b3b5b693a1e97f0e"
+    },
+    "shared_loader_reference": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/session_S001/stream_loader_validation.json",
+      "bytes": 122306,
+      "sha256": "eb73b817b83911b51e0870b2f906c742bdef7459356d779b9fb562834dfa4480"
+    },
+    "shared_head_reference": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/session_S001/output_head/output_head_identity.json",
+      "bytes": 1098,
+      "sha256": "f9c640a23eb5cfcd89928fe121bff0a7d48557eae3230a90d7b7adc686df6068"
+    }
+  },
+  "source_identity": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/audit_extended_numerical.py",
+    "sha256": "e97a639c51a4925f2146f201b142967109b751d0ea66eac4af96fab30214bc48"
+  },
+  "documents": [
+    {
+      "doc_id": "c4_official_validation_first10000:2709",
+      "mlp": {
+        "doc_id": "c4_official_validation_first10000:2709",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 0,
+          "positive_outer_branch": 10,
+          "interior_lookup": 72482806,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "c4_official_validation_first10000:2709",
+        "tokens": 79,
+        "score_pairs": 10132224,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 78,
+        "top1_total_count": 79,
+        "max_abs_logit_delta": 0.2647862434387207,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "c4_official_validation_first10000:9414",
+      "mlp": {
+        "doc_id": "c4_official_validation_first10000:9414",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 40,
+          "positive_outer_branch": 10,
+          "interior_lookup": 117440462,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "c4_official_validation_first10000:9414",
+        "tokens": 128,
+        "score_pairs": 16416768,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 126,
+        "top1_total_count": 128,
+        "max_abs_logit_delta": 1.447061538696289,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "ag_news_test:1522",
+      "mlp": {
+        "doc_id": "ag_news_test:1522",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 0,
+          "positive_outer_branch": 10,
+          "interior_lookup": 33030134,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "ag_news_test:1522",
+        "tokens": 36,
+        "score_pairs": 4617216,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 36,
+        "top1_total_count": 36,
+        "max_abs_logit_delta": 0.30501890182495117,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "imdb_test:11631",
+      "mlp": {
+        "doc_id": "imdb_test:11631",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 4,
+          "positive_outer_branch": 10,
+          "interior_lookup": 117440498,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "imdb_test:11631",
+        "tokens": 128,
+        "score_pairs": 16416768,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 126,
+        "top1_total_count": 128,
+        "max_abs_logit_delta": 0.5506196022033691,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "c4_official_validation_first10000:7897",
+      "mlp": {
+        "doc_id": "c4_official_validation_first10000:7897",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 0,
+          "positive_outer_branch": 10,
+          "interior_lookup": 44957686,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "c4_official_validation_first10000:7897",
+        "tokens": 49,
+        "score_pairs": 6284544,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 48,
+        "top1_total_count": 49,
+        "max_abs_logit_delta": 0.27012670040130615,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "c4_official_validation_first10000:934",
+      "mlp": {
+        "doc_id": "c4_official_validation_first10000:934",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 2,
+          "positive_outer_branch": 12,
+          "interior_lookup": 117440498,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "c4_official_validation_first10000:934",
+        "tokens": 128,
+        "score_pairs": 16416768,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 126,
+        "top1_total_count": 128,
+        "max_abs_logit_delta": 0.33134256303310394,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "ag_news_test:6824",
+      "mlp": {
+        "doc_id": "ag_news_test:6824",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 0,
+          "positive_outer_branch": 10,
+          "interior_lookup": 51380214,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "ag_news_test:6824",
+        "tokens": 56,
+        "score_pairs": 7182336,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 56,
+        "top1_total_count": 56,
+        "max_abs_logit_delta": 0.5756627321243286,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "imdb_test:10733",
+      "mlp": {
+        "doc_id": "imdb_test:10733",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 0,
+          "positive_outer_branch": 10,
+          "interior_lookup": 117440502,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "imdb_test:10733",
+        "tokens": 128,
+        "score_pairs": 16416768,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 126,
+        "top1_total_count": 128,
+        "max_abs_logit_delta": 0.6931145191192627,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "c4_official_validation_first10000:7913",
+      "mlp": {
+        "doc_id": "c4_official_validation_first10000:7913",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 0,
+          "positive_outer_branch": 10,
+          "interior_lookup": 117440502,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "c4_official_validation_first10000:7913",
+        "tokens": 128,
+        "score_pairs": 16416768,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 126,
+        "top1_total_count": 128,
+        "max_abs_logit_delta": 0.9576512575149536,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "c4_official_validation_first10000:7091",
+      "mlp": {
+        "doc_id": "c4_official_validation_first10000:7091",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 4,
+          "positive_outer_branch": 10,
+          "interior_lookup": 117440498,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "c4_official_validation_first10000:7091",
+        "tokens": 128,
+        "score_pairs": 16416768,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 125,
+        "top1_total_count": 128,
+        "max_abs_logit_delta": 0.3911247253417969,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "ag_news_test:2847",
+      "mlp": {
+        "doc_id": "ag_news_test:2847",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 0,
+          "positive_outer_branch": 10,
+          "interior_lookup": 58720246,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "ag_news_test:2847",
+        "tokens": 64,
+        "score_pairs": 8208384,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 61,
+        "top1_total_count": 64,
+        "max_abs_logit_delta": 0.2843310832977295,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "imdb_test:16679",
+      "mlp": {
+        "doc_id": "imdb_test:16679",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 2,
+          "positive_outer_branch": 10,
+          "interior_lookup": 117440500,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "imdb_test:16679",
+        "tokens": 128,
+        "score_pairs": 16416768,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 124,
+        "top1_total_count": 128,
+        "max_abs_logit_delta": 0.31365013122558594,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "c4_official_validation_first10000:7650",
+      "mlp": {
+        "doc_id": "c4_official_validation_first10000:7650",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 0,
+          "positive_outer_branch": 10,
+          "interior_lookup": 44040182,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "c4_official_validation_first10000:7650",
+        "tokens": 48,
+        "score_pairs": 6156288,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 48,
+        "top1_total_count": 48,
+        "max_abs_logit_delta": 0.2246413230895996,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "c4_official_validation_first10000:8945",
+      "mlp": {
+        "doc_id": "c4_official_validation_first10000:8945",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 20,
+          "positive_outer_branch": 10,
+          "interior_lookup": 117440482,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "c4_official_validation_first10000:8945",
+        "tokens": 128,
+        "score_pairs": 16416768,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 124,
+        "top1_total_count": 128,
+        "max_abs_logit_delta": 0.8920602798461914,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "ag_news_test:7509",
+      "mlp": {
+        "doc_id": "ag_news_test:7509",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 0,
+          "positive_outer_branch": 10,
+          "interior_lookup": 41287670,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "ag_news_test:7509",
+        "tokens": 45,
+        "score_pairs": 5771520,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 44,
+        "top1_total_count": 45,
+        "max_abs_logit_delta": 0.41022372245788574,
+        "head_roundoff": null
+      }
+    },
+    {
+      "doc_id": "imdb_test:21765",
+      "mlp": {
+        "doc_id": "imdb_test:21765",
+        "mlp_rows": 416,
+        "aggregate_formula_verified": true,
+        "independent_product_samples": 0,
+        "independent_host_conversion_samples": 0,
+        "paired_output_spots_checked": 0,
+        "product_bound_violations": null,
+        "max_sample_product_absolute_error": null,
+        "lut_identities": [],
+        "actual_full_array_semantic_counts": {
+          "negative_outer_branch": 0,
+          "positive_outer_branch": 10,
+          "interior_lookup": 117440502,
+          "normalized_zero_extended_payloads": 0,
+          "product_s32_overflow": 0,
+          "product_common_exit_mismatch": 0
+        },
+        "limitation": "SiLU intermediate reconstructed from real inputs/LUT; full-branch numeric statistics are not a full independent branch recomputation"
+      },
+      "logits": {
+        "doc_id": "imdb_test:21765",
+        "tokens": 128,
+        "score_pairs": 16416768,
+        "aggregate_formula_verified": true,
+        "raw_positions": [],
+        "top1_match_count": 128,
+        "top1_total_count": 128,
+        "max_abs_logit_delta": 0.6285591125488281,
+        "head_roundoff": null
+      }
+    }
+  ],
+  "measured_documents": 16,
+  "formal_eval_documents": 16,
+  "audit_doc_ids": [],
+  "raw_hidden_tensors_recomputed": 0,
+  "full_consumed_head_source_verified": true,
+  "readonly_baseline": null,
+  "seconds": 2.990604227001313,
+  "limitations": [
+    "at most128 real tokens,32-layer prefill; no long context/decode or labeled accuracy claim",
+    "full-tensor statistics and source/formula checks distinguished from preselected raw witnesses",
+    "selected FP32 head roundoff spots do not prove a whole-vocabulary head rounding bound",
+    "SiLU same quantized lookup semantics, not analytic approximation error; whole-MLP spots are not full independent branch reruns"
+  ],
+  "core_audit": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/independent_review/formal/G063_core.json",
+    "sha256": "b42a8479a5c887345c04949a55b03e8ea41bb62d7f684f000511fd5b83781d50"
+  }
+}

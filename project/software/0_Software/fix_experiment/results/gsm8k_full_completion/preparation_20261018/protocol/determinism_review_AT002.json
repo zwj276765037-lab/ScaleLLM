@@ -1,0 +1,2579 @@
+{
+  "schema": "scalellm_gsm8k_determinism_review_v2",
+  "reviewed_at_utc": "2026-10-18T03:50:38.357311+00:00",
+  "reviewer": "A010 /root/gsm8k_protocol",
+  "execution_state": "review_completed_AT004_AT007",
+  "verdict": "same-prefix native logits repeat failure confirmed; layer25 up_proj is the first observed differing output, isolated cause and repair unvalidated",
+  "applicability": "Llama-3.1-8B-Instruct BF16 eager; two training prompts; diagnostic GPU1 only",
+  "CPU_only": true,
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "review_source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/protocol/review_native_diagnosis_AT004_AT007.py",
+    "sha256": "9c369b891bfbc54aada1aff7db92c2b8d3b1c9fd744eeecca9775ecb6dd412ef"
+  },
+  "analysis": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/analysis_AT001.json",
+    "sha256": "063647182ab5e58658721cce0df6a221f03343c41d33ab1d302c341fd61d18cb"
+  },
+  "attempts": [
+    {
+      "attempt": "AT004",
+      "diagnosis_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT004/diagnosis.json",
+      "diagnosis_sha256": "0f0099131652960b63f97b526d907a14bd74092c3076af1da0031ffb187e9ed8",
+      "source_sha256": "fdf865fd9dd9860ad2a4ee1367f69f122ebc1f2e97ab762de836ac37a93f9b1f",
+      "state": "complete",
+      "command": [
+        "exp/diagnose_gsm8k_native_inputs.py",
+        "--plan",
+        "results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/frozen_inputs/plan.json",
+        "--model",
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+        "--output",
+        "results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT004",
+        "--first",
+        "native"
+      ],
+      "plan_sha256": "a121713b9c87093830f15446ec130b340ae744445f5e75c9f59970752344b545",
+      "runtime_flags": {
+        "tf32": false,
+        "bf16_reduced_precision": true,
+        "deterministic_algorithms": false,
+        "CUBLAS_WORKSPACE_CONFIG": null
+      },
+      "gpu_uuid_actual": "d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "cpu_affinity": [
+        18,
+        19
+      ],
+      "records": [
+        {
+          "sample_id": "train:0000",
+          "prompt_sha256": "1a802d0631c60983bac49c34171be9fb24ab749900157117790887ae7b069c39",
+          "input_tokens": 891,
+          "raw_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT004/train_0000_raw_logits.pt",
+          "raw_sha256": "185a983d0935af5907942241979da339a4e891038d344ddbc00f1a36a056fa79",
+          "model_snapshots_equal": true,
+          "all_modules_eval": true,
+          "native_repeats": {
+            "17": {
+              "token_lengths": [
+                17,
+                17
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 17,
+              "exact_steps": 0,
+              "finite_steps": 17,
+              "prefill_max_abs_difference": 0.125,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 1,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 2,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 3,
+                  "exact": false,
+                  "max_abs_difference": 0.15625
+                },
+                {
+                  "step": 4,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 5,
+                  "exact": false,
+                  "max_abs_difference": 0.09375
+                },
+                {
+                  "step": 6,
+                  "exact": false,
+                  "max_abs_difference": 0.09912109375
+                },
+                {
+                  "step": 7,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 8,
+                  "exact": false,
+                  "max_abs_difference": 0.12890625
+                },
+                {
+                  "step": 9,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 10,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 11,
+                  "exact": false,
+                  "max_abs_difference": 0.14013671875
+                },
+                {
+                  "step": 12,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 13,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 14,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 15,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 16,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                }
+              ]
+            },
+            "32": {
+              "token_lengths": [
+                32,
+                32
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 32,
+              "exact_steps": 0,
+              "finite_steps": 32,
+              "prefill_max_abs_difference": 0.125,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 1,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 2,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 3,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 4,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 5,
+                  "exact": false,
+                  "max_abs_difference": 0.0703125
+                },
+                {
+                  "step": 6,
+                  "exact": false,
+                  "max_abs_difference": 0.109375
+                },
+                {
+                  "step": 7,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 8,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 9,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 10,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 11,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 12,
+                  "exact": false,
+                  "max_abs_difference": 0.0859375
+                },
+                {
+                  "step": 13,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 14,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 15,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 16,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 17,
+                  "exact": false,
+                  "max_abs_difference": 0.140625
+                },
+                {
+                  "step": 18,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 19,
+                  "exact": false,
+                  "max_abs_difference": 0.09375
+                },
+                {
+                  "step": 20,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 21,
+                  "exact": false,
+                  "max_abs_difference": 0.0850830078125
+                },
+                {
+                  "step": 22,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 23,
+                  "exact": false,
+                  "max_abs_difference": 0.15625
+                },
+                {
+                  "step": 24,
+                  "exact": false,
+                  "max_abs_difference": 0.1015625
+                },
+                {
+                  "step": 25,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 26,
+                  "exact": false,
+                  "max_abs_difference": 0.21875
+                },
+                {
+                  "step": 27,
+                  "exact": false,
+                  "max_abs_difference": 0.140625
+                },
+                {
+                  "step": 28,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 29,
+                  "exact": false,
+                  "max_abs_difference": 0.126953125
+                },
+                {
+                  "step": 30,
+                  "exact": false,
+                  "max_abs_difference": 0.15625
+                },
+                {
+                  "step": 31,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                }
+              ]
+            }
+          }
+        },
+        {
+          "sample_id": "train:0001",
+          "prompt_sha256": "3a2862a25bff88b0f7d289d875fd0459813cd948ece95cb1c5130c819975d059",
+          "input_tokens": 786,
+          "raw_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT004/train_0001_raw_logits.pt",
+          "raw_sha256": "586f5dafd9432df5eed3e3ed99d0c776a75214edea588f8e9d585c187665b4c4",
+          "model_snapshots_equal": true,
+          "all_modules_eval": true,
+          "native_repeats": {
+            "17": {
+              "token_lengths": [
+                17,
+                17
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 17,
+              "exact_steps": 0,
+              "finite_steps": 17,
+              "prefill_max_abs_difference": 0.125,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 1,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 2,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 3,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 4,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 5,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 6,
+                  "exact": false,
+                  "max_abs_difference": 0.08203125
+                },
+                {
+                  "step": 7,
+                  "exact": false,
+                  "max_abs_difference": 0.1416015625
+                },
+                {
+                  "step": 8,
+                  "exact": false,
+                  "max_abs_difference": 0.09375
+                },
+                {
+                  "step": 9,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 10,
+                  "exact": false,
+                  "max_abs_difference": 0.1015625
+                },
+                {
+                  "step": 11,
+                  "exact": false,
+                  "max_abs_difference": 0.140625
+                },
+                {
+                  "step": 12,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 13,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 14,
+                  "exact": false,
+                  "max_abs_difference": 0.1484375
+                },
+                {
+                  "step": 15,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 16,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                }
+              ]
+            },
+            "32": {
+              "token_lengths": [
+                32,
+                32
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 32,
+              "exact_steps": 32,
+              "finite_steps": 32,
+              "prefill_max_abs_difference": 0.0,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 1,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 2,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 3,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 4,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 5,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 6,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 7,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 8,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 9,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 10,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 11,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 12,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 13,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 14,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 15,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 16,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 17,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 18,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 19,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 20,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 21,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 22,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 23,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 24,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 25,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 26,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 27,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 28,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 29,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 30,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 31,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "attempt": "AT005",
+      "diagnosis_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT005/diagnosis.json",
+      "diagnosis_sha256": "63e6b6d31f00c742a2535d023c1fc2a8e209b114cd3ecf8c619316ec90ea7a66",
+      "source_sha256": "23b9488f48ace850d479fdec8308843d46e4c95dd14de812b4db545a4bfdd46e",
+      "state": "complete",
+      "command": [
+        "exp/diagnose_gsm8k_native_inputs.py",
+        "--plan",
+        "results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/frozen_inputs/plan.json",
+        "--model",
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+        "--output",
+        "results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT005",
+        "--first",
+        "native",
+        "--warmup-native-count",
+        "3"
+      ],
+      "plan_sha256": "a121713b9c87093830f15446ec130b340ae744445f5e75c9f59970752344b545",
+      "runtime_flags": {
+        "tf32": false,
+        "bf16_reduced_precision": true,
+        "deterministic_algorithms": false,
+        "CUBLAS_WORKSPACE_CONFIG": null
+      },
+      "gpu_uuid_actual": "d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "cpu_affinity": [
+        18,
+        19
+      ],
+      "records": [
+        {
+          "sample_id": "train:0000",
+          "prompt_sha256": "1a802d0631c60983bac49c34171be9fb24ab749900157117790887ae7b069c39",
+          "input_tokens": 891,
+          "raw_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT005/train_0000_raw_logits.pt",
+          "raw_sha256": "fe7e54a03223c59d1fad78f7c5f523502b17ae332d5ae033bfd5dae910951465",
+          "model_snapshots_equal": true,
+          "all_modules_eval": true,
+          "native_repeats": {
+            "17": {
+              "token_lengths": [
+                17,
+                17
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 17,
+              "exact_steps": 0,
+              "finite_steps": 17,
+              "prefill_max_abs_difference": 0.125,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 1,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 2,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 3,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 4,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 5,
+                  "exact": false,
+                  "max_abs_difference": 0.1015625
+                },
+                {
+                  "step": 6,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 7,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 8,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 9,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 10,
+                  "exact": false,
+                  "max_abs_difference": 0.09375
+                },
+                {
+                  "step": 11,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 12,
+                  "exact": false,
+                  "max_abs_difference": 0.1494140625
+                },
+                {
+                  "step": 13,
+                  "exact": false,
+                  "max_abs_difference": 0.0859375
+                },
+                {
+                  "step": 14,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 15,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 16,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                }
+              ]
+            },
+            "32": {
+              "token_lengths": [
+                32,
+                32
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 32,
+              "exact_steps": 32,
+              "finite_steps": 32,
+              "prefill_max_abs_difference": 0.0,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 1,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 2,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 3,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 4,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 5,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 6,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 7,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 8,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 9,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 10,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 11,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 12,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 13,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 14,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 15,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 16,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 17,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 18,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 19,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 20,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 21,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 22,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 23,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 24,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 25,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 26,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 27,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 28,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 29,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 30,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 31,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                }
+              ]
+            }
+          }
+        },
+        {
+          "sample_id": "train:0001",
+          "prompt_sha256": "3a2862a25bff88b0f7d289d875fd0459813cd948ece95cb1c5130c819975d059",
+          "input_tokens": 786,
+          "raw_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT005/train_0001_raw_logits.pt",
+          "raw_sha256": "63f0f59a78c82e76b043cc6b989fbb4f76e04f5e9c7ab40d9659d04748696b00",
+          "model_snapshots_equal": true,
+          "all_modules_eval": true,
+          "native_repeats": {
+            "17": {
+              "token_lengths": [
+                17,
+                17
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 17,
+              "exact_steps": 17,
+              "finite_steps": 17,
+              "prefill_max_abs_difference": 0.0,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 1,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 2,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 3,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 4,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 5,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 6,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 7,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 8,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 9,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 10,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 11,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 12,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 13,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 14,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 15,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 16,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                }
+              ]
+            },
+            "32": {
+              "token_lengths": [
+                32,
+                32
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 32,
+              "exact_steps": 32,
+              "finite_steps": 32,
+              "prefill_max_abs_difference": 0.0,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 1,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 2,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 3,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 4,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 5,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 6,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 7,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 8,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 9,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 10,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 11,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 12,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 13,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 14,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 15,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 16,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 17,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 18,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 19,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 20,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 21,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 22,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 23,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 24,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 25,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 26,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 27,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 28,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 29,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 30,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 31,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "attempt": "AT006",
+      "diagnosis_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT006/diagnosis.json",
+      "diagnosis_sha256": "0e6b3eb96cfc915a4a12c48e6ee2584846ca10ba4ecdcb3fc96d5b1a92021e89",
+      "source_sha256": "0a9bd67ecb8a27487390593bd9b5c0eba38adc16083ee9eb2b339a08e9cd0d51",
+      "state": "complete",
+      "command": [
+        "exp/diagnose_gsm8k_native_inputs.py",
+        "--plan",
+        "results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/frozen_inputs/plan.json",
+        "--model",
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+        "--output",
+        "results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT006",
+        "--first",
+        "native",
+        "--symmetric-prefill-probe"
+      ],
+      "plan_sha256": "a121713b9c87093830f15446ec130b340ae744445f5e75c9f59970752344b545",
+      "runtime_flags": {
+        "tf32": false,
+        "bf16_reduced_precision": true,
+        "deterministic_algorithms": false,
+        "CUBLAS_WORKSPACE_CONFIG": null
+      },
+      "gpu_uuid_actual": "d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "cpu_affinity": [
+        18,
+        19
+      ],
+      "records": [
+        {
+          "sample_id": "train:0000",
+          "prompt_sha256": "1a802d0631c60983bac49c34171be9fb24ab749900157117790887ae7b069c39",
+          "input_tokens": 891,
+          "raw_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT006/train_0000_raw_logits.pt",
+          "raw_sha256": "3e5f4c4cb50e1d9f4148f05f63b0b118af5cc8f5c493b82f83da8822b8e01759",
+          "model_snapshots_equal": true,
+          "all_modules_eval": true,
+          "native_repeats": {
+            "17": {
+              "token_lengths": [
+                17,
+                17
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 17,
+              "exact_steps": 0,
+              "finite_steps": 17,
+              "prefill_max_abs_difference": 0.09375,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": false,
+                  "max_abs_difference": 0.09375
+                },
+                {
+                  "step": 1,
+                  "exact": false,
+                  "max_abs_difference": 0.109375
+                },
+                {
+                  "step": 2,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 3,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 4,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 5,
+                  "exact": false,
+                  "max_abs_difference": 0.078125
+                },
+                {
+                  "step": 6,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 7,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 8,
+                  "exact": false,
+                  "max_abs_difference": 0.078125
+                },
+                {
+                  "step": 9,
+                  "exact": false,
+                  "max_abs_difference": 0.09375
+                },
+                {
+                  "step": 10,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 11,
+                  "exact": false,
+                  "max_abs_difference": 0.127685546875
+                },
+                {
+                  "step": 12,
+                  "exact": false,
+                  "max_abs_difference": 0.078125
+                },
+                {
+                  "step": 13,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 14,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 15,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 16,
+                  "exact": false,
+                  "max_abs_difference": 0.109375
+                }
+              ]
+            },
+            "32": {
+              "token_lengths": [
+                32,
+                32
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 32,
+              "exact_steps": 0,
+              "finite_steps": 32,
+              "prefill_max_abs_difference": 0.0703125,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": false,
+                  "max_abs_difference": 0.0703125
+                },
+                {
+                  "step": 1,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 2,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 3,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 4,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 5,
+                  "exact": false,
+                  "max_abs_difference": 0.08203125
+                },
+                {
+                  "step": 6,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 7,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 8,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 9,
+                  "exact": false,
+                  "max_abs_difference": 0.0703125
+                },
+                {
+                  "step": 10,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 11,
+                  "exact": false,
+                  "max_abs_difference": 0.1875
+                },
+                {
+                  "step": 12,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 13,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 14,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 15,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 16,
+                  "exact": false,
+                  "max_abs_difference": 0.078125
+                },
+                {
+                  "step": 17,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 18,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 19,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 20,
+                  "exact": false,
+                  "max_abs_difference": 0.078125
+                },
+                {
+                  "step": 21,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 22,
+                  "exact": false,
+                  "max_abs_difference": 0.078125
+                },
+                {
+                  "step": 23,
+                  "exact": false,
+                  "max_abs_difference": 0.15625
+                },
+                {
+                  "step": 24,
+                  "exact": false,
+                  "max_abs_difference": 0.103515625
+                },
+                {
+                  "step": 25,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 26,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 27,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 28,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 29,
+                  "exact": false,
+                  "max_abs_difference": 0.1015625
+                },
+                {
+                  "step": 30,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 31,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                }
+              ]
+            }
+          },
+          "symmetric_probe_review": {
+            "probe_calls": 5,
+            "first_two_are_measured_native17_calls": true,
+            "prefill_inputs_equal": true,
+            "all_five_prefill_inputs_equal": true,
+            "observed_modules": 45,
+            "different_outputs_in_execution_order": [
+              "model.layers.25",
+              "model.layers.26",
+              "model.layers.27",
+              "model.layers.28",
+              "model.layers.29",
+              "model.layers.30",
+              "model.layers.31",
+              "model.norm",
+              "lm_head"
+            ],
+            "all_forward_vs_api_prefills_exact_finite": true,
+            "measured_forward_vs_api_hashes_match_raw": true,
+            "layers_0_24_output_metadata_equal": true
+          }
+        },
+        {
+          "sample_id": "train:0001",
+          "prompt_sha256": "3a2862a25bff88b0f7d289d875fd0459813cd948ece95cb1c5130c819975d059",
+          "input_tokens": 786,
+          "raw_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT006/train_0001_raw_logits.pt",
+          "raw_sha256": "532f025443c6fe338396bf9527ad0825e010ca12c5276eec3dad7518181bc6d4",
+          "model_snapshots_equal": true,
+          "all_modules_eval": true,
+          "native_repeats": {
+            "17": {
+              "token_lengths": [
+                17,
+                17
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 17,
+              "exact_steps": 17,
+              "finite_steps": 17,
+              "prefill_max_abs_difference": 0.0,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 1,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 2,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 3,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 4,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 5,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 6,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 7,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 8,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 9,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 10,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 11,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 12,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 13,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 14,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 15,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 16,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                }
+              ]
+            },
+            "32": {
+              "token_lengths": [
+                32,
+                32
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 32,
+              "exact_steps": 32,
+              "finite_steps": 32,
+              "prefill_max_abs_difference": 0.0,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 1,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 2,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 3,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 4,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 5,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 6,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 7,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 8,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 9,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 10,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 11,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 12,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 13,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 14,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 15,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 16,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 17,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 18,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 19,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 20,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 21,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 22,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 23,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 24,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 25,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 26,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 27,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 28,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 29,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 30,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 31,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                }
+              ]
+            }
+          },
+          "symmetric_probe_review": {
+            "probe_calls": 5,
+            "first_two_are_measured_native17_calls": true,
+            "prefill_inputs_equal": true,
+            "all_five_prefill_inputs_equal": true,
+            "observed_modules": 45,
+            "different_outputs_in_execution_order": [],
+            "all_forward_vs_api_prefills_exact_finite": true,
+            "measured_forward_vs_api_hashes_match_raw": true,
+            "layers_0_24_output_metadata_equal": true
+          }
+        }
+      ]
+    },
+    {
+      "attempt": "AT007",
+      "diagnosis_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT007/diagnosis.json",
+      "diagnosis_sha256": "7edcd8091434d1bbec6797c2614060d90e37ae5546431528c024a9a940af9b3d",
+      "source_sha256": "3f142c776b1d89195322c8697e7798a8375cb1b59f6226b011a64bdc1b42ebdd",
+      "state": "complete",
+      "command": [
+        "exp/diagnose_gsm8k_native_inputs.py",
+        "--plan",
+        "results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/frozen_inputs/plan.json",
+        "--model",
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+        "--output",
+        "results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT007",
+        "--first",
+        "native",
+        "--symmetric-prefill-probe",
+        "--detail-layer",
+        "25"
+      ],
+      "plan_sha256": "a121713b9c87093830f15446ec130b340ae744445f5e75c9f59970752344b545",
+      "runtime_flags": {
+        "tf32": false,
+        "bf16_reduced_precision": true,
+        "deterministic_algorithms": false,
+        "CUBLAS_WORKSPACE_CONFIG": null
+      },
+      "gpu_uuid_actual": "d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "cpu_affinity": [
+        18,
+        19
+      ],
+      "records": [
+        {
+          "sample_id": "train:0000",
+          "prompt_sha256": "1a802d0631c60983bac49c34171be9fb24ab749900157117790887ae7b069c39",
+          "input_tokens": 891,
+          "raw_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT007/train_0000_raw_logits.pt",
+          "raw_sha256": "302e5978b97dbb7c043bdede2fc201416dcc07b30f45efeef184daded5392937",
+          "model_snapshots_equal": true,
+          "all_modules_eval": true,
+          "native_repeats": {
+            "17": {
+              "token_lengths": [
+                17,
+                17
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 17,
+              "exact_steps": 0,
+              "finite_steps": 17,
+              "prefill_max_abs_difference": 0.125,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 1,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 2,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 3,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 4,
+                  "exact": false,
+                  "max_abs_difference": 0.09375
+                },
+                {
+                  "step": 5,
+                  "exact": false,
+                  "max_abs_difference": 0.09375
+                },
+                {
+                  "step": 6,
+                  "exact": false,
+                  "max_abs_difference": 0.09765625
+                },
+                {
+                  "step": 7,
+                  "exact": false,
+                  "max_abs_difference": 0.09375
+                },
+                {
+                  "step": 8,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 9,
+                  "exact": false,
+                  "max_abs_difference": 0.09375
+                },
+                {
+                  "step": 10,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 11,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 12,
+                  "exact": false,
+                  "max_abs_difference": 0.09375
+                },
+                {
+                  "step": 13,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 14,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 15,
+                  "exact": false,
+                  "max_abs_difference": 0.125
+                },
+                {
+                  "step": 16,
+                  "exact": false,
+                  "max_abs_difference": 0.15625
+                }
+              ]
+            },
+            "32": {
+              "token_lengths": [
+                32,
+                32
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 32,
+              "exact_steps": 32,
+              "finite_steps": 32,
+              "prefill_max_abs_difference": 0.0,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 1,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 2,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 3,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 4,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 5,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 6,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 7,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 8,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 9,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 10,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 11,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 12,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 13,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 14,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 15,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 16,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 17,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 18,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 19,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 20,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 21,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 22,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 23,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 24,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 25,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 26,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 27,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 28,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 29,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 30,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 31,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                }
+              ]
+            }
+          },
+          "symmetric_probe_review": {
+            "probe_calls": 5,
+            "first_two_are_measured_native17_calls": true,
+            "prefill_inputs_equal": true,
+            "all_five_prefill_inputs_equal": true,
+            "observed_modules": 45,
+            "different_outputs_in_execution_order": [
+              "model.layers.25.mlp.up_proj",
+              "model.layers.25.mlp.down_proj",
+              "model.layers.25",
+              "model.layers.26",
+              "model.layers.27",
+              "model.layers.28",
+              "model.layers.29",
+              "model.layers.30",
+              "model.layers.31",
+              "model.norm",
+              "lm_head"
+            ],
+            "all_forward_vs_api_prefills_exact_finite": true,
+            "measured_forward_vs_api_hashes_match_raw": true,
+            "layers_0_24_output_metadata_equal": true,
+            "layer25_matching_detail_outputs": [
+              "model.layers.25.input_layernorm",
+              "model.layers.25.self_attn.q_proj",
+              "model.layers.25.self_attn.k_proj",
+              "model.layers.25.self_attn.v_proj",
+              "model.layers.25.self_attn.o_proj",
+              "model.layers.25.post_attention_layernorm",
+              "model.layers.25.mlp.gate_proj"
+            ]
+          }
+        },
+        {
+          "sample_id": "train:0001",
+          "prompt_sha256": "3a2862a25bff88b0f7d289d875fd0459813cd948ece95cb1c5130c819975d059",
+          "input_tokens": 786,
+          "raw_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT007/train_0001_raw_logits.pt",
+          "raw_sha256": "35c08144852781b9e6b999dc6f31fb236242ad36c9efe3c65e2ef67639b92388",
+          "model_snapshots_equal": true,
+          "all_modules_eval": true,
+          "native_repeats": {
+            "17": {
+              "token_lengths": [
+                17,
+                17
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 17,
+              "exact_steps": 17,
+              "finite_steps": 17,
+              "prefill_max_abs_difference": 0.0,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 1,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 2,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 3,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 4,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 5,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 6,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 7,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 8,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 9,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 10,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 11,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 12,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 13,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 14,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 15,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 16,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                }
+              ]
+            },
+            "32": {
+              "token_lengths": [
+                32,
+                32
+              ],
+              "tokens_equal": true,
+              "argmax_matches_recorded_tokens": true,
+              "first_token_fork": null,
+              "same_input_prefix_steps": 32,
+              "exact_steps": 32,
+              "finite_steps": 32,
+              "prefill_max_abs_difference": 0.0,
+              "steps": [
+                {
+                  "step": 0,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 1,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 2,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 3,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 4,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 5,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 6,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 7,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 8,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 9,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 10,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 11,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 12,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 13,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 14,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 15,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 16,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 17,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 18,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 19,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 20,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 21,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 22,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 23,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 24,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 25,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 26,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 27,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 28,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 29,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 30,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                },
+                {
+                  "step": 31,
+                  "exact": true,
+                  "max_abs_difference": 0.0
+                }
+              ]
+            }
+          },
+          "symmetric_probe_review": {
+            "probe_calls": 5,
+            "first_two_are_measured_native17_calls": true,
+            "prefill_inputs_equal": true,
+            "all_five_prefill_inputs_equal": true,
+            "observed_modules": 45,
+            "different_outputs_in_execution_order": [],
+            "all_forward_vs_api_prefills_exact_finite": true,
+            "measured_forward_vs_api_hashes_match_raw": true,
+            "layers_0_24_output_metadata_equal": true,
+            "layer25_matching_detail_outputs": [
+              "model.layers.25.input_layernorm",
+              "model.layers.25.self_attn.q_proj",
+              "model.layers.25.self_attn.k_proj",
+              "model.layers.25.self_attn.v_proj",
+              "model.layers.25.self_attn.o_proj",
+              "model.layers.25.post_attention_layernorm",
+              "model.layers.25.mlp.gate_proj",
+              "model.layers.25.mlp.up_proj",
+              "model.layers.25.mlp.down_proj"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "mismatches": [],
+  "native_pairs_recomputed": 392,
+  "manual_pairs_recomputed": 48,
+  "raw_files_sha256_verified": 8,
+  "frozen_source_manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/frozen_source_manifest.json",
+    "sha256": "89da4134e7ddaf760f6f542cc6cc94c086d487c21b96408cdd7585d0dbd49701"
+  },
+  "frozen_source_hash_matches": {
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/experiment/scripts/accuracy_MLP_4bit/mlp4_method_inference.py": true,
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/experiment/scripts/scale_code_linear/scalepath4_method_inference.py": true,
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py": true,
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/protocol.py": true,
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/publish_gsm8k_display.py": true,
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/render_accuracy_table.py": true,
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_eval_worker.py": true,
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py": true,
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_worker.py": true,
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/six_model_matrix.py": true,
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/summarize_gsm8k.py": true,
+    "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/models/huggingface.py": true,
+    "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/models/utils.py": true,
+    "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/models/utils_hf.py": true
+  },
+  "analysis_findings_review": [
+    "AT004 source explicitly performs controlled native17/native32 repeats before input capture and releases GPU output/cache after immediate CPU snapshots.",
+    "All 392 native repeat pairs have identical input prefixes; token lengths and argmax identities were independently checked against saved raw logits.",
+    "AT005 three warmups did not pass the first-prompt prefill exact gate.",
+    "AT006 first observed full-layer difference is layer25; AT007 detailed hooks narrow the first observed output difference to layer25.mlp.up_proj.",
+    "AT007 first-prompt layers0-24 and layer25 input norm/Q/K/V/O/post-attention norm/gate outputs match; second prompt observed path matches.",
+    "The analysis finding is accepted as an observed-boundary localization, not yet an isolated GEMM cause or implementation repair."
+  ],
+  "limitations": [
+    "Intermediate module tensors were not retained; reviewer verifies recorded output metadata/hash relations, not recomputed intermediate hashes.",
+    "AT007 does not directly capture up_proj input/weight bytes; model mutation guards cover parameter versions and registered buffers, not complete parameter byte hashes.",
+    "AT006/007 probes synchronize and copy outputs symmetrically; their instrumented execution is distinct from uninstrumented AT004, which independently also fails.",
+    "Capture-probe-vs-replay cannot be recomputed because capture-probe raw logits were not saved.",
+    "Local 32-token equality is not the required full new-matrix hard-gate qualification, and no formal result is accepted."
+  ],
+  "AT008_status": "actually launched by A011; independent review pending completed raw evidence",
+  "minimum_repair_evidence": [
+    "Isolated controls retain original x/weight byte hashes, shapes, dtype, strides, device and mutation guards; compare complete outputs with fixed vs distinct fresh retained out buffers and explicit synchronization.",
+    "Any candidate change must exhibit exact/finite repeated isolated outputs and exact/finite uninstrumented native prefills/steps on both previously failing and passing prompts; report unsuccessful variants.",
+    "Record effective backend flags, packages, device UUID, source identities, semantics and resource impact; neither token-only equality nor a tolerance relaxation closes the exact gate.",
+    "Controller decides compatibility and new R/version boundary before frozen production edits or restart; preserve R001/R002 failures and do not import prior smoke passes across a changed backend.",
+    "A repaired evaluation still needs all 30 cases through v2 manual/native and rebuilt-cache gates, corruption control, independent-process32 repeat and fresh pilot memory/runtime qualification before formal test."
+  ]
+}

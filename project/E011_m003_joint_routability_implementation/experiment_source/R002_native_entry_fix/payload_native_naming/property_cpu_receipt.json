@@ -1,0 +1,56 @@
+{
+  "schema": "M003_local_property_reading_differential_CPU_v1",
+  "observed_utc": "2026-10-18T09:01:21.835920+00:00",
+  "execution": "completed",
+  "command": [
+    "python3",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/test_property_reading.py"
+  ],
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "nice": 5,
+  "exit_status": 0,
+  "tests": 11,
+  "elapsed_seconds": 0.392,
+  "log": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/property_cpu_tests.log",
+    "bytes": 1722,
+    "sha256": "78e85e62bf032e674151036fab3e1ad82bf1d6fc23f5640cd7b1921778342410"
+  },
+  "sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/property_reading.tcl",
+      "bytes": 3411,
+      "sha256": "b3ba1a9baa300b1ad06500342d6525d7474b81206d3747a022961dccc101de3a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/test_property_reading.py",
+      "bytes": 8093,
+      "sha256": "5cb700c1c4e5b07aba187746ae7def9b92ea7d7da3505cc17a167c2a2bd98857"
+    }
+  ],
+  "baseline_production": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_checks.tcl",
+    "bytes": 27553,
+    "sha256": "7973a1b808319a8d33fdb7ba21ac8b2520894831355234bf258ae28e4207f493"
+  },
+  "coverage": [
+    "old/new real Tcl return/errors/get-field order/native-write actions equal",
+    "one list_property per cell per function invocation",
+    "sameREFdifferent support for a/b and fresh support each newcall",
+    "fixed support absent errors, macro/RLOC/RLOC_ORIGIN rejection, incompatible hardPB rejection, legal softPB",
+    "LOC only read when fixed in hard guard; outside-pool rejection before writes",
+    "cell_row11fields, supportedempty/NOT_SUPPORTED,extra merge,placedSLR/CR",
+    "list/get API errors propagate; no write before rejection",
+    "other pblock uses own support, not cell support"
+  ],
+  "limits": "CPU nativeAPI mocks; no measured speedup or native qualification claimed"
+}

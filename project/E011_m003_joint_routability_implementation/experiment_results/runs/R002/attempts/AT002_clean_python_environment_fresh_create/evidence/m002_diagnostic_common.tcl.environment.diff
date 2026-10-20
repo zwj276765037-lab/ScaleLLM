@@ -1,0 +1,27 @@
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT001_fresh_selected_project_create/evidence/jobs/fresh_create/sources/c0676e7c08cf0710b61c2eef0c92acfae7da9755de4ccd2f48241c148b5633a4_m002_diagnostic_common.tcl
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_common.tcl
+@@ -1,5 +1,6 @@
+ # M002 independent diagnostic implementation support. Original synth entry is frozen.
+ set ::m002_script_dir [file dirname [file normalize [info script]]]
++if {[info exists ::env(HAP_M003_ACTIVE)]} {source [file join $::m002_script_dir m003_system_python.tcl]}
+ set ::m002_report_dir [file normalize $::env(HAP_REPORT_DIR)]
+ 
+ proc m002_put {path text} {
+@@ -648,7 +649,7 @@
+     }
+     if {$point eq "route"} {report_route_status -file [file join $::m002_report_dir route_status_route.rpt]}
+     if {[info exists ::env(HAP_M003_ACTIVE)]} {
+-        exec /usr/bin/python3 [file join $::m002_script_dir m003_stage.py] prepare-probe --report $::m002_report_dir --point $point --synth-report $::env(HAP_SYNTH_REPORT_DIR) --project $::env(HAP_PROJECT_DIR)
++        m003_python [file join $::m002_script_dir m003_stage.py] prepare-probe --report $::m002_report_dir --point $point --synth-report $::env(HAP_SYNTH_REPORT_DIR) --project $::env(HAP_PROJECT_DIR)
+     }
+     if {$point in {init opt debug_materialized}} {m002_probe_netlist $point}
+     if {$point in {opt debug_materialized place physopt route}} {m002_reset_snapshot $point}
+@@ -658,7 +659,7 @@
+     require_board_clock_groups
+     require_no_drc_blockers [expr {$point eq "route" ? "post_route" : "physopt"}]
+     if {[info exists ::env(HAP_M003_ACTIVE)]} {
+-        exec /usr/bin/python3 [file join $::m002_script_dir m003_physical_evidence.py] hook-batch $point $::m002_report_dir
++        m003_python [file join $::m002_script_dir m003_physical_evidence.py] hook-batch $point $::m002_report_dir
+     } else {
+     exec python3 [file join $::m002_script_dir m002_physical_evidence.py] hook-batch $point $::m002_report_dir
+     }

@@ -1,0 +1,35 @@
+{
+  "argv": [
+    "exp/run_gsm8k_worker.py",
+    "--plan",
+    "source/gsm8k_gpu_integrity_v3_20261018/plan.json",
+    "--stage",
+    "smoke",
+    "--model",
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+    "--case",
+    "a8w4_fp32",
+    "--model-identity",
+    "results/gsm8k_full_completion/preparation_20261018/model_identities/Llama-3.1-8B-Instruct.json",
+    "--output",
+    "results/gsm8k_full_completion/preparation_20261018/weight_integrity_v1_gpu_smoke/Llama-3.1-8B-Instruct/a8w4_fp32/AT001",
+    "--device",
+    "cuda:0",
+    "--verify-generation"
+  ],
+  "arguments": {
+    "plan": "source/gsm8k_gpu_integrity_v3_20261018/plan.json",
+    "stage": "smoke",
+    "model": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+    "case": "a8w4_fp32",
+    "model_identity": "results/gsm8k_full_completion/preparation_20261018/model_identities/Llama-3.1-8B-Instruct.json",
+    "output": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/weight_integrity_v1_gpu_smoke/Llama-3.1-8B-Instruct/a8w4_fp32/AT001",
+    "device": "cuda:0",
+    "batch_size": 1,
+    "context_length": 8192,
+    "max_gen_toks": null,
+    "seed": 20260913,
+    "resume_from": [],
+    "verify_generation": true
+  }
+}

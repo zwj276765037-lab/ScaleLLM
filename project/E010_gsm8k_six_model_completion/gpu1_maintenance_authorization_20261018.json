@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-10-18T04:52:05.521952+00:00",
+  "question": "是否允许安排GPU1维护窗口：保存桌面工作，确认GPU0/M003安全交接，再退出图形桌面，仅尝试重置GPU1并复测；不扩展为主机重启或系统驱动更换",
+  "user_reply": "允许安排上述GPU1维护窗口",
+  "authorized": true,
+  "allowed": [
+    "maintenance preparation",
+    "safely release desktop GPU clients",
+    "single GPU1 reset",
+    "fresh raw byte/observer and model integrity validation after reset"
+  ],
+  "not_authorized": [
+    "host reboot",
+    "system driver replacement",
+    "GPU0 reset",
+    "kill normal GPU/EDA jobs",
+    "stop M003"
+  ],
+  "current_blocker": {
+    "action": "sudo -n true",
+    "exit_code": 1,
+    "stderr": "sudo: a password is required"
+  },
+  "gpu0_handoff": "current QDQ training prep continues naturally; no next GPU0 job until maintenance disposition",
+  "maintenance_started": false
+}

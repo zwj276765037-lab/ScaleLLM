@@ -1,0 +1,62 @@
+{
+  "schema": "M003_actual_applied_entry_regression_v2",
+  "command": [
+    "/usr/bin/python3",
+    "-m",
+    "unittest",
+    "-v",
+    "tests.test_m003_joint_qualification",
+    "tests.test_m003_native_entry_repair"
+  ],
+  "cwd": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware",
+  "started_utc": "2026-10-18T10:31:08.497866+00:00",
+  "ended_utc": "2026-10-18T10:31:17.132694+00:00",
+  "exit_code": 0,
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "nice": 5,
+  "actual_sources_unchanged": true,
+  "manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_entry_manifest.json",
+    "bytes": 10964,
+    "sha256": "8b6fbe902e3d7287b75b3aa56bdbaf1fc43f92fd12aed5ec2551978568bc6ac5"
+  },
+  "source_count": 45,
+  "checks": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_checks.tcl",
+    "bytes": 28675,
+    "sha256": "7419a97d224e848f3c414659f01e64962432139c9b7127a45713a28145fb3003"
+  },
+  "test_sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/tests/test_m003_joint_qualification.py",
+      "bytes": 19984,
+      "sha256": "ec7a1c677fb5f19ce8b58e05bcbb27931dd79097974f8809b68e5a7f519c42f2"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/tests/test_m003_native_entry_repair.py",
+      "bytes": 12820,
+      "sha256": "ddc1e28606e3124c21204a59957606bcc6b693448b147333f354d0a6c37b3f80"
+    }
+  ],
+  "log": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/production_regression_after_fixture_refresh.log",
+    "bytes": 8424,
+    "sha256": "692f1f5073953199e5de18fb8a01f782f492836876c49dd347f2bb33460e315b"
+  },
+  "prior_failed_receipt": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/production_regression_receipt.json",
+    "bytes": 2023,
+    "sha256": "150b71f709ca6d455f57a791996ec3165e5270bf9f173ed6159d3f794cea6a74"
+  },
+  "fixture_repair": "Use native list_property/get_property backed by same property dictionary, with foreign hard pblock IS_SOFT=0; preserve all pre-existing positive and mutation negative assertions. No production implementation changes.",
+  "scope": "Affected existing native entry/source/qualification guards on actual applied production bytes; not native graph/G4"
+}

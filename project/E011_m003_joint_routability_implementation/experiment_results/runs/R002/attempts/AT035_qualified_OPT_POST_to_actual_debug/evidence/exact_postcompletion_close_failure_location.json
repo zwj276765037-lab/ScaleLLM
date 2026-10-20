@@ -1,0 +1,60 @@
+{
+  "observed_utc": "2026-10-19T18:10:07.908935+00:00",
+  "actual_source_code_sequence": [
+    {
+      "line": 28,
+      "text": "close_project"
+    },
+    {
+      "line": 122,
+      "text": "m003_python [file join $script_dir m003_stage.py] preplace --report $report_dir"
+    },
+    {
+      "line": 123,
+      "text": "close_design"
+    },
+    {
+      "line": 124,
+      "text": "close_project"
+    }
+  ],
+  "actual_log_sequence": [
+    {
+      "line": 219,
+      "text": "M002_DIAGNOSTIC_STEP_COMPLETED debug_materialized coverage=COMPLETE_INTERNAL physical_signoff=false"
+    },
+    {
+      "line": 220,
+      "text": "close_design: Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 23146.465 ; gain = 0.000 ; free physical = 3190 ; free virtual = 480584"
+    },
+    {
+      "line": 221,
+      "text": "ERROR: [Common 17-53] User Exception: No open project. Please create or open a project before executing this command."
+    }
+  ],
+  "artifact_times": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT035_qualified_OPT_POST_to_actual_debug/debug_materialized_result.txt",
+      "mtime_utc": "2026-10-19T18:06:19.377532+00:00",
+      "sha256": "f78b1f311adde6ef7e940841d5979df9245e810c3192b0612804637f2bd84990"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT035_qualified_OPT_POST_to_actual_debug/integrity_debug_materialized.json",
+      "mtime_utc": "2026-10-19T18:06:19.362864+00:00",
+      "sha256": "afd269d25fee0065fcc7cd895f28212e530b8551f5bcb9f2f229a2f603bfef17"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT035_qualified_OPT_POST_to_actual_debug/pre_place_evidence.json",
+      "mtime_utc": "2026-10-19T18:06:21.434705+00:00",
+      "sha256": "29602effd3ddf9b4ba2f5fc3c03f078b4515485fd78136633216a9494a44a14a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT035_qualified_OPT_POST_to_actual_debug/M003_preplace_package.json",
+      "mtime_utc": "2026-10-19T18:06:22.278684+00:00",
+      "sha256": "94e3f3350af829d7fd61d4e01988e262b1344697801a062d762a8ca295e98e52"
+    }
+  ],
+  "interpretation": "All actual debug POST and preplace outputs precede the redundant close_project error; original native1 remains unchanged",
+  "preplace_native0_requirements": "actual implement_debug_core command native Tcl0; no original run_m003_stage.py requirement that entire prior qualifier job native_exit_code be0",
+  "no_new_EDA": true
+}

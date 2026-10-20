@@ -1,0 +1,108 @@
+{
+  "observed_utc": "2026-10-19T06:39:03.751763+00:00",
+  "native_PID": 274532,
+  "native_start_ticks": 7666943,
+  "native_overlay_apply_successes": 2,
+  "second_apply": {
+    "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT025_boundary_sources_postreport_recovery/evidence/AT025_second_apply_success_native_receipt.json",
+    "bytes": 240,
+    "sha256": "88f909045214d98fdc6e7e6b8588cf841e421a57b35d179e81821714ddfff711"
+  },
+  "native_log_prefix": {
+    "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT025_boundary_sources_postreport_recovery/evidence/AT025_second_apply_success_native_log_prefix.log",
+    "bytes": 105698,
+    "sha256": "48a7b55803f40b24be04a75d37da5596290fab32b707e005e5fa9135259a3485"
+  },
+  "snapshot_trace_prefix": {
+    "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT025_boundary_sources_postreport_recovery/evidence/AT025_snapshot_start_trace_prefix.jsonl",
+    "bytes": 2458,
+    "sha256": "3bf848e33031dbd04a0737069c791a572d376904bc5a5eec13dec8a84f504e01"
+  },
+  "actual_nonclock_source_selection_events": [
+    {
+      "event": "boundary_source_selected",
+      "clock_ms": 1792391871467,
+      "tag": "S",
+      "anchor": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/engine_soft_clear",
+      "segment_count": "17"
+    },
+    {
+      "event": "boundary_source_selected",
+      "clock_ms": 1792391873920,
+      "tag": "L",
+      "anchor": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/input_load_start",
+      "segment_count": "9"
+    },
+    {
+      "event": "boundary_source_selected",
+      "clock_ms": 1792391876404,
+      "tag": "R",
+      "anchor": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/rsp_fire",
+      "segment_count": "3"
+    },
+    {
+      "event": "boundary_source_selected",
+      "clock_ms": 1792391878891,
+      "tag": "reset",
+      "anchor": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/core_rst_n",
+      "segment_count": "807"
+    },
+    {
+      "event": "boundary_source_selected",
+      "clock_ms": 1792391881251,
+      "tag": "read_enable",
+      "anchor": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/rd_fire",
+      "segment_count": "1"
+    },
+    {
+      "event": "boundary_source_selected",
+      "clock_ms": 1792391883599,
+      "tag": "write_enable",
+      "anchor": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/meta_wr_valid",
+      "segment_count": "3"
+    }
+  ],
+  "interpretation": "All six independent nonclock source anchors and the independent clock net exact selector were reached successfully; per-tag native segment counts observed. Full output NAME vector count/nonempty/unique/anchor check and source clock binding are not yet complete.",
+  "resource_sample": {
+    "utc": "2026-10-19T06:39:02.828421+00:00",
+    "rss_bytes": 21669040128,
+    "mem_available_bytes": 501676670976,
+    "disk_free_bytes": 455874322432,
+    "processes": {
+      "274417": {
+        "ppid": 274416,
+        "pgrp": 274417,
+        "start_ticks": 7666738,
+        "rss_bytes": 25694208,
+        "cpu_ticks": 188,
+        "nice": 5
+      },
+      "274442": {
+        "ppid": 274417,
+        "pgrp": 274417,
+        "start_ticks": 7666927,
+        "rss_bytes": 3305472,
+        "cpu_ticks": 0,
+        "nice": 5
+      },
+      "274461": {
+        "ppid": 274442,
+        "pgrp": 274417,
+        "start_ticks": 7666932,
+        "rss_bytes": 3342336,
+        "cpu_ticks": 2,
+        "nice": 5
+      },
+      "274532": {
+        "ppid": 274461,
+        "pgrp": 274417,
+        "start_ticks": 7666943,
+        "rss_bytes": 21636698112,
+        "cpu_ticks": 638478,
+        "nice": 5
+      }
+    }
+  },
+  "whole_snapshot_qualification_budget_native0_G4_physical": "NOT_YET",
+  "source_frozen": true
+}

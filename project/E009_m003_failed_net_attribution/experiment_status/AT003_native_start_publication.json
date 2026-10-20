@@ -1,0 +1,19 @@
+{
+  "source": "# E009：SM013只读全量归因，AT003单对象属性修复包\n\nM003/SM013，VCU118/Vivado2025.2。基线E008/R001/AT004失败DCP（765705446B/SHA51679d9a…）、144冻结生产输入与原失败证据保持只读。R001固定全部CONFLICTS canonical别名/全端点/唯一主组，consumer与CR关联分表；top20 whole-group与固定补充net union、有界深查/时序按协议执行。\n\nAT003 manifest f0ac0b91…/3774B，query_plan与AT002/AT001字节一致；targets/aggregate/supervise/launch不变。仅修复单对象属性scalar先list包装，保留真实逐元素NAME身份拒绝；增加实际vals/alias CPU正负回归并重新绑定前次终态。A007独立delta审核无实质阻断，回执SHA22941413…已真实绑定。\n\n01:31:02Z实际OPEN_CHECKPOINT_BEGIN，当前载图中；input_bindings db010528…/5683B。144输入/DCP/前次PID-start/锁/资源重新核实，单EDA/CPU0–7/nice5/max8、192GiB/48GiB持续30s/disk30GiB，正常无墙钟/静默强停。无生产RTL/XDC修改或物理实现；实际模型未独立核实。\n",
+  "results": "# E009：AT003已真实原生启动，尚待全量归因\n\nAT003于01:31:02Z（北京时间09:31:02）实际OPEN_CHECKPOINT_BEGIN；native261951/start5879131，supervisor261857/start5878910，leader261861/start5879118。实际nice5/CPU0–7、唯一FLOCK由监督器261857持有，13来源档案和144生产输入已绑定。独立新观察器60460/PID261974仅读阶段，不控制原生进程。\n\n单对象属性修复CPU回归：保存162字节/2反斜杠NAME、空值/optional、vector/fallback、实际vals+alias整合与真实差异拒绝全部通过；这些是离线脚本验证。新AT的完整原生alias资格、canonical清单、端点、唯一分组、union覆盖和G1仍未实测。\n\nAT001/AT002自然失败的原包与证据全部保留；AT002 native1/supervisor1/stop_reason=null，终态/144来源/进程/锁/观察器收尾均闭合，不判断优化方法无效。547548冲突网与702396重叠节点保持独立指标。\n\n[真实启动核验](runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/native_start_observed.json) · [来源绑定](runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/input_bindings.json) · [修复与CPU回归](runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/delta_and_cpu_checks.json)。\n",
+  "status": "# E009：AT003原生载图中\n\nexecution_state: running  \nverdict: inconclusive\n\n01:31:02Z实际OPEN_CHECKPOINT_BEGIN；AT003 f0ac0b91…固定包按原SM013/R001范围运行。native261951/start5879131，监督261857/start5878910、leader261861/start5879118；EDA锁实际由监督器持有。观察器60460/PID261974与监督器分离，正常无墙钟/静默强停。\n\n下一步保持冻结范围，完成native alias身份资格、完整CONFLICTS canonical和全端点导出、唯一主组与top20+supplemental union、有界深查/时序；自然终态后复核进程/锁/输入和算术，交A007 G1审核。无候选选定/生产修改/implementation，G1未过。\n",
+  "execution_state": "running",
+  "verdict": "inconclusive",
+  "applicability": "AT003 actual native startup verified; same fixed scope, scalar property adapter repair validated CPU-only; full native alias/census/G1 pending.",
+  "evidence": [
+    "project/E009_m003_failed_net_attribution/experiment_source/AT003_scalar_property_fix/prepared_manifest.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/native_start_observed.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/started.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/input_bindings.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/independent_prelaunch_accepted.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/delta_and_cpu_checks.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/observer_started.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/terminal_facts_v2.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/observer_terminal_facts.json"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "scalellm_gsm8k_matrix_cpu_safety_audit_v1",
+  "completed_at_utc": "2026-10-18T01:57:06.994822+00:00",
+  "success": false,
+  "tests_run": 23,
+  "failures": [
+    {
+      "test": "test_second_slot_launch_failure_drains_live_cpu_child_and_inherits_lock (__main__.MatrixSafetyTest)",
+      "traceback": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/gsm8k_cpu_matrix_test_ns4j_srm/fewshot_indices.json'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 349, in test_second_slot_launch_failure_drains_live_cpu_child_and_inherits_lock\n    with self.assertRaisesRegex(OSError, \"injected second-slot\"):\nAssertionError: \"injected second-slot\" does not match \"[Errno 2] No such file or directory: '/tmp/gsm8k_cpu_matrix_test_ns4j_srm/fewshot_indices.json'\"\n"
+    }
+  ],
+  "errors": [
+    {
+      "test": "test_formal_cannot_launch_before_pilot_gate (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 328, in test_formal_cannot_launch_before_pilot_gate\n    matrix.main()\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 242, in main\n    \"stage_requests_sha256\": {s: canonical_hash(prepare_requests(args.plan, s))\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 242, in <dictcomp>\n    \"stage_requests_sha256\": {s: canonical_hash(prepare_requests(args.plan, s))\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py\", line 175, in prepare_requests\n    _, datasets, schedule = load_verified_inputs(plan_path)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py\", line 138, in load_verified_inputs\n    if sha256_file(schedule_path) != protocol[\"fewshot_schedule_sha256\"]:\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py\", line 34, in sha256_file\n    with Path(path).open(\"rb\") as handle:\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/pathlib.py\", line 1119, in open\n    return self._accessor.open(self, mode, buffering, encoding, errors,\nFileNotFoundError: [Errno 2] No such file or directory: '/tmp/gsm8k_cpu_matrix_test_hdsp_2h8/fewshot_indices.json'\n"
+    },
+    {
+      "test": "test_reuse_cannot_bypass_identity_validation (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 311, in test_reuse_cannot_bypass_identity_validation\n    matrix.main()\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 242, in main\n    \"stage_requests_sha256\": {s: canonical_hash(prepare_requests(args.plan, s))\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 242, in <dictcomp>\n    \"stage_requests_sha256\": {s: canonical_hash(prepare_requests(args.plan, s))\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py\", line 175, in prepare_requests\n    _, datasets, schedule = load_verified_inputs(plan_path)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py\", line 138, in load_verified_inputs\n    if sha256_file(schedule_path) != protocol[\"fewshot_schedule_sha256\"]:\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py\", line 34, in sha256_file\n    with Path(path).open(\"rb\") as handle:\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/pathlib.py\", line 1119, in open\n    return self._accessor.open(self, mode, buffering, encoding, errors,\nFileNotFoundError: [Errno 2] No such file or directory: '/tmp/gsm8k_cpu_matrix_test_6a2dayph/fewshot_indices.json'\n"
+    },
+    {
+      "test": "test_valid_completed_reuse_does_not_launch_a_new_worker (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 318, in test_valid_completed_reuse_does_not_launch_a_new_worker\n    matrix.main()\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 242, in main\n    \"stage_requests_sha256\": {s: canonical_hash(prepare_requests(args.plan, s))\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 242, in <dictcomp>\n    \"stage_requests_sha256\": {s: canonical_hash(prepare_requests(args.plan, s))\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py\", line 175, in prepare_requests\n    _, datasets, schedule = load_verified_inputs(plan_path)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py\", line 138, in load_verified_inputs\n    if sha256_file(schedule_path) != protocol[\"fewshot_schedule_sha256\"]:\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py\", line 34, in sha256_file\n    with Path(path).open(\"rb\") as handle:\n  File \"/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/pathlib.py\", line 1119, in open\n    return self._accessor.open(self, mode, buffering, encoding, errors,\nFileNotFoundError: [Errno 2] No such file or directory: '/tmp/gsm8k_cpu_matrix_test_2cx_xp8d/fewshot_indices.json'\n"
+    }
+  ],
+  "matrix_sha256": "c9cc105e7150f4d5206728db865b8adbe43b15da95e2a8eee5a182064080789b",
+  "worker_sha256": "4225d5ced9d87b47331f5a81c00b63ab9e9d81e2d4d385146ecb389266adcd50",
+  "test_sha256": "3c5b7a1e31b276b8f39bf4d6a4b5c84861cb4c43867fda90c88d64c48e561299",
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "scope": "temporary CPU fixtures and explicit CPU subprocess fault injection; no GPU/EDA/model loading"
+}

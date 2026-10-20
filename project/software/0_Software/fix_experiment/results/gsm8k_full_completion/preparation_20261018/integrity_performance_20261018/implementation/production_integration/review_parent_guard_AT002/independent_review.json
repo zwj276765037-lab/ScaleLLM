@@ -1,0 +1,39 @@
+{
+  "CUDA_VISIBLE_DEVICES": "",
+  "blocking_findings": [],
+  "cpu_tests": {
+    "failed": 0,
+    "passed": 10,
+    "raw": "stderr.log",
+    "receipt": "receipt.json",
+    "seconds": 0.029
+  },
+  "execution_state": "completed",
+  "parent_source_edits": false,
+  "resolved_finding": {
+    "current_actual_thresholds_changed": false,
+    "issue": "Baseline manifest peak input was not SHA-bound in AT001 reviewed source",
+    "resolution": "spec.baseline_manifest_sha256 checked before reading; positive exact-int max includes load/verification/summary generation; mutation negative test rejects"
+  },
+  "review_verdict": "accepted_for_fixed_shared_training_speed_diagnostic",
+  "role": "A013 independent CPU-only reviewer",
+  "scope_confirmed": [
+    "fixed Llama8B bf16 or a8w4_fp32",
+    "four training questions and 64 generation tokens with unchanged native cache v2 verification",
+    "fixed physical GPU0 UUID and original flock inherited by owned child",
+    "120GiB prestart host memory and helper baseline+chunk retaining 80GiB",
+    "GPU free >= 1.2*bound old max reserved peak + 8GiB and >=24GiB",
+    "external yqh PID only observed; no signal or process-control API used",
+    "shared diagnostic never exclusive or formal ACC progression"
+  ],
+  "source_sha256": {
+    "run_gpu0_model_speed_probe.py": "ee1e04e6c7ef415459a085439a0d6adfbf891702f2d58831aa879a391f3b283f",
+    "run_gpu0_performance_probe.py": "02e339e7326a224349296a0389b4b339be8f27c79aa968e43bb620bc0941bf75",
+    "test_gpu0_model_speed_probe.py": "208a1b25bca6b5812793f22d4abe4808d1d0ba2e7a1b868bda7e1ec64acc0867"
+  },
+  "unvalidated": [
+    "No GPU action in this review",
+    "Actual worker outcome and performance require parent execution evidence",
+    "Shared external-client activity can change after prestart observation; no exclusive-performance claim"
+  ]
+}

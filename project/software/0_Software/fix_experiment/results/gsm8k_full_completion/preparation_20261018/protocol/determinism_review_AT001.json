@@ -1,0 +1,2138 @@
+{
+  "schema": "scalellm_gsm8k_determinism_review_v1",
+  "reviewed_at_utc": "2026-10-18T02:51:03.208641+00:00",
+  "role": "A010 engineering independent read-only review",
+  "scope": "R002 Llama-3.1-8B-Instruct BF16 and native_input_diagnosis AT001-AT003 only",
+  "execution_state": "review_completed",
+  "verdict": "no diagnosed backend setting has passed exact native repeatability; no restart qualification established by these diagnostics",
+  "raw_validation": {
+    "CPU_only": true,
+    "json_cases": 3,
+    "raw_files_sha256_verified": 6,
+    "native_logit_tensor_pairs_independently_recomputed": 102,
+    "mismatches_against_recorded_metrics": 0
+  },
+  "attempts": [
+    {
+      "attempt": "AT001",
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT001/diagnosis.json",
+      "sha256": "6d164988c76cd28501a29fe0366fd851fde5b82ac90cd52297b555863f820c3b",
+      "recorded_source_sha256": "bf2472fb3887467c1deed98d7a743a5ad3f24b93bdb19274e04aaa2e81040775",
+      "runtime_flags": {
+        "tf32": false,
+        "bf16_reduced_precision": true
+      },
+      "gpu_uuid_actual": "d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "records": [
+        {
+          "sample_id": "train:0000",
+          "prompt_sha256": "1a802d0631c60983bac49c34171be9fb24ab749900157117790887ae7b069c39",
+          "input_tokens": 891,
+          "model_snapshots_unchanged": true,
+          "native_token_sequences_equal": true,
+          "native_steps": [
+            {
+              "step": 0,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.109375
+            },
+            {
+              "step": 1,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 2,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.109375
+            },
+            {
+              "step": 3,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 4,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 5,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.0703125
+            },
+            {
+              "step": 6,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 7,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.15625
+            },
+            {
+              "step": 8,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 9,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 10,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 11,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 12,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.109375
+            },
+            {
+              "step": 13,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.078125
+            },
+            {
+              "step": 14,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 15,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.140625
+            },
+            {
+              "step": 16,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.1015625
+            }
+          ],
+          "raw_logits": {
+            "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT001/train_0000_raw_logits.pt",
+            "sha256": "a3871ae8d6b98989b9ed34dd19293fe46ddff63a5f8eee41120dbda4721c6bbd"
+          },
+          "native_input_metadata": [
+            {
+              "input_ids": {
+                "shape": [
+                  1,
+                  891
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  891,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "4a9b34e5770ea81c29151d722da7c164524101e2c8c194fc34e0346fa6f37fa7"
+              },
+              "cache_position": {
+                "shape": [
+                  891
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "690b439210984f252c2573637e9f7c14c0d5cb405deeef13282c76803234b6d5"
+              },
+              "past_key_values": {
+                "class": "transformers.cache_utils.DynamicCache",
+                "sequence_length": 0,
+                "layer_shapes": [
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ]
+                ]
+              },
+              "position_ids": {
+                "shape": [
+                  1,
+                  891
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  891,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "690b439210984f252c2573637e9f7c14c0d5cb405deeef13282c76803234b6d5"
+              },
+              "attention_mask": {
+                "shape": [
+                  1,
+                  891
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  891,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "7317abc9a75fc6c3930d810d8da3dc7f359cbeee703002f635dbd511b7dc1b3c"
+              },
+              "logits_to_keep": 1,
+              "use_cache": true,
+              "return_dict": true
+            }
+          ],
+          "prefill_comparisons": {
+            "first_native_vs_warm_manual_prefill": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.1328125
+            },
+            "second_native_vs_warm_manual_prefill": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "first_native_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "second_native_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.09375
+            },
+            "warm_manual_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.103515625
+            },
+            "warm_manual_vs_explicit_position": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.103515625
+            }
+          }
+        },
+        {
+          "sample_id": "train:0001",
+          "prompt_sha256": "3a2862a25bff88b0f7d289d875fd0459813cd948ece95cb1c5130c819975d059",
+          "input_tokens": 786,
+          "model_snapshots_unchanged": true,
+          "native_token_sequences_equal": true,
+          "native_steps": [
+            {
+              "step": 0,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 1,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 2,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 3,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 4,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 5,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 6,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.09375
+            },
+            {
+              "step": 7,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 8,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.0859375
+            },
+            {
+              "step": 9,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 10,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 11,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.0859375
+            },
+            {
+              "step": 12,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 13,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 14,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 15,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 16,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            }
+          ],
+          "raw_logits": {
+            "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT001/train_0001_raw_logits.pt",
+            "sha256": "94caba9bb94c7310ee41716ccb16b03f92d24e9ce072c357bc0f336e50eacb00"
+          },
+          "native_input_metadata": [
+            {
+              "input_ids": {
+                "shape": [
+                  1,
+                  786
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  786,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "1b4e3e2ba2907a50288e0e872cbd679c816327763c3994800455ac91c2a41849"
+              },
+              "cache_position": {
+                "shape": [
+                  786
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "981e01f4f383cfa01b24f4649df7d13fdedf2ab7955ef5f8e5aff57be36372f4"
+              },
+              "past_key_values": {
+                "class": "transformers.cache_utils.DynamicCache",
+                "sequence_length": 0,
+                "layer_shapes": [
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ]
+                ]
+              },
+              "position_ids": {
+                "shape": [
+                  1,
+                  786
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  786,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "981e01f4f383cfa01b24f4649df7d13fdedf2ab7955ef5f8e5aff57be36372f4"
+              },
+              "attention_mask": {
+                "shape": [
+                  1,
+                  786
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  786,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "1d3137ee90c24a1fc93ce13e4a67f97604dce14a04449500596b4b5836299e4f"
+              },
+              "logits_to_keep": 1,
+              "use_cache": true,
+              "return_dict": true
+            }
+          ],
+          "prefill_comparisons": {
+            "first_native_vs_warm_manual_prefill": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "second_native_vs_warm_manual_prefill": {
+              "exact": true,
+              "finite": true,
+              "max_abs_difference": 0.0
+            },
+            "first_native_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "second_native_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "warm_manual_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "warm_manual_vs_explicit_position": {
+              "exact": true,
+              "finite": true,
+              "max_abs_difference": 0.0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "attempt": "AT002",
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT002/diagnosis.json",
+      "sha256": "78575dcb8d8083959bf0f52e4395cafef9a813afd1b19e8aab8613f717d13016",
+      "recorded_source_sha256": "5c50eb40c0f140d758952d1bc6a03386453b8a25fc0db197b1426bb4aac9ef2a",
+      "runtime_flags": {
+        "tf32": false,
+        "bf16_reduced_precision": false,
+        "deterministic_algorithms": false,
+        "CUBLAS_WORKSPACE_CONFIG": null
+      },
+      "gpu_uuid_actual": "d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "records": [
+        {
+          "sample_id": "train:0000",
+          "prompt_sha256": "1a802d0631c60983bac49c34171be9fb24ab749900157117790887ae7b069c39",
+          "input_tokens": 891,
+          "model_snapshots_unchanged": true,
+          "native_token_sequences_equal": true,
+          "native_steps": [
+            {
+              "step": 0,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 1,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 2,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 3,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.0859375
+            },
+            {
+              "step": 4,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 5,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.09375
+            },
+            {
+              "step": 6,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 7,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.15625
+            },
+            {
+              "step": 8,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 9,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 10,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 11,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 12,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 13,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 14,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 15,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 16,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            }
+          ],
+          "raw_logits": {
+            "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT002/train_0000_raw_logits.pt",
+            "sha256": "9911a710ec252d8ff63ff973751283d224c65863d042ad1532333ff876eeb7af"
+          },
+          "native_input_metadata": [
+            {
+              "input_ids": {
+                "shape": [
+                  1,
+                  891
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  891,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "4a9b34e5770ea81c29151d722da7c164524101e2c8c194fc34e0346fa6f37fa7"
+              },
+              "cache_position": {
+                "shape": [
+                  891
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "690b439210984f252c2573637e9f7c14c0d5cb405deeef13282c76803234b6d5"
+              },
+              "past_key_values": {
+                "class": "transformers.cache_utils.DynamicCache",
+                "sequence_length": 0,
+                "layer_shapes": [
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ]
+                ]
+              },
+              "position_ids": {
+                "shape": [
+                  1,
+                  891
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  891,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "690b439210984f252c2573637e9f7c14c0d5cb405deeef13282c76803234b6d5"
+              },
+              "attention_mask": {
+                "shape": [
+                  1,
+                  891
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  891,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "7317abc9a75fc6c3930d810d8da3dc7f359cbeee703002f635dbd511b7dc1b3c"
+              },
+              "logits_to_keep": 1,
+              "use_cache": true,
+              "return_dict": true
+            }
+          ],
+          "prefill_comparisons": {
+            "first_native_vs_warm_manual_prefill": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "second_native_vs_warm_manual_prefill": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "first_native_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "second_native_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "warm_manual_vs_exact_kwargs_replay": {
+              "exact": true,
+              "finite": true,
+              "max_abs_difference": 0.0
+            },
+            "warm_manual_vs_explicit_position": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.09375
+            }
+          }
+        },
+        {
+          "sample_id": "train:0001",
+          "prompt_sha256": "3a2862a25bff88b0f7d289d875fd0459813cd948ece95cb1c5130c819975d059",
+          "input_tokens": 786,
+          "model_snapshots_unchanged": true,
+          "native_token_sequences_equal": false,
+          "native_steps": [
+            {
+              "step": 0,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.078125
+            },
+            {
+              "step": 1,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.09375
+            },
+            {
+              "step": 2,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 3,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.09375
+            },
+            {
+              "step": 4,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 5,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 6,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 7,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            {
+              "step": 8,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 14.7265625
+            },
+            {
+              "step": 9,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 3.0625
+            },
+            {
+              "step": 10,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 1.5625
+            },
+            {
+              "step": 11,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 1.375
+            },
+            {
+              "step": 12,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.9375
+            },
+            {
+              "step": 13,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.8125
+            },
+            {
+              "step": 14,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 2.875
+            },
+            {
+              "step": 15,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 2.75
+            },
+            {
+              "step": 16,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.90625
+            }
+          ],
+          "raw_logits": {
+            "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT002/train_0001_raw_logits.pt",
+            "sha256": "5891b491bcdcc0a202da8470e9e5eee830d6b8de74e5e325b6c5065b7c9de707"
+          },
+          "native_input_metadata": [
+            {
+              "input_ids": {
+                "shape": [
+                  1,
+                  786
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  786,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "1b4e3e2ba2907a50288e0e872cbd679c816327763c3994800455ac91c2a41849"
+              },
+              "cache_position": {
+                "shape": [
+                  786
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "981e01f4f383cfa01b24f4649df7d13fdedf2ab7955ef5f8e5aff57be36372f4"
+              },
+              "past_key_values": {
+                "class": "transformers.cache_utils.DynamicCache",
+                "sequence_length": 0,
+                "layer_shapes": [
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ]
+                ]
+              },
+              "position_ids": {
+                "shape": [
+                  1,
+                  786
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  786,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "981e01f4f383cfa01b24f4649df7d13fdedf2ab7955ef5f8e5aff57be36372f4"
+              },
+              "attention_mask": {
+                "shape": [
+                  1,
+                  786
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  786,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "1d3137ee90c24a1fc93ce13e4a67f97604dce14a04449500596b4b5836299e4f"
+              },
+              "logits_to_keep": 1,
+              "use_cache": true,
+              "return_dict": true
+            }
+          ],
+          "prefill_comparisons": {
+            "first_native_vs_warm_manual_prefill": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.078125
+            },
+            "second_native_vs_warm_manual_prefill": {
+              "exact": true,
+              "finite": true,
+              "max_abs_difference": 0.0
+            },
+            "first_native_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "second_native_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "warm_manual_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "warm_manual_vs_explicit_position": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            }
+          }
+        }
+      ]
+    },
+    {
+      "attempt": "AT003",
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT003/diagnosis.json",
+      "sha256": "d620e45e6fefe58efa406809c437343f155b1ba84f02e934e60f3083a5331794",
+      "recorded_source_sha256": "c6aef18234c958cdd9ea315151747c2546d081840d4706b8c1443aae6a31e099",
+      "runtime_flags": {
+        "tf32": false,
+        "bf16_reduced_precision": true,
+        "deterministic_algorithms": true,
+        "CUBLAS_WORKSPACE_CONFIG": ":4096:8"
+      },
+      "gpu_uuid_actual": "d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "records": [
+        {
+          "sample_id": "train:0000",
+          "prompt_sha256": "1a802d0631c60983bac49c34171be9fb24ab749900157117790887ae7b069c39",
+          "input_tokens": 891,
+          "model_snapshots_unchanged": true,
+          "native_token_sequences_equal": false,
+          "native_steps": [
+            {
+              "step": 0,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.28125
+            },
+            {
+              "step": 1,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 22.390625
+            },
+            {
+              "step": 2,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 12.1875
+            },
+            {
+              "step": 3,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 18.1875
+            },
+            {
+              "step": 4,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 24.484375
+            },
+            {
+              "step": 5,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 11.1875
+            },
+            {
+              "step": 6,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 13.1875
+            },
+            {
+              "step": 7,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 15.0
+            },
+            {
+              "step": 8,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 18.03125
+            },
+            {
+              "step": 9,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 18.03125
+            },
+            {
+              "step": 10,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 14.0625
+            },
+            {
+              "step": 11,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 15.53125
+            },
+            {
+              "step": 12,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 17.59375
+            },
+            {
+              "step": 13,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 15.3125
+            },
+            {
+              "step": 14,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 12.4375
+            },
+            {
+              "step": 15,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 17.53125
+            },
+            {
+              "step": 16,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 19.4375
+            }
+          ],
+          "raw_logits": {
+            "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT003/train_0000_raw_logits.pt",
+            "sha256": "bd158fa95c550e990176e41c240d0c22a45e64ed16b588f642fdd4e59774f1eb"
+          },
+          "native_input_metadata": [
+            {
+              "input_ids": {
+                "shape": [
+                  1,
+                  891
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  891,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "4a9b34e5770ea81c29151d722da7c164524101e2c8c194fc34e0346fa6f37fa7"
+              },
+              "cache_position": {
+                "shape": [
+                  891
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "690b439210984f252c2573637e9f7c14c0d5cb405deeef13282c76803234b6d5"
+              },
+              "past_key_values": {
+                "class": "transformers.cache_utils.DynamicCache",
+                "sequence_length": 0,
+                "layer_shapes": [
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ]
+                ]
+              },
+              "position_ids": {
+                "shape": [
+                  1,
+                  891
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  891,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "690b439210984f252c2573637e9f7c14c0d5cb405deeef13282c76803234b6d5"
+              },
+              "attention_mask": {
+                "shape": [
+                  1,
+                  891
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  891,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "7317abc9a75fc6c3930d810d8da3dc7f359cbeee703002f635dbd511b7dc1b3c"
+              },
+              "logits_to_keep": 1,
+              "use_cache": true,
+              "return_dict": true
+            }
+          ],
+          "prefill_comparisons": {
+            "first_native_vs_warm_manual_prefill": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.25
+            },
+            "second_native_vs_warm_manual_prefill": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "first_native_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.25
+            },
+            "second_native_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "warm_manual_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.0625
+            },
+            "warm_manual_vs_explicit_position": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            }
+          }
+        },
+        {
+          "sample_id": "train:0001",
+          "prompt_sha256": "3a2862a25bff88b0f7d289d875fd0459813cd948ece95cb1c5130c819975d059",
+          "input_tokens": 786,
+          "model_snapshots_unchanged": true,
+          "native_token_sequences_equal": true,
+          "native_steps": [
+            {
+              "step": 0,
+              "exact": true,
+              "finite": true,
+              "max_abs_difference": 0.0
+            },
+            {
+              "step": 1,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.1875
+            },
+            {
+              "step": 2,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.12890625
+            },
+            {
+              "step": 3,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.15625
+            },
+            {
+              "step": 4,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.28125
+            },
+            {
+              "step": 5,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.15625
+            },
+            {
+              "step": 6,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.16015625
+            },
+            {
+              "step": 7,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.1875
+            },
+            {
+              "step": 8,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.5
+            },
+            {
+              "step": 9,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.46875
+            },
+            {
+              "step": 10,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 1.3125
+            },
+            {
+              "step": 11,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 1.03125
+            },
+            {
+              "step": 12,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.40625
+            },
+            {
+              "step": 13,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 1.3046875
+            },
+            {
+              "step": 14,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 2.375
+            },
+            {
+              "step": 15,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 2.625
+            },
+            {
+              "step": 16,
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.5234375
+            }
+          ],
+          "raw_logits": {
+            "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT003/train_0001_raw_logits.pt",
+            "sha256": "2937aa9516df16d72452dfb20f9023198075e4cb49d31f6b6243d65b3845508b"
+          },
+          "native_input_metadata": [
+            {
+              "input_ids": {
+                "shape": [
+                  1,
+                  786
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  786,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "1b4e3e2ba2907a50288e0e872cbd679c816327763c3994800455ac91c2a41849"
+              },
+              "cache_position": {
+                "shape": [
+                  786
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "981e01f4f383cfa01b24f4649df7d13fdedf2ab7955ef5f8e5aff57be36372f4"
+              },
+              "past_key_values": {
+                "class": "transformers.cache_utils.DynamicCache",
+                "sequence_length": 0,
+                "layer_shapes": [
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ],
+                  [
+                    null,
+                    null
+                  ]
+                ]
+              },
+              "position_ids": {
+                "shape": [
+                  1,
+                  786
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  786,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "981e01f4f383cfa01b24f4649df7d13fdedf2ab7955ef5f8e5aff57be36372f4"
+              },
+              "attention_mask": {
+                "shape": [
+                  1,
+                  786
+                ],
+                "dtype": "torch.int64",
+                "stride": [
+                  786,
+                  1
+                ],
+                "contiguous": true,
+                "device": "cuda:0",
+                "sha256": "1d3137ee90c24a1fc93ce13e4a67f97604dce14a04449500596b4b5836299e4f"
+              },
+              "logits_to_keep": 1,
+              "use_cache": true,
+              "return_dict": true
+            }
+          ],
+          "prefill_comparisons": {
+            "first_native_vs_warm_manual_prefill": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "second_native_vs_warm_manual_prefill": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "first_native_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "second_native_vs_exact_kwargs_replay": {
+              "exact": false,
+              "finite": true,
+              "max_abs_difference": 0.125
+            },
+            "warm_manual_vs_exact_kwargs_replay": {
+              "exact": true,
+              "finite": true,
+              "max_abs_difference": 0.0
+            },
+            "warm_manual_vs_explicit_position": {
+              "exact": true,
+              "finite": true,
+              "max_abs_difference": 0.0
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "method_findings": [
+    "Native-first and native-second are same prompt/greedy budget but first call alone executes a prehook deepcopy and CPU hash/synchronization. Treat differences as observed under this instrumentation, not as an instrumentation-independent kernel proof.",
+    "First generation outputs/cache remain allocated during the second call, changing allocator/workspace conditions even with identical mathematical input. Deterministic flags must be qualified under the real worker allocation pattern.",
+    "Registered buffer hashes and parameter version counters remained unchanged. This rules out the measured module-state changes, not every unregistered/global state or arbitrary version-bypassing weight mutation.",
+    "Native input values are contiguous, positions are zero-based cumsum/arange for all-one masks, cache starts empty, and generate makes a fresh DynamicCache. No evidence that input layout or position offset explains native self-differences at prefill.",
+    "Later logits from two free-running sequences are comparable as same-context arithmetic only until the first generated-token divergence. Large later differences cannot be attributed solely to roundoff.",
+    "Source code and actual runtime flags are versioned by attempt. The historical AT001 script is a different source version from the current script; do not retroactively claim newly added runtime fields were recorded then."
+  ],
+  "bounded_next_checks_recommended_to_owner": [
+    "After capture is complete, compare two native invocations with capture disabled for both; report equal prefix lengths/token IDs and first divergent step. Keep prompt/model/backend unchanged.",
+    "Compare two identical manual prefill calls with fresh cache, rather than relying only on manual versus copied native kwargs. This separates same-call repeatability from cache/generation preparation differences.",
+    "Require native/manual parity, fresh-cache rebuilding, cache structure, corruption negative control and same-process/fresh-process repeatability on the fixed same GPU before accepting a new backend policy."
+  ],
+  "conditional_revision_boundaries": [
+    "No backend candidate is approved by AT001-AT003. If a later candidate passes, create a new R and freeze one uniform backend across all six models and five cases.",
+    "Set CUBLAS_WORKSPACE_CONFIG in the launching environment before Python/CUDA initialization; apply deterministic algorithms with warn_only=False and record actual flags, math reductions, TF32, torch/CUDA/cuBLAS/driver and actual GPU identity in the hashed execution contract.",
+    "Preserve R001/R002 failures. Do not import their six smoke passes into a revised backend; rerun affected complete smoke/pilot and remeasure production memory/runtime.",
+    "Unchanged checkpoint and QDQ algorithm do not establish identical backend arithmetic. Historical five-task evidence without matching math flags needs an explicit compatibility boundary in source_manifest/table notes; do not silently grant strict backend equality or automatically expand to five-task reruns.",
+    "Do not reinterpret native-cache v2 exact gates or loosen numerical tolerances merely to pass the new failures."
+  ],
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "GPU_or_EDA_launched_by_reviewer": false
+}

@@ -1,0 +1,65 @@
+{
+  "utc": "2026-10-19T00:47:51.776333+00:00",
+  "triggers": [
+    "diagnostic_error",
+    "native_status"
+  ],
+  "dependencies": {
+    "diagnostic_complete": null,
+    "diagnostic_error": {
+      "path": "project/hardware/vivado/reports/m003_E011_R002_AT021_fresh_core_grouped_clock/diagnostic_error_info.txt",
+      "bytes": 461,
+      "truncated": false,
+      "sha256_of_bounded_bytes": "cf20c878f0ed15f078e42e1a62983f5698d3fc35ea9d25890201a03f32b9f0e9",
+      "text": "ERROR: [Common 17-161] Invalid option value 'checkpoint_scalellm_vcu118_f05_bd_core_0' specified for 'object'.\n\n    while executing\n\"get_property NAME $design\"\n    (procedure \"m003_conn::begin\" line 5)\n    invoked from within\n\"m003_conn::begin clock_diagnostic [file join $report api_trace.jsonl] [file join $report clock_groups.jsonl.partial]\"\n    (procedure \"m003_clock_fast::run\" line 3)\n    invoked from within\n\"m003_clock_fast::run $::env(HAP_REPORT_DIR)\"\n"
+    },
+    "qualifier": null,
+    "native_status": {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT021_fresh_core_grouped_clock/evidence/jobs/native_grouped_clock/status.json",
+      "bytes": 396,
+      "truncated": false,
+      "sha256_of_bounded_bytes": "c7be8dd06959e8bf10ff7d820c6be55772f1e70170284444a619cb4b0d1062eb",
+      "json": {
+        "execution_state": "failed",
+        "ended_utc": "2026-10-19T00:47:44.126815+00:00",
+        "native_exit_code": 1,
+        "stop_reason": null,
+        "owned_survivors": {},
+        "tracked_PID_start_identities": {
+          "152173": 6017196,
+          "152175": 6017279,
+          "152194": 6017282,
+          "152267": 6017293
+        },
+        "core_RTL_unchanged_during_job": true,
+        "max_RSS_bytes": 12922081280,
+        "no_wall_or_quiet_stop": true
+      }
+    }
+  },
+  "supervisor": {
+    "pid": 152171,
+    "matches": false,
+    "absent": true
+  },
+  "lock_lines": [],
+  "resources": {
+    "utc": "2026-10-19T00:47:44.065098+00:00",
+    "rss_bytes": 0,
+    "mem_available_bytes": 527313977344,
+    "disk_free_bytes": 480152670208,
+    "processes": {
+      "152173": {
+        "ppid": 152171,
+        "pgrp": 152173,
+        "start_ticks": 6017196,
+        "rss_bytes": 0,
+        "cpu_ticks": 84,
+        "nice": 5
+      }
+    },
+    "age_seconds": 7.695607
+  },
+  "G4": false,
+  "required_delivery": "Active A007 immediately followup_task A006; sole owner retains control."
+}

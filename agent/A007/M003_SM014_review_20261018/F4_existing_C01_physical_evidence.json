@@ -1,0 +1,444 @@
+{
+  "observed_utc": "2026-10-18T02:43:27.671429+00:00",
+  "execution": "bounded existing E008 evidence extraction complete; no EDA",
+  "verdict": "old C01 physical/constraint facts supported; new C-P1 strategy not selected",
+  "applicability": "E008 R001 AT004 route_failed physical members, old pre-place existing constraints and physopt utilization; not new graph capacity proof",
+  "review": "A007 independent targeted extraction",
+  "identity_boundary": {
+    "C01_exact_root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+    "E009_TOP01_driver_root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1",
+    "same_object": false
+  },
+  "C01": {
+    "RAW": 9514,
+    "S": 9507,
+    "P": 9491,
+    "physical_REF_counts": {
+      "FDPE": 1,
+      "FDRE": 6311,
+      "LUT1": 111,
+      "LUT3": 57,
+      "CARRY8": 25,
+      "LUT6": 1661,
+      "LUT2": 44,
+      "LUT4": 27,
+      "MUXF7": 816,
+      "MUXF8": 384,
+      "LUT5": 41,
+      "FDCE": 5,
+      "RAMB36E2": 6,
+      "DSP48E2": 2
+    },
+    "SLR_counts": {
+      "SLR2": 9491
+    },
+    "clock_region_counts": {
+      "X2Y10": 27,
+      "X3Y12": 8042,
+      "X3Y11": 31,
+      "X2Y12": 721,
+      "X3Y13": 627,
+      "X3Y10": 43
+    },
+    "constraint_fields": {
+      "IS_LOC_FIXED": {
+        "0": 9491
+      },
+      "IS_BEL_FIXED": {
+        "0": 9491
+      },
+      "USER_SLR_ASSIGNMENT": {
+        "": 9491
+      },
+      "RLOC": {
+        "": 9491
+      },
+      "RLOC_ORIGIN": {
+        "": 9491
+      },
+      "MACRO_NAME": {
+        "": 9491
+      },
+      "DONT_TOUCH": {
+        "1": 25,
+        "": 9466
+      },
+      "actual_PBLOCKS": {
+        "m002_exact_hotspot_SLR2": 9491
+      }
+    },
+    "hardblock_objects": [
+      {
+        "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/rom_q_reg_0",
+        "REF_NAME": "RAMB36E2",
+        "LOC": "RAMB36_X6Y150",
+        "BEL": "RAMB36.RAMB36E2",
+        "SLR": "SLR2",
+        "native_site": "RAMB36_X6Y150",
+        "native_tile": "BRAM_X55Y750",
+        "native_clock_region": "X2Y12",
+        "IS_LOC_FIXED": "0",
+        "IS_BEL_FIXED": "0",
+        "USER_SLR_ASSIGNMENT": "",
+        "RLOC": "",
+        "RLOC_ORIGIN": "",
+        "MACRO_NAME": "",
+        "DONT_TOUCH": "",
+        "ORIG_CELL_NAME": "",
+        "ORIG_REF_NAME": "RAMB36E2",
+        "actual_PBLOCKS": "m002_exact_hotspot_SLR2"
+      },
+      {
+        "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/rom_q_reg_1",
+        "REF_NAME": "RAMB36E2",
+        "LOC": "RAMB36_X5Y150",
+        "BEL": "RAMB36.RAMB36E2",
+        "SLR": "SLR2",
+        "native_site": "RAMB36_X5Y150",
+        "native_tile": "BRAM_X53Y750",
+        "native_clock_region": "X2Y12",
+        "IS_LOC_FIXED": "0",
+        "IS_BEL_FIXED": "0",
+        "USER_SLR_ASSIGNMENT": "",
+        "RLOC": "",
+        "RLOC_ORIGIN": "",
+        "MACRO_NAME": "",
+        "DONT_TOUCH": "",
+        "ORIG_CELL_NAME": "",
+        "ORIG_REF_NAME": "RAMB36E2",
+        "actual_PBLOCKS": "m002_exact_hotspot_SLR2"
+      },
+      {
+        "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/rom_q_reg_2",
+        "REF_NAME": "RAMB36E2",
+        "LOC": "RAMB36_X6Y152",
+        "BEL": "RAMB36.RAMB36E2",
+        "SLR": "SLR2",
+        "native_site": "RAMB36_X6Y152",
+        "native_tile": "BRAM_X55Y760",
+        "native_clock_region": "X2Y12",
+        "IS_LOC_FIXED": "0",
+        "IS_BEL_FIXED": "0",
+        "USER_SLR_ASSIGNMENT": "",
+        "RLOC": "",
+        "RLOC_ORIGIN": "",
+        "MACRO_NAME": "",
+        "DONT_TOUCH": "",
+        "ORIG_CELL_NAME": "",
+        "ORIG_REF_NAME": "RAMB36E2",
+        "actual_PBLOCKS": "m002_exact_hotspot_SLR2"
+      },
+      {
+        "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/rom_q_reg_3",
+        "REF_NAME": "RAMB36E2",
+        "LOC": "RAMB36_X6Y151",
+        "BEL": "RAMB36.RAMB36E2",
+        "SLR": "SLR2",
+        "native_site": "RAMB36_X6Y151",
+        "native_tile": "BRAM_X55Y755",
+        "native_clock_region": "X2Y12",
+        "IS_LOC_FIXED": "0",
+        "IS_BEL_FIXED": "0",
+        "USER_SLR_ASSIGNMENT": "",
+        "RLOC": "",
+        "RLOC_ORIGIN": "",
+        "MACRO_NAME": "",
+        "DONT_TOUCH": "",
+        "ORIG_CELL_NAME": "",
+        "ORIG_REF_NAME": "RAMB36E2",
+        "actual_PBLOCKS": "m002_exact_hotspot_SLR2"
+      },
+      {
+        "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/rom_q_reg_4",
+        "REF_NAME": "RAMB36E2",
+        "LOC": "RAMB36_X5Y152",
+        "BEL": "RAMB36.RAMB36E2",
+        "SLR": "SLR2",
+        "native_site": "RAMB36_X5Y152",
+        "native_tile": "BRAM_X53Y760",
+        "native_clock_region": "X2Y12",
+        "IS_LOC_FIXED": "0",
+        "IS_BEL_FIXED": "0",
+        "USER_SLR_ASSIGNMENT": "",
+        "RLOC": "",
+        "RLOC_ORIGIN": "",
+        "MACRO_NAME": "",
+        "DONT_TOUCH": "",
+        "ORIG_CELL_NAME": "",
+        "ORIG_REF_NAME": "RAMB36E2",
+        "actual_PBLOCKS": "m002_exact_hotspot_SLR2"
+      },
+      {
+        "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/rom_q_reg_5",
+        "REF_NAME": "RAMB36E2",
+        "LOC": "RAMB36_X5Y151",
+        "BEL": "RAMB36.RAMB36E2",
+        "SLR": "SLR2",
+        "native_site": "RAMB36_X5Y151",
+        "native_tile": "BRAM_X53Y755",
+        "native_clock_region": "X2Y12",
+        "IS_LOC_FIXED": "0",
+        "IS_BEL_FIXED": "0",
+        "USER_SLR_ASSIGNMENT": "",
+        "RLOC": "",
+        "RLOC_ORIGIN": "",
+        "MACRO_NAME": "",
+        "DONT_TOUCH": "",
+        "ORIG_CELL_NAME": "",
+        "ORIG_REF_NAME": "RAMB36E2",
+        "actual_PBLOCKS": "m002_exact_hotspot_SLR2"
+      },
+      {
+        "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product",
+        "REF_NAME": "DSP48E2",
+        "LOC": "DSP48E2_X9Y301",
+        "BEL": "DSP48E2.DSP_ALU",
+        "SLR": "SLR2",
+        "native_site": "DSP48E2_X9Y301",
+        "native_tile": "DSP_X51Y750",
+        "native_clock_region": "X2Y12",
+        "IS_LOC_FIXED": "0",
+        "IS_BEL_FIXED": "0",
+        "USER_SLR_ASSIGNMENT": "",
+        "RLOC": "",
+        "RLOC_ORIGIN": "",
+        "MACRO_NAME": "",
+        "DONT_TOUCH": "",
+        "ORIG_CELL_NAME": "",
+        "ORIG_REF_NAME": "DSP48E2",
+        "actual_PBLOCKS": "m002_exact_hotspot_SLR2"
+      },
+      {
+        "NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0",
+        "REF_NAME": "DSP48E2",
+        "LOC": "DSP48E2_X9Y302",
+        "BEL": "DSP48E2.DSP_ALU",
+        "SLR": "SLR2",
+        "native_site": "DSP48E2_X9Y302",
+        "native_tile": "DSP_X51Y755",
+        "native_clock_region": "X2Y12",
+        "IS_LOC_FIXED": "0",
+        "IS_BEL_FIXED": "0",
+        "USER_SLR_ASSIGNMENT": "",
+        "RLOC": "",
+        "RLOC_ORIGIN": "",
+        "MACRO_NAME": "",
+        "DONT_TOUCH": "",
+        "ORIG_CELL_NAME": "",
+        "ORIG_REF_NAME": "DSP48E2",
+        "actual_PBLOCKS": "m002_exact_hotspot_SLR2"
+      }
+    ],
+    "nonidentity_raw_to_physical_mappings": [
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product/DSP_ALU_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product/DSP_A_B_DATA_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product/DSP_C_DATA_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product/DSP_MULTIPLIER_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product/DSP_M_DATA_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product/DSP_OUTPUT_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product/DSP_PREADD_DATA_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product/DSP_PREADD_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0/DSP_ALU_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0/DSP_A_B_DATA_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0/DSP_C_DATA_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0/DSP_MULTIPLIER_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0/DSP_M_DATA_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0/DSP_OUTPUT_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0/DSP_PREADD_DATA_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0"
+      },
+      {
+        "raw_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0/DSP_PREADD_INST",
+        "physical_NAME": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf/u_silu/s0_product__0"
+      }
+    ],
+    "native_origin_objects_header_only": "NAME\tREF_NAME\tLOC\tSLR\tORIG_CELL_NAME\tORIG_REF_NAME\n",
+    "pblock": "NAME=m002_exact_hotspot_SLR2\nGRID_RANGES=CLOCKREGION_X0Y10:CLOCKREGION_X5Y14\nIS_SOFT=0\nEXCLUDE_PLACEMENT=0\nCONTAIN_ROUTING=0\nphysical_members=9491\n",
+    "preplace_constraint_rows": 9491,
+    "preplace_constraint_fields": {
+      "LOC": {
+        "": 9491
+      },
+      "IS_LOC_FIXED": {
+        "": 9491
+      },
+      "IS_BEL_FIXED": {
+        "": 9491
+      },
+      "PBLOCK": {
+        "NONE": 9491
+      },
+      "RLOC": {
+        "": 9491
+      },
+      "RLOC_ORIGIN": {
+        "": 9491
+      },
+      "MACRO_NAME": {
+        "": 9491
+      },
+      "DONT_TOUCH": {
+        "1": 25,
+        "": 9466
+      }
+    },
+    "runtime_policy": "actual_project\tproject_debug_materialized\nthreads\t8\nip_cache\tdisable\nexecution\tdirect_commands_no_incremental_checkpoint_read\nplace_directive\tSSI_SpreadSLLs\nphysopt_directive\tDefault\nroute_directive\tDefault\n",
+    "actual_route_failed_cut": {
+      "ordinary_boundary_rows": [
+        {
+          "category": "known_data_or_select_control",
+          "relation": "boundary",
+          "candidate_related_pairs": 6144,
+          "current_known_cross_SLR_pairs": 38,
+          "hypothetical_all_P_to_SLR2_outside_fixed_known_cross_SLR_pairs": 38
+        },
+        {
+          "category": "mixed_known_unknown",
+          "relation": "boundary",
+          "candidate_related_pairs": 950,
+          "current_known_cross_SLR_pairs": 53,
+          "hypothetical_all_P_to_SLR2_outside_fixed_known_cross_SLR_pairs": 53
+        },
+        {
+          "category": "unknown_or_unclassified",
+          "relation": "boundary",
+          "candidate_related_pairs": 30,
+          "current_known_cross_SLR_pairs": 30,
+          "hypothetical_all_P_to_SLR2_outside_fixed_known_cross_SLR_pairs": 30
+        }
+      ],
+      "ordinary_pairs": 7124,
+      "ordinary_known_cross_SLR_pairs": 121,
+      "unknown_positions": [
+        {
+          "category": "clock",
+          "driver_SLR": "UNPLACED",
+          "load_SLR": "SLR2",
+          "pairs": 1429
+        },
+        {
+          "category": "constant",
+          "driver_SLR": "UNPLACED",
+          "load_SLR": "SLR2",
+          "pairs": 429
+        },
+        {
+          "category": "reset_set",
+          "driver_SLR": "UNPLACED",
+          "load_SLR": "SLR2",
+          "pairs": 6156
+        }
+      ],
+      "full_external_fanout": "NOT_MEASURED",
+      "full_cut_TNS": "NOT_MEASURED"
+    },
+    "limitations": [
+      "Existing-constraint empty properties are recorded as empty, not generalized to all ancestors or new graph.",
+      "Old P=9491 and old hardblocks are not mandatory counts after new RTL/synthesis; derive new objects by role/origin/physical-parent qualification.",
+      "Observed current cross-SLR pairs are logical connections, not SLL usage or congestion causality.",
+      "No claim that removing/softening C01 improves route; requires Root explicit strategy and new graph validation."
+    ]
+  },
+  "sources": [
+    {
+      "path": "project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_physical_members_route_failed.tsv",
+      "bytes": 2511932,
+      "sha256": "66791ed1b4ae12c94923b4372e897559a5f7e96c59dea8b401e05b2d2b13b00c"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_existing_constraints.tsv",
+      "bytes": 1594742,
+      "sha256": "eca9c896a060c55188900952d7d075daae0bb6c56708cb707a559c66cf6db052"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_physical_mapping_route_failed.tsv",
+      "bytes": 2930521,
+      "sha256": "89c0bcd5725251b99b40006af753641e7f0b028ddaf03bab97ecd564e64a0a87"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_membership_route_failed.json",
+      "bytes": 2625,
+      "sha256": "5d9a1fbe4b27ef0fa3f7794521ae5e26f8cd430cde47440efbeb1fa14f6bb27a"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_effective_pblock_route_failed.txt",
+      "bytes": 147,
+      "sha256": "040cc6caa03e3314791359eea7e5d7da1930c56f474ab016c3f434e0fc3b3b61"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_runtime_policy.tsv",
+      "bytes": 207,
+      "sha256": "2bb1d3078c8af1315cc71e526ea7d4c485d217ebcb9f3e3cb529867cfccf2063"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_actual_SLR2_ranges.tsv",
+      "bytes": 1453,
+      "sha256": "94600911f1c3bf3f6d5f9cf817a1cf22d0699fa1ecc0fe7c52d77dfdde3bf4ca"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_cut_summary_route_failed.json",
+      "bytes": 11390,
+      "sha256": "9fd6ef9dc80c438e7a3c4d541418c24e75499c6b90d8ad14e3692a1cc144e501"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/utilization_slr_physopt.rpt",
+      "bytes": 6937,
+      "sha256": "a482899f91b1a1fb8cc0d3c85ee3f47d2c49ec4883d4fd15a3f5cf0f0bcd0166"
+    },
+    {
+      "path": "project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_native_origin_objects_route_failed.tsv",
+      "bytes": 51,
+      "sha256": "feb05eb980ee4b9c32eada0283d62cc38e1959b0065d01a4fd0e4a9f1c577e4c"
+    }
+  ],
+  "actions_not_performed": [
+    "E009 candidate/deep table rescan",
+    "DCP read/hash",
+    "EDA",
+    "production edit",
+    "signal or lock action"
+  ]
+}

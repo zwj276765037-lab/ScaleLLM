@@ -1,0 +1,15 @@
+{
+  "source": "# E011 当前来源与方法\n\n核心48源及3RTL未改，4显式恢复适配共52 runtime源。严格只接受宽度1二进制cell 1'b0/1，raw cell/pin保留，actual pin仍必需且原完整复位函数/结构/来源检查保留。真实OPT snapshot全CLI资格通过，17受影响回归通过。\n\nAT033启动前已完整离线执行真实launcher准备：创建报告、选择/复制实际继承产物、写新来源回执、逐项来源归档与stage manifest一致检查，达到准确原生调用边界；另将旧parent回执插回继承列表，EXCL正确拒绝且旧字节保留。无模拟native执行。\n\n复用AT031真实218742205B/3cac26c1 OPT DCP，继承native0与外层native1分列。新AT只证明本OPT实际恢复的22850对象/28块及zeroapply，再补原snapshot之后未执行的原生POST/debug/preplace，不重复OPT和全OPT snapshot。\n",
+  "results": "# E011 当前结果\n\nAT031实际opt_design native Tcl0/2037秒；outer1原始资格器未识别17个1'b1 cell位串。完整真实OPT资格离线重验passed=true/errors=[]，51端点原最终NOT(core_rst_n)函数均保留。\n\nAT032于15:58:02.628212Z自然outer1，未启动Vivado，旧parent文件误入导致EXCL拒绝覆盖；199来源归档/2归属树锁闭合。筛选已修复并经完整launcher正/反预演，而非只check-only。\n\nAT033于2026-10-19T16:01:24.388619Z真实启动：监督654933/start11529122，Vivado655092/start11530938；199绑定/52 runtime源、CPU0–7/nice5/单锁和原阈值核准。新native恢复/剩余POST/debug/preplace未终态；G4/place/route未到。\n\nAT027资源LUT+111/FF+34/CARRY8+4、存储DSP不增，G1差22049/TOP01−2.896ns仍OPEN。\n",
+  "status": "# E011 当前状态\n\nexecution_state: running\nverdict: inconclusive\napplicability: AT033 actual native OPT-checkpoint missing-POST/debug/preplace continuation, core48 unchanged.\n\nA018持续执行；AT033唯一EDA已实际启动，原CPU/RSS192GiB/MemAvailable48GiB30s/disk30GiB及无正常墙钟静默强停保持。使用活跃工具内inotify终态等待，普通失败自动修复续接，无独立会话外唤醒承诺。\n\n实际preplace包到达后由Root/A007真实G4独审；同时只在独立后继文件准备相同严格decoder的物理入口，保留原implement launcher全部A007包hash/source_review绑定、恢复zeroapply、固定place/physopt/route和完整阶段检查。尚无G4/物理成功结果。\n",
+  "execution_state": "running",
+  "verdict": "inconclusive",
+  "applicability": "AT033 same real OPT checkpoint; full exact-boundary offline preparation and old-parent negative passed; actual native missing POST/debug/preplace running.",
+  "evidence": [
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT033_preserved_OPT_missing_POST_recovery/evidence/actual_native_activation.json",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT033_preserved_OPT_missing_POST_recovery/evidence/offline_actual_OPT_and_adapter_final_receipt.json",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT033_preserved_OPT_missing_POST_recovery/evidence/actual_OPT_full_CLI_final_qualification.json",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT033_preserved_OPT_missing_POST_recovery/evidence/old_new_parent_selection_regression.json",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT032_cell_literal_OPT_POST_recovery/evidence/owner_terminal_and_source_closure.json"
+  ]
+}

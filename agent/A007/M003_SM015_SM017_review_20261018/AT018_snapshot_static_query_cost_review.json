@@ -1,0 +1,163 @@
+{
+  "schema": "A007_AT018_snapshot_static_query_cost_review_v1",
+  "utc": "2026-10-18T15:33:18.761856+00:00",
+  "execution": "completed_pure_source_audit_no_tests",
+  "verdict": "source_cost_and_cache_candidates_only_no_native_causality",
+  "applicability": {
+    "source": {
+      "path": "project/hardware/vivado/scripts/m003_joint_checks.tcl",
+      "bytes": 30835,
+      "sha256": "6e2e0343a43d3c429725e7da5367727b7c395c6757202c4e45f6ad16883e935d"
+    },
+    "source_only": true,
+    "report": {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT018_snapshot_static_query_cost_review.md",
+      "bytes": 10308,
+      "sha256": "3e8defd75b34e9a10d614a12b433cdd5d749f507bf4d03c9e129b2f5b6970c2a"
+    }
+  },
+  "review": {
+    "locations": [
+      {
+        "id": "resolve_rebuild",
+        "lines": [
+          162,
+          165,
+          166,
+          167,
+          168,
+          178,
+          179,
+          205,
+          344
+        ],
+        "fact": "No memoized resolve;9base hierarchical cell queries plus conditionalDSPancestorqueries"
+      },
+      {
+        "id": "payload_repeated_queries",
+        "lines": [
+          348,
+          351,
+          352,
+          353,
+          355,
+          356,
+          357,
+          358,
+          359
+        ],
+        "fact": "9get_pins perpayload oncompletepath;2+k get_nets;sharednet segmentresults saved perrow"
+      },
+      {
+        "id": "cell_property_support",
+        "lines": [
+          321,
+          323,
+          324,
+          325
+        ],
+        "fact": "One list_property percell_row;11supportedpropertyreads,not11enumerations"
+      },
+      {
+        "id": "shared_master_queries",
+        "lines": [
+          370,
+          371,
+          372,
+          373,
+          374
+        ],
+        "fact": "Wholemasterloadset repeatedpergroup;3285nameoccurrences conditionalon42/39graph"
+      },
+      {
+        "id": "fanin",
+        "lines": [
+          378,
+          379,
+          400,
+          402,
+          405,
+          406,
+          409
+        ],
+        "fact": "34addressD +actualURAMADDRpin_count nativeall_fanin;noquerycache"
+      },
+      {
+        "id": "all_rows_and_json",
+        "lines": [
+          344,
+          309,
+          311,
+          464,
+          465,
+          466,
+          467
+        ],
+        "fact": "Allrows retained before wholeJSON serialization;nativecallcountorRSSnotmeasured"
+      },
+      {
+        "id": "handles",
+        "lines": [
+          411,
+          413,
+          418,
+          464,
+          466,
+          472,
+          476,
+          479,
+          482
+        ],
+        "fact": "Normalpercellclose;errorpathcanretaincurrenthandle,nounboundednormalhandleaccumulation"
+      },
+      {
+        "id": "cache_epoch",
+        "lines": [
+          8,
+          9,
+          10,
+          165,
+          267,
+          344
+        ],
+        "fact": "cacheunused;resolvedreplaced;applyancestorcache retainedbutnotsnapshotcache"
+      }
+    ],
+    "cell_row_supported_properties": [
+      "LOC",
+      "BEL",
+      "IS_LOC_FIXED",
+      "IS_BEL_FIXED",
+      "RLOC",
+      "RLOC_ORIGIN",
+      "MACRO_NAME",
+      "DONT_TOUCH",
+      "ORIG_CELL_NAME",
+      "ORIG_REF_NAME",
+      "USER_SLR_ASSIGNMENT"
+    ],
+    "conditional_static_counts": {
+      "payload_P": 13120,
+      "groups_G": 81,
+      "address_A": 34,
+      "URAM_U": 80,
+      "payload_get_pins_full_loop": 118080,
+      "known_cell_row_calls_excluding_other_helpers_andC01": 13332,
+      "sharedmaster_loadname_occurrences_if_exact42_39_graph": 3285
+    },
+    "no_explicit_Tcl_recursion": true,
+    "no_outputlist_self_growth": true,
+    "no_per_payload_explicit_global_get_cells": true,
+    "global_native_API_internal_complexity": "unknown",
+    "caching": "Per-snapshotlocalepoch only;actualfullpin/netidentity+queryflags+scope;keeporiginalorderduplicates/errors;neverinferactualsharingfromexpecteddesign;clearacrossdesignmutation/OPT/restore/phases.",
+    "fixed_schema": "Repeatedrowfields remain inserializedoutput evenifqueriescached;actualinmemorysharing andnativecollectionretention needmeasurement.",
+    "process_or_runtime_files_read": false,
+    "CPU_or_native_tests_run": false
+  },
+  "next": "A006 normalAT018 continues; nohotedit/stop/newG4gate. Use actualerrorstack or later authorizedfrozen diagnostic evidence to discriminate sourcecandidates after naturalterminal/realerror.",
+  "limits": [
+    "No EDA/nativeAPI,DCPcontents/hash,productionedit,process/lockcontrol,GPU ordescendants.",
+    "A00615:25ZCPU/RSS/fileabsence was supplied contextonly,notindependentlyremeasured orattributed.",
+    "Snapshotrepair/selectedgraph/budget/terminal/restore/G4 notestablished bystaticanalysis."
+  ]
+}

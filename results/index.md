@@ -1,7 +1,7 @@
 
 
 <!-- research-agent:navigation:begin -->
-生成时间（UTC）：2026-10-18T00:06:15.625771+00:00。来源修订：`943abfac7fc3`。
+生成时间（UTC）：2026-10-20T08:57:35.240611+00:00。来源修订：`cfb9c0cd3fc1`。
 
 # 全项目报告索引
 
@@ -18,6 +18,7 @@
 - [hardware_metrics](hardware_metrics.md)
 - [hardware_progress](hardware_progress.md)
 - [method_verdicts](method_verdicts.md)
+- [software_experiments](software_experiments.md)
 
 本页是原记录的导航投影；登记、送达及局部结果不代表整体验收。
 

@@ -1,0 +1,82 @@
+{
+  "schema": "A007_grouped_minimal_independent_API_spy_v1",
+  "utc": "2026-10-19T00:41:20.815300+00:00",
+  "reviewed_sources": [
+    {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/grouped_connectivity_v1/shared_native_connectivity.tcl",
+      "bytes": 10431,
+      "sha256": "6296a862e4b73076d08c0672eb160e55676520e915a960f54ce6c42018471fef"
+    },
+    {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/grouped_connectivity_v1/read_grouped_clock.tcl",
+      "bytes": 3572,
+      "sha256": "e6a7c41590b6529d4652f4fc21a139198826b98372694bd97ea3a030cb6f5cc3"
+    },
+    {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/grouped_connectivity_v1/test_grouped_clock.py",
+      "bytes": 8600,
+      "sha256": "a208235d69f4fbd797cc83aad84f34fde8ae6ae288d21ea90410bdf3afb30769"
+    }
+  ],
+  "cases": [
+    {
+      "case": "driver_error",
+      "exit_code": 1,
+      "complete_marker": false,
+      "expected_success": false,
+      "pass": true,
+      "stderr_tail": "independent native driver failure\n    while executing\n\"error {independent native driver failure}\"\n    (procedure \"get_pins\" line 3)\n    invoked from within\n\"get_pins -leaf -of_objects {n0 n1 n2 n3 n4 n5 n6 n7 n8 n9 n10 n11 n12 n13 n14 n15 n16 n17 n18 n19 n20 n21 n22 n23 n24 n25 n26 n27 n28 n29 n30 n31 n32 ...\"\n    (\"uplevel\" body line 1)\n    invoked from within\n\"uplevel #0 $command\"\n    (procedure \"api\" line 8)\n    invoked from within\n\"api drivers [llength $ns] [list get_pins -leaf -of_objects $ns -filter {DIRECTION == OUT}]\"\n    (procedure \"m003_conn::source\" line 11)\n    invoked from within\n\"m003_conn::source $token $gid 1\"\n    (procedure \"m003_clock_fast::run\" line 21)\n    invoked from within\n\"m003_clock_fast::run $report\"\n"
+    },
+    {
+      "case": "direct_multiple",
+      "exit_code": 1,
+      "complete_marker": false,
+      "expected_success": false,
+      "pass": true,
+      "stderr_tail": "M003 connection singleton required: direct net of inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_39/CLK\n    while executing\n\"error \"M003 connection singleton required: $label\"\"\n    (procedure \"one\" line 1)\n    invoked from within\n\"one $direct \"direct net of $pname\"\"\n    (procedure \"m003_conn::bind\" line 11)\n    invoked from within\n\"m003_conn::bind $token $pin\"\n    (procedure \"m003_clock_fast::run\" line 14)\n    invoked from within\n\"m003_clock_fast::run $report\"\n"
+    },
+    {
+      "case": "wrong_vector_class",
+      "exit_code": 1,
+      "complete_marker": false,
+      "expected_success": false,
+      "pass": true,
+      "stderr_tail": "M003 segment object is not a net\n    while executing\n\"error {M003 segment object is not a net}\"\n    (procedure \"m003_conn::bind\" line 26)\n    invoked from within\n\"m003_conn::bind $token $pin\"\n    (procedure \"m003_clock_fast::run\" line 14)\n    invoked from within\n\"m003_clock_fast::run $report\"\n"
+    },
+    {
+      "case": "short_identity_vector",
+      "exit_code": 1,
+      "complete_marker": false,
+      "expected_success": false,
+      "pass": true,
+      "stderr_tail": "M003 vector net identity size mismatch\n    while executing\n\"error {M003 vector net identity size mismatch}\"\n    (procedure \"m003_conn::bind\" line 23)\n    invoked from within\n\"m003_conn::bind $token $pin\"\n    (procedure \"m003_clock_fast::run\" line 14)\n    invoked from within\n\"m003_clock_fast::run $report\"\n"
+    },
+    {
+      "case": "driver_bound",
+      "exit_code": 1,
+      "complete_marker": false,
+      "expected_success": false,
+      "pass": true,
+      "stderr_tail": "M003 leaf driver collection exceeds bound or duplicates\n    while executing\n\"error {M003 leaf driver collection exceeds bound or duplicates}\"\n    (procedure \"m003_conn::source\" line 12)\n    invoked from within\n\"m003_conn::source $token $gid 1\"\n    (procedure \"m003_clock_fast::run\" line 21)\n    invoked from within\n\"m003_clock_fast::run $report\"\n"
+    },
+    {
+      "case": "port_bound",
+      "exit_code": 1,
+      "complete_marker": false,
+      "expected_success": false,
+      "pass": true,
+      "stderr_tail": "M003 primary port collection exceeds bound or duplicates\n    while executing\n\"error {M003 primary port collection exceeds bound or duplicates}\"\n    (procedure \"m003_conn::source\" line 25)\n    invoked from within\n\"m003_conn::source $token $gid 1\"\n    (procedure \"m003_clock_fast::run\" line 21)\n    invoked from within\n\"m003_clock_fast::run $report\"\n"
+    },
+    {
+      "case": "same_design_new_epoch",
+      "exit_code": 0,
+      "complete_marker": false,
+      "expected_success": true,
+      "pass": true,
+      "stderr_tail": ""
+    }
+  ],
+  "all_pass": true,
+  "owner_six_test_functions_rerun": false,
+  "raw_tables_or_EDA_used": false
+}

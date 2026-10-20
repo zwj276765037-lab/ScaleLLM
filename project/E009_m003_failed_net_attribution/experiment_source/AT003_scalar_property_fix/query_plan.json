@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "scope": "SM013 full conflict-net census plus frozen supplemental one-hop endpoint detail",
+  "normalization_base": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute",
+  "driver_normalization": "Primitive containing RTL instance capped at first four path levels below literal u_compute; outside u_compute first four containing-module path segments; preserve generate indices; no net-name semantics. TOP_PORT/MULTIDRIVER/UNKNOWN_DRIVER/INOUT_OR_AMBIGUOUS are explicit buckets.",
+  "primary_group_key": [
+    "normalized_driver_module",
+    "source_SLR",
+    "sorted_unique_load_SLR_set"
+  ],
+  "primary_sort": "unique_net_count DESC, full group tuple lexical ASC",
+  "top_groups": 20,
+  "representative_nets_per_group": 16,
+  "supplemental_net_queries": [
+    [
+      "MLP_PARENT_HEAD",
+      "^scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r.*"
+    ],
+    [
+      "MLP_PARENT_TAIL",
+      "^scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_tail_r.*"
+    ],
+    [
+      "ATT_META_READ_ADDR",
+      "^scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/meta_read_addr_r.*"
+    ]
+  ],
+  "protection_queries": [
+    [
+      "input",
+      "^scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/.*u_capture_decode$",
+      "LUT6",
+      48
+    ],
+    [
+      "gate",
+      "^scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack/.*u_output_payload_ce$",
+      "LUT1",
+      16
+    ],
+    [
+      "down",
+      "^scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/.*u_output_payload_ce$",
+      "LUT1",
+      16
+    ]
+  ],
+  "literal_net_seeds": [
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/meta_read_addr_r[10]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/meta_read_addr_r[2]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/meta_read_addr_r[4]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/meta_read_addr_r[5]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/meta_read_addr_r[9]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_left2/u_shard/g_row[6].g_col[1].u_lane/in_fire",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_left2/u_shard/g_row[7].g_col[0].u_lane/guard_s42_r[3]_i_5__13_n_0",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer/div_denominator_r_reg_n_0_[21]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer/g_div[4].u_div/divisor_r_reg_n_0_[19]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer/g_div[4].u_div/p_divide.remainder_next0[20]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer/g_div[4].u_div/remainder_r[23]_i_13__19_n_0",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[2].u_quantizer/source_mem_reg[30]_217[0]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store/g_row_bank[10].u_bank/projection_pair_row_r[767]_i_1_n_0",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store/g_row_bank[14].u_bank/projection_pair_row_r[47]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_rope/fifo_mem_reg_0_7_0_13/DOB1",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_rope/fifo_mem_reg_0_7_14_27/DOC1",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_quantizer[3].u_quantizer/g_div[0].u_div/remainder_r_reg[33]_0[6]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_quantizer[3].u_quantizer/g_div[0].u_div/remainder_r_reg[35]_1[0]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_quantizer[3].u_quantizer/g_div[0].u_div/remainder_r_reg[35]_2[12]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_quantizer[3].u_quantizer/g_div[0].u_div/remainder_r_reg[4]_1[3]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[1457]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[1458]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[1673]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[2032]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[5782]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[5819]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[5820]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r_reg_n_0_[6092]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/ingress_weight1_s4x32_r[39]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot/gen_leaf[10].u_leaf/s1_dsp_product_s25_r[24]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot/gen_leaf[9].u_leaf/s0_valid_r",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[5].u_lane/u_dot/gen_leaf[9].u_leaf/s1_dsp_product_s25_r[24]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[5].u_lane/core_clk[118]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[5].u_lane/core_clk_0[108]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[5].u_lane/core_clk_0[118]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_kernel/gen_row[7].gen_pair[5].u_lane/core_clk_0[97]",
+    "scalellm_vcu118_f05_bd_i/d0_mig_slice/inst/w15.w_multi/triple_slr.fwd.slr_middle/Q[380]"
+  ],
+  "known_cross_slr_net_seeds": [
+    "scalellm_vcu118_f05_bd_i/core/core_rst_n",
+    "scalellm_vcu118_f05_bd_i/core/inst/lopt_1",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/local_clear",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/projection_pair_r[0]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/projection_repack_out_matrix",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/projection_repack_out_s24[5161]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/projection_repack_out_s24[5195]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/projection_repack_out_s24[5203]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/projection_repack_out_s24[5207]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/projection_repack_out_s24[5220]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/projection_repack_out_s24[5223]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/projection_repack_out_s24[5228]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/projection_repack_out_s24[5296]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/projection_repack_out_s24[5299]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/projection_repack_out_s24[5300]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/projection_repack_out_s24[5302]"
+  ],
+  "candidate_literal_roots": [
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_quantizer[3].u_quantizer/g_div[0].u_div",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer/g_div[4].u_div"
+  ],
+  "known_cross_boundary_seed_evidence": [
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_cut_summary_route_failed.json",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_endpoints_route_failed.tsv"
+  ],
+  "endpoints": "Complete native leaf pins and top ports of census and frozen supplementary alias closures; selected net endpoints only, no transitive fanin/fanout expansion.",
+  "detailed_properties": [
+    "REF_NAME",
+    "LOC",
+    "BEL",
+    "IS_LOC_FIXED",
+    "IS_BEL_FIXED",
+    "ORIG_CELL_NAME",
+    "ORIG_REF_NAME",
+    "RLOC",
+    "RLOC_ORIGIN",
+    "MACRO_NAME",
+    "DONT_TOUCH",
+    "USER_SLR_ASSIGNMENT",
+    "PARENT"
+  ],
+  "timing": {
+    "groups": "top20 plus frozen supplementary tags",
+    "representative_nets": 16,
+    "lexical_load_pin_cap": 16,
+    "max_paths": 2,
+    "nworst": 1,
+    "delay_types": [
+      "max",
+      "min"
+    ],
+    "full_TNS": "NOT_MEASURED"
+  },
+  "overlap_nodes": {
+    "native_report": 702396,
+    "full_node_mapping": "NOT_MEASURED",
+    "never_equal_to_net_count": true
+  },
+  "end_condition": "fixed conflict-net and supplementary object lists exhausted, then bounded deep properties/timing and independent aggregation complete; no wall/no-output cutoff",
+  "limits": {
+    "cpu": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "threads": 8,
+    "nice": 5,
+    "tree_rss_bytes": 206158430208,
+    "MemAvailable_floor_bytes": 51539607552,
+    "mem_low_seconds": 30,
+    "disk_free_floor_bytes": 32212254720
+  },
+  "prohibited": [
+    "synthesis",
+    "opt_design",
+    "place_design",
+    "phys_opt_design",
+    "route_design",
+    "write_checkpoint",
+    "read_xdc",
+    "set_property",
+    "bitstream",
+    "board",
+    "GPU",
+    "PPL",
+    "ACC"
+  ]
+}

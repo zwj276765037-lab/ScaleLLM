@@ -1,0 +1,217 @@
+{
+  "utc": "2026-10-19T01:57:39.766713+00:00",
+  "execution": "completed_bounded_first_apply_review_native_continues",
+  "verdict": "accepted_first_native_Tcl_overlay_application_flow",
+  "review": "accepted_first_apply_only",
+  "applicability": "AT024 native158026/start6185635, manifest16f9523c, checks604f, overlay9124; runtime/resolve/allpblocks/C01 guard precede receipt",
+  "identities": {
+    "event": {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT024_dependency_event_001.json",
+      "bytes": 2237,
+      "sha256": "2d3574792fbf0e47cfe25bd6e24092259daa9448e2dee86eb33a7574a8deded2"
+    },
+    "native_receipt": {
+      "path": "project/hardware/vivado/reports/m003_E011_R002_AT024_grouped_stream_postreport_recovery/m003_apply_success_158026_1.json",
+      "bytes": 240,
+      "sha256": "62c60cb395f92791cf5ca899089ce19d215acf5b40919b4e90b8188d3d89f4cd"
+    },
+    "immutable_launcher_prefix": {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT024_first_apply_launcher_prefix.log",
+      "bytes": 105635,
+      "sha256": "e9bd3d5d6d3687084d445b0a28cf141c5a6eb505fc3561a5f5b9b55ec7eb1d5f"
+    },
+    "apply_trace_observed": {
+      "path": "project/hardware/vivado/reports/m003_E011_R002_AT024_grouped_stream_postreport_recovery/m003_apply_attempts_158026.txt",
+      "bytes": 64,
+      "sha256": "8b3757961ee7527dcf234c1fe5778b0e78a03281ea5080679b39b32dc4e845ae"
+    }
+  },
+  "native_receipt": {
+    "kind": "native",
+    "success": "true",
+    "attempt": "1",
+    "pid": "158026",
+    "source_manifest_sha256": "16f9523c2e4968a34abdce8d8e5c126476f206ce8c0f93ceec146799c0d9cf75",
+    "overlay_sha256": "9124ea7eb710d8bbb4fe5c0c83e09f6cda1909d42e13d38bf6bae6765c9f3528"
+  },
+  "launcher_markers": [
+    {
+      "line": 285,
+      "text": "M003_OVERLAY_APPLIED head42 tail39 URAM40+40 address34 C01_retained"
+    },
+    {
+      "line": 319,
+      "text": "open_run: Time (s): cpu = 01:01:20 ; elapsed = 00:44:36 . Memory (MB): peak = 21605.543 ; gain = 19854.344 ; free physical = 411166 ; free virtual = 489008"
+    },
+    {
+      "line": 320,
+      "text": "REAL_CLOCK_FAMILIES core=pcie_refclk qpll0outclk_out[0] qpll0outrefclk_out[0] qpll1outclk_out[0] qpll1outrefclk_out[0] qpll0outclk_out[0]_1 qpll0outrefclk_out[0]_1 qpll1outclk_out[0]_1 qpll1outrefclk_out[0]_1 GTYE4_CHANNEL_TXOUTCLK[0] GTYE4_CHANNEL_TXOUTCLK[1] GTYE4_CHANNEL_TXOUTCLK[2] GTYE4_CHANNEL_TXOUTCLK[3] GTYE4_CHANNEL_TXOUTCLK[0]_1 GTYE4_CHANNEL_TXOUTCLK[1]_1 GTYE4_CHANNEL_TXOUTCLK[2]_1 GTYE4_CHANNEL_TXOUTCLK[3]_1 scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i_n_541 pipe_clk xdma_0_axi_aclk clk_out1_scalellm_vcu118_f05_bd_clk_core_0 ddr0=default_250mhz_clk1_clk_p mmcm_clkout0 mmcm_clkout1 mmcm_clkout2 mmcm_clkout3 mmcm_clkout4 mmcm_clkout5 mmcm_clkout6 pll_clk[0] pll_clk[1] pll_clk[2] pll_clk[0]_DIV pll_clk[1]_DIV pll_clk[2]_DIV ddr1=default_250mhz_clk2_clk_p mmcm_clkout0_1 mmcm_clkout1_1 mmcm_clkout2_1 mmcm_clkout3_1 mmcm_clkout4_1 mmcm_clkout5_1 mmcm_clkout6_1 pll_clk[0]_1 pll_clk[1]_1 pll_clk[2]_1 pll_clk[0]_1_DIV pll_clk[1]_1_DIV pll_clk[2]_1_DIV"
+    }
+  ],
+  "prefix_extends_accepted22_dependency_read_prefix": true,
+  "source_identities": {
+    "project/hardware/vivado/constraints/m003_entry_manifest.json": {
+      "path": "project/hardware/vivado/constraints/m003_entry_manifest.json",
+      "bytes": 11688,
+      "sha256": "16f9523c2e4968a34abdce8d8e5c126476f206ce8c0f93ceec146799c0d9cf75"
+    },
+    "project/hardware/vivado/constraints/m003_joint_locality.xdc": {
+      "path": "project/hardware/vivado/constraints/m003_joint_locality.xdc",
+      "bytes": 636,
+      "sha256": "9124ea7eb710d8bbb4fe5c0c83e09f6cda1909d42e13d38bf6bae6765c9f3528"
+    },
+    "project/hardware/vivado/scripts/m003_joint_checks.tcl": {
+      "path": "project/hardware/vivado/scripts/m003_joint_checks.tcl",
+      "bytes": 36694,
+      "sha256": "604f22e3e0372e5ae8c56dbb03aa2e4f9fd9e86e936f3a611b9d0600debd9774"
+    }
+  },
+  "owned_processes": [
+    {
+      "pid": 157933,
+      "start_ticks": 6185410,
+      "state": "S",
+      "nice": 5,
+      "cpus": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "pid": 157934,
+      "start_ticks": 6185432,
+      "state": "S",
+      "nice": 5,
+      "cpus": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "pid": 157935,
+      "start_ticks": 6185621,
+      "state": "S",
+      "nice": 5,
+      "cpus": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "pid": 157954,
+      "start_ticks": 6185625,
+      "state": "S",
+      "nice": 5,
+      "cpus": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    {
+      "pid": 158026,
+      "start_ticks": 6185635,
+      "state": "S",
+      "nice": 5,
+      "cpus": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    }
+  ],
+  "native_environment_whitelist": {
+    "HAP_M003_RECOVERED_SYNTHESIS": "1",
+    "HAP_SYNTH_JOBS": "1",
+    "HAP_REPORT_DIR": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT024_grouped_stream_postreport_recovery",
+    "HAP_JOBS": "8",
+    "HAP_M003_SCRIPTS_DIR": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts",
+    "HAP_PROJECT_DIR": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/scalellm_m003_E011_R002_AT002"
+  },
+  "exact_lock": [
+    "1: FLOCK  ADVISORY  WRITE 157933 103:02:169247080 0 EOF"
+  ],
+  "latest_resource": {
+    "utc": "2026-10-19T01:57:38.939359+00:00",
+    "rss_bytes": 21720420352,
+    "mem_available_bytes": 503232176128,
+    "disk_free_bytes": 480074997760,
+    "processes": {
+      "157934": {
+        "ppid": 157933,
+        "pgrp": 157934,
+        "start_ticks": 6185432,
+        "rss_bytes": 25800704,
+        "cpu_ticks": 188,
+        "nice": 5
+      },
+      "157935": {
+        "ppid": 157934,
+        "pgrp": 157934,
+        "start_ticks": 6185621,
+        "rss_bytes": 3301376,
+        "cpu_ticks": 0,
+        "nice": 5
+      },
+      "157954": {
+        "ppid": 157935,
+        "pgrp": 157934,
+        "start_ticks": 6185625,
+        "rss_bytes": 3244032,
+        "cpu_ticks": 2,
+        "nice": 5
+      },
+      "158026": {
+        "ppid": 157954,
+        "pgrp": 157934,
+        "start_ticks": 6185635,
+        "rss_bytes": 21688074240,
+        "cpu_ticks": 429516,
+        "nice": 5
+      }
+    }
+  },
+  "resource_age_seconds": 0.827354,
+  "observed_apply_trace": "attempt=1 restore_verify_only=0\nattempt=2 restore_verify_only=0\n",
+  "pending": [
+    "Full selected snapshot and structure",
+    "Same-stage budget",
+    "Native natural terminal",
+    "Strict INIT/OPT/restore",
+    "G4 and full physical result"
+  ],
+  "G4": false,
+  "limits": [
+    "First Tcl apply success does not establish full open_run completion or snapshot success",
+    "No new test suite/EDA/DCP content or hash/production mutation/process control",
+    "Earlier exact_count site question independently closed by prior AT018 evidence"
+  ]
+}

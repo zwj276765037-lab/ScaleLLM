@@ -1,0 +1,17 @@
+{
+  "source": "# E011：M003联合可布线版本（用户暂停）\n\n最高优先为2026-10-18用户“需要先中断了 因为服务器需要重启”。已受控停止；禁止自动新EDA、重试或恢复，等待用户新的明确继续指令。Root维护全局pause与mission重启handoff。\n\nG2 4424c426冻结M2（81 CE组、head/tail各6560 FF）+A3（40+40 URAM、2×81920×128、34自身反馈地址FF）+C-P1（原C01 hard-SLR2/25保护及旧80边界）。算法/ABI/core100MHz/UI200MHz/双DDR不变。当前45源manifest151e4f11，3RTL未改；v3仅入口适配。当前payload direct-child选择器实际不适用，不能原样重跑冒充资格。\n\n恢复原23/22新综合网表只允许同源内容闭合；原AT003外层失败1保持，不使用旧基线DCP。原单EDA/CPU0–7/nice5/max8/synth1、RSS192GiB/available48GiB30s/disk30GiB与禁区保持。当前用户暂停覆盖此前连续推进授权。",
+  "results": "# E011实际结果与重启保全\n\nAT003原生23个综合产物、22个实际消费内容链保留，外层后报告失败1不改写。原功能证据与入口v1 201检查、v2 57检查、v3 59检查均按其版本范围保留。\n\nAT012实际完成23run内容/原生Complete元数据资格及22依赖原生读取，TCL真正自动和显式应用两次，均因head production payload incomplete自然失败；07:16:51.410992Z native1/无stop/survivors{}，无apply success、selected snapshot或G4。45源原件/副本/当前一致已闭合00af35a3。\n\nAT013只读原AT003 fresh core e51adf50（177165461B），核心open_checkpoint完成elapsed04:47；对象属性导出未完成。按用户服务器重启要求，07:44:42Z向已核监督356910/start7966285发送TERM，监督清理其4个已核子进程；07:44:47.297092Z原始status为native−15、explicit signal15、survivors={}。这是用户中断，不作方法失败判断。\n\n监督+4PID/start均已不存在，session50467已drain，EDA锁实际非阻塞获取/释放成功，无常驻观察器或对应活进程。45冻结源、3RTL和父core当前SHA均不变。4个报告原/副本已绑定：native log4705B、journal2326B、来源binding1269B、parent_scope_candidates.tsv0B；无完整head/tail计数，无新中途DCP。\n\n闭合pause_closure f6e78a1f，工程handoff9da6644b。正式新图/实际约束成功/预算/G4/place/route/时序均未通过；TOP01−2.896ns未直接处理，22049差异仍OPEN。",
+  "status": "# E011当前状态\n\nexecution_state: paused；verdict: inconclusive。最高优先为用户服务器重启中断指令。AT013已于07:44:47.297092Z受控停止、归属进程0、锁释放、观察器结束、输入与部分产物保全；原始native−15状态保持，用户中断不等于方法失败。\n\n禁止任何自动新跑、重试、恢复或后台观察。等待用户新的明确继续指令。届时先读Root全局pause和mission server_restart_handoff，再读工程handoff与continuation_state。当前没有可续用的新中途DCP；实际head/tail名和完整族数仍待诊断。静态审核记录每对象重复7次属性枚举，可在新授权的新尝试中缩减开销；不得把未完成0B表当资格。\n\n后继只有重新取得真实命名、最窄入口修复与受影响正负例、A007实际增量无阻断、新原生图/约束/预算资格、严格INIT/OPT/debug G4及包特定独立无阻断后，才可固定完整物理。当前全部后继暂停。",
+  "execution_state": "paused",
+  "verdict": "inconclusive",
+  "applicability": "User-requested server-reboot interruption; original fresh synthesis and prior functional evidence preserved, current native payload applicability unresolved; no G4/place/route/timing qualification",
+  "evidence": [
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT013_fresh_core_native_role_attribution/evidence/user_requested_stop_before_signal.json",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT013_fresh_core_native_role_attribution/evidence/jobs/native_core_roles/status.json",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT013_fresh_core_native_role_attribution/evidence/server_restart_pause/pause_closure.json",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT013_fresh_core_native_role_attribution/evidence/server_restart_pause/engineering_restart_handoff.md",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT012_original_native_content_selected_postreport_retry/evidence/AT012_terminal_and_source_applicability.json",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT003_fresh_selected_synthesis/evidence/AT003_terminal_and_raw_native_lineage.json",
+    "project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/v3/native_content_recovery_delivery_v3.json"
+  ]
+}

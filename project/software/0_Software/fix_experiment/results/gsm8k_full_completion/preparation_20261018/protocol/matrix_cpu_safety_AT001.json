@@ -1,0 +1,74 @@
+{
+  "schema": "scalellm_gsm8k_matrix_cpu_safety_audit_v1",
+  "completed_at_utc": "2026-10-18T01:56:06.407837+00:00",
+  "success": false,
+  "tests_run": 22,
+  "failures": [],
+  "errors": [
+    {
+      "test": "test_changed_cross_process_prefix_is_rejected (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 231, in test_changed_cross_process_prefix_is_rejected\n    matrix.paired_verification(smoke, pilot)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 168, in paired_verification\n    av = prefixes(a, smoke_dir)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 157, in prefixes\n    eos_ids = read_manifest(directory)[\"generation\"][\"eos_token_ids\"]\nKeyError: 'generation'\n"
+    },
+    {
+      "test": "test_changed_verification_prompt_is_rejected (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 237, in test_changed_verification_prompt_is_rejected\n    matrix.paired_verification(smoke, pilot)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 168, in paired_verification\n    av = prefixes(a, smoke_dir)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 157, in prefixes\n    eos_ids = read_manifest(directory)[\"generation\"][\"eos_token_ids\"]\nKeyError: 'generation'\n"
+    },
+    {
+      "test": "test_duplicate_rows_are_rejected_even_with_rehashed_artifacts (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 191, in test_duplicate_rows_are_rejected_even_with_rehashed_artifacts\n    matrix.stage_sources(self.root, \"smoke\", [self.group])\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 140, in stage_sources\n    validate_completed_attempt(root, attempts[-1], stage, g)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 110, in validate_completed_attempt\n    if identity.get(\"package_versions\") != contract[\"package_versions\"]:\nKeyError: 'package_versions'\n"
+    },
+    {
+      "test": "test_duplicate_verification_sample_is_rejected (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 243, in test_duplicate_verification_sample_is_rejected\n    matrix.paired_verification(smoke, pilot)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 168, in paired_verification\n    av = prefixes(a, smoke_dir)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 157, in prefixes\n    eos_ids = read_manifest(directory)[\"generation\"][\"eos_token_ids\"]\nKeyError: 'generation'\n"
+    },
+    {
+      "test": "test_empty_prefixes_do_not_establish_32_token_repeatability (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 250, in test_empty_prefixes_do_not_establish_32_token_repeatability\n    matrix.paired_verification(smoke, pilot)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 168, in paired_verification\n    av = prefixes(a, smoke_dir)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 157, in prefixes\n    eos_ids = read_manifest(directory)[\"generation\"][\"eos_token_ids\"]\nKeyError: 'generation'\n"
+    },
+    {
+      "test": "test_formal_requires_full_split (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 210, in test_formal_requires_full_split\n    self.assertEqual(len(matrix.stage_sources(self.root, \"formal\", [self.group])), 1)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 140, in stage_sources\n    validate_completed_attempt(root, attempts[-1], stage, g)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 110, in validate_completed_attempt\n    if identity.get(\"package_versions\") != contract[\"package_versions\"]:\nKeyError: 'package_versions'\n"
+    },
+    {
+      "test": "test_missing_or_wrong_row_identity_is_rejected (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 200, in test_missing_or_wrong_row_identity_is_rejected\n    matrix.stage_sources(self.root, \"smoke\", [self.group])\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 140, in stage_sources\n    validate_completed_attempt(root, attempts[-1], stage, g)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 110, in validate_completed_attempt\n    if identity.get(\"package_versions\") != contract[\"package_versions\"]:\nKeyError: 'package_versions'\n"
+    },
+    {
+      "test": "test_missing_smoke_blocks_pilot_dependency (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 270, in test_missing_smoke_blocks_pilot_dependency\n    matrix.pilot_gate(self.root, [self.group], self.plan)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 178, in pilot_gate\n    pilots = stage_sources(root, \"pilot\", groups)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 140, in stage_sources\n    validate_completed_attempt(root, attempts[-1], stage, g)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 110, in validate_completed_attempt\n    if identity.get(\"package_versions\") != contract[\"package_versions\"]:\nKeyError: 'package_versions'\n"
+    },
+    {
+      "test": "test_one_length_cap_passes_but_two_of_32_blocks_formal (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 260, in test_one_length_cap_passes_but_two_of_32_blocks_formal\n    self.assertTrue(matrix.pilot_gate(self.root, [self.group], self.plan)[\"passed\"])\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 178, in pilot_gate\n    pilots = stage_sources(root, \"pilot\", groups)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 140, in stage_sources\n    validate_completed_attempt(root, attempts[-1], stage, g)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 110, in validate_completed_attempt\n    if identity.get(\"package_versions\") != contract[\"package_versions\"]:\nKeyError: 'package_versions'\n"
+    },
+    {
+      "test": "test_partial_summary_cannot_claim_completed_stage (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 206, in test_partial_summary_cannot_claim_completed_stage\n    matrix.stage_sources(self.root, \"pilot\", [self.group])\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 140, in stage_sources\n    validate_completed_attempt(root, attempts[-1], stage, g)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 110, in validate_completed_attempt\n    if identity.get(\"package_versions\") != contract[\"package_versions\"]:\nKeyError: 'package_versions'\n"
+    },
+    {
+      "test": "test_second_slot_launch_failure_drains_live_cpu_child_and_inherits_lock (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 332, in test_second_slot_launch_failure_drains_live_cpu_child_and_inherits_lock\n    matrix.main()\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 228, in main\n    raise ValueError(\"Software CPU sets must be disjoint and exclude EDA CPU 0-7\")\nValueError: Software CPU sets must be disjoint and exclude EDA CPU 0-7\n"
+    },
+    {
+      "test": "test_tampered_committed_artifact_is_rejected (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 182, in test_tampered_committed_artifact_is_rejected\n    matrix.stage_sources(self.root, \"smoke\", [self.group])\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 140, in stage_sources\n    validate_completed_attempt(root, attempts[-1], stage, g)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 110, in validate_completed_attempt\n    if identity.get(\"package_versions\") != contract[\"package_versions\"]:\nKeyError: 'package_versions'\n"
+    },
+    {
+      "test": "test_valid_completed_smoke_and_pilot_sources (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 150, in test_valid_completed_smoke_and_pilot_sources\n    selected = matrix.stage_sources(self.root, stage, [self.group])\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 140, in stage_sources\n    validate_completed_attempt(root, attempts[-1], stage, g)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 110, in validate_completed_attempt\n    if identity.get(\"package_versions\") != contract[\"package_versions\"]:\nKeyError: 'package_versions'\n"
+    },
+    {
+      "test": "test_worker_records_schema_reordered_is_supported (__main__.MatrixSafetyTest)",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_matrix.py\", line 225, in test_worker_records_schema_reordered_is_supported\n    self.assertTrue(matrix.paired_verification(smoke, pilot)[\"passed\"])\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 168, in paired_verification\n    av = prefixes(a, smoke_dir)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py\", line 157, in prefixes\n    eos_ids = read_manifest(directory)[\"generation\"][\"eos_token_ids\"]\nKeyError: 'generation'\n"
+    }
+  ],
+  "matrix_sha256": "c9cc105e7150f4d5206728db865b8adbe43b15da95e2a8eee5a182064080789b",
+  "worker_sha256": "4225d5ced9d87b47331f5a81c00b63ab9e9d81e2d4d385146ecb389266adcd50",
+  "test_sha256": "448c59c64cbbb1a758242c812b664ff0a3dba943fd5851566b60f835446bf3f5",
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "scope": "temporary CPU fixtures and explicit CPU subprocess fault injection; no GPU/EDA/model loading"
+}

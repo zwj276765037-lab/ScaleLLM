@@ -1,0 +1,24 @@
+# E011状态
+
+execution_state: running；verdict: inconclusive；applicability: G3a bounded native functional scopes accepted; SM016 final same-version checks completed; G3b independent final review pending.
+
+R001/AT003实际执行已completed0，七项native及最终288 tests均在限定范围通过。当前41源manifest62d55ff9固定、R002/AT001 planned且EDA锁空；正式G3b无阻断后立即开始SM017新工程/综合。尚无M003新图或物理成功结论；G4实际preplace包独立无阻断后连续SM018固定完整实现。
+
+---
+Published: 2026-10-18T04:13:07.678660+00:00
+Publication: P9579131715704ed49b4548a6f38468ea
+Execution state: running
+Research verdict: inconclusive
+Applicability: E011 selected M2+A3+C-P1 source and bounded native RTL functional scopes; not new graph/timing/route qualification
+Evidence:
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R001/attempts/AT001_selected_RTL_and_functional_integration/actual_engineering_start.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R001/attempts/AT001_selected_RTL_and_functional_integration/selected_RTL_applied.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R001/attempts/AT002_native_functional_absolute_entry/evidence/jobs/A3_helper/status.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R001/attempts/AT002_native_functional_absolute_entry/evidence/jobs/M2_parent_cycle_diff/status.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R001/attempts/AT002_native_functional_absolute_entry/evidence/jobs/M2_production_width_dispatch/status.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R001/attempts/AT003_core_boundary_and_registered_entry/evidence/jobs/A3_actual_core_metadata_boundary/status.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R001/attempts/AT003_core_boundary_and_registered_entry/evidence/jobs/selected_production_smoke/status.json
+- project/E011_m003_joint_routability_implementation/experiment_source/functional_review_source_bindings.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R001/attempts/AT003_core_boundary_and_registered_entry/evidence/joint_python_regression_native_probes_v3/receipt.json
+- project/E011_m003_joint_routability_implementation/experiment_source/G3b_delivery_v3.json
+- project/E011_m003_joint_routability_implementation/experiment_source/selected_input_audit_before_create_v3.json

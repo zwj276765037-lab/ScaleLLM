@@ -1,0 +1,35 @@
+{
+  "schema": "scalellm_independent_readiness_source_coverage_probe_v1",
+  "checked_at": "2026-10-18T11:31:30.557548+00:00",
+  "matrix_source_sha256": "f5afe3c5316fb08fc0c9ce90e858c8963348e0d39607a0193127a203144d46c2",
+  "scope": "direct pure verify_readiness call only; no matrix main, locks, children, GPU queries or GPU initialization",
+  "cases": [
+    {
+      "omitted_source": null,
+      "source_count": 16,
+      "observed_accepted": true,
+      "desired_new_mode_accepted": true,
+      "fixture_sha256": "3074f97cafbaf39e52968d3e3b79204bf165d0922a29f8a6397d77e6d6cf94df"
+    },
+    {
+      "omitted_source": "gsm8k_integrity_bytewise.py",
+      "source_count": 15,
+      "observed_accepted": true,
+      "desired_new_mode_accepted": false,
+      "fixture_sha256": "affef843f205cb64b033cc01029124aa69bde41b91c42b319eb6fc001434cf2d"
+    },
+    {
+      "omitted_source": "gsm8k_weight_integrity.py",
+      "source_count": 15,
+      "observed_accepted": true,
+      "desired_new_mode_accepted": false,
+      "fixture_sha256": "3c6b4e59371cac6847f47d4221e79d18c10bfccdd98367976716ef862e4f05b2"
+    }
+  ],
+  "verdict": "confirmed_source_coverage_gap_for_future_launch",
+  "current_shared_diag_affected": false,
+  "actual_diag_bound_source_count": 16,
+  "before_formal_resume": "Require full reviewed source set including both helpers, with exact source/snapshot/readiness hashes and CPU omission negative controls before launch; keep current running/frozen sources unchanged.",
+  "formal_late_failure": "train summary checks contract.source_hashes.get(source_path)==digest; missing helper would be refused late even if matrix reused completed stages",
+  "torch_imported": false
+}

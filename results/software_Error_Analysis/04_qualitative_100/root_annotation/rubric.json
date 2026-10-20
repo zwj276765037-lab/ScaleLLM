@@ -1,0 +1,33 @@
+{
+  "schema": "root_local_token_qualitative_rubric_v1",
+  "frozen_before_reading_sample_contents": true,
+  "unit": "One changed next-token choice under the same recorded input prefix",
+  "reviewer": "Root AI reviewer; independent of the second AI review, not human annotation",
+  "labels": {
+    "F": "Local formatting only: whitespace or capitalization with no apparent content change in the available context. Punctuation is not automatically harmless.",
+    "W": "Local wording or grammatical alternative with no explicit change of propositional content established by this prefix; not a claim of strict equivalence.",
+    "C": "Potential change of content, fact, named entity, number, reference, tense or specificity supported by the visible prefix and candidates.",
+    "L": "Explicit polarity, negation or logical-relation change identifiable from the visible prefix and candidates; record whether a definite reversal is established.",
+    "U": "Insufficient information to distinguish alternatives reliably, including fragments whose unknown continuation determines their meaning."
+  },
+  "rules": [
+    "Read all 100 selected samples; do not replace difficult examples.",
+    "Read the full available model prefix when a short tail is ambiguous.",
+    "Reference Top-1 is a comparator, not a correctness label.",
+    "Do not construct a purported generated continuation by appending the original suffix to either candidate.",
+    "A change of punctuation, article or pronoun is not automatically semantically equivalent.",
+    "Use U when unknown continuation materially prevents a defensible category; do not mechanically label every subword U.",
+    "Classify a visible logical change as L only with a concrete explanation; otherwise classify a supported content change as C.",
+    "Confidence describes confidence in the category, not confidence in model correctness.",
+    "The result characterizes local token choices on natural-text prefixes, not downstream answer accuracy or completed reasoning trajectories.",
+    "Do not read the other reviewer's annotations until this review is saved."
+  ],
+  "required_annotation_fields": [
+    "sample_id",
+    "label",
+    "confidence",
+    "rationale_zh",
+    "risk_flags",
+    "definite_semantic_reversal"
+  ]
+}

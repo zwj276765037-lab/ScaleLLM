@@ -1,0 +1,15 @@
+{
+  "event_id": "EV_SM020_R003_GPU0_user_resume_20261018T082920Z",
+  "small_mission": "SM020",
+  "trigger": "milestone",
+  "summary": "用户明确恢复GPU0单卡；R003于08:29:20Z真实启动，首worker Llama3.2-3B/BF16 smoke，GPU1继续暂停。",
+  "impact": "仅M004/E010 GPU0队列及原每小时提醒恢复；M003与GPU1不操作，正式接受仍0/39570。",
+  "evidence": [
+    "project/E010_gsm8k_six_model_completion/experiment_results/gpu0_resume/20261018T082458Z/startup_observed.json"
+  ],
+  "affected": [
+    "SM020"
+  ],
+  "action": "按原门持续完成30组smoke/pilot/formal；正式全覆盖后独立复算和更新表格。",
+  "requires_decision": false
+}

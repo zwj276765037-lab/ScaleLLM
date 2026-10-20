@@ -1,0 +1,41 @@
+{
+  "schema": "r011_last_layer_error_attribution_v1",
+  "authorization": "User requests rapid identification of the operator causing the layer32 error increase. Diagnosis only; no optimization or deployment.",
+  "scope": "Replay only decoder layer index31 and optional final norm from frozen current/reference hidden_layer30 inputs. Do not load or execute the preceding31 layers or full8B model. Do not run logits/ACC/PPL.",
+  "data": "Use all3 formal R006 documents with saved paired hidden_layer30 tensors, identified before reading outcomes. Preserve document IDs, token lengths, inputs and immutable source hashes. These are diagnostic cases, not a formal1024 causal population claim.",
+  "primary_arms": [
+    "A: CURRENT arithmetic on saved CURRENT layer31 input Hc",
+    "B: OUTPUT_ONLY reference arithmetic on saved REFERENCE input Hr",
+    "C: OUTPUT_ONLY reference arithmetic on same CURRENT input Hc",
+    "D: CURRENT arithmetic on same REFERENCE input Hr"
+  ],
+  "traces": "Capture input, input RMSNorm, Q/K/V projection, RoPE, KV quantization/dequantized values, QK scores, attention softmax, PV, attention output projection, attention residual, post-attention RMSNorm, gate/up projections, SiLU, gated product, down projection, final residual, final model norm where feasible. Inspect both cross-trajectory A/B propagation and same-input A/C locally. Store named scalars and enough raw tensors to verify reported decisive comparisons.",
+  "metrics": [
+    "Absolute error energy/RMSE and reference signal energy/RMS, relativeL2, max error and signal magnitudes at every named stage; distinguish changing denominator from growing absolute error",
+    "At common output, exact vector identity A-B=(A-C)+(C-B); report error norms and cross term, not subtraction of relative percentages",
+    "Residual additions: identity of input-error plus branch-error, energy and cross terms; cancellation in the signal may inflate relative error",
+    "Dynamic quantization code/shift changes, saturation/overflow, activation scales and changed-value fractions where they explain a stage jump",
+    "CURRENT versus OUTPUT_ONLY parity with saved R006 final hidden/metrics and prepared/KV witnesses where present"
+  ],
+  "targeted_interventions": "After primary traces, on each of the3 cases replace one suspect stage output with the reference-trajectory output of that same stage while recomputing all downstream quantities. Include up to6 high-level cuts spanning attention output/residual, post-attention norm, MLP gate/up, SiLU/gated product, down output and final norm as justified by actual trace. Where a family itself injects error, use same-input OUTPUT_ONLY arithmetic replacement to distinguish local rounding from inherited-error amplification. Report conditional effects, interactions and every tested arm; do not call a large intermediate relative error uniquely causal without downstream intervention.",
+  "implementation": "Private R011 diagnostic wrappers and a single-block model assembled from original checkpoint weights and original V5 quantization; unmodified canonical arithmetic_context reference. No changes to production or consumed sources. R008's all32-layer runner is not authorized for this scope; only reuse its policy checks/helpers as needed.",
+  "verification": "Saved input identities and layer index correct; baseline/reference reproduce frozen R006 data; hook coverage and state restoration verified; meaningful CPU checks and frozen-source GPU qualification before diagnosis. A015 independent read-only review. Save resource and actual process exit receipts.",
+  "resources": {
+    "gpu_uuid": "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+    "gpu_processes": 1,
+    "cpu_threads": 1,
+    "max_rss_gib": 8,
+    "max_gpu_gib": 24,
+    "launch_free_gpu_gib": 30,
+    "runtime_free_gpu_gib": 8,
+    "minimum_available_ram_gib": 32,
+    "total_gpu_wall_seconds": 900,
+    "max_evidence_mib": 512
+  },
+  "owners": {
+    "A019": "R011 implementation, sole GPU execution, new attempts/raw evidence and E012 summaries",
+    "A015": "Existing propagation evidence and independent arithmetic/causal interpretation review",
+    "Root": "Contract, integrated decisions and user report"
+  },
+  "execution": "Proceed autonomously through bounded single-block construction, checks, background replay and targeted diagnosis. Routine fixes use new attempts; preserve failures. Report first decisive trace promptly. No further optimization or full-model experiment in this contract. If existing evidence falsifies an abrupt31-to32 spike, report that clearly and still identify where final discrepancy is amplified within the last layer."
+}

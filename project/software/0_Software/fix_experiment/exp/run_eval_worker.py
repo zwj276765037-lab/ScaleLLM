@@ -182,7 +182,7 @@ def ensure_evaluator_version(versions: dict[str, str]) -> None:
         )
 
 
-def load_model(args: argparse.Namespace) -> tuple[Any, Any, dict[str, Any], Any]:
+def load_model(args: argparse.Namespace, integrity_observer: Any = None) -> tuple[Any, Any, dict[str, Any], Any]:
     device = torch.device(args.device)
     if device.type != "cuda":
         raise ValueError("The Llama-3.1-8B evaluation requires a CUDA device")
@@ -200,7 +200,12 @@ def load_model(args: argparse.Namespace) -> tuple[Any, Any, dict[str, Any], Any]
         trust_remote_code=True,
         dtype=torch.bfloat16,
         attn_implementation="eager",
-    ).to(device)
+    )
+    if integrity_observer is not None:
+        integrity_observer("cpu_loaded", model)
+    model = model.to(device)
+    if integrity_observer is not None:
+        integrity_observer("gpu_loaded", model)
     model.config.use_cache = False
     model.eval()
     if args.case in QUANTIZED_CASE_SPECS:

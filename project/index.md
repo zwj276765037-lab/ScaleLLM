@@ -1,6 +1,6 @@
 ## 实现入口
 
-当前M003已定义，尚无新实验或实现启动。[M003合同](../mission/M003_joint_routability_closure/contract.md)。最新实际实验E008/AT004已自然失败且完成收尾：[状态](E008_m002_exact_hotspot_offload_implementation/experiment_status/summary.md)。下表E005为历史基线。
+M003 G2已正式冻结M2+A3+C-P1，SM015/SM016 E011/AT001已于11:17:41实际开工；当前集中RTL、正式overlay及功能验证，新综合/implementation未启动。详见[G2主控决定](../mission/M003_joint_routability_closure/g2_joint_design_freeze_2026-10-18.md)。下表E005为历史基线。
 
 | 目录 | 内容 | 当前边界 |
 | --- | --- | --- |
@@ -10,7 +10,7 @@
 代码直接位于这两个目录，不另建一套 E 编号源码副本。未来新实验只登记实验协议和证据，引用这两个实现根。
 
 <!-- research-agent:navigation:begin -->
-生成时间（UTC）：2026-10-18T00:06:15.625771+00:00。来源修订：`943abfac7fc3`。
+生成时间（UTC）：2026-10-20T08:57:35.240611+00:00。来源修订：`cfb9c0cd3fc1`。
 
 # 实验与结果索引
 
@@ -24,6 +24,10 @@
 | E006 | [m002_slr1_congestion_attribution](E006_m002_slr1_congestion_attribution/README.md) | M002 / SM010 | completed / supported | [R001](E006_m002_slr1_congestion_attribution/experiment_results/runs/R001/README.md) · [R002](E006_m002_slr1_congestion_attribution/experiment_results/runs/R002/README.md) · [R003](E006_m002_slr1_congestion_attribution/experiment_results/runs/R003/README.md) · [R004](E006_m002_slr1_congestion_attribution/experiment_results/runs/R004/README.md) · [R005](E006_m002_slr1_congestion_attribution/experiment_results/runs/R005/README.md) · [R006](E006_m002_slr1_congestion_attribution/experiment_results/runs/R006/README.md) |
 | E007 | [m002_slr2_input_locality_implementation](E007_m002_slr2_input_locality_implementation/README.md) | M002 / SM011 | planned / unassessed | [R001](E007_m002_slr2_input_locality_implementation/experiment_results/runs/R001/README.md) · [R002](E007_m002_slr2_input_locality_implementation/experiment_results/runs/R002/README.md) |
 | E008 | [m002_exact_hotspot_offload_implementation](E008_m002_exact_hotspot_offload_implementation/README.md) | M002 / SM012 | failed / inconclusive | [R001](E008_m002_exact_hotspot_offload_implementation/experiment_results/runs/R001/README.md) |
+| E009 | [m003_failed_net_attribution](E009_m003_failed_net_attribution/README.md) | M003 / SM013 | completed / inconclusive | [R001](E009_m003_failed_net_attribution/experiment_results/runs/R001/README.md) |
+| E010 | [gsm8k_six_model_completion](E010_gsm8k_six_model_completion/README.md) | M004 / SM020 | paused / inconclusive（正式GSM8K补测未完成） | [R001](E010_gsm8k_six_model_completion/experiment_results/runs/R001/README.md) · [R002](E010_gsm8k_six_model_completion/experiment_results/runs/R002/README.md) · [R003](E010_gsm8k_six_model_completion/experiment_results/runs/R003/README.md) |
+| E011 | [m003_joint_routability_implementation](E011_m003_joint_routability_implementation/README.md) | M003 / SM015 | running / inconclusive | [R001](E011_m003_joint_routability_implementation/experiment_results/runs/R001/README.md) · [R002](E011_m003_joint_routability_implementation/experiment_results/runs/R002/README.md) · [R003](E011_m003_joint_routability_implementation/experiment_results/runs/R003/README.md) · [R004](E011_m003_joint_routability_implementation/experiment_results/runs/R004/README.md) |
+| E012 | [multistage_rounding_precision](E012_multistage_rounding_precision/README.md) | M005 / SM021 | completed / supported（仅支持所述3例末层位置、传播及条件干预诊断，不是唯一因果归因或优化）。 | [R001](E012_multistage_rounding_precision/experiment_results/runs/R001/README.md) · [R002](E012_multistage_rounding_precision/experiment_results/runs/R002/README.md) · [R003](E012_multistage_rounding_precision/experiment_results/runs/R003/README.md) · [R004](E012_multistage_rounding_precision/experiment_results/runs/R004/README.md) · [R005](E012_multistage_rounding_precision/experiment_results/runs/R005/README.md) · [R006](E012_multistage_rounding_precision/experiment_results/runs/R006/README.md) · [R007](E012_multistage_rounding_precision/experiment_results/runs/R007/README.md) · [R008](E012_multistage_rounding_precision/experiment_results/runs/R008/README.md) · [R009](E012_multistage_rounding_precision/experiment_results/runs/R009/README.md) · [R010](E012_multistage_rounding_precision/experiment_results/runs/R010/README.md) · [R011](E012_multistage_rounding_precision/experiment_results/runs/R011/README.md) · [R012](E012_multistage_rounding_precision/experiment_results/runs/R012/README.md) |
 
 本页是原记录的导航投影；登记、送达及局部结果不代表整体验收。
 

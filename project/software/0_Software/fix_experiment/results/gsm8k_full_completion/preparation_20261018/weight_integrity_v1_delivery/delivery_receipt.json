@@ -1,0 +1,180 @@
+{
+  "schema": "scalellm_weight_integrity_delivery_v1",
+  "completed_at": "2026-10-18T04:54:33.657449+00:00",
+  "execution_state": "completed",
+  "verdict": "bounded_cpu_and_two_gpu0_train_smokes_passed",
+  "review": "A010 independently accepted both terminals",
+  "cpu": {
+    "schema": "scalellm_weight_integrity_cpu_receipt_v1",
+    "execution_state": "completed",
+    "test_count": 82,
+    "test_seconds": 10.485,
+    "exit_code": 0,
+    "sources_stable": true,
+    "source_hashes_before": {
+      "run_gsm8k_worker.py": "a2724c8e372a2ce7c0a4824b002fcb036d1bf51cc10548417081bbff3b2835f1",
+      "run_eval_worker.py": "09c7b2ae192a0fbf32227268a4726b8274470546e12c5b8e9c6dbd477f406b9d",
+      "gsm8k_weight_integrity.py": "0e11092488523d97acd7ec76776ada669068c70bec1efc190bf5159c43f99121",
+      "test_gsm8k_weight_integrity.py": "76b2b1e6dcbaab2ef290aee36d7c93f0c36039d781626a1019f36f04346896d5",
+      "test_gsm8k_worker.py": "296b0f36f573e2a7368f8846585f1d5d136bc48a9cb0e45e619560311abc71f3",
+      "gsm8k_protocol.py": "6f749dc5235d9bab56aec5b430a8fb94212f2d39c8da39ddb17d0ac3f8145c32",
+      "summarize_gsm8k.py": "cc3e18cd27574fb15a84da7c41a4f1950f3768c6cf41b47964f4965945ebe3f5",
+      "test_summarize_gsm8k.py": "8a9b639959da0c2d737cd1c9ecbcb09a999274eec7ed5a9b2161488b49630e4a"
+    },
+    "source_hashes_after": {
+      "run_gsm8k_worker.py": "a2724c8e372a2ce7c0a4824b002fcb036d1bf51cc10548417081bbff3b2835f1",
+      "run_eval_worker.py": "09c7b2ae192a0fbf32227268a4726b8274470546e12c5b8e9c6dbd477f406b9d",
+      "gsm8k_weight_integrity.py": "0e11092488523d97acd7ec76776ada669068c70bec1efc190bf5159c43f99121",
+      "test_gsm8k_weight_integrity.py": "76b2b1e6dcbaab2ef290aee36d7c93f0c36039d781626a1019f36f04346896d5",
+      "test_gsm8k_worker.py": "296b0f36f573e2a7368f8846585f1d5d136bc48a9cb0e45e619560311abc71f3",
+      "gsm8k_protocol.py": "6f749dc5235d9bab56aec5b430a8fb94212f2d39c8da39ddb17d0ac3f8145c32",
+      "summarize_gsm8k.py": "cc3e18cd27574fb15a84da7c41a4f1950f3768c6cf41b47964f4965945ebe3f5",
+      "test_summarize_gsm8k.py": "8a9b639959da0c2d737cd1c9ecbcb09a999274eec7ed5a9b2161488b49630e4a"
+    },
+    "scope": "Final CPU regression and negative controls after shared validator freeze; no GPU/formal qualification"
+  },
+  "gpu_smokes": {
+    "bf16": {
+      "scope": "bounded train smoke; no formal GSM8K qualification",
+      "state": "complete",
+      "pid": 301764,
+      "started_at": "2026-10-18T04:14:52.321723+00:00",
+      "completed_at": "2026-10-18T04:31:17.887317+00:00",
+      "pid_absent": true,
+      "gpu_lock_available": true,
+      "n_completed": 4,
+      "verification_passed": true,
+      "integrity_qualified": true,
+      "phase_count": 15,
+      "static_tensor_count": 293,
+      "checkpoint_tensor_count": 291,
+      "source_hashes_unchanged": true,
+      "shared_validator_reference": {
+        "path": "integrity.json",
+        "sha256": "82f3c2724dcaf4addbe96d693c1835e16a696c8904e8500099ceff753ed050e4",
+        "contract_id": "checkpoint_static_content_v1",
+        "baseline_root_sha256": "6ee8d2a0e0ae2b3e80865820862a95c377c45c8ebe3271fa5c8a6a3b5dd0e90c",
+        "qualified": true
+      },
+      "summary": {
+        "elapsed_seconds": 985.5652231659915,
+        "n_completed": 4,
+        "peak_memory_allocated_bytes": 16517941248,
+        "peak_memory_reserved_bytes": 16793993216
+      }
+    },
+    "a8w4_fp32": {
+      "scope": "bounded train smoke; no formal GSM8K qualification",
+      "state": "complete",
+      "pid": 309848,
+      "started_at": "2026-10-18T04:32:22.944978+00:00",
+      "completed_at": "2026-10-18T04:52:24.763179+00:00",
+      "pid_absent": true,
+      "gpu_lock_available": true,
+      "n_completed": 4,
+      "verification_passed": true,
+      "integrity_qualified": true,
+      "phase_count": 15,
+      "static_tensor_count": 295,
+      "checkpoint_tensor_count": 291,
+      "qdq_rebuilt_modules": 224,
+      "external_cache_count": 2,
+      "source_hashes_unchanged": true,
+      "shared_validator_reference": {
+        "path": "integrity.json",
+        "sha256": "23bcfae517bb105d7758e0084aae52569c5a971dc030e0dd2017d2fa92300691",
+        "contract_id": "checkpoint_static_content_v1",
+        "baseline_root_sha256": "8d3ecb8605f691521008a5023c9cd01d9791ac315ce2e0da3c557db3bc7457ea",
+        "qualified": true
+      },
+      "summary": {
+        "elapsed_seconds": 1201.8178410929977,
+        "n_completed": 4,
+        "peak_memory_allocated_bytes": 17368237056,
+        "peak_memory_reserved_bytes": 18113101824
+      },
+      "pure_generation_seconds": 26.626089751982363,
+      "gpu_maintenance_handoff": "No further GPU tasks or CUDA initialization by this agent after natural completion; CPU-only evidence checks use empty CUDA_VISIBLE_DEVICES."
+    }
+  },
+  "unchanged_generation_and_v2_gates": {
+    "run_gsm8k_worker.py": {
+      "encode_prompt": true,
+      "resolve_generation": true,
+      "generate_one": true,
+      "verify_generation": true
+    },
+    "run_eval_worker.py": {
+      "configure_reproducibility": true
+    }
+  },
+  "R002_frozen_sources_preserved": [
+    {
+      "path": "project/software/0_Software/experiment/scripts/accuracy_MLP_4bit/mlp4_method_inference.py",
+      "sha256": "a50ad5fd40b533e9d2181f6dbf752ca8b15b03532120f52017dfe574376809e9",
+      "unchanged": true
+    },
+    {
+      "path": "project/software/0_Software/experiment/scripts/scale_code_linear/scalepath4_method_inference.py",
+      "sha256": "81c7dd96c215b34d4fea8af4183d6a55445eed86ed2594bfc89bbecbee7b4d27",
+      "unchanged": true
+    },
+    {
+      "path": "project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py",
+      "sha256": "179cadffd87ce099a4afd19c759716a1f4c724c0c8e404e83c666714d83831d1",
+      "unchanged": true
+    },
+    {
+      "path": "project/software/0_Software/fix_experiment/exp/protocol.py",
+      "sha256": "55763a69bb466c95f22457c1ac56186ded6d53a60edeea770fad50c29d8ee149",
+      "unchanged": true
+    },
+    {
+      "path": "project/software/0_Software/fix_experiment/exp/publish_gsm8k_display.py",
+      "sha256": "0b02cd3da7bc899f1951eeab75f192f04a3294cd61dbc431b006a2fbb4285561",
+      "unchanged": true
+    },
+    {
+      "path": "project/software/0_Software/fix_experiment/exp/render_accuracy_table.py",
+      "sha256": "be94bbbe0ac0d265678c39417528b0e75567fd99a2a511d4d80a7df454d04ecb",
+      "unchanged": true
+    },
+    {
+      "path": "project/software/0_Software/fix_experiment/exp/run_eval_worker.py",
+      "sha256": "71ade018ee4c64ebeae56866f242446c587217c32c068fcafbb36d0c3c95a2e6",
+      "unchanged": true
+    },
+    {
+      "path": "project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py",
+      "sha256": "30ff1e7868ee0c82ed4dc7f23feeb323a6210ac618f15f7599f758541ffc6cca",
+      "unchanged": true
+    },
+    {
+      "path": "project/software/0_Software/fix_experiment/exp/run_gsm8k_worker.py",
+      "sha256": "f5c0c2f235c1e71dbaac6522ba97d87d53f283116de7c2583d048226a5ff763e",
+      "unchanged": true
+    },
+    {
+      "path": "project/software/0_Software/fix_experiment/exp/six_model_matrix.py",
+      "sha256": "2e47aaa0236932cc82b125401376839e8767bc75843051b7470593897127f9da",
+      "unchanged": true
+    },
+    {
+      "path": "project/software/0_Software/fix_experiment/exp/summarize_gsm8k.py",
+      "sha256": "4fb8743a91855fb7b2d459b6a32e2651a40d00d30ca6fa03f0ee01333798931e",
+      "unchanged": true
+    }
+  ],
+  "independent_reviews": [
+    "protocol/integrity_v3_gpu_bf16_terminal_review_AT001.json",
+    "protocol/integrity_v3_gpu_qdq_terminal_review_AT001.json"
+  ],
+  "formal_rows_validated": 0,
+  "matrix_started_by_this_agent": false,
+  "gpu0_maintenance_handoff": "GPU worker PIDs exited and original flock released; no further GPU tasks or CUDA initialization.",
+  "limitations": [
+    "Only Llama3.1 BF16/a8w4_fp32 real GPU training smokes; all30 fresh stage qualifications and1319/test remain parent scope.",
+    "Full content guard overhead dominates controlled smoke elapsed time; preserve actual runtime for scheduling.",
+    "GPU1 repair/maintenance is a separate controller-owned task; this branch makes no hardware-failure or repair-success claim."
+  ]
+}

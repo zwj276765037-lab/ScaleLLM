@@ -1,0 +1,27 @@
+{
+  "observed_utc": "2026-10-19T07:43:23.025716+00:00",
+  "candidate": [
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/m003_joint_evidence.reset_semantics.py.proposed",
+      "bytes": 36311,
+      "sha256": "db35df2806d9d2674269efac8debd507df7428b22ff567aa410240fb036ac903"
+    },
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/m003_joint_checks.reset_semantics.tcl.proposed",
+      "bytes": 45024,
+      "sha256": "7e040ddcbb2c3bbcbaaf272502bbbc7a7b48a171e59d454a5521d8347066b522"
+    }
+  ],
+  "baseline_native_raw_semantics_pass": true,
+  "constructed_path": "R3 -> X1 -> X2 -> X3 -> R2 -> R1(root), root depth5",
+  "constructed_scope": "6nodes/6inputs/7groups, all INV and exact51 endpoints; core R2 already seen/cached before helper R3",
+  "validator_original_order_errors": [],
+  "validator_reordered_errors": [
+    "native asynchronous reset provenance: reset graph depth/cycle"
+  ],
+  "collector_returncode": 0,
+  "collector_stdout": "COMPLETE kind complete endpoints 51 nodes 6 input_pins 6 groups 7\n",
+  "collector_stderr": "",
+  "verdict": "Longest-path depth4 bound is bypassed for cached shared subcone; order-dependent acceptance. Semantic truth remains NOT(root), so this is resource-bound proof issue, not observed AT026 malfunction.",
+  "suggested_fix": "Track max remaining subcone depth/height and check current depth+height <=4 on cache reuse, or run a small bounded graph-depth DFS after collecting <=16nodes. Same principle in Python evaluator and Tcl collector; do not repeat native EDA or old suites for this CPU issue."
+}

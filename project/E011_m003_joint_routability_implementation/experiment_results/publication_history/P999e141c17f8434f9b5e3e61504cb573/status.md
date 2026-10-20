@@ -1,0 +1,26 @@
+# E011当前状态
+
+execution_state: running；verdict: inconclusive。AT003原始failed1已登记；45源入口修复v1已冻结、201项受影响联合回归通过并交A007集中增量审核。AT007原生机制子项独立接受；AT008 selected_native_postreport_requalification已登记planned，当前无EDA运行。A007本次source/recovery增量无阻断后立即真实原生recover-synth，继而严格INIT→显式OPT/debug preplace G4；实际G4独立无阻断后固定完整物理。无普通再次批准。
+
+仍有未关闭原生角色/API/资源池/保护与时序风险，不能用CPU/小图机制替代正式新图或G4。单EDA与原CPU/内存/磁盘保护保持，无墙钟/静默强停；不管GPU、不动M004/E010，无后代。
+
+---
+Published: 2026-10-18T06:39:02.631807+00:00
+Publication: P1319ff75f63b484f82afb0d4f0f87a9b
+Execution state: running
+Research verdict: inconclusive
+Applicability: Selected RTL unchanged; native23/22 lineage and AT007 entry mechanism accepted in bounded scope;45source repair and201CPU tests frozen; formal production graph/G4 pending
+Evidence:
+- project/E011_m003_joint_routability_implementation/experiment_source/G3b_actual_independent_no_blocker.json
+- project/E011_m003_joint_routability_implementation/experiment_source/G3b_delivery_v3.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT001_fresh_selected_project_create/evidence/jobs/fresh_create/started.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT001_fresh_selected_project_create/evidence/jobs/fresh_create/status.json
+- project/E011_m003_joint_routability_implementation/experiment_source/R002_AT002_python_environment_fix.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT002_clean_python_environment_fresh_create/evidence/python_environment_regression/receipt.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT003_fresh_selected_synthesis/evidence/jobs/fresh_synth/started.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT002_clean_python_environment_fresh_create/evidence/constructor_completed.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT003_fresh_selected_synthesis/evidence/AT003_terminal_and_raw_native_lineage.json
+- project/E011_m003_joint_routability_implementation/experiment_source/R002_AT003_terminal_registration.json
+- project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/native_entry_fix_delivery_v1.json
+- project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/qualified_regression_v1/receipt.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/native_init_mechanism_binding.json

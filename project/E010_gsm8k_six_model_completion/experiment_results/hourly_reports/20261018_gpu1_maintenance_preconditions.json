@@ -1,0 +1,194 @@
+{
+  "captured_at": "2026-10-18T04:53:30.529380+00:00",
+  "scope": "read-only maintenance preconditions, no process control",
+  "commands": [
+    {
+      "command": [
+        "loginctl",
+        "show-session",
+        "c1",
+        "-p",
+        "Name",
+        "-p",
+        "Service",
+        "-p",
+        "Class",
+        "-p",
+        "Type",
+        "-p",
+        "Leader",
+        "-p",
+        "Scope",
+        "-p",
+        "Remote",
+        "-p",
+        "Display",
+        "-p",
+        "Seat"
+      ],
+      "exit_code": 0,
+      "stdout": "Name=lightdm\nSeat=seat0\nDisplay=:0\nRemote=no\nService=lightdm-greeter\nScope=session-c1.scope\nLeader=2916\nType=x11\nClass=greeter\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "loginctl",
+        "show-session",
+        "c2",
+        "-p",
+        "Name",
+        "-p",
+        "Service",
+        "-p",
+        "Class",
+        "-p",
+        "Type",
+        "-p",
+        "Leader",
+        "-p",
+        "Scope",
+        "-p",
+        "Remote",
+        "-p",
+        "Display",
+        "-p",
+        "Seat"
+      ],
+      "exit_code": 0,
+      "stdout": "Name=zwj\nSeat=\nDisplay=:10\nRemote=no\nService=xrdp-sesman\nScope=session-c2.scope\nLeader=8615\nType=x11\nClass=user\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "loginctl",
+        "show-session",
+        "c3",
+        "-p",
+        "Name",
+        "-p",
+        "Service",
+        "-p",
+        "Class",
+        "-p",
+        "Type",
+        "-p",
+        "Leader",
+        "-p",
+        "Scope",
+        "-p",
+        "Remote",
+        "-p",
+        "Display",
+        "-p",
+        "Seat"
+      ],
+      "exit_code": 0,
+      "stdout": "Name=yqh\nSeat=\nDisplay=:11\nRemote=no\nService=xrdp-sesman\nScope=session-c3.scope\nLeader=288908\nType=x11\nClass=user\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "systemctl",
+        "show",
+        "lightdm",
+        "-p",
+        "ActiveState",
+        "-p",
+        "SubState",
+        "-p",
+        "MainPID",
+        "-p",
+        "ControlGroup",
+        "-p",
+        "KillMode",
+        "-p",
+        "KillSignal",
+        "-p",
+        "SendSIGKILL"
+      ],
+      "exit_code": 0,
+      "stdout": "MainPID=2615\nControlGroup=/system.slice/lightdm.service\nKillMode=control-group\nKillSignal=15\nSendSIGKILL=yes\nActiveState=active\nSubState=running\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "systemctl",
+        "show",
+        "gpu-manager.service",
+        "-p",
+        "Type",
+        "-p",
+        "RemainAfterExit",
+        "-p",
+        "ActiveState"
+      ],
+      "exit_code": 0,
+      "stdout": "Type=oneshot\nRemainAfterExit=no\nActiveState=inactive\n",
+      "stderr": ""
+    }
+  ],
+  "protected_processes": [
+    {
+      "pid": 2653,
+      "exists": true,
+      "cgroup": "0::/system.slice/lightdm.service\n",
+      "cmdline": "/usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch ",
+      "stat_start_ticks": "2064",
+      "environment_access": "permission_denied"
+    },
+    {
+      "pid": 3708,
+      "exists": true,
+      "cgroup": "0::/user.slice/user-1001.slice/session-6.scope\n",
+      "cmdline": "node /home/zwj/.local/share/codex-cli/bin/codex -c features.code_mode_host=true app-server --listen unix:// ",
+      "stat_start_ticks": "2651",
+      "display_environment": {
+        "XDG_SESSION_ID": "6"
+      }
+    },
+    {
+      "pid": 3895,
+      "exists": true,
+      "cgroup": "0::/user.slice/user-1001.slice/session-6.scope\n",
+      "cmdline": "/home/zwj/.local/share/codex-cli/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/bin/codex -c features.code_mode_host=true app-server --listen unix:// ",
+      "stat_start_ticks": "2665",
+      "display_environment": {
+        "XDG_SESSION_ID": "6"
+      }
+    },
+    {
+      "pid": 307368,
+      "exists": true,
+      "cgroup": "0::/user.slice/user-1001.slice/session-6.scope\n",
+      "cmdline": "python3 /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m003_owned.py --attempt /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT003_fresh_selected_synthesis --job fresh_synth --report /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT003_fresh_synth -- /usr/bin/python3 /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m003_stage.py --stage synth --project /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/scalellm_m003_E011_R002_AT002 ",
+      "stat_start_ticks": "6950952",
+      "display_environment": {
+        "XDG_SESSION_ID": "6"
+      }
+    },
+    {
+      "pid": 307369,
+      "exists": true,
+      "cgroup": "0::/user.slice/user-1001.slice/session-6.scope\n",
+      "cmdline": "/usr/bin/python3 /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m003_stage.py --stage synth --project /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/scalellm_m003_E011_R002_AT002 ",
+      "stat_start_ticks": "6950977",
+      "display_environment": {
+        "XDG_SESSION_ID": "6"
+      }
+    },
+    {
+      "pid": 307468,
+      "exists": true,
+      "cgroup": "0::/user.slice/user-1001.slice/session-6.scope\n",
+      "cmdline": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/unwrapped/lnx64.o/vivado -mode batch -notrace -source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/build_vcu118_board.tcl -log /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT003_fresh_synth/vivado.log -journal /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT003_fresh_synth/vivado.jou ",
+      "stat_start_ticks": "6950999",
+      "display_environment": {
+        "XDG_SESSION_ID": "6"
+      }
+    },
+    {
+      "pid": 309848,
+      "exists": false
+    }
+  ]
+}

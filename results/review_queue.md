@@ -14,12 +14,35 @@
 <!-- research-agent:stage-events:begin -->
 ## Stage review index
 
-Active: 72. Resolved: 2. Newest events appear first. Full evidence and review history remain in the linked small-mission review pages.
+Active: 95. Resolved: 2. Newest events appear first. Full evidence and review history remain in the linked small-mission review pages.
 
 ### Pending / needs evidence / revise / paused
 
 | Event | Small mission | Trigger | Review | Decision required | Summary |
 |---|---|---|---|---|---|
+| [EV_M005_R006_TV_SUPPLEMENT_20261019](reviews/SM023.md) | SM023 | milestone | pending | false | 用户明确追加全样本Softmax后TV，按gpt-6.1-sol/xhigh参数真实启动A017；R006合同与新批次已建立，正在实现与CPU资格，GPU尚未启动 |
+| [EV_M005_R005_PILOT_COMPLETE_FORMAL_PLAN_20261019](reviews/SM023.md) | SM023 | milestone | pending | false | R005扩展预跑4篇完成且独审无阻断；原轨迹只读性与全MLP/词表测量已实核，Root冻结1024完整常驻正式成本合同 |
+| [EV_M005_R005_EXTENSION_QUALIFICATION_20261019](reviews/SM023.md) | SM023 | milestone | pending | false | 用户授权完整补测与Python PNG；R005新增MLP/全词表/Top1模块完成CPU资格，旧批汇总254秒瓶颈已定位并以0.746秒等价统计验证替代流程 |
+| [EV_M005_R004_Q001_COST_STOP_MLP_TOP1_20261019](reviews/SM023.md) | SM023 | anomaly | pending | false | Q001 G003在48篇前向结束后的汇总阶段触及原900秒预算，cost_stop；成功attempt112、独审16、durable160，完整1024未完成。已有16篇MLP三投影已拆分出图。 |
+| [EV_M005_R004_FINAL_ERROR_DIAGNOSIS_20261019](reviews/SM023.md) | SM023 | anomaly | pending | false | 正式16篇整体输出相对L2中位1.44054%/P95 1.75554%；只读核算排除百分比重复与零分母，最后解码层绝对误差上升，主因未因果定位。 |
+| [EV_M005_R004_FORMAL16_QUEUE_START_20261019](reviews/SM023.md) | SM023 | milestone | pending | false | 首16篇正式数值测量与限定独审完成，剩余1008篇的冻结24组后台队列已实际启动；整体精度结论仍inconclusive。 |
+| [EV_SM022_R002_bf16_local_rounding_milestone](reviews/SM022.md) | SM022 | milestone | pending | false | 32/128-token真实BF16局部输入各168行独立复算一致、无理论界违例，最大两路径差1输出LSB。 |
+| [EV_SM021_AT002_local_rounding_milestone](reviews/SM021.md) | SM021 | milestone | pending | false | 303条合成局部舍入实验已执行并独审；264合法域无理论界违例；最大当前与仅输出差2 LSB，不能称完全无损。 |
+| [EV_SM020_historical_accuracy_table_anomalies_20261019](reviews/SM020.md) | SM020 | anomaly | pending | false | 历史ACC表DeepSeek BoolQ四配置恰等于多数类基线2033/3270；Qwen2.5低分case与设备ordinal/批次混杂；旧记录无逐题预测与逐run有效权重内容证据。 |
+| [EV_SM020_GPU0_integrity_speed_repair_validated_20261018](reviews/SM020.md) | SM020 | milestone | pending | false | GPU0逐题完整性性能修复在8B BF16/a8w4四题训练diag及独立复核通过；持续间隔107.437→9.290s/112.019→14.246s，原始token及15phase保持；最终来源… |
+| [EV_SM020_GPU0_external_attempt03_20261018T1030Z](reviews/SM020.md) | SM020 | resource_conflict | pending | false | 18:30实测GPU0另有yqh ScaleLUT attempt03 PID23186占约12GiB，与本项目R003 worker31810共享GPU0。 |
+| [EV_SM020_R003_GPU0_user_resume_20261018T082920Z](reviews/SM020.md) | SM020 | milestone | pending | false | 用户明确恢复GPU0单卡；R003于08:29:20Z真实启动，首worker Llama3.2-3B/BF16 smoke，GPU1继续暂停。 |
+| [EV_SM017_M003_user_server_restart_resumed_20261018](reviews/SM017.md) | SM017 | milestone | pending | false | User explicitly authorized continuation after server reboot; Root set pause state resumed and actua… |
+| [EV_SM017_E011_user_server_restart_paused_20261018](reviews/SM017.md) | SM017 | milestone | pending | false | User explicitly requested interruption for server reboot. AT013 controlled SIGTERM ended07:44:47Z; … |
+| [EV_SM017_R002_AT008_type_registry_reset](reviews/SM017.md) | SM017 | anomaly | pending | false | AT008 native recovery naturally failed before loading netlist: FILE_TYPE conversion reset USED_IN t… |
+| [EV_SM017_R002_AT003_native_postreport_failed](reviews/SM017.md) | SM017 | anomaly | pending | false | 23 native synthesis runs completed, outer selected qualification failed naturally at XDC Tcl bounda… |
+| [EV_SM020_GPU1_maintenance_authorized_resource_block_20261018](reviews/SM020.md) | SM020 | resource_conflict | pending | false | GPU1匹配用户态库后仍有设备内可见字节错误，用户已批准限定维护；GPU0受控BF16/QDQ准备均完整通过并释放本项目worker，但另有他人GPU0计算客户端。 |
+| [EV_SM020_R002_weight_integrity_20261018](reviews/SM020.md) | SM020 | anomaly | pending | false | R002后续AT008发现目标BF16权重与checkpoint差16345元素，原生调用间权重SHA变化，原因待两卡受控定位。 |
+| [EV_SM014_G2_frozen_SM015_dispatched_20261018](reviews/SM014.md) | SM014 | milestone | pending | false | Root froze C-M2 + C-A3 + C-P1 from manifest6d74e85d and A007 final independent design review; actua… |
+| [EV_SM014_G1_limited_accept_start_20261018](reviews/SM014.md) | SM014 | milestone | pending | false | Root accepted SM013 fixed-query evidence within stated limits and actually dispatched SM014 design … |
+| [EV_SM020_R002_cache_call_validation_revision](reviews/SM020.md) | SM020 | anomaly | pending | false | R001 dual-GPU smoke naturally failed original cache/no-cache allclose. Train-only 2x2 diagnosis and… |
+| [EV_SM013_AT003_initial_classification_20261018](reviews/SM013.md) | SM013 | milestone | pending | false | AT003 full lightweight export and fixed 56 timing queries complete; 848 preliminary groups and 5695… |
+| [EV_SM013_E009_AT001_native_start_20261018](reviews/SM013.md) | SM013 | milestone | pending | false | M003/SM013 E009 R001 AT001 fixed package independently accepted; real Vivado launched 00:40:06Z and… |
 | [EV_SM012_E008_AT004_natural_route_failure_20261018](reviews/SM012.md) | SM012 | milestone | pending | false | AT004原始终态已核：route因拥塞自然失败，702396重叠节点/547548拥塞失败信号；native1/supervisor1，21:18:30Z监督器退出、无强停。旧running摘要因… |
 | [EV_SM012_E008_R001_AT004_native_resumed_20261017](reviews/SM012.md) | SM012 | milestone | pending | false | PDU恢复后AT004于09:23:05.136988Z真实原生启动；144生产、39归档源/b9dc、父DCP和single项目EDA身份已核，C01保持。 |
 | [EV_SM012_E008_user_PDU_shutdown_paused_20261017](reviews/SM012.md) | SM012 | milestone | paused | false | 用户明确要求服务器关机换PDU，授权停止并暂停。AT003于08:44:09.782954Z停止：native−15/supervisor125，14项收尾全通过，原PID退出、EDA锁释放，两ob… |

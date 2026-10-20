@@ -1,0 +1,229 @@
+{
+  "schema": "software_error_analysis_paper_fidelity_decoding_independent_review_v1",
+  "execution_state": "completed",
+  "review": "paper_data_theory_scope_and_artifacts_verified",
+  "reviewer": "A015 independent AI review",
+  "created_utc": "2026-10-20T06:26:48.854855+00:00",
+  "scope": "Only08 final artifacts, its eight declared data sources, and current Root report/snapshot/version links; CPU-only, no new model/GPU/renderer execution and no historical raw-tensor audit",
+  "source_manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/source_manifest.json",
+    "bytes": 4872,
+    "sha256": "a7f3fc92ebd77d4f33468c9fb5c67cb608d52944a131c20da3d51a91e41362b0"
+  },
+  "output_manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/output_manifest.json",
+    "bytes": 5161,
+    "sha256": "adea23d8dd47753943ff27c56adde2d2eb5e6f4bb35b641e57356b4ed33b37d6"
+  },
+  "renderer": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/plot_paper.py",
+    "bytes": 22820,
+    "sha256": "39a213aff7842d12afa984ca873d2cb5c459f0c964113848db4e38b73dfe84a3"
+  },
+  "plot_data": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/plot_data.json",
+    "bytes": 3098315,
+    "sha256": "6bad35d63a2fc73bcea3e0bd10d77928b3bf1d71d031b67f5ce4b13085283cd8"
+  },
+  "current_Root_report": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/完整分析报告.md",
+    "bytes": 22019,
+    "sha256": "478166195a24a422043083bf985a5826a8b7066362cf7544ff5ad126fc84decd"
+  },
+  "checks": [
+    {
+      "check": "source_and_output_identities",
+      "data_sources": 8,
+      "fonts": 2,
+      "official_images": 4,
+      "output_inventory": 10,
+      "status": "passed"
+    },
+    {
+      "check": "all_local_points_quantiles_and_definitions",
+      "categories": 11,
+      "documents_per_category": 1024,
+      "grey_points": 11264,
+      "omitted_points": 0,
+      "all_points_within_plot_limits": true,
+      "ranges": {
+        "attention_linear": {
+          "minimum_percent": 0.07625808942332589,
+          "maximum_percent": 0.11471735712822295
+        },
+        "rope": {
+          "minimum_percent": 0.0005391302016817728,
+          "maximum_percent": 0.0006088066578013506
+        },
+        "qk": {
+          "minimum_percent": 0.0026342369501569317,
+          "maximum_percent": 0.005606765414492367
+        },
+        "softmax": {
+          "minimum_percent": 0.002901358997157557,
+          "maximum_percent": 0.007633530717179436
+        },
+        "pv": {
+          "minimum_percent": 0.02175749716528723,
+          "maximum_percent": 0.0658834115932872
+        },
+        "gate_proj": {
+          "minimum_percent": 0.00562039292026479,
+          "maximum_percent": 0.007965555516815449
+        },
+        "up_proj": {
+          "minimum_percent": 0.007052158527807931,
+          "maximum_percent": 0.01021871722593881
+        },
+        "down_proj": {
+          "minimum_percent": 0.0599239929847849,
+          "maximum_percent": 0.07638032535425061
+        },
+        "gating_exit_loss": {
+          "minimum_percent": 0.029303665143738555,
+          "maximum_percent": 0.04823665279663095
+        },
+        "whole_mlp": {
+          "minimum_percent": 0.14326208786391367,
+          "maximum_percent": 0.17171612066583392
+        },
+        "fixed_residual": {
+          "minimum_percent": 0.04801317843444046,
+          "maximum_percent": 0.10171500302023134
+        }
+      },
+      "status": "passed"
+    },
+    {
+      "check": "all103700_stability_partition_rows",
+      "positions": 103700,
+      "certified_unchanged": 82728,
+      "other_observed_unchanged": 19919,
+      "flipped": 1053,
+      "certified_flips": 0,
+      "observed_agreement_percent": 98.98457087753134,
+      "minimum_saved_certified_margin_minus2epsilon": 2.47955322265625e-05,
+      "theorem": "For reference top1 i and every j!=i, zhat_i-zhat_j >= m-2epsilon>0; strict sufficient condition for this measured fixed-prefix greedy ID only",
+      "status": "passed"
+    },
+    {
+      "check": "coverage_margin_and_full_TV",
+      "score_thresholds": 12,
+      "score_pairs": 13300147200,
+      "margin_buckets": 8,
+      "nonempty_zero_flip_buckets": 2,
+      "TV_positions": 103700,
+      "max_TV_percent": 29.720073606708663,
+      "ECDF": "strict post step with origin; no tail truncation",
+      "coverage_display_symbol": "tau; legacy CSV key epsilon retained",
+      "status": "passed"
+    },
+    {
+      "check": "four600dpi_PNGs_and_four_previews",
+      "image_identities": {
+        "paper_fidelity_decoding_en.png": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/paper_fidelity_decoding_en.png",
+          "bytes": 2713678,
+          "sha256": "6db57b429a888c74fc6af05def9d6596ef2a7d31ef2b8802c3e0753de5162631"
+        },
+        "paper_fidelity_decoding_en_preview.png": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/paper_fidelity_decoding_en_preview.png",
+          "bytes": 1114248,
+          "sha256": "faecabbad1829c49d90292b2cef0e2a93c921108d922a58c4b3e331085213bdb"
+        },
+        "local_operators_en.png": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/local_operators_en.png",
+          "bytes": 1239363,
+          "sha256": "dea9fc10f02426653b5b60f7e79afc5b302c2b073456cf8a40b25fe300189ab9"
+        },
+        "local_operators_en_preview.png": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/local_operators_en_preview.png",
+          "bytes": 467428,
+          "sha256": "8402fa2e5f02afcce74c36c924e567e0b018fc7fa3d0434d673739e50e5607e6"
+        },
+        "paper_fidelity_decoding_zh.png": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/paper_fidelity_decoding_zh.png",
+          "bytes": 2776412,
+          "sha256": "31a127ae9ce4dcede1a995e619b3a0a03b43b7887bfb9a9ae078ab631c55e22a"
+        },
+        "paper_fidelity_decoding_zh_preview.png": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/paper_fidelity_decoding_zh_preview.png",
+          "bytes": 1052189,
+          "sha256": "30ff8363d4370e1b613da506a44986522ac4bded89757d871869000419c1ecf8"
+        },
+        "local_operators_zh.png": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/local_operators_zh.png",
+          "bytes": 1264425,
+          "sha256": "47e48b644e91a56bbccbebdffcf420c465f78e865ac3cbf205abc8117abbcae9"
+        },
+        "local_operators_zh_preview.png": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/local_operators_zh_preview.png",
+          "bytes": 443554,
+          "sha256": "34f4f2f79a9d2398b17fb7b83ac23b94baafc6a2cddc4d38292f441eb2b2cd2d"
+        }
+      },
+      "DPI_metadata": {
+        "paper_fidelity_decoding_en.png": [
+          599.9988,
+          599.9988
+        ],
+        "local_operators_en.png": [
+          599.9988,
+          599.9988
+        ],
+        "paper_fidelity_decoding_zh.png": [
+          599.9988,
+          599.9988
+        ],
+        "local_operators_zh.png": [
+          599.9988,
+          599.9988
+        ]
+      },
+      "previews_exact_LANCZOS_resizes": true,
+      "visually_reviewed": "Final en/zh full-figure previews and en/zh standalone-local previews; readable labels, no observed clipping/overlap; no cumulative hidden/logit columns in A",
+      "status": "passed"
+    },
+    {
+      "check": "current_Root_report_theory_counts_provenance_and_links",
+      "current_report_identity": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/完整分析报告.md",
+        "bytes": 22019,
+        "sha256": "478166195a24a422043083bf985a5826a8b7066362cf7544ff5ad126fc84decd"
+      },
+      "original_report_snapshot": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/provenance/完整分析报告_before_paper_revision.md",
+        "bytes": 14912,
+        "sha256": "9fe4510636d011e9d3ccf379c9c4f5f98d46483102c5a00b815c7390fb607e73"
+      },
+      "origin_record": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/provenance/report_revision_origin.json",
+        "bytes": 592,
+        "sha256": "8ad65ea93b70b6f72b4f2167aed492f97524559b2493bcd9f5917aa9e4874b26"
+      },
+      "current_relative_links_checked": 31,
+      "broken_links": [],
+      "old_review_not_reused_for_revision": true,
+      "status": "passed"
+    }
+  ],
+  "errors": [],
+  "theory_boundaries": [
+    "The proof concerns the measured FP32-head logit vectors at the same externally fixed prefix, against the retained-intermediate-precision reference.",
+    "epsilon is the observed full-vocabulary maximum absolute logit perturbation at that position; it is not the preset coverage threshold tau, TV, or relativeL2.",
+    "Strict m>2epsilon establishes unique greedy-top1 identity stability at that measured position; it is sufficient, not necessary, and not a precomputed all-input rounding bound.",
+    "82728 certified unchanged,19919 other observed unchanged,1053 changed are disjoint and exhaust103700 positions; uncertified is not synonymous with flipped.",
+    "No claim of reference semantic correctness, taskACC/PPL invariance, sampled-token identity, autoregressive free-generation equivalence, or generalization to unseen prefixes.",
+    "Fixed-quota document/position measurements remain descriptive; the deterministic per-position implication is not a population confidence interval."
+  ],
+  "local_reference_boundaries": [
+    "Each category contributes all1024 document-wise maxima across its declared32layer/sites; scatter points are not per-scalar errors.",
+    "Eight base local categories compare the same actual current-path node input against common-exit OUTPUT_ONLY arithmetic.",
+    "The gated-product category includes the shared S32/F16 exit loss relative to the exact same-LUT integer product; it is not analytic SiLU error.",
+    "WholeMLP fixes the MLP entrance but permits internal dynamic code recomputation; fixed-residual merge also fixes the residual base.",
+    "Cumulative hidden/logit relativeL2 results were moved to the report appendix and remain preserved, not deleted or redefined."
+  ],
+  "version_boundary": "Prior independent_package_review.json covers the original report SHA9fe451... only. This review records the current report and08 artifacts; provenance snapshot retains original report bytes and original link context.",
+  "assessment_type": "Independent AI technical and visual review, not human evaluation or a new scientific experiment",
+  "self_identity": "Review SHA returned separately; no recursive self-hash embedded"
+}

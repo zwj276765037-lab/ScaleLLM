@@ -21,4 +21,15 @@ This index records identity and links only. Execution, conclusions and user deci
 | A007 | m002_physical_architecture_review | controller | SM006 | [mission](../agent/A007/mission.md) | [config](../agent/A007/config.md) | [status](../agent/A007/status.md) | [result](../agent/A007/result.md) |
 | A008 | m002_rtl_routability_explorer | engineering | SM008 | [mission](../agent/A008/mission.md) | [config](../agent/A008/config.md) | [status](../agent/A008/status.md) | [result](../agent/A008/result.md) |
 | A009 | m002_routability_rtl_implementation | engineering | SM009 | [mission](../agent/A009/mission.md) | [config](../agent/A009/config.md) | [status](../agent/A009/status.md) | [result](../agent/A009/result.md) |
+| A010 | gsm8k_protocol | engineering | SM020 | [mission](../agent/A010/mission.md) | [config](../agent/A010/config.md) | [status](../agent/A010/status.md) | [result](../agent/A010/result.md) |
+| A011 | gsm8k_worker | engineering | SM020 | [mission](../agent/A011/mission.md) | [config](../agent/A011/config.md) | [status](../agent/A011/status.md) | [result](../agent/A011/result.md) |
+| A012 | gpu1_repair | engineering | SM020 | [mission](../agent/A012/mission.md) | [config](../agent/A012/config.md) | [status](../agent/A012/status.md) | [result](../agent/A012/result.md) |
+| A013 | gpu0_integrity_performance_repair | engineering | SM020 | [mission](../agent/A013/mission.md) | [config](../agent/A013/config.md) | [status](../agent/A013/status.md) | [result](../agent/A013/result.md) |
+| A014 | rounding_design_and_review | research | SM021 | [mission](../agent/A014/mission.md) | [config](../agent/A014/config.md) | [status](../agent/A014/status.md) | [result](../agent/A014/result.md) |
+| A015 | rounding_reference_implementation | engineering | SM021 | [mission](../agent/A015/mission.md) | [config](../agent/A015/config.md) | [status](../agent/A015/status.md) | [result](../agent/A015/result.md) |
+| A016 | rounding_data_and_experiment_runner | engineering | SM021 | [mission](../agent/A016/mission.md) | [config](../agent/A016/config.md) | [status](../agent/A016/status.md) | [result](../agent/A016/result.md) |
+| A017 | softmax_tv_measurement | engineering | SM021 | [mission](../agent/A017/mission.md) | [config](../agent/A017/config.md) | [status](../agent/A017/status.md) | [result](../agent/A017/result.md) |
+| A018 | m003_sol61_verification | engineering | SM017 | [mission](../agent/A018/mission.md) | [config](../agent/A018/config.md) | [status](../agent/A018/status.md) | [result](../agent/A018/result.md) |
+| A019 | rounding_optimization_runner | engineering | SM021 | [mission](../agent/A019/mission.md) | [config](../agent/A019/config.md) | [status](../agent/A019/status.md) | [result](../agent/A019/result.md) |
+| A020 | response_quality_generation | engineering | SM024 | [mission](../agent/A020/mission.md) | [config](../agent/A020/config.md) | [status](../agent/A020/status.md) | [result](../agent/A020/result.md) |
 <!-- research-agent:identity-index:end -->

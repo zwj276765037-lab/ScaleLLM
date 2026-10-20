@@ -1,0 +1,40 @@
+{
+  "mission": "M004/SM020/E010 GPU1 repair investigation",
+  "attempt": "AT002",
+  "hypothesis": "Matching the process-local user-space CUDA library to the running kernel driver repairs raw-byte preservation",
+  "method": "CUDA Driver API via ctypes, 80 simultaneous allocations of 256MiB (20GiB total), retaining entire working set throughout all finite tests",
+  "tests": [
+    "host copy00",
+    "host copyff",
+    "host copy55",
+    "host copyaa",
+    "host copy address ramp with chunk-dependent seed",
+    "device memset00",
+    "device memsetff",
+    "device memset55",
+    "device memsetaa"
+  ],
+  "readback": "Write all chunks, synchronize, then blocking cuMemcpyDtoH_v2 twice per chunk, compare full bytes against independently constructed numpy CPU truth and previous read",
+  "raw_evidence": "Real CUDA virtual pointers/sizes/strides, full-byte mismatch counts, XOR histograms, first and last coordinates, NPZ exact mismatches up to 1000000 coordinates per failed read with explicit completeness flag, complete per4KiB-page counts",
+  "synthetic_input_identity": "CPU constant byte patterns or (byte_offset+17*allocation_index)mod256, fully specified in frozen script; no checkpoint or real prompt loaded",
+  "resources": {
+    "gpu_uuid": "GPU-d87ce710-76bf-872d-9739-f0d7c9b52533",
+    "cpu_affinity": [
+      18,
+      19
+    ],
+    "worker_count": 1,
+    "allocated_gpu_gib": 20,
+    "max_authorized_gpu_gib": 32,
+    "min_free_gpu_gib": 8,
+    "min_available_host_gib": 80,
+    "existing_resource_flock": true
+  },
+  "stopping": "Finite nine-test sequence naturally completes; precondition/resource violation or CUDA API error naturally fails; no wall-clock/quiet timeout",
+  "boundaries": "Only new AT evidence directory modified. No system/driver reset, no GPU0 allocation/query, no process kill, no EDA, no production source edit, no production qualification. CUDA virtual pointers do not identify physical DRAM locations. A passing bounded test does not clear prior model corruption.",
+  "baseline_attempt": "AT001",
+  "only_intended_variable": "libcuda580.178.04 replaced by process-local officially extracted580.159.03; same original diagnostic source and pattern/allocation/read order",
+  "cuda_library_candidate_sha256": "3a3cf81c03a39008b3da4320bbc2cc8194dcfe91e8eef7c05dfc46febe2d1aac",
+  "library_identity_precondition": "bootstrap verifies actual process maps path and SHA before cuInit; mismatch naturally fails without GPU allocation",
+  "source_sha256": "c53ed1f81054ca641de12ebd5061da0b9e07edc4e4a5d5a983ba5214199d1c93"
+}

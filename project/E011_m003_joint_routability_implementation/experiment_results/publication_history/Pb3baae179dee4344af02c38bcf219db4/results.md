@@ -1,0 +1,13 @@
+# E011最新实际结果
+
+AT016于11:06:56.697700Z启动、11:12:19.090182Z自然native0，stopnull/survivors={}，session27897drained、4trackedPID/start及监督退出/锁释放。45来源/3RTL/G2/freshcore e51实际不变，terminal+facts9b0e5b73。原completion直接有效JSON、0API_ERROR/no partial。A007独立4d54ae64接受。
+
+原地址宽查询19实际对象=17FDCE exact0..16 +两个CARRY8 meta_read_addr_r_reg[16]_i_5与[8]_i_2；旧生产解析将非state CARRY也要求末尾packed bit，原19行独立复现unresolved、17state通过。4本地controls每片LUT3 INIT8'hFE / LUT2 INIT4'h2，DONT_TOUCH=1。仅名字/ref/保护/INIT取证，不是连接、完整图、apply或G4。
+
+新候选083ac863保留宽族与严格scope/类型/canonical bit/完整17/duplicate/replica拒绝，仅按真实精确名+ref排除上述两CARRY邻居。6项选择器正负CPU已通过；联合resolver回放验证进行中，明确CE INIT2仅AT015控制流推断、C01根/成员与module根synthetic不作原生全图证明。初始回放fixture文件后缀/对象handle设置错误已记录后修，非生产/native缺陷。
+
+原AT003 outer1/23产22用、AT015自然native1/两次apply无成功、旧DDR puts告警限定归因478a7a33均保留。无actual新apply/restore/selectedbudget/G4/place/route/timing成功；TOP01−2.896ns及22049差异OPEN。
+
+---
+Published: 2026-10-18T11:18:45.138707+00:00
+Publication: P2d09dccc0c914c7cac73f51200ff4657

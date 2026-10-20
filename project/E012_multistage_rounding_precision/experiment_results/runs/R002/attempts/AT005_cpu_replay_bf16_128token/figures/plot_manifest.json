@@ -1,0 +1,85 @@
+{
+  "schema": "m005_real_plot_manifest_v1",
+  "input": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT005_cpu_replay_bf16_128token/results.jsonl",
+    "bytes": 8914168,
+    "sha256": "d5593f6ed527d66fa5d99f49513208e9e8f39847af3955bf2e3b8a4112c4c23c"
+  },
+  "plot_code": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/plot_results.py",
+    "bytes": 8112,
+    "sha256": "00fca0eb1eb70b746ee2a5beaeb5fc9950013cca70cbdafce90d7fbaab3743a9"
+  },
+  "command": [
+    "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/plot_results.py",
+    "--results",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT005_cpu_replay_bf16_128token/results.jsonl",
+    "--output-dir",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT005_cpu_replay_bf16_128token/figures"
+  ],
+  "scope": {
+    "total_rows": 168,
+    "eligible_rows": 168,
+    "excluded_rows": [],
+    "tokens": 128,
+    "trajectory": "bf16",
+    "local_only": true
+  },
+  "matplotlib_version": "3.10.8",
+  "font": {
+    "path": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+    "bytes": 19484784,
+    "sha256": "b76b0433203017ca80401b2ee0dd69350349871c4b19d504c34dbdd80541690a"
+  },
+  "paired_points": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT005_cpu_replay_bf16_128token/figures/paired_measured_points.csv",
+    "bytes": 17978,
+    "sha256": "cc7d5bf0363f1efb64ca82741732a586cb69f70d33c4990ea46c29cfaea1e098"
+  },
+  "rmse_lsb_by_profile": {
+    "仅输出舍入": {
+      "attention": 0.29365333017259115,
+      "mlp_gate_up": 0.281949955278177,
+      "mlp_down": 0.27150359921854383
+    },
+    "当前实现": {
+      "attention": 0.39390698467856,
+      "mlp_gate_up": 0.3586172457600537,
+      "mlp_down": 0.9746415440673687
+    }
+  },
+  "figures": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT005_cpu_replay_bf16_128token/figures/paired_output_delta.png",
+      "bytes": 90462,
+      "sha256": "da4cf3052808f5ab0bfd3dcbf31f94c6be91e12943349a0f583f105b82957c47"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT005_cpu_replay_bf16_128token/figures/paired_output_delta.pdf",
+      "bytes": 37882,
+      "sha256": "fe7e079a376d8099096c48919925b4037452c0826e35c7d5e634dd4dd96494b5"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT005_cpu_replay_bf16_128token/figures/paired_output_delta.svg",
+      "bytes": 116453,
+      "sha256": "c74a8e058f2901fcc9dc9b0abb1f28f5074e460d5e25a43125bc80e50b200c4c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT005_cpu_replay_bf16_128token/figures/error_vs_exact_reference.png",
+      "bytes": 63488,
+      "sha256": "fb2432c57740ae0cda0236bffec1ee348c54c76c8669b0a167ad50fb4e22df1c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT005_cpu_replay_bf16_128token/figures/error_vs_exact_reference.pdf",
+      "bytes": 25366,
+      "sha256": "7ea56a509d1135d2782f693276997020c7047fc9cacae34c561b51c176982352"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT005_cpu_replay_bf16_128token/figures/error_vs_exact_reference.svg",
+      "bytes": 63919,
+      "sha256": "fbd5d5b246ced22e97bcaf6ef004dde21a9fc33a1e579e8dc1e7e85c59122cbe"
+    }
+  ],
+  "population_inference_or_noninferiority_claim": false
+}

@@ -1,0 +1,90 @@
+{
+  "schema": "A007_actual_production_grouped_regression_and_fixture_review_v1",
+  "utc": "2026-10-19T01:11:25.474391+00:00",
+  "execution": "actual128_ordinary_tests_completed_source_fixture_delta_reviewed",
+  "verdict": "no_known_material_blocker_for_same48_source_native_recovery",
+  "applicability": "Manifest16f9523c runtime6delta samef871 candidate; actual95+33 testfiles below",
+  "review": "actual_applied_source_and_affected_regression_accepted_not_nativeG4",
+  "prior48_source_review": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/actual_grouped_production48_source_application_increment.json",
+    "bytes": 13851,
+    "sha256": "3ad8d8eeaa99af133728e8e1dbab0baa50746bd9684a56cdd0283ec932ca763e"
+  },
+  "actual_runtime_manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_entry_manifest.json",
+    "bytes": 11688,
+    "sha256": "16f9523c2e4968a34abdce8d8e5c126476f206ce8c0f93ceec146799c0d9cf75"
+  },
+  "six_runtime_sources_still_exact_candidate": true,
+  "actual_tests": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/tests/test_m003_joint_qualification.py",
+      "bytes": 36381,
+      "sha256": "6b0eb9176ea759c3a79051e2096622a2799e42ee4fb65b15f75215903dbe420e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/tests/test_m003_native_entry_repair.py",
+      "bytes": 28950,
+      "sha256": "fcbc050387a64e0a231f21c1ddb5a48f18bc2755ac387d26099c67f1254463e6"
+    }
+  ],
+  "qualification95_exact_accepted_v2_file": true,
+  "native_entry33_AST": {
+    "removed_test": [
+      "NativeCollectors.test_primary_input_query_only_if_leaf_driver_absent"
+    ],
+    "replacement_test": [
+      "NativeCollectors.test_clock_group_keeps_actual_sources_and_queries_ports_once"
+    ],
+    "other_changed_test": [
+      "SnapshotCollections.test_payload_empty_connected_nets_d_drivers_or_q_loads_still_raise"
+    ],
+    "all_other_test_AST_equal": true,
+    "both_main_guards_last": true
+  },
+  "fixture_delta_verdict": [
+    "Nonclock payload missing-evidence test stubs newly added clock/stream paths only to reach unchanged existing empty payload guards and assertions.",
+    "Clock test sources actual shared collector with bare current_design name/distinct get_designs object; checks returned group reference and actual group source fields.",
+    "Primary branch retains core_clk/IN and empty leaf assertion. Leaf branch retains constant/G and absentprimary, with expectedports1 because new source proof queries ports once even with leaf; this is contract adaptation, not dropped guard.",
+    "Final95+33 test counts match actual AST; no tests skipped or removed beyond one explicit clock semantics rename."
+  ],
+  "actual_logs": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/grouped_connectivity_v1/production_candidate/application_evidence/ordinary_qualification_tests.log",
+      "bytes": 195,
+      "sha256": "ed683c77739878b476cf69187dac91b3123278d65d8c55d20fbabcc3b4994c5e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/grouped_connectivity_v1/production_candidate/application_evidence/ordinary_native_entry_tests.log",
+      "bytes": 132,
+      "sha256": "882b4e0f86114a946f7ba05492323e10e04cbb5db9ca51fa9673dfb5072452d8"
+    }
+  ],
+  "test_counts": {
+    "qualification": 95,
+    "native_entry": 33,
+    "total": 128
+  },
+  "elapsed_s": {
+    "qualification": 38.021,
+    "native_entry": 7.737
+  },
+  "preserved_fixture_before": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/grouped_connectivity_v1/production_candidate/application_evidence/ordinary_native_entry_tests.before_group_fixture_fix.py",
+    "bytes": 27798,
+    "sha256": "c39ab66fd7924e684b4ec760b60dc316439871e489fe0e850bf4e362671147d0"
+  },
+  "preserved_error_log": {
+    "identity": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/grouped_connectivity_v1/production_candidate/application_evidence/ordinary_native_entry_tests.before_group_fixture_fix.log",
+      "bytes": 589,
+      "sha256": "6e816922b0f1c75627f50c24c32f1c91ddbf226ea0ec63b6607a3760f14e9a94"
+    },
+    "actually_contains": "ModuleNotFoundError tests / one loader failure",
+    "scope_note": "Owner notified this is not evidence for3 runtime fixture failures; exact additional failure evidence location awaiting clarification, not a runtime/native launch blocker."
+  },
+  "G4": false,
+  "new_native_started_claim": false,
+  "unchanged_suites_rerun_by_A007": false,
+  "EDA_used": false
+}

@@ -1,0 +1,84 @@
+{
+  "schema": "M003_native_payload_and_local_property_read_repair_v1",
+  "created_utc": "2026-10-18T09:01:21.836285+00:00",
+  "scope": "Ordinary selector naming correction and local read overhead only; no architecture/pool/count/RTL/budget/strategy/qualification relaxations",
+  "production_not_applied": true,
+  "production_target_before": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_checks.tcl",
+    "bytes": 27553,
+    "sha256": "7973a1b808319a8d33fdb7ba21ac8b2520894831355234bf258ae28e4207f493"
+  },
+  "production_tests_before": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/tests/test_m003_native_entry_repair.py",
+    "bytes": 12673,
+    "sha256": "dd62a57bbe3db11d6a3e869e5c4cc13076695075351249749db35650698494b6"
+  },
+  "entry_manifest_before": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_entry_manifest.json",
+    "bytes": 10964,
+    "sha256": "151e4f113dfcbf377a2548280ba6112e26fdfa4b4b381509778f369b0180ab73"
+  },
+  "production_proposed": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/m003_joint_checks.tcl.proposed",
+    "bytes": 28675,
+    "sha256": "7419a97d224e848f3c414659f01e64962432139c9b7127a45713a28145fb3003"
+  },
+  "production_tests_proposed": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/test_m003_native_entry_repair.py.proposed",
+    "bytes": 12820,
+    "sha256": "ddc1e28606e3124c21204a59957606bcc6b693448b147333f354d0a6c37b3f80"
+  },
+  "diff": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/combined_production.diff",
+    "bytes": 5602,
+    "sha256": "4faab1ca076ce9e23e4a7bf98f5c0075c7d7c2127908fc472319428709208948"
+  },
+  "sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/payload_members.tcl",
+      "bytes": 1932,
+      "sha256": "eb3d9eeda3dfa659978d31278337b55fcdea254f2799f7c5166869182af87d1a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/property_reading.tcl",
+      "bytes": 3411,
+      "sha256": "b3ba1a9baa300b1ad06500342d6525d7474b81206d3747a022961dccc101de3a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/test_payload_members.py",
+      "bytes": 7054,
+      "sha256": "62b5324aba1a2a318b6e524b27cde9c7d989bc05d7b21271c3833345ad76054a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/test_property_reading.py",
+      "bytes": 8093,
+      "sha256": "5cb700c1c4e5b07aba187746ae7def9b92ea7d7da3505cc17a167c2a2bd98857"
+    }
+  ],
+  "selector_candidate": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/selector_candidate.json",
+    "bytes": 2898,
+    "sha256": "bacbb6fa2d02f914133d6688a1f88ec4f383aa295ef8704a34e6b758951a0119"
+  },
+  "selector_cpu_receipt": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/cpu_receipt.json",
+    "bytes": 2194,
+    "sha256": "b04e36b8bc94d0ed7c501f5c2d8d2f2d429ed1118f063c1347b633c58a363553"
+  },
+  "property_cpu_receipt": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/property_cpu_receipt.json",
+    "bytes": 2470,
+    "sha256": "fa5c72c72ca9b81b0b3c28a763ca67457ce0ac839c9939bab13d17ab5988354f"
+  },
+  "source_delta": {
+    "changed_functions": [
+      "payload_members",
+      "hard_pblock",
+      "cell_row"
+    ],
+    "added_helper": "supported_prop",
+    "global_prop_unchanged": true,
+    "property_policy": "support list local to one object and one function invocation; original conditional field order and errors; no values cached"
+  },
+  "application_boundary": "Only after AT014 natural full diagnostic closure; preserve old sources/manifest, apply exact proposed bytes, refresh manifest and affected production tests then native new AT"
+}

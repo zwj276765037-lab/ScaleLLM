@@ -1,0 +1,26 @@
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/prechange_entry/m002_diagnostic_common.tcl
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_common.tcl
+@@ -607,6 +607,11 @@
+         report_pulse_width -all_violators -file [file join $::m002_report_dir pulse_width_${point}.rpt]
+         report_bus_skew -file [file join $::m002_report_dir bus_skew_${point}.rpt]
+     }
++    if {[info exists ::env(HAP_M003_ACTIVE)]} {
++        source [file join $::m002_script_dir m003_joint_checks.tcl]
++        # This validates effective checkpoint constraints before any repair/reapply.
++        m003::snapshot $point $::m002_report_dir
++    }
+     if {$point in {place physopt route}} {
+         if {[info exists ::env(HAP_EXECUTION_PROFILE)] && $::env(HAP_EXECUTION_PROFILE) eq "m002_optimized_implementation"} {
+             source [file join $::m002_script_dir m002_optimized_structure.tcl]
+@@ -643,7 +648,11 @@
+     # All available artifacts precede automatic structural/numeric admission.
+     require_board_clock_groups
+     require_no_drc_blockers [expr {$point eq "route" ? "post_route" : "physopt"}]
++    if {[info exists ::env(HAP_M003_ACTIVE)]} {
++        exec /usr/bin/python3 [file join $::m002_script_dir m003_physical_evidence.py] hook-batch $point $::m002_report_dir
++    } else {
+     exec python3 [file join $::m002_script_dir m002_physical_evidence.py] hook-batch $point $::m002_report_dir
++    }
+     set h [open [file join $::m002_report_dir admission_${point}.txt] r]
+     set admission [read $h]; close $h
+     set coverage [dict get $admission clock_coverage]

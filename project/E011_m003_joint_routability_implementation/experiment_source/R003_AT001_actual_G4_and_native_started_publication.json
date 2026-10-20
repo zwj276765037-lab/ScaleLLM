@@ -1,0 +1,14 @@
+{
+  "source": "# E011 当前来源与方法\n\nR003/AT001使用已双审冻结physical_literal_adapter v2（core48+3，51源，package0e6866cf），原run_m003_stage.main实际A007 package/source_review门未改。真实AT035 preplace包94e3f335与397086017 B debug DCP3543a854为唯一恢复输入。独立G4原字节680ead99已核验安装，完整门后prepare抵达真实native boundary，389 stage绑定全部验证且无native副作用；预演与实际report完全独立。\n\n固定流程restore本版DCP→零apply与完整原restore检查→place SSI_SpreadSLLs→physopt Default→route Default，所有原阶段POST与失败捕获保留。不重综合/不扫策略/不热改冻结物理v2。AT035全debug POST/preplace与原outer cleanup native1保持原事实。\n",
+  "results": "# E011 当前结果\n\nA007实际G4 no_blocker=true，绑定AT035 package94e3f335，真实review06954c10；正式reset/CDC safety仍OPEN。G4允许进入固定物理，不等于物理成功。原AT035完成debug Tcl0/blackboxes0/COMPLETE_INTERNAL/gate=[]/新critical0，outer native1来自preplace后的冗余close_project，未改写。\n\nR003/AT001实际启动时间为2026-10-19T18:20:23.378500Z。supervisor700439/start12363065，native700547/start12363405。198 owned归档绑定/51运行源全部匹配，实际CPU0–7/nice5、EDA锁与原192GiB/48GiB×30秒/30GiB保护通过。尚无restore完成、place、physopt或route结果；preplace WNS+0.904/WHS−0.814/PW−0.012仅为前置阶段，不能作最终签核。\n\nAT027综合预算LUT+111/FF+34/CARRY8+4、RAM/DSP不增，TOP01−2.896ns/G1差22049继续OPEN；合法route、最终时序、正式安全尚未宣告。\n",
+  "status": "# E011 当前状态\n\nexecution_state: running\nverdict: inconclusive\napplicability: actual A007 G4 passed for AT035 preplace package; R003/AT001 fixed full physical native genuinely running.\n\nA018唯一EDA owner，A007独立审核。已通过实际G4及完整门后prepare并原生启动，真实PID/start/锁/归档/资源已核。按终态事件连续衔接当前restore和固定place/physopt/route，正常无墙钟/静默强停。无bitstream/GPU/板卡/PPL/ACC。\n\n当前未标记任何place/route或正式时序安全成功。\n",
+  "execution_state": "running",
+  "verdict": "inconclusive",
+  "applicability": "Actual A007 G4 admits AT035 package; R003 AT001 native fixed full implementation running under original resources, no physical result yet.",
+  "evidence": [
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT001_fixed_complete_physical/evidence/actual_native_activation.json",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT001_fixed_complete_physical/evidence/actual_G4_full_launcher_preparation_receipt.json",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT001_fixed_complete_physical/evidence/prepared_owned_command.json",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT001_fixed_complete_physical/evidence/preparation_record_write_reconciliation.json"
+  ]
+}

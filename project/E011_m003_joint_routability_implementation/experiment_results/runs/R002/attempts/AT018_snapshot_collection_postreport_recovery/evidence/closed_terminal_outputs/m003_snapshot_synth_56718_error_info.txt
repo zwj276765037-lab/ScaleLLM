@@ -1,0 +1,25 @@
+errorcode=NONE
+M003 empty address startpoints: ADDR_A[22]
+    while executing
+"error "M003 empty address startpoints: $terminal""
+    (procedure "memory_startpoint_names" line 2)
+    invoked from within
+"memory_startpoint_names $terminal $startpoints"
+    ("foreach" body line 10)
+    invoked from within
+"foreach pin [get_pins -quiet -of_objects $cell -filter {DIRECTION == IN}] {
+                set terminal [get_property REF_PIN_NAME $pin]
+            ..."
+    ("foreach" body line 3)
+    invoked from within
+"foreach cell [dict get $r memory $index] {
+            lappend cells [cell_row $cell memory [dict create slice $index]]
+            foreach pin [get_p..."
+    ("foreach" body line 23)
+    invoked from within
+"foreach index {0 1} {
+        dict for {bit cell} [dict get $r addresses $index] {
+            set dp [get_pins -quiet -of_objects $cell -filter {REF_..."
+    (procedure "snapshot_body" line 36)
+    invoked from within
+"snapshot_body $phase $out"

@@ -1,0 +1,34 @@
+{
+  "schema": "scalellm_R003_parent_launcher_readonly_review_v1",
+  "reviewed_at_utc": "2026-10-18T04:48:50.066081+00:00",
+  "reviewer": "A010 /root/gsm8k_protocol",
+  "CPU_only": true,
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "launcher_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E010_gsm8k_six_model_completion/launch_R003_qualified.py",
+  "launcher_sha256": "e10212ba352de2cbc5548add267b87fda11c8211c11e5d17487998f2241ac50d",
+  "prepared_command_sha256": "756ac3e6515f30d357ca2cb3ffaf60a5e032192e61b282747d1fe6bdc12be9e6",
+  "frozen_plan_sha256": "2e77661b67dc69ed6ae0b75d43580b75975f551cf5a683a498d510e9ba6b1426",
+  "explicit_blocking_source_findings": [],
+  "reviewed_properties": [
+    "ROOT/BASE absolute path construction correct",
+    "New output destination/frozen plan2e identity consistent",
+    "15 frozen source and snapshot hashes are gates in launcher",
+    "Both independent terminal reviews and raw artifact SHA are required",
+    "Prep PID absence and actual host/GPU0 memory/exclusive lock are required",
+    "GPU0 process removes LD_LIBRARY_PATH and applies known environment",
+    "Fresh smoke/pilot/formal stages have no initial resume",
+    "Absent finalizer_readiness retains generated_pending_review; parent independent publication binding remains required"
+  ],
+  "actual_execution": "launcher and its GPU resource queries were not executed by reviewer",
+  "readiness_observed": false,
+  "applicability": "Source and command review only; actual QDQ terminal review/postrun and resource gates must complete before launch",
+  "source_hashes": {
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E010_gsm8k_six_model_completion/launch_R003_qualified.py": "e10212ba352de2cbc5548add267b87fda11c8211c11e5d17487998f2241ac50d",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R003_gsm8k_gpu0_weight_integrity/launch_command_prepared.json": "756ac3e6515f30d357ca2cb3ffaf60a5e032192e61b282747d1fe6bdc12be9e6",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R003_gsm8k_gpu0_weight_integrity/prelaunch_readiness_candidate.json": "c02ac366ea9c90a176d9981651c8c38ffabb3325fa7f3d8e41da7040cb8ae228",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R003_gsm8k_gpu0_weight_integrity/freeze_preparation.json": "3165c4f50b4f57e110b6694903f3999dab85abfd4840b7a645ca8e2b78487bb6"
+  }
+}

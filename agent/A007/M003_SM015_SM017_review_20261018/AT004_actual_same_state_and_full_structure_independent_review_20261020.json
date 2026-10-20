@@ -1,0 +1,428 @@
+{
+  "schema": 1,
+  "event_id": "A007_M003_R003_AT004_actual_same_state_and_full_structure_20261020",
+  "observed_utc": "2026-10-20T00:17:41.789345+00:00",
+  "reviewer": "A007 /root/m002_physical_architecture_review",
+  "engineering_owner": "A018 /root/m003_sol61_verification",
+  "execution": {
+    "state": "completed",
+    "task": "One consolidated independent review of actual native 12FF evidence, final same-state checker and complete original place-structure CLI qualification",
+    "read_only": true,
+    "new_EDA": false,
+    "process_control": false,
+    "live_process_polling": false,
+    "observer": false,
+    "descendants": false,
+    "whole_old_suites_rerun": false
+  },
+  "verdict": {
+    "state": "SUPPORTED_CURRENT_PLACE_SAME_STATE_SOURCES_AND_FULL_STRUCTURE_QUALIFICATION",
+    "actual_replica_equivalence_proven": true,
+    "actual_place_structure_qualified": true,
+    "current_place_POST_complete": false,
+    "physopt_or_route_passed": false,
+    "timing_signoff": false,
+    "formal_reset_CDC_safety": "OPEN",
+    "original_AT001_failure_preserved": true
+  },
+  "applicability": {
+    "query_package_sha256": "b18b072cba7d86ecfbc9db5f44d9cb7ef81aa6f337af37bbf40d664cc6ca1db7",
+    "place_checkpoint_sha256": "b9e2f6dbf4fc6e013c6e4cf6078218983529f799e7ce2ecf9d0f905892f242e5",
+    "place_snapshot_sha256": "6eb90ed584d1a0b8a0e4db0e5e40c3cf79f130a2fe503d0c3f5b2b70ea02ed8f",
+    "actual_raw_sha256": "7496ffcf2ba3e9a0f011fb7d8283f3361a82c02ad7c3965f48cac1c3bd531b53",
+    "state_checker_sha256": "0f8864bf08b764dfb15c5eb279d3ce8669e76a8a7bb1dbd3a6385c42c31a0873",
+    "qualification_adapter_sha256": "21dc28acd9a612af471303a7f3c4630250cabacc51fef762f496ae121f2a0375",
+    "exact_source_pairs": 9,
+    "exact_root_bindings": 24,
+    "scope": "Exact current place checkpoint, three originals bits 10/11/12 and nine observed FDCE copies; no name-only aliases or other source substitutions.",
+    "future_checkpoint_rule": "This exact state certificate is not transferable to a changed physical checkpoint by names or matching root drivers alone. Any future phase must retain its own actual state/source qualification or establish a separately reviewed preservation basis.",
+    "continuation_entry_review": "A018 prepares continuation under current Root/user authorization; no continuation-entry implementation was reviewed in this document, and no new user approval gate is introduced."
+  },
+  "review": {
+    "state": "accepted_with_explicit_current_evidence_scope",
+    "blocking_findings": [],
+    "conclusion": "All nine physical copies share the original effective FDCE state transition and INIT under the observed common input signals; all 24 changed URAM write roots use those exact copies. The narrowly extended original full validator succeeds on the immutable actual place snapshot and rejects the requested actual-data counterexamples.",
+    "native_execution": {
+      "native_exit": 0,
+      "stop_reason": null,
+      "ended_utc": "2026-10-20T00:08:05.159146+00:00",
+      "selected_rows": 108,
+      "groups": 15,
+      "endpoints": 72,
+      "owner_closed_process_identities": 6,
+      "owner_source_bindings": 200,
+      "owner_lock_free": true,
+      "verification": "A007 bound launcher/status/read-only completion, checked terminal receipt and all 200 closure flags; did not re-poll processes or rehash the 581 MB DCP.",
+      "read_only_apply_before": 0,
+      "read_only_apply_after": 0
+    },
+    "independent_actual_reconstruction": {
+      "evidence": "agent/A007/M003_SM015_SM017_review_20261018/AT004_actual_state_independent_reconstruction_20261020.json",
+      "raw_rows": {
+        "cell": 12,
+        "parent": 12,
+        "state_pin": 48,
+        "state_clock": 12,
+        "memory_root_pin": 24
+      },
+      "unique_native_groups": 15,
+      "unique_endpoints": 72,
+      "total_distinct_native_net_names": 22766,
+      "actual_direct_memberships": 15,
+      "successful_traced_API_calls": 90,
+      "pair_count": 9,
+      "root_bindings": 24,
+      "bit_destination_counts": {
+        "10": 8,
+        "11": 8,
+        "12": 8
+      },
+      "affected_URAM_roots": 8,
+      "actual_placed_LOC_BEL_pairs": 12,
+      "all_24_root_pin_IS_INVERTED_zero": true,
+      "full_group_sets_compared": true,
+      "no_partial_alias_sampling": true,
+      "comparison_to_prior_A007_delta": "Exact prior 24 changed rows, current sources and full native net sets matched; previous 80 configurations/cascade/read-source audit reused."
+    },
+    "state_transition": {
+      "model": {
+        "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/verilog/src/unisims/FDCE.v",
+        "bytes": 6567,
+        "sha256": "74d30d7c788e7db47f12b92d5b4b57b707974a0962708b309e4cc081d5f98b04"
+      },
+      "primitive": "FDCE",
+      "INIT": "1'b0",
+      "effective_pin_inversion": {
+        "D": 0,
+        "C": 0,
+        "CE": 0,
+        "CLR": 1
+      },
+      "raw_cell_metadata": {
+        "IS_C_INVERTED": "",
+        "IS_D_INVERTED": "",
+        "IS_CLR_INVERTED": "1'b1",
+        "IS_CE_INVERTED": "NOT_SUPPORTED",
+        "DONT_TOUCH": "",
+        "parent_DONT_TOUCH": ""
+      },
+      "clock": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+      "period_ns": 10,
+      "waveform_ns": [
+        0,
+        5
+      ],
+      "master_clock": "xdma_0_axi_aclk",
+      "clock_source": "scalellm_vcu118_f05_bd_i/clk_core/inst/mmcme4_adv_inst/CLKOUT0",
+      "clock_native_group_net_count": 12560,
+      "reset_native_group_net_count": 10183,
+      "CE_native_group_net_count": 2,
+      "D_group_count": 3,
+      "D_group_net_count_each": 1,
+      "argument": "Equal INIT establishes equal initial state. Actual noninverted common C gives the same rising edge; active-low common CLR resets both, otherwise common CE gates the same noninverted D. Equality is inductive for each pair across asynchronous reset events and state transitions under ideal primitive semantics. Shared actual input nets/leaf sources make LUT truth-table re-derivation unnecessary.",
+      "metadata_rule": "Empty supported cell observations and unsupported CE metadata remain raw; only known actual pin polarity establishes effective polarity. Unknown effective pin polarity is rejected. ORIG_CELL_NAME and replica spelling only select/corroborate pairs, never establish equivalence.",
+      "limitation": "This is a structural/ideal state relation, not routed delay, reset recovery/removal, metastability, or formal CDC safety proof."
+    },
+    "checker_and_full_validator": {
+      "final_code_reviewed": true,
+      "raw_snapshot_rewritten": false,
+      "alias_expansion": false,
+      "guard_change": "Exactly one old write-address source comparison extends with an exact 24-root/pin/bit/driver/original mapping produced by the full state proof.",
+      "complete_original_function_retained": true,
+      "original_validator_sha256": "7f8a7186558e566d4f6fdd11460b30fc68936e9218a0e0d5d38c63ece10bee05",
+      "prior_literal_adapter_sha256": "da0ea7a03a1e979d6c76acb330338969eb568df50cdf5ae1ac8708fe62f68665",
+      "full_actual_CLI_passed": true,
+      "full_actual_errors": [],
+      "full_actual_fixture": false,
+      "protected_A3_FF": 34,
+      "protected_A3_control_LUT": 4,
+      "original_protected_boundaries": 80,
+      "structure_counts": {
+        "phase": "place",
+        "fixture": false,
+        "exact_new_M2_LUT1": 81,
+        "exact_new_address_FF": 34,
+        "exact_helper_LUT": 40,
+        "exact_helper_CARRY8": 4,
+        "protected_added_LUT": 85,
+        "URAM_per_slice": {
+          "0": 40,
+          "1": 40
+        },
+        "actual_address_root_counts": {
+          "0": 6,
+          "1": 6
+        },
+        "normalized_cell_literals": 17
+      },
+      "raw_reset_endpoint_observations": 51,
+      "unchanged_manifest_sources_independently_hashed": 48,
+      "unchanged_selected_RTL": 3,
+      "unchanged_G2": true,
+      "prior_failed_report": "Actual AT001 m003_qualification_place.json still passed=false with its original 24 source errors.",
+      "specific_guard_limits": "The checker does not consume grouped trace/closure files or assert its --snapshot argument path equals the package anchor. This exact run is independently bound to the actual package/launcher/snapshot and all grouped facts here. Root IS_INVERTED is additionally independently checked as 0 for all 24 actual roots. This review does not generalize these checks to arbitrary future inputs."
+    },
+    "counterexamples": {
+      "owner_CPU_fixture_cases_reused": 22,
+      "CPU_fixtures_not_native_evidence": true,
+      "actual_data_full_CLI_cases": 8,
+      "actual_native_mutation": false,
+      "raw_errors_independently_verified": true,
+      "cases": [
+        {
+          "case": "wrong_replica_D",
+          "exit_code": 1,
+          "expected_semantic_rejection_verified": true,
+          "original_full_validator_reached": false,
+          "errors": [
+            "actual state input group differs"
+          ]
+        },
+        {
+          "case": "wrong_replica_CE",
+          "exit_code": 1,
+          "expected_semantic_rejection_verified": true,
+          "original_full_validator_reached": false,
+          "errors": [
+            "actual state input group differs"
+          ]
+        },
+        {
+          "case": "unknown_effective_clock_polarity",
+          "exit_code": 1,
+          "expected_semantic_rejection_verified": true,
+          "original_full_validator_reached": false,
+          "errors": [
+            "unknown boolean/one-bit literal"
+          ]
+        },
+        {
+          "case": "wrong_replica_INIT",
+          "exit_code": 1,
+          "expected_semantic_rejection_verified": true,
+          "original_full_validator_reached": false,
+          "errors": [
+            "assert flag(row['INIT']) == 0"
+          ]
+        },
+        {
+          "case": "wrong_actual_clock_edge",
+          "exit_code": 1,
+          "expected_semantic_rejection_verified": true,
+          "original_full_validator_reached": false,
+          "errors": [
+            "actual clock/period/edge differs"
+          ]
+        },
+        {
+          "case": "original_full_guard_read_Q",
+          "exit_code": 1,
+          "expected_semantic_rejection_verified": true,
+          "original_full_validator_reached": true,
+          "errors": [
+            "URAM root unloaded/missing bit or cross-slice own read-Q mapping",
+            "URAM cascade raw address ancestry changed",
+            "URAM cascade raw address ancestry changed",
+            "URAM cascade raw address ancestry changed",
+            "URAM cascade raw address ancestry changed",
+            "URAM cascade raw address ancestry changed",
+            "URAM cascade raw address ancestry changed",
+            "URAM cascade raw address ancestry changed"
+          ]
+        },
+        {
+          "case": "original_full_guard_URAM_mask",
+          "exit_code": 1,
+          "expected_semantic_rejection_verified": true,
+          "original_full_validator_reached": true,
+          "errors": [
+            "URAM actual high-address mask changed"
+          ]
+        },
+        {
+          "case": "original_full_guard_80_boundary_coverage",
+          "exit_code": 1,
+          "expected_semantic_rejection_verified": true,
+          "original_full_validator_reached": true,
+          "errors": [
+            "original 80-boundary role count changed: down"
+          ]
+        }
+      ],
+      "negative_suite_not_rerun": true
+    },
+    "resources": {
+      "same_synthesis_architecture_delta": {
+        "LUT": 111,
+        "FF": 34,
+        "CARRY8": 4,
+        "storage_DSP_increase": false
+      },
+      "placed_cross_stage_global_registers": {
+        "debug": 1021400,
+        "place": 1021742,
+        "delta": 342
+      },
+      "proven_write_source_copy_FF": 9,
+      "interpretation": "The physical +342 is a cross-stage global observation; the nine source copies are a proven subset, not its whole attribution. Architecture/same-synthesis +34 remains the separately audited budget.",
+      "prior_budget_review": "agent/A007/M003_SM015_SM017_review_20261018/AT027_final_reset_exports_budget_and_freeze_one_shot_review.json"
+    },
+    "unresolved_physical_scope": {
+      "full_place_POST": false,
+      "physopt": false,
+      "route": false,
+      "actual_place_timing_ns": {
+        "WNS": -2.797,
+        "TNS": -31090.396,
+        "WHS": -0.565,
+        "THS": -2157.578,
+        "WPWS": 0.0
+      },
+      "signoff": false,
+      "old_failed_attempt_not_reclassified": true
+    },
+    "performance_claim": "Only actual API counters are available; no total cached-versus-interrupted speedup ratio is claimed."
+  },
+  "recommendation": "Accept this exact actual same-state source proof and complete place-structure requalification; continue existing authorized engineering work through the separately prepared complete POST/integrity/physical entry. Requalify changed phases on their own actual evidence, preserving original failures and all A3/80-boundary protections.",
+  "evidence_identities": {
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query_package_AT004_cached.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query_package_AT004_cached.json",
+      "bytes": 10555,
+      "sha256": "b18b072cba7d86ecfbc9db5f44d9cb7ef81aa6f337af37bbf40d664cc6ca1db7"
+    },
+    "project/hardware/vivado/reports/m003_E011_R003_AT004_cached_place_write_replica_proof/selected_state_and_root_pins.jsonl": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT004_cached_place_write_replica_proof/selected_state_and_root_pins.jsonl",
+      "bytes": 48984441,
+      "sha256": "7496ffcf2ba3e9a0f011fb7d8283f3361a82c02ad7c3965f48cac1c3bd531b53"
+    },
+    "project/hardware/vivado/reports/m003_E011_R003_AT004_cached_place_write_replica_proof/grouped_native_sources.jsonl": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT004_cached_place_write_replica_proof/grouped_native_sources.jsonl",
+      "bytes": 4088872,
+      "sha256": "512b51b1280cdf2e54c2a9f9c33966e2a51fe8f070de929761c02b30c50decde"
+    },
+    "project/hardware/vivado/reports/m003_E011_R003_AT004_cached_place_write_replica_proof/grouped_native_pin_bindings.jsonl": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT004_cached_place_write_replica_proof/grouped_native_pin_bindings.jsonl",
+      "bytes": 17658,
+      "sha256": "35212313e2788404086f3beff5f4b6c0e58022326b15c0ac91d12d2cbfe075b7"
+    },
+    "project/hardware/vivado/reports/m003_E011_R003_AT004_cached_place_write_replica_proof/grouped_API_trace.jsonl": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT004_cached_place_write_replica_proof/grouped_API_trace.jsonl",
+      "bytes": 31186,
+      "sha256": "fb0d7318cff140bdddeaf2a39b20e1ee362dc24ee2f5c4190503d4130f341aae"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT004_cached_place_write_replica_proof/evidence/actual_same_state_equivalence.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT004_cached_place_write_replica_proof/evidence/actual_same_state_equivalence.json",
+      "bytes": 29549,
+      "sha256": "b6fe8f87eca9877c9ffb04507123b8b20129e7a75b94a67da30ffdb0ad3c5a9f"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT004_cached_place_write_replica_proof/evidence/actual_complete_place_structure_requalified.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT004_cached_place_write_replica_proof/evidence/actual_complete_place_structure_requalified.json",
+      "bytes": 46312,
+      "sha256": "a589f1099366c7b2b5e844ed9dc3756fd52cbf4549269606a2da8ff0f6307e96"
+    },
+    "project/hardware/vivado/constraints/m003_entry_manifest.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_entry_manifest.json",
+      "bytes": 11688,
+      "sha256": "42dafce33f4727734dcf169b285a3decfcfa18d78d10f9a36463b4bea7c904d5"
+    },
+    "mission/M003_joint_routability_closure/g2_joint_design_freeze_2026-10-18.md": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/mission/M003_joint_routability_closure/g2_joint_design_freeze_2026-10-18.md",
+      "bytes": 11044,
+      "sha256": "4424c426859b6b1e64be2f52a008ff6c03e1a6854f71570970cbba4941fff709"
+    },
+    "project/hardware/vivado/reports/m003_E011_R003_AT004_cached_place_write_replica_proof/launcher_status.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT004_cached_place_write_replica_proof/launcher_status.json",
+      "bytes": 1373,
+      "sha256": "917fdf5b4a51c55ebe5478a213a7289edefd2cb870b70b17fd643dd73f659dcd"
+    },
+    "project/hardware/vivado/reports/m003_E011_R003_AT004_cached_place_write_replica_proof/read_only_complete.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT004_cached_place_write_replica_proof/read_only_complete.json",
+      "bytes": 325,
+      "sha256": "a4a0e7c68fe070fb0812bcc8f78648e9384cd03b0c4d2a7971eef8ed5cefde83"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT004_cached_place_write_replica_proof/evidence/owner_terminal_and_source_closure.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT004_cached_place_write_replica_proof/evidence/owner_terminal_and_source_closure.json",
+      "bytes": 42361,
+      "sha256": "ea8e1d63a9ae814527d3970fceea21100cc89742e15d5e550b742cc147cb37ce"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT004_cached_place_write_replica_proof/evidence/actual_full_CLI_negative_receipt.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT004_cached_place_write_replica_proof/evidence/actual_full_CLI_negative_receipt.json",
+      "bytes": 3634,
+      "sha256": "a48ea82c35d245930e9bf2db2e246d39d97d4697b29f15bc326947abab29150b"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/state_equivalence.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/state_equivalence.py",
+      "bytes": 9571,
+      "sha256": "0f8864bf08b764dfb15c5eb279d3ce8669e76a8a7bb1dbd3a6385c42c31a0873"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/qualify_placed_sources.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/qualify_placed_sources.py",
+      "bytes": 4469,
+      "sha256": "21dc28acd9a612af471303a7f3c4630250cabacc51fef762f496ae121f2a0375"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/test_state_equivalence.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/test_state_equivalence.py",
+      "bytes": 7571,
+      "sha256": "908ddd699e0b5ad0b935ad7dd5d2940cb6f0b6832042fd50450a49b2d5e13675"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/test_actual_place_cli.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/test_actual_place_cli.py",
+      "bytes": 4328,
+      "sha256": "2aae8dd9bfb6f788000e090a84762eeb457b8c9894f5ecb782f05784c39aea87"
+    },
+    "project/hardware/vivado/scripts/m003_joint_evidence.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_evidence.py",
+      "bytes": 36631,
+      "sha256": "7f8a7186558e566d4f6fdd11460b30fc68936e9218a0e0d5d38c63ece10bee05"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/AT028_init_recovery/native_init_recovery.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/AT028_init_recovery/native_init_recovery.py",
+      "bytes": 29307,
+      "sha256": "da0ea7a03a1e979d6c76acb330338969eb568df50cdf5ae1ac8708fe62f68665"
+    },
+    "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/verilog/src/unisims/FDCE.v": {
+      "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/verilog/src/unisims/FDCE.v",
+      "bytes": 6567,
+      "sha256": "74d30d7c788e7db47f12b92d5b4b57b707974a0962708b309e4cc081d5f98b04"
+    },
+    "agent/A007/M003_SM015_SM017_review_20261018/AT004_actual_state_independent_reconstruction_20261020.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT004_actual_state_independent_reconstruction_20261020.json",
+      "bytes": 64804,
+      "sha256": "11ea126dee1d1ef3d9b42b532546f801c64b0a9674b2e0c4a56254e5e267c6b3"
+    },
+    "agent/A007/M003_SM015_SM017_review_20261018/AT004_actual_state_independent_audit_20261020.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT004_actual_state_independent_audit_20261020.py",
+      "bytes": 19290,
+      "sha256": "2c63c22845945922ec3b640ff4a80eb2acd4f447c83af92e4c9e933625e40d87"
+    },
+    "agent/A007/M003_SM015_SM017_review_20261018/AT027_final_reset_exports_budget_and_freeze_one_shot_review.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT027_final_reset_exports_budget_and_freeze_one_shot_review.json",
+      "bytes": 59354,
+      "sha256": "f1bf83f611ecd1e44715f45d614e23c7712423b3ecc7c2dce11e7d939347ae4a"
+    },
+    "agent/A007/M003_SM015_SM017_review_20261018/AT004_cached12FF_collector_limited_independent_review_20261020.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT004_cached12FF_collector_limited_independent_review_20261020.json",
+      "bytes": 48042,
+      "sha256": "cd6a675808f0a555bcf991f3badd3b938ff9d2b6c92af20bde6d531b74a07aac"
+    },
+    "project/hardware/vivado/constraints/m003_joint_locality_spec.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_joint_locality_spec.json",
+      "bytes": 2616050,
+      "sha256": "a5eadb9d8edcedb042c5f21e1e6f83e700576887669b8ebfc73e3f5c82675e7e"
+    }
+  },
+  "large_evidence_reuse": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/place.dcp",
+      "bytes": 580960506,
+      "sha256": "b9e2f6dbf4fc6e013c6e4cf6078218983529f799e7ce2ecf9d0f905892f242e5",
+      "method": "Owner native launcher/full CLI identity verification; previous A007 frozen identity and current stat, no A007 reread/hash."
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_native_place.json",
+      "bytes": 107153507,
+      "sha256": "6eb90ed584d1a0b8a0e4db0e5e40c3cf79f130a2fe503d0c3f5b2b70ea02ed8f",
+      "method": "Owner native launcher/full CLI identity verification; previous A007 frozen identity and current stat, no A007 reread/hash."
+    }
+  ]
+}

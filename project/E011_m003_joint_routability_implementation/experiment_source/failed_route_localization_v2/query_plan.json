@@ -1,0 +1,191 @@
+{
+  "schema": 1,
+  "scope": "R004 AT001 final failed-route full canonical/alias actual-driver/endpoint census plus bounded route-resource samples",
+  "normalization_base": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute",
+  "driver_normalization": "Primitive containing RTL instance capped at first four path levels below literal u_compute; outside u_compute first four containing-module path segments; preserve generate indices; no net-name semantics. TOP_PORT/MULTIDRIVER/UNKNOWN_DRIVER/INOUT_OR_AMBIGUOUS are explicit buckets.",
+  "primary_group_key": [
+    "normalized_driver_module",
+    "source_SLR",
+    "sorted_unique_load_SLR_set"
+  ],
+  "primary_sort": "unique_net_count DESC, full group tuple lexical ASC",
+  "top_groups": 20,
+  "representative_nets_per_group": 4,
+  "supplemental_net_queries": [],
+  "protection_queries": [],
+  "literal_net_seeds": [
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack/projection_s24x16x16[4772]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack/projection_s24x16x16[4804]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack/projection_s24x16x16[4828]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_projection_repack/projection_s24x16x16[4940]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[1299]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[1359]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[1361]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[1745]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[2143]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[451]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[6162]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[6179]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[6181]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[725]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[744]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_head_r[786]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight/u_local0/mlp_rdata[184]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight/u_local0/mlp_rdata[391]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight/u_local0/mlp_rdata[437]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/output_mux_group_data_r[4]_254[234]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/output_mux_group_data_r[5]_253[119]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/output_mux_group_data_r[5]_253[15]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/output_mux_group_data_r[5]_253[246]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_tensor/output_mux_group_data_r[5]_253[247]",
+    "scalellm_vcu118_f05_bd_i/d0_smc/inst/s00_entry_pipeline/s00_mmu/inst/r_sreg/m_vector_i_reg[1314]_0[210]",
+    "scalellm_vcu118_f05_bd_i/d0_smc/inst/s00_entry_pipeline/s00_mmu/inst/r_sreg/m_vector_i_reg[1314]_0[213]",
+    "scalellm_vcu118_f05_bd_i/d0_smc/inst/s00_entry_pipeline/s00_mmu/inst/r_sreg/m_vector_i_reg[1314]_0[216]",
+    "scalellm_vcu118_f05_bd_i/d0_smc/inst/s00_entry_pipeline/s00_mmu/inst/r_sreg/m_vector_i_reg[1314]_0[219]",
+    "scalellm_vcu118_f05_bd_i/d0_smc/inst/s00_entry_pipeline/s00_mmu/inst/r_sreg/m_vector_i_reg[1314]_0[41]",
+    "scalellm_vcu118_f05_bd_i/d0_smc/inst/s00_entry_pipeline/s00_mmu/inst/r_sreg/m_vector_i_reg[1314]_0[43]",
+    "scalellm_vcu118_f05_bd_i/d0_smc/inst/s00_entry_pipeline/s00_mmu/inst/r_sreg/m_vector_i_reg[1314]_0[46]",
+    "scalellm_vcu118_f05_bd_i/d0_smc/inst/s00_entry_pipeline/s00_mmu/inst/r_sreg/m_vector_i_reg[1314]_0[51]",
+    "scalellm_vcu118_f05_bd_i/d0_smc/inst/s00_entry_pipeline/s00_mmu/inst/r_sreg/m_vector_i_reg[1314]_0[55]",
+    "scalellm_vcu118_f05_bd_i/d0_smc/inst/s00_entry_pipeline/s00_mmu/inst/r_sreg/m_vector_i_reg[1314]_0[57]",
+    "scalellm_vcu118_f05_bd_i/d0_smc/inst/s00_entry_pipeline/s00_mmu/inst/r_sreg/m_vector_i_reg[1314]_0[60]",
+    "scalellm_vcu118_f05_bd_i/d0_smc/inst/s00_entry_pipeline/s00_mmu/inst/r_sreg/m_vector_i_reg[1314]_0[61]"
+  ],
+  "known_cross_slr_net_seeds": [],
+  "candidate_literal_roots": [
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_quantizer[3].u_quantizer/g_div[0].u_div",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_frontend/g_quantizer[2].u_quantizer/g_div[4].u_div"
+  ],
+  "known_cross_boundary_seed_evidence": [
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_cut_summary_route_failed.json",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m002_E008_R001_AT004_C01_PDU_resume_full_implementation/candidate_endpoints_route_failed.tsv"
+  ],
+  "endpoints": "Complete native leaf pins and top ports of census and frozen supplementary alias closures; selected net endpoints only, no transitive fanin/fanout expansion.",
+  "detailed_properties": [
+    "REF_NAME",
+    "LOC",
+    "BEL",
+    "IS_LOC_FIXED",
+    "IS_BEL_FIXED",
+    "ORIG_CELL_NAME",
+    "ORIG_REF_NAME",
+    "RLOC",
+    "RLOC_ORIGIN",
+    "MACRO_NAME",
+    "DONT_TOUCH",
+    "USER_SLR_ASSIGNMENT",
+    "PARENT"
+  ],
+  "timing": {
+    "performed": false
+  },
+  "overlap_nodes": {
+    "native_report": 797175,
+    "full_node_mapping": "NOT_MEASURED",
+    "never_equal_to_net_count": true
+  },
+  "end_condition": "Fixed full native conflict-net alias/leaf census exhausted; aggregate full driver groups; top20 x4 plus 8 per endpoint class and final10 node net seeds exhausted; no timing; deterministic per-net route sample caps; no wall or silence cutoff",
+  "limits": {
+    "cpu": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "threads": 8,
+    "nice": 5,
+    "tree_rss_bytes": 206158430208,
+    "MemAvailable_floor_bytes": 51539607552,
+    "mem_low_seconds": 30,
+    "disk_free_floor_bytes": 32212254720
+  },
+  "prohibited": [
+    "synthesis",
+    "opt_design",
+    "place_design",
+    "phys_opt_design",
+    "route_design",
+    "write_checkpoint",
+    "read_xdc",
+    "set_property",
+    "bitstream",
+    "board",
+    "GPU",
+    "PPL",
+    "ACC"
+  ],
+  "final_hotspot_nodes": [
+    {
+      "rank": 1,
+      "tile": "INT_X57Y687",
+      "node": "BOUNCE_E_15_FT0",
+      "overlapping_nets": 4
+    },
+    {
+      "rank": 2,
+      "tile": "INT_X20Y366",
+      "node": "SS12_BEG1",
+      "overlapping_nets": 4
+    },
+    {
+      "rank": 3,
+      "tile": "INT_X68Y433",
+      "node": "SS12_BEG3",
+      "overlapping_nets": 4
+    },
+    {
+      "rank": 4,
+      "tile": "INT_X39Y368",
+      "node": "SS12_BEG3",
+      "overlapping_nets": 4
+    },
+    {
+      "rank": 5,
+      "tile": "INT_X66Y355",
+      "node": "SS12_BEG3",
+      "overlapping_nets": 4
+    },
+    {
+      "rank": 6,
+      "tile": "INT_X31Y342",
+      "node": "SS12_BEG0",
+      "overlapping_nets": 4
+    },
+    {
+      "rank": 7,
+      "tile": "INT_X79Y390",
+      "node": "SS12_BEG2",
+      "overlapping_nets": 4
+    },
+    {
+      "rank": 8,
+      "tile": "INT_X79Y420",
+      "node": "SS12_BEG4",
+      "overlapping_nets": 4
+    },
+    {
+      "rank": 9,
+      "tile": "INT_X79Y461",
+      "node": "SS4_W_BEG1",
+      "overlapping_nets": 4
+    },
+    {
+      "rank": 10,
+      "tile": "INT_X79Y378",
+      "node": "INT_NODE_SDQ_66_INT_OUT0",
+      "overlapping_nets": 4
+    }
+  ],
+  "native_report_conflict_nets": 615840,
+  "native_report_overlap_nodes": 797175,
+  "deep_max_load_pins": 4096,
+  "route_node_sample_cap_per_net": 2048,
+  "cross_class_representatives": 8,
+  "endpoint_class_rule": "Mutually exclusive per canonical net: UNKNOWN if ambiguous/no loads/any endpoint unknown; TWO_BOUNDARY_ENDPOINT_DEMAND if combined driver/load SLR set contains SLR0 and SLR2 (subtype direct0to2 or source1_multicast0and2 explicit); ADJACENT_ENDPOINT_DEMAND if combined set is exactly {0,1} or {1,2}; LOCAL_ENDPOINTS if combined set singleton. Minimum boundary demand only, not actual route containment."
+}

@@ -1,0 +1,29 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date              : Tue Oct 20 00:33:03 2026
+| Host              : user running 64-bit Ubuntu 24.04.4 LTS
+| Command           : report_cdc -from [get_clocks -quiet mmcm_clkout0_1] -to [get_clocks -quiet clk_out1_scalellm_vcu118_f05_bd_clk_core_0] -severity Critical -all_checks_per_endpoint -details -name m002_changed_reset_opt_1 -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT034_OPT_fresh_registry_selection/cdc_changed_opt_1.rpt
+| Design            : scalellm_vcu118_f05_bd_wrapper
+| Device            : xcvu9p-flga2104
+| Speed File        : -2L  PRODUCTION 1.28 03-30-2022
+| Design State      : Optimized
+| Temperature Grade : E
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CDC Report
+
+ID      Severity  Count  Description
+------  --------  -----  --------------------------------------------------
+CDC-10  Critical      3  Combinational logic detected before a synchronizer
+
+Source Clock: mmcm_clkout0_1
+Destination Clock: clk_out1_scalellm_vcu118_f05_bd_clk_core_0
+CDC Type: No Common Primary Clock
+
+Row  ID      Severity  Description                                         Depth  Exception            Source (From)                                                                            Destination (To)
+---  ------  --------  --------------------------------------------------  -----  -------------------  ---------------------------------------------------------------------------------------  ------------------------------------------------------------------------------------------------------------------
+  1  CDC-10  Critical  Combinational logic detected before a synchronizer      4  Asynch Clock Groups  scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_ddr_cal_top/calDone_gated_reg/C  scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready1_cdc/arststages_ff_reg[0]/CLR
+  2  CDC-10  Critical  Combinational logic detected before a synchronizer      5  Asynch Clock Groups  scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[3]/C                 scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D
+  3  CDC-10  Critical  Combinational logic detected before a synchronizer      5  Asynch Clock Groups  scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[3]/C                 scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D
+

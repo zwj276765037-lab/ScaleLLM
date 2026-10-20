@@ -1,0 +1,65 @@
+{
+  "kind": "m005_persistent_numerical_stage",
+  "recorded_at": "2026-10-19T06:42:48.800001+00:00",
+  "stage": "R005_full1024_MLP_and_full_vocabulary_single_assembly",
+  "gpu_uuid": "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+  "limits": {
+    "cpu_threads": 1,
+    "max_rss_gib": 8,
+    "max_gpu_gib": 24,
+    "per_group_mib": 256,
+    "group_wall_seconds": 900,
+    "launch_free_gpu_gib": 30,
+    "runtime_free_gpu_gib": 8,
+    "total_wall_seconds": 14400,
+    "total_evidence_mib": 6144,
+    "cleanup_reserve_seconds": 60
+  },
+  "expected_documents": 1024,
+  "logical_groups": 64,
+  "documents_per_group": 16,
+  "source_plan": "original R004 frozen B001..B064 in exact order; all103700 real tokens; no padding/resampling",
+  "raw_audit_policy": "same15 preselected documents; original3 full32 hidden and12 layers0/15/31; all32 scalar metrics/witnesses; MLP<=8MiB/head<=4MiB added per audit doc",
+  "basis_evidence": [
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT002_extended_mlp_logits_pilot/gpu_receipt.json",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT002_extended_mlp_logits_pilot/paired_stages.jsonl",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT002_extended_mlp_logits_pilot/readonly_baseline_qualification.json",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT002_extended_mlp_logits_pilot/documents/doc0000/logit_chunk_qualification.json",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/independent_review/AT002_extended_audit_v1.json"
+  ],
+  "measured_cost": {
+    "pilot_wall_seconds": 457.6640665879968,
+    "load_attach_head_seconds": 364.8718066869915,
+    "ordinary128_document_seconds": [
+      7.726154875999782,
+      7.633823451003991
+    ],
+    "audit128_document_seconds": 58.7687041600002,
+    "short14_document_seconds": 5.244219653992332,
+    "peak_rss_bytes": 4328800256,
+    "peak_gpu_bytes": 15678308352,
+    "pilot_evidence_bytes_approx": 204750000
+  },
+  "finite_cost_basis_seconds": {
+    "load_head": 365,
+    "all1024_at8seconds_even_416_short_docs": 8192,
+    "audit_extra15_at51seconds": 765,
+    "new_length_compilation_allowance": 1000,
+    "64groups_io_hash_registration": 500,
+    "post_gpu_cpu_audit_aggregate_plot": 1800,
+    "cleanup": 60,
+    "estimate_sum": 12682,
+    "finite_stage_cap": 14400
+  },
+  "storage_basis": "Measured ordinary metrics/summary extrapolate~2.7GB;15audit raw/witnesses~1.4–1.7GB;audits/sources/finalPNG<0.5GB; hard global6144MiB includes session plus all sibling group output directories. Per-group256MiB retained. Current free disk>400GiB.",
+  "decision": "Root executes latest explicit user request to finish missing data and redraw one Python PNG. Formal scope needs a separately declared total dataset storage/time allowance; per-worker compute/memory/admission unchanged. This is a fresh finite stage, not extending or relabeling prior stopped attempts.",
+  "prerequisites": [
+    "AT002 independent qualification completed",
+    "new cache wrapper CPU two-group success/failure/restore and finite resource monitor checks",
+    "A014 independent final wrapper review no blocking issue",
+    "freeze all consumed source and exact member plan before launch"
+  ],
+  "source_and_execution_integrity": "Only fixed loader/attachment/headload APIs cached; frozen numerical forward/observer/measurement functions unchanged. One real shared worker identity/global launch/receipt; each group has honest execution-segment receipt, not fake separate GPU launch. Raw experiment artifact hashes exclude mutable navigation/management files.",
+  "on_failure": "stop owned process after identity verification, preserve partial evidence, do not silently retry/drop docs/change tolerance; final figure requires all1024 plus core+extension audits",
+  "publication": "single integrated Matplotlib PNG plus exact-source tables; all vocabulary coverage and Top1 mandatory; fixed-quota descriptive numerical evidence, not taskACC/freegeneration/general proof; no preliminary placeholders as final deliverable"
+}

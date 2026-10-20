@@ -1,0 +1,14 @@
+{
+  "source": "# E009：SM013只读全量失败网归因来源\n\nM003/SM013；基线为E008/R001/AT004失败DCP（765705446B/SHA51679d9a…）、已审终态与144生产输入。工程A006已真实登记R001/AT001并完成CPU准备；尚未启动原生EDA。Vivado2025.2/VCU118原图只读，不重新综合/实现，不改RTL/XDC/旧证据。\n\nquery_plan.json/targets.tcl冻结canonical别名闭包、driver模块归一及唯一主组、前20排序、固定parent/meta/80保护/top10与既有C01跨SLR种子；consumer/clock-region关联另表，覆盖按网ID union计算。固定对象耗尽结束，无递归全芯片时序扩展。完整字段/缺测与批量输出见[协议](protocol.md)。\n\n[准备清单](prepared_manifest.json)绑定实际入口、查询计划及基线；本次预检144输入和失败DCP身份一致、前次PID/start消失、无EDA/编译、锁可获取且已释放。单EDA、CPU0–7/nice5/max8、树RSS192GiB/MemAvailable48GiB持续30s/disk30GiB，正常无墙钟/静默强停。实际模型无独立回执，不默换。\n",
+  "results": "# E009：准备完成，原生测量未执行\n\n目前只有CPU准备/协议对照：语法与只读入口检查、raw/canonical别名计数差异、唯一主组、unknown/multidriver/INOUT与重叠集合union的独立小例通过。144输入、失败DCP、资源与单EDA预检通过。\n\n547548冲突网和702396重叠节点来自E008基线，并非本实验新测量。全量canonical清单、主组、覆盖率、候选端点、原生深查结果均尚未取得，不宣称归因已完成或任一改造有效。\n\n[AT001预检](runs/R001/attempts/AT001_failed_route_full_attribution/preflight.json) · [CPU对照](runs/R001/attempts/AT001_failed_route_full_attribution/cpu_checks.json) · [离线复用边界](runs/R001/attempts/AT001_failed_route_full_attribution/offline_reuse.json)。\n",
+  "status": "# E009：SM013入口准备中，无原生EDA\n\nexecution_state: running  \nverdict: unassessed\n\nE009/R001/AT001已登记，当前阶段为preparing：已完成固定查询包、CPU协议对照、144输入/失败DCP及资源/单EDA预检，A007正在独立核查实际预运行包。原生EDA尚未启动，AT运行登记仍planned。\n\n下一步：无实质阻断后直接绑定独立审核回执并启动真实只读载图/归因，不等待普通再次许可；随后按真实native_start/PID-start/锁和来源更新。关键未知/全量统计未取得，生产设计及后继选型未冻结。无新implementation、无bitstream/板卡/GPU/PPL/ACC。\n",
+  "execution_state": "running",
+  "verdict": "unassessed",
+  "applicability": "Preparation/CPU protocol only; no native EDA or attribution result yet.",
+  "evidence": [
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT001_failed_route_full_attribution/preflight.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT001_failed_route_full_attribution/cpu_checks.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT001_failed_route_full_attribution/offline_reuse.json",
+    "project/E009_m003_failed_net_attribution/experiment_source/prepared_manifest.json"
+  ]
+}

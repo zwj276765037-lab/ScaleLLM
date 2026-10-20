@@ -1,0 +1,11 @@
+--- v2/m003_recover_synthesis.tcl
++++ v3/m003_recover_synthesis.tcl
+@@ -31,7 +31,7 @@
+ m003::require_project
+ write_identity [file join $report_dir build_identity.txt]
+ m003_python [file join $script_dir m003_synth_recovery.py] compare-identity --report $report_dir
+-foreach run [get_runs -quiet -filter {NAME == synth_1 || NAME =~ *_synth_1}] {require_complete_run [get_property NAME $run]}
++m003::require_synthesis_runs
+ open_run synth_1
+ require_board_clock_groups
+ source $overlay

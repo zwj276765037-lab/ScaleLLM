@@ -1,0 +1,216 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date              : Sun Oct 18 10:07:45 2026
+| Host              : user running 64-bit Ubuntu 24.04.4 LTS
+| Command           : report_timing -through {scalellm_vcu118_f05_bd_i/xdma_0/inst/udma_wrapper/dma_top/dma_pcie_req/dma_pcie_rq/WTLP_HDR_FIFO/WrPtr[2]} -delay_type max -max_paths 2 -nworst 1 -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/evidence/native/timing_PROTECTION80_down_max.rpt
+| Design            : scalellm_vcu118_f05_bd_wrapper
+| Device            : xcvu9p-flga2104
+| Speed File        : -2L  PRODUCTION 1.28 03-30-2022
+| Design State      : Routed
+| Temperature Grade : E
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -3.820ns  (required time - arrival time)
+  Source:                 scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/gen_row_queue[5].occupancy_bank_r_reg[5][1]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_scalellm_vcu118_f05_bd_clk_core_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/g_output_payload_row[0].out_payload_r_reg[108]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_out1_scalellm_vcu118_f05_bd_clk_core_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_scalellm_vcu118_f05_bd_clk_core_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise@10.000ns - clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise@0.000ns)
+  Data Path Delay:        13.157ns  (logic 0.562ns (4.271%)  route 12.595ns (95.729%))
+  Logic Levels:           7  (LUT1=1 LUT2=1 LUT3=1 LUT4=2 LUT6=2)
+  Clock Path Skew:        -0.254ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    6.019ns = ( 16.019 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.920ns
+    Clock Pessimism Removal (CPR):    -0.353ns
+  Clock Uncertainty:      0.081ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.146ns
+    Phase Error              (PE):    0.000ns
+  Inter-SLR Compensation: 0.266ns  ((DCD - CCD) * PF)
+    Destination Clock Delay (DCD):    6.019ns
+    Common Clock Delay      (CCD):    4.244ns
+    Prorating Factor         (PF):    0.150
+  Clock Net Delay (Source):      3.559ns (routing 1.530ns, distribution 2.029ns)
+  Clock Net Delay (Destination): 3.165ns (routing 1.390ns, distribution 1.775ns)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise edge)
+                                                      0.000     0.000 r  
+    GTYE4_CHANNEL_X1Y35  GTYE4_CHANNEL                0.000     0.000 r  scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[32].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[3].GTYE4_CHANNEL_PRIM_INST/TXOUTCLK
+                         net (fo=7, routed)           0.085     0.085    scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_clk_i/GT_TXOUTCLK[0]
+    BUFG_GT_X1Y206       BUFG_GT (Prop_BUFG_GT_I_O)
+                                                      0.130     0.215 r  scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_clk_i/bufg_gt_userclk/O
+                         net (fo=33199, routed)       2.000     2.215    scalellm_vcu118_f05_bd_i/clk_core/inst/clk_in1
+    SLR Crossing[1->2]   
+    MMCM_X1Y10           MMCME4_ADV (Prop_MMCM_CLKIN1_CLKOUT0)
+                                                     -0.127     2.088 r  scalellm_vcu118_f05_bd_i/clk_core/inst/mmcme4_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.245     2.333    scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1_scalellm_vcu118_f05_bd_clk_core_0
+    BUFGCE_X1Y258        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.028     2.361 r  scalellm_vcu118_f05_bd_i/clk_core/inst/clkout1_buf/O
+    X2Y7 (CLOCK_ROOT)    net (fo=967855, routed)      3.559     5.920    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/clk
+    SLICE_X101Y811       FDRE                                         r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/gen_row_queue[5].occupancy_bank_r_reg[5][1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X101Y811       FDRE (Prop_BFF2_SLICEL_C_Q)
+                                                      0.080     6.000 r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/gen_row_queue[5].occupancy_bank_r_reg[5][1]/Q
+                         net (fo=7, routed)           4.240    10.240    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/occupancy_bank_r[5][1]
+    SLICE_X101Y654       LUT4 (Prop_C6LUT_SLICEL_I3_O)
+                                                      0.035    10.275 f  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/out_valid_INST_0_i_2/O
+                         net (fo=2, routed)           2.394    12.669    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/out_valid_INST_0_i_2_n_0
+    SLR Crossing[2->1]   
+    SLICE_X103Y451       LUT6 (Prop_F6LUT_SLICEL_I1_O)
+                                                      0.049    12.718 r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/out_valid_INST_0/O
+                         net (fo=4, routed)           0.039    12.757    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/core_rst_n_1
+    SLICE_X103Y451       LUT4 (Prop_H6LUT_SLICEL_I0_O)
+                                                      0.036    12.793 r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/projection_pass_count[0]_i_3/O
+                         net (fo=2, routed)           0.038    12.831    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/down_valid
+    SLICE_X103Y451       LUT2 (Prop_G6LUT_SLICEL_I0_O)
+                                                      0.050    12.881 r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/error_r_i_4__0/O
+                         net (fo=3, routed)           0.150    13.031    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/in_valid0
+    SLICE_X103Y455       LUT6 (Prop_A6LUT_SLICEL_I0_O)
+                                                      0.124    13.155 r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/output_record_count[0]_i_1__0/O
+                         net (fo=34, routed)          0.096    13.251    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/out_valid_r
+    SLICE_X104Y455       LUT3 (Prop_A6LUT_SLICEM_I0_O)
+                                                      0.090    13.341 r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/g_output_payload_row[15].u_output_payload_ce_i_1/O
+                         net (fo=25, routed)          2.715    16.056    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/g_output_payload_row[15].u_output_payload_ce_i_1_n_0
+    SLR Crossing[1->0]   
+    SLICE_X110Y246       LUT1 (Prop_F6LUT_SLICEM_I0_O)
+                                                      0.098    16.154 r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/g_output_payload_row[0].u_output_payload_ce/O
+                         net (fo=512, routed)         2.923    19.077    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/output_payload_row_ce_0
+    SLICE_X129Y183       FDRE                                         r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/g_output_payload_row[0].out_payload_r_reg[108]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise edge)
+                                                     10.000    10.000 r  
+    GTYE4_CHANNEL_X1Y35  GTYE4_CHANNEL                0.000    10.000 r  scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[32].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[3].GTYE4_CHANNEL_PRIM_INST/TXOUTCLK
+                         net (fo=7, routed)           0.078    10.078    scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_clk_i/GT_TXOUTCLK[0]
+    BUFG_GT_X1Y206       BUFG_GT (Prop_BUFG_GT_I_O)
+                                                      0.114    10.192 r  scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_clk_i/bufg_gt_userclk/O
+                         net (fo=33199, routed)       1.793    11.985    scalellm_vcu118_f05_bd_i/clk_core/inst/clk_in1
+    SLR Crossing[1->2]   
+    MMCM_X1Y10           MMCME4_ADV (Prop_MMCM_CLKIN1_CLKOUT0)
+                                                      0.630    12.615 r  scalellm_vcu118_f05_bd_i/clk_core/inst/mmcme4_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.215    12.830    scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1_scalellm_vcu118_f05_bd_clk_core_0
+    BUFGCE_X1Y258        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.024    12.854 r  scalellm_vcu118_f05_bd_i/clk_core/inst/clkout1_buf/O
+    X2Y7 (CLOCK_ROOT)    net (fo=967855, routed)      3.165    16.019    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/core_clk
+    SLR Crossing[2->0]   
+    SLICE_X129Y183       FDRE                                         r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/g_output_payload_row[0].out_payload_r_reg[108]/C
+                         clock pessimism             -0.353    15.666    
+                         inter-SLR compensation      -0.266    15.400    
+                         clock uncertainty           -0.081    15.319    
+    SLICE_X129Y183       FDRE (Setup_HFF_SLICEM_C_CE)
+                                                     -0.061    15.258    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/g_output_payload_row[0].out_payload_r_reg[108]
+  -------------------------------------------------------------------
+                         required time                         15.258    
+                         arrival time                         -19.077    
+  -------------------------------------------------------------------
+                         slack                                 -3.820    
+
+Slack (VIOLATED) :        -3.807ns  (required time - arrival time)
+  Source:                 scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/gen_row_queue[5].occupancy_bank_r_reg[5][1]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out1_scalellm_vcu118_f05_bd_clk_core_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/g_output_payload_row[0].out_payload_r_reg[106]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_out1_scalellm_vcu118_f05_bd_clk_core_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_out1_scalellm_vcu118_f05_bd_clk_core_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise@10.000ns - clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise@0.000ns)
+  Data Path Delay:        13.147ns  (logic 0.562ns (4.275%)  route 12.585ns (95.725%))
+  Logic Levels:           7  (LUT1=1 LUT2=1 LUT3=1 LUT4=2 LUT6=2)
+  Clock Path Skew:        -0.252ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    6.021ns = ( 16.021 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.920ns
+    Clock Pessimism Removal (CPR):    -0.353ns
+  Clock Uncertainty:      0.081ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.146ns
+    Phase Error              (PE):    0.000ns
+  Inter-SLR Compensation: 0.267ns  ((DCD - CCD) * PF)
+    Destination Clock Delay (DCD):    6.021ns
+    Common Clock Delay      (CCD):    4.244ns
+    Prorating Factor         (PF):    0.150
+  Clock Net Delay (Source):      3.559ns (routing 1.530ns, distribution 2.029ns)
+  Clock Net Delay (Destination): 3.167ns (routing 1.390ns, distribution 1.777ns)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise edge)
+                                                      0.000     0.000 r  
+    GTYE4_CHANNEL_X1Y35  GTYE4_CHANNEL                0.000     0.000 r  scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[32].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[3].GTYE4_CHANNEL_PRIM_INST/TXOUTCLK
+                         net (fo=7, routed)           0.085     0.085    scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_clk_i/GT_TXOUTCLK[0]
+    BUFG_GT_X1Y206       BUFG_GT (Prop_BUFG_GT_I_O)
+                                                      0.130     0.215 r  scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_clk_i/bufg_gt_userclk/O
+                         net (fo=33199, routed)       2.000     2.215    scalellm_vcu118_f05_bd_i/clk_core/inst/clk_in1
+    SLR Crossing[1->2]   
+    MMCM_X1Y10           MMCME4_ADV (Prop_MMCM_CLKIN1_CLKOUT0)
+                                                     -0.127     2.088 r  scalellm_vcu118_f05_bd_i/clk_core/inst/mmcme4_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.245     2.333    scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1_scalellm_vcu118_f05_bd_clk_core_0
+    BUFGCE_X1Y258        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.028     2.361 r  scalellm_vcu118_f05_bd_i/clk_core/inst/clkout1_buf/O
+    X2Y7 (CLOCK_ROOT)    net (fo=967855, routed)      3.559     5.920    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/clk
+    SLICE_X101Y811       FDRE                                         r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/gen_row_queue[5].occupancy_bank_r_reg[5][1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X101Y811       FDRE (Prop_BFF2_SLICEL_C_Q)
+                                                      0.080     6.000 r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/gen_row_queue[5].occupancy_bank_r_reg[5][1]/Q
+                         net (fo=7, routed)           4.240    10.240    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/occupancy_bank_r[5][1]
+    SLICE_X101Y654       LUT4 (Prop_C6LUT_SLICEL_I3_O)
+                                                      0.035    10.275 f  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/out_valid_INST_0_i_2/O
+                         net (fo=2, routed)           2.394    12.669    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/out_valid_INST_0_i_2_n_0
+    SLR Crossing[2->1]   
+    SLICE_X103Y451       LUT6 (Prop_F6LUT_SLICEL_I1_O)
+                                                      0.049    12.718 r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1/u_down_output_queue/out_valid_INST_0/O
+                         net (fo=4, routed)           0.039    12.757    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/core_rst_n_1
+    SLICE_X103Y451       LUT4 (Prop_H6LUT_SLICEL_I0_O)
+                                                      0.036    12.793 r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/projection_pass_count[0]_i_3/O
+                         net (fo=2, routed)           0.038    12.831    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/down_valid
+    SLICE_X103Y451       LUT2 (Prop_G6LUT_SLICEL_I0_O)
+                                                      0.050    12.881 r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/error_r_i_4__0/O
+                         net (fo=3, routed)           0.150    13.031    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/in_valid0
+    SLICE_X103Y455       LUT6 (Prop_A6LUT_SLICEL_I0_O)
+                                                      0.124    13.155 r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/output_record_count[0]_i_1__0/O
+                         net (fo=34, routed)          0.096    13.251    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/out_valid_r
+    SLICE_X104Y455       LUT3 (Prop_A6LUT_SLICEM_I0_O)
+                                                      0.090    13.341 r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/g_output_payload_row[15].u_output_payload_ce_i_1/O
+                         net (fo=25, routed)          2.715    16.056    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/g_output_payload_row[15].u_output_payload_ce_i_1_n_0
+    SLR Crossing[1->0]   
+    SLICE_X110Y246       LUT1 (Prop_F6LUT_SLICEM_I0_O)
+                                                      0.098    16.154 r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/g_output_payload_row[0].u_output_payload_ce/O
+                         net (fo=512, routed)         2.913    19.067    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/output_payload_row_ce_0
+    SLICE_X131Y183       FDRE                                         r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/g_output_payload_row[0].out_payload_r_reg[106]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out1_scalellm_vcu118_f05_bd_clk_core_0 rise edge)
+                                                     10.000    10.000 r  
+    GTYE4_CHANNEL_X1Y35  GTYE4_CHANNEL                0.000    10.000 r  scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[32].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[3].GTYE4_CHANNEL_PRIM_INST/TXOUTCLK
+                         net (fo=7, routed)           0.078    10.078    scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_clk_i/GT_TXOUTCLK[0]
+    BUFG_GT_X1Y206       BUFG_GT (Prop_BUFG_GT_I_O)
+                                                      0.114    10.192 r  scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_vcu118_f05_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/phy_clk_i/bufg_gt_userclk/O
+                         net (fo=33199, routed)       1.793    11.985    scalellm_vcu118_f05_bd_i/clk_core/inst/clk_in1
+    SLR Crossing[1->2]   
+    MMCM_X1Y10           MMCME4_ADV (Prop_MMCM_CLKIN1_CLKOUT0)
+                                                      0.630    12.615 r  scalellm_vcu118_f05_bd_i/clk_core/inst/mmcme4_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.215    12.830    scalellm_vcu118_f05_bd_i/clk_core/inst/clk_out1_scalellm_vcu118_f05_bd_clk_core_0
+    BUFGCE_X1Y258        BUFGCE (Prop_BUFCE_BUFGCE_I_O)
+                                                      0.024    12.854 r  scalellm_vcu118_f05_bd_i/clk_core/inst/clkout1_buf/O
+    X2Y7 (CLOCK_ROOT)    net (fo=967855, routed)      3.167    16.021    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/core_clk
+    SLR Crossing[2->0]   
+    SLICE_X131Y183       FDRE                                         r  scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/g_output_payload_row[0].out_payload_r_reg[106]/C
+                         clock pessimism             -0.353    15.668    
+                         inter-SLR compensation      -0.267    15.401    
+                         clock uncertainty           -0.081    15.320    
+    SLICE_X131Y183       FDRE (Setup_HFF_SLICEM_C_CE)
+                                                     -0.061    15.259    scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_down_scheduler/u_projection_repack/g_output_payload_row[0].out_payload_r_reg[106]
+  -------------------------------------------------------------------
+                         required time                         15.259    
+                         arrival time                         -19.067    
+  -------------------------------------------------------------------
+                         slack                                 -3.807    
+
+
+
+

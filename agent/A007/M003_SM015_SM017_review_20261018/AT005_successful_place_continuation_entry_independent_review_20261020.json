@@ -1,0 +1,451 @@
+{
+  "schema": 1,
+  "event_id": "A007_M003_R003_AT005_successful_place_continuation_entry_20261020",
+  "observed_utc": "2026-10-20T00:25:45.796778+00:00",
+  "reviewer": "A007 /root/m002_physical_architecture_review",
+  "engineering_owner": "A018 /root/m003_sol61_verification",
+  "execution": {
+    "state": "completed_one_shot_incremental_read_only_review",
+    "new_EDA": false,
+    "process_control": false,
+    "live_process_polling": false,
+    "observer": false,
+    "descendants": false,
+    "old_whole_suites_rerun": false,
+    "large_DCP_and_snapshot_reread": false
+  },
+  "verdict": "NO_BLOCKER_FOR_EXACT_AT005_SUCCESSFUL_PLACE_CONTINUATION_ENTRY",
+  "no_blocker": true,
+  "package_sha256": "0482679f65c2e3a786c3ee1ba99860b16d6373ce6471e1efdd720b334f2cb22c",
+  "applicability": {
+    "attempt": "E011/R003/AT005_successful_place_POST_physopt_route",
+    "actual_runtime_report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT005_successful_place_POST_physopt_route",
+    "package": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/place_continuation_package.json",
+      "bytes": 98929,
+      "sha256": "0482679f65c2e3a786c3ee1ba99860b16d6373ce6471e1efdd720b334f2cb22c"
+    },
+    "checkpoint": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/place.dcp",
+      "bytes": 580960506,
+      "sha256": "b9e2f6dbf4fc6e013c6e4cf6078218983529f799e7ce2ecf9d0f905892f242e5"
+    },
+    "prior_same_state_and_structure_review": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT004_actual_same_state_and_full_structure_independent_review_20261020.json",
+      "bytes": 24274,
+      "sha256": "78a937305b7085d08045e72ccdcc96803054eb46d8d73e066e60716b7c77a466"
+    },
+    "runtime_sources": 58,
+    "source_breakdown": {
+      "core": 48,
+      "adapter_and_reused_extra": 10,
+      "new_adapter_files": 4
+    },
+    "fixed_commands": [
+      "phys_opt_design -directive Default",
+      "route_design -directive Default"
+    ],
+    "no_place_reexecution": true,
+    "authorization": "Existing explicit user mission continuation and Root task authorization; no additional user approval needed for this ordinary verified entry adaptation.",
+    "native_execution_state_at_review": "planned; actual runtime report absent at bounded check",
+    "ordinary_runtime_failures": "A018 retains sole native/tool ownership, normal no-wall/no-quiet-stop protections, and existing resource lane; a subsequent phase evidence failure is not an implicit permission to weaken a guard."
+  },
+  "review": {
+    "state": "accepted_exact_package_and_entry",
+    "blocking_findings": [],
+    "real_launcher": {
+      "original_main_called": true,
+      "original": "project/hardware/vivado/scripts/run_m003_stage.py",
+      "new_report_namespace_guard_retained": true,
+      "fresh_synthesis_lineage_retained": true,
+      "actual_G4_package_and_source_review_guard_retained": true,
+      "real_prepare_only_reached_native_boundary": true,
+      "preplace_package_sha256": "94e3f3350af829d7fd61d4e01988e262b1344697801a062d762a8ca295e98e52",
+      "actual_G4_gate_sha256": "680ead99520e0f26233a7681fb41a449e920b05bc6a1e078a39b742825541470",
+      "native_argument_changes": [
+        5
+      ],
+      "checkpoint_environment_rebound_only_after_original_G4": "Original preplace checkpoint must match env first; then replace with exact already-qualified b9e2 place checkpoint.",
+      "owned_runtime_command_checked": true,
+      "archive_source_options_exact_unique": 58,
+      "prepare_only_absent_in_actual_command": true,
+      "actual_full_hash_verification_runs_again_before_native": true
+    },
+    "original_native_flow": {
+      "physical_body_reversible_substitutions": 4,
+      "substitutions": [
+        "resolve script_dir to original scripts directory",
+        "install explicit current-state qualifier after original joint-check source and each original POST source",
+        "replace only already-successful place_design command with explicit inherited-origin notice",
+        "replace only m002_post place with same-checkpoint current-state qualification plus exact full unfinished original POST suffix"
+      ],
+      "original_project_part_threads_cache_and_constraint_checks_retained": true,
+      "full_restore_snapshot_retained": true,
+      "zero_apply_counter_guard_retained": true,
+      "board_clock_group_and_DRC_guards_retained": true,
+      "post_physopt_and_post_route_retained": true,
+      "route_failure_capture_retained": true,
+      "bitstream": false
+    },
+    "inherited_prefix": {
+      "files": 115,
+      "URAM_property_tables": 80,
+      "selected_native_streams": 10,
+      "source_inventory_reconciliation": "Every original place-named file was accounted for. Exactly the false m003_qualification_place.json and original m003_snapshot_place_700547_error_info.txt are excluded from new output; originals remain untouched and the false qualification stays a package identity binding.",
+      "successful_place_command_native_tcl_code": 0,
+      "original_whole_attempt_native_exit": 1,
+      "original_whole_attempt_stop_reason": null,
+      "original_place_result_completed": 0,
+      "empty_raw_files_retained": true,
+      "includes_checkpoint_snapshot_reports_clock_CDC_XDC_and_source_streams": true,
+      "provenance_record": "inherited_successful_place_provenance.json",
+      "accepted_structure_provenance": "AT004 actual full qualification a589f109; not copied as a new phase PASS",
+      "no_success_relabel_before_suffix": true
+    },
+    "unfinished_place_POST": {
+      "boundary": "Unique original if {$point in {place physopt route}} block after m003::snapshot",
+      "original_suffix_verbatim": true,
+      "local_blackbox_value_recomputed": true,
+      "current_state_proof_precedes_suffix": true,
+      "retained_operations": [
+        "SLR utilization",
+        "congestion and SLR crossing",
+        "prepare-probe with current phase CDC/synthesis lineage",
+        "reset snapshot",
+        "CDC change probe",
+        "BRAM port-clock probe",
+        "board clock groups",
+        "DRC blockers",
+        "full m003_physical_evidence.py hook-batch and source manifest integrity",
+        "admission read and original final place_result completed=1 write"
+      ],
+      "not_replaced_by_structure_only": true,
+      "owner_exact_body_and_suffix_CPU_cases_reused": 2
+    },
+    "new_stage_state_proof": {
+      "phases": [
+        "restore",
+        "place",
+        "physopt",
+        "route"
+      ],
+      "selected_cells": 12,
+      "selected_state_pins": 48,
+      "selected_root_pins": 24,
+      "native_rows_each": 108,
+      "native_endpoints_each": 72,
+      "actual_current_group_cache": true,
+      "context_token_per_phase": true,
+      "cache_finished_or_aborted": true,
+      "exclusive_fresh_output_files": true,
+      "clock_and_pin_polarity_queries_preserved": true,
+      "checkpoint_binding": {
+        "restore": "exact restored b9e2 original place.dcp",
+        "place": "same exact restored b9e2 original place.dcp; inherited place snapshot",
+        "physopt": "new report/physopt.dcp saved by original m002_post before phase query",
+        "route": "new report/route.dcp saved by original m002_post before phase query"
+      },
+      "phase_package_binds": [
+        "current snapshot",
+        "fresh state raw identity",
+        "native phase/context",
+        "current saved checkpoint",
+        "frozen continuation package"
+      ],
+      "prior_query_bindings": "Old immutable inputs retained solely as provenance; the current checkpoint, raw state source and native phase are explicitly replaced/added for each stage.",
+      "strict_state_checker_unchanged": true,
+      "full_qualifier_unchanged": true,
+      "new_cells_or_missing_selected_copy_policy": "Exact selection will reject missing/renamed/inequivalent observed copies; no name/ORIG fallback or stale prior-state certificate reuse.",
+      "proof_failure_propagates": "Collector failure returns original Tcl options, snapshot wrapper preserves the trace and rethrows, Python checker failure/nonzero returns through m003_python, and sequential native script cannot proceed to the next physical command.",
+      "native_success_not_proven_by_CPU": true
+    },
+    "archives_and_namespace": {
+      "source_archive_records": 512,
+      "stage_input_records": 512,
+      "all_record_paths_and_hash_records_consistent": true,
+      "all_current_and_preserved_file_sizes_checked": true,
+      "small_inherited_prefix_and_new_source_hashes_checked": true,
+      "all_large_full_hashes": "Owner actual original launcher prepare-only verifies all input bytes; A007 reuses that bounded receipt and prior reviewed identities, without rehashing DCP/large snapshots/streams.",
+      "package_bindings": 138,
+      "original_failed_reports_still_present": true,
+      "fresh_phase_and_native_targets_absent": 19,
+      "actual_native_report_absent": true,
+      "existing_namespace_negative_hits_original_launcher": true
+    },
+    "independent_CPU_increment": {
+      "evidence": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT005_incremental_bridge_CPU_review_20261020.json",
+        "bytes": 4168,
+        "sha256": "d56324b13e9708dc615610a306aacba46f9b3e3c4589c151cd58116e9b5033a2"
+      },
+      "new_phase_collector_tests": [
+        {
+          "phase": "physopt",
+          "coverage": {
+            "cell": 12,
+            "parent": 12,
+            "state_pin": 48,
+            "state_clock": 12,
+            "memory_root_pin": 24
+          },
+          "groups": 15,
+          "endpoints": 72,
+          "checkpoint_binding": true,
+          "token": "1",
+          "fresh_actual_scalar_properties": true
+        },
+        {
+          "phase": "route",
+          "coverage": {
+            "cell": 12,
+            "parent": 12,
+            "state_pin": 48,
+            "state_clock": 12,
+            "memory_root_pin": 24
+          },
+          "groups": 15,
+          "endpoints": 72,
+          "checkpoint_binding": true,
+          "token": "2",
+          "fresh_actual_scalar_properties": true
+        }
+      ],
+      "runtime_bridge_tests": [
+        {
+          "phase": "restore",
+          "case": "positive",
+          "expected_outcome_verified": true,
+          "qualifier_called": true,
+          "exit_code": 0,
+          "exception": null,
+          "stub_qualifier_only": true
+        },
+        {
+          "phase": "place",
+          "case": "positive",
+          "expected_outcome_verified": true,
+          "qualifier_called": true,
+          "exit_code": 0,
+          "exception": null,
+          "stub_qualifier_only": true
+        },
+        {
+          "phase": "physopt",
+          "case": "positive",
+          "expected_outcome_verified": true,
+          "qualifier_called": true,
+          "exit_code": 0,
+          "exception": null,
+          "stub_qualifier_only": true
+        },
+        {
+          "phase": "route",
+          "case": "positive",
+          "expected_outcome_verified": true,
+          "qualifier_called": true,
+          "exit_code": 0,
+          "exception": null,
+          "stub_qualifier_only": true
+        },
+        {
+          "phase": "physopt",
+          "case": "wrong_context_phase",
+          "expected_outcome_verified": true,
+          "qualifier_called": false,
+          "exit_code": null,
+          "exception": "AssertionError",
+          "stub_qualifier_only": true
+        },
+        {
+          "phase": "route",
+          "case": "wrong_context_checkpoint",
+          "expected_outcome_verified": true,
+          "qualifier_called": false,
+          "exit_code": null,
+          "exception": "AssertionError",
+          "stub_qualifier_only": true
+        },
+        {
+          "phase": "physopt",
+          "case": "wrong_snapshot_phase",
+          "expected_outcome_verified": true,
+          "qualifier_called": false,
+          "exit_code": null,
+          "exception": "AssertionError",
+          "stub_qualifier_only": true
+        },
+        {
+          "phase": "route",
+          "case": "missing_actual_state_rows",
+          "expected_outcome_verified": true,
+          "qualifier_called": false,
+          "exit_code": null,
+          "exception": "FileNotFoundError",
+          "stub_qualifier_only": true
+        },
+        {
+          "phase": "physopt",
+          "case": "qualification_returns_false",
+          "expected_outcome_verified": true,
+          "qualifier_called": true,
+          "exit_code": 1,
+          "exception": null,
+          "stub_qualifier_only": true
+        }
+      ],
+      "qualifier_stub_scope": "Bridge-only fixtures test current-phase dispatch, identity construction and error propagation. Original actual full proof/qualification remains covered by prior independent review; no fixture is presented as native proof.",
+      "owner_previous_collector_and_full_state_suites_not_rerun": true
+    },
+    "preparation_negatives": {
+      "count": 3,
+      "raw_failures_checked": [
+        "existing namespace -> original run_m003_stage guard",
+        "failed structure -> exact passed/errors/phase qualification guard",
+        "wrong parent DCP -> actual state checkpoint equality guard"
+      ],
+      "new_EDA": false
+    },
+    "semantic_and_resource_boundaries": {
+      "A3_FF": 34,
+      "A3_protected_control_LUT": 4,
+      "original_protected_boundaries": 80,
+      "full_original_structure_function_retained": true,
+      "global_cross_stage_FF_delta": 342,
+      "same_synthesis_architecture_FF_delta": 34,
+      "these_are_distinct_comparisons": true,
+      "full_place_POST_passed": false,
+      "physopt_passed": false,
+      "route_passed": false,
+      "timing_signoff": false,
+      "formal_reset_CDC_safety": "OPEN"
+    }
+  },
+  "recommendation": "A018 may start the exact reviewed AT005 native continuation now under existing authorization. Keep all new-stage actual qualification/POST/integrity gates and preserve failures; this review approves the entry only, not any unexecuted physical result.",
+  "evidence_identities": {
+    "agent/A007/M003_SM015_SM017_review_20261018/AT005_entry_lineage_and_inheritance_independent_check_20261020.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT005_entry_lineage_and_inheritance_independent_check_20261020.json",
+      "bytes": 136955,
+      "sha256": "19e5eec612475c8b53ba8985158383916c09ada2251bdf14109b9542e5f9072b"
+    },
+    "agent/A007/M003_SM015_SM017_review_20261018/AT005_incremental_bridge_CPU_review_20261020.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT005_incremental_bridge_CPU_review_20261020.json",
+      "bytes": 4168,
+      "sha256": "d56324b13e9708dc615610a306aacba46f9b3e3c4589c151cd58116e9b5033a2"
+    },
+    "agent/A007/M003_SM015_SM017_review_20261018/AT005_incremental_bridge_CPU_review_20261020.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT005_incremental_bridge_CPU_review_20261020.py",
+      "bytes": 7994,
+      "sha256": "01da423688e12fb63166ef47b072b7e358a0da616a1dc665722a74efb11f168e"
+    },
+    "agent/A007/M003_SM015_SM017_review_20261018/AT004_actual_same_state_and_full_structure_independent_review_20261020.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT004_actual_same_state_and_full_structure_independent_review_20261020.json",
+      "bytes": 24274,
+      "sha256": "78a937305b7085d08045e72ccdcc96803054eb46d8d73e066e60716b7c77a466"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/place_continuation_package.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/place_continuation_package.json",
+      "bytes": 98929,
+      "sha256": "0482679f65c2e3a786c3ee1ba99860b16d6373ce6471e1efdd720b334f2cb22c"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT005_successful_place_POST_physopt_route/evidence/complete_place_continuation_prelaunch_receipt.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT005_successful_place_POST_physopt_route/evidence/complete_place_continuation_prelaunch_receipt.json",
+      "bytes": 4133,
+      "sha256": "29b417cdb0f9389bed3dfe7cef07fb2f5118397853dae154c06161e512c4f1cd"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT005_successful_place_POST_physopt_route/run.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT005_successful_place_POST_physopt_route/run.json",
+      "bytes": 12034,
+      "sha256": "6c1320d2da9209468683abb35bd9fef2777ecf5d64c2f57b848261f1fef0940f"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/test_place_continuation.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/test_place_continuation.py",
+      "bytes": 6058,
+      "sha256": "d4320faafea150993069a0236202a4255e8ef07ce138e7dd926875f0231d7446"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/test_runtime_collector.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/test_runtime_collector.py",
+      "bytes": 2823,
+      "sha256": "f0ea194df16f96b6b58a075cbf212e3e2b706103f3f75702f5eaddb6ebf70dc5"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/place_continuation_CPU_preservation.log": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/place_continuation_CPU_preservation.log",
+      "bytes": 497,
+      "sha256": "ec8e51a94fbfb471878324786c057dbeb15238229d48ded0dbcfdd49de4ad205"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/runtime_collector_CPU_integration.log": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/runtime_collector_CPU_integration.log",
+      "bytes": 1169,
+      "sha256": "2593b09901572ed48d8d206765bf64c8e8078333a2b8a441ff9b2255efa8d8b0"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/continue_successful_place.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/continue_successful_place.py",
+      "bytes": 7271,
+      "sha256": "444793f5c0b7fc99360d63f87005fd375ad6a1772d7c38e47cbb36876b60fadf"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/continue_successful_place.tcl": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/continue_successful_place.tcl",
+      "bytes": 3788,
+      "sha256": "48aad6026ea6039931fbc8ee7d3b355ef3af7e660c7a733f8e73e511e53a6219"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/runtime_state_collector.tcl": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/runtime_state_collector.tcl",
+      "bytes": 2515,
+      "sha256": "efa2e2fd5711a36a98f3a563f05cea73b95bcf691d0ce8ab395a24dd44e90374"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/runtime_qualify.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/runtime_qualify.py",
+      "bytes": 2720,
+      "sha256": "ba74dac73aa4aefd2b22459c18f7d5ea5e39258706ddf631c2b3a9e501e1d925"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/state_equivalence.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/state_equivalence.py",
+      "bytes": 9571,
+      "sha256": "0f8864bf08b764dfb15c5eb279d3ce8669e76a8a7bb1dbd3a6385c42c31a0873"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/qualify_placed_sources.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/qualify_placed_sources.py",
+      "bytes": 4469,
+      "sha256": "21dc28acd9a612af471303a7f3c4630250cabacc51fef762f496ae121f2a0375"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query.tcl": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query.tcl",
+      "bytes": 3812,
+      "sha256": "1990dc3a79b243ed126020d6bfa467e3d7e129823b1253ee6fe968704f2e6135"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query_cached.tcl": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query_cached.tcl",
+      "bytes": 2252,
+      "sha256": "6d2e25c887d4c7b991d94daa56bfd7e704d9ba54d86bc4e4712dbc2bc46501b0"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/targets.tcl": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/targets.tcl",
+      "bytes": 4724,
+      "sha256": "4068ba092c69965905405089e36e30b890d934a8e93d83308eec04f74cd16352"
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_source/AT028_init_recovery/native_init_recovery.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/AT028_init_recovery/native_init_recovery.py",
+      "bytes": 29307,
+      "sha256": "da0ea7a03a1e979d6c76acb330338969eb568df50cdf5ae1ac8708fe62f68665"
+    },
+    "project/hardware/vivado/reports/m003_E011_R003_AT005_place_continuation_full_preparation/successful_place_continuation_native_boundary.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT005_place_continuation_full_preparation/successful_place_continuation_native_boundary.json",
+      "bytes": 3376,
+      "sha256": "99ecdcc9f0373700b7b09eafd3b8eb44f654a869734b20ec45bb009b5194ebe6"
+    },
+    "project/hardware/vivado/reports/m003_E011_R003_AT005_place_continuation_full_preparation/inherited_successful_place_provenance.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT005_place_continuation_full_preparation/inherited_successful_place_provenance.json",
+      "bytes": 100277,
+      "sha256": "057d9dc1143d523e8056c4bbebebb57660023927a29ca62cae7bab7955028ed2"
+    },
+    "project/hardware/vivado/reports/m003_E011_R003_AT005_place_continuation_full_preparation/source_archive.json": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT005_place_continuation_full_preparation/source_archive.json",
+      "bytes": 389587,
+      "sha256": "faf477b8a4226ccddab658a0da522f99f898f86bf270ae0ce34af422e2a31930"
+    },
+    "project/hardware/vivado/reports/m003_E011_R003_AT005_place_continuation_full_preparation/stage_inputs.sha256": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT005_place_continuation_full_preparation/stage_inputs.sha256",
+      "bytes": 134029,
+      "sha256": "11fd3c116e2b1a0bbae6a435328e3d473bffddd7c8241f1034fac4d1d9367438"
+    }
+  }
+}

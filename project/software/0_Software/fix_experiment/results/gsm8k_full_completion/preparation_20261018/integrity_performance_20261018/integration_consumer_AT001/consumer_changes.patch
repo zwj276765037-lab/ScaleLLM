@@ -1,0 +1,378 @@
+--- before/gsm8k_protocol.py
++++ production/gsm8k_protocol.py
+@@ -11,9 +11,11 @@
+ 
+ import hashlib
+ import json
++import math
+ import os
+ from pathlib import Path
+ import re
++import sys
+ import tempfile
+ from typing import Any
+ import uuid
+@@ -29,6 +31,7 @@
+ INVALID = "[invalid]"
+ STAGES = {"smoke": ("train", 4), "pilot": ("train", 32), "formal": ("test", 1319)}
+ INTEGRITY_CONTRACT_ID = "checkpoint_static_content_v1"
++INTEGRITY_IMPLEMENTATION_ID = "immutable_cpu_chunks_memcmp_full_content_v1"
+ 
+ 
+ def integrity_contract_id(plan: dict[str, Any]) -> str | None:
+@@ -38,18 +41,162 @@
+     return value
+ 
+ 
++def integrity_implementation_id(plan: dict[str, Any]) -> str | None:
++    protocol = plan["protocol"]
++    if "integrity_implementation_id" not in protocol:
++        return None
++    value = protocol["integrity_implementation_id"]
++    if value != INTEGRITY_IMPLEMENTATION_ID or integrity_contract_id(plan) != INTEGRITY_CONTRACT_ID:
++        raise ValueError("unsupported integrity implementation or missing static-content contract")
++    return value
++
++
++def _validate_bytewise_evidence(data, codes, baseline, baseline_root, phases):
++    def integer(value, label, minimum=0):
++        if type(value) is not int or value < minimum:
++            raise ValueError(f"invalid bytewise integer: {label}")
++        return value
++
++    def finite_time(value, label):
++        if type(value) not in (int, float) or not math.isfinite(value) or value < 0:
++            raise ValueError(f"invalid bytewise time: {label}")
++
++    method = data.get("runtime_comparison_implementation", {})
++    candidate_hashes = [digest for path, digest in codes.items()
++                        if Path(path).name == "gsm8k_integrity_bytewise.py"]
++    if (not isinstance(method, dict) or method.get("method_id") != INTEGRITY_IMPLEMENTATION_ID or
++            len(candidate_hashes) != 1 or not re.fullmatch(r"[0-9a-f]{64}", str(candidate_hashes[0])) or
++            method.get("candidate_source_sha256") != candidate_hashes[0] or
++            method.get("legacy_source_sha256") != data["source_sha256"] or
++            method.get("loading_sha_policy") != "unchanged_legacy_direct_sha_and_native_QDQ_reconstruction" or
++            method.get("native_cache_policy") != "unchanged_native_cache_call_parity_v2" or
++            method.get("unsupported_tensor_policy") !=
++            "fail_closed_noncontiguous_non_strided_quantized_conjugate_negative_or_non_CPU_CUDA"):
++        raise ValueError("bytewise implementation mode/source/policy mismatch")
++    sizes = {"torch.bool": 1, "torch.uint8": 1, "torch.int8": 1,
++             "torch.int16": 2, "torch.uint16": 2, "torch.float16": 2, "torch.bfloat16": 2,
++             "torch.int32": 4, "torch.uint32": 4, "torch.float32": 4,
++             "torch.int64": 8, "torch.uint64": 8, "torch.float64": 8, "torch.complex64": 8,
++             "torch.complex128": 16}
++    storage = data.get("runtime_storage_manifest")
++    capture = data.get("immutable_runtime_baseline")
++    if not isinstance(storage, dict) or set(storage) != set(baseline) or not isinstance(capture, dict):
++        raise ValueError("bytewise capture/storage inventory is incomplete")
++    captured = capture.get("per_tensor")
++    if not isinstance(captured, dict) or set(captured) != set(baseline):
++        raise ValueError("bytewise capture names differ from static inventory")
++    nbytes, aliases, objects = {}, {}, {}
++    for name, desc in baseline.items():
++        if desc["dtype"] not in sizes:
++            raise ValueError("unsupported bytewise tensor dtype")
++        itemsize = sizes[desc["dtype"]]
++        count = math.prod(desc["shape"]) * itemsize
++        nbytes[name] = count
++        row, saved = storage[name], captured[name]
++        if (not isinstance(row, dict) or not isinstance(saved, dict) or
++                row.get("shape") != desc["shape"] or row.get("dtype") != desc["dtype"] or
++                row.get("device") != "cuda:0" or saved.get("sha256") != desc["sha256"] or
++                saved.get("sha_matches_verified_baseline") is not True or
++                integer(saved.get("bytes"), name + ":capture bytes") != count):
++            raise ValueError(f"bytewise capture descriptor mismatch: {name}")
++        oid = integer(row.get("object_id"), name + ":object", 1)
++        pointer = integer(row.get("data_ptr"), name + ":pointer", int(count > 0))
++        base = integer(row.get("storage_base_ptr"), name + ":storage", int(count > 0))
++        offset = integer(row.get("storage_offset"), name + ":offset")
++        stride = row.get("stride")
++        if not isinstance(stride, list) or len(stride) != len(desc["shape"]):
++            raise ValueError("bytewise storage stride coverage mismatch")
++        for step in stride:
++            integer(step, name + ":stride")
++        if count:
++            expected_stride = 1
++            for dimension, step in zip(reversed(desc["shape"]), reversed(stride)):
++                if dimension != 1 and step != expected_stride:
++                    raise ValueError("bytewise storage is not contiguous")
++                expected_stride *= dimension
++            if pointer != base + offset * itemsize:
++                raise ValueError("bytewise storage pointer/offset mismatch")
++        if oid in objects and objects[oid] != row:
++            raise ValueError("bytewise object alias storage mismatch")
++        objects[oid] = row
++        aliases[(row["device"], pointer, count)] = count
++    logical, unique = sum(nbytes.values()), sum(aliases.values())
++    chunk = integer(capture.get("chunk_bytes"), "chunk bytes", 1)
++    if (capture.get("method_id") != INTEGRITY_IMPLEMENTATION_ID or capture.get("byte_order") != sys.byteorder or
++            capture.get("capture_sha_source") != "actual_saved_immutable_chunk_bytes_in_logical_order" or
++            capture.get("staging_buffer_pinned") is not True or
++            integer(capture.get("logical_baseline_bytes"), "logical bytes") != logical or
++            integer(capture.get("unique_immutable_baseline_bytes"), "unique bytes") != unique or
++            integer(capture.get("staging_buffer_bytes"), "staging bytes", 1) != chunk or
++            integer(capture.get("gpu_weight_replica_bytes"), "GPU replicas") != 0):
++        raise ValueError("bytewise capture method/bytes/pinning/resource mismatch")
++    guard = data.get("immutable_capture_resource_guard", {})
++    if not isinstance(guard, dict):
++        raise ValueError("missing immutable capture resource guard")
++    available = integer(guard.get("mem_available_before_capture_bytes"), "available host bytes")
++    projected = integer(guard.get("projected_available_after_capture_bytes"), "projected host bytes")
++    reserve = 80 * 2**30
++    if (guard.get("schema") != "scalellm_immutable_capture_memory_guard_v1" or
++            guard.get("measurement_source") != "proc_meminfo_MemAvailable" or guard.get("passed") is not True or
++            integer(guard.get("logical_static_bytes"), "guard logical bytes") != logical or
++            integer(guard.get("unique_immutable_baseline_bytes"), "guard unique bytes") != unique or
++            integer(guard.get("staging_buffer_bytes"), "guard staging bytes", 1) != chunk or
++            integer(guard.get("minimum_host_reserve_bytes"), "host reserve") != reserve or
++            projected != available - unique - chunk or projected < reserve):
++        raise ValueError("bytewise immutable capture memory reserve failed")
++    finite_time(guard.get("checked_epoch_seconds"), "capture resource timestamp")
++    for phase in phases:
++        label = phase["label"]
++        if label in {"cpu_loaded", "gpu_loaded", "qdq_rebuild"}:
++            if "content_comparison" in phase:
++                raise ValueError("bytewise mode relabelled a legacy direct-SHA loading phase")
++            continue
++        comparison = phase.get("content_comparison", {})
++        if (not isinstance(comparison, dict) or comparison.get("method_id") != INTEGRITY_IMPLEMENTATION_ID or
++                comparison.get("direct_sha256_this_phase") is not False or
++                comparison.get("hash_derivation") !=
++                "verified_immutable_baseline_sha_reused_only_after_full_exact_bytewise_inventory_and_storage_match" or
++                comparison.get("memcmp_byte_count_semantics") !=
++                "submitted_chunk_lengths; equal chunks cover every byte; mismatch may short_circuit" or
++                comparison.get("inventory_exact") is not True or comparison.get("full_coverage_exact") is not True or
++                comparison.get("derived_root_sha256") != baseline_root or
++                comparison.get("missing_names") != [] or comparison.get("unexpected_names") != []):
++            raise ValueError(f"incomplete or mixed bytewise phase evidence: {label}")
++        per_tensor = comparison.get("per_tensor")
++        if not isinstance(per_tensor, dict) or set(per_tensor) != set(baseline):
++            raise ValueError("bytewise per-phase tensor coverage mismatch")
++        for field in ("expected_bytes", "compared_bytes", "equal_bytes"):
++            if integer(comparison.get(field), label + ":" + field) != logical:
++                raise ValueError("bytewise per-phase total byte coverage mismatch")
++        for name, row in per_tensor.items():
++            if not isinstance(row, dict) or any(row.get(key) is not True for key in ("all_chunks_equal", "complete", "exact")):
++                raise ValueError("bytewise per-tensor comparison is not complete/exact")
++            for field in ("expected_bytes", "compared_bytes", "equal_bytes"):
++                if integer(row.get(field), name + ":" + field) != nbytes[name]:
++                    raise ValueError("bytewise per-tensor byte coverage mismatch")
++        if "comparison_elapsed_seconds" in comparison:
++            finite_time(comparison["comparison_elapsed_seconds"], label + ":elapsed")
++
++
+ def validate_integrity_evidence(directory: str | Path, manifest: dict[str, Any],
+                                 expected_contract: str | None, *, sample_ids: list[str],
+                                 expected_gpu: str | None = None,
+-                                summary: dict[str, Any] | None = None) -> dict[str, Any] | None:
++                                summary: dict[str, Any] | None = None,
++                                expected_implementation: str | None = None) -> dict[str, Any] | None:
+     """Validate complete static-content evidence, never merely its success flag.
+ 
+     Legacy runs remain readable without gaining the new qualification. R003
+     partial/failed attempts cannot supply rows or stage-completion evidence.
+     """
+     identity = manifest.get("identity", {})
++    if expected_implementation not in (None, INTEGRITY_IMPLEMENTATION_ID):
++        raise ValueError("unsupported expected integrity implementation")
++    if ((expected_implementation is None and "integrity_implementation_id" in identity) or
++            (expected_implementation is not None and
++             identity.get("integrity_implementation_id") != expected_implementation)):
++        raise ValueError("integrity implementation differs from expected plan/contract mode")
+     if expected_contract is None:
+-        if identity.get("integrity_contract_id") is not None or manifest.get("integrity") is not None:
++        if expected_implementation is not None or identity.get("integrity_contract_id") is not None or manifest.get("integrity") is not None:
+             raise ValueError("mixed legacy and weight-integrity evidence")
+         return None
+     if expected_contract != INTEGRITY_CONTRACT_ID or identity.get("integrity_contract_id") != expected_contract:
+@@ -68,6 +215,15 @@
+     if summary is not None and summary.get("integrity") != reference:
+         raise ValueError("summary integrity reference differs from manifest")
+     data = json.loads(file.read_text())
++    if expected_implementation is None:
++        if ("integrity_implementation_id" in data.get("identity", {}) or
++                "runtime_comparison_implementation" in data or "immutable_runtime_baseline" in data or
++                any("content_comparison" in phase for phase in data.get("phase_checks", []))):
++            raise ValueError("mixed legacy and bytewise integrity evidence")
++    elif (data.get("identity", {}).get("integrity_implementation_id") != expected_implementation or
++          ("integrity_implementation_id" in manifest and
++           manifest["integrity_implementation_id"] != expected_implementation)):
++        raise ValueError("integrity evidence implementation identity mismatch")
+     if (data.get("schema") != "scalellm_gsm8k_weight_integrity_v1" or data.get("state") != "complete" or
+             data.get("qualified") is not True or data.get("contract_id") != expected_contract):
+         raise ValueError("weight integrity evidence is incomplete or failed")
+@@ -201,6 +357,8 @@
+                 phase.get("observed_root_sha256") != expected_root or
+                 (label in {"cpu_loaded", "gpu_loaded", "qdq_rebuild"} and phase.get("trusted_root_sha256") != expected_root)):
+             raise ValueError(f"integrity phase content/coverage failed: {label}")
++    if expected_implementation is not None:
++        _validate_bytewise_evidence(data, codes, baseline, baseline_root, phases)
+     return reference
+ 
+ 
+--- before/run_gsm8k_matrix.py
++++ production/run_gsm8k_matrix.py
+@@ -19,7 +19,7 @@
+ import uuid
+ from datetime import datetime, timezone
+ 
+-from gsm8k_protocol import (atomic_json, canonical_hash, integrity_contract_id, load_plan,
++from gsm8k_protocol import (atomic_json, canonical_hash, integrity_contract_id, integrity_implementation_id, load_plan,
+                             prepare_requests, score_response, sha256_file, validate_integrity_evidence)
+ 
+ 
+@@ -216,6 +216,9 @@
+     contract = json.loads((root / "frozen_contract.json").read_text())
+     m = read_manifest(directory)
+     identity = m.get("identity", {})
++    implementation = integrity_implementation_id({"protocol": contract})
++    if integrity_implementation_id({"protocol": identity}) != implementation:
++        raise ValueError("Completed integrity implementation differs from frozen contract")
+     if not completed(directory) or canonical_hash(identity) != m.get("identity_sha256"):
+         raise ValueError("Missing/invalid completed worker identity")
+     for key, expected in {"stage": stage, "case": group["case"],
+@@ -275,7 +278,7 @@
+         raise ValueError("Incomplete formal split")
+     validate_integrity_evidence(directory, m, contract.get("integrity_contract_id"),
+                                 sample_ids=expected_ids, expected_gpu=frozen_group_gpu(contract, group),
+-                                summary=summary)
++                                summary=summary, expected_implementation=implementation)
+     return m
+ 
+ 
+@@ -302,11 +305,14 @@
+     return sources
+ 
+ 
+-def paired_verification(smoke_dir, pilot_dir):
++def paired_verification(smoke_dir, pilot_dir, *, expected_implementation=None):
+     """Require byte-identical greedy prefixes across two fresh model processes."""
+     a = json.loads((smoke_dir / "verification.json").read_text())
+     b = json.loads((pilot_dir / "verification.json").read_text())
+     smoke_manifest, pilot_manifest = read_manifest(smoke_dir), read_manifest(pilot_dir)
++    for manifest in (smoke_manifest, pilot_manifest):
++        if integrity_implementation_id({"protocol": manifest.get("identity", {})}) != expected_implementation:
++            raise ValueError("Independent process integrity implementation differs from expected plan")
+     contract_id = validate_generation_verification(a, manifest=smoke_manifest)
+     validate_generation_verification(b, contract_id, pilot_manifest)
+     if smoke_dir.resolve() == pilot_dir.resolve():
+@@ -344,11 +350,14 @@
+         for folder, manifest in [(smoke_dir, smoke_manifest), (pilot_dir, pilot_manifest)]:
+             refs.append(validate_integrity_evidence(folder, manifest, integrity_id,
+                 sample_ids=[r["sample_id"] for r in json.loads((folder / "requests.json").read_text())],
+-                expected_gpu=device, summary=json.loads((folder / "summary.json").read_text())))
++                expected_gpu=device, summary=json.loads((folder / "summary.json").read_text()),
++                expected_implementation=expected_implementation))
+         if refs[0]["baseline_root_sha256"] != refs[1]["baseline_root_sha256"]:
+             raise ValueError("Independent processes have different effective static content")
+         result.update(integrity_contract_id=integrity_id, baseline_root_sha256=refs[0]["baseline_root_sha256"],
+                       smoke_integrity_sha256=refs[0]["sha256"], pilot_integrity_sha256=refs[1]["sha256"])
++        if expected_implementation is not None:
++            result["integrity_implementation_id"] = expected_implementation
+     return result
+ 
+ 
+@@ -366,7 +375,8 @@
+         try:
+             if n != 32 or caps / n > plan["pilot_budget_gate"]["threshold_length_capped_fraction"]:
+                 raise ValueError(f"Length budget gate failed: {caps}/{n}")
+-            record["repeatability"] = paired_verification(Path(s["attempt"]), directory)
++            record["repeatability"] = paired_verification(Path(s["attempt"]), directory,
++                expected_implementation=integrity_implementation_id(plan))
+             record["passed"] = True
+         except Exception as exc:
+             record.update(passed=False, error=str(exc))
+@@ -457,6 +467,8 @@
+                 "group_gpu_uuids": assignments}
+     if integrity_contract_id(plan) is not None:
+         contract["integrity_contract_id"] = integrity_contract_id(plan)
++    if integrity_implementation_id(plan) is not None:
++        contract["integrity_implementation_id"] = integrity_implementation_id(plan)
+     contract_path = root / "frozen_contract.json"
+     if contract_path.exists() and json.loads(contract_path.read_text()) != contract:
+         raise ValueError("Run directory belongs to another frozen plan/source; start a new R")
+--- before/summarize_gsm8k.py
++++ production/summarize_gsm8k.py
+@@ -21,7 +21,7 @@
+ 
+ from gsm8k_protocol import (DEFAULT_PLAN, atomic_json, canonical_hash, load_plan,
+                             prepare_requests, resolve_input_path, sha256_file,
+-                            integrity_contract_id, validate_integrity_evidence)
++                            integrity_contract_id, integrity_implementation_id, validate_integrity_evidence)
+ from six_model_matrix import FIVE_CONFIG_CASES, MODEL_BY_DIRECTORY, MODEL_SPECS, validate_quantized_summary
+ 
+ TASKS = ("piqa", "arc_easy", "gsm8k", "boolq", "hellaswag", "winogrande")
+@@ -239,6 +239,10 @@
+                    oracle: HarnessOracle, tokenizer: Any | None = None) -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any]]:
+     manifest = read_json(attempt / "manifest.json")
+     identity = manifest.get("identity", {})
++    implementation = integrity_implementation_id(plan)
++    if (integrity_implementation_id({"protocol": contract}) != implementation or
++            integrity_implementation_id({"protocol": identity}) != implementation):
++        raise ValueError("formal integrity implementation differs from frozen plan/contract")
+     identity_hash = canonical_hash(identity)
+     if (manifest.get("schema") != "scalellm_gsm8k_worker_manifest_v1" or manifest.get("state") != "complete" or
+             manifest.get("stage") != "formal" or manifest.get("model") != model or manifest.get("case") != case or
+@@ -323,7 +327,8 @@
+         raise ValueError("formal integrity contract differs from frozen plan")
+     expected_gpu = contract.get("group_gpu_uuids", {}).get(f"{model}/{case}")
+     integrity = validate_integrity_evidence(attempt, manifest, integrity_id,
+-        sample_ids=expected_ids, expected_gpu=expected_gpu, summary=summary)
++        sample_ids=expected_ids, expected_gpu=expected_gpu, summary=summary,
++        expected_implementation=implementation)
+     expected_summary = {"state": "complete", "stage": "formal", "n_expected": 1319,
+                         "n_completed": 1319, "n_errors": 0, "full_split": True,
+                         "correct_strict": correct, "correct_flexible": flexible,
+@@ -354,6 +359,9 @@
+               "accepted": True, "validation": "1319 raw-token continuations independently rescored by installed harness"}
+     common = {key: identity[key] for key in ("protocol_id", "plan_sha256", "protocol_sha256", "data",
+                                            "requests_sha256", "stage", "seed", "code_sha256", "package_versions")}
++    if implementation is not None:
++        common["integrity_implementation_id"] = implementation
++        source["integrity_implementation_id"] = implementation
+     source["comparison_identity_sha256"] = canonical_hash(common)
+     if integrity is not None:
+         source["integrity"] = integrity
+@@ -505,10 +513,15 @@
+     contract = read_json(run_root / "frozen_contract.json") if integrity_id is not None else {}
+     if contract.get("integrity_contract_id") != integrity_id:
+         raise ValueError("train integrity contract differs from frozen plan")
++    implementation = integrity_implementation_id(plan)
++    if integrity_implementation_id({"protocol": contract}) != implementation:
++        raise ValueError("train integrity implementation differs from frozen plan")
+     for group in groups:
+         if group.get("passed") is not True or group.get("n") != 32 or group["length_capped_count"] / 32 > plan["pilot_budget_gate"]["threshold_length_capped_fraction"]:
+             raise ValueError("train pilot compatibility/length budget gate failed")
+         repeat = group["repeatability"]
++        if integrity_implementation_id({"protocol": repeat}) != implementation:
++            raise ValueError("train repeatability implementation differs from frozen plan")
+         if repeat.get("passed") is not True or Path(repeat["smoke"]).resolve() == Path(repeat["pilot"]).resolve():
+             raise ValueError("repeatability evidence does not use two independent attempts")
+         prefixes = []
+@@ -521,6 +534,8 @@
+                 raise ValueError("train verification artifact hash mismatch")
+             verification = read_json(file)
+             manifest = read_json(folder / "manifest.json")
++            if integrity_implementation_id({"protocol": manifest.get("identity", {})}) != implementation:
++                raise ValueError("train worker implementation differs from frozen plan")
+             if manifest.get("state") != "complete" or manifest.get("stage") != stage or manifest.get("model") != group["model"] or manifest.get("case") != group["case"]:
+                 raise ValueError("train verification model/case/stage mismatch")
+             if integrity_id is not None:
+@@ -542,7 +557,7 @@
+                     raise ValueError("train integrity request contents changed")
+                 reference = validate_integrity_evidence(folder, manifest, integrity_id,
+                     sample_ids=[r["sample_id"] for r in requests], expected_gpu=expected_gpu,
+-                    summary=read_json(folder / "summary.json"))
++                    summary=read_json(folder / "summary.json"), expected_implementation=implementation)
+                 if (repeat.get("integrity_contract_id") != integrity_id or
+                         repeat.get(f"{stage}_integrity_sha256") != reference["sha256"] or
+                         repeat.get("baseline_root_sha256") != reference["baseline_root_sha256"]):
+@@ -613,6 +628,8 @@
+     contract = read_json(contract_path)
+     if contract.get("integrity_contract_id") != integrity_contract_id(plan):
+         raise ValueError("result integrity contract differs from frozen plan")
++    if integrity_implementation_id({"protocol": contract}) != integrity_implementation_id(plan):
++        raise ValueError("result integrity implementation differs from frozen plan")
+     sources_path = run_root / "formal_sources.json"
+     selected = read_json(sources_path)["groups"] if sources_path.exists() else []
+     keys = [(source["model"], source["case"]) for source in selected]

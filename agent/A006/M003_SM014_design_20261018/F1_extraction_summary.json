@@ -1,0 +1,89 @@
+{
+  "observed_utc": "2026-10-18T02:46:40.179750+00:00",
+  "scope": "SM014 sequential closed-table extraction only; no new EDA and no production edits",
+  "verified_input_files": {
+    "deep_cells.tsv": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/evidence/native/deep_cells.tsv",
+      "rows": 317237,
+      "bytes": 115251104,
+      "sha256": "2ce87f9b59eaeb90b7b6dd25834b738fdd6161128d6a9bafa888f19aab1e10ae"
+    },
+    "candidate_endpoints.tsv": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/evidence/native/candidate_endpoints.tsv",
+      "rows": 441024,
+      "bytes": 269620299,
+      "sha256": "ca36630676d594e36b409594f1f0bd40d9ed90997a01980ece7fc2f07c8b0b62"
+    },
+    "deep_site_tiles.tsv": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/evidence/native/deep_site_tiles.tsv",
+      "rows": 59266,
+      "bytes": 2119099,
+      "sha256": "04a81e2b015c64fbe1f5bc2762345cd94956d959a5662e4d75a81c454739405d"
+    }
+  },
+  "field_baseline": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_source/SM014_parent_field_layout_baseline.json",
+    "bytes": 6176,
+    "sha256": "efac18f33921ed49a53c90c15cefc7f810563d6e373e12c4df053c2e518072c6"
+  },
+  "actual_register_FF_by_family": {
+    "meta": 17,
+    "head": 6560,
+    "tail": 6560
+  },
+  "logical_bits_by_family": {
+    "head": 6560,
+    "tail": 6560,
+    "meta": 17
+  },
+  "helper_partition": [
+    {
+      "tag": "ATT_META_READ_ADDR",
+      "classification": "HELPER_OR_OTHER_DRIVER",
+      "canonical_nets": 18
+    },
+    {
+      "tag": "ATT_META_READ_ADDR",
+      "classification": "REAL_REGISTER_Q",
+      "canonical_nets": 17
+    },
+    {
+      "tag": "MLP_PARENT_HEAD",
+      "classification": "HELPER_OR_OTHER_DRIVER",
+      "canonical_nets": 6949
+    },
+    {
+      "tag": "MLP_PARENT_HEAD",
+      "classification": "REAL_REGISTER_Q",
+      "canonical_nets": 6560
+    },
+    {
+      "tag": "MLP_PARENT_TAIL",
+      "classification": "HELPER_OR_OTHER_DRIVER",
+      "canonical_nets": 1
+    },
+    {
+      "tag": "MLP_PARENT_TAIL",
+      "classification": "REAL_REGISTER_Q",
+      "canonical_nets": 6560
+    }
+  ],
+  "metadata_URAM": 12,
+  "critical_control_cells_found": [
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight/maintenance_soft_clear_pulse_r_reg"
+  ],
+  "C01_exact_root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_gate_scheduler/u_swiglu/g_row_branch[1].u_branch_leaf",
+  "TOP01_exact_root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/u_branch1",
+  "identities_distinct": true,
+  "limitations": [
+    "Q consumers and D/CE/C connections cover only frozen selected native nets; absent pin/net marked missing, never guessed.",
+    "D-driver selected input cone is one hop within existing exported nets; unexported upstream input nets remain NOT_MEASURED.",
+    "Field widths are RTL declarations, helper count is not payload width.",
+    "No capacity/physical gain/selected candidate inferred."
+  ],
+  "producer": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/M003_SM014_design_20261018/extract_field_evidence.py",
+    "bytes": 10749,
+    "sha256": "ff3d69d06eafdfb9874c7b55879224c55bccdb54c353cb935401398bb88bbc7f"
+  }
+}

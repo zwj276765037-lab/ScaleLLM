@@ -1,0 +1,83 @@
+{
+  "schema": "scalellm_gsm8k_protocol_source_identity_v1",
+  "observed_at_utc": "2026-10-18T01:50:47.151239+00:00",
+  "scope": "M004/SM020/E010/A010 CPU protocol preparation only",
+  "implementation": {
+    "gsm8k_protocol.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py",
+      "sha256": "179cadffd87ce099a4afd19c759716a1f4c724c0c8e404e83c666714d83831d1"
+    },
+    "test_gsm8k_protocol.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/test_gsm8k_protocol.py",
+      "sha256": "114958be86a3cd0264dfa7efa27833e3208fda1af937df815cd4afedb03cd165"
+    },
+    "prepare_gsm8k_inputs.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/prepare_gsm8k_inputs.py",
+      "sha256": "37748b2dec5e5345285450cc8d84bda67442b041cec6d34e1afe153e88ae89de"
+    }
+  },
+  "reference": {
+    "distribution": "lm_eval",
+    "version": "0.4.11",
+    "files": {
+      "tasks/gsm8k/gsm8k.yaml": {
+        "path": "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/tasks/gsm8k/gsm8k.yaml",
+        "sha256": "82eb1780b263bc040729032b3e076990c7933f42163c91e359f38820dd1d8833"
+      },
+      "api/task.py": {
+        "path": "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/api/task.py",
+        "sha256": "ff6c08d66ddca096a9eb489a049d31c4bc23df22cdcd9f51cb77ff7119c6f9f4"
+      },
+      "api/samplers.py": {
+        "path": "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/api/samplers.py",
+        "sha256": "631667df593ae5eab72f6f1c5127ae67e9e102c91a0af54abea8c446616dad29"
+      },
+      "api/metrics.py": {
+        "path": "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/api/metrics.py",
+        "sha256": "bf217f7dae049098959886592a059b5132faf45fb456139eb76b9a16dd4ba0a1"
+      },
+      "filters/extraction.py": {
+        "path": "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/filters/extraction.py",
+        "sha256": "6ff7e8cc631b0a8eeab4e37d40c21924e56e73f9d38c5d8ed852666ab32dcb4a"
+      },
+      "filters/selection.py": {
+        "path": "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/filters/selection.py",
+        "sha256": "5f8264dce91dd1282b84487d703e7e2bb11bef5fd6c93f91b4e51342a4fb76ab"
+      },
+      "models/huggingface.py": {
+        "path": "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/models/huggingface.py",
+        "sha256": "316e1e7cebb5664072fcc56269be916018175664a5dc9c72cc664c157f720d90"
+      },
+      "models/utils.py": {
+        "path": "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/models/utils.py",
+        "sha256": "63df398e015f11205ef2776626082340e732a40e00eb9962b63a65b5252a6553"
+      }
+    }
+  },
+  "evidence": {
+    "cpu_parity.json": "9b4c4e5d05f1510408fb0966c347b63b38469eff1e20a834c10b4e861683db77",
+    "cpu_parity_AT002.json": "7a08856800110d0873c66a2d518a2d9d86c38fd9dcdfdb57bc2ac64aa1ad6c11",
+    "input_preparation_AT001/input_manifest.json": "da513143a3d8533037815c648feaf013792552f0ec1990de6cb269136a367c0a",
+    "input_preparation_AT001/tokenizer_audit.json": "2eefd0308c8831efc1f718c0b1f5ed242558d581ec267dc4b822e7ac576ae0b1"
+  },
+  "source_plan_sha256": "77a98257ea43b7969f2c70e91b0f0331ff8ac430f3763af9c22ce96719cc140b",
+  "python": "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+  "python_version": "3.10.19",
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "final_evidence_validation": {
+    "code_compile": "passed",
+    "parity_evidence": "passed",
+    "tokenizer_rows": 7914,
+    "frozen_request_reconstruction": "passed"
+  },
+  "not_executed": [
+    "model weight loading",
+    "GPU inference",
+    "EDA",
+    "formal GSM8K generation"
+  ]
+}

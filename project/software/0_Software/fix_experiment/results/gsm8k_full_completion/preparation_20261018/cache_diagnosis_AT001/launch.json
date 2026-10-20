@@ -1,0 +1,44 @@
+[
+  {
+    "pid": 269096,
+    "command": [
+      "taskset",
+      "-c",
+      "18,19",
+      "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+      "-B",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/diagnose_gsm8k_cache.py",
+      "--plan",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/source/gsm8k_execution_20261018/plan.json",
+      "--model",
+      "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.2-3B-Instruct",
+      "--case",
+      "a8w8_fp32",
+      "--reference",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R001_gsm8k_5shot_8k/smoke/Llama-3.2-3B-Instruct/a8w8_fp32/AT001/verification.json",
+      "--output",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/cache_diagnosis_AT001/a8w8_fp32"
+    ]
+  },
+  {
+    "pid": 269097,
+    "command": [
+      "taskset",
+      "-c",
+      "16,17",
+      "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+      "-B",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/diagnose_gsm8k_cache.py",
+      "--plan",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/source/gsm8k_execution_20261018/plan.json",
+      "--model",
+      "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.2-3B-Instruct",
+      "--case",
+      "a8w4_fp32",
+      "--reference",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R001_gsm8k_5shot_8k/smoke/Llama-3.2-3B-Instruct/a8w4_fp32/AT001/verification.json",
+      "--output",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/cache_diagnosis_AT001/a8w4_fp32"
+    ]
+  }
+]

@@ -1,0 +1,650 @@
+{
+  "schema": "m005_r005_extended_result_v1",
+  "execution_state": "completed",
+  "required_extension_complete": true,
+  "mlp_rows_per_document": 416,
+  "full_vocab_size": 128256,
+  "output_head_source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT025_formal_resident_b023/output_head/output_head_identity.json",
+    "bytes": 1098,
+    "sha256": "f9c640a23eb5cfcd89928fe121bff0a7d48557eae3230a90d7b7adc686df6068"
+  },
+  "batch_bootstrap_replicates": 0,
+  "batch_confidence_intervals_computed": false,
+  "inference_policy": "predeclared final CPU document-level aggregation; no per-batch bootstrap",
+  "measured_documents": 16,
+  "formal_eval_documents": 16,
+  "full_formal_target": 1024,
+  "formal_batch_id": "B023",
+  "formal_batch_ids": [
+    "B023"
+  ],
+  "formal_storage_source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R004/attempts/AT002_formal_batch_b001_numerical/preflight_storage/formal_storage_plan.json",
+    "bytes": 19000,
+    "sha256": "43dd788f2bfd6679332660c5031a100400f96bbd9ad93e95cc522f3b0ce08559"
+  },
+  "documents": [
+    {
+      "doc_id": "c4_official_validation_first10000:7387",
+      "tokens": 128,
+      "seconds": 8.349567768003908,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 2379997,
+        "shifts_u8": 30158,
+        "zero_points_u8": 1673265,
+        "values_u8": 70503298,
+        "values_s12": 7359506
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 128,
+        "vocabulary": 128256,
+        "score_pairs": 16416768,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 0.9349168392871668,
+      "top1_match_count": 127,
+      "top1_total_count": 128,
+      "final_norm_relative_l2_percent": 1.23326476935168
+    },
+    {
+      "doc_id": "c4_official_validation_first10000:939",
+      "tokens": 128,
+      "seconds": 7.94957034199615,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 2412948,
+        "shifts_u8": 31605,
+        "zero_points_u8": 1711336,
+        "values_u8": 71339489,
+        "values_s12": 7374772
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 128,
+        "vocabulary": 128256,
+        "score_pairs": 16416768,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 1.1181540591966326,
+      "top1_match_count": 127,
+      "top1_total_count": 128,
+      "final_norm_relative_l2_percent": 1.4273755531879537
+    },
+    {
+      "doc_id": "ag_news_test:3",
+      "tokens": 67,
+      "seconds": 6.540735372007475,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 1267085,
+        "shifts_u8": 16768,
+        "zero_points_u8": 910995,
+        "values_u8": 37549323,
+        "values_s12": 3856107
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 67,
+        "vocabulary": 128256,
+        "score_pairs": 8593152,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 1.1996484951500508,
+      "top1_match_count": 65,
+      "top1_total_count": 67,
+      "final_norm_relative_l2_percent": 1.5169039393646941
+    },
+    {
+      "doc_id": "imdb_test:3159",
+      "tokens": 128,
+      "seconds": 8.005082529009087,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 2402040,
+        "shifts_u8": 30625,
+        "zero_points_u8": 1700815,
+        "values_u8": 71081174,
+        "values_s12": 7359290
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 128,
+        "vocabulary": 128256,
+        "score_pairs": 16416768,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 1.0559268117287026,
+      "top1_match_count": 127,
+      "top1_total_count": 128,
+      "final_norm_relative_l2_percent": 1.3196730764725406
+    },
+    {
+      "doc_id": "c4_official_validation_first10000:102",
+      "tokens": 128,
+      "seconds": 8.013608636989375,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 2377701,
+        "shifts_u8": 29059,
+        "zero_points_u8": 1673070,
+        "values_u8": 70482323,
+        "values_s12": 7347105
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 128,
+        "vocabulary": 128256,
+        "score_pairs": 16416768,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 0.9578788985456768,
+      "top1_match_count": 127,
+      "top1_total_count": 128,
+      "final_norm_relative_l2_percent": 1.2052054901501832
+    },
+    {
+      "doc_id": "c4_official_validation_first10000:288",
+      "tokens": 128,
+      "seconds": 7.981161600997439,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 2389780,
+        "shifts_u8": 29585,
+        "zero_points_u8": 1688308,
+        "values_u8": 70821542,
+        "values_s12": 7361844
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 128,
+        "vocabulary": 128256,
+        "score_pairs": 16416768,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 1.0470852315748358,
+      "top1_match_count": 126,
+      "top1_total_count": 128,
+      "final_norm_relative_l2_percent": 1.397314743626415
+    },
+    {
+      "doc_id": "ag_news_test:4775",
+      "tokens": 55,
+      "seconds": 6.308462526998483,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 1043513,
+        "shifts_u8": 13673,
+        "zero_points_u8": 750943,
+        "values_u8": 30855568,
+        "values_s12": 3173349
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 55,
+        "vocabulary": 128256,
+        "score_pairs": 7054080,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 1.4622960539853518,
+      "top1_match_count": 54,
+      "top1_total_count": 55,
+      "final_norm_relative_l2_percent": 1.7816942686823396
+    },
+    {
+      "doc_id": "imdb_test:7492",
+      "tokens": 128,
+      "seconds": 7.943696944988915,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 2431406,
+        "shifts_u8": 31462,
+        "zero_points_u8": 1742050,
+        "values_u8": 71922424,
+        "values_s12": 7383934
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 128,
+        "vocabulary": 128256,
+        "score_pairs": 16416768,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 1.2101278042473547,
+      "top1_match_count": 128,
+      "top1_total_count": 128,
+      "final_norm_relative_l2_percent": 1.609000045308994
+    },
+    {
+      "doc_id": "c4_official_validation_first10000:1195",
+      "tokens": 128,
+      "seconds": 7.932168496001395,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 2494030,
+        "shifts_u8": 37237,
+        "zero_points_u8": 1823602,
+        "values_u8": 73225088,
+        "values_s12": 7443113
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 128,
+        "vocabulary": 128256,
+        "score_pairs": 16416768,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 2.9603698987623197,
+      "top1_match_count": 120,
+      "top1_total_count": 128,
+      "final_norm_relative_l2_percent": 3.1951474445635926
+    },
+    {
+      "doc_id": "c4_official_validation_first10000:369",
+      "tokens": 128,
+      "seconds": 7.959346422998351,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 2469016,
+        "shifts_u8": 33610,
+        "zero_points_u8": 1793635,
+        "values_u8": 72969546,
+        "values_s12": 7400190
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 128,
+        "vocabulary": 128256,
+        "score_pairs": 16416768,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 1.355907888546079,
+      "top1_match_count": 127,
+      "top1_total_count": 128,
+      "final_norm_relative_l2_percent": 1.8618911561331257
+    },
+    {
+      "doc_id": "ag_news_test:6227",
+      "tokens": 47,
+      "seconds": 5.817798769989167,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 894209,
+        "shifts_u8": 11752,
+        "zero_points_u8": 644816,
+        "values_u8": 26416136,
+        "values_s12": 2716594
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 47,
+        "vocabulary": 128256,
+        "score_pairs": 6028032,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 1.354501602963944,
+      "top1_match_count": 46,
+      "top1_total_count": 47,
+      "final_norm_relative_l2_percent": 1.561689463818628
+    },
+    {
+      "doc_id": "imdb_test:3640",
+      "tokens": 128,
+      "seconds": 8.032263097004034,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 2483899,
+        "shifts_u8": 33080,
+        "zero_points_u8": 1799066,
+        "values_u8": 73180969,
+        "values_s12": 7404543
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 128,
+        "vocabulary": 128256,
+        "score_pairs": 16416768,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 0.843258221508273,
+      "top1_match_count": 127,
+      "top1_total_count": 128,
+      "final_norm_relative_l2_percent": 1.3347646594658253
+    },
+    {
+      "doc_id": "c4_official_validation_first10000:5606",
+      "tokens": 101,
+      "seconds": 9.856530705990735,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 1901014,
+        "shifts_u8": 24126,
+        "zero_points_u8": 1355219,
+        "values_u8": 56290706,
+        "values_s12": 5820749
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 101,
+        "vocabulary": 128256,
+        "score_pairs": 12953856,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 1.0973982085566187,
+      "top1_match_count": 101,
+      "top1_total_count": 101,
+      "final_norm_relative_l2_percent": 1.4956693290523977
+    },
+    {
+      "doc_id": "c4_official_validation_first10000:4126",
+      "tokens": 128,
+      "seconds": 8.301388915991993,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 2518435,
+        "shifts_u8": 35757,
+        "zero_points_u8": 1844678,
+        "values_u8": 74027498,
+        "values_s12": 7433100
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 128,
+        "vocabulary": 128256,
+        "score_pairs": 16416768,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 1.5935400781777669,
+      "top1_match_count": 128,
+      "top1_total_count": 128,
+      "final_norm_relative_l2_percent": 1.9096617338191286
+    },
+    {
+      "doc_id": "ag_news_test:7363",
+      "tokens": 60,
+      "seconds": 6.122689707000973,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 1175186,
+        "shifts_u8": 16683,
+        "zero_points_u8": 861539,
+        "values_u8": 34544368,
+        "values_s12": 3482050
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 60,
+        "vocabulary": 128256,
+        "score_pairs": 7695360,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 1.5062647690743771,
+      "top1_match_count": 60,
+      "top1_total_count": 60,
+      "final_norm_relative_l2_percent": 1.8156646612748448
+    },
+    {
+      "doc_id": "imdb_test:14516",
+      "tokens": 128,
+      "seconds": 8.062343687997782,
+      "audited": false,
+      "dynamic_events": 384,
+      "dynamic_changed_elements": {
+        "codes_u8": 2367168,
+        "shifts_u8": 29458,
+        "zero_points_u8": 1667726,
+        "values_u8": 70324908,
+        "values_s12": 7356066
+      },
+      "coverage": {
+        "hidden_unique_layers": 32,
+        "local_unique_coordinates": 384,
+        "dynamic_unique_coordinates_per_arm": 192,
+        "per_layer_dynamic_activation_calls": 4,
+        "per_layer_dynamic_kv_calls": 2,
+        "complete": true
+      },
+      "mlp_coverage": {
+        "expected_coordinates": 416,
+        "unique_coordinates": 416,
+        "complete": true
+      },
+      "logit_coverage": {
+        "real_positions": 128,
+        "vocabulary": 128256,
+        "score_pairs": 16416768,
+        "complete": true
+      },
+      "output_head_relative_l2_percent": 1.0000483195866876,
+      "top1_match_count": 127,
+      "top1_total_count": 128,
+      "final_norm_relative_l2_percent": 1.4125379420038844
+    }
+  ],
+  "layers": 32,
+  "maximum_tokens": 128,
+  "model_loaded_once": true,
+  "source_unchanged": true,
+  "shared_weight_buffers_unchanged": true,
+  "no_task_metrics": true,
+  "local_exact_preoutput_comparison": false,
+  "local_tensor_cells": 6144,
+  "hidden_tensor_cells": 512,
+  "audit_document_ids": [],
+  "uncertainty": "partial bounded batch; full fixed-quota target not yet complete",
+  "runtime_kind": "segment_of_shared_gpu_worker",
+  "shared_session": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/session_S001",
+  "shared_worker_identity": {
+    "pid": 330520,
+    "ppid": 330188,
+    "pgid": 330520,
+    "starttime": 8235802,
+    "argv": [
+      "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+      "-B",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_extended_numerical_session.py",
+      "--worker",
+      "--plan",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/qualification/persistent_source_v1/session_plan_final.json",
+      "--output-dir",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/session_S001"
+    ]
+  }
+}

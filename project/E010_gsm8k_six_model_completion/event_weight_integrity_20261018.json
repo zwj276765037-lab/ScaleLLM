@@ -1,0 +1,15 @@
+{
+  "event_id": "EV_SM020_R002_weight_integrity_20261018",
+  "small_mission": "SM020",
+  "trigger": "anomaly",
+  "summary": "R002后续AT008发现目标BF16权重与checkpoint差16345元素，原生调用间权重SHA变化，原因待两卡受控定位。",
+  "impact": "formal仍0/39570；禁止把失败训练检查或待解释权重视为正式精度证据，保持冻结源与原验收门。",
+  "evidence": [
+    "project/E010_gsm8k_six_model_completion/experiment_results/hourly_reports/20261018_weight_integrity_observed.json"
+  ],
+  "affected": [
+    "SM020"
+  ],
+  "action": "原授权内继续两卡加载/复制/推理前后单层权重对照和独立审核；不改驱动、不触碰M003、不放宽门。",
+  "requires_decision": false
+}

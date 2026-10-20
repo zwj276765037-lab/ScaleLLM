@@ -1,0 +1,249 @@
+{
+  "schema": "A007_AT017_first_apply_open_run_independent_evidence_v1",
+  "observed_utc": "2026-10-18T12:20:26.638347+00:00",
+  "first_apply_package": {
+    "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT017_original_address_entry_postreport_recovery/evidence/first_apply_success_observation.json",
+    "bytes": 2658,
+    "sha256": "fd542f1a78cec784566ff1e84d0b4f404671f522f8923e727495332cb28c7ccc"
+  },
+  "references": {
+    "receipt": {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT017_original_address_entry_postreport_recovery/evidence/first_apply_success_native_receipt.json",
+      "bytes": 239,
+      "sha256": "07d9ce27398a5a5db4ac11a5d9b4e8022c71f2216ae4808b043df7d77430a122"
+    },
+    "trace_prefix": {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT017_original_address_entry_postreport_recovery/evidence/first_apply_success_trace_prefix.txt",
+      "bytes": 32,
+      "sha256": "303b8c12b6cf8add3134c3ace879defee36f47561bdb52d4732143abe36904b8"
+    },
+    "launcher_prefix": {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT017_original_address_entry_postreport_recovery/evidence/first_apply_success_launcher_prefix.txt",
+      "bytes": 103100,
+      "sha256": "4e282645e3a26cf39b863eb9e4ec7b77da3a0c5dca2a7467000f5573d2b9dde7"
+    },
+    "resource_sample": {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT017_original_address_entry_postreport_recovery/evidence/first_apply_success_resource_observation.json",
+      "bytes": 823,
+      "sha256": "c6594745d25ea27001c5af38ee5d149b1704b17efbcfc676c71fbbb15d92d18c"
+    },
+    "source_manifest": {
+      "path": "project/hardware/vivado/constraints/m003_entry_manifest.json",
+      "bytes": 10964,
+      "sha256": "5b307ca76c685ae4ca8cbf9758f452cd221d167e42d984764323aa6967c53199"
+    },
+    "startup_activation": {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT017_original_address_entry_postreport_recovery/evidence/actual_native_activation.json",
+      "bytes": 3300,
+      "sha256": "03e2fc6a7d411dcb7ee98d732edae44891ae8ce5981566d5f0b9acb443f2a58b"
+    }
+  },
+  "actual_native_receipt": {
+    "path": "project/hardware/vivado/reports/m003_E011_R002_AT017_original_address_entry_postreport_recovery/m003_apply_success_42854_1.json",
+    "bytes": 239,
+    "sha256": "07d9ce27398a5a5db4ac11a5d9b4e8022c71f2216ae4808b043df7d77430a122"
+  },
+  "raw_receipt_decoded_without_type_coercion": {
+    "kind": "native",
+    "success": "true",
+    "attempt": "1",
+    "pid": "42854",
+    "source_manifest_sha256": "5b307ca76c685ae4ca8cbf9758f452cd221d167e42d984764323aa6967c53199",
+    "overlay_sha256": "9124ea7eb710d8bbb4fe5c0c83e09f6cda1909d42e13d38bf6bae6765c9f3528"
+  },
+  "source_chain_identities": [
+    {
+      "path": "project/hardware/vivado/scripts/m003_joint_checks.tcl",
+      "bytes": 29704,
+      "sha256": "083ac863f89974dbb9e6a29d4409466485f64f7d7fd1140a3e73a42a553e7c54"
+    },
+    {
+      "path": "project/hardware/vivado/constraints/m003_joint_locality.xdc",
+      "bytes": 636,
+      "sha256": "9124ea7eb710d8bbb4fe5c0c83e09f6cda1909d42e13d38bf6bae6765c9f3528"
+    },
+    {
+      "path": "project/hardware/vivado/scripts/m003_recover_synthesis.tcl",
+      "bytes": 2692,
+      "sha256": "81a44d082210c9b2e84fb280842c4cb1c94e0831264825aaa6aa613394f7bd39"
+    }
+  ],
+  "source_success_write_order": [
+    {
+      "line": 260,
+      "text": "    set trace [open [file join $::env(HAP_REPORT_DIR) m003_apply_attempts_[pid].txt] a]"
+    },
+    {
+      "line": 261,
+      "text": "    puts $trace \"attempt=$apply_attempts restore_verify_only=[info exists ::env(HAP_M003_RESTORE_VERIFY_ONLY)]\";close $trace"
+    },
+    {
+      "line": 262,
+      "text": "    if {[info exists ::env(HAP_M003_RESTORE_VERIFY_ONLY)]} {error \"M003 restore must verify stored constraints without any apply\"}"
+    },
+    {
+      "line": 266,
+      "text": "    require_project runtime"
+    },
+    {
+      "line": 267,
+      "text": "    variable ancestor_pblocks;set ancestor_pblocks [dict create]"
+    },
+    {
+      "line": 268,
+      "text": "    set r [resolve];set by_cr [dict create]"
+    },
+    {
+      "line": 280,
+      "text": "        hard_pblock m003_parent_$cr $sites [dict get $by_cr $cr]"
+    },
+    {
+      "line": 286,
+      "text": "        hard_pblock m003_meta_slice${index}_uram $us [dict get $r memory $index]"
+    },
+    {
+      "line": 287,
+      "text": "        hard_pblock m003_meta_slice${index}_address $cs [dict get $r helpers $index]"
+    },
+    {
+      "line": 290,
+      "text": "    hard_pblock m002_exact_hotspot_SLR2 CLOCKREGION_X0Y10:CLOCKREGION_X5Y14 [dict get $r c01]"
+    },
+    {
+      "line": 291,
+      "text": "    foreach name $c01_protected {"
+    },
+    {
+      "line": 292,
+      "text": "        set cell [one get_cells $name]"
+    },
+    {
+      "line": 293,
+      "text": "        if {![yes [get_property DONT_TOUCH $cell]]} {error \"M003 C01 original protection lost: $name\"}"
+    },
+    {
+      "line": 296,
+      "text": "    set d [dict create kind native success true attempt $apply_attempts pid [pid] source_manifest_sha256 [lindex [exec sha256sum -- [file join $scripts ../constraints/m003_entry_manifest.json]] 0] overlay_sha256 [lindex [exec sha256sum -- [file join $scripts ../constraints/m003_joint_locality.xdc]] 0]]"
+    },
+    {
+      "line": 297,
+      "text": "    set h [open [file join $::env(HAP_REPORT_DIR) m003_apply_success_[pid]_${apply_attempts}.json] {WRONLY CREAT EXCL}]"
+    },
+    {
+      "line": 298,
+      "text": "    puts $h [jobject $d];close $h"
+    },
+    {
+      "line": 299,
+      "text": "    puts \"M003_OVERLAY_APPLIED head42 tail39 URAM40+40 address34 C01_retained\""
+    }
+  ],
+  "actual_native_pid": 42854,
+  "actual_native_start_ticks": 1270755,
+  "approved_path_environment_only": {
+    "HAP_REPORT_DIR": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT017_original_address_entry_postreport_recovery",
+    "HAP_M003_SCRIPTS_DIR": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts"
+  },
+  "immutable_launcher_prefix_line_count": 297,
+  "native_success_marker": {
+    "line": 285,
+    "text": "M003_OVERLAY_APPLIED head42 tail39 URAM40+40 address34 C01_retained"
+  },
+  "trace_prefix": "attempt=1 restore_verify_only=0\n",
+  "resource_sample": {
+    "utc": "2026-10-18T12:16:10.058818+00:00",
+    "rss_bytes": 21685428224,
+    "mem_available_bytes": 509140070400,
+    "disk_free_bytes": 481049608192,
+    "processes": {
+      "42760": {
+        "ppid": 42759,
+        "pgrp": 42760,
+        "start_ticks": 1270550,
+        "rss_bytes": 25595904,
+        "cpu_ticks": 189,
+        "nice": 5
+      },
+      "42764": {
+        "ppid": 42760,
+        "pgrp": 42760,
+        "start_ticks": 1270742,
+        "rss_bytes": 3321856,
+        "cpu_ticks": 0,
+        "nice": 5
+      },
+      "42783": {
+        "ppid": 42764,
+        "pgrp": 42760,
+        "start_ticks": 1270745,
+        "rss_bytes": 3186688,
+        "cpu_ticks": 2,
+        "nice": 5
+      },
+      "42854": {
+        "ppid": 42783,
+        "pgrp": 42760,
+        "start_ticks": 1270755,
+        "rss_bytes": 21653323776,
+        "cpu_ticks": 375211,
+        "nice": 5
+      }
+    }
+  },
+  "resource_scope": "Historical immutable A00612:16sample reconciled with accepted startup identities and its ownRSSsum, not new resource sampling or timing attribution",
+  "open_run_package": {
+    "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT017_original_address_entry_postreport_recovery/evidence/open_run_completed_observation.json",
+    "bytes": 1329,
+    "sha256": "031ec10d6abb1189061049d3e277b9d89800c3918b452cfd62453bdaf611eb8e"
+  },
+  "open_run_references": {
+    "launcher_prefix": {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT017_original_address_entry_postreport_recovery/evidence/post_open_run_launcher_prefix.txt",
+      "bytes": 104659,
+      "sha256": "58ed595a64b5e1770402fafad041069a566996fa7725bae5f92542ad1d3073d5"
+    },
+    "first_apply_success": {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT017_original_address_entry_postreport_recovery/evidence/first_apply_success_observation.json",
+      "bytes": 2658,
+      "sha256": "fd542f1a78cec784566ff1e84d0b4f404671f522f8923e727495332cb28c7ccc"
+    }
+  },
+  "post_open_run_prefix_line_count": 319,
+  "open_run_native_time_line": "open_run: Time (s): cpu = 01:01:36 ; elapsed = 00:44:13 . Memory (MB): peak = 21602.734 ; gain = 19852.023 ; free physical = 421218 ; free virtual = 496296",
+  "recovery_source_continuation": [
+    {
+      "line": 35,
+      "text": "open_run synth_1"
+    },
+    {
+      "line": 36,
+      "text": "require_board_clock_groups"
+    },
+    {
+      "line": 37,
+      "text": "source $overlay"
+    },
+    {
+      "line": 38,
+      "text": "m003::require_actual_apply"
+    },
+    {
+      "line": 39,
+      "text": "m003::snapshot synth $report_dir"
+    },
+    {
+      "line": 40,
+      "text": "m003_python [file join $script_dir m003_resource_budget.py] --report-dir $report_dir --output [file join $report_dir m003_same_stage_budget.json]"
+    },
+    {
+      "line": 41,
+      "text": "report_control_sets -verbose -file [file join $report_dir m003_control_sets_synth.rpt]"
+    },
+    {
+      "line": 42,
+      "text": "m003_python [file join $script_dir m003_synth_recovery.py] native-finish --project $project_dir --report $report_dir"
+    }
+  ],
+  "no_DCP_contents_or_hash": true,
+  "scope": "First nativeapplysuccess and open_run completion only; live prefix not full final log, no selectedgraph/budget/restore/G4."
+}

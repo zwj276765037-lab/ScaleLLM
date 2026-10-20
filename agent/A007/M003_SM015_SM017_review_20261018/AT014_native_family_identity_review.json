@@ -1,0 +1,91 @@
+{
+  "schema": "A007_AT014_actual_native_family_independent_review",
+  "observed_utc": "2026-10-18T08:47:23.712280+00:00",
+  "execution": "completed",
+  "verdict": "supported_exact_native_payload_family_identity",
+  "review": "accepted_for_selector_repair_input",
+  "applicability": "Closed AT014 identity outputs only; attributes/native completion/actual constraints and G4 pending",
+  "engineering_facts": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT014_fresh_core_native_role_attribution_v2/evidence/AT014_closed_identity_facts.json",
+    "bytes": 3867,
+    "sha256": "349af9d966438890b2174355da79f19387dac25f0b99778a0878d4694bbcd8cf"
+  },
+  "bound": {
+    "single_targeted_pass": true,
+    "max_total_bytes": 6291456,
+    "actual_total_bytes": 5388561,
+    "no_attributes_or_historical_large_tables_read": true
+  },
+  "identity_outputs": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT014_fresh_core_native_role_attribution_v2/parent_scope_candidates.identity.jsonl",
+      "bytes": 336,
+      "sha256": "84100d2bbfc9b22e134f3ec18179ece89db2d7bc4c2592f1871972a4fe939f51"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT014_fresh_core_native_role_attribution_v2/parent_payload_and_count_native.identity.jsonl",
+      "bytes": 5202410,
+      "sha256": "b6e88f48cfb57e3bf72398deda438a13937b2b7e2877b82fdcbc6f8f0df097aa"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT014_fresh_core_native_role_attribution_v2/parent_buffer_native.identity.jsonl",
+      "bytes": 29029,
+      "sha256": "0e14c430d5b39853e3e3ff9fc6d86ae323dfae0a341cb6a3905f59497a8c8062"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT014_fresh_core_native_role_attribution_v2/metadata_native_names.identity.jsonl",
+      "bytes": 156786,
+      "sha256": "3030eff59ef9fd9add484c9f0235472c79d73650caff93af11f93d1c6d6c6aca"
+    }
+  ],
+  "all_row_indices_unique_and_contiguous": true,
+  "all_NAME_REF_NAME_CLASS_status_OK": true,
+  "all_object_NAME_equal": true,
+  "native_parent": "inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+  "payload_families": {
+    "head": {
+      "count": 6560,
+      "exact_bit_set": "0..6559",
+      "generate_equals_terminal_all": true,
+      "ref": "FDRE"
+    },
+    "tail": {
+      "count": 6560,
+      "exact_bit_set": "0..6559",
+      "generate_equals_terminal_all": true,
+      "ref": "FDRE"
+    }
+  },
+  "excluded_count_neighbors": [
+    "inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_count_r_reg[0]",
+    "inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/parent_count_r_reg[1]"
+  ],
+  "unexpected_payload_names": [],
+  "CE_ref_counts": {
+    "LUT1": 81
+  },
+  "metadata_ref_counts": {
+    "GND": 6,
+    "VCC": 2,
+    "LUT3": 10,
+    "LUT6": 42,
+    "LUT4": 44,
+    "LUT5": 261,
+    "FDCE": 36,
+    "FDRE": 8,
+    "URAM288": 80,
+    "LUT2": 37,
+    "FDPE": 1,
+    "LUT1": 2,
+    "CARRY8": 4
+  },
+  "old_selector_problem": "Old direct-child parent_{head,tail}_r_reg prefix excludes the actual generated member path in all13120 actual payload entries.",
+  "repair_obligations": [
+    "Use exact observed native parent plus anchored generated member grammar.",
+    "Validate family, both integer indices and equality, exact range/uniqueness/count; exclude count/foreign/replica neighbors.",
+    "Whole actual name table positive test plus narrow malformed/foreign/duplicate/missing negative tests.",
+    "No RTL/pool/budget changes; actual apply/selected graph and strict G4 still required."
+  ],
+  "G4_no_blocker": false,
+  "methods_M2_A3_verdict": "unassessed"
+}

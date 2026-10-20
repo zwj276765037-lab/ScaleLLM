@@ -1,0 +1,520 @@
+{
+  "schema": "m005_real_capture_plan_v1",
+  "execution_state": "proposal_only",
+  "dry_run_kind": "metadata_only; not functional validation or timing measurement",
+  "model": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+  "geometry_matches": true,
+  "errors": [],
+  "metadata_identities": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct/config.json",
+      "sha256": "29e4c210b0d6ac178b16b2a255a568bdb23b581e50ca1ef6a6d071dd85704e6e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct/model.safetensors.index.json",
+      "sha256": "146776fce3f6db1103aa6f249e65ee5544c5923ce6f971b092eee79aa6e5d37b"
+    }
+  ],
+  "checkpoint_bytes_from_metadata": 16060556376,
+  "weight_content_verified": false,
+  "input": {
+    "trajectory": "BF16 eager model, use_cache=False; not V5 trajectory",
+    "prompt_count": 1,
+    "max_tokens": 128,
+    "required_tokens": 128,
+    "source": "one calibration text frozen by source-line hash and resulting token IDs before model launch",
+    "short_input_action": "fail before model load; do not silently pad or repeat",
+    "tokens_scored": 0
+  },
+  "selected": [
+    {
+      "layer": 0,
+      "op": "q_proj",
+      "tensor": "model.layers.0.self_attn.q_proj.weight",
+      "shard": "model-00001-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 4096,
+      "weight_bits": 8,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        4095
+      ]
+    },
+    {
+      "layer": 0,
+      "op": "k_proj",
+      "tensor": "model.layers.0.self_attn.k_proj.weight",
+      "shard": "model-00001-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 1024,
+      "weight_bits": 8,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        1023
+      ]
+    },
+    {
+      "layer": 0,
+      "op": "v_proj",
+      "tensor": "model.layers.0.self_attn.v_proj.weight",
+      "shard": "model-00001-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 1024,
+      "weight_bits": 8,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        1023
+      ]
+    },
+    {
+      "layer": 0,
+      "op": "o_proj",
+      "tensor": "model.layers.0.self_attn.o_proj.weight",
+      "shard": "model-00001-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 4096,
+      "weight_bits": 8,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        4095
+      ]
+    },
+    {
+      "layer": 0,
+      "op": "gate_proj",
+      "tensor": "model.layers.0.mlp.gate_proj.weight",
+      "shard": "model-00001-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 14336,
+      "weight_bits": 4,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        14335
+      ]
+    },
+    {
+      "layer": 0,
+      "op": "up_proj",
+      "tensor": "model.layers.0.mlp.up_proj.weight",
+      "shard": "model-00001-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 14336,
+      "weight_bits": 4,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        14335
+      ]
+    },
+    {
+      "layer": 0,
+      "op": "down_proj",
+      "tensor": "model.layers.0.mlp.down_proj.weight",
+      "shard": "model-00001-of-00004.safetensors",
+      "in_features": 14336,
+      "out_features": 4096,
+      "weight_bits": 4,
+      "input_groups": 448,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        4095
+      ]
+    },
+    {
+      "layer": 15,
+      "op": "q_proj",
+      "tensor": "model.layers.15.self_attn.q_proj.weight",
+      "shard": "model-00002-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 4096,
+      "weight_bits": 8,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        4095
+      ]
+    },
+    {
+      "layer": 15,
+      "op": "k_proj",
+      "tensor": "model.layers.15.self_attn.k_proj.weight",
+      "shard": "model-00002-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 1024,
+      "weight_bits": 8,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        1023
+      ]
+    },
+    {
+      "layer": 15,
+      "op": "v_proj",
+      "tensor": "model.layers.15.self_attn.v_proj.weight",
+      "shard": "model-00002-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 1024,
+      "weight_bits": 8,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        1023
+      ]
+    },
+    {
+      "layer": 15,
+      "op": "o_proj",
+      "tensor": "model.layers.15.self_attn.o_proj.weight",
+      "shard": "model-00002-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 4096,
+      "weight_bits": 8,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        4095
+      ]
+    },
+    {
+      "layer": 15,
+      "op": "gate_proj",
+      "tensor": "model.layers.15.mlp.gate_proj.weight",
+      "shard": "model-00002-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 14336,
+      "weight_bits": 4,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        14335
+      ]
+    },
+    {
+      "layer": 15,
+      "op": "up_proj",
+      "tensor": "model.layers.15.mlp.up_proj.weight",
+      "shard": "model-00002-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 14336,
+      "weight_bits": 4,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        14335
+      ]
+    },
+    {
+      "layer": 15,
+      "op": "down_proj",
+      "tensor": "model.layers.15.mlp.down_proj.weight",
+      "shard": "model-00002-of-00004.safetensors",
+      "in_features": 14336,
+      "out_features": 4096,
+      "weight_bits": 4,
+      "input_groups": 448,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        4095
+      ]
+    },
+    {
+      "layer": 31,
+      "op": "q_proj",
+      "tensor": "model.layers.31.self_attn.q_proj.weight",
+      "shard": "model-00003-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 4096,
+      "weight_bits": 8,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        4095
+      ]
+    },
+    {
+      "layer": 31,
+      "op": "k_proj",
+      "tensor": "model.layers.31.self_attn.k_proj.weight",
+      "shard": "model-00003-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 1024,
+      "weight_bits": 8,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        1023
+      ]
+    },
+    {
+      "layer": 31,
+      "op": "v_proj",
+      "tensor": "model.layers.31.self_attn.v_proj.weight",
+      "shard": "model-00003-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 1024,
+      "weight_bits": 8,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        1023
+      ]
+    },
+    {
+      "layer": 31,
+      "op": "o_proj",
+      "tensor": "model.layers.31.self_attn.o_proj.weight",
+      "shard": "model-00003-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 4096,
+      "weight_bits": 8,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        4095
+      ]
+    },
+    {
+      "layer": 31,
+      "op": "gate_proj",
+      "tensor": "model.layers.31.mlp.gate_proj.weight",
+      "shard": "model-00003-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 14336,
+      "weight_bits": 4,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        14335
+      ]
+    },
+    {
+      "layer": 31,
+      "op": "up_proj",
+      "tensor": "model.layers.31.mlp.up_proj.weight",
+      "shard": "model-00003-of-00004.safetensors",
+      "in_features": 4096,
+      "out_features": 14336,
+      "weight_bits": 4,
+      "input_groups": 128,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        14335
+      ]
+    },
+    {
+      "layer": 31,
+      "op": "down_proj",
+      "tensor": "model.layers.31.mlp.down_proj.weight",
+      "shard": "model-00004-of-00004.safetensors",
+      "in_features": 14336,
+      "out_features": 4096,
+      "weight_bits": 4,
+      "input_groups": 448,
+      "token_rows": [
+        0,
+        63,
+        127
+      ],
+      "output_channels": [
+        0,
+        1,
+        63,
+        4095
+      ]
+    }
+  ],
+  "sample_outputs": 252,
+  "ordered_group_records": 43776,
+  "raw_integer_operand_bytes_upper_estimate": 2097152,
+  "evidence_directory_budget_bytes": 268435456,
+  "capture_steps": [
+    "Freeze selected BF16 checkpoint metadata and text/token identity; require exactly 128 input tokens.",
+    "Register pre-hooks only for selected layer/op, retaining three actual input rows and their positions.",
+    "Capture with one BF16 forward; stop after selected layer31; no generation, NLL, PPL or ACC.",
+    "On CPU apply production fp_to_fixed_raw and prepare_fixed_activation with S24 inputs or Down S32 adapter inputs.",
+    "Quantize selected checkpoint weight rows once using production quantize_folded_rows and the same Hadamard fold.",
+    "Retain q_a/zp_a/q_w/code/shift and ordered dot products, hash consumed checkpoint slices and frozen q_w artifacts.",
+    "Independently recompute every dot from saved operands; both rounding branches consume identical JSONL.",
+    "Mark BF16-local-input adapter provenance; Down BF16 input converted to S32 is not a production SwiGLU trajectory."
+  ],
+  "gpu0_option": {
+    "requires_root_resource_qualification": true,
+    "gpu_started": false,
+    "device": "cuda:0 only; GPU1 excluded",
+    "threads": 2,
+    "cpu_rss_limit_gib": 8,
+    "gpu_memory_budget_gib": 24,
+    "pilot_wall_limit_seconds": 300,
+    "main_wall_limit_seconds": 1200,
+    "pilot": "metadata/tokenize + model load + <=32-token forward; separate AT, no final128 reuse claim",
+    "cost_status": "estimated memory budget, latency unmeasured; pilot decides qualification",
+    "stops": [
+      "budget exceeded",
+      "new nonfinite/capture geometry mismatch",
+      "model/input identity mismatch",
+      "Root resource hold/occupancy conflict before launch"
+    ]
+  },
+  "cpu_option": {
+    "monolithic_model_load_within_8gib": false,
+    "streamed_layer_design_possible": true,
+    "required_work": "independently implement/review exact BF16 trajectory equivalence while streaming layers and embedding/head slices",
+    "largest_selected_bf16_matrix_bytes": 117440512,
+    "layer_weight_bytes_estimate": 440000000,
+    "cpu_threads": 2,
+    "cpu_rss_budget_gib": 8,
+    "wall_time_under_20min_proven": false,
+    "recommendation": "Do not run unimplemented streaming substitute; bounded qualified GPU capture has the existing model-forward path."
+  },
+  "conclusion_limits": [
+    "local rounding recovery on real BF16 model inputs only",
+    "no whole-V5 propagation",
+    "no model metric or implementation timing conclusion"
+  ]
+}

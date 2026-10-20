@@ -1,0 +1,53 @@
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_checks.tcl
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/original_address_selector_v1/m003_joint_checks.tcl.proposed
+@@ -131,6 +131,34 @@
+     }
+     return $family_bits
+ }
++proc m003::original_address_members {} {
++    variable core_meta_scope
++    set members [dict create]
++    set selected [get_cells -quiet -hier -filter [format {IS_PRIMITIVE == 1 && NAME =~ "%s/*meta_read_addr_r_reg*"} $core_meta_scope]]
++    exact_count $selected [llength $selected] "original core address candidates"
++    foreach cell $selected {
++        set name [get_property NAME $cell]
++        set ref [get_property REF_NAME $cell]
++        if {![prefix $name $core_meta_scope]} {error "M003 foreign original core address scope: $name"}
++        set relative [string range $name [expr {[string length $core_meta_scope]+1}] end]
++        # AT016 measured these two combinational CARRY8 neighbors separately
++        # from the complete 17 FDCE state bits. They are never address FFs.
++        if {$relative in {{meta_read_addr_r_reg[16]_i_5} {meta_read_addr_r_reg[8]_i_2}}} {
++            if {$ref ne "CARRY8"} {error "M003 original core address neighbor type changed: $name/$ref"}
++            continue
++        }
++        if {![regexp {^meta_read_addr_r_reg\[(0|[1-9][0-9]*)\]$} $relative -> bit] ||
++            $bit>=17 || $ref ni {FDRE FDCE FDSE FDPE} || [dict exists $members $bit]} {
++            error "M003 original core address role unresolved: $name/$ref"
++        }
++        dict set members $bit $cell
++    }
++    if {[dict size $members]!=17} {error "M003 original core address17 missing"}
++    for {set bit 0} {$bit<17} {incr bit} {
++        if {![dict exists $members $bit]} {error "M003 original core address bit $bit missing"}
++    }
++    return $members
++}
+ proc m003::resolve {} {
+     variable parent_scope;variable meta_scope;variable core_meta_scope;variable c01_root
+     variable resolved;variable groups
+@@ -147,14 +175,7 @@
+         if {![dict exists $buffers $family] || [dict size [dict get $buffers $family]] != $n} {error "M003 $family production buffer count mismatch"}
+     }
+     dict set resolved payload $family_bits;dict set resolved buffers $buffers
+-    set original_address [dict create]
+-    foreach cell [get_cells -quiet -hier -filter [format {IS_PRIMITIVE == 1 && NAME =~ "%s/*meta_read_addr_r_reg*"} $core_meta_scope]] {
+-        set name [get_property NAME $cell]
+-        if {![regexp {meta_read_addr_r_reg\[([0-9]+)\]$} $name -> bit] || $bit>=17 || [dict exists $original_address $bit]} {error "M003 original core address role unresolved"}
+-        dict set original_address $bit $cell
+-    }
+-    if {[dict size $original_address]!=17} {error "M003 original core address17 missing"}
+-    dict set resolved core_address $original_address
++    dict set resolved core_address [original_address_members]
+     set meta [primitive_scope $meta_scope];set memory [dict create];set addresses [dict create];set helpers [dict create]
+     foreach cell $meta {
+         set name [get_property NAME $cell];set ref [get_property REF_NAME $cell]

@@ -1,0 +1,38 @@
+{
+  "schema": "scalellm_gpu1_native_observer_protocol_v1",
+  "attempt": "AT003",
+  "execution_state": "prepared_not_launched",
+  "trigger": "AT002 matching-libcuda still fails raw byte preservation",
+  "mission": "M004/SM020/E010 GPU1 repair",
+  "source_sha256": "fa3ce1bde4c7dbef27551e7055c81795af484eca424e23dfa3ed560895f16819",
+  "compiled_cubin_sha256": "0297962daeb64c5c1818d1e7efad4ba54a007ab2fed5cfab6e438147776e37ed",
+  "kernel_source_sha256": "bbd12fd6d2dc7f5b8cf409132ec5739f66f2849960d64d384e1a217ca127985d",
+  "compiler": "existing NVRTC12.8, CPU-only sm_86 native cubin; no runtime PTX JIT",
+  "resources": {
+    "gpu_uuid": "GPU-d87ce710-76bf-872d-9739-f0d7c9b52533",
+    "cpu_affinity": [
+      18,
+      19
+    ],
+    "data_working_set_bytes": 21474836480,
+    "small_counter_buffers": [
+      40,
+      40
+    ],
+    "min_free_gpu_gib": 8,
+    "min_available_host_gib": 80,
+    "worker_count": 1,
+    "existing_GPU1_flock": true
+  },
+  "tests": [
+    "device memset00",
+    "device memsetff"
+  ],
+  "observer": "Native CUDA C reads all256MiB/chunk and computes mismatch byte count, first byte coordinate, byte set/clear counts; second kernel retrieves first observed byte. Only five uint64 result words read per observer. Two independently allocated small buffers and two repeated result copies each. Full CPU readback follows each GPU observer for every chunk.",
+  "controls": "On chunk0 independently test clean00 and ff, then deliberately inject1opposite byte at offset12345; GPU count/first/value/set/clear must exactly detect it before diagnosis. Clean controls must count0.",
+  "readbacks_planned": 320,
+  "raw_evidence": "GPU result arrays and buffer ptrs plus original full CPU comparison with exact NPZ error coordinates and page statistics",
+  "actual_libcuda_required_sha256": "3a3cf81c03a39008b3da4320bbc2cc8194dcfe91e8eef7c05dfc46febe2d1aac",
+  "stopping": "finite2pattern sequence naturally completes, control/precondition/API failure naturally fails; no timeout",
+  "interpretation": "GPU-internal errors with independently validated observer exclude a pure D2H-only explanation for observed faults, but do not alone distinguish physical DRAM/controller or kernel-driver implementation fault. Readback-only errors require further bounded causal review; do not declare hardware fixed or production qualified."
+}

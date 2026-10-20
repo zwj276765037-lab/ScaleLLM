@@ -1,0 +1,8 @@
+{
+  "snapshot_fields": {
+    "[get_property NAME [get_pblocks -quiet -of_objects $cell]]": "[collection_property NAME [get_pblocks -quiet -of_objects $cell]]",
+    "startpoints [get_property NAME $startpoints]": "startpoints [memory_startpoint_names $terminal $startpoints]"
+  },
+  "additional_scope": "Only ADDR* memory startpoint names retain explicit nonempty; all other collection serialization reverted to before083 exactly. Required scalars, validators and guards untouched.",
+  "test_entrypoint": "Existing unittest.main moved after all classes."
+}

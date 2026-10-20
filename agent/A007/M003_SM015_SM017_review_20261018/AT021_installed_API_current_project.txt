@@ -1,0 +1,49 @@
+
+Description:
+
+  Specifies the current project or returns the current project when no
+  project is specified.
+
+Arguments:
+
+  -quiet - (Optional) Execute the command quietly, returning no messages from
+  the command. The command also returns TCL_OK regardless of any errors
+  encountered during execution.
+
+  Note: Any errors encountered on the command-line, while launching the
+  command, will be returned. Only errors occurring inside the command will be
+  trapped.
+
+  -verbose - (Optional) Temporarily override any message limits and return
+  all messages from this command.
+
+  Note: Message limits can be defined with the set_msg_config command.
+
+  <project> - (Optional) The name of the project to make current. This
+  command can be used prior to the close_project to make a specific project
+  active and then to close the project.
+
+Examples:
+
+  The following example sets project_2 as the current project:
+
+    current_project project_2 
+    
+
+  This command makes the current project the focus of all the tool commands.
+  In the GUI mode, the current project is defined automatically when
+  switching the GUI between projects.
+
+  The following example returns the name of the current project in the tool:
+
+    current_project 
+    
+
+  Note: The returned value is the name of the project and not the name or
+  path of the project file.
+
+See Also:
+
+   *  close_project
+   *  create_project
+   *  current_design

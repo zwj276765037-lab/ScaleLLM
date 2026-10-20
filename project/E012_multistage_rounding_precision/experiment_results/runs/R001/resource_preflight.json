@@ -1,0 +1,31 @@
+{
+  "captured_at": "2026-10-19T02:28:46.398129+00:00",
+  "purpose": "M005 read-only resource preflight; no GPU workload launched",
+  "cpu_budget_total_threads": 4,
+  "per_worker_memory_limit_gib": 8,
+  "gpu_policy": "GPU1 remains excluded; GPU0 requires bounded M005 phase admission and must not affect other processes",
+  "gpus": {
+    "command": [
+      "nvidia-smi",
+      "--query-gpu=index,uuid,name,memory.used,memory.total,utilization.gpu",
+      "--format=csv,noheader"
+    ],
+    "exit_status": 0,
+    "stdout": "0, GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6, NVIDIA RTX A6000, 10066 MiB, 49140 MiB, 27 %\n1, GPU-d87ce710-76bf-872d-9739-f0d7c9b52533, NVIDIA RTX A6000, 2 MiB, 49140 MiB, 0 %\n",
+    "stderr": ""
+  },
+  "gpu_processes": {
+    "command": [
+      "nvidia-smi",
+      "--query-compute-apps=gpu_uuid,pid,process_name,used_memory",
+      "--format=csv,noheader"
+    ],
+    "exit_status": 0,
+    "stdout": "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6, 23186, /home/user/anaconda3/envs/zhouwenjun/bin/python, 10056 MiB\n",
+    "stderr": ""
+  },
+  "memory": {
+    "MemTotal": "527913532 kB",
+    "MemAvailable": "489850440 kB"
+  }
+}

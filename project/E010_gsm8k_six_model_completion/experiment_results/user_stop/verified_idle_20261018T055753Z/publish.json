@@ -1,0 +1,13 @@
+{
+  "source": "# E010：GSM8K补测来源与用户暂停边界\n\n用户原授权六模型×五配置、两张GPU及每小时报告；2026-10-18最新指令“先停止所有GPU的实验”，当前暂停GPU补测、诊断与维护，恢复须用户明确指令。M003硬件范围保持。\n\n原5-shot raw greedy strict EM、每组1319 test、context8192/new4096、BF16 eager、原生KV/QDQ协议不变。R001/R002原证据保留。R003固定GPU0的计划及15份runtime源码仅冻结准备，尚未启动；native_cache_call_parity_v2与checkpoint_static_content_v1门不变。GPU0 BF16与a8w4_fp32两组训练准备均独立审核通过。\n\nGPU1诊断与项目局部NVML修复证据保留；未替换系统驱动。13:42管理员维护执行在预检查证据序列化时失败，stop/reset均未尝试。当前helper整数PID键修复的26项CPU/mock通过，但没有再次真实执行，不能视为GPU1已修复。\n",
+  "results": "# E010：暂停时结果\n\nR002历史终态failed，smoke6/30、pilot/formal0/30；R003未启动，smoke/pilot/formal均0/30，正式完成及独立接受0/39570。原失败组不复用。\n\nGPU0 Llama-3.1-8B-Instruct的BF16、a8w4_fp32各完成4/4训练准备题，原v2门、15完整性阶段及token独立复算通过；均已自然退出。准备结果不计正式ACC。\n\nGPU1原始CUDA三轮自然完成；匹配libcuda仍未消除数据错误，GPU内部读与CPU读均观测到00模式每遍212992字节错误，尚不细分DRAM/控制器/驱动根因。GPU1资格仍关闭。13:42维护attempt因整数PID键序列化错误失败，stop_attempted=false、reset_attempts=0；最新helper26项CPU/mock修复验证通过，实际重置仍未发生。\n",
+  "status": "# E010：GPU实验已全部停止，保持用户暂停\n\nexecution_state: paused\nverdict: inconclusive\n\n北京时间2026-10-18 13:57:53实际核对：两张GPU均无计算客户端，利用率均0%；GPU0显存占用101MiB，GPU1占用49MiB。原yqh监督链306558/306559和GPU worker306724均已不存在，未发现同实验替代进程。本项目也无活动补测、诊断或维护进程。此前13:56终止信号权限拒绝为历史记录；未独立确定进程最终退出原因。\n\n用户“先停止所有GPU的实验”已落实。R003启动hold.active=true，GSM8K每小时提醒enabled=false。所有GPU补测、诊断和维护继续暂停，收到用户明确恢复指令前不启动。M003和图形服务未操作。\n\nR003 smoke/pilot/formal均0/30，正式0/39570。GPU0两组受控训练准备通过，GPU1数据完整性资格仍未恢复；停止进程不表示修复完成。保留全部原始证据。\n",
+  "execution_state": "paused",
+  "verdict": "inconclusive",
+  "applicability": "用户暂停已落实；两张GPU实测均无计算任务；正式0/39570，等待明确恢复指令",
+  "evidence": [
+    "project/E010_gsm8k_six_model_completion/experiment_results/user_stop/20261018T054848Z/receipt.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/user_stop/authorized_yqh_20261018T055632Z/receipt.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/user_stop/verified_idle_20261018T055753Z/receipt.json"
+  ]
+}

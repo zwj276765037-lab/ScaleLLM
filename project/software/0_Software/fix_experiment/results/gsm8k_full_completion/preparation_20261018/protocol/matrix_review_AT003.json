@@ -1,0 +1,29 @@
+{
+  "schema": "scalellm_gsm8k_matrix_review_v1",
+  "reviewed_at_utc": "2026-10-18T01:58:45.220859+00:00",
+  "scope": "CPU independent scheduler review, no GPU/EDA",
+  "audit": "matrix_cpu_safety_AT003.json",
+  "audit_sha256": "b13189a96681d3833f8e0afabd191a0723eb3e39ad672a9211263fc27aca68c8",
+  "tests_run": 23,
+  "passed": true,
+  "tested_sources": {
+    "run_gsm8k_matrix.py": "c9cc105e7150f4d5206728db865b8adbe43b15da95e2a8eee5a182064080789b",
+    "run_gsm8k_worker.py": "4225d5ced9d87b47331f5a81c00b63ab9e9d81e2d4d385146ecb389266adcd50",
+    "test_gsm8k_matrix.py": "04773b68378e33cb5d4d7ff6d3f4041bec78a6c5fdbdb0d91ab5efbd1e731dea"
+  },
+  "current_hash_matches_audit": {
+    "run_gsm8k_matrix.py": true,
+    "run_gsm8k_worker.py": true,
+    "test_gsm8k_matrix.py": true
+  },
+  "smoke_blockers_from_this_review": [],
+  "formal_followups_reported_to_parent": [
+    "Pilot peak GPU memory plus 20 percent headroom is described in plan, but current pilot_gate checks length budget and generation verification only.",
+    "Completed attempt validates generation row identities and all three artifact hashes; scores row coverage/identities and verification file binding to manifest generation_verification are not independently checked by current validator. Final independent rescoring remains required."
+  ],
+  "retained_prior_audits": {
+    "matrix_cpu_safety_AT001.json": "fixture missing newly added contract package_versions and manifest generation EOS; CPU set fixture overlapped; no GPU workers launched",
+    "matrix_cpu_safety_AT002.json": "fixture plan relocated without fewshot file; corrected by copying fixed schedule into temporary fixture directory"
+  },
+  "resource_validation": "CPU affinity 8-9, CUDA_VISIBLE_DEVICES empty; only a short explicit CPU Python stand-in used for supervisor failure injection; child reaped even on test failure"
+}

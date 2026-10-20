@@ -1,0 +1,79 @@
+{
+  "schema": "A007_URAM_address_diagnostic_v1_superseded_increment",
+  "recorded_utc": "2026-10-18T16:08:43.993082+00:00",
+  "package_sha256": "db04eeb5055ad04dbda0065b6ab7fa8e0a2e3718d6a8a6f8f1164c2f35d7576e",
+  "execution": "source_review_and_13_CPU_fixtures_completed",
+  "reviewed_scope_verdict": "no substantive blocker in v1 raw ADDR/CAS_IN_ADDR/mode/config diagnostic scope",
+  "execution_package_state": "superseded_for_execution_by_A006_v2_preparation; no executable no_blocker gate issued for v1",
+  "source_identity_records": [
+    {
+      "declared": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/uram_address_diagnostic_v1/read_uram_address.tcl",
+        "bytes": 9226,
+        "sha256": "e0376b5e534f14c50363653f1632a61437949dcf4d93f2102d8d576ac3b29094"
+      },
+      "observed": {
+        "path": "project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/uram_address_diagnostic_v1/read_uram_address.tcl",
+        "bytes": 9226,
+        "sha256": "e0376b5e534f14c50363653f1632a61437949dcf4d93f2102d8d576ac3b29094"
+      }
+    },
+    {
+      "declared": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/uram_address_diagnostic_v1/launch.py",
+        "bytes": 3687,
+        "sha256": "c01fb77686b488ec0019c8107a0191e74c80e43c0d0f69e4428c40d8b0b13ae7"
+      },
+      "observed": {
+        "path": "project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/uram_address_diagnostic_v1/launch.py",
+        "bytes": 3687,
+        "sha256": "c01fb77686b488ec0019c8107a0191e74c80e43c0d0f69e4428c40d8b0b13ae7"
+      }
+    },
+    {
+      "declared": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/uram_address_diagnostic_v1/test_diagnostic.py",
+        "bytes": 7791,
+        "sha256": "136d158c6950624a41d59045fd6ea938e95a742011a472c7af79e1ef4f03a105"
+      },
+      "observed": {
+        "path": "project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/uram_address_diagnostic_v1/test_diagnostic.py",
+        "bytes": 7791,
+        "sha256": "136d158c6950624a41d59045fd6ea938e95a742011a472c7af79e1ef4f03a105"
+      }
+    }
+  ],
+  "CPU": {
+    "submitted": 8,
+    "independent": 5,
+    "total": 13,
+    "result": "PASS",
+    "wall_from_unittest_seconds": 0.22,
+    "driver": {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT019_uram_diagnostic_independent_cpu.py",
+      "bytes": 4651,
+      "sha256": "1ece279b73500884a7356f52edf2467350b61ae7634e255ec86597633d170d94"
+    },
+    "log": {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT019_uram_diagnostic_independent_cpu.log",
+      "bytes": 1823,
+      "sha256": "1b427ccba0a347d751982c5c4261675de33307dbda5c43d714247efa77b782ef"
+    },
+    "cases": [
+      "VCC actual singleton ref -> value1",
+      "GND+FDCE multiple drivers -> no constant",
+      "all four 23-bit families + mode inventory",
+      "physical bit23 rejected",
+      "duplicate mode rejected"
+    ]
+  },
+  "reviewed_launcher_delta": [
+    "schema discriminator",
+    "binding filename",
+    "scope description"
+  ],
+  "native_counts_measured": null,
+  "G4": false,
+  "next_step": "Review fixed v2 auxiliary memory input coverage delta, then issue gate bound only to actual v2 package SHA.",
+  "scope": "A007 CPU-only bounded review; no EDA/DCP content/hash/production/process actions."
+}

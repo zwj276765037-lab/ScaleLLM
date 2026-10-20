@@ -1,0 +1,13 @@
+# M003 SM017：原生入口修复集中交付 v1
+
+AT003保留自然native1终态；本版23个native综合网表与22实际消费DCP逐SHA绑定，379原build输入与188原归档已在终态核一致。新版本只修collector/implementation入口，三RTL、F4池、预算和策略不变。
+
+45项入口源已冻结，manifest `8c9fb38e47cc7e292525b7f8d1b9c9bf2f984feba40d0c3315f21f920999f20a`；受影响联合回归201项全部通过，测试期间源不变。逐文件旧/新身份、原字节副本与diff见同名JSON。
+
+修复：payload精确head/tail、各6560覆盖且所有异常仍拒绝；正式overlay保留原名与implementation-only/global/LATE，显式FILE_TYPE=TCL及绑定脚本根；实际apply成功回执与source SHA独立检查；Vivado当前生成driver原字节保存、完整INIT前缀语法/边界/固定hook资格化后原生执行，严格INIT检查后才显式OPT；约束证据读取真实当前native日志并保留Parsing XDC/Sourcing Tcl原语义；恢复前先启用verify-only并验attempt计数未增加，随后核原DCP约束。
+
+AT007原生机制证明已独立接受，仅小图加载/INIT-only/apply/restore适用。正式本版新图尚待新AT008原生验证，不能把CPU回归或TCL注册当G4。
+
+复用使用明确双尝试schema：`M003_fresh_native_synthesis_postreport_recovery_v1`，AT003原生1与后继native0分开；闭合允许差异、原生产源/IP/参数/时钟不变以及23/22本版新图后，再实际selected对象/预算验证。原始报告按原身份继承，时序不冒充新物理结果。无新综合计算，不使用旧基线DCP。
+
+待A007对本集中source/recovery增量无阻断后直接真实新AT；常规适配无新增用户门。严格G4与独立无阻断后，固定place→physopt→route连续执行。TOP01−2.896ns和22049对账仍OPEN，不保证一次布通。

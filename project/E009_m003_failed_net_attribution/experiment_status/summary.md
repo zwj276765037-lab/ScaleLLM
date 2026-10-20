@@ -1,0 +1,34 @@
+# E009：工程执行完成，独立范围接受；Root正式G1处置待登记
+
+execution_state: completed  
+verdict: inconclusive
+
+AT003自然native0/supervisor0/null stop，工程collector/raw v3/DATA-only scope均actual exit0，11登记身份及observer缺席、锁空、144输入及13来源完整。无活动EDA/大表扫描；完整交付与回执已归档。
+
+A007独立G1综合审核已完成并实际送Root：固定查询去重/分类/union/精确deep与104代表DATA路径适用性接受，报告差22049仍OPEN，不记无条件G1 PASS；4无路径与22范围外unknown保留。建议Root限定推进SM014 F1–F4及集中候选判断；正式G1处置由Root登记，未选型/未过G2/无新EDA。
+
+后续按Root记录的范围准备真实字段D/Q/readers与上游/下游/CE/clear/clock总成本，保持parent满时pop无同拍credit和meta launch/rsp NBA优先级。当前未更改生产代码、约束、接口、验收或预算，不新增用户批准门。
+
+
+---
+Published: 2026-10-18T02:31:27.207905+00:00
+Publication: P6a383c4f837f468b97c5dd774b0216d5
+Execution state: completed
+Research verdict: inconclusive
+Applicability: Engineering execution completed and A007 accepted fixed-query scope and representative DATA membership. Full report reconciliation and optimization benefits inconclusive; formal Root G1 scope decision pending, no G2 or production selection.
+Evidence:
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/status.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/terminal_facts_v3.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/observer_terminal_facts.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/evidence/native/native_completed.txt
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/evidence/native/unknowns_and_coverage.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/evidence/native/module_region_summary.tsv
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/bounded_timing_observed.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/first_aggregate_observed.json
+- project/E009_m003_failed_net_attribution/experiment_results/g1_engineering_handoff.md
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/independent_raw_attribution_audit_v3.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/independent_audit_execution_receipts.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/timing_scope_offline_audit_v2.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/timing_scope_v2_execution_receipt.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/physical_unknown_disposition.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/G1_independent_review_received.json

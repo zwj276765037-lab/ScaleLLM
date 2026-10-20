@@ -1,0 +1,242 @@
+{
+  "schema": "A007_AT020_orphan_supervisor_observation_v1",
+  "observed_utc": "2026-10-18T23:04:08.260539+00:00",
+  "execution": "readonly_anomaly_verification",
+  "verdict": "original_supervisor_absent_while_original_native_identity_alive",
+  "processes": [
+    {
+      "pid": 86001,
+      "exists": false,
+      "expected_start": 3111203
+    },
+    {
+      "pid": 86002,
+      "exists": true,
+      "expected_start": 3111217,
+      "start_ticks": 3111217,
+      "identity_matches": true,
+      "state": "S",
+      "ppid": 1,
+      "pgrp": 86002,
+      "nice": 5,
+      "CPU_ticks": 82,
+      "argv": [
+        "/usr/bin/python3",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/address_startpoint_semantics_v1/launch.py",
+        "--package",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/address_startpoint_semantics_v1/diagnostic_package.json",
+        "--review",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT020_state_source_diagnostic_candidate_review.json",
+        "--review-sha256",
+        "c1d0f49a39e5914641cd945333af0316a99a35630e60a150dc2bd8321260e5ef",
+        "--tcl",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/address_startpoint_semantics_v1/read_state_sources.tcl",
+        "--lineage",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT003_fresh_selected_synthesis/evidence/AT003_terminal_and_raw_native_lineage.json"
+      ],
+      "status_subset": [
+        "VmHWM:\t   34732 kB",
+        "VmRSS:\t   18868 kB",
+        "Threads:\t1",
+        "Cpus_allowed_list:\t0-7"
+      ]
+    },
+    {
+      "pid": 86005,
+      "exists": true,
+      "expected_start": 3111300,
+      "start_ticks": 3111300,
+      "identity_matches": true,
+      "state": "S",
+      "ppid": 86002,
+      "pgrp": 86002,
+      "nice": 5,
+      "CPU_ticks": 0,
+      "argv": [
+        "/bin/bash",
+        "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/vivado",
+        "-mode",
+        "batch",
+        "-notrace",
+        "-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/address_startpoint_semantics_v1/read_state_sources.tcl",
+        "-log",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT020_fresh_core_state_source_semantics/vivado.log",
+        "-journal",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT020_fresh_core_state_source_semantics/vivado.jou",
+        "-tclargs",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/scalellm_m003_E011_R002_AT002/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_core_0_synth_1/scalellm_vcu118_f05_bd_core_0.dcp"
+      ],
+      "status_subset": [
+        "VmHWM:\t    3920 kB",
+        "VmRSS:\t    3920 kB",
+        "Threads:\t1",
+        "Cpus_allowed_list:\t0-7"
+      ]
+    },
+    {
+      "pid": 86024,
+      "exists": true,
+      "expected_start": 3111303,
+      "start_ticks": 3111303,
+      "identity_matches": true,
+      "state": "S",
+      "ppid": 86005,
+      "pgrp": 86002,
+      "nice": 5,
+      "CPU_ticks": 2,
+      "argv": [
+        "/bin/bash",
+        "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/loader",
+        "-exec",
+        "vivado",
+        "-mode",
+        "batch",
+        "-notrace",
+        "-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/address_startpoint_semantics_v1/read_state_sources.tcl",
+        "-log",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT020_fresh_core_state_source_semantics/vivado.log",
+        "-journal",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT020_fresh_core_state_source_semantics/vivado.jou",
+        "-tclargs",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/scalellm_m003_E011_R002_AT002/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_core_0_synth_1/scalellm_vcu118_f05_bd_core_0.dcp"
+      ],
+      "status_subset": [
+        "VmHWM:\t    3976 kB",
+        "VmRSS:\t    3976 kB",
+        "Threads:\t1",
+        "Cpus_allowed_list:\t0-7"
+      ]
+    },
+    {
+      "pid": 86095,
+      "exists": true,
+      "expected_start": 3111314,
+      "start_ticks": 3111314,
+      "identity_matches": true,
+      "state": "S",
+      "ppid": 86024,
+      "pgrp": 86002,
+      "nice": 5,
+      "CPU_ticks": 2358108,
+      "argv": [
+        "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/unwrapped/lnx64.o/vivado",
+        "-mode",
+        "batch",
+        "-notrace",
+        "-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/address_startpoint_semantics_v1/read_state_sources.tcl",
+        "-log",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT020_fresh_core_state_source_semantics/vivado.log",
+        "-journal",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT020_fresh_core_state_source_semantics/vivado.jou",
+        "-tclargs",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/scalellm_m003_E011_R002_AT002/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_core_0_synth_1/scalellm_vcu118_f05_bd_core_0.dcp"
+      ],
+      "status_subset": [
+        "VmHWM:\t12611092 kB",
+        "VmRSS:\t12419432 kB",
+        "Threads:\t10",
+        "Cpus_allowed_list:\t0-7"
+      ]
+    },
+    {
+      "pid": 93658,
+      "exists": true,
+      "expected_start": 3424468,
+      "start_ticks": 3424468,
+      "identity_matches": true,
+      "state": "S",
+      "ppid": 3900,
+      "pgrp": 93658,
+      "nice": 5,
+      "CPU_ticks": 75,
+      "argv": [
+        "python3",
+        "-u",
+        "agent/A007/M003_SM015_SM017_review_20261018/AT020_readonly_dependency_watcher.py"
+      ],
+      "status_subset": [
+        "VmHWM:\t   16412 kB",
+        "VmRSS:\t   16412 kB",
+        "Threads:\t1",
+        "Cpus_allowed_list:\t0-7"
+      ]
+    }
+  ],
+  "exact_EDA_lock_lines": [],
+  "resource_file": {
+    "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT020_fresh_core_state_source_semantics/evidence/jobs/native_state_sources/resources.jsonl",
+    "bytes": 8448601,
+    "mtime_ns": 1792355723923271424,
+    "bounded_tail_bytes": 16000,
+    "bounded_tail_sha256": "f76699113fabed396c28222b2ab325da2871b4112bc4b79bacb41bc38d44161a",
+    "last_complete_record": {
+      "utc": "2026-10-18T20:35:23.924577+00:00",
+      "rss_bytes": 12733313024,
+      "mem_available_bytes": 515513544704,
+      "disk_free_bytes": 480455712768,
+      "processes": {
+        "86002": {
+          "ppid": 86001,
+          "pgrp": 86002,
+          "start_ticks": 3111217,
+          "rss_bytes": 19054592,
+          "cpu_ticks": 82,
+          "nice": 5
+        },
+        "86005": {
+          "ppid": 86002,
+          "pgrp": 86002,
+          "start_ticks": 3111300,
+          "rss_bytes": 3256320,
+          "cpu_ticks": 0,
+          "nice": 5
+        },
+        "86024": {
+          "ppid": 86005,
+          "pgrp": 86002,
+          "start_ticks": 3111303,
+          "rss_bytes": 3317760,
+          "cpu_ticks": 2,
+          "nice": 5
+        },
+        "86095": {
+          "ppid": 86024,
+          "pgrp": 86002,
+          "start_ticks": 3111314,
+          "rss_bytes": 12707684352,
+          "cpu_ticks": 1466024,
+          "nice": 5
+        }
+      }
+    }
+  },
+  "meminfo_subset": [
+    "MemTotal:       527913532 kB",
+    "MemAvailable:   503164200 kB"
+  ],
+  "dependencies": {
+    "project/hardware/vivado/reports/m003_E011_R002_AT020_fresh_core_state_source_semantics/uram_clock_sources.jsonl.partial": {
+      "exists": true,
+      "bytes": 29840910,
+      "mtime_ns": 1792364202029949723
+    },
+    "project/hardware/vivado/reports/m003_E011_R002_AT020_fresh_core_state_source_semantics/uram_clock_sources.jsonl": {
+      "exists": false
+    },
+    "project/hardware/vivado/reports/m003_E011_R002_AT020_fresh_core_state_source_semantics/diagnostic_complete.json": {
+      "exists": false
+    },
+    "project/hardware/vivado/reports/m003_E011_R002_AT020_fresh_core_state_source_semantics/diagnostic_error_info.txt": {
+      "exists": false
+    },
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT020_fresh_core_state_source_semantics/evidence/jobs/native_state_sources/status.json": {
+      "exists": false
+    }
+  },
+  "owner_notification": "Actual collaboration.followup_task delivered to /root/m002_build_verify before this deeper read; Root actually notified.",
+  "limits": "No process/lock control, no owner session access, no EDA/DCP/partial table reads. Resource protection continuity is unproven after last old record; native continued does not prove active protection.",
+  "G4": false
+}

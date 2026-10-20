@@ -1,0 +1,30 @@
+# E009：AT002原生别名/冲突集合枚举中
+
+execution_state: running  
+verdict: inconclusive
+
+01:12:53Z CELL_INVENTORY_COMPLETE已核；本次native report仍547548冲突网，当前处理固定种子与冲突全集的segments闭包。已越过AT001旧异常点，无native_error/终态；配对样本仍按固定包缓冲，待canonical关闭，不提前记资格/G1通过。
+
+native256881/start5692134，监督256789/start5691915、leader256791/start5692120，观察器85343实际记录当前阶段。单EDA/CPU0–7/nice5/max8、原192GiB/48GiB持续30s/disk30GiB保护，无墙钟/静默强停。
+
+下一步闭合canonical全集、导出全端点并作唯一主组/union与固定深查，实际样本/结果或自然异常时报告。无生产修改/选型/implementation。
+
+
+---
+Published: 2026-10-18T01:14:33.348009+00:00
+Publication: P77d9126f45904cd6a938efaa3ece58f3
+Execution state: running
+Research verdict: inconclusive
+Applicability: AT002 native cell inventory complete; frozen alias/conflict census in progress; actual paired identity ledger and G1 not yet closed.
+Evidence:
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT001_failed_route_full_attribution/terminal_facts_v2.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT001_failed_route_full_attribution/observer_terminal_facts.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/preflight.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/delta_and_cpu_checks.json
+- project/E009_m003_failed_net_attribution/experiment_source/AT002_alias_alignment_fix/prepared_manifest.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/native_start_observed.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/started.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/input_bindings.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/independent_prelaunch_accepted.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/observer_events.jsonl
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/schema_and_route_status_observed.json

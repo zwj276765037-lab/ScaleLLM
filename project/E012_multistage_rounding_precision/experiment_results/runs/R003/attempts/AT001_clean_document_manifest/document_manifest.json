@@ -1,0 +1,96 @@
+{
+  "schema": "m005_clean_document_manifest_v1",
+  "seed": 2026101903,
+  "inventory": {
+    "source_rows": 43229,
+    "unique_clusters": 43025,
+    "excluded_smoke_clusters": 0,
+    "by_domain": {
+      "web": {
+        "unique_clusters": 10000,
+        "clean_clusters": 10000
+      },
+      "news": {
+        "unique_clusters": 7600,
+        "clean_clusters": 7600
+      },
+      "reviews": {
+        "unique_clusters": 24801,
+        "clean_clusters": 24801
+      },
+      "wikipedia": {
+        "unique_clusters": 624,
+        "clean_clusters": 624
+      }
+    },
+    "deduplication": "NFC/whitespace exact text + canonical URL; semantic near-duplicate independence not certified"
+  },
+  "files": {
+    "train": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT001_clean_document_manifest/documents_train.jsonl",
+      "bytes": 1144106,
+      "sha256": "b6f27444fbeba6285f489454efdabede8820121642e4948a4bae48baa4233cd7",
+      "documents": 64
+    },
+    "dev": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT001_clean_document_manifest/documents_dev.jsonl",
+      "bytes": 1275474,
+      "sha256": "27462ce4c8ebf03dec922f747e73fa926d537d8a3ff2386f4ed7bec74a4791ac",
+      "documents": 64
+    },
+    "eval": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT001_clean_document_manifest/documents_eval.jsonl",
+      "bytes": 2371162,
+      "sha256": "8952a090de04153c59e5958e6c11cdb802b0d9ee39e3faef13b20b797104aea9",
+      "documents": 1024
+    }
+  },
+  "sources": {
+    "c4_official_validation_first10000": {
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/c4_official/validation_first10000.jsonl",
+      "bytes": 23736795,
+      "sha256": "bfa37449879c7cb9f871ba8910f016235c6be4508bcf32884c5bc3adffec1d13"
+    },
+    "ag_news_test": {
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/ag_news/test.parquet",
+      "bytes": 1234829,
+      "sha256": "71de87ec66bc5737752a2502204dfa6d7fe9856ade3ea444dc6317789a4f13fb"
+    },
+    "imdb_test": {
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/bape_eval/raw/imdb/test.parquet",
+      "bytes": 20470363,
+      "sha256": "b52e26e2f872d282ffac460bf9770b25ac6f102cda0e6ca7158df98c94e8b3da"
+    },
+    "wikitext2_train": {
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/wikitext-2-raw-v1/train-00000-of-00001.jsonl",
+      "bytes": 11408801,
+      "sha256": "eedf1d00975ed99954f50746c00e19ffc7f43a2813fd466486a58a5723ef6294"
+    }
+  },
+  "excluded_engineering_smoke_sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/calibration/first64.jsonl",
+      "bytes": 50818,
+      "sha256": "bf361da114a8a09e39d2f6458a3f1bc3e3fa1cc1487aba39134c4947693688c1"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/calibration/first128.jsonl",
+      "bytes": 99092,
+      "sha256": "d8baf14ca80eb8565fe89ddcd002d208ee768305958e6da4de5b9a8fe47893fe"
+    }
+  ],
+  "independent_unit": "operational unique document cluster; not token/tensor/scalar",
+  "train_dev_disjoint": true,
+  "train_dev_domains": [
+    "wikipedia"
+  ],
+  "development_domain_limitation": "train/dev are out-of-domain for web/news/reviews; no claim of matched-domain nuisance variance",
+  "evaluation_domain_counts": {
+    "web": 512,
+    "news": 256,
+    "reviews": 256
+  },
+  "calibration_performed": false,
+  "model_inference_performed": false,
+  "historical_source_exposure": "full corpus prior-use not certified; old smoke text/containing documents excluded; no claim of previously unseen benchmark"
+}

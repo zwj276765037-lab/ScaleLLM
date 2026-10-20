@@ -1,0 +1,485 @@
+{
+  "reviewer": "A007",
+  "observed_utc": "2026-10-18T06:26:51.738166+00:00",
+  "execution": "completed independent bounded native review and CPU replay",
+  "verdict": "supported mechanism: canonical TCL actual apply, complete generated INIT-only execution, checkpoint restore without reapply",
+  "applicability": "AT007 toy and archived extractor9442b534; not formal production/G4",
+  "review": "no blocker for incorporating this mechanism into formal entry repair, subject to actual source package and native production checks",
+  "source_archive_verification": [
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/mission/M003_joint_routability_closure/g2_joint_design_freeze_2026-10-18.md",
+        "bytes": 11044,
+        "sha256": "4424c426859b6b1e64be2f52a008ff6c03e1a6854f71570970cbba4941fff709"
+      },
+      "preserved": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/sources/4424c426859b6b1e64be2f52a008ff6c03e1a6854f71570970cbba4941fff709_g2_joint_design_freeze_2026-10-18.md",
+        "bytes": 11044,
+        "sha256": "4424c426859b6b1e64be2f52a008ff6c03e1a6854f71570970cbba4941fff709"
+      },
+      "both_identity_match": true
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/probe_inputs/fixture.xdc",
+        "bytes": 142,
+        "sha256": "6ded779d0f77f7c59784c0f605cefbfa5a50a0e54419a28f3142cbfb85ed8f0b"
+      },
+      "preserved": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/sources/6ded779d0f77f7c59784c0f605cefbfa5a50a0e54419a28f3142cbfb85ed8f0b_fixture.xdc",
+        "bytes": 142,
+        "sha256": "6ded779d0f77f7c59784c0f605cefbfa5a50a0e54419a28f3142cbfb85ed8f0b"
+      },
+      "both_identity_match": true
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/probe_inputs/helper.tcl",
+        "bytes": 516,
+        "sha256": "cf2ed6c52fb0eeb7ddc6697cf6ccaf48bcd52e11c0f281431655644ec01dd965"
+      },
+      "preserved": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/sources/cf2ed6c52fb0eeb7ddc6697cf6ccaf48bcd52e11c0f281431655644ec01dd965_helper.tcl",
+        "bytes": 516,
+        "sha256": "cf2ed6c52fb0eeb7ddc6697cf6ccaf48bcd52e11c0f281431655644ec01dd965"
+      },
+      "both_identity_match": true
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/probe_inputs/launch.py",
+        "bytes": 446,
+        "sha256": "5842209fa96a14d5a4bbc69d83bdd6e6508e2c5253908d62835cfe4dc622a4a0"
+      },
+      "preserved": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/sources/5842209fa96a14d5a4bbc69d83bdd6e6508e2c5253908d62835cfe4dc622a4a0_launch.py",
+        "bytes": 446,
+        "sha256": "5842209fa96a14d5a4bbc69d83bdd6e6508e2c5253908d62835cfe4dc622a4a0"
+      },
+      "both_identity_match": true
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/probe_inputs/probe.tcl",
+        "bytes": 2596,
+        "sha256": "11eca2a8b65af009cb2eabbef873c8e352f71e0c2bf43ea280528961dade31cc"
+      },
+      "preserved": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/sources/11eca2a8b65af009cb2eabbef873c8e352f71e0c2bf43ea280528961dade31cc_probe.tcl",
+        "bytes": 2596,
+        "sha256": "11eca2a8b65af009cb2eabbef873c8e352f71e0c2bf43ea280528961dade31cc"
+      },
+      "both_identity_match": true
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/probe_inputs/top.v",
+        "bytes": 99,
+        "sha256": "4380e15d5cc19d6585cec792f83e3f09e8e5f2e24611a8ee03c2d131738c0e55"
+      },
+      "preserved": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/sources/4380e15d5cc19d6585cec792f83e3f09e8e5f2e24611a8ee03c2d131738c0e55_top.v",
+        "bytes": 99,
+        "sha256": "4380e15d5cc19d6585cec792f83e3f09e8e5f2e24611a8ee03c2d131738c0e55"
+      },
+      "both_identity_match": true
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_attention_board_cohort16_core.sv",
+        "bytes": 40661,
+        "sha256": "672d37c9a5d02161affec0b8c4fd753d598cd7621ee3e544e4ccd55fd2cdaf57"
+      },
+      "preserved": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/sources/672d37c9a5d02161affec0b8c4fd753d598cd7621ee3e544e4ccd55fd2cdaf57_hap_attention_board_cohort16_core.sv",
+        "bytes": 40661,
+        "sha256": "672d37c9a5d02161affec0b8c4fd753d598cd7621ee3e544e4ccd55fd2cdaf57"
+      },
+      "both_identity_match": true
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_weight_meta_resident.sv",
+        "bytes": 7299,
+        "sha256": "55f3e8ef6e16933bbfea9c6e76fb47f5f1015d5a1bf5de69323d319cc44501f3"
+      },
+      "preserved": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/sources/55f3e8ef6e16933bbfea9c6e76fb47f5f1015d5a1bf5de69323d319cc44501f3_hap_weight_meta_resident.sv",
+        "bytes": 7299,
+        "sha256": "55f3e8ef6e16933bbfea9c6e76fb47f5f1015d5a1bf5de69323d319cc44501f3"
+      },
+      "both_identity_match": true
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/mlp/hap_mlp_shared_dual_slice16x12_s44_s54.sv",
+        "bytes": 123051,
+        "sha256": "5829f33fb3314906a2026eccca46e599bd16409a66e1a912c04dfa2187a66157"
+      },
+      "preserved": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/sources/5829f33fb3314906a2026eccca46e599bd16409a66e1a912c04dfa2187a66157_hap_mlp_shared_dual_slice16x12_s44_s54.sv",
+        "bytes": 123051,
+        "sha256": "5829f33fb3314906a2026eccca46e599bd16409a66e1a912c04dfa2187a66157"
+      },
+      "both_identity_match": true
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_native_init.py",
+        "bytes": 2368,
+        "sha256": "9442b534fcec165fcac2bc0fe4560eadb6f2bd7cd42b462834e1f9869a9959d9"
+      },
+      "preserved": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/sources/9442b534fcec165fcac2bc0fe4560eadb6f2bd7cd42b462834e1f9869a9959d9_m003_native_init.py",
+        "bytes": 2368,
+        "sha256": "9442b534fcec165fcac2bc0fe4560eadb6f2bd7cd42b462834e1f9869a9959d9"
+      },
+      "both_identity_match": true
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m003_owned.py",
+        "bytes": 8381,
+        "sha256": "080b26ce0d315bad08bcc8518daa0fcb30930b7f04ab82991729b8a464e24abf"
+      },
+      "preserved": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/sources/080b26ce0d315bad08bcc8518daa0fcb30930b7f04ab82991729b8a464e24abf_run_m003_owned.py",
+        "bytes": 8381,
+        "sha256": "080b26ce0d315bad08bcc8518daa0fcb30930b7f04ab82991729b8a464e24abf"
+      },
+      "both_identity_match": true
+    },
+    {
+      "original": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_managed_eda.py",
+        "bytes": 12813,
+        "sha256": "ef3cc774f30764a4b7f40eca073e4cf8f69a9704f860b0c813bfa88c2bc37839"
+      },
+      "preserved": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/sources/ef3cc774f30764a4b7f40eca073e4cf8f69a9704f860b0c813bfa88c2bc37839_run_managed_eda.py",
+        "bytes": 12813,
+        "sha256": "ef3cc774f30764a4b7f40eca073e4cf8f69a9704f860b0c813bfa88c2bc37839"
+      },
+      "both_identity_match": true
+    },
+    {
+      "original": {
+        "path": "/usr/bin/python3.12",
+        "bytes": 8020928,
+        "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+      },
+      "preserved": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/sources/e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f_python3.12",
+        "bytes": 8020928,
+        "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+      },
+      "both_identity_match": true
+    }
+  ],
+  "terminal_status": {
+    "execution_state": "completed",
+    "ended_utc": "2026-10-18T06:25:31.196862+00:00",
+    "native_exit_code": 0,
+    "stop_reason": null,
+    "owned_survivors": {},
+    "tracked_PID_start_identities": {
+      "344604": 7640857,
+      "344605": 7640861,
+      "344624": 7640864,
+      "344695": 7640875,
+      "344728": 7641455,
+      "344729": 7641594,
+      "344813": 7641608,
+      "344814": 7641731,
+      "344816": 7641732,
+      "344817": 7641732,
+      "344839": 7641736,
+      "344912": 7641748,
+      "344950": 7642330,
+      "344954": 7642482,
+      "344970": 7642485,
+      "345041": 7642497
+    },
+    "core_RTL_unchanged_during_job": true,
+    "max_RSS_bytes": 4573741056,
+    "no_wall_or_quiet_stop": true
+  },
+  "process_identity_recheck": [
+    {
+      "pid": 344604,
+      "recorded_start": 7640857,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 344605,
+      "recorded_start": 7640861,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 344624,
+      "recorded_start": 7640864,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 344695,
+      "recorded_start": 7640875,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 344728,
+      "recorded_start": 7641455,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 344729,
+      "recorded_start": 7641594,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 344813,
+      "recorded_start": 7641608,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 344814,
+      "recorded_start": 7641731,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 344816,
+      "recorded_start": 7641732,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 344817,
+      "recorded_start": 7641732,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 344839,
+      "recorded_start": 7641736,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 344912,
+      "recorded_start": 7641748,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 344950,
+      "recorded_start": 7642330,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 344954,
+      "recorded_start": 7642482,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 344970,
+      "recorded_start": 7642485,
+      "observed_start": null,
+      "recorded_identity_live": false
+    },
+    {
+      "pid": 345041,
+      "recorded_start": 7642497,
+      "observed_start": null,
+      "recorded_identity_live": false
+    }
+  ],
+  "native_prefix_receipt": {
+    "schema": "M003_current_native_INIT_prefix_v1",
+    "driver": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT007_native_tcl_and_complete_init_prefix_probe/native_project/type_probe.runs/impl_1/type_probe.tcl",
+      "bytes": 7200,
+      "sha256": "b6ef3234bf5248729aec39cc381f8f235ad06695a94f78df3ff443e42d7752dc"
+    },
+    "prefix": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT007_native_tcl_and_complete_init_prefix_probe/native_init_prefix.tcl",
+      "bytes": 6103,
+      "sha256": "729995c69f2477396d2ede8cd6300654588319b5dc9e74aef4d418c562f8ffa4"
+    },
+    "prefix_lines": 149,
+    "boundary": "complete native INIT end before native OPT phase start",
+    "original_unchanged": true,
+    "later_commands_in_prefix": false,
+    "native_execution_and_checkpoint_still_required": true
+  },
+  "exact_byte_prefix": true,
+  "reviewer_preserved_driver": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT007_init_prefix_cpu/type_probe.tcl",
+    "bytes": 7200,
+    "sha256": "b6ef3234bf5248729aec39cc381f8f235ad06695a94f78df3ff443e42d7752dc"
+  },
+  "reviewer_preserved_prefix": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT007_init_prefix_cpu/native_init_prefix.tcl",
+    "bytes": 6103,
+    "sha256": "729995c69f2477396d2ede8cd6300654588319b5dc9e74aef4d418c562f8ffa4"
+  },
+  "cpu_replay": {
+    "positive": {
+      "name": "actual_generated_driver_prefix_exact_bytes",
+      "passed": true
+    },
+    "negative_cases": [
+      {
+        "name": "missing_boundary",
+        "passed": true,
+        "error": "native driver lacks one exact INIT/OPT phase boundary"
+      },
+      {
+        "name": "duplicate_boundary",
+        "passed": true,
+        "error": "native driver lacks one exact INIT/OPT phase boundary"
+      },
+      {
+        "name": "missing_init_end_step",
+        "passed": true,
+        "error": "native INIT prefix lacks unique complete stage marker"
+      },
+      {
+        "name": "missing_init_phase_end",
+        "passed": true,
+        "error": "native INIT prefix lacks unique complete stage marker"
+      },
+      {
+        "name": "missing_link",
+        "passed": true,
+        "error": "native INIT has no link_design"
+      },
+      {
+        "name": "injected_opt_design",
+        "passed": true,
+        "error": "native INIT prefix contains a later implementation command"
+      },
+      {
+        "name": "injected_place_design",
+        "passed": true,
+        "error": "native INIT prefix contains a later implementation command"
+      },
+      {
+        "name": "injected_phys_opt_design",
+        "passed": true,
+        "error": "native INIT prefix contains a later implementation command"
+      },
+      {
+        "name": "injected_route_design",
+        "passed": true,
+        "error": "native INIT prefix contains a later implementation command"
+      },
+      {
+        "name": "injected_write_bitstream",
+        "passed": true,
+        "error": "native INIT prefix contains a later implementation command"
+      },
+      {
+        "name": "injected_start_step_opt_design",
+        "passed": true,
+        "error": "native INIT prefix contains a later implementation command"
+      }
+    ],
+    "tcl_syntax_complete": true
+  },
+  "native_marker_observation": {
+    ".init_design.begin.rst": true,
+    ".init_design.end.rst": true,
+    ".init_design.error.rst": false,
+    ".opt_design.begin.rst": false,
+    ".opt_design.end.rst": false
+  },
+  "native_pass_receipt": "native_type=TCL\nactual_init_applied=1\nrestore_apply_attempt_delta=0\nopt_command_started=0\ninit_prefix_native_completed=1\n",
+  "native_log_evidence": [
+    {
+      "line": 206,
+      "text": "Command: link_design -top type_probe -part xcvu9p-flga2104-2L-e"
+    },
+    {
+      "line": 215,
+      "text": "Sourcing Tcl File [/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/probe_inputs/fixture.xdc]"
+    },
+    {
+      "line": 216,
+      "text": "NATIVE_TCL_CONSTRAINT_PROBE_APPLIED attempts=1"
+    },
+    {
+      "line": 217,
+      "text": "Finished Sourcing Tcl File [/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/probe_inputs/fixture.xdc]"
+    },
+    {
+      "line": 230,
+      "text": "Command: open_checkpoint /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT007_native_tcl_and_complete_init_prefix_probe/probe_init_applied.dcp"
+    },
+    {
+      "line": 244,
+      "text": "INFO: [Project 1-853] Binary constraint restore complete."
+    },
+    {
+      "line": 252,
+      "text": "NATIVE_TCL_AND_COMPLETE_INIT_PREFIX_PROBE_PASS"
+    }
+  ],
+  "anchors": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/source_archive.json",
+      "bytes": 10227,
+      "sha256": "44bfee6d46e71d4fccbdabaee8dc93d806ab59e1ea3d859710d213d8a8f3bc4b"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/status.json",
+      "bytes": 674,
+      "sha256": "0ff205b68f24c2875ba0183d04e561131ba06e7a8547811d7d9df355ed6312ba"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/command.json",
+      "bytes": 3988,
+      "sha256": "ee43c3c6e0886daf0a2cba830aab4d16f9add27621947afa159206838cdad9b5"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/launcher.log",
+      "bytes": 19458,
+      "sha256": "cbe0e21443be505b78e6a678e32c145567612a92ea3a0ec8a8ba4ab81d323581"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT007_native_tcl_and_complete_init_prefix_probe/native_init_prefix.json",
+      "bytes": 905,
+      "sha256": "2d9c203c6f6908af0fa657c92728e4e489636a2c7cba20fbc4fc3e2380260ac4"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT007_native_tcl_and_complete_init_prefix_probe/native_constraint_type_pass.txt",
+      "bytes": 121,
+      "sha256": "9b03df9b2d672030ddbd120229ec5978b52726d6469485357428e78bc6befba8"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT007_native_tcl_and_complete_init_prefix_probe/evidence/jobs/native_type_probe/sources/9442b534fcec165fcac2bc0fe4560eadb6f2bd7cd42b462834e1f9869a9959d9_m003_native_init.py",
+      "bytes": 2368,
+      "sha256": "9442b534fcec165fcac2bc0fe4560eadb6f2bd7cd42b462834e1f9869a9959d9"
+    }
+  ],
+  "formal_requirements": [
+    "Preserve exact full generated production driver bytes in immutable report/attempt path, not only resettable impl run path.",
+    "Verify formal generated INIT hook/source closure has no optimization before strict INIT checks.",
+    "Bound absolute HAP_M003_SCRIPTS_DIR plus canonical TCL global implementation-only LATE registration.",
+    "Require actual completed apply and exact stored constraints before explicit opt; restore guard/counter before open_checkpoint.",
+    "Keep AT003 failure and sources unchanged; new recovery lineage must bind old 23 products/22 consumed and new native qualification."
+  ],
+  "limitations": [
+    "No reviewer EDA, DCP content or hashes, production changes or process/lock controls.",
+    "Toy pblock/member validation proves load/restore mechanism, not selected M2/A3/C01 roles/sites/properties or old80 protection.",
+    "Strict production G4/preplace and physical signoff remain open."
+  ]
+}

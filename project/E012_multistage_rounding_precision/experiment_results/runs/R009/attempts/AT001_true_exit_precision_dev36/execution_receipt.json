@@ -1,0 +1,11 @@
+{
+  "execution_state": "failed",
+  "native_exit_code": 1,
+  "pid": 879770,
+  "started_at": "2026-10-20T01:30:19.746801+00:00",
+  "ended_at": "2026-10-20T01:30:22.829750+00:00",
+  "gpu_wall_seconds": 3.0829456099891104,
+  "error": "",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/rounding_optimization/r009_run_lastlayer_precision.py\", line 122, in run\n    stage(out,'gpu_qualification_started');qualified=gpu_tests();write(out/'gpu_qualification.json',dict(**qualified,ended_at=now()));stage(out,'gpu_qualification_passed')\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/rounding_optimization/r009_qualification.py\", line 104, in gpu_tests\n    assert output.dtype==torch.int64 and torch.equal(output.cpu(),torch.tensor(expected,dtype=torch.int64))\nAssertionError\n",
+  "stop_reason": null
+}

@@ -1,0 +1,120 @@
+{
+  "observed_utc": "2026-10-19T07:50:11.228879+00:00",
+  "execution": "Independent candidate source/delta and targeted counterexample checks completed",
+  "verdict": "Strict native reset-semantic candidate accepted at the exact3 hashes; both new independent boundary issues closed. No additional user approval gate.",
+  "applicability": "Candidate validation logic/collector/serialization, not actual fulltop native qualification or G4",
+  "review": "Source delta and CPU scope accepted; final production freeze and corrected33-entry run awaiting actual receipts",
+  "candidates": {
+    "checks": {
+      "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/m003_joint_checks.reset_semantics.tcl.proposed",
+      "bytes": 45760,
+      "sha256": "f5dc49c682c56129f593e3a6ad1a2eb768ce87ed8efe3771bf714c657cfd1d09"
+    },
+    "evidence": {
+      "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/m003_joint_evidence.reset_semantics.py.proposed",
+      "bytes": 36631,
+      "sha256": "7f8a7186558e566d4f6fdd11460b30fc68936e9218a0e0d5d38c63ece10bee05"
+    },
+    "stream": {
+      "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/m003_snapshot_stream.reset_semantics.tcl.proposed",
+      "bytes": 4280,
+      "sha256": "71e2524bd095e92a70ef2e075d901245b623e1ebd901494a656d20f18bda789c"
+    }
+  },
+  "bases": [
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/reset_semantics_application_evidence/8d3aa4c0922ed70787dc69fc924a00244408a03e4a1cc0aacc87d4af93c06619_m003_joint_checks.tcl",
+      "bytes": 37696,
+      "sha256": "8d3aa4c0922ed70787dc69fc924a00244408a03e4a1cc0aacc87d4af93c06619"
+    },
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/reset_semantics_application_evidence/1cd52b116dceb49439d7f3e94d251d6b700ca9ecbc448419a1ca20d13cae1ba2_m003_joint_evidence.py",
+      "bytes": 28511,
+      "sha256": "1cd52b116dceb49439d7f3e94d251d6b700ca9ecbc448419a1ca20d13cae1ba2"
+    },
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/reset_semantics_application_evidence/2fbff533e58031d1e683c086614540cf36a3d984ed040230777a1575a799ee47_m003_snapshot_stream.tcl",
+      "bytes": 4263,
+      "sha256": "2fbff533e58031d1e683c086614540cf36a3d984ed040230777a1575a799ee47"
+    }
+  ],
+  "scope_proofs": [
+    "Tcl exact byte reconstruction equals old source after removing new reset namespace/one run call and already reviewed NAME count/nonempty guard",
+    "Python entire AST equals old source after excluding new validator and reverting exactly fixture guard/new native reset call",
+    "Stream exact byte reconstruction differs only by new reset_provenance section",
+    "Native entry test exact prechange SHA reconstructed by removing4 new isolated early-source/reset stubs; all other bytes including3 payload error assertions unchanged"
+  ],
+  "preserved_old_variants": [
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/reset_semantics_application_evidence/db35df2806d9d2674269efac8debd507df7428b22ff567aa410240fb036ac903_m003_joint_evidence.py",
+      "bytes": 36311,
+      "sha256": "db35df2806d9d2674269efac8debd507df7428b22ff567aa410240fb036ac903"
+    },
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/reset_semantics_application_evidence/7e040ddcbb2c3bbcbaaf272502bbbc7a7b48a171e59d454a5521d8347066b522_m003_joint_checks.tcl",
+      "bytes": 45024,
+      "sha256": "7e040ddcbb2c3bbcbaaf272502bbbc7a7b48a171e59d454a5521d8347066b522"
+    },
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/reset_semantics_application_evidence/2f654fa30ac8a72bdae41576d7c895cf37016fb523427b1404d63268975be30c_m003_joint_evidence.reset_semantics.py.proposed",
+      "bytes": 36539,
+      "sha256": "2f654fa30ac8a72bdae41576d7c895cf37016fb523427b1404d63268975be30c"
+    },
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/reset_semantics_application_evidence/f5dc49c682c56129f593e3a6ad1a2eb768ce87ed8efe3771bf714c657cfd1d09_m003_joint_checks.reset_semantics.tcl.proposed",
+      "bytes": 45760,
+      "sha256": "f5dc49c682c56129f593e3a6ad1a2eb768ce87ed8efe3771bf714c657cfd1d09"
+    }
+  ],
+  "fixture_test_current": {
+    "path": "project/hardware/tests/test_m003_native_entry_repair.py",
+    "bytes": 29158,
+    "sha256": "ba1a6ff44e2bdbe29d98c3988c7d16c2a8dc748084658dea7a38644b2334b193"
+  },
+  "fixture_previous_exact_SHA": "fcbc050387a64e0a231f21c1ddb5a48f18bc2755ac387d26099c67f1254463e6",
+  "independent_new_checks": [
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/reset_semantic_candidate_v2_depth_and_error_cleanup_independent.json",
+      "bytes": 2039,
+      "sha256": "e9fd87bdfbac7fc458c7b201715807462e02be04af517b08d87054aa044c7ecc"
+    },
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/reset_semantic_candidate_v2_native_constant_pin_independent.json",
+      "bytes": 1129,
+      "sha256": "2d9b3ad937e11e79c213c4df7bb2b762de1c99f12c7ace00c233ed4c25afd052"
+    }
+  ],
+  "closed_counterexamples": [
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/reset_semantic_candidate_depth_cache_counterexample.json",
+      "bytes": 1602,
+      "sha256": "6ff9ca265ded26aee0b64b896fb6cb2322d9668bf1400b7f0478c67a60ee3df8"
+    },
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/reset_semantic_candidate_constant_pin_counterexample.json",
+      "bytes": 1298,
+      "sha256": "a3117e09556e40691581818314726c4bbb30e9f0a1f154e906ed1f192a4c5456"
+    }
+  ],
+  "owner_original_logs": [
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/reset_semantics_application_evidence/ordinary_qualification_tests.log",
+      "bytes": 195,
+      "sha256": "9595952505b1da83fcc2e08dfef6f81dd653dfd5f4c74b5c3c84165544f0ce0d"
+    },
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/reset_semantics_application_evidence/ordinary_native_entry_tests.log",
+      "bytes": 1504,
+      "sha256": "e7e2c22a81144721ae894c4c6cd6ff4f39533ac38386d0c60491555d8939d724"
+    }
+  ],
+  "owner95_scope": "Original v1 native-semantic candidate had95 fixture tests pass; final corrections are confined to native helper and collector, fixture branch AST unchanged. A007 did not repeat95.",
+  "owner33_scope": "Original33 invocation failed importtests and isolated payload preconditions; exact4-line fixture correction is accepted, corrected actual33 log remains pending.",
+  "raw_property_rules": "Cell inversion must be present string; empty/NOT_SUPPORTED preserved. Actual CLR pin boolean mandatory; known cell/pin contradiction rejected. FDCE andINIT0 mandatory.",
+  "semantic_rules": "Same-call exact51 endpoints/4-kind graph provenance, source counts/directions/owner/pin/group correspondence and independent reset root required; derive truth through LUTs/constants, XOR native pin inversion; require (1,0). Missing or malformed evidence rejects.",
+  "bounded_work": "Unique-group cache rebuilt each call, <=16nodes64inputs, longest path depth4 checked even cached, all handles/counters clear on success/error, original error propagation retained.",
+  "G4": false,
+  "whole_snapshot_read_by_A007": false,
+  "DCP_read_or_EDA_by_A007": false,
+  "unchanged128_or_AT023_tests_repeated_by_A007": false
+}

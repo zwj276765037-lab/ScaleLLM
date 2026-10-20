@@ -1,4 +1,5 @@
 set script_dir [file dirname [file normalize [info script]]]
+source [file join $script_dir m003_system_python.tcl]
 set root [file normalize [file join $script_dir ../..]]
 set project_name scalellm_vcu118_f05
 set bd_name scalellm_vcu118_f05_bd
@@ -7,6 +8,8 @@ set board_xdc [file join $root vivado constraints attention_mlp_vcu118_board_v5.
 set ddr_pin_xdc [file join $root vivado constraints vcu118_ddr4_explicit_pins.xdc]
 set clock_xdc [file join $root vivado constraints board_clock_domains.xdc]
 set m002_xdc [file join $root vivado constraints ddr_timing_recovery.xdc]
+set m003_xdc [file join $root vivado constraints m003_joint_locality.xdc]
+set m003_inputs [split [m003_python [file join $script_dir m003_entry.py] list-sources] "\n"]
 set validate_only 0
 if {[info exists ::env(HAP_BD_VALIDATE_ONLY)]} {set validate_only $::env(HAP_BD_VALIDATE_ONLY)}
 if {$validate_only ni {0 1}} {error "HAP_BD_VALIDATE_ONLY must be 0 or 1"}
@@ -53,7 +56,7 @@ if {![string match [file join $report_base *] $report_dir] ||
     [file exists [file join $report_dir constructor_inputs.sha256]]} {
     error "Report directory is missing or already used: $report_dir"
 }
-foreach path [list $manifest $board_xdc $ddr_pin_xdc $clock_xdc $m002_xdc] {
+foreach path [list $manifest $board_xdc $ddr_pin_xdc $clock_xdc $m002_xdc $m003_xdc {*}$m003_inputs] {
     if {![file isfile $path] || [file size $path] == 0} {
         error "Missing board input $path"
     }
@@ -270,7 +273,7 @@ set inputs [concat [dict keys [dict get $closure manifests]] \
     [dict keys [dict get $closure sources]] $board_files \
     [list [info script] [file join $script_dir run_vcu118_board.sh] \
         [file join $script_dir emit_current_board_evidence.py] \
-        $board_xdc $ddr_pin_xdc $clock_xdc $m002_xdc]]
+        $board_xdc $ddr_pin_xdc $clock_xdc $m002_xdc $m003_xdc {*}$m003_inputs]]
 set input_handle [open [file join $report_dir constructor_inputs.sha256] w]
 foreach path [lsort -unique $inputs] {
     if {![file isfile $path] || [file size $path] == 0} {
@@ -309,6 +312,11 @@ add_files -norecurse -fileset constrs_1 $ddr_pin_xdc
 add_files -norecurse -fileset constrs_1 $m002_xdc
 add_files -norecurse -fileset constrs_1 $clock_xdc
 set_property PROCESSING_ORDER LATE [get_files $clock_xdc]
+add_files -norecurse -fileset constrs_1 $m003_xdc
+set_property FILE_TYPE TCL [get_files $m003_xdc]
+set_property USED_IN_SYNTHESIS false [get_files $m003_xdc]
+set_property USED_IN_IMPLEMENTATION true [get_files $m003_xdc]
+set_property PROCESSING_ORDER LATE [get_files $m003_xdc]
 # Legacy native025 physical XDCs remain preserved, outside the M002 input set.
 update_compile_order -fileset sources_1
 

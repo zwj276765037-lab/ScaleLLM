@@ -1,0 +1,115 @@
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/prechange_RTL/hap_weight_meta_resident.sv
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_weight_meta_resident.sv
+@@ -5,11 +5,14 @@
+ // the two external DDR channels.
+ module hap_weight_meta_resident #(
+     parameter integer DEPTH = 81920,
+-    parameter integer ADDR_W = 17
++    parameter integer ADDR_W = 17,
++    parameter integer LOCAL_ADDR_COPIES = 0
+ ) (
+     input  wire                  clk,
+     input  wire                  rst_n,
+     input  wire                  clear,
++    input  wire                  addr_system_clear,
++    input  wire                  addr_launch,
+     input  wire                  wr_valid,
+     output wire                  wr_ready,
+     input  wire [ADDR_W-1:0]     wr_addr,
+@@ -26,7 +29,6 @@
+     output reg                   error
+ );
+ 
+-    (* ram_style = "ultra" *) reg [255:0] meta_mem [0:DEPTH-1];
+     reg [255:0] rsp_meta_r;
+     reg rsp_valid_r;
+     // This register is the bank-local copy consumed by every URAM cascade
+@@ -71,12 +73,34 @@
+         end
+     endfunction
+ 
+-    always @(posedge clk) begin
+-        if (wr_fire)
+-            meta_mem[wr_addr] <= wr_meta16;
+-        if (rd_fire)
+-            rsp_meta_r <= meta_mem[rd_addr];
+-    end
++    generate
++        if (LOCAL_ADDR_COPIES == 1) begin : g_m003_width_slices
++            for (genvar slice_index = 0; slice_index < 2; slice_index = slice_index + 1) begin : g_slice
++                wire [ADDR_W-1:0] local_rd_addr;
++                (* keep_hierarchy = "yes" *)
++                hap_weight_meta_read_addr_copy #(.ADDR_W(ADDR_W)) u_addr (
++                    .clk(clk), .rst_n(rst_n),
++                    .system_clear(addr_system_clear), .launch(addr_launch),
++                    .rsp_fire(rsp_fire), .addr(local_rd_addr)
++                );
++                (* ram_style = "ultra" *) reg [127:0] meta_mem [0:DEPTH-1];
++                always @(posedge clk) begin
++                    if (wr_fire)
++                        meta_mem[wr_addr] <= wr_meta16[slice_index*128 +: 128];
++                    if (rd_fire)
++                        rsp_meta_r[slice_index*128 +: 128] <= meta_mem[local_rd_addr];
++                end
++            end
++        end else begin : g_original_store
++            (* ram_style = "ultra" *) reg [255:0] meta_mem [0:DEPTH-1];
++            always @(posedge clk) begin
++                if (wr_fire)
++                    meta_mem[wr_addr] <= wr_meta16;
++                if (rd_fire)
++                    rsp_meta_r <= meta_mem[rd_addr];
++            end
++        end
++    endgenerate
+ 
+     always @(posedge clk or negedge rst_n) begin
+         if (!rst_n) begin
+@@ -96,7 +120,7 @@
+         end else begin
+             // Registered occupancy token.  It changes only after a locally
+             // observed request/response event and therefore keeps the URAM
+-            // enable cone entirely inside the SLR2 metadata pblock.
++            // enable cone entirely inside the metadata bank.
+             if (rd_fire)
+                 rd_port_open_r <= 1'b0;
+             else if (rsp_fire)
+@@ -126,3 +150,38 @@
+     end
+ 
+ endmodule
++
++
++// M003 C-A3: independent same-edge memory-side address state.
++// Only the address FF and the two local control LUTs are protected.
++// system_clear intentionally excludes abort-only datapath_clear.
++module hap_weight_meta_read_addr_copy #(
++    parameter integer ADDR_W = 17
++) (
++    input wire clk,
++    input wire rst_n,
++    input wire system_clear,
++    input wire launch,
++    input wire rsp_fire,
++    output wire [ADDR_W-1:0] addr
++);
++    (* KEEP = "yes" *) wire local_ce;
++    (* KEEP = "yes" *) wire local_increment;
++    (* DONT_TOUCH = "yes" *)
++    LUT3 #(.INIT(8'hfe)) u_local_ce (
++        .I0(system_clear), .I1(launch), .I2(rsp_fire), .O(local_ce)
++    );
++    (* DONT_TOUCH = "yes" *)
++    LUT2 #(.INIT(4'h2)) u_local_increment (
++        .I0(rsp_fire), .I1(system_clear), .O(local_increment)
++    );
++    (* DONT_TOUCH = "yes", KEEP = "yes", SHREG_EXTRACT = "NO" *)
++    reg [ADDR_W-1:0] address_r;
++    always @(posedge clk or negedge rst_n) begin
++        if (!rst_n)
++            address_r <= {ADDR_W{1'b0}};
++        else if (local_ce)
++            address_r <= local_increment ? address_r + 1'b1 : {ADDR_W{1'b0}};
++    end
++    assign addr = address_r;
++endmodule

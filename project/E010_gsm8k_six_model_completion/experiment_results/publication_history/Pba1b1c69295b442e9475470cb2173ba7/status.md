@@ -1,0 +1,25 @@
+# E010：ACC停止保持，QDQ有限速度诊断运行
+
+execution_state: paused
+repair_state: running_bounded_shared_QDQ_diagnostic
+verdict: inconclusive
+
+R003监督与ACC worker已退出，matrix hold及timer enabled=false保持。生产CPU修复、consumer和parent核验通过；BF16四题诊断已完整结束，速度与raw输出一致性获得实测。
+
+当前仅a8w4_fp32四题train/64token诊断worker 42122（2026-10-18T11:27:56.507039+00:00），保留原生QDQ重建/全部15阶段/fullbytes/nativev2；原项目锁/固定UUID/显存保留/host保留保持。yqh23186只观察不控制。
+
+之后做独立终态复核和修复报告；仍不自动恢复ACC，不将诊断当作全30组资格或完整GSM8K精度。未来候选配置source/gsm8k_execution_bytewise_integrity_20261018仅prepared_not_running，未创建R004。
+
+---
+Published: 2026-10-18T11:29:53.701797+00:00
+Publication: P8d013f2c9106490d83488e28f80592fe
+Execution state: paused
+Research verdict: inconclusive
+Applicability: ACC用户暂停；生产速度修复CPU及共享GPU合成通过；8B训练速度诊断运行中，不能视为正式ACC或独占资格
+Evidence:
+- project/E010_gsm8k_six_model_completion/experiment_results/user_stop/performance_repair_20261018T105736Z/receipt.json
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/parent_pre_model_validation.json
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/gpu0_shared_synthetic_AT001/execution/result.json
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/shared_model_diag_AT001/bf16/execution/started.json
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/shared_model_diag_AT001/bf16/parent_independent_comparison_AT002.json
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/shared_model_diag_AT001/a8w4_fp32/execution/started.json

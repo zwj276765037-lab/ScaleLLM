@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "review_id": "A007_M003_E011_R004_AT001_v2_ENTRY_20261020",
+  "observed_utc": "2026-10-20T08:26:57.028433+00:00",
+  "reviewer": "A007 /root/m002_physical_architecture_review",
+  "execution": {
+    "state": "completed",
+    "scope": "One bounded incremental entry review; CPU fixtures and frozen small-file identity checks only",
+    "native_EDA_invoked": false,
+    "process_control": false,
+    "live_polling_or_observer": false,
+    "DCP_read_or_rehashed": false,
+    "old_scalar_full_suite_rerun": false
+  },
+  "verdict": {
+    "no_substantive_blocker": true,
+    "decision": "Accept exact v2 package as entry to already authorized failed-route read-only localization",
+    "remaining_blockers": [],
+    "final_route_success": false,
+    "new_implementation_or_design_change_authorized": false,
+    "user_additional_approval_required": false
+  },
+  "applicability": {
+    "mission": "M003",
+    "experiment": "E011",
+    "run": "R004",
+    "attempt": "AT001_failed_route_driver_region_localization",
+    "package": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/failed_route_localization_v2/query_package.json",
+      "bytes": 8374,
+      "sha256": "71c7aa76a7025ed8fad3af6eb1530b3725d75ae9239e6fd16684010a9a28f2de"
+    },
+    "checkpoint": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT006_successful_place_POST_physopt_route_cwd_fixed/route_failed.dcp",
+      "bytes": 752616705,
+      "sha256": "6dbcd37e111441c575c02a38c4618f363fd52f39c2a4f06fec1138e919b0d3ac"
+    },
+    "actual_native_localization_results": "NOT_YET_AVAILABLE_AT_REVIEW",
+    "old_v1_package_not_accepted": "4f0467f14d5b993634fbe68eceb31766502ca234df2b15fc56ac6f75151abe4c"
+  },
+  "review": {
+    "state": "accepted_bounded_entry_only",
+    "independent_engineering_owner": "A018 /root/m003_sol61_verification",
+    "handoff": "Root/A018 may install the A007 gate at the frozen engineering-owned gate path and launch under existing authorization",
+    "gate_target": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R004/attempts/AT001_failed_route_driver_region_localization/evidence/independent_prelaunch_accepted.json",
+    "no_new_gate_for_existing_report_or_offline_subtype_interpretation": true
+  },
+  "evidence": {
+    "incremental_checks": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/R004_AT001_v2_incremental_checks_20261020.json",
+      "bytes": 11563,
+      "sha256": "52e4b2723fce4d2c3ed38efaf750bfdbfdc80e7ace921b3894b1b003170514c4"
+    },
+    "classification_CPU": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/R004_AT001_classification_CPU_increment_20261020.json",
+      "bytes": 6552,
+      "sha256": "6d45c1b5ff379d9b826cc24c1db6de39381ba8f97a116aac38e672e1a7fbcd75"
+    },
+    "owner_mapping_CPU": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R004/attempts/AT001_failed_route_driver_region_localization/evidence/mapping_missing_objects_targeted_CPU_fixture_v2.json",
+      "bytes": 2928,
+      "sha256": "5c139cf21ebd6538f18156dce913a900faab57e73b86aa237b5a1bf3d5b9529d"
+    },
+    "prepare_receipt": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R004/attempts/AT001_failed_route_driver_region_localization/evidence/complete_prelaunch_receipt_v2.json",
+      "bytes": 1353,
+      "sha256": "ced85b20e216b0fe6d8f5020097d873d0fa8279ffea8a093e859bb8c6377d783"
+    },
+    "prepared_command": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R004/attempts/AT001_failed_route_driver_region_localization/evidence/prepared_owned_command_v2.json",
+      "bytes": 10459,
+      "sha256": "ebb5c5efc66ef5d1ecaf5eedde549af8203c922dcc54859b7dd7a42524edf020"
+    },
+    "collector": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/failed_route_localization_v2/device_and_routes.tcl",
+      "bytes": 5349,
+      "sha256": "e329a25a434e542e2379836b821266135662cb6e3c38206a2a8913325b75afdb"
+    },
+    "prior_AT006_bounded_review": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT006_route_failure_bounded_review_20261020.md",
+      "bytes": 6052,
+      "sha256": "75b3799bf323de66deb7270d2aa3408f0693eaa40fe5f05ec2b0dba6e5b1d4a4"
+    }
+  },
+  "fixed_finding": {
+    "original": "v1 get_nodes returned one node and get_tiles returned empty; zero data rows were written while complete_node_export=1. Final seed missing native objects also appeared as blank mapping fields.",
+    "fix": "v2 writes at least one row per selected node, with NOT_MEASURED tile and UNKNOWN SLR/clock region when needed; separates selected/exported node counts, node row count, unknown mapping count and region_mapping_complete. Missing final seeds carry explicit missing evidence.",
+    "independent_CPU_cases_passed": 6,
+    "cases": [
+      "original_node_without_tile",
+      "unknown_region",
+      "complete_known_mapping",
+      "cap_2048",
+      "cap_2049",
+      "empty_seed"
+    ],
+    "complete_export_vs_mapping": "complete_node_export=1 means all observed nodes exported; mapping can still be incomplete. region_mapping_complete is for the selected sample only; a complete whole-net mapped export additionally requires complete_node_export=1. Zero nodes is explicit node_count=0 with region_mapping_complete=0.",
+    "native_query_error_behavior": "get_nodes error is recorded as unavailable; an uncaught tile/property error reaches top-level native failure and cannot produce successful native completion."
+  },
+  "classification_review": {
+    "independent_CPU_cases_passed": 45,
+    "unchanged_code_reused_from_v1": true,
+    "coverage": "All 21 source-SLR/nonempty-load-set combinations, ambiguity/unknown/top-port/direction cases, retained constant/control types, high fanout census retention and bounded class sampling. Four exclusive endpoint classes sum to the canonical denominator; exclusive native type combinations also sum.",
+    "source1_multicast": "SOURCE1_MULTICAST_TO_0_AND_2 is separately counted from DIRECT_SOURCE_LOAD_0_TO_2. A source in SLR1 with loads in SLR0 and SLR2 demands both adjacent boundaries but does not imply one source-to-load path traverses both.",
+    "interpretation": "LOCAL_ENDPOINTS and adjacent/two-boundary categories describe minimum endpoint demand only. They do not prove actual route containment or establish where all resource conflicts occur.",
+    "raw_classification_subtypes": "Existing endpoint_class_coverage.json already emits two_boundary_subtypes; any offline exposition uses these/raw outputs without new native scope."
+  },
+  "scope_checks": {
+    "full_census": "Full native CONFLICTS collection and canonical alias/actual-leaf-pin/top-port census retained from reviewed scalar mechanism; no sample used to estimate primary module contribution.",
+    "scalar_mechanism": "Previously reviewed exact-name resolution, alias closure/cache, per-element NAME/handle verification and scalar-safe property path reused unchanged.",
+    "deep_limits": {
+      "top_groups": 20,
+      "nets_per_group": 4,
+      "nets_per_endpoint_class": 8,
+      "endpoint_classes": 4,
+      "literal_final_seeds": 36,
+      "unique_deep_net_upper_bound": 148,
+      "max_load_pins_for_deep": 4096,
+      "node_export_cap_per_net": 2048
+    },
+    "high_fanout": "Excluded from deep sample only, retained in the full census and denominator.",
+    "node_cap": "2048 bounds written node samples; get_nodes still obtains the full native node collection/count for each selected net.",
+    "full_overlap_node_mapping": "NOT_MEASURED",
+    "timing_queries": false,
+    "source_sink_cartesian_or_transitive_expansion": false,
+    "empty_supplements": "protection_queries/net_seed_queries/known_cross_slr_net_seeds empty; inherited unused old plan metadata does not execute old-DCP queries.",
+    "seed_identity": "36 literal net names and 10 final hotspot nodes match bound AT006 final-log top10 section, frozen plan and exact Tcl literals.",
+    "device_mapping": "Uses native SLR/clock-region/site/tile relations. No LOC, textual X/Y range or net-name inference; unknown native mappings retained.",
+    "light_vs_deep_completion": "attribution_manifest is written after light full census and before bounded route capture. final_native_deep_capture=false remains in that light manifest; native_completed.txt is the independent final deep-completion signal. Do not interpret light manifest as completed deep capture.",
+    "denominators": "Raw native conflict object count, canonical net count, reported 615840 and 797175 node overlaps remain separate; differences remain explicit, consumer/region incidence is non-additive."
+  },
+  "entry_checks": {
+    "package_exact_identity_verified": true,
+    "small_bindings_verified": 17,
+    "DCP_binding": "Owner actual HW-cwd prepare hashed full checkpoint; reviewer reused bound owner evidence and did not rehash/read DCP.",
+    "actual_HW_cwd_prepare_exit": 0,
+    "core_sources": 48,
+    "additional_runtime_sources": 10,
+    "actual_unique_archive_sources": 58,
+    "prepared_command_exact_source_set": true,
+    "fresh_report_namespace_at_review": true,
+    "launch_gate": "Requires no_substantive_blocker=true, exact package identity and exact A007 review identity before creating a fresh report/native launch.",
+    "prior_terminal_closure": "AT006 native1, natural failure, stop_reason=null, no owned survivors; 50 identity receipts ended, 205 current/archive source checks match, lock_free=true. Reviewer checked bound closure receipt only, no live process/lock polling.",
+    "resource_policy_reused": "A018 sole owner; CPU0-7/max8/nice5, RSS192GiB, MemAvailable48GiB/30s, disk30GiB, unique EDA lock, owned PID/start drain, no wall/silence stop; three RTL/G2 binding and source archives retained.",
+    "no_design_mutation": "No synth/opt/place/physopt/route/write_checkpoint/read_xdc/set_property/bitstream in executed diagnostic scope; only native read queries and CPU aggregation."
+  },
+  "result_limit": "This entry acceptance establishes neither successful native localization nor proof of the middle-SLR shared-corridor hypothesis. It authorizes no new design change or implementation and is not required before reporting already available native failure reports."
+}

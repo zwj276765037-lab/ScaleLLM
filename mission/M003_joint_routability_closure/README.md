@@ -1,7 +1,7 @@
 
 
 <!-- research-agent:navigation:begin -->
-生成时间（UTC）：2026-10-18T00:06:15.625771+00:00。来源修订：`943abfac7fc3`。
+生成时间（UTC）：2026-10-20T08:57:35.240611+00:00。来源修订：`cfb9c0cd3fc1`。
 
 # M003 · joint_routability_closure
 
@@ -21,18 +21,24 @@
 
 ## 关联实验
 
+- [E009 · m003_failed_net_attribution](../../project/E009_m003_failed_net_attribution/README.md) — completed
+- [E011 · m003_joint_routability_implementation](../../project/E011_m003_joint_routability_implementation/README.md) — running
 - 前置：[M002 · ddr_separation_and_timing_recovery](../M002_ddr_separation_and_timing_recovery/README.md)
 
 ## 任务总结原文摘录
 
-# M003：任务定义与当前状态
+# M003：联合可布线任务与当前状态
 
-2026-10-18，依据用户“定义成完整详细的mission”，已建立[联合可布线改造与完整实现验收合同](contract.md)及[验证矩阵](verification_matrix.md)。
+**2026-10-20最新：AT006已自然布线失败，原生Route35-2确认797175个重叠节点，最终route_status确认615840条资源冲突网。** 原尝试07:07:38Z监督结束native1/stop=null/owned_survivors空，route_failed.dcp及status/timing/congestion/DRC已保存；正式route POST未执行。完整place/physopt及其结构资格通过不代表可合法布通。现有证据显示局部跨SLR列需求0–1最高124%、1–2最高112%（对应总需求仅63.17%/62.30%），physopt占用CLB站点SLR0/1/2为96.71%/99.33%/99.90%，支持严重局部互连/打包压力；不将占用站点等同LUT槽耗尽，不将告警或top样本当唯一根因。用户随后明确要求“详细定位到底哪个地方无法布线成功”：A018已获派发，先现成报告离线归因，必要时新批次有界只读载入失败DCP，交付区域→模块→具体信号通路及覆盖/未知；不改RTL/XDC、不启动新implementation。单EDA、原资源保护及正常无墙钟/静默强停保持。M003整体未完成。
 
-execution_state: planned  
-verdict: unassessed  
-applicability: 本次仅完成任务定义；没有M003生产改动、仿真、EDA或新E/R/AT结果。  
-review: [独立文档审核](../../results/reviews/M003_definition_review_2026-10-18.md)已完成，两项歧义修订闭合，七个SM与主合同/矩阵一致；不能作为设计有效、布通成功或用户结果批准。
+[验证提速与执行决定](validation_efficiency_2026-10-19.md)
+
+[重启后恢复合同](server_restart_resume_2026-10-18.md) · [工程状态](../../project/E011_m003_joint_routability_implementation/experiment_status/summary.md)。
+
+execution_state: running  
+verdict: inconclusive  
+applicability: SM013固定查询及代表路径的适用范围已独立接受；报告精确对账仍OPEN。SM014设计与独立审核完成，G2已正式冻结；SM015/SM016限定功能/入口通过，SM017新综合后报告进行中，G4 OPEN。  
+review: Root限定接受现有证据用于设计及候选判断，不冒充用户技术结果批准。
 
 ## 对goal的作用
 
@@ -42,26 +48,19 @@ review: [独立文档审核](../../results/reviews/M003_definition_review_2026-1
 
 | 任务 | 交付 | 状态 |
 | --- | --- | --- |
-| [SM013](tasks/SM013.md) | 全量失败网分类和有限端点归因 | planned |
-| [SM014](tasks/SM014.md) | 四表、候选纳入/排除与联合设计冻结 | planned |
-| [SM015](tasks/SM015.md) | 选定RTL集中改造 | planned |
-| [SM016](tasks/SM016.md) | 新overlay/入口、协议数值回归与集成 | planned |
-| [SM017](tasks/SM017.md) | 新综合、结构资格和实现输入冻结 | planned |
-| [SM018](tasks/SM018.md) | 固定版本完整place→physopt→route | planned |
-| [SM019](tasks/SM019.md) | 验收矩阵、独立核查、总报告与交接 | planned |
-
-## 关键约束与待定选择
-
-MLP FIFO数据组织、Attention元数据地址、配套物理约束是重点评估对象；具体副本/银行/位置以及算术结构是否选入由SM013–014冻结，未预判有效。保持数值/ABI/DDR/100MHz与200MHz时钟、80保护和原时序目标；正常进程不设置墙钟/静默强停，单EDA及原资源保护不变。
-
-合法路由、时序规则、原目标余量、DRC/CDC/reset/IO/bus-skew分别验收，任一必要项未达则整体未完成。不生成bitstream、不上板、不运行GPU/PPL/ACC。当前没有本mission的布通或
+| [SM013](tasks/SM013.md) | 全量失败网分类和有限端点归因 | completed：固定查询证据限定接受；报告精确对账OPEN |
+| [SM014](tasks/SM014.md) | 四表、候选纳入/排除与联合设计冻结 | completed：G2设计冻结，M2+A3+C-P1 selected |
+| [SM015](tasks/SM015.md) | 选定RTL集中改造 | completed：G3a限定功能集成独立通过 |
+| [S
 
 （摘录截断；完整记录见链接。）
 
 ## 相关决定、变更与讨论
 
 - [README](../../results/README.md)
+- [hardware_metrics](../../results/hardware_metrics.md)
 - [overview](../../results/overview.md)
+- [review_queue](../../results/review_queue.md)
 
 本页是原记录的导航投影；登记、送达及局部结果不代表整体验收。
 

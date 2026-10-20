@@ -1,0 +1,32 @@
+{
+  "recorded_utc": "2026-10-20T07:16:29.508642+00:00",
+  "mission": "M003",
+  "experiment": "E011",
+  "user_instruction": "详细定位到底哪个地方无法布线成功",
+  "supersedes_scope": "prior report-only instruction permits detailed read-only diagnosis; no design modification or new implementation",
+  "engineering_owner": "/root/m003_sol61_verification (A018)",
+  "reviewer": "/root/m002_physical_architecture_review (A007), bounded read-only work when evidence/package is ready",
+  "scope": [
+    "Close AT006 original processes/source/lock and preserve all native failure evidence",
+    "Offline extract final directional windows,top overlap coordinates,nets and actual stage distinctions",
+    "Reuse proven E009 collector for bounded final-DCP read-only diagnostics if existing evidence lacks needed maps",
+    "Final conflict net canonical/alias/type counts and report615840 reconciliation with unknown differences preserved",
+    "Actual driver-module/sourceSLR/loadSLR primary groups; native hotspot tile to SLR/clockregion mapping",
+    "Only bounded top groups and fixed final-log seeds for exact driver/consumer routes,fanout,local/crossregion burden",
+    "Compare prior E009 groups only at same scope and denominator,retain old+22049OPEN difference",
+    "Deliver concrete region,module,net/data path table plus coverage and unmeasured limits"
+  ],
+  "prohibited": [
+    "RTL/XDC changes",
+    "new synthesis",
+    "new place/physopt/route implementation",
+    "overwriting old evidence",
+    "all-chip source-sink Cartesian products or unbounded timing queries",
+    "forcing normally advancing jobs to stop due wallclock or silence"
+  ],
+  "guards": "single EDA including compiler;CPU0-7/max8/nice5;RSS192GiB,MemAvailable48GiB30s,disk30GiB;ownedPID/start only;max3agents includingRoot,no descendants;other shared missions untouched",
+  "flow": "offline preparation->bounded query/source freeze and limited independent review->actual native diagnosis if necessary->terminal source/process/lock closure->independent raw-result check->user report",
+  "no_new_user_approval_required_for_this_read_only_scope": true,
+  "actual_new_EDA_launch_claimed": false,
+  "owner_dispatched_via": "collaboration.send_message accepted"
+}

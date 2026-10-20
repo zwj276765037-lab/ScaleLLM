@@ -1,0 +1,58 @@
+{
+  "observed_utc": "2026-10-20T02:34:32.276438+00:00",
+  "status_present": false,
+  "resource_sample": {
+    "utc": "2026-10-20T02:34:31.562232+00:00",
+    "rss_bytes": 31244275712,
+    "mem_available_bytes": 486781165568,
+    "disk_free_bytes": 308428001280,
+    "processes": {
+      "858867": {
+        "ppid": 858866,
+        "pgrp": 858867,
+        "start_ticks": 14590286,
+        "rss_bytes": 166543360,
+        "cpu_ticks": 2848,
+        "nice": 5
+      },
+      "859095": {
+        "ppid": 858867,
+        "pgrp": 858867,
+        "start_ticks": 14593149,
+        "rss_bytes": 3235840,
+        "cpu_ticks": 0,
+        "nice": 5
+      },
+      "859114": {
+        "ppid": 859095,
+        "pgrp": 858867,
+        "start_ticks": 14593153,
+        "rss_bytes": 3330048,
+        "cpu_ticks": 2,
+        "nice": 5
+      },
+      "859185": {
+        "ppid": 859114,
+        "pgrp": 858867,
+        "start_ticks": 14593165,
+        "rss_bytes": 31071166464,
+        "cpu_ticks": 1250559,
+        "nice": 5
+      }
+    }
+  },
+  "log_tail": "oduces this same information in a format that is better suited for automated scripts.\nINFO: [Timing 38-433] Consider using Xilinx recommended XPM_CDC modules to avoid Critical severities\nINFO: [Timing 38-314] The report_cdc command only analyzes and reports clock domain crossing paths where clocks have been defined on both source and destination sides. Ports with no input delay constraint are skipped. Please run check_timing to verify there are no missing clock definitions in your design, nor any unconstrained input port.\nreport_cdc: Time (s): cpu = 00:05:20 ; elapsed = 00:00:47 . Memory (MB): peak = 30673.957 ; gain = 0.000 ; free physical = 6635 ; free virtual = 472972\nWARNING: [Timing 38-164] This design has multiple clocks. Inter clock paths are considered valid unless explicitly excluded by timing constraints such as set_clock_groups or set_false_path.\nreport_clock_interaction: Time (s): cpu = 00:05:42 ; elapsed = 00:00:44 . Memory (MB): peak = 30673.957 ; gain = 0.000 ; free physical = 6622 ; free virtual = 472960\nINFO: [Timing 38-35] Done setting XDC timing constraints.\nreport_exceptions: Time (s): cpu = 00:15:52 ; elapsed = 00:04:20 . Memory (MB): peak = 30673.957 ; gain = 0.000 ; free physical = 6596 ; free virtual = 472944\nINFO: [Timing 38-35] Done setting XDC timing constraints.\nreport_pulse_width: Time (s): cpu = 00:09:11 ; elapsed = 00:02:46 . Memory (MB): peak = 30673.957 ; gain = 0.000 ; free physical = 6620 ; free virtual = 472970\nreport_bus_skew: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 30673.957 ; gain = 0.000 ; free physical = 6647 ; free virtual = 472999\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]} -filter {REF_PIN_NAME == \"D\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]} -filter {REF_PIN_NAME == \"C\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]} -filter {REF_PIN_NAME == \"CE\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]} -filter {REF_PIN_NAME == \"CLR\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]} -filter {REF_PIN_NAME == \"D\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]} -filter {REF_PIN_NAME == \"D\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0} -filter {REF_PIN_NAME == \"ADDR_B[10]\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0} -filter {REF_PIN_NAME == \"ADDR_B[11]\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0} -filter {REF_PIN_NAME == \"ADDR_B[12]\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_16} -filter {REF_PIN_NAME == \"ADDR_B[10]\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_16} -filter {REF_PIN_NAME == \"ADDR_B[11]\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_16} -filter {REF_PIN_NAME == \"ADDR_B[12]\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_20} -filter {REF_PIN_NAME == \"ADDR_B[10]\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_20} -filter {REF_PIN_NAME == \"ADDR_B[11]\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects [get_pins -quiet -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_20} -filter {REF_PIN_NAME == \"ADDR_B[12]\"}]]]'.\nWARNING: [Vivado 12-584] No ports matched '[get_ports -of_objects [get_nets -top_net_of_hierarchical_group -segments -of_objects {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/meta_read_addr_r_reg[0]/C}]]'.\n",
+  "artifacts": {
+    "admission_place.txt": true,
+    "integrity_place.json": true,
+    "place_result.txt": true,
+    "physopt_command_result.txt": true,
+    "physopt.dcp": true,
+    "route_command_result.txt": false,
+    "route.dcp": false,
+    "route_failed.dcp": false,
+    "state_physopt_actual.jsonl": true
+  },
+  "EDA_control": false,
+  "hourly_bounded_observation": true
+}

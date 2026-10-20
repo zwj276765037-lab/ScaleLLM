@@ -1,0 +1,30 @@
+# E009：AT003原生别名/冲突全集枚举中
+
+execution_state: running  
+verdict: inconclusive
+
+01:43:59Z CELL_INVENTORY_COMPLETE已核；本次native report仍547548冲突网，当前处理固定种子与冲突全集的segments闭包。singleton scalar修复保持逐元素身份资格，样本按固定包缓冲待canonical关闭，不提前记G1。无native_error/终态。
+
+native261951/start5879131，监督261857/start5878910、leader261861/start5879118；观察器60460/PID261974记录当前阶段。单EDA/CPU0–7/nice5/max8、原192GiB/48GiB持续30s/disk30GiB保护，无墙钟/静默强停。
+
+下一步闭合canonical全集、导出全端点并作唯一主组/union和有界深查；真实结果或自然异常时报告。自然终态用已审collector v3及raw audit v2复核后交A007 G1，当前无生产修改或候选选择。
+
+
+---
+Published: 2026-10-18T01:44:26.798966+00:00
+Publication: P39cc42220c8f4dca9f882964236c5798
+Execution state: running
+Research verdict: inconclusive
+Applicability: AT003 native cell inventory complete; frozen alias/conflict census in progress; actual closed identity qualification and G1 pending.
+Evidence:
+- project/E009_m003_failed_net_attribution/experiment_source/AT003_scalar_property_fix/prepared_manifest.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/native_start_observed.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/started.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/input_bindings.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/independent_prelaunch_accepted.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/delta_and_cpu_checks.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/observer_started.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/terminal_facts_v2.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/observer_terminal_facts.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/schema_and_route_status_observed.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/observer_events.jsonl

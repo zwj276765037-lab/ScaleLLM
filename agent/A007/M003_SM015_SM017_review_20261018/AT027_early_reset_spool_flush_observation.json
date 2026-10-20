@@ -1,0 +1,22 @@
+{
+  "observed_utc": "2026-10-19T08:00:56.323522+00:00",
+  "source": {
+    "path": "project/hardware/vivado/scripts/m003_snapshot_stream.tcl",
+    "bytes": 4280,
+    "sha256": "71e2524bd095e92a70ef2e075d901245b623e1ebd901494a656d20f18bda789c"
+  },
+  "actual63_row_input": {
+    "path": "project/hardware/vivado/reports/m003_E011_R002_AT026_fresh_core_reset_provenance/reset_provenance.jsonl",
+    "bytes": 169168,
+    "sha256": "4b46fd0c019a83c20ecb28d1acb6a3266c219e964b3578389716f57281333f87"
+  },
+  "CPU_output": "BEFORE 167936 59 0\nAFTER 169168 63 1\n",
+  "first_harness_attempt": {
+    "output": "BEFORE 167936 59 0\nAFTER 169168 63 0\n",
+    "exit_code": 1,
+    "cause": "Checker glob wrongly required a JSON space; corrected only matcher to accept native compact JSON. Not an AT027 failure."
+  },
+  "verdict": "Actual63-row data leaves disk-visible reset spool at167936 bytes/59 line fragments without complete, until channel close169168bytes/63rows with complete. Trace reset_provenance_complete alone is not whole on-disk table evidence. Final snapshot qualification unaffected.",
+  "current_AT027_action": "Keep frozen normal run; early marker triggers owner followup; read only actual complete rows and defer whole51 verdict if buffered. No stop/hotfix/new attempt.",
+  "future_optional_change": "One flush of this small section at completion, after normal frozen run, if early independently readable full table is desired."
+}

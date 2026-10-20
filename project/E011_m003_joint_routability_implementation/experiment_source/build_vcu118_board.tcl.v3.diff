@@ -1,0 +1,41 @@
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/prechange_entry/build_vcu118_board.tcl
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/build_vcu118_board.tcl
+@@ -73,6 +73,7 @@
+         /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu118/2.0/board.xml \
+         /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu118/2.0/part0_pins.xml \
+         /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu118/2.0/preset.xml]
++    foreach path [split [exec /usr/bin/python3 [file join $root vivado scripts m003_entry.py] list-sources] "\n"] {lappend paths $path}
+     foreach path [glob -nocomplain -directory [file join $root vivado manifests] *.list] {
+         lappend paths $path
+     }
+@@ -435,6 +436,8 @@
+ }
+ 
+ open_project $project_file
++source [file join $script_dir m003_joint_checks.tcl]
++m003::require_project
+ config_ip_cache -disable_cache
+ require_disabled_ip_cache
+ foreach name {
+@@ -442,6 +445,7 @@
+     vcu118_ddr4_explicit_pins.xdc
+     board_clock_domains.xdc
+     ddr_timing_recovery.xdc
++    m003_joint_locality.xdc
+ } {
+     set path [file normalize [file join $root vivado constraints $name]]
+     set active [get_files -quiet -of_objects [get_filesets constrs_1] $path]
+@@ -614,6 +618,13 @@
+     source [file join $script_dir m002_optimized_structure.tcl]
+     m002_optimized_structure synth $report_dir
+ }
++# Synthesis-only XDC registration is false; explicitly materialize the selected
++# implementation overlay on this opened synth graph for native qualification.
++# Implementation run later reads the same formally registered source itself.
++read_xdc [file join $root vivado constraints m003_joint_locality.xdc]
++m003::snapshot synth $report_dir
++exec /usr/bin/python3 [file join $script_dir m003_resource_budget.py] --report-dir $report_dir --output [file join $report_dir m003_same_stage_budget.json]
++report_control_sets -verbose -file [file join $report_dir m003_control_sets_synth.rpt]
+ close_design
+ 
+ if {$stage eq "place"} {

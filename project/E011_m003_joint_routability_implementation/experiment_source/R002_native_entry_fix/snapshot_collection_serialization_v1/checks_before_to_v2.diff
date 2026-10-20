@@ -1,0 +1,61 @@
+--- before083
++++ candidate6e2e
+@@ -309,11 +309,20 @@
+     set fields [list];dict for {k v} $d {lappend fields "[jq $k]:[jq $v]"};return \{[join $fields ,]\}
+ }
+ proc m003::jarray {rows} {set values [list];foreach row $rows {lappend values [jobject $row]};return \[[join $values ,]\]}
++# Empty native collections are evidence values; nonempty API errors propagate.
++proc m003::collection_property {property objects} {
++    if {![llength $objects]} {return [list]}
++    return [get_property $property $objects]
++}
++proc m003::memory_startpoint_names {terminal startpoints} {
++    if {[string match ADDR* $terminal] && ![llength $startpoints]} {error "M003 empty address startpoints: $terminal"}
++    return [collection_property NAME $startpoints]
++}
+ proc m003::cell_row {cell role extra} {
+     set d [dict create role $role NAME [get_property NAME $cell] REF_NAME [get_property REF_NAME $cell]]
+     set supported [list_property $cell]
+     foreach p {LOC BEL IS_LOC_FIXED IS_BEL_FIXED RLOC RLOC_ORIGIN MACRO_NAME DONT_TOUCH ORIG_CELL_NAME ORIG_REF_NAME USER_SLR_ASSIGNMENT} {dict set d $p [supported_prop $cell $p $supported]}
+-    dict set d PBLOCKS [get_property NAME [get_pblocks -quiet -of_objects $cell]]
++    dict set d PBLOCKS [collection_property NAME [get_pblocks -quiet -of_objects $cell]]
+     set loc [dict get $d LOC]
+     if {$loc ne "" && $loc ne "NOT_SUPPORTED"} {
+         set site [get_sites -quiet $loc]
+@@ -329,7 +338,7 @@
+     if {![llength $nets]} {error "M003 disconnected pin: $cell/$terminal"}
+     return $nets
+ }
+-proc m003::snapshot {phase out} {
++proc m003::snapshot_body {phase out} {
+     variable groups;variable spec_path;variable scripts;variable parent_scope;variable core_meta_scope
+     require_project
+     set r [resolve];set cells [list];set edges [list];set inputs [list];set pins [list];set controller [list];set pblocks [list];set boundaries [list];set target_sites [dict create];set helper_pins [list];set configs [list];set control_sources [dict create]
+@@ -397,7 +406,7 @@
+                 if {[string match ADDR* $terminal]} {set startpoints [all_fanin -quiet -flat -startpoints_only -to $pin]}
+                 set refs [list]
+                 foreach object $driver {lappend refs [get_property REF_NAME [get_cells -quiet -of_objects $object]]}
+-                lappend pins [dict create slice $index cell $cell pin $terminal drivers [get_property NAME $driver] driver_refs $refs startpoints [get_property NAME $startpoints] nets [get_property NAME $nets]]
++                lappend pins [dict create slice $index cell $cell pin $terminal drivers [get_property NAME $driver] driver_refs $refs startpoints [memory_startpoint_names $terminal $startpoints] nets [get_property NAME $nets]]
+             }
+             set props [open [file join $out m003_uram_properties_${phase}_[string map {/ _ . _ \[ _ \] _} $cell].tsv] w]
+             set config [dict create NAME $cell slice $index]
+@@ -457,3 +466,18 @@
+     close $h
+     m003_python [file join $scripts m003_joint_evidence.py] --snapshot [file join $out m003_native_${phase}.json] --spec $spec_path --output [file join $out m003_qualification_${phase}.json]
+ }
++
++# Preserve the native Tcl stack before returning the original error unchanged.
++proc m003::snapshot {phase out} {
++    set code [catch {snapshot_body $phase $out} message options]
++    if {$code == 1} {
++        set trace [file join $out m003_snapshot_${phase}_[pid]_error_info.txt]
++        if {[catch {
++            set handle [open $trace {WRONLY CREAT EXCL}]
++            puts $handle "errorcode=[dict get $options -errorcode]"
++            puts $handle [dict get $options -errorinfo]
++            close $handle
++        } trace_error]} {puts stderr "M003 snapshot trace preservation failed: $trace_error"}
++    }
++    return -options $options $message
++}

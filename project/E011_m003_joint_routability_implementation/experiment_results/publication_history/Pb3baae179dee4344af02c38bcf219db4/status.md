@@ -1,0 +1,18 @@
+# E011当前状态
+
+execution_state: running；verdict: inconclusive。当前无EDA活动，AT016原生命名/控制取证已自然成功并独立通过4d54ae64。生产7419/45manifest8b6未改；工程实验源083ac863严格原地址选择器候选CPU验证，联合回放仍在实际执行。
+
+完成候选/独立delta审核后保留旧源/manifest再应用，受影响测试与实际source qualification通过后新AT017 recover-synth（尚未登记/启动）。仅真实native0及完整apply/当前图/预算才freeze-recovered-synth，再新strictINIT/OPT/debug及特定包A007G4 no-blocker后新R003固定完整物理。普通修复连续，原资源/单EDA/无正常墙钟静默强停/禁区保持。
+
+---
+Published: 2026-10-18T11:18:45.138707+00:00
+Publication: P2d09dccc0c914c7cac73f51200ff4657
+Execution state: running
+Research verdict: inconclusive
+Applicability: AT01619address/4controls direct native facts and natural terminal independently accepted; strict selector experimental candidate only; native graph/apply/G4/physical pending
+Evidence:
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT016_fresh_core_original_address_attribution/evidence/AT016_closed_native_facts_and_terminal.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT016_fresh_core_original_address_attribution/evidence/actual_native_activation.json
+- project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/original_address_selector_v1/m003_joint_checks.tcl.proposed
+- project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/original_address_selector_v1/development_fixture_filename_error.json
+- project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/original_address_selector_v1/development_native_handle_fixture_error.json

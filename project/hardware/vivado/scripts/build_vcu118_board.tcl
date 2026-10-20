@@ -1,4 +1,5 @@
 set script_dir [file dirname [file normalize [info script]]]
+source [file join $script_dir m003_system_python.tcl]
 set root [file normalize [file join $script_dir ../..]]
 foreach name {HAP_JOBS HAP_PROJECT_DIR HAP_REPORT_DIR HAP_STAGE} {
     if {![info exists ::env($name)] || $::env($name) eq ""} {
@@ -73,6 +74,7 @@ proc source_files {root project_dir} {
         /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu118/2.0/board.xml \
         /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu118/2.0/part0_pins.xml \
         /home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu118/2.0/preset.xml]
+    foreach path [split [m003_python [file join $root vivado scripts m003_entry.py] list-sources] "\n"] {lappend paths $path}
     foreach path [glob -nocomplain -directory [file join $root vivado manifests] *.list] {
         lappend paths $path
     }
@@ -435,6 +437,8 @@ proc require_board_clock_groups {} {
 }
 
 open_project $project_file
+source [file join $script_dir m003_joint_checks.tcl]
+m003::require_project
 config_ip_cache -disable_cache
 require_disabled_ip_cache
 foreach name {
@@ -442,6 +446,7 @@ foreach name {
     vcu118_ddr4_explicit_pins.xdc
     board_clock_domains.xdc
     ddr_timing_recovery.xdc
+    m003_joint_locality.xdc
 } {
     set path [file normalize [file join $root vivado constraints $name]]
     set active [get_files -quiet -of_objects [get_filesets constrs_1] $path]
@@ -614,6 +619,14 @@ if {$stage eq "synth" && [info exists ::env(HAP_EXECUTION_PROFILE)] && $::env(HA
     source [file join $script_dir m002_optimized_structure.tcl]
     m002_optimized_structure synth $report_dir
 }
+# Synthesis-only XDC registration is false; explicitly materialize the selected
+# implementation overlay on this opened synth graph for native qualification.
+# Implementation run later reads the same formally registered source itself.
+source [file join $root vivado constraints m003_joint_locality.xdc]
+m003::require_actual_apply
+m003::snapshot synth $report_dir
+m003_python [file join $script_dir m003_resource_budget.py] --report-dir $report_dir --output [file join $report_dir m003_same_stage_budget.json]
+report_control_sets -verbose -file [file join $report_dir m003_control_sets_synth.rpt]
 close_design
 
 if {$stage eq "place"} {

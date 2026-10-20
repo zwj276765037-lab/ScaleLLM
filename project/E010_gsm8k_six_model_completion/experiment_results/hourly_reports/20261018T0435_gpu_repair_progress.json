@@ -1,0 +1,151 @@
+{
+  "captured_at": "2026-10-18T04:33:52.774936+00:00",
+  "formal_completed": 0,
+  "formal_total": 39570,
+  "R003_started": false,
+  "gpu0_bf16_prep_qualified": true,
+  "gpu0_qdq_prep": {
+    "schema": "scalellm_gsm8k_worker_manifest_v1",
+    "state": "starting",
+    "started_at": "2026-10-18T04:32:22.944978+00:00",
+    "pid": 309848,
+    "stage": "smoke",
+    "model": "Llama-3.1-8B-Instruct",
+    "case": "a8w4_fp32",
+    "output": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/weight_integrity_v1_gpu_smoke/Llama-3.1-8B-Instruct/a8w4_fp32/AT001",
+    "n_completed": 0,
+    "model_identity": {
+      "schema": "scalellm_checkpoint_identity_v1",
+      "created_at": "2026-10-18T01:49:06.695597+00:00",
+      "checkpoint_name": "Llama-3.1-8B-Instruct",
+      "resolved_path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+      "fingerprint_sha256": "f32c0adabc4443d374a0ebac6dcb0c5425b2e88aa84c54420ae040117794efe6",
+      "total_bytes": 16069773869,
+      "file_count": 14,
+      "files": [
+        {
+          "name": ".gitattributes",
+          "bytes": 1519,
+          "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+        },
+        {
+          "name": "LICENSE",
+          "bytes": 7627,
+          "sha256": "64e1b2889b7892e6bbe7a7ed5bfe6ff793c61f9d584345f8f41cf9f5cb30a369"
+        },
+        {
+          "name": "README.md",
+          "bytes": 41844,
+          "sha256": "ebf2d72071c75f9c9c089b66acd85a566f253c96941def6cd7800ffc4b4fe588"
+        },
+        {
+          "name": "USE_POLICY.md",
+          "bytes": 4691,
+          "sha256": "a568f2ebc73cec3fd74ba2afd992d4e945a8c7a9d851f9b66163aac834b7b859"
+        },
+        {
+          "name": "config.json",
+          "bytes": 855,
+          "sha256": "29e4c210b0d6ac178b16b2a255a568bdb23b581e50ca1ef6a6d071dd85704e6e"
+        },
+        {
+          "name": "generation_config.json",
+          "bytes": 184,
+          "sha256": "189fb0c0d7fd8a527db217c0a60a0e013f0394cd8800f9697a666a9e75e5f7fd"
+        },
+        {
+          "name": "model-00001-of-00004.safetensors",
+          "bytes": 4976698672,
+          "sha256": "2b1879f356aed350030bb40eb45ad362c89d9891096f79a3ab323d3ba5607668"
+        },
+        {
+          "name": "model-00002-of-00004.safetensors",
+          "bytes": 4999802720,
+          "sha256": "09d433f650646834a83c580877bd60c6d1f88f7755305c12576b5c7058f9af15"
+        },
+        {
+          "name": "model-00003-of-00004.safetensors",
+          "bytes": 4915916176,
+          "sha256": "fc1cdddd6bfa91128d6e94ee73d0ce62bfcdb7af29e978ddcab30c66ae9ea7fa"
+        },
+        {
+          "name": "model-00004-of-00004.safetensors",
+          "bytes": 1168138808,
+          "sha256": "92ecfe1a2414458b4821ac8c13cf8cb70aed66b5eea8dc5ad9eeb4ff309d6d7b"
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "bytes": 23950,
+          "sha256": "146776fce3f6db1103aa6f249e65ee5544c5923ce6f971b092eee79aa6e5d37b"
+        },
+        {
+          "name": "special_tokens_map.json",
+          "bytes": 296,
+          "sha256": "6f38c73729248f6c127296386e3cdde96e254636cc58b4169d3fd32328d9a8ec"
+        },
+        {
+          "name": "tokenizer.json",
+          "bytes": 9085657,
+          "sha256": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4"
+        },
+        {
+          "name": "tokenizer_config.json",
+          "bytes": 50870,
+          "sha256": "24e8a6dc2547164b7002e3125f10b415105644fcf02bf9ad8b674c87b1eaaed6"
+        }
+      ],
+      "model_spec": {
+        "name": "Llama-3.1-8B-Instruct",
+        "directory": "Llama-3.1-8B-Instruct",
+        "model_type": "llama",
+        "architecture": "LlamaForCausalLM",
+        "layers": 32,
+        "expected_per_op": {
+          "q_proj": 32,
+          "k_proj": 32,
+          "v_proj": 32,
+          "o_proj": 32,
+          "gate_proj": 32,
+          "up_proj": 32,
+          "down_proj": 32
+        },
+        "expected_module_count": 224,
+        "expected_weight_bits": {
+          "q_proj": 8,
+          "k_proj": 8,
+          "v_proj": 8,
+          "o_proj": 8,
+          "gate_proj": 4,
+          "up_proj": 4,
+          "down_proj": 4
+        }
+      }
+    },
+    "checkpoint_content_verified_at": "2026-10-18T04:32:58.726325+00:00"
+  },
+  "gpu1_matched_library_probe": {
+    "state": "running",
+    "pid": 310000,
+    "tests": [
+      {
+        "id": "h2d_00",
+        "reads": 158,
+        "wrong_bytes_first_read": 212966,
+        "bad_allocation_indices": [
+          46,
+          47,
+          48,
+          49,
+          50
+        ]
+      }
+    ]
+  },
+  "evidence_hashes": {
+    "project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_repair_20261018/AT001/audit.json": "46175842b12ceb22e735b61bbff74b30e2691c77e9df767de49285c632983301",
+    "project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_repair_20261018/AT002/actual_cuda_library.json": "d2ea9daf453a59642f67684173e173b9688de0fd00b5456465dae8a2a3e1b191",
+    "project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/weight_integrity_v1_gpu_smoke/Llama-3.1-8B-Instruct/bf16/AT001/postrun_receipt.json": "5827bc993bbcfec2ddaa9cabc6939c769768398d3f54ac72b7d9cc19725a3ee7",
+    "project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/protocol/integrity_v3_gpu_bf16_terminal_review_AT001.json": "4175d93dd834574bfa410cb61c729a2afdfc4522aa4784abe7e95409772e8b90",
+    "project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/weight_integrity_v1_gpu_smoke/Llama-3.1-8B-Instruct/a8w4_fp32/AT001/manifest.json": "216ecac1c464e3e4e8c2122d27293130a82d35f8fa15d8abc86f00704759964c"
+  }
+}

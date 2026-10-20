@@ -1,0 +1,17 @@
+{
+  "event_id": "EV_M005_R005_EXTENSION_QUALIFICATION_20261019",
+  "small_mission": "SM023",
+  "trigger": "milestone",
+  "summary": "用户授权完整补测与Python PNG；R005新增MLP/全词表/Top1模块完成CPU资格，旧批汇总254秒瓶颈已定位并以0.746秒等价统计验证替代流程",
+  "impact": "R004原失败和部分结果保留；1024篇新增指标须全部重采；尚无R005真实模型结果或精度通过结论",
+  "evidence": [
+    "project/E012_multistage_rounding_precision/experiment_results/runs/R005/run.md",
+    "project/E012_multistage_rounding_precision/experiment_results/runs/R005/qualification/logit_cpu/result.json",
+    "project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT001_cpu_summary_cost_qualification/evidence/original_tmp_execution/summary_cost.json"
+  ],
+  "affected": [
+    "SM023"
+  ],
+  "action": "在新冻结源及独立入口资格后启动独立900秒dev4 pilot，实测成本与只读性后冻结完整1024连续采集计划；最终交付一张实测PNG",
+  "requires_decision": false
+}

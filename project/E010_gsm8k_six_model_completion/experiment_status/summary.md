@@ -1,0 +1,30 @@
+# E010：ACC保持暂停，速度修复与有限验证已完成
+
+execution_state: paused
+repair_state: completed_limited_two_case_GPU_validation
+performance_verdict: supported_within_two_case_training_diagnostic_scope
+verdict: inconclusive（正式GSM8K补测未完成）
+
+原ACC监督13056/worker35181已停止；本轮GPU诊断40866/42122自然exit0并退出，项目GPU0锁已释放，最终NVML仅见yqh23186/attempt03约12146MiB。没有控制/通知/修改yqh任务，GPU1/M003/EDA未操作。
+
+生产修复、两例真实GPU验证、独立原始证据审核及120 CPU最终来源门通过，16源最终快照已保存。当前没有本项目GPU worker，ACC matrix仍hold；stop marker明确gpu0_acc_paused=true、automatic_acc_resume_allowed=false，小时提醒enabled=false。
+
+若用户后续要求恢复，应采用全新R和修复版完整来源身份，先核实际资源并保持yqh不动，再全30组smoke→pilot→formal；旧R003行/资格不复用。有限共享诊断不替代独占资源资格、30组门或正式独立复算。当前不自动恢复，不承诺完整矩阵ETA。
+
+2026-10-19用户追问历史literature_2048同ACC及量化反超。已完成CPU只读审计：五任务120项同模型比较，量化高18/低96/同6；相同显示值对应整数正确数确实相同。DeepSeek BoolQ四配置恰等于2033/3270多数类基线，但旧记录无逐题预测，不能确认全Yes；Qwen2.5较低两配置与设备ordinal1/批次混杂，缺physicalUUID、逐run代码/有效权重证明，因果待验证，不能归因当前GPU故障或量化噪声。30组协议/身份metadata基本一致、量化attach汇总匹配，未发现直接标签/位宽串用证据。详细见experiment_results/accuracy_table_audit_20261019/report.md与Q005。旧表分数未修改，无GPU/ACC/EDA恢复。
+
+
+---
+Published: 2026-10-19T00:52:05.588865+00:00
+Publication: Pdea2ae13b3cd4de7a8cf121e12f4a977
+Execution state: paused
+Research verdict: inconclusive
+Applicability: 速度修复在8B BF16/a8w4四题共享训练诊断及独立审核内成立；正式ACC暂停，未取得全矩阵资格；历史五任务表已只读核统计与协议，DeepSeek/Qwen异常因果仍OPEN
+Evidence:
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/performance_repair_report.md
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/release_sources.json
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/measured_model_results.json
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/independent_model_reviews_received.json
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/after_model_diagnostics_resources.json
+- project/E010_gsm8k_six_model_completion/experiment_results/accuracy_table_audit_20261019/report.md
+- project/E010_gsm8k_six_model_completion/experiment_results/accuracy_table_audit_20261019/parent_receipt.json

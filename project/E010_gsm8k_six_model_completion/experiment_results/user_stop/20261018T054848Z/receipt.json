@@ -1,0 +1,65 @@
+{
+  "requested_at": "2026-10-18T05:48:48.632595+00:00",
+  "instruction": "先停止所有GPU的实验",
+  "execution_state": "paused",
+  "scope": "ScaleLLM M004/E010: both GPUs, supplementation, diagnosis and maintenance",
+  "resume_requires_explicit_user_instruction": true,
+  "evidence": "project/E010_gsm8k_six_model_completion/experiment_results/user_stop/20261018T054848Z",
+  "captured_at": "2026-10-18T05:48:48.793167+00:00",
+  "project_gpu_workers_active": 0,
+  "project_matrix_launched": false,
+  "termination_signals_sent": [],
+  "hourly_enabled": false,
+  "r003_hold_active": true,
+  "r003_groups_completed": {
+    "smoke": 0,
+    "pilot": 0,
+    "formal": 0
+  },
+  "formal_rows_completed": 0,
+  "formal_rows_total": 39570,
+  "external_gpu_compute_remaining": {
+    "gpu": 0,
+    "pid": 306724,
+    "owner": "yqh",
+    "memory_MiB": 16896,
+    "action": "untouched; belongs to another user/project"
+  },
+  "whole_host_gpu_compute_stopped": false,
+  "m003_actions_taken": [],
+  "observations": [
+    {
+      "command": [
+        "bash",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/nvml_local_recovery_20261018/nvidia_smi_local.sh",
+        "--query-compute-apps=gpu_uuid,pid,process_name,used_memory",
+        "--format=csv,noheader"
+      ],
+      "exit_code": 0,
+      "stdout": "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6, 306724, /home/user/anaconda3/envs/zhouwenjun/bin/python, 16896 MiB\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ps",
+        "-p",
+        "306724,301764,309848,271368,315231,331396",
+        "-o",
+        "user,pid,ppid,stat,comm"
+      ],
+      "exit_code": 0,
+      "stdout": "USER         PID    PPID STAT COMMAND\nyqh       306724  306559 Rl   python\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ps",
+        "-eo",
+        "user,pid,ppid,comm,args"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

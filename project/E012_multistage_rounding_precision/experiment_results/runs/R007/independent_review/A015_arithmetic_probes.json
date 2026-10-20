@@ -1,0 +1,74 @@
+{
+  "schema": "m005_r007_A015_independent_arithmetic_probe_v1",
+  "execution_state": "completed",
+  "GPU_executed": false,
+  "scope": "independent Python integer/Fraction checks of proposed arithmetic; not an actual candidate/GPU/whole-model run",
+  "rne_exhaustive_signed_pairs": 106509,
+  "rne_matches_builtin_round_Fraction": true,
+  "rne_pointwise_nonimprovement_counterexample": {
+    "F24_terms": [
+      "507/4",
+      "3/4"
+    ],
+    "baseline_F24": 126,
+    "rne_F24": 128,
+    "exact_F24": "255/2",
+    "baseline_F16_code": 0,
+    "rne_F16_code": 1,
+    "reference_F16_code": 0
+  },
+  "physical_profile_bounds": {
+    "attention": {
+      "max_abs_raw": 67386708000,
+      "maximum_abs_F24_term": 16846677000,
+      "maximum_abs_partial_sum_bound": 2156374656000,
+      "positive_guard_limit": 2199023255551,
+      "positive_accumulator_limit": 2199023255551,
+      "same_accumulator_with_four_fractional_bits_guaranteed": false,
+      "conservative_extra4_guard_width": 46,
+      "conservative_extra4_accumulator_width": 46
+    },
+    "mlp_gate_up": {
+      "max_abs_raw": 4244832000,
+      "maximum_abs_F24_term": 67917312000,
+      "maximum_abs_partial_sum_bound": 8693415936000,
+      "positive_guard_limit": 68719476735,
+      "positive_accumulator_limit": 8796093022207,
+      "same_accumulator_with_four_fractional_bits_guaranteed": false,
+      "conservative_extra4_guard_width": 41,
+      "conservative_extra4_accumulator_width": 48
+    },
+    "mlp_down": {
+      "max_abs_raw": 4244832000,
+      "maximum_abs_F24_term": 17386831872000,
+      "maximum_abs_partial_sum_bound": 7789300678656000,
+      "positive_guard_limit": 17592186044415,
+      "positive_accumulator_limit": 9007199254740991,
+      "same_accumulator_with_four_fractional_bits_guaranteed": false,
+      "conservative_extra4_guard_width": 49,
+      "conservative_extra4_accumulator_width": 58
+    }
+  },
+  "PV_raw_absolute_bound": 34208286975,
+  "PV_K128_accumulator_absolute_bound": 4378660732800,
+  "QK_scaled_raw_absolute_bound": 811710997730426880,
+  "all_three_numerator_operations_fit_signed_int64": true,
+  "extra4_monotone_integer_probe_cases": 240,
+  "extra4_same_input_not_worse_cases": 240,
+  "extra4_probe_output_improved": 4,
+  "extra4_probe_output_equal": 236,
+  "QK_four_group_denominator8_cases": 65536,
+  "QK_rne_max_difference_from_fixed_floor_reference": 2,
+  "QK_original_floor_max_difference_from_fixed_floor_reference": 3,
+  "elapsed_seconds": 0.5565373860008549,
+  "sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/FPtoQ/experiment/v5_fullchain.py",
+      "sha256": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/gpu_reference.py",
+      "sha256": "a8f4309cb07ec84687903693888602c1fd09fa876d477dcd4c7f488ce4358837"
+    }
+  ]
+}

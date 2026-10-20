@@ -1,0 +1,19 @@
+{
+  "source": "# E009：SM013只读全量归因，AT002同范围修复包\n\nM003/SM013，VCU118/Vivado2025.2；基线为E008/R001/AT004失败DCP（765705446B/SHA51679d9a…）、已审终态与144冻结生产输入。原547548冲突网已由AT001本次原生route report再核，702396节点作为独立历史指标。生产RTL/XDC与旧证据只读。\n\n当前R001/AT002 running，01:00:02Z已实际OPEN_CHECKPOINT_BEGIN，正在只读载图。修复包[manifest](AT002_alias_alignment_fix/prepared_manifest.json) SHA47d12c26…，query_plan与AT001字节一致；aggregate/supervise/launch不变。只修复alias逐元素NAME身份资格/有界配对回执、AT/收尾绑定和实际函数CPU正负例，不删除资格检查，不新增EDA查询。AT001原始包/失败证据保留。\n\n全量canonical/唯一主组、consumer/CR关联分表、前20与固定supplemental union及有界时序按[协议](protocol.md)和固定query_plan。144输入/DCP/前次PID-start/锁/资源已重新核实，A007 delta审核无实质阻断，已绑定真实回执后启动；input_bindings SHA d221f94e…，进程/锁已实核。单EDA/CPU0–7/nice5/max8、192GiB/48GiB持续30s/disk30GiB，正常无墙钟/静默强停。实际模型无独立回执，不默换。\n",
+  "results": "# E009：AT002真实只读续跑，归因未完成\n\n2026-10-18 01:00:02Z AT002实际OPEN_CHECKPOINT_BEGIN。native256881/start5692134；supervisor256789/start5691915、leader256791/start5692120。真实FLOCK归监督256789，三者CPU0–7/nice5实核；manifest47d12c26…、input_bindings d221f94e…/5669B。当前只读载同一失败DCP，实际alias配对/全量canonical分类/G1尚未取得。\n\nAT001的自然失败和完整原证据保持：本次原生report已确认547548冲突网，schema存在，cell库存完成；列表字符串资格异常未取得真实配对。AT002修复实际函数CPU正负例通过，范围/聚合/监督/启动脚本保持原口径，A007增量审核无阻断；不以CPU修复或启动声称方法有效。\n\nAT001无强停，144输入/来源、PID/start、锁收尾已核；观察器15611真实exit0并排空。AT002新只读观察器session85343/PID257373已实际运行，仅记录本次阶段/终态。\n\n[AT002真实启动](runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/native_start_observed.json) · [来源](runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/input_bindings.json) · [审核绑定](runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/independent_prelaunch_accepted.json) · [AT001终态](runs/R001/attempts/AT001_failed_route_full_attribution/terminal_facts_v2.json)。\n",
+  "status": "# E009：AT002原生只读载图中\n\nexecution_state: running  \nverdict: inconclusive\n\nR001/AT002于2026-10-18 01:00:02Z真实OPEN_CHECKPOINT_BEGIN；native256881/start5692134，监督256789/start5691915、leader256791/start5692120，来源/真实锁/CPU0–7/nice5已核。单EDA和原资源保护正常，无墙钟/静默强停；AT001已自然失败收尾，原观察器已结束，现观察器85343仅记录当前运行。\n\n当前新图载入中，实际逐项别名配对与完整canonical归因尚未取得；新G1/G2未通过。后继按冻结清单耗尽，不扩查询/热改包/选型/改生产RTL/启动implementation，异常依授权自然失败后同范围新AT修复并独立delta审核。\n",
+  "execution_state": "running",
+  "verdict": "inconclusive",
+  "applicability": "AT002 actual native readonly start independently eligible; failed-DCP load active. Alias pairs/canonical census/G1 not yet measured.",
+  "evidence": [
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT001_failed_route_full_attribution/terminal_facts_v2.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT001_failed_route_full_attribution/observer_terminal_facts.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/preflight.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/delta_and_cpu_checks.json",
+    "project/E009_m003_failed_net_attribution/experiment_source/AT002_alias_alignment_fix/prepared_manifest.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/native_start_observed.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/started.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/input_bindings.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/independent_prelaunch_accepted.json"
+  ]
+}

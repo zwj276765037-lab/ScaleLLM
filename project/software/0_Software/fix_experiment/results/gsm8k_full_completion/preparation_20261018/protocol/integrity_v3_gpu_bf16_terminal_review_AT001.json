@@ -1,0 +1,68 @@
+{
+  "schema": "scalellm_gsm8k_gpu0_integrity_smoke_independent_review_v1",
+  "reviewed_at_utc": "2026-10-18T04:32:20.378317+00:00",
+  "reviewer": "A010 /root/gsm8k_protocol",
+  "CPU_only": true,
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "review_source_sha256": "040b08f6af1dc0b06115d8535dbb5b2de653d74cf13f476fe64b80c2cce0054d",
+  "attempt": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/weight_integrity_v1_gpu_smoke/Llama-3.1-8B-Instruct/bf16/AT001",
+  "model": "Llama-3.1-8B-Instruct",
+  "case": "bf16",
+  "execution_state": "completed_training_smoke_independently_accepted",
+  "verdict": "original v2 and full static identity/content/storage gates passed for this controlled training attempt",
+  "plan_sha256": "cfe28e93e42e20235e7604ad830500e1f6e1db25d3d88647a4dc18e19c365955",
+  "source_sha256": {
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_worker.py": "a2724c8e372a2ce7c0a4824b002fcb036d1bf51cc10548417081bbff3b2835f1",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py": "6f749dc5235d9bab56aec5b430a8fb94212f2d39c8da39ddb17d0ac3f8145c32",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_eval_worker.py": "09c7b2ae192a0fbf32227268a4726b8274470546e12c5b8e9c6dbd477f406b9d",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/six_model_matrix.py": "2e47aaa0236932cc82b125401376839e8767bc75843051b7470593897127f9da",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/protocol.py": "55763a69bb466c95f22457c1ac56186ded6d53a60edeea770fad50c29d8ee149",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_weight_integrity.py": "0e11092488523d97acd7ec76776ada669068c70bec1efc190bf5159c43f99121",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/experiment/scripts/accuracy_MLP_4bit/mlp4_method_inference.py": "a50ad5fd40b533e9d2181f6dbf752ca8b15b03532120f52017dfe574376809e9",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/experiment/scripts/scale_code_linear/scalepath4_method_inference.py": "81c7dd96c215b34d4fea8af4183d6a55445eed86ed2594bfc89bbecbee7b4d27",
+    "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/models/huggingface.py": "316e1e7cebb5664072fcc56269be916018175664a5dc9c72cc664c157f720d90",
+    "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/models/utils.py": "63df398e015f11205ef2776626082340e732a40e00eb9962b63a65b5252a6553",
+    "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/models/utils_hf.py": "72f7f006683841dabf59220be18040d2b83544163721aa61b92e146e7504cc88"
+  },
+  "artifacts": {
+    "manifest.json": "ad75a65790a2d56456185ece18833b19c71a683ba6d5bef9c062339c71727c21",
+    "summary.json": "3ee6f52854b31ef23f3815fc1727fdece17b9caa359518edff363e108ce599d6",
+    "verification.json": "f864b04371cc63699c407332a207abc2dcf3f5af4fac16330c71891467856cca",
+    "integrity.json": "82f3c2724dcaf4addbe96d693c1835e16a696c8904e8500099ceff753ed050e4",
+    "integrity_checks.jsonl": "121b6cb3d64eccb90d740a144829341cdd673b23312117b7c7921d97ec7f4497",
+    "generation.jsonl": "d58a1b439d0639ceb5a363939bac4352b8e330266fc34988cf52cca7639147c9",
+    "scores.jsonl": "7c41b206d947e1e30dc665c0e31b03f326607b0aa0050943e2a845807c8f0b27",
+    "requests.json": "c5d4b61b4c3a1066305eda01b0104cfddd71e9a027188fa27725e5c30e7824e8"
+  },
+  "integrity_reference": {
+    "path": "integrity.json",
+    "sha256": "82f3c2724dcaf4addbe96d693c1835e16a696c8904e8500099ceff753ed050e4",
+    "contract_id": "checkpoint_static_content_v1",
+    "baseline_root_sha256": "6ee8d2a0e0ae2b3e80865820862a95c377c45c8ebe3271fa5c8a6a3b5dd0e90c",
+    "qualified": true
+  },
+  "checkpoint_names": 293,
+  "effective_static_names": 293,
+  "QDQ_modules_independently_rebuilt": 0,
+  "external_caches": 0,
+  "phase_count": 15,
+  "all_phase_coverage_and_roots_verified": true,
+  "all_original_v2_detailed_gates_verified": true,
+  "raw_token_rows_independently_redecoded_rescored": 4,
+  "runtime_evidence": {
+    "elapsed_seconds": 985.5652231659915,
+    "generation_seconds": 7.906768476997968,
+    "output_tokens": 241,
+    "mean_seconds_per_example": 1.976692119249492,
+    "tokens_per_generation_second": 30.480214603615483
+  },
+  "load_attach_seconds": 228.23126936599147,
+  "started_at": "2026-10-18T04:14:52.321723+00:00",
+  "completed_at": "2026-10-18T04:31:17.887317+00:00",
+  "formal_results_accepted": 0,
+  "applicability": "Preparation only; new R003 still needs all 30 fresh smoke/pilot processes and independent-process repeat before formal; no GPU1 hardware verdict"
+}

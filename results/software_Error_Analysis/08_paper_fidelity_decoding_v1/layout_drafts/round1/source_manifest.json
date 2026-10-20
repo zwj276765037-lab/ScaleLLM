@@ -1,0 +1,95 @@
+{
+  "schema": "paper_fidelity_decoding_v1",
+  "sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/01_full1024/integrated_aggregate.json",
+      "bytes": 30596306,
+      "sha256": "069caab212866c288100fe96676ffa86c2c63146d07e0499c9cfaf58fc4ec7ac",
+      "package_relative_path": "01_full1024/integrated_aggregate.json",
+      "role": "All1024 per-document local maxima, retaining every point/tail"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/01_full1024/operator_error_summary.csv",
+      "bytes": 4588,
+      "sha256": "3eb065023eb3cae8f220ade18002a654a625f093032841c3f480ffacfa111cd3",
+      "package_relative_path": "01_full1024/operator_error_summary.csv",
+      "role": "Stored P50/P95 and definitions; first11 local columns only"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/01_full1024/vocabulary_coverage.csv",
+      "bytes": 2440,
+      "sha256": "da8b95c13dd11c0ca9262453724b44ee664163695497fa18f798ef8c779182f4",
+      "package_relative_path": "01_full1024/vocabulary_coverage.csv",
+      "role": "All12 absolute-logit thresholds, full-score denominator"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/01_full1024/per_position_tv.csv",
+      "bytes": 12043126,
+      "sha256": "1311e89c9168d8904c5ebd4af3d5230c709c2851bf69f7f06587b6465da7646b",
+      "package_relative_path": "01_full1024/per_position_tv.csv",
+      "role": "All103700 positions for exact post-step ECDF"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/01_full1024/TV_summary.csv",
+      "bytes": 5377,
+      "sha256": "d254728aa7eca539f6d79162f6ce9868b2f090bbada712020cbdada4591620ce",
+      "package_relative_path": "01_full1024/TV_summary.csv",
+      "role": "Position-weighted TV quantile cross-check"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/03_top1_margin/positions.csv",
+      "bytes": 32614391,
+      "sha256": "368dda4a0302e97abfe8349ba27a4043630ccf1796b5dfd392db3f77fc551248",
+      "package_relative_path": "03_top1_margin/positions.csv",
+      "role": "Recompute margin>2*max_abs_logit_delta, validate flags and flips"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/03_top1_margin/buckets.csv",
+      "bytes": 696,
+      "sha256": "f285e492ce3317ddcf7c11ed51768f10b392dadc2ca1695b69926309e96af47e",
+      "package_relative_path": "03_top1_margin/buckets.csv",
+      "role": "All8 fixed margin buckets, including two nonempty zero-flip buckets"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/01_full1024/top1_summary.json",
+      "bytes": 1161,
+      "sha256": "628d86ddb594f6fcd4adef0b9d4da320601a1f8a0a6e8bebfca3416c32ff99bd",
+      "package_relative_path": "01_full1024/top1_summary.json",
+      "role": "Observed greedy argmax agreement, not task accuracy"
+    }
+  ],
+  "plotter": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/08_paper_fidelity_decoding_v1/plot_paper.py",
+    "bytes": 22781,
+    "sha256": "26c88aa6b85091757ec2fc0c6963cc2f3ff8f5b86c80c013f48e4523ffbd256c"
+  },
+  "fonts": [
+    {
+      "path": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+      "bytes": 19484784,
+      "sha256": "b76b0433203017ca80401b2ee0dd69350349871c4b19d504c34dbdd80541690a"
+    },
+    {
+      "path": "/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf",
+      "bytes": 756072,
+      "sha256": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22"
+    }
+  ],
+  "scope": {
+    "documents": 1024,
+    "positions": 103700,
+    "layers": 32,
+    "vocabulary": 128256,
+    "logit_pairs": 13300147200,
+    "fixed_prefix_greedy_argmax_only": true,
+    "reference_retains": "Basic quantization, ScaleCode, LUT/SwiGLU, common exits and Host"
+  },
+  "reference_and_units": "11 local document-max tensor relativeL2% only; decoding fixed-prefix greedy agreement; coverage raw-logit epsilon; margin raw-logit difference; TV probability mass percent",
+  "certificate": "Strictly recomputed m>2ε at each of103700 positions, compared against stored flags; certified unchanged and other observed unchanged are distinct",
+  "format": "Python/matplotlib PNG only;600dpi; no SVG/PDF",
+  "minimum_font_size_pt": 14,
+  "publication_scale": "At7.2inch width,14pt source font becomes7.2pt",
+  "write_boundary": "Only08_paper_fidelity_decoding_v1; Root report/provenance and all old artifacts remain untouched",
+  "new_experiment": false,
+  "GPU_or_model_used": false
+}

@@ -1,0 +1,297 @@
+{
+  "schema": "scalellm_gsm8k_isolated_operator_review_v1",
+  "reviewed_at_utc": "2026-10-18T03:52:37.411453+00:00",
+  "reviewer": "A010 /root/gsm8k_protocol",
+  "execution_state": "review_completed_AT008",
+  "applicability": "Llama-3.1-8B-Instruct BF16 eager, train:0000, GPU1, one layer25 up_proj",
+  "CPU_only": true,
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "source_review": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/protocol/review_isolated_up_proj_AT008.py",
+    "sha256": "dc445c7b53f583953cff0207fa7432915443b6414256e365d25dbeea7fa16141"
+  },
+  "diagnosis": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT008/diagnosis.json",
+    "sha256": "7540059998f4f6cb6d4763786fedd02c9f25ab8bdaf62a4a3521f3d00e8d81dc"
+  },
+  "diagnostic_snapshot": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT008/source_snapshot.py",
+    "sha256": "daf3658edb2fab5a13b5e4efea5ba4e86813a5c5655dd61882a1ba29abbb7fba"
+  },
+  "comparisons_recomputed": 51,
+  "mismatches": [],
+  "raw_tensors": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT008/raw_operands_and_outputs.pt",
+    "sha256": "93078916a42baeddffef41635eb04e806dbb2709d25bd2a94d7a29a1f73b33f3"
+  },
+  "raw_descriptors_verified": [
+    "fixed_input",
+    "fixed_weight",
+    "native_0_input",
+    "native_0_output",
+    "native_1_input",
+    "native_1_output",
+    "native_2_input",
+    "native_2_output",
+    "native_3_input",
+    "native_3_output",
+    "functional_linear_0",
+    "functional_linear_1",
+    "functional_linear_2",
+    "functional_linear_3",
+    "functional_linear_4",
+    "functional_linear_5",
+    "mm_reused_output_0",
+    "mm_reused_output_1",
+    "mm_reused_output_2",
+    "mm_reused_output_3",
+    "mm_reused_output_4",
+    "mm_reused_output_5",
+    "mm_fresh_output_0",
+    "mm_fresh_output_1",
+    "mm_fresh_output_2",
+    "mm_fresh_output_3",
+    "mm_fresh_output_4",
+    "mm_fresh_output_5"
+  ],
+  "native_comparisons": {
+    "input": [
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      }
+    ],
+    "output": [
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": false,
+        "finite": true,
+        "max_abs_difference": 0.00390625
+      },
+      {
+        "exact": false,
+        "finite": true,
+        "max_abs_difference": 0.00390625
+      },
+      {
+        "exact": false,
+        "finite": true,
+        "max_abs_difference": 0.00390625
+      }
+    ],
+    "logits": [
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": false,
+        "finite": true,
+        "max_abs_difference": 0.125
+      },
+      {
+        "exact": false,
+        "finite": true,
+        "max_abs_difference": 0.09375
+      },
+      {
+        "exact": false,
+        "finite": true,
+        "max_abs_difference": 0.125
+      }
+    ]
+  },
+  "within_series": {
+    "functional_linear": [
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      }
+    ],
+    "mm_reused_output": [
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      }
+    ],
+    "mm_fresh_output": [
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      },
+      {
+        "exact": true,
+        "finite": true,
+        "max_abs_difference": 0.0
+      }
+    ]
+  },
+  "cross_series": [
+    {
+      "exact": true,
+      "finite": true,
+      "max_abs_difference": 0.0
+    },
+    {
+      "exact": true,
+      "finite": true,
+      "max_abs_difference": 0.0
+    },
+    {
+      "exact": true,
+      "finite": true,
+      "max_abs_difference": 0.0
+    }
+  ],
+  "weight_observations": {
+    "shape": [
+      14336,
+      4096
+    ],
+    "dtype": "torch.bfloat16",
+    "bytes": 117440512,
+    "all_logged_storage_and_layout_descriptors_equal": true,
+    "before_sha256": "cf7741921666a81d612a7ac179719c043903c58d377e78b61c8c45a0f9e319ff",
+    "native_pre_sha256": [
+      "60fd5335f5592fcee74e1f5f5ffb3984d89f9a4536abbdb759c581061eb72142",
+      "63f8441799049a0eec5d24b31ce34cd5d5c62143fb2353fc73b30981f629c9a0",
+      "63f8441799049a0eec5d24b31ce34cd5d5c62143fb2353fc73b30981f629c9a0",
+      "b5462ac771bbf45c17df5f291e3a98b159556b92a1b270996d64b46065efd5b0"
+    ],
+    "after_sha256": "b5462ac771bbf45c17df5f291e3a98b159556b92a1b270996d64b46065efd5b0",
+    "raw_final_weight_hash_verified": true,
+    "initial_and_intermediate_weight_copies_saved": false,
+    "before_vs_after_bytes_equal": false
+  },
+  "isolated_operand_review": {
+    "all_18_calls_input_hash_matches_saved_fixed_input": true,
+    "all_18_calls_weight_hash_matches_saved_final_weight": true,
+    "all_18_complete_outputs_equal_final_native3_output": true,
+    "fixed_input_before_after_equal": true,
+    "reused_output_pointer_count": 1,
+    "fresh_output_pointer_count": 6,
+    "fresh_output_allocations_retained_until_end_of_series": true,
+    "reported_all_isolated_operands_identical_false_explanation": "diagnostic compares each isolated weight hash with initial weight_before rather than the final fixed_weight; all 18 isolated calls in fact have the same final-weight hash"
+  },
+  "native1_vs_native2_additional_control": {
+    "input_byte_hash_equal": true,
+    "pre_weight_byte_hash_equal": true,
+    "output": {
+      "exact": false,
+      "finite": true,
+      "max_abs_difference": 0.00390625
+    }
+  },
+  "hash_capture_implementation_review": [
+    "digest uses detach().contiguous().cpu(), no non_blocking=True or custom stream; CPU bytes are consumed immediately before return, so recorded hashes are completed CPU reads under PyTorch default copy semantics.",
+    "raw cpu(t) uses detach().cpu().contiguous().clone(), creating an independent CPU tensor for each saved output/input, and loaded raw tensors have distinct CPU storages.",
+    "The weight is contiguous with storage_offset=0, stable same GPU data/storage pointers, exact full logical/storage size 117440512 bytes. No strided gap or shape/pointer substitution appears in the recorded descriptors.",
+    "All saved operand/output byte hashes reproduce on CPU, including final weight and its transposed logical byte ordering; this validates the implemented byte-hash convention for retained tensors.",
+    "The script contains no explicit in-place weight mutation; it records unexpected byte-hash changes. Hash-only earlier weights cannot now be independently rehashed or compared elementwise."
+  ],
+  "verdict": "unexpected weight byte identity instability confirmed in completed log; saved final fixed operands yield 18 exact complete outputs; no backend, allocator, hardware or software root cause established and no repair qualified",
+  "minimum_next_evidence": [
+    "Read-only CPU comparison of saved final weight against the exact checkpoint tensor to identify differing elements/bytes and rule out checkpoint identity substitution.",
+    "For any authorized future probe, retain immediate independent CPU copies of weight before/after loading and immediately before/after each target linear call, record raw/float bit patterns, parameter versions and storage aliasing; preserve effective backend/device identities.",
+    "Compare identical-byte input/weight across full call with synchronization on both boundaries; native1/native2 currently have equal pre-hashes but different outputs, so prehash-only changes do not fully explain output variation.",
+    "Repair must preserve checkpoint/QDQ semantics and exact gates, close byte-mutation guards and uninstrumented native parity on affected/control prompts, then pass a fresh versioned 30-case v2 qualification and independent-process/pilot gates."
+  ]
+}

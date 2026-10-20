@@ -1,0 +1,16 @@
+{
+  "execution_state": "paused",
+  "verdict": "inconclusive",
+  "applicability": "ACC用户暂停；生产速度修复CPU及共享GPU合成通过；8B训练速度诊断运行中，不能视为正式ACC或独占资格",
+  "source": "# E010：ACC暂停期间的GPU0推理速度修复\n\n用户已要求停止ACC并修复速度，最新明确“yqh的不要动，只停止我们的”。R003及原始失败/中断证据保留，不自动恢复矩阵。GPU1、M003/EDA及CPU0–7不触碰。\n\n生产worker显式接入 immutable_cpu_chunks_memcmp_full_content_v1：加载/checkpoint/原生全形QDQ SHA来源核验不变，逐题前后/verification/terminal完整检查频率不变；重复检查改为有界pinned D2H与不可变可信CPU字节逐一精确比较，完整相等后才派生旧root，清楚标记非fresh SHA。全names/metadata/storage/buffers/Hadamard cache覆盖保持；capture后host保留80GiB。\n\n本版数据、5-shot raw greedy/strict EM、BF16 eager/native KV及native_cache_call_parity_v2不变。九个关键生成/提示/评分函数AST与R003相同。新mode及双helper来源、capture SHA和每phase逐字节覆盖由consumer显式核查；新旧模式不能混用。16源诊断快照和独立plan存shared_model_diag_AT001。\n\n当前仅固定GPU0四题train/64token共享速度诊断，非矩阵/ACC恢复。原flock、实际UUID、已知外部客户端、旧三个scope最大peak×1.2+8GiB free与host120GiB守护；外部yqh23186不控制、不要求退出。",
+  "results": "# E010：BF16真实速度修复已验证，QDQ诊断运行中\n\n共享GPU0合成五轮中位数旧0.220956秒、新0.015279秒（14.461倍），四处翻位负例均拒绝。CPU worker88/88、consumer109/109和模型guard独审10/10通过。\n\n8B BF16四题训练诊断完整终态exit0：逐题持续完成间隔中位数107.437156→9.290226秒，观测11.5645倍；短worker总耗时979.388900→433.238190秒，观测2.2606倍。总耗时包括未减的加载/核验一次性成本，逐题提升与短worker整体提升不可混说。当前GPU0有yqh23186运行，旧基线为同GPU/驱动较早结果，故上述为共享诊断观测值，非独占受控性能资格。\n\n四题prompt字节/输入token/原始全部生成token与文本逐一相同，两个verification的32token前缀相同，原静态baseline manifest/root相同，15阶段顺序与完整exact保持，原nativev2/变异负例门通过。父额外核old/new所有声明artifact hash/canonical identity/请求4ids和逐行身份；详见bf16/parent_independent_comparison_AT002.json。\n\nQDQ a8w4_fp32正串行四题train诊断，未恢复矩阵。正式仍0/39570；所有诊断不作为正式ACC。yqh始终未控制，GPU1/M003不动。",
+  "status": "# E010：ACC停止保持，QDQ有限速度诊断运行\n\nexecution_state: paused\nrepair_state: running_bounded_shared_QDQ_diagnostic\nverdict: inconclusive\n\nR003监督与ACC worker已退出，matrix hold及timer enabled=false保持。生产CPU修复、consumer和parent核验通过；BF16四题诊断已完整结束，速度与raw输出一致性获得实测。\n\n当前仅a8w4_fp32四题train/64token诊断worker 42122（2026-10-18T11:27:56.507039+00:00），保留原生QDQ重建/全部15阶段/fullbytes/nativev2；原项目锁/固定UUID/显存保留/host保留保持。yqh23186只观察不控制。\n\n之后做独立终态复核和修复报告；仍不自动恢复ACC，不将诊断当作全30组资格或完整GSM8K精度。未来候选配置source/gsm8k_execution_bytewise_integrity_20261018仅prepared_not_running，未创建R004。",
+  "evidence": [
+    "project/E010_gsm8k_six_model_completion/experiment_results/user_stop/performance_repair_20261018T105736Z/receipt.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/parent_pre_model_validation.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/gpu0_shared_synthetic_AT001/execution/result.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/shared_model_diag_AT001/bf16/execution/started.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/shared_model_diag_AT001/bf16/parent_independent_comparison_AT002.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/shared_model_diag_AT001/a8w4_fp32/execution/started.json"
+  ]
+}

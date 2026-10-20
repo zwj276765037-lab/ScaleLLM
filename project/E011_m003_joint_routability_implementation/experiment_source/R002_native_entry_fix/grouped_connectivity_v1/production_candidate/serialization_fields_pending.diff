@@ -1,0 +1,29 @@
+--- applied_604f22e3
++++ m003_joint_checks.serialization_fields_pending.tcl.proposed
+@@ -458,7 +458,7 @@
+     stream_begin $phase $out
+     set connection_token [m003_conn::begin $phase [file join $out m003_connection_${phase}_trace.jsonl] [file join $out m003_connection_${phase}_groups.jsonl.partial] [file join $out m003_connection_${phase}_endpoints.jsonl.partial]]
+     dict for {bit cell} [dict get $r core_address] {
+-        stream_row cells [cell_row $cell core_address [dict create bit $bit C_nets_group [clock_group $cell C] CLR_nets [pin_net $cell CLR]]]
++        stream_row cells [cell_row $cell core_address [dict create bit $bit C_nets_group [clock_group $cell C] CLR_nets [collection_property NAME [pin_net $cell CLR]]]]
+     }
+     foreach family {head tail} {
+         dict for {bit cell} [dict get $r payload $family] {
+@@ -495,7 +495,7 @@
+             set state [address_state_evidence $cell]
+             set cen [pin_net $cell CE]
+             set ce_driver [get_pins -quiet -leaf -of_objects $cen -filter {DIRECTION == OUT}]
+-            stream_row cells [cell_row $cell address [dict merge [dict create slice $index bit $bit CE_nets $cen CE_drivers [get_property NAME $ce_driver] C_nets_group [clock_group $cell C] CLR_nets [pin_net $cell CLR]] $state]]
++            stream_row cells [cell_row $cell address [dict merge [dict create slice $index bit $bit CE_nets [collection_property NAME $cen] CE_drivers [get_property NAME $ce_driver] C_nets_group [clock_group $cell C] CLR_nets [collection_property NAME [pin_net $cell CLR]]] $state]]
+ 
+         }
+         foreach cell [dict get $r helpers $index] {
+@@ -548,7 +548,7 @@
+     dict set control_sources read_enable [get_property NAME [get_nets -quiet -segments -of_objects $read_enable]]
+     set write_enable [get_pins -quiet ${meta_scope}/meta_wr_valid]
+     exact_count $write_enable 1 "metadata write enable boundary"
+-    dict set control_sources write_enable [pin_net $meta_scope meta_wr_valid]
++    dict set control_sources write_enable [collection_property NAME [pin_net $meta_scope meta_wr_valid]]
+     foreach cell [dict get $r c01] {stream_row cells [cell_row $cell c01 [dict create]]}
+     foreach cell [dict get $r meta_all] {stream_row meta_ref_cells [dict create NAME $cell REF_NAME [get_property REF_NAME $cell]]}
+     foreach pb [get_pblocks -quiet -filter {NAME =~ m003_* || NAME == m002_exact_hotspot_SLR2}] {

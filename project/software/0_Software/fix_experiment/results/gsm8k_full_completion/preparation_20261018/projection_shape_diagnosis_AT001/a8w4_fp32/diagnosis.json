@@ -1,0 +1,56 @@
+{
+  "case": "a8w4_fp32",
+  "gpu": "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+  "prompt_sha256": "3a2862a25bff88b0f7d289d875fd0459813cd948ece95cb1c5130c819975d059",
+  "source_sha256": "04c351634f0c79be8748f30ae6e002f82955554818b1d1d43daa8012938c29e1",
+  "activations_sha256": "aa3386e82736e520b55d0926d961a2834b71d53419908cdeef374f978d5f0191",
+  "records": [
+    {
+      "name": "model.layers.0.self_attn.q_proj",
+      "type": "ScalePathIAHFP32ScaleLinear",
+      "input_shape": [
+        1,
+        786,
+        3072
+      ],
+      "full_repeat_exact": true,
+      "same_last_input_row": true,
+      "row_shape_equal": false,
+      "max_abs": 0.0078125,
+      "different_output_count": 1,
+      "rmse": 0.0001409546530339867
+    },
+    {
+      "name": "model.layers.0.mlp.up_proj",
+      "type": "ScalePathIAHFP32ScaleLinear",
+      "input_shape": [
+        1,
+        786,
+        3072
+      ],
+      "full_repeat_exact": true,
+      "same_last_input_row": true,
+      "row_shape_equal": false,
+      "max_abs": 0.00390625,
+      "different_output_count": 3181,
+      "rmse": 0.0002977887634187937
+    },
+    {
+      "name": "model.layers.10.mlp.down_proj",
+      "type": "ScalePathIAHFP32ScaleLinear",
+      "input_shape": [
+        1,
+        786,
+        8192
+      ],
+      "full_repeat_exact": true,
+      "same_last_input_row": true,
+      "row_shape_equal": false,
+      "max_abs": 0.0009765625,
+      "different_output_count": 1166,
+      "rmse": 0.0002088282781187445
+    }
+  ],
+  "started_at": "2026-10-18T02:14:04.905647+00:00",
+  "finished_at": "2026-10-18T02:14:04.948521+00:00"
+}

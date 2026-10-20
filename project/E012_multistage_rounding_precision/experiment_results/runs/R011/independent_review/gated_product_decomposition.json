@@ -1,0 +1,175 @@
+{
+  "execution_state": "completed",
+  "scope": "Existing3 diagnostic documents/299positions,decoder31 A/B,all4286464 MLP product scalars; no GPU/model run",
+  "definitions": {
+    "s": "shared production same-LUT SiLU reconstructed from actual gate code and verified by actual product exit",
+    "u": "actual Up projection F16 output",
+    "delta": "A minus B; A=current(Hcurrent),B=OUTPUT_ONLY(Hreference),so includes inherited inputs",
+    "exact_identity": "delta(s*u)=u_B*delta_s+s_B*delta_u+delta_s*delta_u",
+    "observed_identity": "delta(gated_product_F16)=three exact product terms + difference of shared half-away product出口 rounding errors",
+    "cross_terms": "twice inner products, may be negative; all terms use the same coordinates/units"
+  },
+  "pooled": {
+    "count": 4286464,
+    "term_energies": {
+      "up_ref_times_delta_silu": 96.89492126877832,
+      "silu_ref_times_delta_up": 158.06857601625978,
+      "delta_silu_times_delta_up": 0.026724061683508642
+    },
+    "term_RMSE": {
+      "up_ref_times_delta_silu": 0.00475445692157341,
+      "silu_ref_times_delta_up": 0.006072579094387463,
+      "delta_silu_times_delta_up": 7.895900054328456e-05
+    },
+    "twice_cross_terms": {
+      "1_2": -10.820055112250964,
+      "1_3": 0.14242730465862238,
+      "2_3": 0.08750734832088793
+    },
+    "exact_unrounded_product_difference_energy": 244.40010088745026,
+    "exact_unrounded_product_difference_RMSE": 0.007550941403750372,
+    "actual_shared_exit_product_difference_energy": 244.3998107961379,
+    "actual_shared_exit_product_difference_RMSE": 0.007550936922444629,
+    "shared_output_rounding_difference_energy": 0.00016580549830466428,
+    "shared_output_rounding_difference_RMSE": 6.219419826329975e-06,
+    "twice_exact_product_error_vs_rounding_cross": -0.0004558968106906327,
+    "energy_identity_residual": 1.2079226507921703e-13,
+    "observed_energy_identity_residual": 2.0620278488175936e-14,
+    "standalone_weighted_up_vs_weighted_silu_energy_ratio": 1.6313401563926238
+  },
+  "per_document": [
+    {
+      "doc_index": 0,
+      "doc_id": "c4_official_validation_first10000:6896",
+      "count": 1835008,
+      "term_energies": {
+        "up_ref_times_delta_silu": 32.56864791106083,
+        "silu_ref_times_delta_up": 50.913848094865656,
+        "delta_silu_times_delta_up": 0.0027356094231507206
+      },
+      "term_RMSE": {
+        "up_ref_times_delta_silu": 0.004212897410358324,
+        "silu_ref_times_delta_up": 0.005267432515127143,
+        "delta_silu_times_delta_up": 3.8610734603421656e-05
+      },
+      "twice_cross_terms": {
+        "1_2": -1.9351679065444722,
+        "1_3": -0.007377259510052596,
+        "2_3": 0.01565526703097547
+      },
+      "exact_unrounded_product_difference_energy": 81.5583417163261,
+      "actual_shared_exit_product_difference_energy": 81.55805367114954,
+      "actual_shared_exit_product_difference_RMSE": 0.006666754236283534,
+      "shared_output_rounding_difference_energy": 7.103024148464107e-05,
+      "shared_output_rounding_difference_RMSE": 6.221608289641419e-06,
+      "twice_exact_product_error_vs_rounding_cross": -0.00035907541807234805,
+      "integer_unrounded_identity_max_residual": 0,
+      "integer_observed_identity_max_residual": 0,
+      "float_energy_identity_residual": 1.3766765505351941e-14,
+      "float_observed_energy_identity_residual": 2.7148476609145655e-14
+    },
+    {
+      "doc_index": 1,
+      "doc_id": "imdb_test:10960",
+      "count": 1835008,
+      "term_energies": {
+        "up_ref_times_delta_silu": 38.24296506539538,
+        "silu_ref_times_delta_up": 69.08226791968367,
+        "delta_silu_times_delta_up": 0.004180373565075433
+      },
+      "term_RMSE": {
+        "up_ref_times_delta_silu": 0.004565168347143965,
+        "silu_ref_times_delta_up": 0.0061357027602664685,
+        "delta_silu_times_delta_up": 4.772968469559182e-05
+      },
+      "twice_cross_terms": {
+        "1_2": -5.2898768156074185,
+        "1_3": -0.004631576014499688,
+        "2_3": 0.002608721894307988
+      },
+      "exact_unrounded_product_difference_energy": 102.0375136889166,
+      "actual_shared_exit_product_difference_energy": 102.03741581202485,
+      "actual_shared_exit_product_difference_RMSE": 0.007456941647021369,
+      "shared_output_rounding_difference_energy": 7.090714700248223e-05,
+      "shared_output_rounding_difference_RMSE": 6.216214968975883e-06,
+      "twice_exact_product_error_vs_rounding_cross": -0.00016878403874289025,
+      "integer_unrounded_identity_max_residual": 0,
+      "integer_observed_identity_max_residual": 0,
+      "float_energy_identity_residual": 8.260059303211165e-14,
+      "float_observed_energy_identity_residual": -1.725643282782241e-14
+    },
+    {
+      "doc_index": 2,
+      "doc_id": "ag_news_test:4667",
+      "count": 616448,
+      "term_energies": {
+        "up_ref_times_delta_silu": 26.083308292322116,
+        "silu_ref_times_delta_up": 38.07246000171046,
+        "delta_silu_times_delta_up": 0.019808078695282488
+      },
+      "term_RMSE": {
+        "up_ref_times_delta_silu": 0.0065047874976105965,
+        "silu_ref_times_delta_up": 0.007858818260560905,
+        "delta_silu_times_delta_up": 0.00017925569096208734
+      },
+      "twice_cross_terms": {
+        "1_2": -3.5950103900990737,
+        "1_3": 0.15443614018317467,
+        "2_3": 0.06924335939560447
+      },
+      "exact_unrounded_product_difference_energy": 60.80424548220758,
+      "actual_shared_exit_product_difference_energy": 60.804341312963516,
+      "actual_shared_exit_product_difference_RMSE": 0.009931596577111854,
+      "shared_output_rounding_difference_energy": 2.386810981754099e-05,
+      "shared_output_rounding_difference_RMSE": 6.22244103345073e-06,
+      "twice_exact_product_error_vs_rounding_cross": 7.19626461246056e-05,
+      "integer_unrounded_identity_max_residual": 0,
+      "integer_observed_identity_max_residual": 0,
+      "float_energy_identity_residual": 1.1102230246251565e-14,
+      "float_observed_energy_identity_residual": -3.482620008349313e-15
+    }
+  ],
+  "limitations": [
+    "Term standalone energies are not additive causal percentages; retain all signed cross terms.",
+    "This describes A/B product perturbation, not isolated SiLU or Up local-rounding error.",
+    "A/B SiLU stage is a production-input/LUT reconstruction, not analytic floating SiLU or hardware intermediate capture.",
+    "The larger standalone weighted term can be identified, but correlation can cancel or reinforce it; no unique whole32layer mechanism follows."
+  ],
+  "sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/attempts/AT002_singleblock_fourway_v2/documents/doc000/A_trace.npz",
+      "sha256": "185ca35e0a9005846674f566e31fee2ace1d59c03f6a7f765a56b42fabd16165",
+      "bytes": 52257777
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/attempts/AT002_singleblock_fourway_v2/documents/doc000/B_trace.npz",
+      "sha256": "294499593a73d5efcd58d2b3db5baa74cdc53348159439e3ad8adbf289297c39",
+      "bytes": 52260884
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/attempts/AT002_singleblock_fourway_v2/documents/doc001/A_trace.npz",
+      "sha256": "67c940bd7cdc3f2099cdac21e391876bf5ba4fd53f9e2733c6d3d8d1c97080a9",
+      "bytes": 52265634
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/attempts/AT002_singleblock_fourway_v2/documents/doc001/B_trace.npz",
+      "sha256": "2899e4e70ee3a1872cc7356ae9b3e8e4c52bd89d69221faa995a4e88a8f54425",
+      "bytes": 52264373
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/attempts/AT002_singleblock_fourway_v2/documents/doc002/A_trace.npz",
+      "sha256": "0d23deb6038559ebd37b95cb8d8c5c4aa6c592fa335c5e2a06557d5371ebb0cc",
+      "bytes": 17578804
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/attempts/AT002_singleblock_fourway_v2/documents/doc002/B_trace.npz",
+      "sha256": "389fbe186f5d88edb49e43862085f1764da2f74b49dfaf5e5cffcc2dd6b5e60f",
+      "bytes": 17577946
+    }
+  ],
+  "script": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/independent_review/decompose_gated_product.py",
+    "sha256": "736b44958dbefc36ccc81c598c8e0e6c59db557ec00105f128a662554cbf7806",
+    "bytes": 6032
+  }
+}

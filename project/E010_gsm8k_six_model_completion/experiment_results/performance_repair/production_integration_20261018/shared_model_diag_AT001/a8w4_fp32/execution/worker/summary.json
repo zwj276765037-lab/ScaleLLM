@@ -1,0 +1,53 @@
+{
+  "schema": "scalellm_gsm8k_worker_summary_v1",
+  "state": "complete",
+  "stage": "smoke",
+  "n_expected": 4,
+  "n_formal_expected": 1319,
+  "n_completed": 4,
+  "n_errors": 0,
+  "full_split": false,
+  "primary_metric": "exact_match,strict-match",
+  "correct_strict": 2,
+  "correct_flexible": 2,
+  "exact_match,strict-match": 0.5,
+  "exact_match,flexible-extract": 0.5,
+  "invalid_strict": 2,
+  "length_capped": 2,
+  "output_tokens": 242,
+  "mean_output_tokens": 60.5,
+  "max_output_tokens": 64,
+  "generation_seconds": 24.732222071997967,
+  "elapsed_seconds": 601.5379709580011,
+  "mean_seconds_per_example": 6.183055517999492,
+  "p95_seconds_per_example": 6.571947930999158,
+  "tokens_per_generation_second": 9.784806205261859,
+  "peak_memory_allocated_bytes": 17368237056,
+  "peak_memory_reserved_bytes": 18113101824,
+  "model": "Llama-3.1-8B-Instruct",
+  "case": "a8w4_fp32",
+  "identity_sha256": "5fde4c3d104a15556e65bbc866d40b24f26d9256b0595f038b8fef05bc0e972e",
+  "model_load_attach_peak_memory_allocated_bytes": 17368237056,
+  "model_load_attach_peak_memory_reserved_bytes": 18113101824,
+  "integrity": {
+    "path": "integrity.json",
+    "sha256": "9e39f02761e5e2cb2f2adc35310e9d3e7f1bac03605f6661fbc579bcc20852fc",
+    "contract_id": "checkpoint_static_content_v1",
+    "baseline_root_sha256": "8d3ecb8605f691521008a5023c9cd01d9791ac315ce2e0da3c557db3bc7457ea",
+    "qualified": true
+  },
+  "performance_timing": {
+    "schema": "scalellm_gsm8k_performance_timing_v1",
+    "setup_observation_seconds": 361.19999493499927,
+    "runtime_check_seconds": 43.245828345998234,
+    "finish_with_checkpoint_reverify_seconds": 40.23007034699913,
+    "integrity_call_count": 15,
+    "native_generation_seconds_this_attempt": 24.732222071997967,
+    "generation_timing_scope": "original generate_one.elapsed_seconds: model.generate plus its completion synchronize",
+    "attached_breakdown": {
+      "legacy_attached_validation_seconds": 150.9491833890006,
+      "immutable_capture_seconds": 42.89629787500053,
+      "scope": "attached validation and immutable capture measured separately; neither is repeated per sample"
+    }
+  }
+}

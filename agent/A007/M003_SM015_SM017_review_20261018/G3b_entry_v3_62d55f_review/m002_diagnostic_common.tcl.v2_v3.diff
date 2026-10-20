@@ -1,0 +1,45 @@
+--- v2/m002_diagnostic_common.tcl
++++ v3/m002_diagnostic_common.tcl
+@@ -173,7 +173,9 @@
+ }
+ 
+ proc m002_probe_netlist {point} {
+-    source [file join $::m002_report_dir probe_targets.tcl]
++    if {[info exists ::env(HAP_M003_ACTIVE)]} {
++        source [file join $::m002_report_dir probe_targets_${point}.tcl]
++    } else {source [file join $::m002_report_dir probe_targets.tcl]}
+     set h [open [file join $::m002_report_dir reset_cdc_and_io_probe_${point}.tsv] w]
+     foreach target $::m002_cdc_targets {
+         set pin [m002_exact get_pins $target]
+@@ -283,7 +285,9 @@
+     return ""
+ }
+ proc m002_reset_snapshot {point} {
+-    source [file join $::m002_report_dir probe_targets.tcl]
++    if {[info exists ::env(HAP_M003_ACTIVE)]} {
++        source [file join $::m002_report_dir probe_targets_${point}.tcl]
++    } else {source [file join $::m002_report_dir probe_targets.tcl]}
+     set cells [list]
+     set h [open [file join $::m002_report_dir reset_graph_${point}.tsv] w]
+     # Logical inversion properties may be absent. Export only the 11 small
+@@ -390,7 +394,9 @@
+     return [get_clocks -quiet -of_objects $clock_pins]
+ }
+ proc m002_cdc_change_probe {point} {
+-    source [file join $::m002_report_dir probe_targets.tcl]
++    if {[info exists ::env(HAP_M003_ACTIVE)]} {
++        source [file join $::m002_report_dir probe_targets_${point}.tcl]
++    } else {source [file join $::m002_report_dir probe_targets.tcl]}
+     set h [open [file join $::m002_report_dir cdc_changed_reset_${point}.tsv] w]
+     if {![info exists ::m002_actual_critical_sources]} {
+         puts $h "OBSERVED_SOURCE_SET_UNAVAILABLE\tno inherited completed actual CDC report"
+@@ -641,6 +647,9 @@
+         close $h
+     }
+     if {$point eq "route"} {report_route_status -file [file join $::m002_report_dir route_status_route.rpt]}
++    if {[info exists ::env(HAP_M003_ACTIVE)]} {
++        exec /usr/bin/python3 [file join $::m002_script_dir m003_stage.py] prepare-probe --report $::m002_report_dir --point $point --synth-report $::env(HAP_SYNTH_REPORT_DIR) --project $::env(HAP_PROJECT_DIR)
++    }
+     if {$point in {init opt debug_materialized}} {m002_probe_netlist $point}
+     if {$point in {opt debug_materialized place physopt route}} {m002_reset_snapshot $point}
+     if {$point in {opt debug_materialized place physopt route}} {m002_cdc_change_probe $point}

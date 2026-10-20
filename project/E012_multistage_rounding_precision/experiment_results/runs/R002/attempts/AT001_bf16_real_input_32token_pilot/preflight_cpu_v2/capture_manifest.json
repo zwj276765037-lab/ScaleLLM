@@ -1,0 +1,89 @@
+{
+  "schema": "m005_capture_manifest_v1",
+  "started_at": "2026-10-19T02:43:40.895780+00:00",
+  "mode": "cpu-check",
+  "command": [
+    "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+    "-B",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/capture_real_inputs.py",
+    "--worker",
+    "--mode",
+    "cpu-check",
+    "--model",
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+    "--prompt-jsonl",
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/calibration/first64.jsonl",
+    "--prompt-index",
+    "0",
+    "--tokens",
+    "32",
+    "--output-dir",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT001_bf16_real_input_32token_pilot/preflight_cpu_v2",
+    "--wall-seconds",
+    "300"
+  ],
+  "parent_command": [
+    "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/capture_real_inputs.py",
+    "--mode",
+    "cpu-check",
+    "--model",
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+    "--prompt-jsonl",
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/calibration/first64.jsonl",
+    "--prompt-index",
+    "0",
+    "--tokens",
+    "32",
+    "--output-dir",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT001_bf16_real_input_32token_pilot/preflight_cpu_v2",
+    "--wall-seconds",
+    "300"
+  ],
+  "code": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/capture_real_inputs.py",
+      "bytes": 28283,
+      "sha256": "c598fe37729bf505bf7d521dbd426df828346f51230461f4e82d31dd3027a481"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/FPtoQ/experiment/v5_fullchain.py",
+      "bytes": 79824,
+      "sha256": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/model/export_scalellm_llama31_artifacts.py",
+      "bytes": 25539,
+      "sha256": "689ddf269ff951e437cc3232c5b544b461e4a0b2ff737e21f69e2f93b8f2a300"
+    }
+  ],
+  "input": {
+    "source": {
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/data/calibration/first64.jsonl",
+      "bytes": 50818,
+      "sha256": "bf361da114a8a09e39d2f6458a3f1bc3e3fa1cc1487aba39134c4947693688c1"
+    },
+    "line_index_zero_based": 0,
+    "line_sha256": "773b7777d7c3c4e9d25603ee497e1f195384fe845ebed4b50b486ed7b6df844e",
+    "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8"
+  },
+  "model_metadata": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct/config.json",
+      "sha256": "29e4c210b0d6ac178b16b2a255a568bdb23b581e50ca1ef6a6d071dd85704e6e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct/model.safetensors.index.json",
+      "sha256": "146776fce3f6db1103aa6f249e65ee5544c5923ce6f971b092eee79aa6e5d37b"
+    }
+  ],
+  "resources": {
+    "threads": 2,
+    "cpu_rss_bytes": 8589934592,
+    "gpu_process_bytes": 25769803776,
+    "torch_reserved_cap_bytes": 24696061952,
+    "wall_seconds": 300
+  },
+  "gpu0_admission_supplied": false,
+  "checkpoint_weight_content_fully_hashed": false
+}

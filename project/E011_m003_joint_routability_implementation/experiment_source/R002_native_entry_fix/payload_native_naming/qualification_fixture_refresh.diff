@@ -1,0 +1,15 @@
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/payload_native_naming/production_before_fixture_refresh/test_m003_joint_qualification.py
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/tests/test_m003_joint_qualification.py
+@@ -121,10 +121,10 @@
+  def test_hard_conflict_macro_unknown_or_fixed_outside_rejected(self):
+   p=HW/'vivado/scripts/m003_joint_checks.tcl'
+   head='source {'+str(p)+'}\n'+r'''
+-rename m003::prop m003::native_prop
+ set properties [dict create IS_LOC_FIXED 0 IS_BEL_FIXED 0 MACRO_NAME {} RLOC {} RLOC_ORIGIN {} LOC SLICE_X0Y0]
+ set others {}
+-proc m003::prop {object property} {return [dict get $::properties $property]}
++proc list_property {object} {if {$object eq "cell"} {return [dict keys $::properties]};return {IS_SOFT}}
++proc get_property {args} {set object [lindex $args end];set property [lindex $args end-1];if {$object eq "cell"} {return [dict get $::properties $property]};if {$property eq "IS_SOFT"} {return 0};error "unexpected fixture property: $object/$property"}
+ proc get_pblocks {args} {if {[lsearch $args -of_objects]>=0} {return $::others};return target}
+ proc get_sites {args} {return [lindex $args end]}
+ proc set_property {args} {}

@@ -1,0 +1,140 @@
+{
+  "captured_at": "2026-10-18T09:57:54.555136+00:00",
+  "user_question": "你预估多久能完成",
+  "observations": [
+    {
+      "model": "Llama-3.2-3B-Instruct",
+      "case": "bf16",
+      "non_generation_gap_seconds": [
+        45.087434408000085,
+        45.061048502999846,
+        45.00550915999988
+      ],
+      "mean_non_generation_seconds_per_example": 45.05133069033327,
+      "raw_generation_sha256": "159bfbb5442689d31ef7af84f8a28ff530aafb75fa9332aeb364af77ae371061",
+      "raw_generation_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R003_gsm8k_gpu0_weight_integrity/smoke/Llama-3.2-3B-Instruct/bf16/AT001/generation.jsonl"
+    },
+    {
+      "model": "Llama-3.2-3B-Instruct",
+      "case": "a8w8_fp32",
+      "non_generation_gap_seconds": [
+        47.272436131000006,
+        47.661354736000064,
+        46.96156901499991
+      ],
+      "mean_non_generation_seconds_per_example": 47.29845329399999,
+      "raw_generation_sha256": "d79a35f05ce2db621b02b11e7e163d54f35ca6d094fda276f5f74da07a515285",
+      "raw_generation_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R003_gsm8k_gpu0_weight_integrity/smoke/Llama-3.2-3B-Instruct/a8w8_fp32/AT001/generation.jsonl"
+    },
+    {
+      "model": "Llama-3.2-3B-Instruct",
+      "case": "a8w4_fp32",
+      "non_generation_gap_seconds": [
+        47.07342171099968,
+        47.16047035800003,
+        47.12212185099988
+      ],
+      "mean_non_generation_seconds_per_example": 47.118671306666535,
+      "raw_generation_sha256": "32560d99e3dee8204955e5b2eb829d36620638e03a91be5b8478617272f7d7a3",
+      "raw_generation_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R003_gsm8k_gpu0_weight_integrity/smoke/Llama-3.2-3B-Instruct/a8w4_fp32/AT001/generation.jsonl"
+    },
+    {
+      "model": "Llama-3.2-3B-Instruct",
+      "case": "a8w4_fp16",
+      "non_generation_gap_seconds": [
+        47.08515714000002,
+        47.15941457799996,
+        47.02086432400007
+      ],
+      "mean_non_generation_seconds_per_example": 47.08847868066668,
+      "raw_generation_sha256": "eff6333c059b2c565a5d72394928b9381f190f1c986cd40ac5b67e1924c0c0c8",
+      "raw_generation_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R003_gsm8k_gpu0_weight_integrity/smoke/Llama-3.2-3B-Instruct/a8w4_fp16/AT001/generation.jsonl"
+    },
+    {
+      "model": "Llama-3.2-3B-Instruct",
+      "case": "reference_qdq",
+      "non_generation_gap_seconds": [
+        46.935903295000664,
+        47.06682843699997,
+        47.15607813400074
+      ],
+      "mean_non_generation_seconds_per_example": 47.05293662200046,
+      "raw_generation_sha256": "1208a18891377ee65241e2a6096db18cbef7e30d9e548e85274c23acd4099778",
+      "raw_generation_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R003_gsm8k_gpu0_weight_integrity/smoke/Llama-3.2-3B-Instruct/reference_qdq/AT001/generation.jsonl"
+    },
+    {
+      "model": "Llama-3.1-8B-Instruct",
+      "case": "bf16",
+      "non_generation_gap_seconds": [
+        105.86361511599993,
+        105.33482677400008,
+        105.38549235399998
+      ],
+      "mean_non_generation_seconds_per_example": 105.52797808133333,
+      "raw_generation_sha256": "3c0e622e612c1a6e0dfef21ea5569a6127ca79570d2bb7d0cda9ee011e3c45a7",
+      "raw_generation_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R003_gsm8k_gpu0_weight_integrity/smoke/Llama-3.1-8B-Instruct/bf16/AT001/generation.jsonl"
+    },
+    {
+      "model": "Llama-3.1-8B-Instruct",
+      "case": "a8w8_fp32",
+      "non_generation_gap_seconds": [
+        105.62366480100026,
+        105.82883600199985,
+        105.5426052259998
+      ],
+      "mean_non_generation_seconds_per_example": 105.66503534299997,
+      "raw_generation_sha256": "a03cea1860a9d720ca3ddd95947d13a243c472b82f1329e4453e84190f083962",
+      "raw_generation_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R003_gsm8k_gpu0_weight_integrity/smoke/Llama-3.1-8B-Instruct/a8w8_fp32/AT001/generation.jsonl"
+    }
+  ],
+  "scenario_model": "Illustrative throughput extrapolation only: non-generation per-example work proportional to checkpoint weight bytes, anchored to Llama3.1-8B BF16/A8W8 observed gaps. Other model/config costs remain unmeasured.",
+  "anchor_seconds": 105.59650671216664,
+  "checkpoint_size_extrapolation": {
+    "DeepSeek-R1-Distill-Llama-8B": {
+      "weight_bytes": 16060556354,
+      "scenario_non_generation_seconds_per_example": 105.59650656751892,
+      "scenario_all_five_configs_full_test_days": 8.060288898296148
+    },
+    "GLM-4-9B-0414": {
+      "weight_bytes": 18800618456,
+      "scenario_non_generation_seconds_per_example": 123.61213313559793,
+      "scenario_all_five_configs_full_test_days": 9.435440023486901
+    },
+    "Llama-3.1-8B-Instruct": {
+      "weight_bytes": 16060556376,
+      "scenario_non_generation_seconds_per_example": 105.59650671216664,
+      "scenario_all_five_configs_full_test_days": 8.060288909337258
+    },
+    "Llama-3.2-3B-Instruct": {
+      "weight_bytes": 6425529048,
+      "scenario_non_generation_seconds_per_example": 42.24719277224333,
+      "scenario_all_five_configs_full_test_days": 3.2247712538535276
+    },
+    "Qwen2.5-7B-Instruct": {
+      "weight_bytes": 15231271888,
+      "scenario_non_generation_seconds_per_example": 100.14404647646481,
+      "scenario_all_five_configs_full_test_days": 7.644097066114415
+    },
+    "Qwen3-8B": {
+      "weight_bytes": 16381516776,
+      "scenario_non_generation_seconds_per_example": 107.70678833874756,
+      "scenario_all_five_configs_full_test_days": 8.221368855255095
+    }
+  },
+  "scenario_formal_non_generation_days": 44.646255006343345,
+  "actual_full_matrix_ETA_validated": false,
+  "planning_estimate": "约两个月或更久；仅GPU0，维持当前逐题全权重校验方式。这是粗略规划量级，不是完成期限。",
+  "limitations": [
+    "仅七个4题smoke组完成，尚无完整32题pilot计时。",
+    "Smoke最多64token，无法测得formal最多4096token的真实输出长度分布。",
+    "正式生成、剩余资格验证、模型加载、独立复算及潜在重试还要加时。",
+    "相邻题非生成间隔含前后两次静态扫描和少量落盘成本，不是纯GPU执行时间。",
+    "本次未改变来源、协议、验收或资源，未增加GPU操作。"
+  ],
+  "current_counts": {
+    "smoke": 7,
+    "pilot": 0,
+    "formal": 0
+  },
+  "formal_rows_accepted": 0
+}

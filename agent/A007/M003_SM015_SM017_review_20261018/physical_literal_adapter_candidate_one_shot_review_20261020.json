@@ -1,0 +1,153 @@
+{
+  "schema": "A007_physical_literal_adapter_candidate_review_v1",
+  "observed_utc": "2026-10-19T16:10:13.569641+00:00",
+  "reviewer": "A007 /root/m002_physical_architecture_review",
+  "execution": "completed_bounded_candidate_review",
+  "verdict": "ACCEPT_CANDIDATE_SOURCE_WITHIN_PINNED_DEPENDENCY_IDENTITY",
+  "applicability": {
+    "proposal": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/physical_literal_adapter/proposal_evidence.json",
+      "bytes": 2633,
+      "sha256": "3036c1eb6b48a2c0a374df7872aad58e2fd2f900d4383cacb3ce4b186aed2e66"
+    },
+    "dependency_package": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/physical_literal_adapter/dependency_package.json",
+      "bytes": 1925,
+      "sha256": "5ecc9399da32c48b9f04f6cce30db3ef0a528b96693d508be2c545518cf6977b"
+    },
+    "core48_manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_entry_manifest.json",
+      "bytes": 11688,
+      "sha256": "42dafce33f4727734dcf169b285a3decfcfa18d78d10f9a36463b4bea7c904d5"
+    },
+    "adapters": [
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/physical_literal_adapter/physical_literal_adapter.py",
+        "bytes": 5696,
+        "sha256": "befdcc2121c7cafd79a3b55ebee583fdb892dc5161738ef3d67020a3b3ff34c0"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/physical_literal_adapter/physical_literal_adapter.tcl",
+        "bytes": 2567,
+        "sha256": "6ebb5e110efea2e8e172bd980b88a5ac6f0fd0aaf0d40551839bf57cd9a74813"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/AT028_init_recovery/native_init_recovery.py",
+        "bytes": 29307,
+        "sha256": "da0ea7a03a1e979d6c76acb330338969eb568df50cdf5ae1ac8708fe62f68665"
+      }
+    ],
+    "original_launcher": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m003_stage.py",
+      "bytes": 4092,
+      "sha256": "679311ccfe1f2aae35c6968593d789474ae754949c38880b22c8a565073d4418"
+    },
+    "original_physical": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_physical.tcl",
+      "bytes": 6413,
+      "sha256": "0fdeb0a64d33aec204a95dd424a82e94dc38c50d59e174b2ad5371f576379650"
+    }
+  },
+  "review": {
+    "material_findings": [],
+    "actual_G4_review_performed": false,
+    "actual_preplace_package_reviewed": false,
+    "launch_authorization_created": false,
+    "candidate_only": true
+  },
+  "checks": {
+    "strict_cell_normalization": "Only exact cell strings 1'b0 and 1'b1 are converted in memory. Unknown/multibit/non-string values unchanged for original rejection. Empty/NOT_SUPPORTED remain observed, never inferred. Raw file untouched; actual pin mandatory.",
+    "unchanged_full_validator": "Calls original joint.decode_grouped_snapshot and joint.validate(fixture=False), then all original spec/manifest/RTL/G2 source bindings. Required CLR pin, known cell/pin agreement, complete 51 endpoint coverage, and full final function==(1,0) unchanged.",
+    "original_G4_gate": "Calls original run_m003_stage.main unchanged. Real preplace package identities, no_blocker/package SHA match, source_review identity and A007-owned path, and review verdict/package match execute before NativeBoundary.run. This candidate is not a substitute review.",
+    "native_boundary": "Boundary requires original exact implement invocation/cwd/checkpoint, archives dependencies, then changes command argument 5 only to explicit Tcl adapter. --prepare-only stops after original real G4 guard and full archive preparation; it cannot manufacture G4.",
+    "tcl_preservation": "Evaluates full original m003_physical.tcl with two exact text substitutions: original script directory and installer calls after original joint-check source. snapshot_body qualifier changes once; m002_post freshly sources original joint checks then reinstalls qualifier. Other stage checks retained.",
+    "fixed_execution": "Original persistent XPR guard, restore verify-only and apply-count preservation, restore snapshot, clocks/DRC gates, place SSI_SpreadSLLs -> physopt Default -> route Default, all m002_post checks and failure capture remain. No bitstream.",
+    "dependency_closure": "core48+3=51 candidate runtime dependencies; three explicit source files and every imported project module on the used qualify/main path are archived. Unused recovery-only helper import is function-local and not executed by qualify.",
+    "archive": {
+      "bindings": 389,
+      "stage_input_count": 389,
+      "all_current_and_preserved_hashes_verified": true,
+      "total_original_bytes": 14833919,
+      "receipt": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/physical_literal_adapter/proposed_runtime_dependency_archive/source_archive.json",
+        "bytes": 298979,
+        "sha256": "6ad6eae59f37e058ea36a5afc6dcd8caebb6ed586b8aefc04661c1f90d743256"
+      },
+      "stage_inputs": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/physical_literal_adapter/proposed_runtime_dependency_archive/stage_inputs.sha256",
+        "bytes": 96775,
+        "sha256": "1747e8d9b6aeb7751b7a4b84eb4bd4ab7522de06dc65ad30aa6b3110258268b0"
+      }
+    }
+  },
+  "validation": {
+    "recorded_preservation_suite": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/physical_literal_adapter/offline_preservation_tests.log",
+      "bytes": 1290,
+      "sha256": "0033a65ffd6ad0fc3deb898e63625aa1b8280e51f09e59cddf6712dcb23124e8"
+    },
+    "preservation_tests": 7,
+    "reviewed_test_source": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/physical_literal_adapter/test_physical_adapter.py",
+      "bytes": 5492,
+      "sha256": "000564da1e42b446e2bf1b9af22aea07be30c09ccc566222283ad4ff21b621e6"
+    },
+    "reviewed_replay_source": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/physical_literal_adapter/offline_actual_tcl_replay.py",
+      "bytes": 2912,
+      "sha256": "feb810e1cf6e34ff3fb2c80e7a77c620b7e69d655de4d7ed305a926c6a64d5bd"
+    },
+    "recorded_reset_suite": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/AT028_init_recovery/affected_regression_AT033.log",
+      "bytes": 2818,
+      "sha256": "b4a2bd5ce2cb50fd2bbe7ec87a4db006f922cfb9f581ffa9594274525907d8cf"
+    },
+    "reset_suite_tests": 17,
+    "reviewed_reset_test_source": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/AT028_init_recovery/test_recovery.py",
+      "bytes": 17406,
+      "sha256": "1c841f09407e8db315bdade4c56f4727a485b12ad0d42fa74ece784b86465ccc"
+    },
+    "actual_Tcl_full_entry_receipt": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/physical_literal_adapter/actual_OPT_Tcl_entry_replay/final_receipt.json",
+      "bytes": 1822,
+      "sha256": "7f61e350e65505cac35dbb58a850546fa8cd44b5d93d4a840d67cbedceb05ff0"
+    },
+    "actual_OPT_snapshot_metadata_only": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT031_verified_restore_parser_to_OPT/m003_native_opt.json",
+      "bytes": 106761863,
+      "sha256": "6fcde34042cf73bab2c0e08b6ff8a534d943d859abc292cc92223ffafed15274"
+    },
+    "actual_full_OPT_receipts": {
+      "positive": {
+        "passed": true,
+        "errors": [],
+        "phase": "opt",
+        "snapshot_sha256": "6fcde34042cf73bab2c0e08b6ff8a534d943d859abc292cc92223ffafed15274",
+        "normalized_cell_literals": 17
+      },
+      "unknown_cell_literal_negative": {
+        "passed": false,
+        "errors": [
+          "native asynchronous reset provenance: invalid or missing native pin/cell inversion boolean"
+        ],
+        "phase": "opt",
+        "snapshot_sha256": "4cb780e70f449b98aa5d6020ce44adc2f07f8bce6cc88bd8c357418ce56e31d5",
+        "normalized_cell_literals": 16
+      }
+    },
+    "independent_pure_normalization": {
+      "exact_conversion_cases": 2,
+      "noncanonical_or_existing_values_preserved": 23,
+      "missing_cell_and_pin_not_synthesized": true
+    },
+    "suite_rerun": false
+  },
+  "limits": [
+    "No EDA/simulation/process control/observer/wait/descendants. No active AT033 inspection.",
+    "No DCP or full 106 MB snapshot read/hash; full-OPT identity uses small bound receipts and prior owner data.",
+    "Candidate source acceptance only. Real preplace package and final implementation launcher preparation remain to be bound in the separately assigned consolidated G4 review.",
+    "Did not create A007_G4_no_blocker.json or any actual-package admission record."
+  ],
+  "next": "Root/A018 may use this pinned candidate within existing authorization. On actual preplace arrival, bind package, candidate digests, full launcher preparation and actual evidence once; no need to re-read unchanged source."
+}

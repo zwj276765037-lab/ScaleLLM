@@ -1,0 +1,17 @@
+{
+  "event_id": "EV_M005_R006_TV_SUPPLEMENT_20261019",
+  "small_mission": "SM023",
+  "trigger": "milestone",
+  "summary": "用户明确追加全样本Softmax后TV，按gpt-6.1-sol/xhigh参数真实启动A017；R006合同与新批次已建立，正在实现与CPU资格，GPU尚未启动",
+  "impact": "原R005全量结果/PNG不变；R006补测同1024文本、103700位置的实际概率分布TV，需新两臂运行并增加图面板",
+  "evidence": [
+    "project/E012_multistage_rounding_precision/experiment_results/runs/R006/run.md",
+    "project/E012_multistage_rounding_precision/experiment_results/runs/R006/agent_launch_request.json",
+    ".research-agent/decision_inputs/M005_R006_softmax_tv_contract.json"
+  ],
+  "affected": [
+    "SM023"
+  ],
+  "action": "CPU独立资格→有界GPU资格→同样本完整后台补测→独审→Python整合PNG，按既有授权连续完成；普通修复不新增用户确认",
+  "requires_decision": false
+}

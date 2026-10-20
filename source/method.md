@@ -8,5 +8,6 @@
 
 | 方法 ID / 名称 | 要解决的问题 | 机制与来源定位 | 最小区分实验 | M/SM/E | 当前判断与证据 |
 | --- | --- | --- | --- | --- | --- |
+| 多次位宽舍入的数值保真验证 | 隔离额外中间舍入的局部损失及传播累积 | [数值合同](../project/software/0_Software/rounding_precision/source/numerical_fidelity_contract_v3.md)：固定基础量化、权重、LUT及共同出口，精确整数参考；[独审入口](../project/software/0_Software/rounding_precision/experiment/audit_formal_numerical.py) | 同输入五类节点对照、32层双路径传播、冻结真实文档与预定原始算术见证 | M005 / E012 | [独审记录](../project/software/0_Software/rounding_precision/source/numerical_fidelity_review_v3.md)限定核验实现与证据；正式进度见[E012](../project/E012_multistage_rounding_precision/experiment_status/summary.md)，执行完成不等于总体精度保持。当前范围≤128 token、单模型prefill；不重复ACC。 |
 
 重要论文 PDF 放在 papers/ 并记录 DOI/版本/页码；复杂方法可在 methods/ 单列详情。候选不是验证结论。

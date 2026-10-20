@@ -1,0 +1,50 @@
+{
+  "schema": "A007_AT022_collection_truncation_root_cause_addendum_v1",
+  "utc": "2026-10-19T00:59:59.591991+00:00",
+  "supersedes_only": "Earlier exact-subcondition-unresolved statement; original evidence retained",
+  "execution": "native_AT022_failure_closed_offline_cause_review_complete",
+  "verdict": "native_collection_to_text_conversion_truncation_proven",
+  "applicability": "AT022 shared31a98a; bounded_objects fix source identity below is pre-native reviewed snapshot",
+  "review": "root_cause_and_minimal_fix_source_supported; native complete collection result pending",
+  "native_log": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT022_fresh_core_grouped_clock_context_fix/vivado.log",
+    "bytes": 5987,
+    "sha256": "d51229803795d008f2e80bd5aa7738278931791ab2b6564ee3c8a0b0d1a0d0aa"
+  },
+  "exact_native_warning": {
+    "line": 55,
+    "text": "ERROR: [Common 17-736] tcl.collectionResultDisplayLimit was exceeded while converting a collection of '12062' elements to a list of text strings. The list was truncated to '500' elements, therefore the result may be incorrect. Consider rewriting the expression to avoid conversion or disabling truncation with the command 'set_param tcl.collectionResultDisplayLimit 0."
+  },
+  "next_guard": {
+    "line": 56,
+    "text": "M003 direct net missing from unique expanded segments"
+  },
+  "fix_source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/grouped_connectivity_v1/shared_native_connectivity.tcl",
+    "bytes": 12088,
+    "sha256": "01919f5e10a35bca2f6546851e9955e488a71b21cc4b14a25c5c0a72a369ca31"
+  },
+  "operation_audit": {
+    "native_segments": "count bound131072 before nativeforeach->ordinary actual object list; vector NAME/CLASS size and actual object/name uniqueness/member checks retained",
+    "native_leaf_drivers": "bounded_objects before lsort/owner iteration",
+    "native_primary_ports": "bounded_objects before lsort/direction iteration",
+    "direct_net_canonical_top_driver_owner": "singleton cardinality before lindex; no large collection sort/conversion",
+    "design_context_and80cells": "nativeforeach, with exact name/identity coverage",
+    "ordinary_group_object_names_arrays": "sorting/membership operates materialized ordinary object list; NAME/CLASS are batched property vectors, length checked"
+  },
+  "new_evidence_fields": [
+    "segment_count",
+    "object_unique_count",
+    "actual_direct_member",
+    "direct_name_match_count",
+    "direct_object",
+    "direct_name",
+    "direct_class",
+    "sample_names_first3"
+  ],
+  "still_required": "Real native12062 complete objects, all80 direct membership, group/source/API counts and timings; no separate slowprobe",
+  "no_direct_added_to_group": true,
+  "no_membership_guard_relaxed": true,
+  "actual_messages_to_root_and_owner": true,
+  "G4": false
+}

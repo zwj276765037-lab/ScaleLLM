@@ -1,0 +1,68 @@
+{
+  "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/experiment/scripts/scale_code_linear/run_s11_cross_model_gsm8k_accuracy.py": [
+    {
+      "line": 27,
+      "text": "DEFAULT_DATASET = PROJECT_ROOT / \"data\" / \"gsm8k_openai_main_raw\" / \"test_first300.jsonl\""
+    },
+    {
+      "line": 152,
+      "text": "def extract_answer(text: str) -> str:"
+    },
+    {
+      "line": 166,
+      "text": "    nums = re.findall(r\"[-+]?\\d[\\d,]*(?:\\.\\d+)?\", text)"
+    },
+    {
+      "line": 167,
+      "text": "    return normalize_number(nums[-1]) if nums else \"\""
+    },
+    {
+      "line": 307,
+      "text": "    parser.add_argument(\"--max_samples\", type=int, default=300)"
+    },
+    {
+      "line": 452,
+      "text": "        golds = [extract_answer(str(row.get(\"output\") or row.get(\"answer\") or \"\")) for _, row in batch_rows]"
+    },
+    {
+      "line": 484,
+      "text": "            pred = extract_answer(response)"
+    },
+    {
+      "line": 485,
+      "text": "            is_correct = pred != \"\" and pred == gold"
+    }
+  ],
+  "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/experiment/scripts/accuracy_MLP_4bit/run_mlp4_gsm8k_accuracy.py": [
+    {
+      "line": 40,
+      "text": "    extract_answer,"
+    },
+    {
+      "line": 83,
+      "text": "    parser.add_argument(\"--max_samples\", type=int, default=300)"
+    },
+    {
+      "line": 250,
+      "text": "        golds = [extract_answer(str(row.get(\"output\") or row.get(\"answer\") or \"\")) for _, row in batch_rows]"
+    },
+    {
+      "line": 282,
+      "text": "            pred = extract_answer(response)"
+    },
+    {
+      "line": 283,
+      "text": "            is_correct = pred != \"\" and pred == gold"
+    }
+  ],
+  "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/experiment/run_final_scalecode.sh": [
+    {
+      "line": 47,
+      "text": "      --max_mcqa_samples 0 \\"
+    },
+    {
+      "line": 68,
+      "text": "      --max_samples 300 \\"
+    }
+  ]
+}

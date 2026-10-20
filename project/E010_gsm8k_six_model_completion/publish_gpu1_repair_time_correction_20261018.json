@@ -1,0 +1,21 @@
+{
+  "source": "# E010：GSM8K双GPU执行来源\n\n用户已授权在当前exp实现并执行、确认两张GPU。六冻结checkpoint×五配置、原5-shot raw greedy strict EM、test1319/格，max8192/new4096、BF16 eager、原生KV。实际执行plan与14份源码快照在raw R002 frozen_inputs/frozen_sources，数据和权重SHA均绑定。\n\nR001原cache开关allclose门自然失败。R002采用显式native_cache_call_parity_v2：真实生成调用/每步fresh缓存重建/KV结构/负对照/同卡独立进程重复性。原allclose与greedy开关比较保留真实诊断，不宣称数学等价；生产5函数AST与R001相同。详见source/gsm8k_execution_cache_v2_20261018/verification_revision.md。\n\nR003正按gpu0_integrity_recovery_decision_20261018.md准备：暂不分配GPU1，全部30组固定GPU0；增加运行时权重内容身份门，原v2门和评估算法保持。新计划/源码已实现并通过CPU正负例，GPU0 BF16受控验证已通过；QDQ验证进行中，尚待最终审核冻结与真实矩阵启动。\n\n用户后续明确要求修复GPU1；A012 /root/gpu1_repair已真实派发，GPU1/CPU18–19/原锁，原始CUDA有限模式检查。父在项目内下载并仅解包官方580.159.03工具，核归档与SHA；没有系统驱动安装/重启。\n",
+  "results": "# E010：尚无正式GSM8K结果；两卡对照已完成\n\nR002已自然失败，smoke 6/30、pilot 0/30、formal 0/30。正式完成与独立验证均0/39570；新R003尚在准备，所有阶段0/30，旧6组不复用。\n\n11:45汇报窗口（10:45–11:45）：正式+0题、主矩阵+0组，新增完成6次诊断；此次汇报继续排查又完成AT008–AT010，累计10次诊断。\n\nGPU1的Llama-3.1 BF16目标层权重在加载完成、尚未推理时即与原checkpoint差16345元素/字节，连续同步快照间仍变化，参数version保持0；另行分配的正确权重roundtrip可通过。GPU0同版AT010的17/17单层权重快照全部与checkpoint相同，两次native输入、目标输出及最终logits一致。A010独立重算两卡34个快照及14份差异坐标，无记录不符。此证据支持暂不分配GPU1，不构成整卡硬件故障诊断，也不替代全模型/30配置资格。\n\n已决定加入全模型运行时权重完整性检查，保留原logits/KV/负对照等验收门；重新smoke/pilot后才进入formal。训练和诊断不能用于正式ACC/Avg，尚无可靠剩余时间估计。\n\n12:28后续：GPU0 Llama3.1 BF16新受控smoke真实运行，CPU→GPU全293项内容复制与原v2门、验证块前后守恒已通过，当前3/4训练题完成，尚未terminal。GPU1无torch/Transformers的20GiB原始CUDA测试，在H2D 00/55/aa/ramp及device memset00均在同5分配块失败，ff模式通过；匹配CUDA用户态库候选尚待新AT复测。项目内匹配NVML查询已实际成功，原系统监控命令未改；GPU1 ECC关闭、Xorg占用38MiB，ECC错误N/A不代表无错。\n\n12:33里程碑：GPU0 BF16受控train smoke已自然exit0/4题完整，15阶段全静态内容守恒、291checkpoint参数+2RoPE buffer与原v2门通过；A010独立重解码/installed harness复算4题一致。总实耗985.565秒，完整性开销不可忽略。GPU0 QDQ a8w4_fp32已启动；GPU1 AT001完成9模式，7模式失败、两种ff模式通过；AT002已实际装载匹配580.159.03库并开始同源复测，未认定修复成功。\n\n时间文字更正：上一发布的“12:35里程碑”为提前的标签，应为12:33时已核实；原始snapshot.captured_at为真实时间、保持。AT002已在匹配580.159.03库下复现H2D00错误，首遍212966字节，库版本匹配候选尚不能修复。\n",
+  "status": "# E010：GPU1匹配库复测与GPU0量化配置恢复验证\n\nexecution_state: running\nverdict: unassessed\n\nR002终态failed，历史smoke6/30；R003尚未启动，smoke/pilot/formal均0/30，正式0/39570。独立准备BF16训练验证已完整通过及独立复算，不能计为R003正式或矩阵完成。GPU0 PID309848正在a8w4_fp32受控train smoke，原单worker/CPU16–17/完整性与v2门保持。\n\nGPU1 AT001于12:32:14自然完成，7/9字节模式失败，故障位于本次分配46–50；ff模式通过。AT002于12:32:36以匹配内核580.159.03的私有libcuda真实启动PID310000、CPU18–19，实际库路径/SHA已核。当前H2D00已复现错误；同源有限9模式结束后，按已授权条件用GPU内核内部计数核对D2H读回。不得据虚拟地址推断物理坏页。\n\n项目内NVML查询已修复，系统库/驱动不变。GPU1 Xorg占用仍在，未reset/重启/杀图形进程；M003/EDA和CPU0–7保持。无可靠正式ETA，下一小时汇报12:45，定时器enabled。\n",
+  "execution_state": "running",
+  "verdict": "unassessed",
+  "applicability": "GPU0 BF16完整prep通过且独立复算，QDQ进行中；GPU1匹配libcuda候选复测，尚未恢复正式资格",
+  "evidence": [
+    "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/supervisor_start_observed.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/gpu_inference_observed.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/cache_revision_evidence.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/first_two_smokes_passed.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/supervisor_terminal.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/hourly_reports/20261018T0345_progress.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/hourly_reports/20261018T0345_followup.json",
+    "project/E010_gsm8k_six_model_completion/gpu0_integrity_recovery_decision_20261018.md",
+    "project/E010_gsm8k_six_model_completion/experiment_results/hourly_reports/20261018T0428_gpu_repair_progress.json",
+    "project/E010_gsm8k_six_model_completion/gpu1_repair_user_authorization_20261018.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/hourly_reports/20261018T0435_gpu_repair_progress.json"
+  ]
+}

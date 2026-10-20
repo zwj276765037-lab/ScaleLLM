@@ -1,0 +1,146 @@
+{
+  "schema": "m005_r006_A014_prelaunch_review_v1",
+  "execution_state": "completed",
+  "review": "passed_with_scope_limits",
+  "decision": "no_blocking_issue_for_frozen_measurement_and_postprocessing",
+  "blocking_issues": [],
+  "overall_numerical_fidelity_verdict": "inconclusive_pending_formal_results",
+  "reviewed_at": "2026-10-19T11:08:33.726377+00:00",
+  "reviewer": "A014 /root/rounding_validation_design",
+  "reviewed_sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/softmax_tv_extension_v2.py",
+      "sha256": "b61a56b425c9199749b9e3470217aadb65a9912422b86e44e0da7c8b9557b75b",
+      "bytes": 5072
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/audit_softmax_tv_numerical_v2.py",
+      "sha256": "61ddc5ec16b685fe13b8162c0abd2c178abc7c932ab93dd2ef9dcfb2964899eb",
+      "bytes": 40689
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/aggregate_softmax_tv_v2.py",
+      "sha256": "94f7147425bbc2d436196392bd1271fbf0e629177e76475002d08a11209e3536",
+      "bytes": 18987
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/render_softmax_tv_integrated_v2.py",
+      "sha256": "2237eea90d69fb8927ae938061de6025c01324b5a11d7a1e2f0d2f03d8211cf2",
+      "bytes": 15988
+    }
+  ],
+  "scope": "Four specified TV numerical/audit/aggregation/rendering files only. Root independently owns session/supervisor qualification; this is not a model run or final formal-data acceptance.",
+  "definition": {
+    "quantity": "Final vocabulary distribution at temperature1 after full32-layer paired paths, not hardware attention Softmax",
+    "per_position": "TV_t = 0.5 * sum over all128256 vocabulary entries abs(p_current - p_reference)",
+    "probabilities": "FP64 exp of same4096-chunk FP32 head logits minus frozen first-pass FP64 full-vocabulary logsumexp; per-position masses checked at1e-10 absolute guard",
+    "coverage": "Every real unpadded position, including final input position; no labels or top-k restriction; full contiguous vocabulary exactly once",
+    "normalization": "No epsilon clipping or renormalization hiding a failed mass check; finite/range guards and natural exp-underflow diagnostics retained",
+    "units": "Probability mass fraction;100*TV is probability mass percent, not relative L2 percent"
+  },
+  "source_facts": [
+    {
+      "source": "softmax_tv_extension_v2.py:15-69",
+      "facts": "Complete contiguous vocabulary traversal, two normalized probability masses, FP64 absolute-distance sum, same frozen old logit wrapper, audit-row second-pass bytes checked."
+    },
+    {
+      "source": "audit_softmax_tv_numerical_v2.py:299-457",
+      "facts": "Prior frozen core/MLP/logit auditor adapted to R006 shared runtime schemas; TV-specific numeric recomputation is implemented by aggregate_softmax_tv_v2.py, not claimed inside this prior-numerics audit."
+    },
+    {
+      "source": "aggregate_softmax_tv_v2.py:25-168",
+      "facts": "Independent centered NumPy softmax with math.fsum positive-mass TV on saved full rows; all-position coverage/mass/range/document formulas; exact old-head/final-hidden identities; matching raw arrays; actual global/group/source/audit identity binding."
+    },
+    {
+      "source": "render_softmax_tv_integrated_v2.py:168-200",
+      "facts": "Two document-level ECDFs (document mean and maximum), full tail retained and explicitly labeled percent; median/P95/P99/max stored; old13columns/coverage/Top1 preserved from source-linked R005 aggregate."
+    }
+  ],
+  "closed_findings": [
+    {
+      "id": "F1",
+      "severity": "blocking_before_fix",
+      "issue": "Copied renderer base path did not exist under experiment; first repair also had incorrect parents index.",
+      "resolution": "Explicit existing R005 render_final_v2.py via file.parents[5], actual file/SHA verified; narrative corrected to retained old values plus added measured TV."
+    },
+    {
+      "id": "F2",
+      "severity": "blocking_before_fix",
+      "issue": "Aggregator accepted completed audit state without canonical group/doc/source/runtime binding.",
+      "resolution": "Frozen global analysis+plan identity; group code/input/output SHA; canonical ordered doc/raw audit scope; auditor/source/adapter identities; actual shared runtime hashes; extended-to-core hash; frozen baseline plan+aggregate binding."
+    },
+    {
+      "id": "F3",
+      "severity": "blocking_before_fix",
+      "issue": "Removing raw_audit path for old-head comparison also removed explicit old/new raw-value equality.",
+      "resolution": "Both raw manifests/files verified; every saved array dtype/shape/bytes and declared SHA checked, including full-vocabulary logits; report old_raw_equal explicitly."
+    }
+  ],
+  "independent_cpu_evidence": {
+    "record": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R006/independent_review/old45_independent_extended_precision.json",
+      "sha256": "c33a51dcd828ceae1b02690b3d29cdc153015f08b7cf7842483ab05c1d632831",
+      "bytes": 11946
+    },
+    "documents": 15,
+    "full_vocabulary_rows": 45,
+    "vocabulary": 128256,
+    "method": "No production module imported; independent centered longdouble full-row normalization and half L1,63mantissa bits vs52forFP64",
+    "max_abs_difference_vs_recorded_torch_fp64": 3.173505908925807e-15,
+    "max_normalization_defect": 3.2526065174565133e-19,
+    "seconds": 1.1964283519919263,
+    "applicability": "Historical R005 preselected raw rows only; not all formal R006 positions."
+  },
+  "existing_qualification_evidence": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R006/qualification/cpu_v2/old45_rows.json",
+      "sha256": "1343cdd20270315308f71d0b4a56297858167bcb5f6f9332c25f013f8209627b",
+      "bytes": 12899
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R006/qualification/cpu_v2/unit_receipt.json",
+      "sha256": "403c5b7a3bc7459f0969bcb88987d19469593f9cd3873171ff0b7ce98bbfd0d1",
+      "bytes": 479
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R006/qualification/cpu_v2/session_unit_receipt.json",
+      "sha256": "18e5b8cf3e8a668d6188cc1ece5679251013609520fbcdca788476ce87554daa",
+      "bytes": 549
+    }
+  ],
+  "statistical_scope": {
+    "primary_samples": "1024 unique documents in frozen web512/news256/reviews256 quotas",
+    "document_mean": "Within-document arithmetic mean over actualT positions; descriptive distribution across documents",
+    "document_max": "Maximum over actualT positions; independent descriptive distribution across documents, not pooled-token P95",
+    "position_weighted": "All103700 position values kept separately; positions and vocabulary entries are not independent documents",
+    "tails": "No truncation/winsorization/outlier deletion; linear empirical median/P95/P99/max; ECDF steps show all document values",
+    "inference": "TV summaries are descriptive fixed-quota statistics; no unconditional confidence or taskACC claim"
+  },
+  "remaining_execution_requirements": "A017 may proceed autonomously when all Root conditional-review requirements also hold: actual pilot native0/reaped/unchanged and old-output comparison, complete frozen input/plan/source identities and resource qualification. This review adds no new user/Root permission gate.",
+  "limitations": [
+    "TV measures observed FP32-head probability distributions, not an exact real-arithmetic model or a bound on head floating-point error.",
+    "Second-pass logits are byte-compared at preselected raw positions; no independent full-vocabulary raw proof for all103700positions is claimed.",
+    "Current exact output-head fields/final-hidden SHA must match R005 on all1024 documents before merging new TV with old13column data.",
+    "Raw independent full-vocabulary checks cover45positions in15preselected docs; do not label them an IID TV sample or complete independent raw recomputation.",
+    "The4doc GPU pilot and future1024 measurement are separate evidence; this review did not start a GPU or rerun the model.",
+    "Applicable only to this model,max128actual tokens,32layer prefill and fixed shared input prefixes; no decode/long-context/taskACC/universal precision claim.",
+    "Final real-data PNG still needs artifact/visual validation after full measurement."
+  ],
+  "baseline_renderer": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/analysis/final_precision_png/render_final_v2.py",
+    "sha256": "2913088c07c4f3720bf25d6983d0754dede2fc1199f1c5e1163b11516bd5e371",
+    "bytes": 14089
+  },
+  "contracts": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/.research-agent/decision_inputs/M005_R006_softmax_tv_contract.json",
+      "sha256": "d06697ae154acc57b7339b4c3d6dfd58db7590d2dfe4f0acffff0b6da226de69",
+      "bytes": 6397
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/.research-agent/decision_inputs/M005_R006_softmax_tv_pilot_contract.json",
+      "sha256": "0ad618cec69885bdcc4b83a10ecba2d50f565b0ac60e82f8e59f6566e83b6579",
+      "bytes": 3340
+    }
+  ]
+}

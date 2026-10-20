@@ -1,0 +1,140 @@
+{
+  "passed": true,
+  "CPU_fixture_only": true,
+  "native_executed": false,
+  "old_whole_suites_rerun": false,
+  "actual_evidence_not_replaced": true,
+  "collector_new_phase_cases": [
+    {
+      "phase": "physopt",
+      "coverage": {
+        "cell": 12,
+        "parent": 12,
+        "state_pin": 48,
+        "state_clock": 12,
+        "memory_root_pin": 24
+      },
+      "groups": 15,
+      "endpoints": 72,
+      "checkpoint_binding": true,
+      "token": "1",
+      "fresh_actual_scalar_properties": true
+    },
+    {
+      "phase": "route",
+      "coverage": {
+        "cell": 12,
+        "parent": 12,
+        "state_pin": 48,
+        "state_clock": 12,
+        "memory_root_pin": 24
+      },
+      "groups": 15,
+      "endpoints": 72,
+      "checkpoint_binding": true,
+      "token": "2",
+      "fresh_actual_scalar_properties": true
+    }
+  ],
+  "runtime_bridge_cases": [
+    {
+      "phase": "restore",
+      "case": "positive",
+      "expected_outcome_verified": true,
+      "qualifier_called": true,
+      "exit_code": 0,
+      "exception": null,
+      "stub_qualifier_only": true
+    },
+    {
+      "phase": "place",
+      "case": "positive",
+      "expected_outcome_verified": true,
+      "qualifier_called": true,
+      "exit_code": 0,
+      "exception": null,
+      "stub_qualifier_only": true
+    },
+    {
+      "phase": "physopt",
+      "case": "positive",
+      "expected_outcome_verified": true,
+      "qualifier_called": true,
+      "exit_code": 0,
+      "exception": null,
+      "stub_qualifier_only": true
+    },
+    {
+      "phase": "route",
+      "case": "positive",
+      "expected_outcome_verified": true,
+      "qualifier_called": true,
+      "exit_code": 0,
+      "exception": null,
+      "stub_qualifier_only": true
+    },
+    {
+      "phase": "physopt",
+      "case": "wrong_context_phase",
+      "expected_outcome_verified": true,
+      "qualifier_called": false,
+      "exit_code": null,
+      "exception": "AssertionError",
+      "stub_qualifier_only": true
+    },
+    {
+      "phase": "route",
+      "case": "wrong_context_checkpoint",
+      "expected_outcome_verified": true,
+      "qualifier_called": false,
+      "exit_code": null,
+      "exception": "AssertionError",
+      "stub_qualifier_only": true
+    },
+    {
+      "phase": "physopt",
+      "case": "wrong_snapshot_phase",
+      "expected_outcome_verified": true,
+      "qualifier_called": false,
+      "exit_code": null,
+      "exception": "AssertionError",
+      "stub_qualifier_only": true
+    },
+    {
+      "phase": "route",
+      "case": "missing_actual_state_rows",
+      "expected_outcome_verified": true,
+      "qualifier_called": false,
+      "exit_code": null,
+      "exception": "FileNotFoundError",
+      "stub_qualifier_only": true
+    },
+    {
+      "phase": "physopt",
+      "case": "qualification_returns_false",
+      "expected_outcome_verified": true,
+      "qualifier_called": true,
+      "exit_code": 1,
+      "exception": null,
+      "stub_qualifier_only": true
+    }
+  ],
+  "scope": "Incremental physopt/route fresh collector and four-phase Python dispatch/binding/rejection only; qualified body itself uses previously reviewed real proof.",
+  "sources": {
+    "runtime_state_collector.tcl": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/runtime_state_collector.tcl",
+      "bytes": 2515,
+      "sha256": "efa2e2fd5711a36a98f3a563f05cea73b95bcf691d0ce8ab395a24dd44e90374"
+    },
+    "runtime_qualify.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/runtime_qualify.py",
+      "bytes": 2720,
+      "sha256": "ba74dac73aa4aefd2b22459c18f7d5ea5e39258706ddf631c2b3a9e501e1d925"
+    },
+    "test_cached_collector.py": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/test_cached_collector.py",
+      "bytes": 8747,
+      "sha256": "50d7685b35413eace2668b6a168df5dee65b53196f906e868abc14a6484bba69"
+    }
+  }
+}

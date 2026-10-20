@@ -1,0 +1,59 @@
+{
+  "schema": "scalellm_gsm8k_prelaunch_readiness_v1",
+  "reviewed_at": "2026-10-18T02:24:47.786132+00:00",
+  "ready": true,
+  "scope": "R002 native_cache_call_parity_v2; 57 worker/summary +49 matrix CPU tests with stable source identity, preserved train-only real GPU diagnostics; next stage validates all real GPU model/cases",
+  "plan_sha256": "a121713b9c87093830f15446ec130b340ae744445f5e75c9f59970752344b545",
+  "source_hashes": {
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/experiment/scripts/accuracy_MLP_4bit/mlp4_method_inference.py": "a50ad5fd40b533e9d2181f6dbf752ca8b15b03532120f52017dfe574376809e9",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/experiment/scripts/scale_code_linear/scalepath4_method_inference.py": "81c7dd96c215b34d4fea8af4183d6a55445eed86ed2594bfc89bbecbee7b4d27",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py": "179cadffd87ce099a4afd19c759716a1f4c724c0c8e404e83c666714d83831d1",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/protocol.py": "55763a69bb466c95f22457c1ac56186ded6d53a60edeea770fad50c29d8ee149",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/publish_gsm8k_display.py": "0b02cd3da7bc899f1951eeab75f192f04a3294cd61dbc431b006a2fbb4285561",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/render_accuracy_table.py": "be94bbbe0ac0d265678c39417528b0e75567fd99a2a511d4d80a7df454d04ecb",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_eval_worker.py": "71ade018ee4c64ebeae56866f242446c587217c32c068fcafbb36d0c3c95a2e6",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_matrix.py": "30ff1e7868ee0c82ed4dc7f23feeb323a6210ac618f15f7599f758541ffc6cca",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_worker.py": "f5c0c2f235c1e71dbaac6522ba97d87d53f283116de7c2583d048226a5ff763e",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/six_model_matrix.py": "2e47aaa0236932cc82b125401376839e8767bc75843051b7470593897127f9da",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/summarize_gsm8k.py": "4fb8743a91855fb7b2d459b6a32e2651a40d00d30ca6fa03f0ee01333798931e",
+    "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/models/huggingface.py": "316e1e7cebb5664072fcc56269be916018175664a5dc9c72cc664c157f720d90",
+    "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/models/utils.py": "63df398e015f11205ef2776626082340e732a40e00eb9962b63a65b5252a6553",
+    "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/models/utils_hf.py": "72f7f006683841dabf59220be18040d2b83544163721aa61b92e146e7504cc88"
+  },
+  "evidence_hashes": {
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/worker_verification_v2_cpu/AT001/receipt.json": "cd9e88d0027e1f63c3846827fa9bc4cb7fc92ccc316efa7651899bc98ea69659",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/worker_verification_v2_cpu/AT001/production_function_comparison.json": "3d86f681b2e4760a7448c77dde89f1a1ad89ad2d896b90eee7fb75d91d77a9ed",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/protocol/matrix_cpu_safety_AT007.json": "ae1e2b40af30663b33cbd50b6607b2163e2e2bdc3318f93922552d969273198e",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/protocol/cache_review_AT002.json": "d2e712d2e64f5db420d1067381b7aadaf39b3818a930304ec232ab30b4a247ac",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/display_publication_cpu_test.json": "1bbab2877bbd68ec3e946e1c549fea9ee019d2ccf5e8ebd7e5c464d957aaddd8",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/frozen_inputs/input_parity.json": "8b3a8813c3ca2f438f62d5d6c39d9328468b9a1aae25112de8a75c8ca2c3499e",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/frozen_inputs/verification_revision.md": "cecf8b36cf3a6b07325fc34574f6fa70996196f2ce9e1136a4a8e6a66cff1497",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/model_identities/validation.json": "4e2a5bc0f0f6c46b28efe05e7a8473fe8b5c3358879b563e788c656b762d7723",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/protocol/cpu_parity_AT002.json": "7a08856800110d0873c66a2d518a2d9d86c38fd9dcdfdb57bc2ac64aa1ad6c11",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/protocol/input_preparation_AT001/tokenizer_audit.json": "2eefd0308c8831efc1f718c0b1f5ed242558d581ec267dc4b822e7ac576ae0b1",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/environment/cuda_preflight.json": "1beb2e6344adc0c12e9b7f1fac0b441deec193c5fbc6068e463bde320d932f26",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/cache_diagnosis_AT001/a8w8_fp32/diagnosis.json": "8bc283e106216f392c179cd2bc112b61952859e32447436a0a48668cc2954968",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/cache_diagnosis_AT001/a8w4_fp32/diagnosis.json": "1eedbff4c4d02618decce704b7881873d76649175ab26e42d0d9f93a2ba85f96",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_cache_diagnosis_AT001/a8w8_fp32/diagnosis.json": "a25b7e9638adaca8e0207d0eafdfacce5391b9d37e4516c140d71e7d2e22b03e",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_cache_diagnosis_AT001/a8w4_fp32/diagnosis.json": "1119479433b7da836da21ef2fc49a06d7ba567c5ead9e7f179cd1588050efad0",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/projection_shape_diagnosis_AT001/bf16/diagnosis.json": "54fee15116fd8b6eb5f50daab4c40a78781049c6580f3de3592273d96d6ba75a",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/projection_shape_diagnosis_AT001/a8w4_fp32/diagnosis.json": "6d62c2f6be462bf2f25e12dd7655241c56b79b3fa14f1ce97ae8fe5b9b89d98f"
+  },
+  "package_versions": {
+    "python": "3.10.19",
+    "torch": "2.10.0+cu128",
+    "transformers": "5.3.0",
+    "datasets": "4.8.4",
+    "lm_eval": "0.4.11",
+    "accelerate": "1.13.0",
+    "triton": "3.6.0"
+  },
+  "gpu_uuids": [
+    "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+    "GPU-d87ce710-76bf-872d-9739-f0d7c9b52533"
+  ],
+  "nvml_status": "unavailable_driver_library_mismatch",
+  "cuda_basic_operations_passed": true,
+  "system_driver_modified": false,
+  "verification_contract_id": "native_cache_call_parity_v2"
+}

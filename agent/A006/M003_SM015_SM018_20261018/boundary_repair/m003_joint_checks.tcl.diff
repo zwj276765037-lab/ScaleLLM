@@ -1,0 +1,89 @@
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A006/M003_SM015_SM018_20261018/boundary_repair/m003_joint_checks.before.tcl
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_checks.tcl
+@@ -451,14 +451,41 @@
+     if {![llength $nets]} {error "M003 disconnected pin: $cell/$terminal"}
+     return $nets
+ }
++# Independent upstream aliases retained in this synthesis, selected as actual
++# native nets. Do not infer S/L/R truth from the protected sinks being checked.
++proc m003::boundary_net {name} {
++    # Positional get_nets is a pattern API; these upstream scalar names must be
++    # literal. Do not silently turn generated bus brackets into wildcard input.
++    if {[regexp {[*?\[\]\\]} $name]} {error "M003 boundary anchor is not a literal scalar name: $name"}
++    set net [one get_nets $name]
++    if {[string tolower [get_property CLASS $net]] ne "net"} {error "M003 boundary anchor is not a net: $name"}
++    return $net
++}
++proc m003::boundary_names {tag net} {
++    # -of_objects documents pins/ports/cells/clocks, not net inputs. Expand the
++    # actual exact-name selected net through the documented positional pattern.
++    set nets [m003_conn::bounded_objects [get_nets -quiet -segments $net] boundary_segments]
++    set names [collection_property NAME $nets]
++    if {![llength $nets] || $net ni $nets || [llength $nets]!=[llength [lsort -unique $nets]] || [llength $names]!=[llength [lsort -unique $names]]} {error "M003 invalid actual boundary segment membership: $tag"}
++    foreach object $nets {if {[string tolower [get_property CLASS $object]] ne "net"} {error "M003 boundary segment is not a net: $tag"}}
++    m003_conn::event boundary_source_selected [dict create tag $tag anchor [get_property NAME $net] segment_count [llength $nets]]
++    return $names
++}
+ proc m003::snapshot_body {phase out} {
+     variable groups;variable spec_path;variable scripts;variable parent_scope;variable core_meta_scope;variable connection_token
+     require_project
+     set r [resolve];set target_sites [dict create];set control_sources [dict create]
+     stream_begin $phase $out
+     set connection_token [m003_conn::begin $phase [file join $out m003_connection_${phase}_trace.jsonl] [file join $out m003_connection_${phase}_groups.jsonl.partial] [file join $out m003_connection_${phase}_endpoints.jsonl.partial]]
++    # Resolve all seven source identities before the large row walk. Core S
++    # excludes abort-inclusive datapath_clear; L is the identical launch term.
++    variable meta_scope
++    set control_clock_net [boundary_net ${core_meta_scope}/core_clk]
++    foreach {tag name} [list S ${core_meta_scope}/engine_soft_clear L ${core_meta_scope}/input_load_start R ${meta_scope}/rsp_fire reset ${core_meta_scope}/core_rst_n read_enable ${meta_scope}/rd_fire write_enable ${core_meta_scope}/meta_wr_valid] {
++        dict set control_sources $tag [boundary_names $tag [boundary_net $name]]
++    }
+     dict for {bit cell} [dict get $r core_address] {
+-        stream_row cells [cell_row $cell core_address [dict create bit $bit C_nets_group [clock_group $cell C] CLR_nets [pin_net $cell CLR]]]
++        stream_row cells [cell_row $cell core_address [dict create bit $bit C_nets_group [clock_group $cell C] CLR_nets [collection_property NAME [pin_net $cell CLR]]]]
+     }
+     foreach family {head tail} {
+         dict for {bit cell} [dict get $r payload $family] {
+@@ -495,7 +522,7 @@
+             set state [address_state_evidence $cell]
+             set cen [pin_net $cell CE]
+             set ce_driver [get_pins -quiet -leaf -of_objects $cen -filter {DIRECTION == OUT}]
+-            stream_row cells [cell_row $cell address [dict merge [dict create slice $index bit $bit CE_nets $cen CE_drivers [get_property NAME $ce_driver] C_nets_group [clock_group $cell C] CLR_nets [pin_net $cell CLR]] $state]]
++            stream_row cells [cell_row $cell address [dict merge [dict create slice $index bit $bit CE_nets [collection_property NAME $cen] CE_drivers [get_property NAME $ce_driver] C_nets_group [clock_group $cell C] CLR_nets [collection_property NAME [pin_net $cell CLR]]] $state]]
+ 
+         }
+         foreach cell [dict get $r helpers $index] {
+@@ -526,29 +553,11 @@
+             stream_row uram_configs $config;close $props
+         }
+     }
+-    variable meta_scope
+-    foreach {tag terminal} {S addr_system_clear L addr_launch clock clk reset rst_n} {
+-        set pin [get_pins -quiet ${meta_scope}/$terminal]
+-        exact_count $pin 1 "selected metadata boundary $tag"
+-        if {$tag eq "clock"} {
+-            set b [m003_conn::bind $connection_token $pin]
+-            dict set control_sources clock_group [dict get $b group]
+-            dict set control_sources clock_pin [dict get $b pin]
+-        } else {
+-            set nets [get_nets -quiet -segments -of_objects $pin]
+-            if {![llength $nets]} {error "M003 empty metadata boundary signal: $tag"}
+-            dict set control_sources $tag [get_property NAME $nets]
+-        }
+-    }
+-    set event [get_nets -quiet -hier -filter [format {NAME == "%s/rsp_fire"} $meta_scope]]
+-    if {![llength $event]} {error "M003 local response event unresolved"}
+-    dict set control_sources R [get_property NAME [get_nets -quiet -segments -of_objects $event]]
+-    set read_enable [get_nets -quiet -hier -filter [format {NAME == "%s/rd_fire"} $meta_scope]]
+-    if {![llength $read_enable]} {error "M003 metadata read enable unresolved"}
+-    dict set control_sources read_enable [get_property NAME [get_nets -quiet -segments -of_objects $read_enable]]
+-    set write_enable [get_pins -quiet ${meta_scope}/meta_wr_valid]
+-    exact_count $write_enable 1 "metadata write enable boundary"
+-    dict set control_sources write_enable [pin_net $meta_scope meta_wr_valid]
++    # The clock net is an independent upstream anchor. Reuse its proven
++    # same-call group and bind the actual source endpoint, never a reused sink C.
++    set b [m003_conn::bind_source_net $connection_token $control_clock_net]
++    dict set control_sources clock_group [dict get $b group]
++    dict set control_sources clock_pin [dict get $b pin]
+     foreach cell [dict get $r c01] {stream_row cells [cell_row $cell c01 [dict create]]}
+     foreach cell [dict get $r meta_all] {stream_row meta_ref_cells [dict create NAME $cell REF_NAME [get_property REF_NAME $cell]]}
+     foreach pb [get_pblocks -quiet -filter {NAME =~ m003_* || NAME == m002_exact_hotspot_SLR2}] {

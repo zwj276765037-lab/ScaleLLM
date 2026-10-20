@@ -1,0 +1,17 @@
+{
+  "event_id": "EV_SM021_AT002_local_rounding_milestone",
+  "small_mission": "SM021",
+  "trigger": "milestone",
+  "summary": "303条合成局部舍入实验已执行并独审；264合法域无理论界违例；最大当前与仅输出差2 LSB，不能称完全无损。",
+  "impact": "支持局部CPU公式回放与数值工具；真实输入及全模型精度未测。M003/M004不受影响。",
+  "evidence": [
+    "results/reviews/SM021_rounding_local_stage.md",
+    "project/E012_multistage_rounding_precision/experiment_results/runs/R001/attempts/AT002_cpu_local_rounding_v2/summary.json"
+  ],
+  "affected": [
+    "SM021",
+    "SM022"
+  ],
+  "action": "按已授权合同继续BF16真实输入有界采集与局部成对回放，无新增用户决策。",
+  "requires_decision": false
+}

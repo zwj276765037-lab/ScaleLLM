@@ -1,0 +1,20 @@
+{
+  "source": "# E010：GSM8K双GPU执行来源\n\n用户已授权在当前exp实现并执行、确认两张GPU。六冻结checkpoint×五配置、原5-shot raw greedy strict EM、test1319/格，max8192/new4096、BF16 eager、原生KV。实际执行plan与14份源码快照在raw R002 frozen_inputs/frozen_sources，数据和权重SHA均绑定。\n\nR001原cache开关allclose门自然失败。R002采用显式native_cache_call_parity_v2：真实生成调用/每步fresh缓存重建/KV结构/负对照/同卡独立进程重复性。原allclose与greedy开关比较保留真实诊断，不宣称数学等价；生产5函数AST与R001相同。详见source/gsm8k_execution_cache_v2_20261018/verification_revision.md。\n\nR003正按gpu0_integrity_recovery_decision_20261018.md准备：暂不分配GPU1，全部30组固定GPU0；增加运行时权重内容身份门，原v2门和评估算法保持。新计划/源码尚待实现、独立审核与冻结，不宣称已启动。\n\n用户后续明确要求修复GPU1；A012 /root/gpu1_repair已真实派发，GPU1/CPU18–19/原锁，原始CUDA有限模式检查。父在项目内下载并仅解包官方580.159.03工具，核归档与SHA；没有系统驱动安装/重启。\n",
+  "results": "# E010：尚无正式GSM8K结果；两卡对照已完成\n\nR002已自然失败，smoke 6/30、pilot 0/30、formal 0/30。正式完成与独立验证均0/39570；新R003尚在准备，所有阶段0/30，旧6组不复用。\n\n11:45汇报窗口（10:45–11:45）：正式+0题、主矩阵+0组，新增完成6次诊断；此次汇报继续排查又完成AT008–AT010，累计10次诊断。\n\nGPU1的Llama-3.1 BF16目标层权重在加载完成、尚未推理时即与原checkpoint差16345元素/字节，连续同步快照间仍变化，参数version保持0；另行分配的正确权重roundtrip可通过。GPU0同版AT010的17/17单层权重快照全部与checkpoint相同，两次native输入、目标输出及最终logits一致。A010独立重算两卡34个快照及14份差异坐标，无记录不符。此证据支持暂不分配GPU1，不构成整卡硬件故障诊断，也不替代全模型/30配置资格。\n\n已决定加入全模型运行时权重完整性检查，保留原logits/KV/负对照等验收门；重新smoke/pilot后才进入formal。训练和诊断不能用于正式ACC/Avg，尚无可靠剩余时间估计。\n\n12:28后续：GPU0 Llama3.1 BF16新受控smoke真实运行，CPU→GPU全293项内容复制与原v2门、验证块前后守恒已通过，当前3/4训练题完成，尚未terminal。GPU1无torch/Transformers的20GiB原始CUDA测试，在H2D 00/55/aa/ramp及device memset00均在同5分配块失败，ff模式通过；匹配CUDA用户态库候选尚待新AT复测。项目内匹配NVML查询已实际成功，原系统监控命令未改；GPU1 ECC关闭、Xorg占用38MiB，ECC错误N/A不代表无错。\n",
+  "status": "# E010：GPU1修复定位与GPU0恢复并行\n\nexecution_state: running\nverdict: unassessed\n\nR002终态failed；R003矩阵尚未启动。GPU0 PID301764正在Llama3.1 BF16完整性训练smoke，3/4题完成且原v2通过，完整attempt仍待收尾。A011随后继续必要QDQ训练验证，A010独立审核。\n\n用户已要求修复GPU1。A012 /root/gpu1_repair在GPU1/CPU18–19原锁内运行raw CUDA AT001/PID303981：20GiB/9有限模式/每块双读，尚未自然结束；已在模型框架之外复现同分配的字节错误。AT001结束后用同脚本、匹配内核580.159.03的局部libcuda作新AT002软件修复候选对照，系统库及当前G0环境不动。\n\n父已恢复项目内NVML读取，工具位于preparation_20261018/nvml_local_recovery_20261018/nvidia_smi_local.sh，匹配库只作用于调用进程。系统默认NVML仍错配。GPU1 ECC Disabled，Xorg图形进程实际占用；未做reset、重启或系统驱动切换。M003/EDA/CPU0–7保持。GPU1仍不得用于正式补测。\n\n正式0/39570，无可靠ETA；每小时定时器保持enabled，下一轮12:45。\n",
+  "execution_state": "running",
+  "verdict": "unassessed",
+  "applicability": "G0新门受控smoke进行中；GPU1原始CUDA字节错误已复现、修复候选未完成；项目内NVML读取恢复，正式结果仍0",
+  "evidence": [
+    "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/supervisor_start_observed.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/gpu_inference_observed.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/cache_revision_evidence.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/first_two_smokes_passed.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/supervisor_terminal.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/hourly_reports/20261018T0345_progress.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/hourly_reports/20261018T0345_followup.json",
+    "project/E010_gsm8k_six_model_completion/gpu0_integrity_recovery_decision_20261018.md",
+    "project/E010_gsm8k_six_model_completion/experiment_results/hourly_reports/20261018T0428_gpu_repair_progress.json",
+    "project/E010_gsm8k_six_model_completion/gpu1_repair_user_authorization_20261018.json"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "source": "# E010：GSM8K双GPU执行来源\n\n用户已授权在当前exp实现并执行、确认两张GPU。六冻结checkpoint×五配置、原5-shot raw greedy strict EM、test1319/格，max8192/new4096、BF16 eager、原生KV。实际执行plan与14份源码快照在raw R002 frozen_inputs/frozen_sources，数据和权重SHA均绑定。\n\nR001原cache开关allclose门自然失败。R002采用显式native_cache_call_parity_v2：真实生成调用/每步fresh缓存重建/KV结构/负对照/同卡独立进程重复性。原allclose与greedy开关比较保留真实诊断，不宣称数学等价；生产5函数AST与R001相同。详见source/gsm8k_execution_cache_v2_20261018/verification_revision.md。\n",
+  "results": "# E010：R002已实际双GPU运行\n\n57项worker/summary联合CPU检查、49项调度CPU检查在最终源码上通过；原1319prompt字节对照和7914tokenizer输入审计保持，六模型完整文件身份匹配。训练GPU受控诊断与A010审查留证。\n\n2026-10-18T02:24:47Z启动R002监督器PID271368；初始worker271371/271372实际分别使用两张A6000，GPU UUID、模型加载和验证逐步输出已核。当前smoke，正式GSM8K完成0/30。不能将训练smoke/pilot分数填入表。\n\n最终30×1319正式样本需全部独立harness复算，验收后自动生成六项平均表并备份更新用户展示；原历史CSV/manifest保持。\n\n2026-10-18T02:27Z补充观察：Llama-3.2-3B-Instruct BF16/A8W8各4/4训练smoke完成、v2验证passed；A8W8第二提示原cache-off allclose仍false并如实保留。已自动接续两个A8W4配置，无失败。正式仍0/30。\n",
+  "status": "# E010：双GPU队列运行中\n\nexecution_state: running\nverdict: unassessed\n\nR002 AT001已原生启动，阶段smoke。权威动态状态：[/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/current_state.json](/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/current_state.json)。监督器在资格门通过后自动推进pilot/formal；失败时停止新发并自然收尾已运行worker。正常无墙钟/静默强停。\n\nCPU16–17/18–19，监督器14–15；保持M003 EDA CPU0–7。NVML仍失配，CUDA实际推理正常，系统驱动未改。尚无正式精度。当前摘要为阶段观察，动态状态以队列JSON/manifest为准，未承诺自动会话通知。\n\n最新已核：初始BF16/A8W8两组smoke完成，队列继续两个A8W4组。证据first_two_smokes_passed.json；不能据此认定全部smoke或正式test通过。\n",
+  "execution_state": "running",
+  "verdict": "unassessed",
+  "applicability": "R002双卡真实启动及smoke进行中；全量GSM8K待完成与独立复算",
+  "evidence": [
+    "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/supervisor_start_observed.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/gpu_inference_observed.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/cache_revision_evidence.json",
+    "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/first_two_smokes_passed.json"
+  ]
+}

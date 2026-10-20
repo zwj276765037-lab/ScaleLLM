@@ -1,0 +1,52 @@
+{
+  "schema": "scalellm_gsm8k_matrix_source_freeze_v1",
+  "frozen_at_utc": "2026-10-18T02:25:22.772651+00:00",
+  "owner": "A010 /root/gsm8k_protocol",
+  "execution_state": "completed",
+  "review": "CPU qualification completed; controller owns launch approval and actual GPU execution",
+  "source_sha256": {
+    "run_gsm8k_matrix.py": "30ff1e7868ee0c82ed4dc7f23feeb323a6210ac618f15f7599f758541ffc6cca",
+    "test_gsm8k_matrix.py": "5dad27a0c127c8783b6da343166fd7386d4044a84f205b9cbce576193cb037d7",
+    "run_gsm8k_worker.py": "f5c0c2f235c1e71dbaac6522ba97d87d53f283116de7c2583d048226a5ff763e"
+  },
+  "audit": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/protocol/matrix_cpu_safety_AT007.json",
+  "audit_sha256": "ae1e2b40af30663b33cbd50b6607b2163e2e2bdc3318f93922552d969273198e",
+  "test_count": 49,
+  "sources_unchanged_during_test": true,
+  "verification_contract_id": "native_cache_call_parity_v2",
+  "legacy_verification_supported": "cache_on_off_logits_v1 without relaxation; mixed/unknown identities rejected",
+  "plan": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/source/gsm8k_execution_cache_v2_20261018/plan.json",
+  "plan_sha256": "a121713b9c87093830f15446ec130b340ae744445f5e75c9f59970752344b545",
+  "worker_consumer_integration_receipt": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/worker_verification_v2_cpu/AT001/receipt.json",
+  "worker_consumer_integration_receipt_sha256": "cd9e88d0027e1f63c3846827fa9bc4cb7fc92ccc316efa7651899bc98ea69659",
+  "coverage": [
+    "stable fixed GPU slot across all stages and retries",
+    "actual full GPU UUID and single visible-device validation for completed and failed-resume sources",
+    "no migration of old unpinned frozen contracts",
+    "v2 per-step exact/finite/cache gates and ordinary corruption-negative-control qualification",
+    "narrow one-step EOS negative-control N/A",
+    "retained old diagnostic False and original tolerance values",
+    "pilot/length and formal memory gates with CUDA queries mocked",
+    "child lock-FD inheritance and natural drain after fault",
+    "CPU-only finalizer with supervisor-attempt-specific logs"
+  ],
+  "current_smoke_launch_blockers_from_this_review": [],
+  "known_bounded_recovery_limitation": {
+    "status": "reported to controller; explicitly deferred outside final freeze scope",
+    "description": "If Popen fails before worker creates its AT directory, precreated stdout/stderr logs may remain. Current next AT calculation uses directory count, so retry can collide with those preserved logs. Do not delete or overwrite them to claim successful recovery.",
+    "evidence_kind": "read-only code finding; no production GPU fault run performed"
+  },
+  "older_evidence_boundaries": {
+    "AT003": "23 tests passed for its earlier matrix source",
+    "AT004": "35 tests passed for its earlier matrix source",
+    "AT005": "35 assertions passed; no source-entry guard in that earlier test version, superseded as a final source qualification",
+    "AT006": "49 assertions passed but worker changed during run; audit explicitly success=False and retains both source hashes",
+    "AT007": "49 passed and source-stable; sole final freeze qualification"
+  },
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "GPU_or_EDA_executed": false
+}

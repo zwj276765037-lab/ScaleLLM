@@ -1,0 +1,56 @@
+{
+  "schema": "m005_r008_operator_ablation_v1",
+  "at": "2026-10-20T01:15:20.401979+00:00",
+  "authorization": "Continuation of user-requested rapid correction of layer32 output; R007 failed to show useful improvement. Root authorizes one bounded diagnostic stage before further candidate changes.",
+  "purpose": "Identify which intermediate-rounding families materially drive end-to-end discrepancy under controlled single-family interventions. This is an ablation, not a deployable optimization or task-quality proof.",
+  "arms": [
+    "baseline_CURRENT",
+    "linear_only_OUTPUT_ONLY",
+    "rope_only_OUTPUT_ONLY",
+    "qk_only_OUTPUT_ONLY",
+    "softmax_only_OUTPUT_ONLY",
+    "pv_only_OUTPUT_ONLY",
+    "reference_OUTPUT_ONLY"
+  ],
+  "arithmetic": "Use unmodified numerical_reference.gpu_reference.arithmetic_context and ArithmeticPolicy; one false family at a time relative to CURRENT. Softmax interpolation and reciprocal are a joint family. All 32 layers. No R007 RNE patches.",
+  "invariants": [
+    "same frozen dev0..3 documents and 128token preprocessing",
+    "same independent full OUTPUT_ONLY reference",
+    "each arm recomputes own dynamic activation and KV codes",
+    "same base integer weights/LUT/host/final output widths",
+    "baseline and reference parity with prior R006/R007 required",
+    "no changes to frozen consumed sources or production"
+  ],
+  "sampling": "Exactly original 4 development documents, 398 positions; exploratory diagnostic only, not independent validation or formal1024.",
+  "metrics": [
+    "layer32 pre-norm relative L2",
+    "finalhidden relative L2",
+    "full-vocab logits relative L2",
+    "full-vocab softmax TV temperature1",
+    "Top1 agreement",
+    "overflow/saturation counters",
+    "all32-layer scalar propagation curve when feasible without saving all raw hidden"
+  ],
+  "resource_limits": {
+    "gpu_uuid": "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+    "cpu_threads": 1,
+    "max_rss_gib": 8,
+    "max_gpu_gib": 24,
+    "launch_free_gpu_gib": 30,
+    "runtime_free_gpu_gib": 8,
+    "minimum_available_ram_gib": 32,
+    "total_gpu_wall_seconds": 900,
+    "max_evidence_mib": 256,
+    "gpu_processes": 1
+  },
+  "basis": "R007 measured load36.398s+attach347.182s and complete116forwards in665.205s. R008 28forwards in one assembly; no repeated assembly qualification.",
+  "write_boundary": [
+    "new files in experiment/rounding_optimization/ with R008-specific names",
+    "R008 attempts/results",
+    "E012 three summaries by A019 sole publisher"
+  ],
+  "engineering_owner": "rounding_optimization_runner/A019",
+  "acceptance": "Report every family and unfavorable result; interventions are conditional and non-additive, cannot claim unique causal attribution. No new optimization claimed merely by substituting reference arithmetic.",
+  "followup": "Return numerical ranking and specific feasible finite-width correction proposal. No automatic full1024/ACC/PPL/hardware changes or additional GPU stage beyond this contract.",
+  "execution": "CPU policy mapping/context restoration checks then launch background once resources and frozen source match; routine fixes allowed in new attempts; actual exit evidence required."
+}

@@ -1,0 +1,1166 @@
+{
+  "schema": "m005_numerical_array_inputs_v1",
+  "cases": [
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 0,
+      "node": "linear",
+      "op": "down_proj",
+      "config": {
+        "profile": "mlp_down"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer00_down_proj.npz",
+      "sha256": "afe4d48b46ec312ef9e8793063c557ec700e92c5c6a69f3c83cbefa078117993",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          4095
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384605",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer00_down_proj.npz",
+          "bytes": 385770,
+          "sha256": "7cc41313f2e4271e6d15b7ef174e8eee7fd9519e3bb2c3a86583cbb467688d0a"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 0,
+      "node": "linear",
+      "op": "gate_proj",
+      "config": {
+        "profile": "mlp_gate_up"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer00_gate_proj.npz",
+      "sha256": "6d3dd79b93e6c6fa947939e03ed701eaa0db43086b5cbc860d5c3144e1be5d16",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          14335
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384605",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer00_gate_proj.npz",
+          "bytes": 118149,
+          "sha256": "9ccc62b5b6c61279884dae8e6a0b1e46f82bbfa8f4f731c03adce7d6c5bb2d2d"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 0,
+      "node": "linear",
+      "op": "k_proj",
+      "config": {
+        "profile": "attention"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer00_k_proj.npz",
+      "sha256": "a9b0112d8a4b877f43e35332d43e30bbd4f9196abc43243c614fe8e94275fa10",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          1023
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384103",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer00_k_proj.npz",
+          "bytes": 130085,
+          "sha256": "574c2793b6ba9a5e6de3d4e965704ce3752a7da00fc0771f503d590e7d027613"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 0,
+      "node": "linear",
+      "op": "o_proj",
+      "config": {
+        "profile": "attention"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer00_o_proj.npz",
+      "sha256": "5d1153d2b530acf8af8ba3c850c2848f8ff4066211c0bf04a9132e761e3dac61",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          4095
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384103",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer00_o_proj.npz",
+          "bytes": 109608,
+          "sha256": "92c4400a165965313ca8aadc17314bc775ce3411ce7fa61c75f32a7deb60f459"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 0,
+      "node": "linear",
+      "op": "q_proj",
+      "config": {
+        "profile": "attention"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer00_q_proj.npz",
+      "sha256": "f7987ab4501a2ec7741ec81a1fcc2ed18bec4550eaab97de7273fa553c791dae",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          4095
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384103",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer00_q_proj.npz",
+          "bytes": 130034,
+          "sha256": "cd64caa2f9385e3de1b82e3893d9b73a067f5413b1e74b46542f156b27976f39"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 0,
+      "node": "linear",
+      "op": "up_proj",
+      "config": {
+        "profile": "mlp_gate_up"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer00_up_proj.npz",
+      "sha256": "1af0253bb90ab056a039b04acd4148753ecdd2a996f95b6c60557c9af1b26fb1",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          14335
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384605",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer00_up_proj.npz",
+          "bytes": 118209,
+          "sha256": "d34ecbf0cef4114fa633c9db9873f91dbc288ec29b78ffbd7cdcc1cdf75c87f0"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 0,
+      "node": "linear",
+      "op": "v_proj",
+      "config": {
+        "profile": "attention"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer00_v_proj.npz",
+      "sha256": "9ca9239a00e61e319086bda6c9da85162abd854ce147e1f8363b94af32c734d6",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          1023
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384103",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer00_v_proj.npz",
+          "bytes": 128451,
+          "sha256": "ff11f472574d3171fe7d3896d445a121163cd2a41b24b6fd952701209d237a95"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 15,
+      "node": "linear",
+      "op": "down_proj",
+      "config": {
+        "profile": "mlp_down"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer15_down_proj.npz",
+      "sha256": "2e6f028c290ed86cc7581bd5295f09e63d96c8f36c0412b674cbf3d8a71898da",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          4095
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384605",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer15_down_proj.npz",
+          "bytes": 398289,
+          "sha256": "0340afa27afe5546d40b0ac46ffb27fc8ff02ef37e4836a48025a5677081e389"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 15,
+      "node": "linear",
+      "op": "gate_proj",
+      "config": {
+        "profile": "mlp_gate_up"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer15_gate_proj.npz",
+      "sha256": "e85cf79ee28fb853bd39bdf084c17e4dcb972dcb680c57801d7bd46e98188a94",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          14335
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384605",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer15_gate_proj.npz",
+          "bytes": 118484,
+          "sha256": "5087a4a93b4bdcd7595ef84e4d7eafc514c7fb8dd0933f9dbb1309246e14ccfd"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 15,
+      "node": "linear",
+      "op": "k_proj",
+      "config": {
+        "profile": "attention"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer15_k_proj.npz",
+      "sha256": "70a4065c18f27dcba5bd212badb197f20e09bb79ab88ef228737a5c4f0a35e39",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          1023
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384103",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer15_k_proj.npz",
+          "bytes": 125737,
+          "sha256": "b1f061429ab52197abd7bbde46818ae5e53acb27f0f8f9083c2520624d3eb397"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 15,
+      "node": "linear",
+      "op": "o_proj",
+      "config": {
+        "profile": "attention"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer15_o_proj.npz",
+      "sha256": "74aa9299925e5b77b3e4dd1146bc7a95c03e947886cd0497a64c47413e77d9db",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          4095
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384103",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer15_o_proj.npz",
+          "bytes": 110885,
+          "sha256": "dfe3f67c5ef33b52ce068c9b0ef90736fb5336c15bed180386a7fee730db88b1"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 15,
+      "node": "linear",
+      "op": "q_proj",
+      "config": {
+        "profile": "attention"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer15_q_proj.npz",
+      "sha256": "e31cbe3e105962254d6225549f8b275f9d05662657c62c1b038fb9f169b5c417",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          4095
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384103",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer15_q_proj.npz",
+          "bytes": 125678,
+          "sha256": "4eacf027776871e5d378f8d828d656a26cd38170a3ba157bc9f1ea75921f8bdd"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 15,
+      "node": "linear",
+      "op": "up_proj",
+      "config": {
+        "profile": "mlp_gate_up"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer15_up_proj.npz",
+      "sha256": "fddaba62b1d0dfce00057abaa2c629111a64e9378abd2ca4bfb757474a9c5689",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          14335
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384605",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer15_up_proj.npz",
+          "bytes": 118581,
+          "sha256": "fcb1e78bd91e67c23e5ede197ec8fde3e6df65accc258a8ea45e118902a9aff0"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 15,
+      "node": "linear",
+      "op": "v_proj",
+      "config": {
+        "profile": "attention"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer15_v_proj.npz",
+      "sha256": "44adc54bea0733efe53101ec2e3938a0c19864ccef2bfdc36cf562bbdad95ca4",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          1023
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384103",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer15_v_proj.npz",
+          "bytes": 125846,
+          "sha256": "58c8d23acbff48eaa8cd752a0924e34b70455003f6b91c3ed2607f32d3f52237"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 31,
+      "node": "linear",
+      "op": "down_proj",
+      "config": {
+        "profile": "mlp_down"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer31_down_proj.npz",
+      "sha256": "cbc5abc2b58a4531a7299c74e3b332df048ef0a11c0fd226b16a1203149c3a1d",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          4095
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384605",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer31_down_proj.npz",
+          "bytes": 403732,
+          "sha256": "cd34cd528b1ffaa81cf5303e5a9ec9e0d51cc6a57f74e41f8e1aa10278cb6077"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 31,
+      "node": "linear",
+      "op": "gate_proj",
+      "config": {
+        "profile": "mlp_gate_up"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer31_gate_proj.npz",
+      "sha256": "03c12bca05dae580f2124eee1c582c8e1dbf8b74512348bc488198106601feb6",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          14335
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384605",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer31_gate_proj.npz",
+          "bytes": 118468,
+          "sha256": "a5f2dabf730600cb1a95a6c51ab49bfb43f3da3ec91e20fb01a069560b858c51"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 31,
+      "node": "linear",
+      "op": "k_proj",
+      "config": {
+        "profile": "attention"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer31_k_proj.npz",
+      "sha256": "b93c53269d8d99ffde6be10cf03ce7143d1ed56b734909bbb93e76baffc9c6c1",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          1023
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384103",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer31_k_proj.npz",
+          "bytes": 125596,
+          "sha256": "28ae0e7aea1f21f22b7638974ac84ac9ab894a757609fb33653ecbd9e5605821"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 31,
+      "node": "linear",
+      "op": "o_proj",
+      "config": {
+        "profile": "attention"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer31_o_proj.npz",
+      "sha256": "897396f0948c715fd863a1a474dd4b5e51ebec694db7a4a75fc4137b10f1e128",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          4095
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384103",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer31_o_proj.npz",
+          "bytes": 111133,
+          "sha256": "8b7b04696c4033ca233412a4e3aa0aaa49dc0a9a955dfbc269252844494a7c64"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 31,
+      "node": "linear",
+      "op": "q_proj",
+      "config": {
+        "profile": "attention"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer31_q_proj.npz",
+      "sha256": "b029a1a05b450b967d95546eb4676a8ec4f27e815bbd6292153c3ec798f5678a",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          4095
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384103",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer31_q_proj.npz",
+          "bytes": 125779,
+          "sha256": "4746963d59c480dec7366548dbcbeef86cabd51655805f4d742ec5270cd03f20"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 31,
+      "node": "linear",
+      "op": "up_proj",
+      "config": {
+        "profile": "mlp_gate_up"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer31_up_proj.npz",
+      "sha256": "af99853f3d468e256dddbeaaa7772d3c02bd0766d8ef9e81cd1e8622c49c6b20",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          14335
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384605",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer31_up_proj.npz",
+          "bytes": 118358,
+          "sha256": "288b9f4b7ba1cd0a184443444b84ee13272359ba27da15e64ae72cdec549d965"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    },
+    {
+      "doc_id": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "source_id": 0,
+      "domain": "legacy_mixed_smoke",
+      "split": "engineering",
+      "text_sha256": "1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "duplicate_cluster": "engineering_smoke:1e19df34e2c94422c2c55e1229f67a201d6644d618e762511013a898863bdab8",
+      "evidence_role": "engineering_smoke",
+      "trajectory": "bf16",
+      "layer": 31,
+      "node": "linear",
+      "op": "v_proj",
+      "config": {
+        "profile": "attention"
+      },
+      "input_npz": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT002_legacy_array_pipeline_qualification/pack/inputs/layer31_v_proj.npz",
+      "sha256": "409f2a7c49eb598ff1572c5053a8a2a09a7101635fe60e8341bb44c353f6b77c",
+      "output_shape": [
+        2,
+        4
+      ],
+      "output_selection": {
+        "tokens": [
+          0,
+          127
+        ],
+        "channels": [
+          0,
+          1,
+          63,
+          1023
+        ],
+        "flatten_order": "row_major"
+      },
+      "target_format": "0x48384103",
+      "production_source_hash": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "lut_or_coefficient_hash": null,
+      "source_files": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/integer_artifacts/layer31_v_proj.npz",
+          "bytes": 125686,
+          "sha256": "e626d3dcdc988a0882830b2628c1b371379f0cd7144ddefbfd772a0cc8a43909"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/input_identity.json",
+          "bytes": 2766,
+          "sha256": "d2fa05c863e173bf257b487f4b307d6827ec6619f41d37986481113b3f45f162"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT004_bf16_streamed_128token/capture_manifest.json",
+          "bytes": 5810,
+          "sha256": "355e8f4ad6fbe82f3b5929d0c077180cc3b569f315f99af328b444f0e6aa79ac"
+        }
+      ]
+    }
+  ],
+  "document_count": 1,
+  "tensor_count": 21,
+  "source_scope": "legacy BF16 engineering smoke only",
+  "formal_eval_documents": 0,
+  "new_gpu_capture_performed": false,
+  "limitation": "does not represent clean dev/eval or production/continuous paths"
+}

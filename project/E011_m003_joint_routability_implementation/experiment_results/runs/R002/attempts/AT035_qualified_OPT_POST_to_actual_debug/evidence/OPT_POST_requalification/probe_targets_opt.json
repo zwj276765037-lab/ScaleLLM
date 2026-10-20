@@ -1,0 +1,95 @@
+{
+  "kind": "native",
+  "point": "opt",
+  "baseline_report": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT027_reset_semantics_postreport_recovery/cdc_post_synth.rpt",
+    "bytes": 4247999,
+    "sha256": "8e44f85ba337567699fac01b0f93316ef8abd054e081619f4dbc195d6e1b2745"
+  },
+  "actual_report": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT035_qualified_OPT_POST_to_actual_debug/evidence/OPT_POST_requalification/cdc_opt.rpt",
+    "bytes": 3941262,
+    "sha256": "65df75fb4aac2db755407c9d1206b6434b7b3194df2194e784a48360db618efa"
+  },
+  "warning_log": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/scalellm_m003_E011_R002_AT002/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_core_0_synth_1/runme.log",
+    "bytes": 1479333,
+    "sha256": "fc4c60c4198939bd64365a9a8e0966068a43c3aba68492d6646087476246b798"
+  },
+  "probe": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT035_qualified_OPT_POST_to_actual_debug/evidence/OPT_POST_requalification/probe_targets_opt.tcl",
+    "bytes": 2815,
+    "sha256": "cee74da765f7d4dd6bf9b4041a223c45c9ea3d915e766f193f258b422deb7560"
+  },
+  "preserved_probe": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT035_qualified_OPT_POST_to_actual_debug/evidence/OPT_POST_requalification/stage_sources/cee74da765f7d4dd6bf9b4041a223c45c9ea3d915e766f193f258b422deb7560_probe_targets_opt.tcl",
+    "bytes": 2815,
+    "sha256": "cee74da765f7d4dd6bf9b4041a223c45c9ea3d915e766f193f258b422deb7560"
+  },
+  "baseline_critical_count": 6,
+  "actual_critical_count": 8,
+  "sources": [
+    "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_ready_cdc/arststages_ff_reg[3]/C",
+    "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_ready_cdc/arststages_ff_reg[3]/C",
+    "scalellm_vcu118_f05_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_ddr_cal_top/calDone_gated_reg/C",
+    "scalellm_vcu118_f05_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_ddr_cal_top/calDone_gated_reg/C",
+    "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/C"
+  ],
+  "targets": [
+    "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready0_cdc/arststages_ff_reg[0]/CLR",
+    "scalellm_vcu118_f05_bd_i/core_gate/inst/u_ready1_cdc/arststages_ff_reg[0]/CLR",
+    "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]/CLR",
+    "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D",
+    "scalellm_vcu118_f05_bd_i/d0_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D",
+    "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]/CLR",
+    "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr0/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D",
+    "scalellm_vcu118_f05_bd_i/d1_smc/inst/clk_map/psr_aclk1/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/D"
+  ],
+  "clock_pairs": [
+    [
+      "mmcm_clkout0",
+      "clk_out1_scalellm_vcu118_f05_bd_clk_core_0"
+    ],
+    [
+      "mmcm_clkout0_1",
+      "clk_out1_scalellm_vcu118_f05_bd_clk_core_0"
+    ],
+    [
+      "xdma_0_axi_aclk",
+      "mmcm_clkout0"
+    ],
+    [
+      "xdma_0_axi_aclk",
+      "mmcm_clkout0_1"
+    ]
+  ],
+  "warning_registers": [
+    "g_physical_split.g_buffered_input.lower_head_first_r_reg",
+    "g_physical_split.g_buffered_input.lower_head_guard_s42_r_reg",
+    "g_physical_split.g_buffered_input.lower_head_last_r_reg",
+    "g_physical_split.g_buffered_input.lower_head_wave_r_reg",
+    "g_physical_split.g_buffered_input.lower_tail_first_r_reg",
+    "g_physical_split.g_buffered_input.lower_tail_guard_s42_r_reg",
+    "g_physical_split.g_buffered_input.lower_tail_last_r_reg",
+    "g_physical_split.g_buffered_input.lower_tail_wave_r_reg",
+    "g_physical_split.g_buffered_input.upper_head_first_r_reg",
+    "g_physical_split.g_buffered_input.upper_head_guard_s42_r_reg",
+    "g_physical_split.g_buffered_input.upper_head_last_r_reg",
+    "g_physical_split.g_buffered_input.upper_head_wave_r_reg",
+    "g_physical_split.g_buffered_input.upper_tail_first_r_reg",
+    "g_physical_split.g_buffered_input.upper_tail_guard_s42_r_reg",
+    "g_physical_split.g_buffered_input.upper_tail_last_r_reg",
+    "g_physical_split.g_buffered_input.upper_tail_wave_r_reg",
+    "input_gate_r_reg",
+    "input_up_r_reg",
+    "out_product_s32_reg",
+    "rd_mem_bank_r_reg",
+    "rd_mem_group_r_reg",
+    "s0_bypass_reg",
+    "s0_gate_reg",
+    "s0_top_entry_reg",
+    "s0_up_reg",
+    "s0_zero_reg",
+    "s1_product_reg"
+  ]
+}

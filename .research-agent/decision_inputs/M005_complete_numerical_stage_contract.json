@@ -1,0 +1,21 @@
+{
+  "kind": "m005_bounded_gpu_stage",
+  "recorded_at": "2026-10-19T03:49:37.101671+00:00",
+  "stage": "complete_v5_attachment_and_numerical_forward_qualification",
+  "gpu_uuid": "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+  "cpu_threads": 1,
+  "max_rss_gib": 8,
+  "max_gpu_gib": 24,
+  "max_wall_seconds": 900,
+  "minimum_launch_free_gpu_gib": 30,
+  "minimum_runtime_free_gpu_gib": 8,
+  "evidence_mib": 256,
+  "input": "frozen development document0,prefix32,one paired forward",
+  "basis_evidence": [
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT005_paired_32layer_numerical_pilot/gpu_receipt.json",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT006_row_chunk_quantization_qualification/chunked_quantization_result.json"
+  ],
+  "basis": "prior 300s pilot spent37.96s loading and completed17/32 weight attachments before budget stop; outer-row128 chunking exact on three full matrices and ~1.4–1.54x faster; 900s independently bounded full preparation plus two forwards",
+  "decision": "Root defines separate measured-cost stage under user-authorized experiment design; original attempt is immutable and not extended; default future pilot remains300s",
+  "on_limit": "preserve evidence and stop only owned process group; no automatic further expansion; no task ACC/PPL"
+}

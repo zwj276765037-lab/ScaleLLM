@@ -1,0 +1,29 @@
+# E009：AT003全端点导出中；canonical/report差异待对账
+
+execution_state: running  
+verdict: inconclusive
+
+01:52:26Z完整alias资格和canonical闭合；2914086元素配对全等，canonical=569597，相对本次report547548差+22049，明确保留待审。实际2026-10-18T01:53:50Z端点导出90112/569597网；全量输出未关闭，G1未过。
+
+按冻结范围继续全端点、唯一组/union及有界深查，正常无墙钟/静默强停；不插入新query或热改包。自然终态后collector v3/raw audit v2独立复算，向A007提交范围/差异/关键候选事实。无生产RTL/XDC/选型/implementation。
+
+
+---
+Published: 2026-10-18T01:53:53.581770+00:00
+Publication: Pc76e9e485dcd4c1f9148f22067f2f077
+Execution state: running
+Research verdict: inconclusive
+Applicability: AT003 full alias identity qualification closed; native canonical569597 vs current report547548 difference+22049 retained. Full endpoints/grouping/union/G1 pending.
+Evidence:
+- project/E009_m003_failed_net_attribution/experiment_source/AT003_scalar_property_fix/prepared_manifest.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/native_start_observed.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/started.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/input_bindings.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/independent_prelaunch_accepted.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/delta_and_cpu_checks.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/observer_started.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/terminal_facts_v2.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/observer_terminal_facts.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/schema_and_route_status_observed.json
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/observer_events.jsonl
+- project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/alias_qualification_observed.json

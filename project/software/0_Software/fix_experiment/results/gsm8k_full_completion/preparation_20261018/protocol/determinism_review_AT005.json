@@ -1,0 +1,541 @@
+{
+  "schema": "scalellm_weight_lifecycle_independent_review_v1",
+  "reviewed_at_utc": "2026-10-18T03:58:46.171731+00:00",
+  "reviewer": "A010 /root/gsm8k_protocol",
+  "execution_state": "review_completed_AT009_AT010",
+  "CPU_only": true,
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "cuda_initialized": false,
+  "review_source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/protocol/review_weight_lifecycle_AT009_AT010.py",
+    "sha256": "87c91c74f7a93360a7719ccab112d0721853b2009a0a62d4d3453c6b7a26cc6d"
+  },
+  "attempts": [
+    {
+      "attempt": "AT009",
+      "diagnosis_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT009/diagnosis.json",
+      "diagnosis_sha256": "fb28f4e0105a1096a5fac81f9e1adfff74ba2015526a429b75ce9b6634789c1e",
+      "source_sha256": "ae37b0c0838d6dc783deda7187cb3d87b58c070688afbba5c4f8728756d0cbe7",
+      "gpu_uuid_actual": "d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "cpu_affinity": [
+        18,
+        19
+      ],
+      "runtime_flags": {
+        "tf32": false,
+        "bf16_reduced_precision": true,
+        "deterministic_algorithms": false,
+        "CUBLAS_WORKSPACE_CONFIG": null
+      },
+      "snapshots": [
+        {
+          "label": "loaded_0",
+          "group": "model_weight",
+          "raw_sha256": "f67f99f4013b2b22b3adb29d5aa7fd16c97cd72f00ae39dea451c35e3cd952a0",
+          "value_sha256": "a13ee786f18cb4a97e515dd6eddb70b7d7e4954e2cf5a8cc8213e9fe7174d659",
+          "changed_elements": 16345,
+          "changed_bytes": 16345,
+          "checkpoint_equal": false,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 133102445789184,
+          "high_byte_changes": 0,
+          "max_abs_difference": 0.09326171875
+        },
+        {
+          "label": "loaded_1",
+          "group": "model_weight",
+          "raw_sha256": "a6af7d84a4b4bdd5e0009f67f807aa5f8990f930e4177e0ead0d41803b4379ed",
+          "value_sha256": "e4bdfb672dd84e48f3d0136c4ad369f8ec16f0e59e4c776f8bbc228306a3874e",
+          "changed_elements": 16345,
+          "changed_bytes": 16345,
+          "checkpoint_equal": false,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 133102445789184,
+          "changed_from_previous_elements": 35,
+          "high_byte_changes": 0,
+          "max_abs_difference": 0.09326171875
+        },
+        {
+          "label": "loaded_2",
+          "group": "model_weight",
+          "raw_sha256": "3e6c1a281dc496c25596144e051f0bb7104d99fe12b200f0306d5d542c469ae3",
+          "value_sha256": "813692d7caf0368bcb40373950f9daa4db7cbd8428b063ca21ab05b8577e7526",
+          "changed_elements": 16345,
+          "changed_bytes": 16345,
+          "checkpoint_equal": false,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 133102445789184,
+          "changed_from_previous_elements": 2,
+          "high_byte_changes": 0,
+          "max_abs_difference": 0.09326171875
+        },
+        {
+          "label": "native_0_before_seed",
+          "group": "model_weight",
+          "raw_sha256": "cc5708a608515574e310e09b0c9d1335b0a1ff38facaac51e94aaadab4f7c227",
+          "value_sha256": "eec760d23d83cd438b55201b480d6130123f6e5914cfa862f04512fe52eb88cb",
+          "changed_elements": 16345,
+          "changed_bytes": 16345,
+          "checkpoint_equal": false,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 133102445789184,
+          "changed_from_previous_elements": 1,
+          "high_byte_changes": 0,
+          "max_abs_difference": 0.09326171875
+        },
+        {
+          "label": "native_0_after_seed",
+          "group": "model_weight",
+          "raw_sha256": "ccc714a6a189bed3e43537508536d33da92240b1bbce7722c7770d389cfd572c",
+          "value_sha256": "1a87fac81e92c3d1d640e7644ac60a4dbcddcc4bc16a2452c23548aeb9c9279b",
+          "changed_elements": 16345,
+          "changed_bytes": 16345,
+          "checkpoint_equal": false,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 133102445789184,
+          "changed_from_previous_elements": 7,
+          "high_byte_changes": 0,
+          "max_abs_difference": 0.09326171875
+        },
+        {
+          "label": "native_0_target_pre",
+          "group": "model_weight",
+          "raw_sha256": "b03ab740d51b7a863e5babcb36e5c29e87b068ebb6ef237396818e9ea64ea9f8",
+          "value_sha256": "5d9e2fe2415a00450f227a558f01d36204b1b60307234f9576d8fcefdd847c31",
+          "changed_elements": 16345,
+          "changed_bytes": 16345,
+          "checkpoint_equal": false,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 133102445789184,
+          "changed_from_previous_elements": 2,
+          "high_byte_changes": 0,
+          "max_abs_difference": 0.09326171875
+        },
+        {
+          "label": "native_0_target_post",
+          "group": "model_weight",
+          "raw_sha256": "e8ce5d26ad843bdd55f088fb256a759d6d4da66f3e465671f3fc84a56a94abc7",
+          "value_sha256": "5d9e2fe2415a00450f227a558f01d36204b1b60307234f9576d8fcefdd847c31",
+          "changed_elements": 16345,
+          "changed_bytes": 16345,
+          "checkpoint_equal": false,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 133102445789184,
+          "changed_from_previous_elements": 0,
+          "high_byte_changes": 0,
+          "max_abs_difference": 0.09326171875
+        },
+        {
+          "label": "native_0_after_generate",
+          "group": "model_weight",
+          "raw_sha256": "29357d3e215dbc49cbfa00946cb104ecee1ab8ff6a03696ea33c024dfc76ca1c",
+          "value_sha256": "5d9e2fe2415a00450f227a558f01d36204b1b60307234f9576d8fcefdd847c31",
+          "changed_elements": 16345,
+          "changed_bytes": 16345,
+          "checkpoint_equal": false,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 133102445789184,
+          "changed_from_previous_elements": 0,
+          "high_byte_changes": 0,
+          "max_abs_difference": 0.09326171875
+        },
+        {
+          "label": "native_1_before_seed",
+          "group": "model_weight",
+          "raw_sha256": "506a59cf91fb97c57888da26fb7db533800618639784692d06270f9c1ebce615",
+          "value_sha256": "5d9e2fe2415a00450f227a558f01d36204b1b60307234f9576d8fcefdd847c31",
+          "changed_elements": 16345,
+          "changed_bytes": 16345,
+          "checkpoint_equal": false,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 133102445789184,
+          "changed_from_previous_elements": 0,
+          "high_byte_changes": 0,
+          "max_abs_difference": 0.09326171875
+        },
+        {
+          "label": "native_1_after_seed",
+          "group": "model_weight",
+          "raw_sha256": "712e99d3fc4dbd8f26ca4aa0a4ce17a0b9909850cd4277b887d264d3dfea8f5c",
+          "value_sha256": "5d9e2fe2415a00450f227a558f01d36204b1b60307234f9576d8fcefdd847c31",
+          "changed_elements": 16345,
+          "changed_bytes": 16345,
+          "checkpoint_equal": false,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 133102445789184,
+          "changed_from_previous_elements": 0,
+          "high_byte_changes": 0,
+          "max_abs_difference": 0.09326171875
+        },
+        {
+          "label": "native_1_target_pre",
+          "group": "model_weight",
+          "raw_sha256": "2484349476da3ab1c5d97d9896e3193be173beff7bfb47eed7f1fcd2507215c0",
+          "value_sha256": "5d9e2fe2415a00450f227a558f01d36204b1b60307234f9576d8fcefdd847c31",
+          "changed_elements": 16345,
+          "changed_bytes": 16345,
+          "checkpoint_equal": false,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 133102445789184,
+          "changed_from_previous_elements": 0,
+          "high_byte_changes": 0,
+          "max_abs_difference": 0.09326171875
+        },
+        {
+          "label": "native_1_target_post",
+          "group": "model_weight",
+          "raw_sha256": "4cca34776be9a8e11f6f16cb608a871bc95d294265e345722dc70ae443572bd2",
+          "value_sha256": "5d9e2fe2415a00450f227a558f01d36204b1b60307234f9576d8fcefdd847c31",
+          "changed_elements": 16345,
+          "changed_bytes": 16345,
+          "checkpoint_equal": false,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 133102445789184,
+          "changed_from_previous_elements": 0,
+          "high_byte_changes": 0,
+          "max_abs_difference": 0.09326171875
+        },
+        {
+          "label": "native_1_after_generate",
+          "group": "model_weight",
+          "raw_sha256": "c16101685d8bf86aeb08fe4232b65b42aa5cc82689a18dcbf42ace0583e33636",
+          "value_sha256": "5d9e2fe2415a00450f227a558f01d36204b1b60307234f9576d8fcefdd847c31",
+          "changed_elements": 16345,
+          "changed_bytes": 16345,
+          "checkpoint_equal": false,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 133102445789184,
+          "changed_from_previous_elements": 0,
+          "high_byte_changes": 0,
+          "max_abs_difference": 0.09326171875
+        },
+        {
+          "label": "independent_roundtrip_0",
+          "group": "independent_correct_weight",
+          "raw_sha256": "59732d224e3bf7526a7a9ccc75511f7db911a5d5409f8e15f098fc0aaf7c1472",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": null,
+          "gpu_data_ptr": 133117713055744
+        },
+        {
+          "label": "independent_roundtrip_1",
+          "group": "independent_correct_weight",
+          "raw_sha256": "017f109292ece04d0f89668fe2cf451c97f7bc8e8165d9e7b44f091626e00a5f",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": null,
+          "gpu_data_ptr": 133117713055744
+        },
+        {
+          "label": "independent_roundtrip_2",
+          "group": "independent_correct_weight",
+          "raw_sha256": "e997c7557fe930239e763ff50e187a9bdd21c491246ef7523f1dad66fd56c735",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": null,
+          "gpu_data_ptr": 133117713055744
+        },
+        {
+          "label": "model_weight_after_roundtrip",
+          "group": "model_weight",
+          "raw_sha256": "149c9fd1278764b161932093818b5921d6b33684be98a9cd392f6cd61761aae5",
+          "value_sha256": "5d9e2fe2415a00450f227a558f01d36204b1b60307234f9576d8fcefdd847c31",
+          "changed_elements": 16345,
+          "changed_bytes": 16345,
+          "checkpoint_equal": false,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 133102445789184,
+          "changed_from_previous_elements": 0,
+          "high_byte_changes": 0,
+          "max_abs_difference": 0.09326171875
+        }
+      ],
+      "all_model_snapshot_parameter_versions_zero": true,
+      "model_gpu_pointer_unchanged": true,
+      "capture_alias_review": "Every snapshot explicitly synchronizes the GPU, makes blocking CPU copy plus clone, writes a distinct tensor artifact immediately; CPU allocator address reuse after object release is permitted and does not alias saved values.",
+      "inventory_scope": "model, model.model, layer25, layer25.mlp, layer25.up_proj and global torch forward hooks; not an inventory of all submodules",
+      "recorded_forward_hooks_empty": true,
+      "recorded_modules_unparametrized": true,
+      "native_inputs_outputs": {
+        "input": {
+          "exact": true,
+          "finite": true,
+          "max_abs_difference": 0.0
+        },
+        "output": {
+          "exact": true,
+          "finite": true,
+          "max_abs_difference": 0.0
+        },
+        "logits": {
+          "exact": false,
+          "finite": true,
+          "max_abs_difference": 0.125
+        }
+      }
+    },
+    {
+      "attempt": "AT010",
+      "diagnosis_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/native_input_diagnosis/AT010/diagnosis.json",
+      "diagnosis_sha256": "052a5f37035e361b6eb61c0f98c29d554ace8c356daebd6f04eff02bce484445",
+      "source_sha256": "ae37b0c0838d6dc783deda7187cb3d87b58c070688afbba5c4f8728756d0cbe7",
+      "gpu_uuid_actual": "78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+      "cpu_affinity": [
+        16,
+        17
+      ],
+      "runtime_flags": {
+        "tf32": false,
+        "bf16_reduced_precision": true,
+        "deterministic_algorithms": false,
+        "CUBLAS_WORKSPACE_CONFIG": null
+      },
+      "snapshots": [
+        {
+          "label": "loaded_0",
+          "group": "model_weight",
+          "raw_sha256": "0d10f373a909f5f86353dc58928c0a4fc82f93455abf727607b35603e614aa53",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 127105866137600
+        },
+        {
+          "label": "loaded_1",
+          "group": "model_weight",
+          "raw_sha256": "dfe02c512d70bba5a1ed44f5847dd329ce5a61540afdb680f2bf1582c6e7cd82",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 127105866137600,
+          "changed_from_previous_elements": 0
+        },
+        {
+          "label": "loaded_2",
+          "group": "model_weight",
+          "raw_sha256": "c173f4307885a234128528cf04ffa2365a7ebf9e1e91e9f85bdb8adf0a1ae565",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 127105866137600,
+          "changed_from_previous_elements": 0
+        },
+        {
+          "label": "native_0_before_seed",
+          "group": "model_weight",
+          "raw_sha256": "106b1d778fd5af19a9a61d3054cf5c4066dbffbd680773ad45b1865a3a33ca47",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 127105866137600,
+          "changed_from_previous_elements": 0
+        },
+        {
+          "label": "native_0_after_seed",
+          "group": "model_weight",
+          "raw_sha256": "c7f7621ac5864641f012bdc9d241d41be0bbd79b24a44ffc5870bb304d0283d2",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 127105866137600,
+          "changed_from_previous_elements": 0
+        },
+        {
+          "label": "native_0_target_pre",
+          "group": "model_weight",
+          "raw_sha256": "e390f6828a7098c9b74c8b23de5abd682b2d95bbaf6d3b3cff5836cbf8ec59cd",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 127105866137600,
+          "changed_from_previous_elements": 0
+        },
+        {
+          "label": "native_0_target_post",
+          "group": "model_weight",
+          "raw_sha256": "3b598ce9aae3093910692bc4e8191a3c5eee456b3fe696488e668a5d06e2dd09",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 127105866137600,
+          "changed_from_previous_elements": 0
+        },
+        {
+          "label": "native_0_after_generate",
+          "group": "model_weight",
+          "raw_sha256": "7ae0e054c8c5e1915b88bdfd9623811a3c70d134638354847090465742f83b8b",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 127105866137600,
+          "changed_from_previous_elements": 0
+        },
+        {
+          "label": "native_1_before_seed",
+          "group": "model_weight",
+          "raw_sha256": "9aa96e5e832b55ec8feda6835031583ac1707290e6888daa7f375f5769b1e554",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 127105866137600,
+          "changed_from_previous_elements": 0
+        },
+        {
+          "label": "native_1_after_seed",
+          "group": "model_weight",
+          "raw_sha256": "51b0e1eb74a59e85fc5531f2a8177fa0ac4a87824c64ba406b1bb00c22950589",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 127105866137600,
+          "changed_from_previous_elements": 0
+        },
+        {
+          "label": "native_1_target_pre",
+          "group": "model_weight",
+          "raw_sha256": "659eea40259a7e92ac678148c9b98296262679827b33aaeafd511f04dc5fd8c7",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 127105866137600,
+          "changed_from_previous_elements": 0
+        },
+        {
+          "label": "native_1_target_post",
+          "group": "model_weight",
+          "raw_sha256": "d9aa7a150b7bce548076c9ae520a1ca92d3b678f85760e35fbfcd5d2392973c4",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 127105866137600,
+          "changed_from_previous_elements": 0
+        },
+        {
+          "label": "native_1_after_generate",
+          "group": "model_weight",
+          "raw_sha256": "8a2e1bce42f92f01b4e15c889d3610c0318abb3f37ac9aabfc599478aa13eda0",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 127105866137600,
+          "changed_from_previous_elements": 0
+        },
+        {
+          "label": "independent_roundtrip_0",
+          "group": "independent_correct_weight",
+          "raw_sha256": "59732d224e3bf7526a7a9ccc75511f7db911a5d5409f8e15f098fc0aaf7c1472",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": null,
+          "gpu_data_ptr": 127121166958592
+        },
+        {
+          "label": "independent_roundtrip_1",
+          "group": "independent_correct_weight",
+          "raw_sha256": "017f109292ece04d0f89668fe2cf451c97f7bc8e8165d9e7b44f091626e00a5f",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": null,
+          "gpu_data_ptr": 127121166958592
+        },
+        {
+          "label": "independent_roundtrip_2",
+          "group": "independent_correct_weight",
+          "raw_sha256": "e997c7557fe930239e763ff50e187a9bdd21c491246ef7523f1dad66fd56c735",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": null,
+          "gpu_data_ptr": 127121166958592
+        },
+        {
+          "label": "model_weight_after_roundtrip",
+          "group": "model_weight",
+          "raw_sha256": "f77613c7b12b2a8f81e220da6d5c1195b48aa80939e54ec811c3b380fd9c5e05",
+          "value_sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+          "changed_elements": 0,
+          "changed_bytes": 0,
+          "checkpoint_equal": true,
+          "gpu_parameter_version": 0,
+          "gpu_data_ptr": 127105866137600,
+          "changed_from_previous_elements": 0
+        }
+      ],
+      "all_model_snapshot_parameter_versions_zero": true,
+      "model_gpu_pointer_unchanged": true,
+      "capture_alias_review": "Every snapshot explicitly synchronizes the GPU, makes blocking CPU copy plus clone, writes a distinct tensor artifact immediately; CPU allocator address reuse after object release is permitted and does not alias saved values.",
+      "inventory_scope": "model, model.model, layer25, layer25.mlp, layer25.up_proj and global torch forward hooks; not an inventory of all submodules",
+      "recorded_forward_hooks_empty": true,
+      "recorded_modules_unparametrized": true,
+      "native_inputs_outputs": {
+        "input": {
+          "exact": true,
+          "finite": true,
+          "max_abs_difference": 0.0
+        },
+        "output": {
+          "exact": true,
+          "finite": true,
+          "max_abs_difference": 0.0
+        },
+        "logits": {
+          "exact": true,
+          "finite": true,
+          "max_abs_difference": 0.0
+        }
+      }
+    }
+  ],
+  "mismatches": [],
+  "snapshot_files_verified": 34,
+  "diff_artifacts_verified": 14,
+  "verdict": "GPU1 existing loaded parameter differs and changes even before forward; GPU0 same-script target lifecycle passes; supports provisional GPU1 exclusion but not hardware-root-cause or full-model/GSM8K qualification",
+  "limitations": [
+    "One parameter and one training prefill prompt only; GPU0 passing this target does not verify all model static tensors or all 30 cases.",
+    "Original parameter and separately allocated correct tensor differ in allocation/lifetime/loading context; good independent roundtrip does not identify which component caused original content changes.",
+    "GPU1 content change with parameter version0 proves versions alone are insufficient; it does not establish whether underlying bytes or device-to-host observation path caused the saved differences.",
+    "Only provisional operational quarantine is supported; no hardware repair or unbounded stress test is authorized by this review."
+  ]
+}

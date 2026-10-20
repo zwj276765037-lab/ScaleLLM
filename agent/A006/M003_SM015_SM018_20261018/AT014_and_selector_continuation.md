@@ -1,0 +1,28 @@
+# A006：AT014与入口修复连续执行入口
+
+用户08:19:02Z明确恢复M003，Root恢复合同和全局pause=resumed。当前唯一EDA为AT014，不能把历史AT013 pause当当前。无GPU/bitstream/板卡/PPL/ACC，无新agent/后代。
+
+AT014于08:39:21.231151Z真实启动，exec session7730，supervisor14528，leader14529/start236757；project仍原fresh项目scalellm_m003_E011_R002_AT002。report为project/hardware/vivado/reports/m003_E011_R002_AT014_fresh_core_native_role_attribution_v2。当前无status、无diagnostic_complete。全4identity/count及3primitive属性已闭合；最后parent1 list_property于08:51:56.992Z BEGIN，无END，CPU活跃/RSS约12GiB，正常无墙钟/静默强停。不要热改生产源或新跑第二EDA。
+
+闭合identity事实：AT014/evidence/AT014_closed_identity_facts.json349af9d9（3867B）；head6560+tail6560 FDRE，各exact0..6559，无重复，gen==terminal每项成立；另count2，CE81 LUT1、metadata533含80URAM。原生根inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute，真实相对形状g_m003_parent_ce.g_payload_bit[i].parent_{head|tail}_r_reg[i]。A007全identity审核0abb342e。
+
+primitive七字段事实AT014/evidence/AT014_closed_primitive_attribute_facts.json9859909f（11758B），payload13122/CE81/meta533全闭合，API_ERROR0/UNSUPPORTED0，合法空保留，NAME/REF逐行与identity同；A00798909ef1接受，payload大表全核由A006承担。
+
+已审修复均在experiment_source/R002_native_entry_fix/payload_native_naming，不在生产：旧selector-only包bacbb6fa/expected81b2从未应用，保留历史。当前合并entry_repair_delivery.json4939B/SHAa21d8970d195b0e91e16a8e4348f361191a381966ef28decc272f7d82d3f4bae；proposedchecks28675B/SHA7419a97d224e848f3c414659f01e64962432139c9b7127a45713a28145fb3003。精确只改payload_members/hard_pblock/cell_row+新增supported_prop；global prop和其他字节不变。严格真实层级/双索引一致/全bit/兼容FF/非法来源拒绝，后两函数每对象单函数内支持列表一次，原条件顺序逐字段读取，不跨对象/调用缓存、otherPB仍自己prop、API异常传播、原生写仅在校验后。
+
+CPU：test_payload_members.py5项12.489s含全部实际13120名逐bit和17类负例，原生schema身份固定；test_property_reading.py11项0.392s旧新差分，全部取值/错误/get顺序/原生写相同，单次enum、跨调用支持变化、sameREF不同支持、placed row、soft/hardPB等。A007分别独立复核，合并review5887B/SHA6f61ee2bddca8df685b498c002ce9459cfeeb8b4767ad336c3c33794d36af8be，no_blocker=true/packagea21d8970/G4false。当前生产checks7973a1b8、manifest151e4f11仍原样；3RTL不改。
+
+后继仅在AT014自然完整终态后：drain7730，核fullfields/complete/native0/stopnull/survivors空、45源/3RTL/G2/core、锁释放；保留before源与manifest；应用精确proposedchecks7419及已有测试fixture proposedddc1e286（只4处原生层级名适配）；移除当前manifest之前必须保留副本，然后m003_entry.py freeze并check-sources，应仍45源/仅checks变。运行受影响已有native_entry/qualification等测试，保留实际日志/receipt。给A007实际源资格小包后新AT015原生recover-synth（同project，现有run_m003_owned单lane/resource）。实际native0才freeze-recovered-synth，绝不改原AT003outer1。再新qualify严格完整INIT→OPT→debug→G4和实际M003_preplace_package.json特定A007 no-blocker，最后新R003固定fullimplementation。
+
+唯一生产/三摘要owner A006，A007只写自身审核，Root维护goal/mission/results。当前状态continuation_state.json和E011三摘要优先；预检827cb28b、G24424c426、coree51adf50/177165461B原23产22用保持。CPU0–7/nice5/max8/synth1、RSS192GiB/available48GiB30s/disk30GiB、旧工程与M004/E010保留；TOP01−2.896ns与22049 OPEN。
+
+新增已核角色小表事实：AT014/evidence/AT014_secondary_closed_role_name_facts.json 3681B/SHAfb288f13dd06fa9b8405229e82652ebaccddb9779d6845cd1dd7df00da1292ce，CE head42/tail39完整索引/LUT1/保护1；A3每片40URAM+17地址FF exact0..16/保护1+LUT3CE和LUT2increment两保护控制。仅名称/ref/保护，无连接/INIT/池/RDW/反馈/G4；发A007队列供下次实际followup一并核，尚不声称本小表已独立审核。
+
+
+## 实际续接校正 2026-10-18T10:34:21.008163+00:00
+
+AT014已于10:24:04.062696Z自然native0，stopnull/survivors空，全部4集合7字段完成，最后parent list_property5508274ms；session7730已drain。终态f5683cd5/A007e2bfd1a6。raw complete marker仅外braces缺失，原件保留，派生9099经status/progress/全表闭合独立接受，不需重跑。
+
+精确combinedchecks7419已在终态和旧来源核验后应用，manifest8b6fbe90，45source只checks变化/3RTL/G2保持，application191b65c7。实际59测试初58/59因旧mock缺list_property，失败150b71f7保全；只修table-backed native list/get fixture后59/59通过8.489s，receiptb77276ad。实际源资格080c2d6b交A007。此前pending/notapplied/last-parent-running语言均为历史。
+
+新AT015_measured_native_entry_postreport_recovery当前planned，等待实际源增量独立核查；无EDA活动。preflight资源/锁/45来源充分；v2显式proc comm/argv核无EDA，原初版无cmdline字段空结果不作真实名字查询证据。下一步actual recover-synth→native0才freeze-recovered-synth（原AT003 outer1保持）→严格新INIT/OPT/debug/G4特定包独立无阻断→新R003固定fullphysical。

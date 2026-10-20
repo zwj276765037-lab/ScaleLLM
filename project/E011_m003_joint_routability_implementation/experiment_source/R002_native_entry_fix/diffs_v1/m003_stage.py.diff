@@ -1,0 +1,51 @@
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_stage.py (AT003 archived)
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_stage.py
+@@ -3,6 +3,7 @@
+ from pathlib import Path
+ import argparse,datetime,hashlib,json,os,re,shutil,subprocess,sys
+ import m003_entry as entry
++import m003_native_init as native_init
+ import m002_physical_evidence as old
+ HW=Path(__file__).resolve().parents[2]
+ def save(p,x):p.write_text(json.dumps(x,indent=2)+'\n')
+@@ -37,6 +38,9 @@
+ 
+ def lineage(project,report,attempt):
+  entry.check_sources();p=attempt/'M003_frozen_synthesis.json';x=json.loads(p.read_text())
++ if x['schema']=='M003_fresh_native_synthesis_postreport_recovery_v1':
++  import m003_synth_recovery as recovery
++  return recovery.lineage(project,report,attempt,x)
+  old.require(x['schema']=='M003_fresh_synthesis_v1' and x['project']==str(project) and x['report']==str(report) and x['G2_sha256']==entry.G2,'new M003 synth package identity mismatch')
+  for r in x['anchors']:old.verify_identity(r)
+  # Verify actual native produced/consumed DCP identity records; no old-DCP reuse.
+@@ -95,11 +99,29 @@
+  save(report/'M003_preplace_package.json',dict(schema='M003_preplace_v1',checkpoint=old.file_id(report/'debug_materialized.dcp'),pre_place=old.file_id(report/'pre_place_evidence.json'),constraints=old.file_id(report/'constraints_debug_materialized.json'),source_manifest=old.file_id(entry.MANIFEST),stage_inputs=old.file_id(report/'stage_inputs.sha256'),source_archive=old.file_id(report/'source_archive.json'),selection=old.file_id(report/'m003_qualification_debug_materialized.json'),G2_sha256=entry.G2,physical_signoff=False))
+  return x
+ 
++def prepare_native_init(report,driver):
++ value=native_init.prepare(driver,report/'native_init_prefix.tcl')
++ frozen={Path(r['path']):r for r in entry.check_sources()['sources']}
++ for row in value['source_hooks']:
++  path=Path(row['path']);old.require(path in frozen and row['sha256']==frozen[path]['sha256'],'native INIT has an unfrozen source hook')
++ paths=[Path(value['preserved_driver']['path']),Path(value['prefix']['path']),report/'native_init_prefix.json']+[Path(r['path']) for r in value['source_hooks']]
++ existing=old.manifest_records(report/'stage_inputs.sha256')
++ with (report/'stage_inputs.sha256').open('a') as stream:
++  for path in paths:
++   digest=old.sha256(path)
++   if path in existing:old.require(existing[path]==digest,'native INIT changed an existing stage source')
++   else:stream.write(digest+'  '+str(path)+'\n')
++ return value
++
+ def main():
+- p=argparse.ArgumentParser();p.add_argument('action',choices=['freeze-synth','lineage','preplace','prepare-probe']);p.add_argument('--project',type=Path);p.add_argument('--report',type=Path,required=True);p.add_argument('--attempt',type=Path);p.add_argument('--job',default='fresh_synth');p.add_argument('--point');p.add_argument('--synth-report',type=Path);a=p.parse_args()
++ p=argparse.ArgumentParser();p.add_argument('action',choices=['freeze-synth','freeze-recovered-synth','lineage','preplace','prepare-probe','prepare-native-init']);p.add_argument('--project',type=Path);p.add_argument('--report',type=Path,required=True);p.add_argument('--attempt',type=Path);p.add_argument('--job',default='fresh_synth');p.add_argument('--point');p.add_argument('--synth-report',type=Path);p.add_argument('--driver',type=Path);a=p.parse_args()
+  if a.action=='freeze-synth':x=freeze_synth(a.project,a.report,a.attempt,a.job)
++ elif a.action=='freeze-recovered-synth':
++  import m003_synth_recovery as recovery
++  x=recovery.freeze(a.project,a.report,a.attempt,a.job)
+  elif a.action=='lineage':x=lineage(a.project,a.report,a.attempt)
+  elif a.action=='prepare-probe':x=prepare_probe(a.report,a.point,a.synth_report,a.project)
++ elif a.action=='prepare-native-init':x=prepare_native_init(a.report,a.driver)
+  else:x=preplace(a.report)
+  print(json.dumps(x))
+ if __name__=='__main__':main()

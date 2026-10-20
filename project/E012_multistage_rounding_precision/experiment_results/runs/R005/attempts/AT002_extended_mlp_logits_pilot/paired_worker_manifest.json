@@ -1,0 +1,245 @@
+{
+  "schema": "m005_r005_extended_document_stream_v1",
+  "started_at": "2026-10-19T06:30:25.500933+00:00",
+  "pid": 313807,
+  "command": [
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_extended_numerical.py",
+    "--worker",
+    "--model-dir",
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+    "--documents",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT001_clean_document_manifest/documents_dev.jsonl",
+    "--document-index",
+    "0",
+    "--document-count",
+    "4",
+    "--tokens",
+    "128",
+    "--audit-document-indices",
+    "0",
+    "--raw-value-audit-layers",
+    "0,15,31",
+    "--witness-max-doc-mib",
+    "64",
+    "--witness-max-at-mib",
+    "96",
+    "--mlp-module",
+    "mlp_numerical_extension",
+    "--logit-module",
+    "logit_numerical_extension",
+    "--qualify-logit-chunks",
+    "--readonly-baseline",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT010_four_document_numerical_development",
+    "--output-dir",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT002_extended_mlp_logits_pilot"
+  ],
+  "code": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_paired_numerical_model.py",
+      "bytes": 8432,
+      "sha256": "3f979d5f03d6d126e0efad3cf4fe8f5284be6eee7bcb179d7854d999172a27bf"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_numerical_fidelity.py",
+      "bytes": 19572,
+      "sha256": "5e7d949ddc7994254d90aa66b4aee779a87ac498905b4844770968170de6f501"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_model_stream.py",
+      "bytes": 21870,
+      "sha256": "87d8763defbd215c377efd1a0caf81d289ae274ba6381aa10f096177aea20519"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/formal_numerical_inputs.py",
+      "bytes": 10383,
+      "sha256": "58dd1a226db2b0364280b95e44b78b6ad3b48924d07f9f79bb67d7a7f402dddd"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/formal_storage_plan.py",
+      "bytes": 3138,
+      "sha256": "4001f54754bdf79ea3752bfb93df28be4b2e5714cd514c30c401f95aacb0c1d3"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/capture_real_inputs.py",
+      "bytes": 35491,
+      "sha256": "069040ad1a8904d03fa1150e9db160bd17331275c07b549e017297a1e87e1023"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/prepare_replay_data.py",
+      "bytes": 13637,
+      "sha256": "0fbf068eb2aa5fd68bee00090f3d917882938c38659fbb1ed070b045accecbe9"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_local_experiment.py",
+      "bytes": 13872,
+      "sha256": "00710ddb75d08e144d204b2242dcd47cce53d50694bd7b6b8c7f861630f787c1"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/policy.py",
+      "bytes": 15052,
+      "sha256": "43bcf51ec86deb10a5d7e27a6bc3052ed63b9c6fbc9fd8cf2f13f8e4f4c6f921"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/current_nodes.py",
+      "bytes": 9587,
+      "sha256": "a5e6c719dc61df325e3bc8b5c3364c7bf911b673523cfdb4889830567c702404"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/exact_reductions.py",
+      "bytes": 6719,
+      "sha256": "f8990e5e82db13d8d41d536e4c350eac53c5a2099786957832d2208477e12551"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/model_compat.py",
+      "bytes": 6290,
+      "sha256": "53ef45e269b997bad32d09003bac53a7ccfa9ae006d9e1eecd95e13cb0f23dc0"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/gpu_reference.py",
+      "bytes": 11501,
+      "sha256": "a8f4309cb07ec84687903693888602c1fd09fa876d477dcd4c7f488ce4358837"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/chunked_quantization.py",
+      "bytes": 1316,
+      "sha256": "281c7a5b82f7531b43569d265d76c6779e698f9df790c9427d616a95d60d183e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/local_observer.py",
+      "bytes": 13718,
+      "sha256": "b3b2340da40a6ec5c71a50f2e2b218827ebe7e66fa50f2afa517a9f1cfa4a0a8"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/node_witnesses.py",
+      "bytes": 21702,
+      "sha256": "d5c5dccfefe7a7cb30dab1322570b17be325033ddd743b4210f7b7af2f6fe049"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/production_replay.py",
+      "bytes": 11191,
+      "sha256": "c68930e6e3ec1c34c991dfc7fdd8d05a5a5995626c9281265961b5cb75df7999"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/model/export_scalellm_llama31_artifacts.py",
+      "bytes": 25539,
+      "sha256": "689ddf269ff951e437cc3232c5b544b461e4a0b2ff737e21f69e2f93b8f2a300"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/model/fixbit_v2.py",
+      "bytes": 24347,
+      "sha256": "fb4b34397edc9d14ed3ef4f0b46d60a61b545a52a7a47d15c2eec8ba7b6db271"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/FPtoQ/experiment/v5_fullchain.py",
+      "bytes": 79824,
+      "sha256": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898"
+    },
+    {
+      "path": "/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py",
+      "bytes": 21837,
+      "sha256": "c44cb7bbd82d6128ab475d801ff3e3aeaca9356f975a1758baa78890fce19e77"
+    },
+    {
+      "path": "/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/accelerate/utils/modeling.py",
+      "bytes": 95664,
+      "sha256": "d6052abc0625740115176a4d2dfc0861a189a2dba94443c09cc8500254b57e2e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_extended_numerical.py",
+      "bytes": 5372,
+      "sha256": "b4fd7c06deb5cf0e64fbdf58148ca42911e952b245cc21d4c98dbe773d886877"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/extended_numerical_stream.py",
+      "bytes": 27654,
+      "sha256": "31906288a1f262b7f9f474c464d130653730b24f9a3e45e8f03b8c583955a2e3"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/mlp_numerical_extension.py",
+      "bytes": 27396,
+      "sha256": "49cd112093c9ec105d8b9eb69645eb77ef39893b8decb68d30924f857068eb23"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/logit_numerical_extension.py",
+      "bytes": 13300,
+      "sha256": "dd2e80c12270010347c3460a6526958fe9737265326911d4a2782af2db848e99"
+    }
+  ],
+  "document_source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R003/attempts/AT001_clean_document_manifest/documents_dev.jsonl",
+    "bytes": 1275474,
+    "sha256": "27462ce4c8ebf03dec922f747e73fa926d537d8a3ff2386f4ed7bec74a4791ac"
+  },
+  "formal_batch_id": null,
+  "formal_batch_ids": null,
+  "logical_batch_documents": null,
+  "formal_storage_source": null,
+  "selected_documents": [
+    {
+      "doc_id": "wikitext2_train:28168",
+      "domain": "wikipedia",
+      "split": "dev",
+      "evidence_role": "development",
+      "text_sha256": "9b1e27f9973eac3b88db6eedb3de30557a0383ee0435cfcc19df7ada4f212e5c",
+      "duplicate_cluster": "a78123be702a80df8458423b6a3863970ab572f03e48a2184be49bbb97833c7c"
+    },
+    {
+      "doc_id": "wikitext2_train:13401",
+      "domain": "wikipedia",
+      "split": "dev",
+      "evidence_role": "development",
+      "text_sha256": "ba21027e595420e921fd03ac43e4dc0f57ce299460a3f2f7b36df4eb7aba2c69",
+      "duplicate_cluster": "70e5fcdd6cf4944b09ae887671054f0e0ed787bb536be4ed3ce7754904692427"
+    },
+    {
+      "doc_id": "wikitext2_train:21735",
+      "domain": "wikipedia",
+      "split": "dev",
+      "evidence_role": "development",
+      "text_sha256": "71894f4d8ed37b82c78a76ff135819ade397f64b3451d461d49a6adfef39899d",
+      "duplicate_cluster": "342c480528c00cc696431767c4b40284c5a19112d1cfa54bfa5b443f0b417764"
+    },
+    {
+      "doc_id": "wikitext2_train:15542",
+      "domain": "wikipedia",
+      "split": "dev",
+      "evidence_role": "development",
+      "text_sha256": "1d02c61344b5241d8ca95acdb35d6cbcd63eef6d8d514a5bb0fc4f42e8353907",
+      "duplicate_cluster": "d449ac9a7007caa1510cbeabafa644ce3b1edcf1a9944c5e3e773d812307a3ac"
+    }
+  ],
+  "maximum_tokens": 128,
+  "model_loaded_once": true,
+  "formal_eval_documents": 0,
+  "planned_formal_documents": 0,
+  "full_formal_target": null,
+  "audit_document_ids": [
+    "wikitext2_train:28168"
+  ],
+  "raw_value_audit_layers": [
+    0,
+    15,
+    31
+  ],
+  "witness_samples_per_coordinate": 16,
+  "witness_seed": 0,
+  "witness_max_doc_bytes": 67108864,
+  "witness_max_at_bytes": 100663296,
+  "raw_policy": "auditdoc0 all32 hidden/meta,values0/15/31; other docs statistics only",
+  "scope": "R005 newly measured MLP+full-vocabulary fixed-prefix numerical comparison; no labeled ACC/PPL",
+  "batch_bootstrap_replicates": 0,
+  "confidence_intervals": "final offline document-level analysis only",
+  "extension_modules": {
+    "mlp": "mlp_numerical_extension",
+    "logit": "logit_numerical_extension"
+  },
+  "versions": {
+    "torch": "2.10.0",
+    "transformers": "5.3.0",
+    "accelerate": "1.13.0",
+    "triton": "3.6.0",
+    "numpy": "2.2.6"
+  },
+  "cuda_visible_devices": "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+  "checkpoint_dir": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct"
+}

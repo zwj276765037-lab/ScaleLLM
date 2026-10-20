@@ -1,0 +1,87 @@
+{
+  "schema": "A007_effective_memory_semantic_boundaries_advice_v1",
+  "utc": "2026-10-18T16:56:20.507227+00:00",
+  "execution": "completed_bounded_source_and_prior_evidence_review",
+  "verdict": "ordinary_semantic_adaptation_supported_with_strict_observed_profile",
+  "review": "advice_only_not_combined_candidate_approval",
+  "no_blocker_to_normal_AT020": true,
+  "evidence": {
+    "AT019_independent_analysis_sha256": "2241c6de74ac4c80bff9db8c99765d28dcc905103cfd99cf853303231e7986ff",
+    "AT019_aux66_review_sha256": "f616638f92dc21a1740e8a0b48ab60752f998bb6e6e4ce1b89dcf80395e5705f",
+    "vendor_path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/data/verilog/src/unisims/URAM288.v",
+    "vendor_previously_verified_sha256": "83e1c72147e97fad7ac401dbfd4de84f7bfb95bcfa880ea9fcf4d6c6ddfce935",
+    "vendor_excerpt_lines": {
+      "address_selection": [
+        2250,
+        2264,
+        2398,
+        2411
+      ],
+      "mode_selection": [
+        2335,
+        2349,
+        2482,
+        2497
+      ],
+      "cascade_transfer": [
+        2500,
+        2551,
+        2573,
+        2588
+      ],
+      "mask_decode": [
+        3184,
+        3200,
+        3217,
+        3233
+      ],
+      "array_index": [
+        3300,
+        3312
+      ],
+      "direct_inversion": [
+        1147,
+        1150,
+        1151,
+        1160,
+        1161
+      ],
+      "CAS_no_second_direct_inversion": [
+        1139,
+        1140,
+        1143,
+        1144
+      ]
+    },
+    "contract": "mission/M003_joint_routability_closure/g2_joint_design_freeze_2026-10-18.md:36-49",
+    "bounded_additional_raw_read": "One config row and first92 address rows only; no full address/aux table rescan."
+  },
+  "boundaries": [
+    {
+      "topic": "SELF_MASK / capacity",
+      "advice": "For 11-bit compare of physicalADDR[22:12], mask7E0 sets maskbits5..10, ignoring physicalbits17..22 only. Physicalbits12..16 still select SELF_ADDR bank; low12 index4096 rows. Require explicit mask/config values and retain observed SELF_ADDR0..19, two instances per slice, matching A/B and native4096-row spans. This supports81920-depth decode coverage, not128-bit data/return mapping or behavior for invalid logical addresses81920..131071. A mask bit does not waive pin/chain/source evidence. FIRST high6 are actualGND; downstream selectedCAS high6 must trace verified forwarding to those roots, even when timing startpoints stop at rootCAS_OUT."
+    },
+    {
+      "topic": "Selected input and incomplete collections",
+      "advice": "Current accepted profile is actual FIRST/MIDDLE/LAST with IREG_PRE_A/B=FALSE, REG_CAS_A/B=FALSE; FIRST selects direct, others CAS. Keep all80 configs/required pins unique and explicit; required unknown/empty/API_ERROR cannot silently become a default. Optional unsupported attributes may remain raw. Only proved unselected directADDR on68 nonFIRST may have observed empty nets/drivers/self-pin startpoints. Do not use nonempty timing starts as connectivity or union multiple roots to conceal a missing bit on one root. Retain exact full graph, same-slice/nonbranching/acyclic/endpoints and bit/port preserving CAS edges."
+    },
+    {
+      "topic": "Root write address",
+      "advice": "Check each FIRST ADDR_B[0..16] separately, not only aggregate17 coverage. The first-cell raw sample has exact FDCE Q owners inst/u_core/u_compute/u_attention/artifact_index_r_reg[9..16] and artifact_index_r_reg[0..8]_rep, shared outside u_meta; do not require own helper or a per-slice write copy. Pin output must be actual/Q with owner/ref agreement and correct bit, excluding QN/LUT inversion/swapped bits. Prior whole-table diagnostic checked bit-index suffix/ref but did not independently certify every full write-owner prefix; production candidate should use full qualified expected scope plus a bounded actual replica identity set, not a suffix-only regex or arbitrary *_rep*. Name/REF mapping alone does not prove replica sequential equivalence; keep existing RTL/function/new-synthesis evidence boundaries."
+    },
+    {
+      "topic": "Mode / EN / clock inversion",
+      "advice": "Direct EN/RDB_WR are XORed with corresponding IS_*_INVERTED; CAS_IN control inputs do not apply that direct-input inversion again. Current observed profile has zero inversion; reject unsupported/nonzero or unknown values rather than generalize untested inverted behavior. FIRST direct RDB_WR_A=GND and B=VCC plus same-predecessor CAS_IN_RDB_WR/EN and selected-input transfer supports effective A-read/B-write. NonFIRST directA=VCC is unused and is not an effective write. Address has no analogous primitive inversion parameter: verify exact active drivers and bit identity. CLK primary source still awaits actual AT020 evidence."
+    },
+    {
+      "topic": "66 common controls",
+      "advice": "The previously verified66 comprise54 directBWE_B and12 directEN_A/B, sourced by3 actual LUT outputs with slice0-derived names, including u_dma. G2 allows shared control/response. Cross-slice address/helper/CAS prohibitions must use actual roles/edges, not a g_slice name substring on any direct control. Do not turn this into generic acceptance of all controls: keep source/net/ref uniqueness and current S/L/R/CE/INIT/reset/clock checks, and actual CAS same-slice obligations. Their Boolean function and physical locality are not proved merely by the66-row naming review."
+    },
+    {
+      "topic": "Applicability",
+      "advice": "ADDR/RDB_WR/EN graph checks alone do not prove DIN/BWE data transfer, response width/order, RDW, pool/macro legality, budget, applied/restored overlay orG4. Preserve those existing obligations and all unrelated schema/payload checks. No source hot-edit, new EDA, serializer test rerun or native performance claim was made in this advice."
+    }
+  ],
+  "G4": false,
+  "next": "A006 develops fixed combined candidate; actual CLK/terminal and full candidate receive separate incremental review."
+}

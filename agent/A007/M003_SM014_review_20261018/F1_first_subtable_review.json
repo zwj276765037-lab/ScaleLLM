@@ -1,0 +1,165 @@
+{
+  "observed_utc": "2026-10-18T02:50:08.995116+00:00",
+  "execution": "first engineering subtable independent CPU cross-check complete",
+  "verdict": "emitted physical registers/field bits/Q readers/pin coverage consistent; known missing D/CE/C preserved",
+  "applicability": "engineering tool48084 closed-table extraction outputs; no reread of native large tables",
+  "review": "A007 independent small-table joins, field-range check and script review",
+  "physical_register_counts": {
+    "meta": 17,
+    "head": 6560,
+    "tail": 6560
+  },
+  "field_checks": [
+    {
+      "field": "down",
+      "width": 1,
+      "all_actual_Q_reader_branches_match_RTL_ranges": true
+    },
+    {
+      "field": "first",
+      "width": 1,
+      "all_actual_Q_reader_branches_match_RTL_ranges": true
+    },
+    {
+      "field": "last",
+      "width": 1,
+      "all_actual_Q_reader_branches_match_RTL_ranges": true
+    },
+    {
+      "field": "tile",
+      "width": 9,
+      "all_actual_Q_reader_branches_match_RTL_ranges": true
+    },
+    {
+      "field": "activation_s9x16x32",
+      "width": 4608,
+      "all_actual_Q_reader_branches_match_RTL_ranges": true
+    },
+    {
+      "field": "weights_s4x12x32",
+      "width": 1536,
+      "all_actual_Q_reader_branches_match_RTL_ranges": true
+    },
+    {
+      "field": "activation_code_u8x16",
+      "width": 128,
+      "all_actual_Q_reader_branches_match_RTL_ranges": true
+    },
+    {
+      "field": "activation_shift_u6x16",
+      "width": 96,
+      "all_actual_Q_reader_branches_match_RTL_ranges": true
+    },
+    {
+      "field": "weight_code_u8x12",
+      "width": 96,
+      "all_actual_Q_reader_branches_match_RTL_ranges": true
+    },
+    {
+      "field": "weight_shift_u6x12",
+      "width": 72,
+      "all_actual_Q_reader_branches_match_RTL_ranges": true
+    },
+    {
+      "field": "column_valid_u12",
+      "width": 12,
+      "all_actual_Q_reader_branches_match_RTL_ranges": true
+    }
+  ],
+  "tail_to_head_same_bit_exact_helper_owner_matches": 6560,
+  "meta": {
+    "Q_total_load_pins": 251,
+    "URAM_load_pins": 204,
+    "direct_URAM_objects": 12,
+    "all17_bits_drive_all12_direct_URAM": true,
+    "actual_URAM_columns": {
+      "3": 9,
+      "2": 1,
+      "1": 2
+    },
+    "SLRs": [
+      "SLR1"
+    ],
+    "unknown_cascade_or_width_mapping": "NOT_MEASURED; no index-based inference"
+  },
+  "coverage": {
+    "head": {
+      "Q": 6560,
+      "D": 6560,
+      "CE": 6560,
+      "C": 0,
+      "CLR": 0,
+      "PRE": 0,
+      "R": 0,
+      "S": 0
+    },
+    "tail": {
+      "Q": 6560,
+      "D": 0,
+      "CE": 6560,
+      "C": 0,
+      "CLR": 0,
+      "PRE": 0,
+      "R": 0,
+      "S": 0
+    },
+    "meta": {
+      "Q": 17,
+      "D": 0,
+      "CE": 0,
+      "C": 0,
+      "CLR": 17,
+      "PRE": 0,
+      "R": 0,
+      "S": 0
+    }
+  },
+  "limitations": [
+    "Cross-check of engineering emitted tables and reviewed extraction algorithm, not independent second native endpoint export or raw table scan.",
+    "tail D, meta D/CE and all C pins absent from fixed selected native scope; not proven disconnected or zero cost.",
+    "D-driver input cone only one hop and only selected nets; no complete upstream fanout proof.",
+    "Physical meta URAM table covers12 direct address consumers, not complete80 memory or cascade mapping."
+  ],
+  "sources": [
+    {
+      "path": "agent/A006/M003_SM014_design_20261018/extract_field_evidence.py",
+      "bytes": 10749,
+      "sha256": "ff3d69d06eafdfb9874c7b55879224c55bccdb54c353cb935401398bb88bbc7f"
+    },
+    {
+      "path": "agent/A006/M003_SM014_design_20261018/F1_extraction_summary.json",
+      "bytes": 3728,
+      "sha256": "e7094e1ea3d4c433454e95a1d44b27f4180d34dd25bda25a85e675e756602b38"
+    },
+    {
+      "path": "agent/A006/M003_SM014_design_20261018/F1_field_summary.json",
+      "bytes": 989316,
+      "sha256": "b9011dcdfb91b42378e3ee4a3e325505b03150510e5ec72d43ada750371a2dbb"
+    },
+    {
+      "path": "agent/A006/M003_SM014_design_20261018/F1_register_pins.tsv",
+      "bytes": 13944766,
+      "sha256": "83c0e081faf3cf223a7dc363e141cc0202ddfe21f345b05b600e99f015a7d80d"
+    },
+    {
+      "path": "agent/A006/M003_SM014_design_20261018/F1_Q_all_readers.tsv",
+      "bytes": 8705871,
+      "sha256": "6c9a23127470925c5bed5e3e1c7d60f23d34861f9c57f8c76239600c0e2b10b8"
+    },
+    {
+      "path": "agent/A006/M003_SM014_design_20261018/F1_D_drivers_and_selected_inputs.tsv",
+      "bytes": 8037231,
+      "sha256": "c8dfbfc26292d1a296fd9ecb8db0b4ddeae3e663882e0d0b6bb867e631158ac9"
+    },
+    {
+      "path": "agent/A006/M003_SM014_design_20261018/F4_parent_meta_register_objects.json",
+      "bytes": 11705889,
+      "sha256": "1c83139703c7724e1c46294656e23ab1d3c9017a37079344f32ff9ee2064eae3"
+    },
+    {
+      "path": "agent/A006/M003_SM014_design_20261018/F4_metadata_URAM_objects.json",
+      "bytes": 9157,
+      "sha256": "9b80e2a2f8588b75f5d73cfe885ec6b55732c6500f862aa5c07d6f6d34ec847f"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-10-18T04:55:13.244262+00:00",
+  "query": {
+    "command": [
+      "bash",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/nvml_local_recovery_20261018/nvidia_smi_local.sh",
+      "--query-compute-apps=gpu_uuid,pid,process_name,used_memory",
+      "--format=csv,noheader"
+    ],
+    "exit_code": 0,
+    "stdout": "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6, 306724, /home/user/anaconda3/envs/zhouwenjun/bin/python, 16890 MiB\n",
+    "stderr": ""
+  },
+  "process": {
+    "pid": 306724,
+    "cmdline": "/home/user/anaconda3/envs/zhouwenjun/bin/python -m software.scripts.sw_sens_model.sw_sens_model_03.run --snapshot-worker --attempt 02 --root /home/yqh/Desktop/Workspace/ScaleLUT/software/artifacts/int8_attention_full_integer/sw_sens_model_03/r01/attempt_02 --model-root /home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models --models llama32_3b qwen25_15b qwen25_3b --until all --torch-threads 8 ",
+    "cgroup": "0::/user.slice/user-1005.slice/session-12.scope\n",
+    "stat_start_ticks": "6941620"
+  },
+  "scope": "other-user process read-only identification; not controlled or notified",
+  "consequence": "Both maintenance helper and new R003 launch must reject existing compute client; project locks alone are insufficient"
+}

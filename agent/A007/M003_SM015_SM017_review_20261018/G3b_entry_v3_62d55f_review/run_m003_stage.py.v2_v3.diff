@@ -1,0 +1,11 @@
+--- v2/run_m003_stage.py
++++ v3/run_m003_stage.py
+@@ -22,7 +22,7 @@
+    old.require(a.preplace_report is not None,'qualified preplace required')
+    pkg=json.loads((a.preplace_report/'M003_preplace_package.json').read_text())
+    old.require(pkg['schema']=='M003_preplace_v1' and pkg['G2_sha256']==entry.G2,'selected preplace package changed')
+-   for key in ('checkpoint','pre_place','constraints','source_manifest','selection'):old.verify_identity(pkg[key])
++   for key in ('checkpoint','pre_place','constraints','source_manifest','stage_inputs','source_archive','selection'):old.verify_identity(pkg[key])
+    gate=json.loads((a.preplace_report/'A007_G4_no_blocker.json').read_text())
+    old.require(gate.get('no_blocker') is True and gate.get('package_sha256')==old.sha256(a.preplace_report/'M003_preplace_package.json'),'A007 selected G4 no-blocker binding missing')
+    review=gate.get('source_review',{});old.verify_identity(review)

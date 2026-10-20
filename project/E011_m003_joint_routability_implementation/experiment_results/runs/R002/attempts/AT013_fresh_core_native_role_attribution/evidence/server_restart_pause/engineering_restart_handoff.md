@@ -1,0 +1,13 @@
+# M003工程服务器重启暂停交接（2026-10-18）
+
+最高优先：用户“需要先中断了 因为服务器需要重启”，经Root实际转达。已暂停；禁止任何自动新EDA、重试或恢复，必须等待用户新的明确继续指令。Root维护全局 `.research-agent/project_pause.json` 和 mission/M003_joint_routability_closure/server_restart_handoff_2026-10-18.md，本记录是工程证据。
+
+AT013于07:44:42.079104Z核监督356910/start7966285、leader356911/start7966300及356912/356931/357002的真实归属后，向监督发送TERM，由其原保护逻辑清理已核子树。07:44:47.297092Z原始监督status为native−15、explicit supervisor signal15、survivors={}；这是用户中断，不作方法失败判断。随后监督+4子进程PID/start均消失，session50467已drain，EDA锁实际非阻塞获取并释放成功。未触碰外部进程或GPU。
+
+无独立常驻观察器；原观察均为已返回的同步有界查询，收尾扫描无对应活进程。45冻结源manifest151e4f113dfcbf377a2548280ba6112e26fdfa4b4b381509778f369b0180ab73及3RTL当前逐SHA不变；原AT003 fresh core DCP e51adf501ead6402490a4a982bd7c74064f6e858eec7ff76fbc0bc69940975a1、177165461B当前身份相同。原23/22完成内容链及AT012失败原件保留，没有重算大型数据。
+
+AT013核心图载入已完成，但首个parent属性dump未闭合；保全4文件（native log4705B、journal2326B、core来源binding1269B、parent_scope_candidates.tsv0B）。没有完整head/tail计数，没有新中途DCP。原AT012原生TCL两次apply因head查询不全失败，未有success/snapshot/正式G4/place/route。不能将当前partial文件当恢复完成点。
+
+全部硬核收尾和4文件原/副本SHA见同目录 `pause_closure.json`（f6e78a1f880b499bf9138545fda27aaf2da38e900cc0cea547a2593665372216）。停止前PID/start及授权来源在上级 `user_requested_stop_before_signal.json`，原status在jobs/native_core_roles/status.json。A007只读审核记录另行绑定。
+
+只有用户新授权继续后，先读Root全局暂停和handoff；根据AT013静态审核13880f5d改进诊断属性枚举开销并以新AT取得真实命名，保持严格6560+6560与原设计合同。当前生产query不适用，不能直接原样重跑冒充资格通过。之后仍需源码增量审核、新native结构/约束/预算资格、严格INIT/OPT/debug G4和实际包特定A007无阻断，才可固定完整物理；不保证布通或时序通过。

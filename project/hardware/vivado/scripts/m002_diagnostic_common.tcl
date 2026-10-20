@@ -1,5 +1,6 @@
 # M002 independent diagnostic implementation support. Original synth entry is frozen.
 set ::m002_script_dir [file dirname [file normalize [info script]]]
+if {[info exists ::env(HAP_M003_ACTIVE)]} {source [file join $::m002_script_dir m003_system_python.tcl]}
 set ::m002_report_dir [file normalize $::env(HAP_REPORT_DIR)]
 
 proc m002_put {path text} {
@@ -30,11 +31,20 @@ proc m002_debug_source_ips {} {
     }
     return $ips
 }
+proc m002_registered_constraints {} {
+    set result [get_files -all -quiet -filter {FILE_TYPE == XDC}]
+    if {[info exists ::env(HAP_M003_ACTIVE)]} {
+        foreach object [get_files -all -quiet -filter {FILE_TYPE == TCL}] {
+            if {[file tail [get_property NAME $object]] eq "m003_joint_locality.xdc"} {lappend result $object}
+        }
+    }
+    return [lsort -unique $result]
+}
 proc m002_dump_xdc_native {point} {
     set out [file join $::m002_report_dir xdc_registry_${point}.tsv]
     set h [open $out w]
     puts $h "path\tUSED_IN\tUSED_IN_SYNTHESIS\tUSED_IN_IMPLEMENTATION\tIS_ENABLED\tSCOPED_TO_REF\tSCOPED_TO_CELLS\tPROCESSING_ORDER\tSHA256"
-    foreach source [lsort [get_files -all -quiet -filter {FILE_TYPE == XDC}]] {
+    foreach source [m002_registered_constraints] {
         set path [file normalize [get_property NAME $source]]
         if {![file isfile $path]} {error "Registered XDC disappeared: $path"}
         set fields [list $path]
@@ -69,7 +79,7 @@ proc m002_dump_xdc {point} {
     set header "path\tUSED_IN\tUSED_IN_SYNTHESIS\tUSED_IN_IMPLEMENTATION\tIS_ENABLED\tSCOPED_TO_REF\tSCOPED_TO_CELLS\tPROCESSING_ORDER\tSHA256"
     set h [open [file join $::m002_report_dir embedded_xdc_registry_${point}.tsv] w]
     puts $h $header
-    foreach object [lsort [get_files -all -quiet -filter {FILE_TYPE == XDC}]] {
+    foreach object [m002_registered_constraints] {
         set fields [list [m002_prop $object NAME]]
         foreach property {USED_IN USED_IN_SYNTHESIS USED_IN_IMPLEMENTATION IS_ENABLED SCOPED_TO_REF SCOPED_TO_CELLS PROCESSING_ORDER} {lappend fields [m002_prop $object $property]}
         puts $h "[join $fields \t]\tEMBEDDED_OBJECT_NOT_A_NEW_SOURCE_READ"
@@ -173,7 +183,9 @@ proc m002_debug_probe {point blackboxes} {
 }
 
 proc m002_probe_netlist {point} {
-    source [file join $::m002_report_dir probe_targets.tcl]
+    if {[info exists ::env(HAP_M003_ACTIVE)]} {
+        source [file join $::m002_report_dir probe_targets_${point}.tcl]
+    } else {source [file join $::m002_report_dir probe_targets.tcl]}
     set h [open [file join $::m002_report_dir reset_cdc_and_io_probe_${point}.tsv] w]
     foreach target $::m002_cdc_targets {
         set pin [m002_exact get_pins $target]
@@ -283,7 +295,9 @@ proc m002_pin_clocks {pin} {
     return ""
 }
 proc m002_reset_snapshot {point} {
-    source [file join $::m002_report_dir probe_targets.tcl]
+    if {[info exists ::env(HAP_M003_ACTIVE)]} {
+        source [file join $::m002_report_dir probe_targets_${point}.tcl]
+    } else {source [file join $::m002_report_dir probe_targets.tcl]}
     set cells [list]
     set h [open [file join $::m002_report_dir reset_graph_${point}.tsv] w]
     # Logical inversion properties may be absent. Export only the 11 small
@@ -390,7 +404,9 @@ proc m002_endpoint_clocks {receiver} {
     return [get_clocks -quiet -of_objects $clock_pins]
 }
 proc m002_cdc_change_probe {point} {
-    source [file join $::m002_report_dir probe_targets.tcl]
+    if {[info exists ::env(HAP_M003_ACTIVE)]} {
+        source [file join $::m002_report_dir probe_targets_${point}.tcl]
+    } else {source [file join $::m002_report_dir probe_targets.tcl]}
     set h [open [file join $::m002_report_dir cdc_changed_reset_${point}.tsv] w]
     if {![info exists ::m002_actual_critical_sources]} {
         puts $h "OBSERVED_SOURCE_SET_UNAVAILABLE\tno inherited completed actual CDC report"
@@ -607,6 +623,11 @@ proc m002_post {point} {
         report_pulse_width -all_violators -file [file join $::m002_report_dir pulse_width_${point}.rpt]
         report_bus_skew -file [file join $::m002_report_dir bus_skew_${point}.rpt]
     }
+    if {[info exists ::env(HAP_M003_ACTIVE)]} {
+        source [file join $::m002_script_dir m003_joint_checks.tcl]
+        # This validates effective checkpoint constraints before any repair/reapply.
+        m003::snapshot $point $::m002_report_dir
+    }
     if {$point in {place physopt route}} {
         if {[info exists ::env(HAP_EXECUTION_PROFILE)] && $::env(HAP_EXECUTION_PROFILE) eq "m002_optimized_implementation"} {
             source [file join $::m002_script_dir m002_optimized_structure.tcl]
@@ -636,6 +657,9 @@ proc m002_post {point} {
         close $h
     }
     if {$point eq "route"} {report_route_status -file [file join $::m002_report_dir route_status_route.rpt]}
+    if {[info exists ::env(HAP_M003_ACTIVE)]} {
+        m003_python [file join $::m002_script_dir m003_stage.py] prepare-probe --report $::m002_report_dir --point $point --synth-report $::env(HAP_SYNTH_REPORT_DIR) --project $::env(HAP_PROJECT_DIR)
+    }
     if {$point in {init opt debug_materialized}} {m002_probe_netlist $point}
     if {$point in {opt debug_materialized place physopt route}} {m002_reset_snapshot $point}
     if {$point in {opt debug_materialized place physopt route}} {m002_cdc_change_probe $point}
@@ -643,7 +667,11 @@ proc m002_post {point} {
     # All available artifacts precede automatic structural/numeric admission.
     require_board_clock_groups
     require_no_drc_blockers [expr {$point eq "route" ? "post_route" : "physopt"}]
+    if {[info exists ::env(HAP_M003_ACTIVE)]} {
+        m003_python [file join $::m002_script_dir m003_physical_evidence.py] hook-batch $point $::m002_report_dir
+    } else {
     exec python3 [file join $::m002_script_dir m002_physical_evidence.py] hook-batch $point $::m002_report_dir
+    }
     set h [open [file join $::m002_report_dir admission_${point}.txt] r]
     set admission [read $h]; close $h
     set coverage [dict get $admission clock_coverage]

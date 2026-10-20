@@ -1,0 +1,27 @@
+# Candidate ordinary selector repair, derived from closed AT014 identities.
+# Load after existing m003_joint_checks.tcl for CPU tests; not a production input.
+proc m003::payload_members {} {
+    variable parent_scope
+    set family_bits [dict create]
+    # Capture both payload families throughout the exact parent scope, so an
+    # unexpected hierarchy/replica is rejected rather than silently omitted.
+    # Occupancy/count registers have a separate role and are never admitted.
+    set selected [get_cells -quiet -hier -filter [format {IS_PRIMITIVE == 1 && (NAME =~ "%s/*parent_head_r_reg*" || NAME =~ "%s/*parent_tail_r_reg*")} $parent_scope $parent_scope]]
+    foreach cell $selected {
+        set name [get_property NAME $cell]
+        if {![prefix $name $parent_scope]} {error "M003 foreign payload scope: $name"}
+        set relative [string range $name [expr {[string length $parent_scope]+1}] end]
+        # AT014 measured this complete shape for all 13120 native payload FFs,
+        # including equality of the generate and packed-register bit indices.
+        if {![regexp {^g_m003_parent_ce\.g_payload_bit\[(0|[1-9][0-9]*)\]\.parent_(head|tail)_r_reg\[(0|[1-9][0-9]*)\]$} $relative -> generated_bit family bit]} {error "M003 unresolved/replicated payload origin: $name"}
+        if {[get_property REF_NAME $cell] ni {FDRE FDCE FDSE FDPE} || $bit>=6560 || $generated_bit!=$bit || [dict exists $family_bits $family $bit]} {error "M003 invalid payload member: $name"}
+        dict set family_bits $family $bit $cell
+    }
+    foreach family {head tail} {
+        if {![dict exists $family_bits $family] || [dict size [dict get $family_bits $family]] != 6560} {error "M003 $family production payload incomplete"}
+        for {set bit 0} {$bit<6560} {incr bit} {
+            if {![dict exists $family_bits $family $bit]} {error "M003 $family production payload bit $bit missing"}
+        }
+    }
+    return $family_bits
+}

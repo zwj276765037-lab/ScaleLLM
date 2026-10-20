@@ -1,0 +1,189 @@
+{
+  "observed_utc": "2026-10-18T01:32:43.994728+00:00",
+  "execution": "AT003 actual native start independently verified; currently open_checkpoint",
+  "verdict": "startup/source identity accepted; full alias/native G1 pending",
+  "applicability": "f0ac0b91 fixed package, AT003 actual runtime and db010528 input bindings",
+  "review": "independent stage accepted",
+  "native_start_markers": [
+    "SM013 2026-10-18T01:31:02Z OPEN_CHECKPOINT_BEGIN"
+  ],
+  "processes": [
+    {
+      "pid": 261857,
+      "start_ticks": 5878910,
+      "state": "S",
+      "ppid": 1,
+      "pgrp": 261857,
+      "nice": 5,
+      "affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "exe": "/usr/bin/python3.12",
+      "cmdline": "/usr/bin/python3 /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_source/AT003_scalar_property_fix/supervise.py"
+    },
+    {
+      "pid": 261861,
+      "start_ticks": 5879118,
+      "state": "S",
+      "ppid": 261857,
+      "pgrp": 261861,
+      "nice": 5,
+      "affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "exe": "/usr/bin/bash",
+      "cmdline": "/bin/bash /home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/vivado -mode batch -notrace -source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/attribution.tcl -log /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/evidence/native/vivado.log -journal /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/evidence/native/vivado.jou"
+    },
+    {
+      "pid": 261951,
+      "start_ticks": 5879131,
+      "state": "S",
+      "ppid": 261880,
+      "pgrp": 261861,
+      "nice": 5,
+      "affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "exe": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/unwrapped/lnx64.o/vivado",
+      "cmdline": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/unwrapped/lnx64.o/vivado -mode batch -notrace -source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/attribution.tcl -log /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/evidence/native/vivado.log -journal /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/evidence/native/vivado.jou"
+    }
+  ],
+  "eda_lock": {
+    "device_inode": "103:02:169247080",
+    "actual_lines": [
+      "1: FLOCK  ADVISORY  WRITE 261857 103:02:169247080 0 EOF"
+    ],
+    "acquired_or_modified_by_reviewer": false
+  },
+  "input_bindings": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/input_bindings.json",
+    "bytes": 5683,
+    "sha256": "db010528455ba9bcdb215b3ed24af63ff8add45510e5d972880fab208468aa58"
+  },
+  "review_acknowledgment": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/independent_prelaunch_accepted.json",
+    "bytes": 853,
+    "sha256": "a36f507eacb927568ae610a27e17eba326a8c340949809a28012094d51f49286"
+  },
+  "archived_sources_verified": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/aggregate.py",
+      "bytes": 9230,
+      "sha256": "cdc44d1543cd29217ca37781b6e03484258f197a1316cc14e87cc9b0ac561160"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/launch.py",
+      "bytes": 822,
+      "sha256": "bf0d908894e1fdcc42bfdc28e19df9ccf7cde0d0c56be99316c4735b71314393"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/targets.tcl",
+      "bytes": 8071,
+      "sha256": "895aade0e9c63666db3918427c29844b9eb0717bc8be7c5fd0f7b1d323fad710"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/baseline.json",
+      "bytes": 40268,
+      "sha256": "78b8ce3b8a55a7a1a04e165f43dc9cdfd79fddadbbbb2758104a6acfcd43fe52"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/reference_SM013.md",
+      "bytes": 3210,
+      "sha256": "76a496f33596a8932c29ea8de9d2065564fc857afa228140b81c0d3a690b15b1"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/prepare.py",
+      "bytes": 11792,
+      "sha256": "1de27c22296bfd2c0fce11f4359c456920eba1973268b3dd08c5cfa43cdaf608"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/supervise.py",
+      "bytes": 6737,
+      "sha256": "7769c07de6fe02e70f7b5ca61fcf8fdab5c5120970292c80295d84d60c867385"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/reference_contract.md",
+      "bytes": 23014,
+      "sha256": "54f681b6f9b71c8146d345062c9492df6147a2b7bdcf60c8ff400e9f1cbfbdb9"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/query_plan.json",
+      "bytes": 11726,
+      "sha256": "3e722eeda18e720bb16d26de5c3d311c59728878a4bb56d5d20224edd987c465"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/prepared_manifest.json",
+      "bytes": 3774,
+      "sha256": "f0ac0b91d8d91703ba34405bdd5a1154da1ff12f9b892b8ba6209ad119812101"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/attribution.tcl",
+      "bytes": 12887,
+      "sha256": "0bffb546261e0d00a67702e4c35c769dc6c76f50455fbd7d8cf3ddd9198b55bc"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/check_cpu.py",
+      "bytes": 9070,
+      "sha256": "b8878de514881f4f8eeaac9357aea1380a86f614e49f288a3d5467aa73df596c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/sources/reference_verification_matrix.md",
+      "bytes": 5774,
+      "sha256": "2976a43de9c225b535e132b06b6524ab746ad5d3667d67edad080fc70bfbcde2"
+    }
+  ],
+  "actual_started": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/started.json",
+    "bytes": 2091,
+    "sha256": "8886318ff0f0c6e840d2b58fbdc863b79d64bb7806f9b1b86deb12225d423371"
+  },
+  "no_terminal_at_observation": true,
+  "engineering_preflight": {
+    "checked_utc": "2026-10-18T01:30:57.461234+00:00",
+    "production_inputs": 144,
+    "prior_pid_start_absent": true,
+    "active_eda_or_compilers": [],
+    "resources": {
+      "MemAvailable": 530065592320,
+      "disk_free": 413340229632,
+      "cpu_allowed": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    }
+  },
+  "DCP_and_144_production_inputs": "A006 startup verification; A007 did not reread DCP or production contents",
+  "qualification_limits": [
+    "read-only extraction only, no implementation",
+    "no closed canonical census or G1 PASS",
+    "no candidate selected",
+    "no new stop permission or queries"
+  ]
+}

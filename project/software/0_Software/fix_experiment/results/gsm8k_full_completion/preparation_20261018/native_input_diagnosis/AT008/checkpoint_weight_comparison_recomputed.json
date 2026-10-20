@@ -1,0 +1,467 @@
+{
+  "schema": "scalellm_up_proj_checkpoint_recomputation_v1",
+  "source_sha256": "b0e4d9a3d2c09c232bb7c2a2c27ce3bbfba7ec0f2075ee7c65f3593a12a8079c",
+  "pid": 294627,
+  "cpu_affinity": [
+    18,
+    19
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "cuda_initialized": false,
+  "checkpoint_shard": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct/model-00003-of-00004.safetensors",
+  "weight_key": "model.layers.25.mlp.up_proj.weight",
+  "original": {
+    "shape": [
+      14336,
+      4096
+    ],
+    "dtype": "torch.bfloat16",
+    "sha256": "abf3fa9992765e359b6318b5cf94cc559184c37a1a5875b3e249e04f949ee38d",
+    "data_ptr": 136159472644160
+  },
+  "observed": {
+    "shape": [
+      14336,
+      4096
+    ],
+    "dtype": "torch.bfloat16",
+    "sha256": "b5462ac771bbf45c17df5f291e3a98b159556b92a1b270996d64b46065efd5b0",
+    "data_ptr": 136159161811008
+  },
+  "changed_elements": 16345,
+  "changed_bytes": 16345,
+  "max_abs_difference": 0.09326171875,
+  "bounds": {
+    "row_min": 12800,
+    "row_max": 14251,
+    "col_min": 0,
+    "col_max": 4095
+  },
+  "row_counts": [
+    {
+      "row": 12800,
+      "changed_elements": 255
+    },
+    {
+      "row": 12802,
+      "changed_elements": 256
+    },
+    {
+      "row": 12804,
+      "changed_elements": 256
+    },
+    {
+      "row": 12806,
+      "changed_elements": 255
+    },
+    {
+      "row": 12940,
+      "changed_elements": 256
+    },
+    {
+      "row": 12941,
+      "changed_elements": 256
+    },
+    {
+      "row": 12942,
+      "changed_elements": 256
+    },
+    {
+      "row": 12943,
+      "changed_elements": 255
+    },
+    {
+      "row": 13052,
+      "changed_elements": 256
+    },
+    {
+      "row": 13054,
+      "changed_elements": 256
+    },
+    {
+      "row": 13056,
+      "changed_elements": 256
+    },
+    {
+      "row": 13058,
+      "changed_elements": 256
+    },
+    {
+      "row": 13168,
+      "changed_elements": 256
+    },
+    {
+      "row": 13169,
+      "changed_elements": 256
+    },
+    {
+      "row": 13170,
+      "changed_elements": 254
+    },
+    {
+      "row": 13171,
+      "changed_elements": 255
+    },
+    {
+      "row": 13204,
+      "changed_elements": 256
+    },
+    {
+      "row": 13205,
+      "changed_elements": 256
+    },
+    {
+      "row": 13206,
+      "changed_elements": 256
+    },
+    {
+      "row": 13207,
+      "changed_elements": 256
+    },
+    {
+      "row": 13304,
+      "changed_elements": 256
+    },
+    {
+      "row": 13306,
+      "changed_elements": 255
+    },
+    {
+      "row": 13308,
+      "changed_elements": 256
+    },
+    {
+      "row": 13310,
+      "changed_elements": 256
+    },
+    {
+      "row": 13432,
+      "changed_elements": 256
+    },
+    {
+      "row": 13433,
+      "changed_elements": 255
+    },
+    {
+      "row": 13434,
+      "changed_elements": 255
+    },
+    {
+      "row": 13435,
+      "changed_elements": 255
+    },
+    {
+      "row": 13556,
+      "changed_elements": 256
+    },
+    {
+      "row": 13558,
+      "changed_elements": 256
+    },
+    {
+      "row": 13561,
+      "changed_elements": 256
+    },
+    {
+      "row": 13563,
+      "changed_elements": 255
+    },
+    {
+      "row": 13660,
+      "changed_elements": 255
+    },
+    {
+      "row": 13661,
+      "changed_elements": 255
+    },
+    {
+      "row": 13662,
+      "changed_elements": 253
+    },
+    {
+      "row": 13663,
+      "changed_elements": 254
+    },
+    {
+      "row": 13712,
+      "changed_elements": 255
+    },
+    {
+      "row": 13714,
+      "changed_elements": 255
+    },
+    {
+      "row": 13716,
+      "changed_elements": 256
+    },
+    {
+      "row": 13718,
+      "changed_elements": 255
+    },
+    {
+      "row": 13792,
+      "changed_elements": 254
+    },
+    {
+      "row": 13793,
+      "changed_elements": 255
+    },
+    {
+      "row": 13794,
+      "changed_elements": 254
+    },
+    {
+      "row": 13795,
+      "changed_elements": 255
+    },
+    {
+      "row": 13868,
+      "changed_elements": 256
+    },
+    {
+      "row": 13870,
+      "changed_elements": 256
+    },
+    {
+      "row": 13872,
+      "changed_elements": 255
+    },
+    {
+      "row": 13874,
+      "changed_elements": 256
+    },
+    {
+      "row": 14024,
+      "changed_elements": 256
+    },
+    {
+      "row": 14026,
+      "changed_elements": 256
+    },
+    {
+      "row": 14028,
+      "changed_elements": 253
+    },
+    {
+      "row": 14030,
+      "changed_elements": 256
+    },
+    {
+      "row": 14116,
+      "changed_elements": 255
+    },
+    {
+      "row": 14117,
+      "changed_elements": 256
+    },
+    {
+      "row": 14118,
+      "changed_elements": 255
+    },
+    {
+      "row": 14119,
+      "changed_elements": 256
+    },
+    {
+      "row": 14180,
+      "changed_elements": 254
+    },
+    {
+      "row": 14182,
+      "changed_elements": 255
+    },
+    {
+      "row": 14185,
+      "changed_elements": 256
+    },
+    {
+      "row": 14187,
+      "changed_elements": 255
+    },
+    {
+      "row": 14248,
+      "changed_elements": 256
+    },
+    {
+      "row": 14249,
+      "changed_elements": 256
+    },
+    {
+      "row": 14250,
+      "changed_elements": 255
+    },
+    {
+      "row": 14251,
+      "changed_elements": 255
+    }
+  ],
+  "high_byte_changes": 0,
+  "changed_new_low_byte_value_counts": {
+    "175": 2,
+    "191": 19,
+    "223": 2,
+    "239": 4,
+    "247": 1,
+    "250": 3,
+    "251": 3,
+    "253": 5,
+    "254": 24,
+    "255": 16282
+  },
+  "only_set_bits_all": false,
+  "cleared_bits_elements": 12,
+  "first_16_changed": [
+    {
+      "row": 12800,
+      "col": 1664,
+      "original_float": -0.0191650390625,
+      "observed_float": -0.0311279296875,
+      "original_bf16_hex": "bc9d",
+      "observed_bf16_hex": "bcff",
+      "xor_hex": "0062"
+    },
+    {
+      "row": 12800,
+      "col": 1665,
+      "original_float": 0.022216796875,
+      "observed_float": 0.0311279296875,
+      "original_bf16_hex": "3cb6",
+      "observed_bf16_hex": "3cff",
+      "xor_hex": "0049"
+    },
+    {
+      "row": 12800,
+      "col": 1666,
+      "original_float": 0.00909423828125,
+      "observed_float": 0.0311279296875,
+      "original_bf16_hex": "3c15",
+      "observed_bf16_hex": "3cff",
+      "xor_hex": "00ea"
+    },
+    {
+      "row": 12800,
+      "col": 1667,
+      "original_float": -0.0017547607421875,
+      "observed_float": -0.00194549560546875,
+      "original_bf16_hex": "bae6",
+      "observed_bf16_hex": "baff",
+      "xor_hex": "0019"
+    },
+    {
+      "row": 12800,
+      "col": 1668,
+      "original_float": -0.0004367828369140625,
+      "observed_float": -0.0004863739013671875,
+      "original_bf16_hex": "b9e5",
+      "observed_bf16_hex": "b9ff",
+      "xor_hex": "001a"
+    },
+    {
+      "row": 12800,
+      "col": 1669,
+      "original_float": 0.005889892578125,
+      "observed_float": 0.007781982421875,
+      "original_bf16_hex": "3bc1",
+      "observed_bf16_hex": "3bff",
+      "xor_hex": "003e"
+    },
+    {
+      "row": 12800,
+      "col": 1670,
+      "original_float": -0.00080108642578125,
+      "observed_float": -0.00194549560546875,
+      "original_bf16_hex": "ba52",
+      "observed_bf16_hex": "baff",
+      "xor_hex": "00ad"
+    },
+    {
+      "row": 12800,
+      "col": 1671,
+      "original_float": 0.0031280517578125,
+      "observed_float": 0.007781982421875,
+      "original_bf16_hex": "3b4d",
+      "observed_bf16_hex": "3bff",
+      "xor_hex": "00b2"
+    },
+    {
+      "row": 12800,
+      "col": 1672,
+      "original_float": -0.00286865234375,
+      "observed_float": -0.007781982421875,
+      "original_bf16_hex": "bb3c",
+      "observed_bf16_hex": "bbff",
+      "xor_hex": "00c3"
+    },
+    {
+      "row": 12800,
+      "col": 1673,
+      "original_float": -0.0135498046875,
+      "observed_float": -0.0311279296875,
+      "original_bf16_hex": "bc5e",
+      "observed_bf16_hex": "bcff",
+      "xor_hex": "00a1"
+    },
+    {
+      "row": 12800,
+      "col": 1674,
+      "original_float": 0.00506591796875,
+      "observed_float": 0.007781982421875,
+      "original_bf16_hex": "3ba6",
+      "observed_bf16_hex": "3bff",
+      "xor_hex": "0059"
+    },
+    {
+      "row": 12800,
+      "col": 1675,
+      "original_float": -0.023681640625,
+      "observed_float": -0.0311279296875,
+      "original_bf16_hex": "bcc2",
+      "observed_bf16_hex": "bcff",
+      "xor_hex": "003d"
+    },
+    {
+      "row": 12800,
+      "col": 1676,
+      "original_float": -0.00543212890625,
+      "observed_float": -0.007781982421875,
+      "original_bf16_hex": "bbb2",
+      "observed_bf16_hex": "bbff",
+      "xor_hex": "004d"
+    },
+    {
+      "row": 12800,
+      "col": 1677,
+      "original_float": -0.0159912109375,
+      "observed_float": -0.0311279296875,
+      "original_bf16_hex": "bc83",
+      "observed_bf16_hex": "bcff",
+      "xor_hex": "007c"
+    },
+    {
+      "row": 12800,
+      "col": 1678,
+      "original_float": 0.009765625,
+      "observed_float": 0.0311279296875,
+      "original_bf16_hex": "3c20",
+      "observed_bf16_hex": "3cff",
+      "xor_hex": "00df"
+    },
+    {
+      "row": 12800,
+      "col": 1679,
+      "original_float": 0.017333984375,
+      "observed_float": 0.0311279296875,
+      "original_bf16_hex": "3c8e",
+      "observed_bf16_hex": "3cff",
+      "xor_hex": "0071"
+    }
+  ],
+  "cpu_storage_independent": true,
+  "sha_method": "SHA256 of contiguous BF16 CPU byte view numpy.tobytes; no dtype conversion",
+  "capture_semantics": "GPU digest uses blocking tensor.detach().contiguous().cpu(); persisted cpu(t) uses detach().cpu().contiguous().clone(); no non_blocking=True.",
+  "limitations": [
+    "Only final fixed GPU weight persisted as CPU tensor; native per-call weight tensors were not persisted, so bit trajectories/recovery are unavailable.",
+    "Native1/native2 same pre-weight SHA but differing output limits causal attribution.",
+    "AT008 did not persist actual loaded module hook/parametrization inventory or weight._version."
+  ]
+}

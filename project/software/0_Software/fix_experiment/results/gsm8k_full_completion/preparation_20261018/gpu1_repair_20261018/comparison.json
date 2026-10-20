@@ -1,0 +1,396 @@
+{
+  "schema": "scalellm_gpu1_repair_comparison_v1",
+  "updated_at": "2026-10-18T04:47:00.968495+00:00",
+  "owner": "A012 /root/gpu1_repair",
+  "attempts": [
+    {
+      "attempt": "AT001",
+      "execution_state": "completed",
+      "stage": "complete",
+      "pid": 303981,
+      "started_at": "2026-10-18T04:21:18.503786+00:00",
+      "ended_at": "2026-10-18T04:32:14.650471+00:00",
+      "source_sha256": "c53ed1f81054ca641de12ebd5061da0b9e07edc4e4a5d5a983ba5214199d1c93",
+      "status_sha256": "fec949c05a9a15b53b42a8d89e86eb5f26880afcb6b82a88bdb8cc57869c4219",
+      "library": [
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libcuda.so.580.178.04",
+          "sha256": "dcdf334aeb177c95b3385b797c9b871d03a287895713c6d107f79096b0985aa9",
+          "size_bytes": 96284520
+        }
+      ],
+      "verdict": "raw CUDA byte preservation failed",
+      "gpu_uuid_actual": "GPU-d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "cpu_affinity": [
+        18,
+        19
+      ],
+      "cleanup_completed_at": "2026-10-18T04:32:14.916205+00:00",
+      "tests": [
+        {
+          "test_id": "h2d_00",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 203008,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 203008,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "h2d_ff",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 0,
+          "failing_allocations": [],
+          "set_bit_bytes_first_read": 0,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "h2d_55",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 212992,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 212992,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 4
+        },
+        {
+          "test_id": "h2d_aa",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 212992,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 212992,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "h2d_ramp",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 212272,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 212272,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "device_memset_00",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 212992,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 212992,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "device_memset_ff",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 0,
+          "failing_allocations": [],
+          "set_bit_bytes_first_read": 0,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "device_memset_55",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 212992,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 212992,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "device_memset_aa",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 212992,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 212992,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0
+        }
+      ]
+    },
+    {
+      "attempt": "AT002",
+      "execution_state": "completed",
+      "stage": "complete",
+      "pid": 310000,
+      "started_at": "2026-10-18T04:32:36.818152+00:00",
+      "ended_at": "2026-10-18T04:43:42.833183+00:00",
+      "source_sha256": "c53ed1f81054ca641de12ebd5061da0b9e07edc4e4a5d5a983ba5214199d1c93",
+      "status_sha256": "cc374f9b87dcffb15fdd892796b0b147405424f986c8bfb02dc140d5525fd6dd",
+      "library": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/nvml_local_recovery_20261018/cuda_lib/libcuda.so.1",
+          "sha256": "3a3cf81c03a39008b3da4320bbc2cc8194dcfe91e8eef7c05dfc46febe2d1aac",
+          "size_bytes": 96284520
+        }
+      ],
+      "verdict": "raw CUDA byte preservation failed",
+      "gpu_uuid_actual": "GPU-d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "cpu_affinity": [
+        18,
+        19
+      ],
+      "cleanup_completed_at": "2026-10-18T04:43:43.098787+00:00",
+      "tests": [
+        {
+          "test_id": "h2d_00",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 212966,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 212966,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "h2d_ff",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 26,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 0,
+          "cleared_bit_bytes_first_read": 26,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "h2d_55",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 212992,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 212992,
+          "cleared_bit_bytes_first_read": 13,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "h2d_aa",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 212992,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 212992,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "h2d_ramp",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 212272,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 212272,
+          "cleared_bit_bytes_first_read": 8,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "device_memset_00",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 212992,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 212992,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "device_memset_ff",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 0,
+          "failing_allocations": [],
+          "set_bit_bytes_first_read": 0,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "device_memset_55",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 212992,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 212992,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0
+        },
+        {
+          "test_id": "device_memset_aa",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 212992,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 212992,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0
+        }
+      ]
+    },
+    {
+      "attempt": "AT003",
+      "execution_state": "completed",
+      "stage": "complete",
+      "pid": 315231,
+      "started_at": "2026-10-18T04:43:55.450336+00:00",
+      "ended_at": "2026-10-18T04:46:06.976421+00:00",
+      "source_sha256": "fa3ce1bde4c7dbef27551e7055c81795af484eca424e23dfa3ed560895f16819",
+      "status_sha256": "d3b2c909472423a6fb507a6374503ff70a04e1594bf3a66c71169364b8461120",
+      "library": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/nvml_local_recovery_20261018/cuda_lib/libcuda.so.1",
+          "sha256": "3a3cf81c03a39008b3da4320bbc2cc8194dcfe91e8eef7c05dfc46febe2d1aac",
+          "size_bytes": 96284520
+        }
+      ],
+      "verdict": "raw CUDA byte preservation failed",
+      "gpu_uuid_actual": "GPU-d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "cpu_affinity": [
+        18,
+        19
+      ],
+      "cleanup_completed_at": "2026-10-18T04:46:07.231570+00:00",
+      "tests": [
+        {
+          "test_id": "device_memset_00",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 212992,
+          "failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "set_bit_bytes_first_read": 212992,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0,
+          "gpu_internal_bad_bytes_first_read": 212992,
+          "gpu_internal_failing_allocations": [
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "gpu_cpu_count_disagreeing_reads": 0
+        },
+        {
+          "test_id": "device_memset_ff",
+          "complete": true,
+          "whole_chunk_reads": 160,
+          "bad_bytes_first_read_only": 0,
+          "failing_allocations": [],
+          "set_bit_bytes_first_read": 0,
+          "cleared_bit_bytes_first_read": 0,
+          "changed_bytes_between_repeated_reads": 0,
+          "gpu_internal_bad_bytes_first_read": 0,
+          "gpu_internal_failing_allocations": [],
+          "gpu_cpu_count_disagreeing_reads": 0
+        }
+      ],
+      "native_observer_self_tests_passed": true
+    }
+  ],
+  "counting_convention": "Bad byte counts use first read only per allocation and pattern, never add duplicate read count. Repeat-read changes are separate. Different patterns are separate observations, not a single union of bad physical cells.",
+  "scope": "Raw GPU1 synthetic byte integrity only; no model/production qualification. CUDA virtual pointers are not fixed physical pages."
+}

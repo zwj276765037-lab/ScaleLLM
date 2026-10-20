@@ -1,0 +1,54 @@
+{
+  "schema": "A007_AT019_terminal_and_complete_address_review_v1",
+  "reviewed_utc": "2026-10-18T16:34:21.775140+00:00",
+  "execution": {
+    "review": "completed",
+    "native": "completed",
+    "native_exit_code": 0,
+    "ended_utc": "2026-10-18T16:22:19.460375+00:00",
+    "stop_reason": null,
+    "owned_survivors": {},
+    "five_PID_start_identities_gone": true,
+    "read_only_lock_observation": "Exact103:02:169247080 had no owner; reviewer did not acquire lock.",
+    "session": "A006 actual write_stdin drain receipt exit0/20729a verified; A007 made no session call."
+  },
+  "verdict": "Accept complete raw diagnostic, natural closure, and scoped active-address/cascade/mode interpretation. Full selected-graph/G4 remains unproven.",
+  "terminal_package_sha256": "001daae6c287aba6a8220bd4cef853065106f3cbe450b55a673f1cb985bf03e8",
+  "actual_coverage": {
+    "cells": 80,
+    "address_rows": 7360,
+    "mode_rows": 160,
+    "aux_rows": 26960,
+    "raw_output_hashes": "All9 closed outputs matched; aux156793856B was streamed once, plus46882B exact anomaly rows by seek.",
+    "sources": "Current45 sources/3RTL/G2 and startup runtime binding unchanged; DCP177165461B stat only, e51 hash is owner/launcher evidence."
+  },
+  "independent_findings": {
+    "cascade": "12 same-slice acyclic nonbranching chains cover all80: eachslice two sets of lengths8,8,4. ActualFIRST12/MIDDLE56/LAST12; all46 percell CAS address edges and68x4 selected control edges traced.",
+    "dynamic_addresses": "At12 FIRST roots A[0..16] maps own-slice helperQ bit-for-bit; B maps corresponding artifact-index Q. All active downstream low17 paths preserve actual corresponding FF/C startpoints. No raw /C toQ substitution.",
+    "empty_startpoints": "696 actualGND rows =144 FIRST A/B high-six +552 FIRST inactiveCAS inputs. Only12 directA22 areGND;68 other directA22 are unconnected inactive inputs.",
+    "inactive_direct_ADDR": "68x46=3128 rows have empty nets/drivers, but raw all_fanin returns the pin itself. These nonempty startpoints do not prove connectivity. ActualMIDDLE/LAST config selects verified CAS_IN instead.",
+    "effective_high_six": "AllSELF_MASK7E0; downstream high6 CAS timing roots stop at FIRST CAS_OUT. Verified actual graph and unregistered vendor transfer carry the head GND value; do not label downstream direct pins GND.",
+    "mode": "ActualdirectA isGND12/VCC68;B VCC80. Inversion0 and IREG_PRE/REG_CAS FALSE with actualCAS_IN_RDB_WR chains support effective A-read/B-write for80. Currentqualifier requiring everydirectA GND would falselyreject68 unusedVCC pins.",
+    "decode": "SELF_ADDR0..19 eachtwice/slice and actual4096-row spans verified; this alone doesnotprove128-bit response/width mapping orRDW.",
+    "aux66": "66 opposite-slice name mentions are54BWE_B+6EN_A+6EN_B, driven by60LUT5/6LUT6 entries from3sourceobjects. Exactraw rows verified; no CAS or helper-address source violation follows from those synthesis names.",
+    "CLK": "Only80 CLK rows lack leafpin drivers; eachhas12062netsegments and identicalnetlist. Actual primary-port source remains pendingAT020."
+  },
+  "applicability": "a079/f2ef readonly standalone originale51 core only. AT018 failingcell stillunknown. No productionassertion repair, applied/restored overlay, full budget, physical result orG4 accepted.",
+  "G4": false,
+  "independent_analysis": {
+    "path": "agent/A007/M003_SM015_SM017_review_20261018/AT019_closed_native_independent_analysis.json",
+    "bytes": 6255,
+    "sha256": "2241c6de74ac4c80bff9db8c99765d28dcc905103cfd99cf853303231e7986ff"
+  },
+  "aux_name_review": {
+    "path": "agent/A007/M003_SM015_SM017_review_20261018/AT019_auxiliary_name_projection_review.json",
+    "bytes": 1291,
+    "sha256": "f616638f92dc21a1740e8a0b48ab60752f998bb6e6e4ce1b89dcf80395e5705f"
+  },
+  "reproducible_analyzer": {
+    "path": "agent/A007/M003_SM015_SM017_review_20261018/AT019_analyze_closed_native.py",
+    "bytes": 12221,
+    "sha256": "521e333438a5db5b483d81c482de7b267e11ecaad03958b0e6ea193f7efd673d"
+  },
+  "next": "Review exactAT020 helperD/CLK probe package; later evidence-specific production repair remains separately reviewable."
+}

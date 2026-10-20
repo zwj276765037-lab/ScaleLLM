@@ -1,0 +1,35 @@
+{
+  "schema": "m005_integrated_precision_artifacts_v1",
+  "checks": [
+    "raw Attention linear uses q/k/v/o only;128sites per document",
+    "9x16=144 document points",
+    "independent NumPy percentile verification",
+    "raw local maxima and aggregate family bounds match",
+    "word-score coverage and Top1 values explicitly null/not_measured",
+    "PNG visually checked; no fake curves/bars/axes in pending panels",
+    "all source/output SHA identities verified",
+    "Final wording only: maximum absolute score difference; all144 points and statistics unchanged"
+  ],
+  "artifacts": [
+    {
+      "name": "integrated_precision.png",
+      "bytes": 457694,
+      "sha256": "688b7f6814aab4346b1a27053eff2690423b582dd30560d575681e8e31485218"
+    },
+    {
+      "name": "integrated_precision.pdf",
+      "bytes": 104294,
+      "sha256": "33ffc19eb73daa7b985a90a943bb64aa1bfe51d80f2285750e28d81b9f002aa5"
+    },
+    {
+      "name": "source_data.json",
+      "bytes": 224597,
+      "sha256": "8146da454634acd9f0ef3c8382c322e6e0f5a640754fefe26889563d9c34c0a4"
+    },
+    {
+      "name": "render_integrated.py",
+      "bytes": 19253,
+      "sha256": "a884f8ff545c624696ca9f4000899e0ddeedf95b45a657d536c46b55261422bb"
+    }
+  ]
+}

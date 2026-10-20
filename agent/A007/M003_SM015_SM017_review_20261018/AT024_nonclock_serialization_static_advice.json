@@ -1,0 +1,46 @@
+{
+  "schema": "A007_AT024_frozen_nonclock_serialization_static_advice_v1",
+  "utc": "2026-10-19T01:15:57.117468+00:00",
+  "execution": "bounded_static_only_no_new_native_query",
+  "verdict": "potential_native_collection_string_conversion_path_exists; actual_current_cardinality_and_trigger_unknown",
+  "applicability": "Frozenchecks604f22e3/manifest16f9523c; advice for separate future working candidate only",
+  "review": "targeted_followup_advice_not_current_native_failure_or_stop_request",
+  "source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_checks.tcl",
+    "bytes": 36694,
+    "sha256": "604f22e3e0372e5ae8c56dbb03aa2e4f9fd9e86e936f3a611b9d0600debd9774"
+  },
+  "mechanism": "pin_net returns native net object collection; extra fields reach jobject->jq->string map requiring string form. AT022 Common17-736 established truncation for nativecollection12062->500; this does not establish sizes in current nonclock fields.",
+  "sites": [
+    {
+      "line": 461,
+      "field": "core_address CLR_nets",
+      "proposed": "collection_property NAME [pin_net $cell CLR]"
+    },
+    {
+      "line": 498,
+      "field": "address CE_nets",
+      "proposed": "collection_property NAME $cen; keep native $cen for actual driver query"
+    },
+    {
+      "line": 498,
+      "field": "address CLR_nets",
+      "proposed": "collection_property NAME [pin_net $cell CLR]"
+    },
+    {
+      "line": 551,
+      "field": "control_sources.write_enable",
+      "proposed": "collection_property NAME [pin_net $meta_scope meta_wr_valid]"
+    }
+  ],
+  "keep": [
+    "pin_net unchanged returns native object collection for get_pins and other native APIs",
+    "existing exact pin/nonempty net guards",
+    "get_property errors propagate; no quiet suppression in helper",
+    "fieldnames/actual NAME evidence semantics",
+    "AT024 frozen runtime continues normally; no hot patch or extraEDA or stop"
+  ],
+  "targeted_CPU_candidate_expectation": "Verify full >500 actual NAME list reaches JSON at all4sites, no raw object token passed to string encoder, preserve disconnected/API failure rejection and downstream native object use. Do not rerun unrelated full suites.",
+  "actual_owner_message_sent": true,
+  "G4": false
+}

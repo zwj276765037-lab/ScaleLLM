@@ -1,0 +1,15 @@
+{
+  "event_id": "EV_SM020_GPU0_external_attempt03_20261018T1030Z",
+  "small_mission": "SM020",
+  "trigger": "resource_conflict",
+  "summary": "18:30实测GPU0另有yqh ScaleLUT attempt03 PID23186占约12GiB，与本项目R003 worker31810共享GPU0。",
+  "impact": "本项目仍单worker、无失败；GPU0独占性能bench和新资格验证不能在当前共享槽启动，CPU候选及独审可继续。GPU1仍停用，M003不触碰。",
+  "evidence": [
+    "project/E010_gsm8k_six_model_completion/experiment_results/hourly_reports/20261018T103242Z_gpu0_progress.json"
+  ],
+  "affected": [
+    "SM020"
+  ],
+  "action": "保留运行证据，不因本通知终止或通知其他用户任务；真实资源交接/外部释放后才执行GPU benchmark，继续CPU独立审核及每小时报告。",
+  "requires_decision": false
+}

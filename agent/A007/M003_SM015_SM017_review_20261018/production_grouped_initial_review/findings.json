@@ -1,0 +1,59 @@
+{
+  "schema": "A007_initial_production_grouped_delta_findings_v1",
+  "utc": "2026-10-19T00:55:35.653227+00:00",
+  "preserved_sources": [
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/production_grouped_initial_review/m003_snapshot_stream.tcl",
+      "bytes": 4263,
+      "sha256": "2fbff533e58031d1e683c086614540cf36a3d984ed040230777a1575a799ee47"
+    },
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/production_grouped_initial_review/m003_joint_checks.tcl",
+      "bytes": 36659,
+      "sha256": "f41408a9843fbdf914b6712630bf0b110201e78d860050b3030d79b263ff99fc"
+    },
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/production_grouped_initial_review/m003_joint_evidence.py",
+      "bytes": 28511,
+      "sha256": "1cd52b116dceb49439d7f3e94d251d6b700ca9ecbc448419a1ca20d13cae1ba2"
+    },
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/production_grouped_initial_review/m003_shared_connectivity.tcl",
+      "bytes": 10729,
+      "sha256": "31a98a0415d9786e6b5882bd8d0abf8c72741541b4a6996277f51f34631648b9"
+    },
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/production_grouped_initial_review/test_grouped_snapshot.py",
+      "bytes": 9341,
+      "sha256": "dd89213e8adbb785e3635d9ed4324a42111806167c368976bca319eff94e316a"
+    },
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/production_grouped_initial_review/m003_snapshot_decode.py",
+      "bytes": 5146,
+      "sha256": "81093300e502f3e96c62067ffa22b2644c53f855d3e07ff8f4fb49c9b8666c30"
+    }
+  ],
+  "minimal_positive_accepted": true,
+  "legacy_only_clock_rows": [
+    {
+      "role": "address",
+      "accepted": true,
+      "decoded_C_nets": "unwitnessed_clock"
+    },
+    {
+      "role": "core_address",
+      "accepted": true,
+      "decoded_C_nets": "unwitnessed_clock"
+    },
+    {
+      "role": "payload",
+      "accepted": true,
+      "decoded_C_nets": "unwitnessed_clock"
+    }
+  ],
+  "scope": "Decoder-only minimal negative reproduction, not full selected-graph/native result. Owner was notified to require group witness for explicitly clock-bearing roles.",
+  "source_speed_gap": "helper_pins C loop still repeats full native segments+leaf on34 address FF clock pins already bound as cells; owner notified to use exact existing endpoint group with narrowly allowed secondary reference.",
+  "actual_messages_sent_to_owner": true,
+  "normal_AT022_continues": true,
+  "G4": false
+}

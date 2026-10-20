@@ -4,7 +4,7 @@
 当前执行依据：[2026-10-15 正式综合及布局布线实验合同](implementation_contract_2026-10-15.md)。[修复与快速功能验证合同](repair_contract_2026-10-15.md)对应已完成的E001前置阶段。旧方案/验收模板见上方历史原文，不能作为当前通过证据。
 
 <!-- research-agent:navigation:begin -->
-生成时间（UTC）：2026-10-18T00:06:15.625771+00:00。来源修订：`943abfac7fc3`。
+生成时间（UTC）：2026-10-20T08:57:35.240611+00:00。来源修订：`cfb9c0cd3fc1`。
 
 # M002 · ddr_separation_and_timing_recovery
 
@@ -65,7 +65,6 @@
 - [README](../../results/README.md)
 - [hardware_metrics](../../results/hardware_metrics.md)
 - [hardware_progress](../../results/hardware_progress.md)
-- [overview](../../results/overview.md)
 - [review_queue](../../results/review_queue.md)
 
 本页是原记录的导航投影；登记、送达及局部结果不代表整体验收。

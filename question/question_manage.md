@@ -17,4 +17,7 @@ This index records identity and links only. Execution, conclusions and user deci
 | Q001 | M002_synthesis_readiness | — / — / — | [question](../question/Q001_M002_synthesis_readiness/question.md) | [answer](../question/Q001_M002_synthesis_readiness/answer.md) |
 | Q002 | M002_DDR_separation_and_SLR1_congestion | M002 / SM009 / E005 | [question](../question/Q002_M002_DDR_separation_and_SLR1_congestion/question.md) | [answer](../question/Q002_M002_DDR_separation_and_SLR1_congestion/answer.md) |
 | Q003 | M002_route_overlap_remediation | M002 / SM012 / E008 | [question](../question/Q003_M002_route_overlap_remediation/question.md) | [answer](../question/Q003_M002_route_overlap_remediation/answer.md) |
+| Q004 | GSM8K_accuracy_fairness_and_hardware_scope | M004 / SM020 / E010 | [question](../question/Q004_GSM8K_accuracy_fairness_and_hardware_scope/question.md) | [answer](../question/Q004_GSM8K_accuracy_fairness_and_hardware_scope/answer.md) |
+| Q005 | Accuracy_table_equal_scores_and_quantization_gains | M004 / SM020 / E010 | [question](../question/Q005_Accuracy_table_equal_scores_and_quantization_gains/question.md) | [answer](../question/Q005_Accuracy_table_equal_scores_and_quantization_gains/answer.md) |
+| Q006 | New_accuracy_table_provenance_and_publication_scope | M004 / SM020 / E010 | [question](../question/Q006_New_accuracy_table_provenance_and_publication_scope/question.md) | [answer](../question/Q006_New_accuracy_table_provenance_and_publication_scope/answer.md) |
 <!-- research-agent:identity-index:end -->

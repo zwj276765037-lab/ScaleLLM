@@ -1,0 +1,100 @@
+{
+  "schema": "A007_M003_readonly_native_role_diagnostic_v2_entry_review",
+  "reviewed_utc": "2026-10-18T08:38:29.593670+00:00",
+  "reviewer": "A007 /root/m002_physical_architecture_review",
+  "engineering_owner": "A006 /root/m002_build_verify",
+  "execution": "completed",
+  "verdict": "supported_for_readonly_diagnostic_entry",
+  "review": "independently_accepted_with_scope_limits",
+  "no_blocker": true,
+  "package_sha256": "8428b1b8c10fd5e4423553391298e245eae6c328e2be07833471857558354708",
+  "G4_no_blocker": false,
+  "applicability": "Exact frozen diagnostic v2 package only; same-version read-only original AT003 fresh core role attribution under existing sole-owner supervisor. No production payload-selector, actual apply, synthesis qualification, preplace or G4 acceptance.",
+  "package": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/server_restart_resume_2026-10-18/diagnostic_v2/diagnostic_package.json",
+    "bytes": 4654,
+    "sha256": "8428b1b8c10fd5e4423553391298e245eae6c328e2be07833471857558354708"
+  },
+  "authority": {
+    "path": "mission/M003_joint_routability_closure/server_restart_resume_2026-10-18.md",
+    "user_decision": ".research-agent/decision_inputs/M003_user_server_restart_resume_20261018T081902Z.json",
+    "current_pause_state": "resumed"
+  },
+  "independent_evidence": {
+    "identities": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/diagnostic_v2_independent_identity_check.json",
+      "bytes": 5093,
+      "sha256": "d4f8ae089e915d2cf7d5e413f4968ec1614b4d1a70ba8fdac81f87c0afab2c25"
+    },
+    "cpu_receipt": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/diagnostic_v2_independent_cpu_receipt.json",
+      "bytes": 1211,
+      "sha256": "91dbe4f46914e43048c482d186b9857c32b1c154b2c7d20bfac7d8027749a3e6"
+    },
+    "cpu_log": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/diagnostic_v2_independent_cpu.log",
+      "bytes": 861,
+      "sha256": "44ca0d367fcf5732f08b676171ae257b1ac29c1f1d7ae2ddb52745025493abb0"
+    },
+    "preflight_review": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/server_restart_resume_preflight_review.json",
+      "bytes": 4796,
+      "sha256": "9851b01b1a823704addcd983da6203400f7c2bca16382b8c0e9bbc65accf111c"
+    }
+  },
+  "identity_findings": {
+    "small_files_verified": 13,
+    "source_and_frozen_copies_match": true,
+    "launcher_project_root_resolution_verified": true,
+    "raw_core_producer_metadata_matches_package": true,
+    "core_size_stat_matches": true,
+    "original_native_completion_marker_identity_verified": true,
+    "original_error_marker_absent": true,
+    "DCP_content_read_or_hashed_by_reviewer": false,
+    "DCP_hash_owner": "A006; preserved original lineage plus resumed preflight, to be rechecked by actual launcher"
+  },
+  "source_findings": [
+    "Private ::m003_role_diag namespace; no global prop replacement.",
+    "Four native queries retain the original scopes; diagnostic collects all candidate members and does not apply production selector membership.",
+    "All native collection counts and NAME/REF_NAME/CLASS identity passes close before optional/origin attribute enumeration.",
+    "All original seven fields retained: NAME REF_NAME PARENT ORIG_CELL_NAME ORIG_REF_NAME IS_PRIMITIVE DONT_TOUCH.",
+    "list_property is cached once per individual object, without CLASS/REF schema inference.",
+    "UNSUPPORTED is null, valid empty is OK_EMPTY with empty string, caught API errors are API_ERROR with null and error detail.",
+    "Any API errors make the entire diagnostic nonzero and prevent diagnostic_complete.json.",
+    "Representative property/enumeration BEGIN/END and elapsed events are flushed; TSV/JSONL batches are bounded at 256 with .partial output until complete.",
+    "Native entry uses maxThreads 8, open_checkpoint, read-only queries/report writes and close_design. No constraints/apply, synthesis, graph mutation or checkpoint output.",
+    "Launcher binds actual review SHA and package SHA, all three sources, preflight, manifest, G2, original lineage, 45 production sources, exact original core and completion marker, and creates a fresh report directory."
+  ],
+  "independent_CPU": {
+    "tests": 6,
+    "exit_status": 0,
+    "unittest_seconds": 16.816,
+    "wall_seconds": 16.88933860899988,
+    "coverage": [
+      "13120 synthetic payload members plus three count/foreign/replica neighbors retained losslessly",
+      "Four exact original query strings and seven output fields",
+      "All identities and counts precede optional attributes; 256-object batches",
+      "One support enumeration per object, including differing support for equal CLASS/REF objects",
+      "Empty versus unsupported versus API error and JSON escaping",
+      "Identity/property/support error paths nonzero, partial files retained, no completion receipt"
+    ],
+    "scope": "Python/Tcl mocks only; names are synthetic and do not prove native production names/family counts."
+  },
+  "actual_runtime_followup": [
+    "A006 launches AT014 with actual package/review bindings and sole EDA/resource guards.",
+    "Confirm M003_ROLE_DIAG_LIBRARY_ONLY test switch is absent/disabled in actual launch; actual success needs counts, identity/attribute outputs and diagnostic_complete.json, not native exit0 alone.",
+    "Read complete field statuses and overall completion; a per-object cached error across collections cannot be treated as successful native data.",
+    "Use actual native names for a narrowly repaired selector, then real apply, current graph/budget qualification and strict G4."
+  ],
+  "unresolved": {
+    "real_native_names_and_family_counts": "pending AT014",
+    "production_payload_selector_applicability": "failed in AT012; not repaired/accepted by this review",
+    "actual_selected_graph_and_budget": "pending",
+    "G4": "not accepted",
+    "TOP01_minus_2_896ns": "OPEN",
+    "G1_difference_22049": "OPEN",
+    "physical_routability": "unassessed"
+  },
+  "reviewer_scope": "Only reviewer-owned evidence/state; no EDA, synthesis, hardware simulation, production edits, DCP content/hash, process signals, locks, GPU or descendants.",
+  "delivery_status_at_creation": "Pending actual messages; delivery receipt will be recorded separately without changing this frozen gate review."
+}

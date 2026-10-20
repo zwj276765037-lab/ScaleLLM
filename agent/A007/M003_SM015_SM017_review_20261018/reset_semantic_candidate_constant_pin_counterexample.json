@@ -1,0 +1,28 @@
+{
+  "observed_utc": "2026-10-19T07:44:58.488595+00:00",
+  "source": {
+    "path": "agent/A006/M003_SM015_SM018_20261018/boundary_repair/m003_joint_evidence.reset_semantics.py.proposed",
+    "bytes": 36539,
+    "sha256": "2f654fa30ac8a72bdae41576d7c895cf37016fb523427b1404d63268975be30c"
+  },
+  "cases": [
+    {
+      "constant": "GND",
+      "native_output": "G",
+      "expected": "NOT(root) for both values, with native GND/G or VCC/P constant as I1",
+      "errors": [
+        "native asynchronous reset provenance: reset driver output/owner/group mismatch"
+      ]
+    },
+    {
+      "constant": "VCC",
+      "native_output": "P",
+      "expected": "NOT(root) for both values, with native GND/G or VCC/P constant as I1",
+      "errors": [
+        "native asynchronous reset provenance: reset driver output/owner/group mismatch"
+      ]
+    }
+  ],
+  "verdict": "Current all-nodes cell/O owner check rejects native GND/G and VCC/P before constant evaluation. Conservative false rejection, not unsafe acceptance; current measured3LUT1 has no constants.",
+  "suggestion": "Either explicitly narrow documented supported cones to3direct INV, or validate primitive-specific native output REF_PIN_NAME (LUT/O,GND/G,VCC/P) and permit constants only when full effective truth still matches NOT(root)."
+}

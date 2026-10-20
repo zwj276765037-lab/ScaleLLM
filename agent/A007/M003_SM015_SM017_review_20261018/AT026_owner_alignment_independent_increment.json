@@ -1,0 +1,40 @@
+{
+  "observed_utc": "2026-10-19T07:35:36.410989+00:00",
+  "execution": "Owner actual alignment independently verified",
+  "verdict": "51 mapping rows and root804/core-relative +3 outside-core aliases agree with independent raw review; scoped freshcore reset semantics supported",
+  "applicability": "Original AT026 source core plus exact AT025 relative alias groups, not current fulltop new G4 qualification",
+  "review": "accepted with explicit inherited fulltop obligations",
+  "owner_alignment": {
+    "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT026_fresh_core_reset_provenance/evidence/actual_reset_equivalence_alignment.json",
+    "bytes": 43746,
+    "sha256": "54ecc761e7e2056493b24a9314a89780b916f40f8c678198edd8e0bf9a7b0a35"
+  },
+  "native_provenance": {
+    "path": "project/hardware/vivado/reports/m003_E011_R002_AT026_fresh_core_reset_provenance/reset_provenance.jsonl",
+    "bytes": 169168,
+    "sha256": "4b46fd0c019a83c20ecb28d1acb6a3266c219e964b3578389716f57281333f87"
+  },
+  "independent_terminal_review": {
+    "path": "agent/A007/M003_SM015_SM017_review_20261018/AT026_terminal_reset_semantics_and_mapping_independent_review.json",
+    "sha256": "6e38045aabdf67995ffac915f5a769b84206a29bb3296a7f75e729fcee7ffc0a"
+  },
+  "verified_rows": 51,
+  "core_root_aliases": 804,
+  "fulltop_root_aliases": 807,
+  "inside_inst_aliases": 803,
+  "boundary_alias": "scalellm_vcu118_f05_bd_i/core/core_rst_n",
+  "outside_core_aliases": [
+    "scalellm_vcu118_f05_bd_i/core_gate/aresetn",
+    "scalellm_vcu118_f05_bd_i/core_gate/inst/aresetn",
+    "scalellm_vcu118_f05_bd_i/core_gate_aresetn"
+  ],
+  "previous_review_root_4_item_definition": "Prior4 list was outside core/inst/, so it includes the core boundary pin-net alias; same evidence, no numeric inconsistency. Whole core/ prefix yields804+3.",
+  "production_semantic_guard_requirements": [
+    "Actual fulltop independent reset root,51 endpoint REF/INIT/CLR pin/inversion provenance and original/helper driver cones must be exported in current snapshot",
+    "Cell-level empty/NOT_SUPPORTED preserved as raw; explicit native CLR pin boolean is the polarity basis. Missing/invalid pin evidence or known cell/pin contradiction rejected",
+    "3 witnessed LUT1 INIT2h1 and exact I0 root groups evaluated under both root values; reject wrong source, LUT INIT, constants, contradictory polarity, and incomplete endpoint coverage",
+    "Cache actual unique reset groups to bound work; native API errors must remain errors",
+    "Do not alter original AT025 native1/34 qualification failures or relax all80/budget/restore/INIT-OPT obligations"
+  ],
+  "G4": false
+}

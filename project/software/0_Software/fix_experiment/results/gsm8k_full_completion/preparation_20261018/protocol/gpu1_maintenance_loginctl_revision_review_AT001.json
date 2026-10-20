@@ -1,0 +1,602 @@
+{
+  "schema": "scalellm_gpu1_maintenance_loginctl_adapter_independent_review_v1",
+  "reviewed_at_utc": "2026-10-18T05:07:01.876598+00:00",
+  "reviewer": "A010 /root/gsm8k_protocol",
+  "CPU_only": true,
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "old_helper_sha256": "2249afac1537e04a993e55f6cf75a30d3df0030a0ea7c7bc663d0b94527ca15a",
+  "new_helper_sha256": "3d12ec648dd587bc1dc160c04f102abe49b1a679e3fcbcb81c456a48b21f23fa",
+  "review_source_sha256": "c731b4614f4901eeb40bddf0905327685ffee1cbfb210730910c1d8d1a3ddd21",
+  "only_adapter_AST_delta_verified": true,
+  "all_prior_safety_control_AST_unchanged": true,
+  "new_argv_test_independently_run": 1,
+  "new_argv_test_passed": true,
+  "author_22_test_receipt_bound_not_all_repeated": true,
+  "real_readonly_session_115_receipt_verified": true,
+  "all_11_fields_and_empty_values_preserved": true,
+  "old_default_check_error": "Refusal('session scope is unknown: 115')",
+  "new_default_check_error": "Refusal('cannot inspect process identity 1')",
+  "new_default_check_scope": "CLI parsing progressed; real nonroot /proc process-identity permission refusal remains, before any stop/reset attempt",
+  "actual_readonly_command_sequence": [
+    {
+      "file": "command_001.json",
+      "argv": [
+        "/usr/bin/systemctl",
+        "show",
+        "lightdm.service",
+        "--property=ActiveState,SubState,MainPID,ControlGroup,KillMode"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_002.json",
+      "argv": [
+        "/usr/bin/loginctl",
+        "list-sessions",
+        "--no-legend",
+        "--no-pager"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_003.json",
+      "argv": [
+        "/usr/bin/loginctl",
+        "show-session",
+        "115",
+        "--property",
+        "Id",
+        "--property",
+        "Name",
+        "--property",
+        "User",
+        "--property",
+        "Seat",
+        "--property",
+        "Display",
+        "--property",
+        "Service",
+        "--property",
+        "Class",
+        "--property",
+        "Type",
+        "--property",
+        "Leader",
+        "--property",
+        "Scope",
+        "--property",
+        "State"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_004.json",
+      "argv": [
+        "/usr/bin/systemctl",
+        "show",
+        "session-115.scope",
+        "--property=ControlGroup"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_005.json",
+      "argv": [
+        "/usr/bin/loginctl",
+        "show-session",
+        "12",
+        "--property",
+        "Id",
+        "--property",
+        "Name",
+        "--property",
+        "User",
+        "--property",
+        "Seat",
+        "--property",
+        "Display",
+        "--property",
+        "Service",
+        "--property",
+        "Class",
+        "--property",
+        "Type",
+        "--property",
+        "Leader",
+        "--property",
+        "Scope",
+        "--property",
+        "State"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_006.json",
+      "argv": [
+        "/usr/bin/systemctl",
+        "show",
+        "session-12.scope",
+        "--property=ControlGroup"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_007.json",
+      "argv": [
+        "/usr/bin/loginctl",
+        "show-session",
+        "16",
+        "--property",
+        "Id",
+        "--property",
+        "Name",
+        "--property",
+        "User",
+        "--property",
+        "Seat",
+        "--property",
+        "Display",
+        "--property",
+        "Service",
+        "--property",
+        "Class",
+        "--property",
+        "Type",
+        "--property",
+        "Leader",
+        "--property",
+        "Scope",
+        "--property",
+        "State"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_008.json",
+      "argv": [
+        "/usr/bin/systemctl",
+        "show",
+        "session-16.scope",
+        "--property=ControlGroup"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_009.json",
+      "argv": [
+        "/usr/bin/loginctl",
+        "show-session",
+        "18",
+        "--property",
+        "Id",
+        "--property",
+        "Name",
+        "--property",
+        "User",
+        "--property",
+        "Seat",
+        "--property",
+        "Display",
+        "--property",
+        "Service",
+        "--property",
+        "Class",
+        "--property",
+        "Type",
+        "--property",
+        "Leader",
+        "--property",
+        "Scope",
+        "--property",
+        "State"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_010.json",
+      "argv": [
+        "/usr/bin/systemctl",
+        "show",
+        "session-18.scope",
+        "--property=ControlGroup"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_011.json",
+      "argv": [
+        "/usr/bin/loginctl",
+        "show-session",
+        "20",
+        "--property",
+        "Id",
+        "--property",
+        "Name",
+        "--property",
+        "User",
+        "--property",
+        "Seat",
+        "--property",
+        "Display",
+        "--property",
+        "Service",
+        "--property",
+        "Class",
+        "--property",
+        "Type",
+        "--property",
+        "Leader",
+        "--property",
+        "Scope",
+        "--property",
+        "State"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_012.json",
+      "argv": [
+        "/usr/bin/systemctl",
+        "show",
+        "session-20.scope",
+        "--property=ControlGroup"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_013.json",
+      "argv": [
+        "/usr/bin/loginctl",
+        "show-session",
+        "21",
+        "--property",
+        "Id",
+        "--property",
+        "Name",
+        "--property",
+        "User",
+        "--property",
+        "Seat",
+        "--property",
+        "Display",
+        "--property",
+        "Service",
+        "--property",
+        "Class",
+        "--property",
+        "Type",
+        "--property",
+        "Leader",
+        "--property",
+        "Scope",
+        "--property",
+        "State"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_014.json",
+      "argv": [
+        "/usr/bin/systemctl",
+        "show",
+        "session-21.scope",
+        "--property=ControlGroup"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_015.json",
+      "argv": [
+        "/usr/bin/loginctl",
+        "show-session",
+        "281",
+        "--property",
+        "Id",
+        "--property",
+        "Name",
+        "--property",
+        "User",
+        "--property",
+        "Seat",
+        "--property",
+        "Display",
+        "--property",
+        "Service",
+        "--property",
+        "Class",
+        "--property",
+        "Type",
+        "--property",
+        "Leader",
+        "--property",
+        "Scope",
+        "--property",
+        "State"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_016.json",
+      "argv": [
+        "/usr/bin/systemctl",
+        "show",
+        "session-281.scope",
+        "--property=ControlGroup"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_017.json",
+      "argv": [
+        "/usr/bin/loginctl",
+        "show-session",
+        "51",
+        "--property",
+        "Id",
+        "--property",
+        "Name",
+        "--property",
+        "User",
+        "--property",
+        "Seat",
+        "--property",
+        "Display",
+        "--property",
+        "Service",
+        "--property",
+        "Class",
+        "--property",
+        "Type",
+        "--property",
+        "Leader",
+        "--property",
+        "Scope",
+        "--property",
+        "State"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_018.json",
+      "argv": [
+        "/usr/bin/systemctl",
+        "show",
+        "session-51.scope",
+        "--property=ControlGroup"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_019.json",
+      "argv": [
+        "/usr/bin/loginctl",
+        "show-session",
+        "6",
+        "--property",
+        "Id",
+        "--property",
+        "Name",
+        "--property",
+        "User",
+        "--property",
+        "Seat",
+        "--property",
+        "Display",
+        "--property",
+        "Service",
+        "--property",
+        "Class",
+        "--property",
+        "Type",
+        "--property",
+        "Leader",
+        "--property",
+        "Scope",
+        "--property",
+        "State"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_020.json",
+      "argv": [
+        "/usr/bin/systemctl",
+        "show",
+        "session-6.scope",
+        "--property=ControlGroup"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_021.json",
+      "argv": [
+        "/usr/bin/loginctl",
+        "show-session",
+        "c1",
+        "--property",
+        "Id",
+        "--property",
+        "Name",
+        "--property",
+        "User",
+        "--property",
+        "Seat",
+        "--property",
+        "Display",
+        "--property",
+        "Service",
+        "--property",
+        "Class",
+        "--property",
+        "Type",
+        "--property",
+        "Leader",
+        "--property",
+        "Scope",
+        "--property",
+        "State"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_022.json",
+      "argv": [
+        "/usr/bin/systemctl",
+        "show",
+        "session-c1.scope",
+        "--property=ControlGroup"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_023.json",
+      "argv": [
+        "/usr/bin/loginctl",
+        "show-session",
+        "c2",
+        "--property",
+        "Id",
+        "--property",
+        "Name",
+        "--property",
+        "User",
+        "--property",
+        "Seat",
+        "--property",
+        "Display",
+        "--property",
+        "Service",
+        "--property",
+        "Class",
+        "--property",
+        "Type",
+        "--property",
+        "Leader",
+        "--property",
+        "Scope",
+        "--property",
+        "State"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_024.json",
+      "argv": [
+        "/usr/bin/systemctl",
+        "show",
+        "session-c2.scope",
+        "--property=ControlGroup"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_025.json",
+      "argv": [
+        "/usr/bin/loginctl",
+        "show-session",
+        "c3",
+        "--property",
+        "Id",
+        "--property",
+        "Name",
+        "--property",
+        "User",
+        "--property",
+        "Seat",
+        "--property",
+        "Display",
+        "--property",
+        "Service",
+        "--property",
+        "Class",
+        "--property",
+        "Type",
+        "--property",
+        "Leader",
+        "--property",
+        "Scope",
+        "--property",
+        "State"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_026.json",
+      "argv": [
+        "/usr/bin/systemctl",
+        "show",
+        "session-c3.scope",
+        "--property=ControlGroup"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "command_027.json",
+      "argv": [
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/nvml_local_recovery_20261018/extracted/nvidia-smi",
+        "-q",
+        "-x"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "actual_readonly_command_sha256": {
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_001.json": "824f61ff18f01b47e6f375c5363285af6a845dcf558f724d206c7509245bbce0",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_002.json": "66d4a749bdec4dcce6e9eea7f890b978c91242fe3bd79005f82c7d2c69ab3262",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_003.json": "71c5a2e19dde830be6fbe2736da959c7d91add254f58da1fc94ef06f8c5e2a71",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_004.json": "a83ab167ab2b9a790c6b010c9140812fabc0ecb5e6d2f17d6eb5c8bbcf059ebd",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_005.json": "753404c982b730854947456afa6accd466f95cddfd912188e39ec6ba4f345b39",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_006.json": "9690a94b3334c4c916e52e3fbb444e059c89e821f085135234dd910a909a956b",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_007.json": "80cdeebbb2cb5ee3f26e19ec4637fedab818299edc7fdc5487e5cdce8c95ad7a",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_008.json": "1cf9e9d6bae6202fded365a11af8e2911a7dfcbe5c2f2cbf36786d8ef5542dfb",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_009.json": "dcd851135ff3475247729f661a0cddcb0cc1056fb325e0b4859f7e593bfba6bd",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_010.json": "3deb1bac2df9cfa1c0208b917ae747af311df34747e5cf6745cd1949005a6578",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_011.json": "510e44b0255f82acf0aff58071cfbd26841252943950fe24aeb78b7e48b43bad",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_012.json": "e4361ff94d03c7bfa73d9e4d8401db92520b7ad311e658e0cb376a49a7efbbcc",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_013.json": "aa9a76e49f884c288274fd7654a1be213095f1d13fc9fb4de52b8da49ed3cce2",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_014.json": "b92ac1227a724491a3aacce5114dfcbfbbfac409da2153edd7c57113c7463fe0",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_015.json": "4c9c21f9ff2ca5d478289bdd7ca43c16a183805c584044acc582a406f6a0f3ce",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_016.json": "cf5b59f92473d1ac65119764a5131096ea7ab3314ceee7338a0dfaf47a69d326",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_017.json": "432e9784385a704b70bb7a1b738e5d107de9c75a17177bfcd190288710cd5389",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_018.json": "5c7639f5f66adcf4881b4d92534b23079d1188640dca3aaedc54e64312783146",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_019.json": "62b5c245056f208587588414e6261decf937e8fad2f7ef1c710b62e83ea23fd6",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_020.json": "50f5fa5ef56bb8c9dfbacb3eaa8868fd247aa0864157b22649fdcfc484b08477",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_021.json": "9c2c3af99c1ad2e08d1a477ee1849218940486bbfce4489d60f5a5a28eb7edab",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_022.json": "f0d2780497e77da2dd24c7f745dbe13e622688204172d664d59fd9971886e922",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_023.json": "1036251ee021b81fe65b90818203beb24333424dd8e0de60c9892363b921658d",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_024.json": "5320ca191048e780844c083a92f57b7d3e3fe415c742e38c2d56feea1aa8da43",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_025.json": "2353d69eb603536ebb033134a45c62301f71d1a186645137ad07679978302b92",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_026.json": "c66895a971a9ad0ff3a0ebe9f69ca9dceb39ee00513d160529933861f89e2f81",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/command_027.json": "fcb272e78c5651df5971a1704bff59f55e000eda3637a45ba8a2d05a116e368c"
+  },
+  "reviewer_real_system_commands": 0,
+  "reviewer_real_GPU_calls": 0,
+  "reviewer_real_service_actions": 0,
+  "blocking_source_findings": [],
+  "execution_state": "bounded_adapter_revision_review_complete",
+  "verdict": "loginctl CLI adaptation accepted for exact new SHA; previous safety review applies through verified unchanged AST; actual maintenance unexecuted",
+  "artifact_sha256": {
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/protocol/gpu1_maintenance_2249afac_source_snapshot.py": "2249afac1537e04a993e55f6cf75a30d3df0030a0ea7c7bc663d0b94527ca15a",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/gpu1_maintenance.py": "3d12ec648dd587bc1dc160c04f102abe49b1a679e3fcbcb81c456a48b21f23fa",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/protocol/gpu1_maintenance_3d12ec64_source_snapshot.py": "3d12ec648dd587bc1dc160c04f102abe49b1a679e3fcbcb81c456a48b21f23fa",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/protocol/gpu1_maintenance_loginctl_revision_AT001.patch": "ff8456e7716027546cb5be9edfd404058ffd66204d75ba3fc7b41113c98fba8b",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/test_helper_mock.py": "39c9474517a36cba37cdfdd2fbfab045e87631ba466c9e3013c6647a14e1ba01",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/mock_results.json": "86e791804e0cef5fd8b479271a7527d63983a2440d5018e79b6c593c8dadd83b",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/validation/loginctl_fields_AT001/receipt.json": "4cea9ed3404b62e65317ecea096120d81da99ad2afab05c8726a91e614af3475",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/validation/loginctl_fields_AT001/command_001.json": "82aade77544aa456158c2519785f6375dc5e9e2b374ff677905fb79cc453bee1",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050240.255069Z_320577/result.json": "e54a55f86423222eff7eeccbfbcac1e40670feb61ee85e7040da37d72b3c6ff4",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050240.255069Z_320577/command_003.json": "3cd66d936dc8b22d9d9c82bb9cd3827a4663b92828385ca35f36978ee754e7eb",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/result.json": "ae5ed5ef377deb7fb63cf72618706b256b738a8b312bfbbc550bb887e7e9b983",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/runs/check_20261018T050450.227605Z_320888/library_identity_01.json": "a0578e4318a6b2b57437d713378ef04cf60a63658612456018a4bd9c6b337da7",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/protocol/gpu1_maintenance_independent_review_AT001.json": "4260281914d02cf3513d38e34b8818bd7cdd2f06e347826ffbc684e89b5e04b4"
+  },
+  "limitations": [
+    "This is an environment adapter review only; no models, memory qualification, reset or restoration checks were repeated.",
+    "The actual default check still refuses under the real nonroot /proc permission boundary; this is not a maintenance-ready or reset-success result.",
+    "Old raw failed check and original independent review remain historical and unchanged.",
+    "R003 maintenance hold and any administrator action remain controlled by the parent."
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "utc": "2026-10-19T07:03:40.339887+00:00",
+  "execution": "AT025_running_snapshot_collection_continues",
+  "verdict": "independent_actual_clock_boundary_event_accepted_with_consistent_bounded_source_metadata",
+  "review": "bounded_clock_milestone_only_full_group_and_snapshot_closure_pending",
+  "applicability": "AT025 same synth call1 design_1 and frozen8d3aa4c/59c22aed",
+  "identities": [
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT025_dependency_event_005.json",
+      "bytes": 12077,
+      "sha256": "589973ad1ba5a25bb85bc940749627de105bcc204f0f1edec13c9a6283fcacb3"
+    },
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT025_independent_clock_boundary_trace_prefix.jsonl",
+      "bytes": 5967,
+      "sha256": "049c06175191f8e6811fe6d874c3b7b0202530bc4cf59de11b287058be90b99f"
+    },
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT025_clock_group_bounded_header_tail.json",
+      "bytes": 5458,
+      "sha256": "fb56f091c92def20b4e8b6dc4186e1baca1ee90dc39d658bd3be5f2d0a0f2bb6"
+    }
+  ],
+  "prefix_extends_six_source_review": true,
+  "clock_event": {
+    "event": "boundary_clock_source",
+    "clock_ms": 1792393190146,
+    "anchor": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/core_clk",
+    "endpoint": "scalellm_vcu118_f05_bd_i/clk_core/inst/clkout1_buf/O",
+    "group": "G000000"
+  },
+  "group_header": {
+    "id": "G000000",
+    "canonical_top_net": "scalellm_vcu118_f05_bd_i/clk_core_clk_out1"
+  },
+  "group_source_tail": {
+    "leaf_drivers": [
+      "scalellm_vcu118_f05_bd_i/clk_core/inst/clkout1_buf/O"
+    ],
+    "driver_cells": [
+      "scalellm_vcu118_f05_bd_i/clk_core/inst/clkout1_buf"
+    ],
+    "driver_refs": [
+      "BUFGCE"
+    ],
+    "primary_ports": [],
+    "primary_port_directions": []
+  },
+  "heavy_API_completions": [
+    {
+      "event": "api_end",
+      "clock_ms": 1792391883937,
+      "api": "segments",
+      "input_objects": "1",
+      "elapsed_ms": "337",
+      "return_code": "0"
+    },
+    {
+      "event": "api_end",
+      "clock_ms": 1792393133184,
+      "api": "drivers",
+      "input_objects": "12602",
+      "elapsed_ms": "756",
+      "return_code": "0"
+    },
+    {
+      "event": "api_end",
+      "clock_ms": 1792393133421,
+      "api": "canonical",
+      "input_objects": "1",
+      "elapsed_ms": "236",
+      "return_code": "0"
+    },
+    {
+      "event": "api_end",
+      "clock_ms": 1792393133569,
+      "api": "ports",
+      "input_objects": "1",
+      "elapsed_ms": "148",
+      "return_code": "0"
+    }
+  ],
+  "heavy_API_calls_so_far": {
+    "segments": 1,
+    "drivers": 1,
+    "canonical": 1,
+    "ports": 1
+  },
+  "heavy_API_total_elapsed_ms": 1477,
+  "API_cost_limit": "Trace phase-to-phase gap includes intervening snapshot row work; per-API durations are not whole collection wall time. Complete segments and canonical each one (two calls carrying segments flag); final K/call coverage still requires final tables.",
+  "latest_progress_rows": [
+    {
+      "event": "snapshot_rows",
+      "clock_ms": 1792393174935,
+      "section": "memory_pins",
+      "rows": "24576"
+    },
+    {
+      "event": "snapshot_rows",
+      "clock_ms": 1792393178032,
+      "section": "memory_pins",
+      "rows": "26624"
+    },
+    {
+      "event": "snapshot_rows",
+      "clock_ms": 1792393180908,
+      "section": "memory_pins",
+      "rows": "28672"
+    },
+    {
+      "event": "snapshot_rows",
+      "clock_ms": 1792393184479,
+      "section": "memory_pins",
+      "rows": "30720"
+    },
+    {
+      "event": "snapshot_rows",
+      "clock_ms": 1792393187138,
+      "section": "memory_pins",
+      "rows": "32768"
+    },
+    {
+      "event": "snapshot_rows",
+      "clock_ms": 1792393268109,
+      "section": "cells",
+      "rows": "14336"
+    }
+  ],
+  "final_snapshot_exists": false,
+  "G4": false,
+  "scope": "Read complete small trace prefix and only512B header/4096B tail of current group partial; full12602 alias membership and all references remain for final native checker. No DCP/EDA/production mutation/process control.",
+  "delivery": "event005 actually followup_task A006 before review; increment actual messages follow."
+}

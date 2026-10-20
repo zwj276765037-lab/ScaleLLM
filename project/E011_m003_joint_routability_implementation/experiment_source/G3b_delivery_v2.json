@@ -1,0 +1,79 @@
+{
+  "created_utc": "2026-10-18T04:06:49.741779+00:00",
+  "execution": "SM015/SM016 locally completed; independent G3b pending",
+  "G2_sha256": "4424c426859b6b1e64be2f52a008ff6c03e1a6854f71570970cbba4941fff709",
+  "entry_manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_entry_manifest.json",
+    "bytes": 10010,
+    "sha256": "cb7256c76ad5b5587a9f8384140c9f17d62c31181276b855cd908f11f11a955d"
+  },
+  "previous_entry_manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R001/attempts/AT003_core_boundary_and_registered_entry/evidence/entry_freeze_v1/m003_entry_manifest.json",
+    "bytes": 4664,
+    "sha256": "89b956eeca2c84c84bb091d70d154f3ddb277d0c97ff7e2ab9d9ce0af98687b1"
+  },
+  "selected_baseline_audit": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/selected_input_audit_before_create.json",
+    "bytes": 2486,
+    "sha256": "ea6d59cbe5844b61a47b18f9641e3b2d7c0ef0c30cc992fc1a39d1ed5f0456b5"
+  },
+  "same_version_joint_regression": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R001/attempts/AT003_core_boundary_and_registered_entry/evidence/joint_python_regression_closed_sources_v2/receipt.json",
+    "bytes": 40710,
+    "sha256": "928c7ccea630e80d547339d1540285d3ef9e8908bbecc4767788e797c81aa4d5"
+  },
+  "native_tests": [
+    {
+      "attempt": "AT002",
+      "jobs": [
+        "A3_helper",
+        "M2_parent_cycle_diff",
+        "M2_production_width_dispatch",
+        "A3_resident_full_capacity_diff",
+        "M2_legacy_dispatch"
+      ]
+    },
+    {
+      "attempt": "AT003",
+      "jobs": [
+        "A3_actual_core_metadata_boundary",
+        "selected_production_smoke"
+      ]
+    }
+  ],
+  "protocol": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/protocol.md",
+    "bytes": 4876,
+    "sha256": "ad3e5682749c379b4663f6706037fca9bbbebbdaa17239f18522b9bd41ce685b"
+  },
+  "unverified": [
+    "new synthesis role names/APIs and exact resource mapping",
+    "new physical packing/timing/route",
+    "full board/layer end-to-end command not performed by E011; M004 retained"
+  ],
+  "risks": [
+    "TOP01 -2.896ns untouched",
+    "22049 G1 statistic discrepancy OPEN"
+  ],
+  "impact_regression_map": {
+    "M2 payload/CE/count": [
+      "TILE9 parent old/new/queue differential",
+      "real complete branches DT4 production width and default TILE2 dispatch",
+      "MLP/fixed/v5 gather/schedule references"
+    ],
+    "A3 arrays/controller/helper/sidebands": [
+      "UNISIM helper 131072 carry/wrap",
+      "full81920 resident independent+old diff",
+      "actual core boundary A/P/NBA/tags/SLR event wires"
+    ],
+    "integration unchanged APIs/math": [
+      "no-force actual production reset/CSR/maintenance smoke",
+      "attention cohort16/two-wave/MLP/algorithm reference Python tests"
+    ],
+    "builder/overlay/restore/safety": [
+      "36 qualification/Tcl/source-closure fixtures included in282 total tests",
+      "original builder ROM/source and M002 safety/recovery regression",
+      "same-stage budget headers/parser; native new graph not yet available"
+    ]
+  }
+}

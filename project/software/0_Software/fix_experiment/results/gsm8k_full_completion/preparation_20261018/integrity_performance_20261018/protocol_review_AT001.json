@@ -1,0 +1,180 @@
+{
+  "schema": "scalellm_static_integrity_full_byte_comparison_protocol_review_v1",
+  "reviewed_at_utc": "2026-10-18T10:10:30.138031+00:00",
+  "reviewer": "A010 /root/gsm8k_protocol",
+  "role": "engineering independent protocol review",
+  "CPU_only": true,
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "execution_state": "bounded_feasibility_review_complete_awaiting_candidate_source",
+  "verdict": "conditionally feasible with unchanged full-byte semantics; no candidate implementation or performance qualified",
+  "mathematical_equivalence": [
+    "Let B_n be the immutable canonical CPU byte reference for each required logical tensor name n; SHA256(B_n) equals its trusted baseline_manifest descriptor.",
+    "At each required phase construct current canonical bytes C_n via completed D2H and prove every byte C_n[i]==B_n[i] over a complete partition of [0,len(B_n)). Verify the complete name set and original metadata/storage identity independently.",
+    "Then C_n=B_n exactly, so SHA256(C_n)=SHA256(B_n) without recomputing SHA256(C_n). The canonical descriptor manifest and its SHA root equal the trusted baseline root.",
+    "This is equality-derived hash evidence, not a claim that the runtime SHA function was called. The proof fails if B is mutable/untrusted, byte coverage/copy completion is incomplete, or metadata/inventory checks are omitted."
+  ],
+  "mandatory_conditions": [
+    {
+      "id": "T01",
+      "topic": "Trusted immutable baseline",
+      "must": [
+        "Keep current trusted checkpoint-file/key, CPU/native GPU, derived-RoPE, independent full-shape GPU QDQ and global_H_CACHE SHA qualification unchanged.",
+        "For every effective static logical name retain actual independent immutable host bytes B; compute SHA256 of the saved B itself and match its original baseline_manifest digest, dtype, shape, role and nbytes before enabling runtime memcmp.",
+        "Do not assume a copy captured after an earlier live-tensor SHA is trusted; a change between qualification and reference capture must be caught by hashing the captured reference.",
+        "Retain strong owning references until terminal completion; reference must not share writable storage with CPU tensors, pinned staging, mutable bytearray/memoryview owners, mmap writers or reconstruction scratch.",
+        "Document the trust boundary: Python bytes immutability is software immutability, not a proof against arbitrary host RAM corruption or unsafe native writes; do not broaden the fault claim."
+      ]
+    },
+    {
+      "id": "T02",
+      "topic": "Byte representation, NaN and signed zero",
+      "must": [
+        "Compare raw byte representations with memcmp; never numeric equality, allclose, norms, floating-point conversion, NaN canonicalization or sign-zero normalization.",
+        "Preserve NaN payload/sign bits and distinguish +0 from -0 exactly as the current SHA of canonical bytes would.",
+        "Use the current tensor_descriptor serialization semantics: detach, logical contiguous order, CPU bytes, reshape(-1), reinterpret uint8; compute numel*element_size without dtype conversion.",
+        "Reject unsupported sparse, quantized, meta, conjugate/negative-flag or exotic layouts unless exact equivalence to the existing supported canonical serialization is proven."
+      ]
+    },
+    {
+      "id": "T03",
+      "topic": "Noncontiguous tensors and storage identity",
+      "must": [
+        "For noncontiguous tensors gather in the same logical contiguous order as the old .contiguous() hash; a raw storage span is insufficient for strides, offsets, holes or overlap.",
+        "Check actual object_id, data_ptr, storage_base_ptr, storage_offset, stride, shape, dtype, device and logical role against the fixed runtime manifest; preserve inventory before/after a serialized check or prove no concurrent inventory mutation.",
+        "Hash/compare logical tensor bytes, matching the old contract; allocator padding and unused backing-storage bytes were not covered by the old tensor hash and must not be newly claimed as covered.",
+        "Any new, missing, replaced, resized, restrided or relocated static object/cache key fails even when its logical values happen to match."
+      ]
+    },
+    {
+      "id": "T04",
+      "topic": "Tied aliases and empty tensors",
+      "must": [
+        "Enumerate parameters/buffers with remove_duplicate=False plus all external_H_CACHE keys; preserve every logical alias and its metadata/storage binding.",
+        "Physical copy or immutable-byte deduplication is allowed only with an explicit proven alias mapping and complete canonical-byte equivalence; report logical coverage separately from unique physical bytes.",
+        "Zero-length tensors remain named, role/dtype/shape/device/storage-checked entries with SHA256(empty); compare count zero explicitly and never use unsafe/null-pointer memcmp or omit the entry.",
+        "Cover scalar, sub-element-sized remainder and chunk-boundary cases; nbytes and offsets must use full-width integer arithmetic."
+      ]
+    },
+    {
+      "id": "T05",
+      "topic": "CUDA ordering and pinned staging",
+      "must": [
+        "Wait for all prior producer work relevant to the tensors before copying; conservatively preserve the existing CUDA synchronization semantics or prove equivalent cross-stream event dependencies.",
+        "No new generation/verification or permitted static mutation may overlap a guard; copy source lifetime and any contiguous temporaries must remain valid through transfer completion.",
+        "For asynchronous D2H require the correct copy-stream event/synchronization to complete before host memcmp, successful evidence emission or staging-buffer reuse. non_blocking=True alone does not establish completion.",
+        "Pinned chunk memory must be a separate owned host allocation; no stale partial/tail bytes, overlapping in-flight writes, pageable async assumptions or comparator/staging/reference aliasing.",
+        "Validate the complete interval partition [0,nbytes): no missing suffix, skipped/repeated chunk, overlapping-count inflation or silent unsupported-device fallback."
+      ]
+    },
+    {
+      "id": "T06",
+      "topic": "libc comparison and error handling",
+      "must": [
+        "Bind memcmp with pointer,pointer,size_t arguments and int result; equality means return==0, any nonzero sign is mismatch.",
+        "Use explicit valid pointer plus checked offset/length; never strlen, NUL-terminated conversion or a 32-bit length that truncates large tensors. Keep Python owners alive while native pointers are used.",
+        "Set phase complete/exact only after all tensor names, all byte ranges and metadata succeed; do not reuse a prior phase success flag or merely copy baseline descriptors into observed evidence.",
+        "Mismatch, invalid metadata/name coverage, allocation/pinning/copy/sync/comparator exception, unsupported layout or interruption must produce nonqualified/failed evidence and propagate; no skip, partial success or changed baseline.",
+        "Preserve current worker behavior: a sample row is committed only after its post-check, and terminal qualification requires stage_complete and final checkpoint-file verification."
+      ]
+    },
+    {
+      "id": "T07",
+      "topic": "Invariant frequency and numerical path",
+      "must": [
+        "Keep cpu_loaded/gpu_loaded/qdq_rebuild/setup_complete, verification_before/after, every sample before/after and stage_complete ordering and coverage exactly as now.",
+        "Leave native_cache_call_parity_v2 logits/KV/rebuild/negative control and same/independent-process repeatability gates unchanged.",
+        "Do not alter QDQ construction shapes, arithmetic, production tensor storage, generation, prompts, scoring or sampling to obtain faster checks.",
+        "No modification to live R003 sources, no partial-row migration or qualification reuse across new source/plan identities, and no stop of the current worker without separate controller/user authority."
+      ]
+    },
+    {
+      "id": "T08",
+      "topic": "Resources and performance evidence",
+      "must": [
+        "Budget persistent immutable host bytes for the entire effective static inventory, pinned staging and any contiguous temporaries; retain the existing host/GPU reserve and two-CPU/single-GPU0 allocation.",
+        "Avoid bytes slicing/tobytes per chunk that reintroduces full extra CPU copies; use bounded pointers into owning immutable bytes and measured staging sizes.",
+        "Record setup/reference-capture SHA time, per-phase D2H/sync and memcmp time, checked bytes, pinned/host/device peaks and total generation/integrity elapsed separately.",
+        "Speed remains unmeasured by this review. Full D2H per phase remains mandatory; CPU memcmp reads both host streams and has memory bandwidth cost. Functional CPU controls cannot prove GPU timing or async correctness."
+      ]
+    }
+  ],
+  "evidence_requirements": {
+    "implementation_identity": [
+      "comparison_implementation_id (versioned, distinct from semantic contract ID)",
+      "reference_capture_method and source hash",
+      "byte_serialization_id matching current canonical bytes",
+      "pinned_chunk_bytes and supported-layout policy"
+    ],
+    "baseline_reference_manifest_per_name": [
+      "baseline_sha256",
+      "nbytes",
+      "dtype/shape/role",
+      "immutable_ownership_kind and capture qualification",
+      "alias mapping where deduplicated"
+    ],
+    "per_phase": [
+      "existing exact ordered label, complete, exact, checked_names and observed_root_sha256 retained",
+      "comparison_method=full_byte_memcmp",
+      "hash_basis=derived_from_complete_byte_equality_to_SHA_verified_immutable_reference",
+      "all names, expected/compared logical bytes, tensor count and chunk coverage with no gaps/overlap",
+      "metadata/storage/name-set qualification and synchronization/completion policy",
+      "derived_sha_reused=true (do not claim fresh live SHA computation)",
+      "failures identify name/chunk/offset where available without accepting incomplete comparisons"
+    ],
+    "artifact_binding": [
+      "integrity.json and complete JSONL contents/hash remain bound to manifest and summary",
+      "new mode/configuration bound in plan/worker identity and new frozen source hashes",
+      "consumer must explicitly validate the new mode/coverage fields; legacy source-only or boolean success is not new-mode qualification"
+    ]
+  },
+  "contract_version_decision": {
+    "semantic_contract_id": "checkpoint_static_content_v1",
+    "new_semantic_ID_required_for_comparator_change_alone": false,
+    "basis": "The inspected plan defines complete runtime static content and storage identity at fixed phase boundaries; it does not mandate recomputing live SHA for every phase. Exact equality to immutable SHA-qualified B logically entails SHA(current)=SHA(B).",
+    "required_version_boundary": [
+      "Use a new R/new source freeze and explicit new comparison implementation/mode identity; preserve old R003 evidence and running source unchanged.",
+      "Controller records equivalence decision and new-mode evidence/consumer requirements before acceptance; no silent mutation of a shared contract.",
+      "A backward-compatible additive evidence mode may retain the semantic contract ID only if every existing invariant stays intact and new consumers validate the declared method.",
+      "If reference trust/coverage/frequency/serialization changes, if consumers cannot distinguish a derived digest from a recomputed one, or if any governing contract explicitly mandates fresh per-phase SHA, use a new/revised contract or reject the candidate instead of silently weakening v1."
+    ],
+    "not_authorized_here": "This is a conditional design review, not implementation qualification, launch authorization, a current-run source change or a stop approval."
+  },
+  "required_future_qualification_cases": [
+    "Raw bytes with embeddedNUL, unequal first/middle/final byte and both memcmp signs; modified byte exactly at each chunk edge and final remainder.",
+    "Different NaN payloads, +0/-0, infinity, BF16/FP16/FP32 raw encodings; scalar and zero-length tensors.",
+    "Transposed/sliced/offset/noncontiguous tensors, tied names, same values but replaced storage/object/stride/device, missing/new cache key.",
+    "Reference capture corrupted before sealing must fail its baseline SHA; reference object must resist ordinary mutation and cannot alias staging; unsafe-host-memory corruption remains outside any unproven claim.",
+    "Injected stale/incomplete async copy, wrong stream/event, premature buffer reuse, short transfer and copy/comparator/allocation exceptions must fail closed.",
+    "Consumer negative controls: derived root with missing byte counts/mode, skipped/repeated chunk coverage, absent phase, false source identity and forged successful terminal evidence rejected.",
+    "After source/CPU review and authorized scheduling, actual GPU0 same-source BF16/QDQ training smoke must reproduce old SHA-based checks and negative controls; measure guard and total wall time before claiming acceleration."
+  ],
+  "source_review_observations": [
+    "Current tensor_descriptor serializes detach/contiguous/CPU/reshape(-1)/uint8/tobytes and SHA256; every runtime check rebuilds descriptors.",
+    "Current model_tensors preserves duplicate aliases; storage_identity covers object/pointers/offset/stride/device/shape/dtype; global_H_CACHE is separately inventoried.",
+    "Current shared consumer binds helper source, complete names/reconstruction, exact phase ordering and observed roots, but does not yet distinguish a memcmp implementation or validate its additional byte-coverage evidence.",
+    "Current static-content plan runtime clause specifies complete content/storage identity; fresh per-phase hashing is the existing implementation, not explicit semantic wording."
+  ],
+  "source_sha256": {
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_weight_integrity.py": "0e11092488523d97acd7ec76776ada669068c70bec1efc190bf5159c43f99121",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/gsm8k_protocol.py": "6f749dc5235d9bab56aec5b430a8fb94212f2d39c8da39ddb17d0ac3f8145c32",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/source/gsm8k_gpu_integrity_v3_20261018/plan.json": "cfe28e93e42e20235e7604ad830500e1f6e1db25d3d88647a4dc18e19c365955"
+  },
+  "performance_status": {
+    "measured_by_reviewer": false,
+    "GPU_or_model_calls": 0,
+    "full_weight_hashes_performed": 0,
+    "expected_saved_work": "runtime CPU SHA and avoidable CPU allocation/copy work only",
+    "remaining_cost": "full canonical D2H and CPU byte comparison at every unchanged phase",
+    "speedup_claim": null
+  },
+  "current_R003_disposition": "Unchanged and running under parent; this task grants no stop, resume, migration or source change.",
+  "writes_owned": [
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/integrity_performance_20261018/protocol_review_AT001.json",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/integrity_performance_20261018/protocol_review_AT001.md"
+  ],
+  "next_step": "Review actual isolated candidate source and CPU evidence when the parent supplies paths; GPU0 qualification/timing requires a later authorized run boundary."
+}

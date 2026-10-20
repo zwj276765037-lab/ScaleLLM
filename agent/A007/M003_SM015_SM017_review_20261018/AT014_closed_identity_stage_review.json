@@ -1,0 +1,244 @@
+{
+  "schema": "A007_AT014_closed_identity_stage_bounded_review",
+  "observed_utc": "2026-10-18T08:45:54.062235+00:00",
+  "execution": "completed_for_increment",
+  "verdict": "four_native_counts_and_closed_identity_outputs_observed",
+  "review": "accepted_with_limits",
+  "applicability": "Actual AT014 current core, count/identity stage only; no full-family classification or G4",
+  "query_counts_identity": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT014_fresh_core_native_role_attribution_v2/query_counts.json",
+    "bytes": 575,
+    "sha256": "6adbbad9b8ba95ab31a73c07372476d13ed0a2978fa18fa9ea849ed0a56a352e"
+  },
+  "query_counts": {
+    "collections": {
+      "parent_scope_candidates": {
+        "count": 1,
+        "query_ms": 275,
+        "filter": "NAME =~ \"*u_mlp/u_serial_command/u_shared_compute\""
+      },
+      "parent_payload_and_count_native": {
+        "count": 13122,
+        "query_ms": 4903,
+        "filter": "IS_PRIMITIVE == 1 && NAME =~ \"*parent_*_r_reg*\""
+      },
+      "parent_buffer_native": {
+        "count": 81,
+        "query_ms": 2514,
+        "filter": "IS_PRIMITIVE == 1 && NAME =~ \"*u_shared_compute/*u_ce_buffer\""
+      },
+      "metadata_native_names": {
+        "count": 533,
+        "query_ms": 5025,
+        "filter": "IS_PRIMITIVE == 1 && NAME =~ \"*u_attention/u_meta/*\""
+      }
+    },
+    "constraint_apply_requested": false,
+    "new_synthesis_launched": false
+  },
+  "identity_closed_files_and_first_records": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT014_fresh_core_native_role_attribution_v2/parent_scope_candidates.identity.jsonl",
+      "bytes": 336,
+      "closed_filename_exists": true,
+      "first_record": {
+        "index": 0,
+        "object": "inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute",
+        "fields": {
+          "NAME": {
+            "status": "OK",
+            "value": "inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute"
+          },
+          "REF_NAME": {
+            "status": "OK",
+            "value": "scalellm_vcu118_f05_bd_core_0_hap_mlp_shared_dual_slice16x12_s44_s54"
+          },
+          "CLASS": {
+            "status": "OK",
+            "value": "cell"
+          }
+        }
+      },
+      "full_table_not_rescanned": true
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT014_fresh_core_native_role_attribution_v2/parent_payload_and_count_native.identity.jsonl",
+      "bytes": 5202410,
+      "closed_filename_exists": true,
+      "first_record": {
+        "index": 0,
+        "object": "inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/g_m003_parent_ce.g_payload_bit[0].parent_head_r_reg[0]",
+        "fields": {
+          "NAME": {
+            "status": "OK",
+            "value": "inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/g_m003_parent_ce.g_payload_bit[0].parent_head_r_reg[0]"
+          },
+          "REF_NAME": {
+            "status": "OK",
+            "value": "FDRE"
+          },
+          "CLASS": {
+            "status": "OK",
+            "value": "cell"
+          }
+        }
+      },
+      "full_table_not_rescanned": true
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT014_fresh_core_native_role_attribution_v2/parent_buffer_native.identity.jsonl",
+      "bytes": 29029,
+      "closed_filename_exists": true,
+      "first_record": {
+        "index": 0,
+        "object": "inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/g_m003_parent_ce.g_head_ce[0].u_ce_buffer",
+        "fields": {
+          "NAME": {
+            "status": "OK",
+            "value": "inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/g_m003_parent_ce.g_head_ce[0].u_ce_buffer"
+          },
+          "REF_NAME": {
+            "status": "OK",
+            "value": "LUT1"
+          },
+          "CLASS": {
+            "status": "OK",
+            "value": "cell"
+          }
+        }
+      },
+      "full_table_not_rescanned": true
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT014_fresh_core_native_role_attribution_v2/metadata_native_names.identity.jsonl",
+      "bytes": 156786,
+      "closed_filename_exists": true,
+      "first_record": {
+        "index": 0,
+        "object": "inst/u_core/u_compute/u_attention/u_meta/GND",
+        "fields": {
+          "NAME": {
+            "status": "OK",
+            "value": "inst/u_core/u_compute/u_attention/u_meta/GND"
+          },
+          "REF_NAME": {
+            "status": "OK",
+            "value": "GND"
+          },
+          "CLASS": {
+            "status": "OK",
+            "value": "cell"
+          }
+        }
+      },
+      "full_table_not_rescanned": true
+    }
+  ],
+  "bounded_progress_tail": [
+    {
+      "event": "field_begin",
+      "clock_ms": 1792313083075,
+      "collection": "parent_payload_and_count_native",
+      "stage": "attributes",
+      "field": "IS_PRIMITIVE",
+      "object": "inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/g_m003_parent_ce.g_payload_bit[0].parent_head_r_reg[0]"
+    },
+    {
+      "event": "field_end",
+      "clock_ms": 1792313083075,
+      "collection": "parent_payload_and_count_native",
+      "stage": "attributes",
+      "field": "IS_PRIMITIVE",
+      "status": "OK",
+      "value": "1",
+      "elapsed_ms": "0"
+    },
+    {
+      "event": "field_begin",
+      "clock_ms": 1792313083076,
+      "collection": "parent_payload_and_count_native",
+      "stage": "attributes",
+      "field": "DONT_TOUCH",
+      "object": "inst/u_core/u_compute/u_mlp/u_serial_command/u_shared_compute/g_m003_parent_ce.g_payload_bit[0].parent_head_r_reg[0]"
+    },
+    {
+      "event": "field_end",
+      "clock_ms": 1792313083076,
+      "collection": "parent_payload_and_count_native",
+      "stage": "attributes",
+      "field": "DONT_TOUCH",
+      "status": "OK_EMPTY",
+      "value": "",
+      "elapsed_ms": "0"
+    },
+    {
+      "event": "dump_batch",
+      "clock_ms": 1792313091335,
+      "collection": "parent_payload_and_count_native",
+      "stage": "attributes",
+      "rows_written": "256",
+      "elapsed_ms": "8310"
+    },
+    {
+      "event": "dump_batch",
+      "clock_ms": 1792313099425,
+      "collection": "parent_payload_and_count_native",
+      "stage": "attributes",
+      "rows_written": "512",
+      "elapsed_ms": "16400"
+    },
+    {
+      "event": "dump_batch",
+      "clock_ms": 1792313107561,
+      "collection": "parent_payload_and_count_native",
+      "stage": "attributes",
+      "rows_written": "768",
+      "elapsed_ms": "24536"
+    },
+    {
+      "event": "dump_batch",
+      "clock_ms": 1792313115844,
+      "collection": "parent_payload_and_count_native",
+      "stage": "attributes",
+      "rows_written": "1024",
+      "elapsed_ms": "32819"
+    },
+    {
+      "event": "dump_batch",
+      "clock_ms": 1792313124171,
+      "collection": "parent_payload_and_count_native",
+      "stage": "attributes",
+      "rows_written": "1280",
+      "elapsed_ms": "41146"
+    },
+    {
+      "event": "dump_batch",
+      "clock_ms": 1792313132442,
+      "collection": "parent_payload_and_count_native",
+      "stage": "attributes",
+      "rows_written": "1536",
+      "elapsed_ms": "49417"
+    },
+    {
+      "event": "dump_batch",
+      "clock_ms": 1792313140418,
+      "collection": "parent_payload_and_count_native",
+      "stage": "attributes",
+      "rows_written": "1792",
+      "elapsed_ms": "57392"
+    },
+    {
+      "event": "dump_batch",
+      "clock_ms": 1792313148510,
+      "collection": "parent_payload_and_count_native",
+      "stage": "attributes",
+      "rows_written": "2048",
+      "elapsed_ms": "65485"
+    }
+  ],
+  "finding": "First actual payload name contains g_m003_parent_ce.g_payload_bit[0].parent_head_r_reg[0]; old directchild prefix cannot match that concrete object. Whole-family counts/indices/classification remain engineering bounded-summary obligation.",
+  "native_attributes_running": true,
+  "native_terminal": "not observed",
+  "G4_no_blocker": false,
+  "source_or_process_mutation_by_reviewer": false
+}

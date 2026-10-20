@@ -1,0 +1,80 @@
+{
+  "started_at": "2026-10-18T11:20:18.767740+00:00",
+  "state": "shared_training_speed_diagnostic_complete_not_ACC",
+  "scope": {
+    "kind": "shared_model_speed_diagnostic",
+    "exclusive_verified": false,
+    "formal_progression_eligible": false,
+    "matrix_resume": false,
+    "sample_ids": [
+      "train:0000",
+      "train:0001",
+      "train:0002",
+      "train:0003"
+    ],
+    "cases": [
+      "bf16",
+      "a8w4_fp32"
+    ]
+  },
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/nvidia-smi",
+        "-i",
+        "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+        "--query-compute-apps=pid,process_name,used_memory",
+        "--format=csv,noheader,nounits"
+      ],
+      "captured_at": "2026-10-18T11:20:18.826737+00:00",
+      "exit_code": 0,
+      "stdout": "23186, /home/user/anaconda3/envs/zhouwenjun/bin/python, 12146\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/nvidia-smi",
+        "-i",
+        "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+        "--query-gpu=index,uuid,memory.free",
+        "--format=csv,noheader,nounits"
+      ],
+      "captured_at": "2026-10-18T11:20:18.861162+00:00",
+      "exit_code": 0,
+      "stdout": "0, GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6, 36383\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/nvidia-smi",
+        "-i",
+        "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+        "--query-compute-apps=pid,process_name,used_memory",
+        "--format=csv,noheader,nounits"
+      ],
+      "captured_at": "2026-10-18T11:27:34.010484+00:00",
+      "exit_code": 0,
+      "stdout": "23186, /home/user/anaconda3/envs/zhouwenjun/bin/python, 12146\n",
+      "stderr": ""
+    }
+  ],
+  "process_control_actions_on_other_tasks": [],
+  "execute_requested": true,
+  "guard_sha256": "ee1e04e6c7ef415459a085439a0d6adfbf891702f2d58831aa879a391f3b283f",
+  "spec_sha256": "e2f11b776ed50ad7b167f4dd73045e74aee1390737520b64ccb1063358db032c",
+  "resource_observation": {
+    "external_client_pids": [
+      23186
+    ],
+    "gpu_free_bytes": 38150340608,
+    "minimum_gpu_free_bytes": 29636113204,
+    "host_available_bytes": 530219565056,
+    "exclusive_verified": false,
+    "formal_progression_eligible": false
+  },
+  "child_pid": 40866,
+  "child_exit_code": 0,
+  "manifest_sha256": "2529a84b3fcf73d1ea2d881cbf0cb45de1dd546ba1653dc0584313e1fb241a20",
+  "summary_sha256": "b845a156a57a092063200996988b5dc59eb64ab25f3177e2646494bd74b7a123",
+  "ended_at": "2026-10-18T11:27:34.010531+00:00"
+}

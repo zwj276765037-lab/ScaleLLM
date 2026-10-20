@@ -1,0 +1,1451 @@
+{
+  "schema": "A007_R003_AT001_actual_write_address_delta_independent_review_v1",
+  "observed_utc": "2026-10-19T22:16:02.335141+00:00",
+  "execution": "completed_one_shot_readonly_diagnosis",
+  "verdict": "CURRENT_REPLICA_STATE_EQUIVALENCE_UNPROVEN_MINIMAL12FF_SCOPE_SUFFICIENT",
+  "applicability": {
+    "actual_place_POST_passed": false,
+    "prior_AT035_G4_admission_unchanged": true,
+    "no_physical_continuation_admission_from_this_review": true,
+    "whole_attempt": "Natural native1/nullstop/survivors empty preserved; original place command Tcl0 and saved place.dcp are valid partial artifacts. No physopt or route command started."
+  },
+  "review": {
+    "independent_reconstruction": "Read two existing selected memory-pin streams34480rows each and current/prior80configuration rows, not the107MB snapshot or61MBcell stream. Exact24changes and9driver identities match owner delta independently.",
+    "changed_rows": [
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0",
+        "pin": "ADDR_B[12]",
+        "slice": "0",
+        "bit": 12,
+        "root_decode": "11'h000",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          0,
+          71
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[12]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_2/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_2}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_2/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]_repN_2} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[12]_repN_2_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0",
+        "pin": "ADDR_B[11]",
+        "slice": "0",
+        "bit": 11,
+        "root_decode": "11'h000",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          0,
+          71
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[11]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_2/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_2}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_2/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]_repN_2} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[11]_repN_2_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0",
+        "pin": "ADDR_B[10]",
+        "slice": "0",
+        "bit": 10,
+        "root_decode": "11'h000",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          0,
+          71
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[10]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_3/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_3}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_3/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]_repN_3} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[10]_repN_3_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_16",
+        "pin": "ADDR_B[12]",
+        "slice": "0",
+        "bit": 12,
+        "root_decode": "11'h010",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          0,
+          71
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_16",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[12]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_16",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_4/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_4}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_4/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]_repN_4} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[12]_repN_4_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_16",
+        "pin": "ADDR_B[11]",
+        "slice": "0",
+        "bit": 11,
+        "root_decode": "11'h010",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          0,
+          71
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_16",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[11]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_16",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_4/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_4}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_4/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]_repN_4} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[11]_repN_4_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_16",
+        "pin": "ADDR_B[10]",
+        "slice": "0",
+        "bit": 10,
+        "root_decode": "11'h010",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          0,
+          71
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_16",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[10]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_16",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_4/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_4}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_4/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]_repN_4} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[10]_repN_4_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_20",
+        "pin": "ADDR_B[12]",
+        "slice": "0",
+        "bit": 12,
+        "root_decode": "11'h000",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_20",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[12]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_20",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_1/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_1}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_1/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]_repN_1} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[12]_repN_1_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_20",
+        "pin": "ADDR_B[11]",
+        "slice": "0",
+        "bit": 11,
+        "root_decode": "11'h000",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_20",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[11]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_20",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_1/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_1}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_1/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]_repN_1} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[11]_repN_1_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_20",
+        "pin": "ADDR_B[10]",
+        "slice": "0",
+        "bit": 10,
+        "root_decode": "11'h000",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_20",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[10]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_20",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_1/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_1}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_1/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]_repN_1} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[10]_repN_1_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_28",
+        "pin": "ADDR_B[12]",
+        "slice": "0",
+        "bit": 12,
+        "root_decode": "11'h008",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_28",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[12]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_28",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_1/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_1}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_1/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]_repN_1} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[12]_repN_1_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_28",
+        "pin": "ADDR_B[11]",
+        "slice": "0",
+        "bit": 11,
+        "root_decode": "11'h008",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_28",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[11]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_28",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_1/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_1}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_1/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]_repN_1} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[11]_repN_1_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_28",
+        "pin": "ADDR_B[10]",
+        "slice": "0",
+        "bit": 10,
+        "root_decode": "11'h008",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_28",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[10]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_28",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_1/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_1}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_1/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]_repN_1} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[10]_repN_1_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_36",
+        "pin": "ADDR_B[12]",
+        "slice": "0",
+        "bit": 12,
+        "root_decode": "11'h010",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_36",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[12]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_36",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_2/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_2}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_2/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]_repN_2} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[12]_repN_2_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_36",
+        "pin": "ADDR_B[11]",
+        "slice": "0",
+        "bit": 11,
+        "root_decode": "11'h010",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_36",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[11]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_36",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_2/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_2}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_2/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]_repN_2} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[11]_repN_2_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_36",
+        "pin": "ADDR_B[10]",
+        "slice": "0",
+        "bit": 10,
+        "root_decode": "11'h010",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_36",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[10]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_36",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_3/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_3}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_3/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]_repN_3} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[10]_repN_3_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_8",
+        "pin": "ADDR_B[12]",
+        "slice": "0",
+        "bit": 12,
+        "root_decode": "11'h008",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          0,
+          71
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_8",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[12]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_8",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_2/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_2}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_2/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]_repN_2} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[12]_repN_2_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_8",
+        "pin": "ADDR_B[11]",
+        "slice": "0",
+        "bit": 11,
+        "root_decode": "11'h008",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          0,
+          71
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_8",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[11]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_8",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_2/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_2}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_2/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]_repN_2} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[11]_repN_2_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_8",
+        "pin": "ADDR_B[10]",
+        "slice": "0",
+        "bit": 10,
+        "root_decode": "11'h008",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          0,
+          71
+        ],
+        "prior": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_8",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[10]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "0",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_8",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_3/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_3}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_3/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]_repN_3} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[10]_repN_3_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_20",
+        "pin": "ADDR_B[12]",
+        "slice": "1",
+        "bit": 12,
+        "root_decode": "11'h000",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "1",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_20",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[12]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "1",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_20",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_4/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_4}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_4/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]_repN_4} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[12]_repN_4_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_20",
+        "pin": "ADDR_B[11]",
+        "slice": "1",
+        "bit": 11,
+        "root_decode": "11'h000",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "1",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_20",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[11]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "1",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_20",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_4/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_4}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_4/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]_repN_4} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[11]_repN_4_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_20",
+        "pin": "ADDR_B[10]",
+        "slice": "1",
+        "bit": 10,
+        "root_decode": "11'h000",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "1",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_20",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[10]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "1",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_20",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_4/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_4}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_4/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]_repN_4} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[10]_repN_4_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_28",
+        "pin": "ADDR_B[12]",
+        "slice": "1",
+        "bit": 12,
+        "root_decode": "11'h008",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "1",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_28",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[12]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[12]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "1",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_28",
+          "pin": "ADDR_B[12]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_4/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_4}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_4/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[12]_repN_4} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[12]_repN_4_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_28",
+        "pin": "ADDR_B[11]",
+        "slice": "1",
+        "bit": 11,
+        "root_decode": "11'h008",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "1",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_28",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[11]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[11]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "1",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_28",
+          "pin": "ADDR_B[11]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_4/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_4}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_4/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[11]_repN_4} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[11]_repN_4_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      },
+      {
+        "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_28",
+        "pin": "ADDR_B[10]",
+        "slice": "1",
+        "bit": 10,
+        "root_decode": "11'h008",
+        "root_mask": "11'h7E0",
+        "root_data_bits": [
+          72,
+          127
+        ],
+        "prior": {
+          "slice": "1",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_28",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/ADDR_B[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave0/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_input_buffer/u_wave1/Q[10]} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_dma/error_reg_5[10]}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        },
+        "actual": {
+          "slice": "1",
+          "cell": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_28",
+          "pin": "ADDR_B[10]",
+          "drivers": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_4/Q",
+          "driver_cells": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_4}",
+          "driver_refs": "FDCE",
+          "startpoints": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_4/C",
+          "nets": "{scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg_n_0_[10]_repN_4} {scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/artifact_index_r_reg_n_0_[10]_repN_4_alias}",
+          "primary_ports": "",
+          "primary_port_directions": ""
+        }
+      }
+    ],
+    "unique_replica_cells": [
+      "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_1",
+      "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_3",
+      "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_4",
+      "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_1",
+      "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_2",
+      "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_4",
+      "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_1",
+      "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_2",
+      "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_4"
+    ],
+    "original_reference_cells": [
+      "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]",
+      "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]",
+      "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]"
+    ],
+    "changed_root_count": 8,
+    "changed_bits": [
+      10,
+      11,
+      12
+    ],
+    "changed_destination_counts": {
+      "12": 8,
+      "11": 8,
+      "10": 8
+    },
+    "all_80_native_URAM_configurations_identical": true,
+    "all_other_selected_memory_driver_identities_unchanged": true,
+    "read_address_driver_changes": 0,
+    "cascade_chains": [
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0",
+        "slice": "0",
+        "length": 8,
+        "members": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_1",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_2",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_3",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_4",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_5",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_6",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_7"
+        ],
+        "decode": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "write_bits_changed": [
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_16",
+        "slice": "0",
+        "length": 4,
+        "members": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_16",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_17",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_18",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_19"
+        ],
+        "decode": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "write_bits_changed": [
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_20",
+        "slice": "0",
+        "length": 8,
+        "members": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_20",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_21",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_22",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_23",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_24",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_25",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_26",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_27"
+        ],
+        "decode": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "write_bits_changed": [
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_28",
+        "slice": "0",
+        "length": 8,
+        "members": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_28",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_29",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_30",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_31",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_32",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_33",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_34",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_35"
+        ],
+        "decode": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "write_bits_changed": [
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_36",
+        "slice": "0",
+        "length": 4,
+        "members": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_36",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_37",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_38",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_39"
+        ],
+        "decode": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "write_bits_changed": [
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_8",
+        "slice": "0",
+        "length": 8,
+        "members": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_8",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_9",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_10",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_11",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_12",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_13",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_14",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_15"
+        ],
+        "decode": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "write_bits_changed": [
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_0",
+        "slice": "1",
+        "length": 8,
+        "members": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_0",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_1",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_2",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_3",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_4",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_5",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_6",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_7"
+        ],
+        "decode": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "write_bits_changed": []
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_16",
+        "slice": "1",
+        "length": 4,
+        "members": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_16",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_17",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_18",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_19"
+        ],
+        "decode": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "write_bits_changed": []
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_20",
+        "slice": "1",
+        "length": 8,
+        "members": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_20",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_21",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_22",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_23",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_24",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_25",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_26",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_27"
+        ],
+        "decode": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "write_bits_changed": [
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_28",
+        "slice": "1",
+        "length": 8,
+        "members": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_28",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_29",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_30",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_31",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_32",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_33",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_34",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_35"
+        ],
+        "decode": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "write_bits_changed": [
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_36",
+        "slice": "1",
+        "length": 4,
+        "members": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_36",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_37",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_38",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_39"
+        ],
+        "decode": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "write_bits_changed": []
+      },
+      {
+        "root": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_8",
+        "slice": "1",
+        "length": 8,
+        "members": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_8",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_9",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_10",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_11",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_12",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_13",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_14",
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[1].meta_mem_reg_uram_15"
+        ],
+        "decode": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "write_bits_changed": []
+      }
+    ],
+    "cascade_validation": "Full existing address CAS edges and raw ancestry checked for A/B all23bits; all80cells covered by12same-slice chains. Root24source changes propagate to144descendant raw-startpoint rows; 168 raw-startpoint changes total and56memorycells downstream. No cascade wiring, mode, mask or register-configuration change observed.",
+    "bit_significance": {
+      "bits10_11": "Actual row-address bits: URAM288.v line3312 ram_addr_b <= ADDR_B_int[11:0].",
+      "bit12": "Actual bank/decode bit0 of ADDR_B[22:12]. SELF_MASK_B=11h7E0 has bit0 zero; compare expression at lines3217/3233 uses ~(ADDR^SELF_ADDR)|SELF_MASK. This bit is compared, not masked out.",
+      "decision": "Cannot waive any of the24 changes as inactive or constant address bits."
+    },
+    "checker_cause": {
+      "source": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_evidence.py",
+        "bytes": 36631,
+        "sha256": "7f8a7186558e566d4f6fdd11460b30fc68936e9218a0e0d5d38c63ece10bee05"
+      },
+      "line": 140,
+      "comparison": "Hardcoded direct Q name artifact_index_r_reg[bit](_rep forbit<9) against actual first-root driver.",
+      "judgment": "A name-exact check rejects the actual replicas. This explains the failure trigger but does not establish that the rejection is a false alarm. None of these replica D/CE/CLR/C/INIT functions is in the current selected exports."
+    },
+    "absent_state_exports": [
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_stream_place_helper_pins.jsonl",
+        "artifact_index_rows": 0
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_stream_place_meta_ref_cells.jsonl",
+        "artifact_index_rows": 0
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_connection_place_endpoints.jsonl",
+        "artifact_index_rows": 0
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_stream_place_reset_provenance.jsonl",
+        "artifact_index_rows": 0
+      }
+    ],
+    "frozen_A3_protection": {
+      "address_FF": 34,
+      "control_LUT": 4,
+      "actual_helper_LUT": 40,
+      "actual_helper_CARRY8": 4,
+      "current_qualifier_only_errors": "The24write-source mismatches; unchanged original qualifier checks each protected helper FF and controls, native pools and read-state cone separately.",
+      "write_counter_scope": "Plain17-bit production artifact_index_r drives wr_addr atRTLline282; the two u_addr/address_r17-bit read-state helpers and their minimum protection are distinct. Current artifact FF actual protection properties await12FFprobe.",
+      "budget": "G2 freezes new architectural state34FF and same-stage new synthesis totals; no budget change is approved here. A same-state tool replica adds physical FF resource but not an independent state variable or pipeline stage if the required proof passes."
+    },
+    "resources": {
+      "debug_registers": 1021400,
+      "placed_registers": 1021742,
+      "physical_cross_stage_delta": 342,
+      "debug_flip_flops": 1021398,
+      "placed_flip_flops": 1021740,
+      "used_new_URAM_write_source_replica_cells": 9,
+      "claim": "These9are only the unique replica drivers observed at the24changed roots, not a complete design replication inventory. Physical resource deltas remain visible; neither9nor342is a demonstrated new synthesis architectural-budget increase.",
+      "RAM_and_DSP": "BRAM941/URAM752/DSP5451 unchanged in the existing reports"
+    },
+    "core_clock": {
+      "existing_global_clock": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+      "period_ns": 10,
+      "waveform_ns": [
+        0,
+        5
+      ],
+      "replica_clock_connectivity": "Unproven until12FFpin/clock probe; a global100MHz clock alone is insufficient."
+    },
+    "actual_place_timing": {
+      "WNS_ns": -2.797,
+      "TNS_ns": -31090.396,
+      "WHS_ns": -0.565,
+      "THS_ns": -2157.578,
+      "WPWS_ns": 0.0,
+      "signoff": false
+    },
+    "owner_closure": {
+      "source_bindings": 198,
+      "identities": 17,
+      "lock_free": true,
+      "terminal_ended_utc": "2026-10-19T22:09:08.094418+00:00",
+      "native_exit": 1,
+      "independent_live_process_polling": false
+    }
+  },
+  "recommendation": {
+    "minimal_probe": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/R003_AT001_minimal12FF_equivalence_probe_scope_20261020.json",
+      "bytes": 4977,
+      "sha256": "c9a942c2fdeb74967fb81fb1cf8beb55aea0d2a09c98d408e313134c4a06ee57"
+    },
+    "next": "Owner performs one exact12FFactual-place read-only probe, binds raw FF state/control/model evidence, implements only a strict proven-equivalence validator adapter if established, and replays the full real place entry plus negatives. Reuse savedplace; no redundant new place. If semantic/protection/pool/budget changes are found, report toRoot for central decision.",
+    "ordinary_repair_scope": "No new user approval gate is added by this review. The missing state-equivalence evidence is an existing technical dependency, not a requirement to redesign or await another preliminary A007 signoff."
+  },
+  "bounds": {
+    "no_EDA": true,
+    "no_process_control": true,
+    "no_polling": true,
+    "no_observer": true,
+    "no_wait": true,
+    "no_descendants": true,
+    "no_DCP_content_read": true,
+    "no_whole_snapshot_or_cell_stream_read": true,
+    "no_project_evidence_modified": true
+  },
+  "evidence_identities": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT035_qualified_OPT_POST_to_actual_debug/m003_stream_debug_materialized_uram_configs.jsonl",
+      "bytes": 403524,
+      "sha256": "c1eef75f917af3939f5d2fc741a09e60f63556f211aa3f594c02884d05122072"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT035_qualified_OPT_POST_to_actual_debug/m003_stream_debug_materialized_memory_pins.jsonl",
+      "bytes": 22676444,
+      "sha256": "dda9bc128c25803118978f1ba9b0d2cd8d2a9e04bad5e5c03c3c597c4663bf64"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_stream_place_uram_configs.jsonl",
+      "bytes": 403524,
+      "sha256": "c1eef75f917af3939f5d2fc741a09e60f63556f211aa3f594c02884d05122072"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_stream_place_memory_pins.jsonl",
+      "bytes": 22670780,
+      "sha256": "4053436bc71bf1dd970b7d15f17ea5c8a0c140b15cd0dc754c73f7f1676b78a4"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_evidence.py",
+      "bytes": 36631,
+      "sha256": "7f8a7186558e566d4f6fdd11460b30fc68936e9218a0e0d5d38c63ece10bee05"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_stream_place_helper_pins.jsonl",
+      "bytes": 3891344,
+      "sha256": "ac70ab4c4274d6a5e783d4e768465bc9feb24614f46e4a0478dd75192941e85e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_stream_place_meta_ref_cells.jsonl",
+      "bytes": 69056,
+      "sha256": "8797b63a635ea5f8e4540cca7e427220cc54f3a6ef5fd97456abc82bc5fa4385"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_connection_place_endpoints.jsonl",
+      "bytes": 3991499,
+      "sha256": "f16a81b2133c6f6e9abd57d58f4c18fa587dfe6052cd1c3ae1c61bd78cfea515"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_stream_place_reset_provenance.jsonl",
+      "bytes": 1904762,
+      "sha256": "aedadb8d40fc5944140d719e6857a1fcf676ca3ae5ebf1a5ebcd2b333f5b9e8b"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_qualification_place.json",
+      "bytes": 16036,
+      "sha256": "efbf966f7c936e02c62a1666ab0e0b62ee601e27c1ba4225a9b7d36dce65db66"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_qualification_restore.json",
+      "bytes": 14835,
+      "sha256": "3cb734438bd0a9f0d0330eadc23b854ecd4859b0e4171755c20924d337d7842c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/place_command_result.txt",
+      "bytes": 125,
+      "sha256": "43aaea3de6d0b13765a3d41c48674b449575d33bd067adb34dd796eb051f3ec5"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/place_result.txt",
+      "bytes": 82,
+      "sha256": "95a076fa0a337404f37304a6bd26ebcb7dbf6fff319b6dd5854dc6a3003ecd6d"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT001_fixed_complete_physical/evidence/place_write_address_source_delta.json",
+      "bytes": 60488,
+      "sha256": "6be10e4ec9f1ae7351a1b2af32f9a4fc67972de2163d7454973c75cbf36fb2db"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT001_fixed_complete_physical/evidence/owner_terminal_and_source_closure.json",
+      "bytes": 43565,
+      "sha256": "f6db93cae1692d60e6a5f2efa132fcbff750b6d077fd3500c692222fbfd72210"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/vivado.log",
+      "bytes": 152616,
+      "sha256": "0860f0ed06d7ca1c9be8a9400e6a63bfb2f69517ab939cb7f9bc953447a886a4"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/utilization_place.rpt",
+      "bytes": 22037,
+      "sha256": "58eaaa077ca3f37d89fdd8587a576ef3966095e690e4112b5f7710a5cec6de0c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT035_qualified_OPT_POST_to_actual_debug/utilization_debug_materialized.rpt",
+      "bytes": 17063,
+      "sha256": "9de06778cdc6e177e8f97017b3b8c12318072fe41f7ee8a9558d83d21ac16bbc"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/clocks_place.rpt",
+      "bytes": 108277,
+      "sha256": "47ffd7fe46a291d917cb0b0f789c32807078b1d8d235e87b76302e3baabef7a5"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/timing_place.rpt",
+      "bytes": 2375907,
+      "sha256": "3ff393ae65258256c3989bdc027e39a372298d2137d9a39a5bfb713a2b8d1a27"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_attention_board_cohort16_core.sv",
+      "bytes": 40661,
+      "sha256": "672d37c9a5d02161affec0b8c4fd753d598cd7621ee3e544e4ccd55fd2cdaf57"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_weight_meta_resident.sv",
+      "bytes": 7299,
+      "sha256": "55f3e8ef6e16933bbfea9c6e76fb47f5f1015d5a1bf5de69323d319cc44501f3"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/mission/M003_joint_routability_closure/g2_joint_design_freeze_2026-10-18.md",
+      "bytes": 11044,
+      "sha256": "4424c426859b6b1e64be2f52a008ff6c03e1a6854f71570970cbba4941fff709"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_checks.tcl",
+      "bytes": 45760,
+      "sha256": "f5dc49c682c56129f593e3a6ad1a2eb768ce87ed8efe3771bf714c657cfd1d09"
+    },
+    {
+      "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/verilog/src/unisims/URAM288.v",
+      "bytes": 203045,
+      "sha256": "83e1c72147e97fad7ac401dbfd4de84f7bfb95bcfa880ea9fcf4d6c6ddfce935"
+    }
+  ],
+  "delivery": "Real message toRoot immediately after writing; A007 exits after this bounded diagnosis."
+}

@@ -1,0 +1,139 @@
+{
+  "schema": "A007_AT016_actual_start_review_v1",
+  "reviewed_utc": "2026-10-18T11:09:57.977216+00:00",
+  "execution": {
+    "review": "completed",
+    "AT016": "actually_started_readonly_diagnostic",
+    "started_utc": "2026-10-18T11:06:56.697700+00:00",
+    "native_terminal": "not observed"
+  },
+  "verdict": {
+    "actual_entry_identity_and_ownership": "accepted",
+    "native_candidate_names_or_counts": "not yet available",
+    "method_efficacy": "unassessed",
+    "G4": false,
+    "place_admission": false
+  },
+  "applicability": {
+    "package_sha256": "6e56ce13d4d7454beae903a057086458ee75b080cc07770ad07e6d1f994a30f9",
+    "entry_review_sha256": "6ffab299fab6cd94d2b0fd7bbb0244eae900b35ffbc319bc4d6aa20d929d5207",
+    "manifest_sha256": "8b6fbe902e3d7287b75b3aa56bdbaf1fc43f92fd12aed5ec2551978568bc6ac5",
+    "fresh_core_sha256_as_recorded_by_engineer": "e51adf501ead6402490a4a982bd7c74064f6e858eec7ff76fbc0bc69940975a1"
+  },
+  "review": {
+    "activation": {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT016_fresh_core_original_address_attribution/evidence/actual_native_activation.json",
+      "bytes": 2526,
+      "sha256": "3f52fadc850ee3f5b131c33dbca9a887fd24753edcc428af3c600b9b6763f908"
+    },
+    "evidence": {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT016_actual_start_independent_evidence.json",
+      "bytes": 13375,
+      "sha256": "0f5b1938ec5bb8f043af3b25347d4aa5a79636492c0201ca0dd14e0acdc6ee2c"
+    },
+    "archive_pairs_verified": 12,
+    "live_process_count": 5,
+    "live_process_identities": [
+      {
+        "pid": 38579,
+        "comm": "python3",
+        "ppid": 3900,
+        "start_ticks": 1122289,
+        "nice": 5,
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "library_switch_absent": true
+      },
+      {
+        "pid": 38580,
+        "comm": "python3",
+        "ppid": 38579,
+        "start_ticks": 1122304,
+        "nice": 5,
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "library_switch_absent": true
+      },
+      {
+        "pid": 38583,
+        "comm": "vivado",
+        "ppid": 38580,
+        "start_ticks": 1122387,
+        "nice": 5,
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "library_switch_absent": true
+      },
+      {
+        "pid": 38602,
+        "comm": "loader",
+        "ppid": 38583,
+        "start_ticks": 1122391,
+        "nice": 5,
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "library_switch_absent": true
+      },
+      {
+        "pid": 38673,
+        "comm": "vivado",
+        "ppid": 38602,
+        "start_ticks": 1122402,
+        "nice": 5,
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "library_switch_absent": true
+      }
+    ],
+    "library_only_switch": "independently absent in each observed owned process",
+    "EDA_lock": "exact inode exclusively held by supervisor38579",
+    "resources": "All observed owned processes CPU0\u20137/nice5; supervisor configured192GiB RSS/48GiB available30s/disk30GiB; no normal wall or quiet timeout",
+    "native_action": "Actual open_checkpoint command names exact original fresh core; no candidate count/role conclusion yet"
+  },
+  "next": "A006 continue normal read-only job. Send closed candidate/control collections and native terminal for review, then evidence-based narrow repair and explicit replay provenance. No new ordinary user approval.",
+  "limits": [
+    "No EDA, DCP contents/hash, source edit, signal or lock acquisition by A007.",
+    "Live process/log observation is point-in-time and not continuous monitoring.",
+    "AT015 failure and original raw evidence preserved; no G4 qualification implied."
+  ]
+}

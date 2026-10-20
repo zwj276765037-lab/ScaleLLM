@@ -1445,5 +1445,452 @@
     ],
     "created_at": "2026-10-17T22:50:46.298207+00:00",
     "reviews": []
+  },
+  "EV_SM013_E009_AT001_native_start_20261018": {
+    "event_id": "EV_SM013_E009_AT001_native_start_20261018",
+    "small_mission": "SM013",
+    "trigger": "milestone",
+    "summary": "M003/SM013 E009 R001 AT001 fixed package independently accepted; real Vivado launched 00:40:06Z and open_checkpoint underway. No attribution result or candidate selection yet.",
+    "impact": "G1 and G2 remain open; production RTL unchanged. Only project EDA lane occupied by this read-only run.",
+    "action": "Continue authorized fixed-scope read-only capture and independent actual-data review; normal process has no wall-clock/silence forced stop.",
+    "requires_decision": false,
+    "evidence": [
+      ".research-agent/decision_inputs/M003_SM013_E009_AT001_native_start_20261018.json",
+      "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT001_failed_route_full_attribution/native_start_observed.json",
+      "agent/A007/M003_SM013_review_20261018/AT001_prelaunch_122178e2/review.json"
+    ],
+    "affected": [
+      "SM013",
+      "SM014"
+    ],
+    "created_at": "2026-10-18T00:41:31.711225+00:00",
+    "reviews": []
+  },
+  "EV_SM013_AT003_initial_classification_20261018": {
+    "event_id": "EV_SM013_AT003_initial_classification_20261018",
+    "small_mission": "SM013",
+    "trigger": "milestone",
+    "summary": "AT003 full lightweight export and fixed 56 timing queries complete; 848 preliminary groups and 569597 canonical nets available; final aggregation/raw audit/G1 pending.",
+    "impact": "535331 nets have all visible endpoints in one known SLR; this does not prove route locality or root cause. Canonical/report delta22049 remains OPEN; no candidate or production change.",
+    "action": "Continue fixed-scope final aggregation and independent reconciliation, then Root makes the bounded G1/G2 decisions. No additional user approval required.",
+    "requires_decision": false,
+    "evidence": [
+      ".research-agent/decision_inputs/M003_SM013_AT003_initial_classification_20261018.json",
+      "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/first_aggregate_observed.json",
+      "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/bounded_timing_observed.json",
+      "agent/A007/M003_SM013_review_20261018/AT003_prelaunch_f0ac0b91/first_aggregate_review.md"
+    ],
+    "affected": [
+      "SM013",
+      "SM014"
+    ],
+    "created_at": "2026-10-18T02:11:07.037912+00:00",
+    "reviews": []
+  },
+  "EV_SM020_R002_cache_call_validation_revision": {
+    "event_id": "EV_SM020_R002_cache_call_validation_revision",
+    "small_mission": "SM020",
+    "trigger": "anomaly",
+    "summary": "R001 dual-GPU smoke naturally failed original cache/no-cache allclose. Train-only 2x2 diagnosis and native/rebuilt/corrupted-cache controls justify explicitly versioned R002 native_cache_call_parity_v2; original failed evidence retained.",
+    "impact": "Only GSM8K software verification changes. Production generation, frozen checkpoints, QDQ numeric path, prompt/scoring and M003 hardware resources unchanged. No formal test scores produced.",
+    "action": "Complete independent CPU checks; freeze R002 sources; relaunch two-GPU smoke/pilot/formal queue under existing user execution authorization. Current parent owns this software technical decision; no new user approval claimed.",
+    "requires_decision": false,
+    "evidence": [
+      "project/E010_gsm8k_six_model_completion/experiment_results/runs/R001/attempts/AT001_dual_gpu_gsm8k_pipeline/evidence/supervisor_terminal.json",
+      "project/E010_gsm8k_six_model_completion/experiment_results/runs/R002/attempts/AT001_dual_gpu_native_cache_v2/evidence/cache_revision_evidence.json"
+    ],
+    "affected": [
+      "SM020"
+    ],
+    "created_at": "2026-10-18T02:18:13.409111+00:00",
+    "reviews": []
+  },
+  "EV_SM014_G1_limited_accept_start_20261018": {
+    "event_id": "EV_SM014_G1_limited_accept_start_20261018",
+    "small_mission": "SM014",
+    "trigger": "milestone",
+    "summary": "Root accepted SM013 fixed-query evidence within stated limits and actually dispatched SM014 design and independent review to A006/A007.",
+    "impact": "Full report delta22049 remains OPEN; no unconditional G1 PASS, selected candidate, production change or new EDA. Candidate-specific evidence gates remain.",
+    "action": "Prepare and review concrete F1-F4 and candidate choices; Root handles G2 from actual evidence under prior authorization.",
+    "requires_decision": false,
+    "evidence": [
+      "mission/M003_joint_routability_closure/g1_scope_and_sm014_start_2026-10-18.md",
+      ".research-agent/decision_inputs/M003_G1_scope_SM014_start_20261018.json",
+      "agent/A007/M003_SM013_review_20261018/G1_consolidated_review/review.md"
+    ],
+    "affected": [
+      "SM013",
+      "SM014"
+    ],
+    "created_at": "2026-10-18T02:42:40.414736+00:00",
+    "reviews": []
+  },
+  "EV_SM014_G2_frozen_SM015_dispatched_20261018": {
+    "event_id": "EV_SM014_G2_frozen_SM015_dispatched_20261018",
+    "small_mission": "SM014",
+    "trigger": "milestone",
+    "summary": "Root froze C-M2 + C-A3 + C-P1 from manifest6d74e85d and A007 final independent design review; actual A006 continuation and A007 review messages delivered.",
+    "impact": "SM014 design gate passed; SM015/SM016 authorized and dispatched. New functional/synthesis/physical gates remain. TOP01 -2.896ns risk and G1 reconciliation delta22049 remain OPEN.",
+    "action": "A006 executes frozen RTL/overlay/tests and proceeds after real G3/G4 evidence and independent review; no additional ordinary user approval; preserve all budgets, invariants and normal-process no-force-stop rule.",
+    "requires_decision": false,
+    "evidence": [
+      "mission/M003_joint_routability_closure/g2_joint_design_freeze_2026-10-18.md",
+      ".research-agent/decision_inputs/M003_G2_freeze_SM015_dispatch_20261018.json",
+      "agent/A007/M003_SM014_review_20261018/G2_consolidated_design_review.md"
+    ],
+    "affected": [
+      "SM014",
+      "SM015",
+      "SM016",
+      "SM017",
+      "SM018"
+    ],
+    "created_at": "2026-10-18T03:17:56.946868+00:00",
+    "reviews": []
+  },
+  "EV_SM020_R002_weight_integrity_20261018": {
+    "event_id": "EV_SM020_R002_weight_integrity_20261018",
+    "small_mission": "SM020",
+    "trigger": "anomaly",
+    "summary": "R002后续AT008发现目标BF16权重与checkpoint差16345元素，原生调用间权重SHA变化，原因待两卡受控定位。",
+    "impact": "formal仍0/39570；禁止把失败训练检查或待解释权重视为正式精度证据，保持冻结源与原验收门。",
+    "action": "原授权内继续两卡加载/复制/推理前后单层权重对照和独立审核；不改驱动、不触碰M003、不放宽门。",
+    "requires_decision": false,
+    "evidence": [
+      "project/E010_gsm8k_six_model_completion/experiment_results/hourly_reports/20261018_weight_integrity_observed.json"
+    ],
+    "affected": [
+      "SM020"
+    ],
+    "created_at": "2026-10-18T03:55:15.277295+00:00",
+    "reviews": []
+  },
+  "EV_SM020_GPU1_maintenance_authorized_resource_block_20261018": {
+    "event_id": "EV_SM020_GPU1_maintenance_authorized_resource_block_20261018",
+    "small_mission": "SM020",
+    "trigger": "resource_conflict",
+    "summary": "GPU1匹配用户态库后仍有设备内可见字节错误，用户已批准限定维护；GPU0受控BF16/QDQ准备均完整通过并释放本项目worker，但另有他人GPU0计算客户端。",
+    "impact": "R003尚未启动；正式0/39570。实际维护还需本机管理员认证，并等待GPU0其他任务资源安全交接。未终止任何他人进程或M003。",
+    "action": "交付受双卡真实客户端/锁/会话范围约束的管理员维护helper；仅单GPU1重置并恢复登录界面，随后新AT原始字节与模型完整性复测；不重复索取维护授权。",
+    "requires_decision": false,
+    "evidence": [
+      "project/E010_gsm8k_six_model_completion/gpu1_maintenance_authorization_20261018.json",
+      "project/E010_gsm8k_six_model_completion/experiment_results/hourly_reports/20261018_external_gpu0_client_observed.json",
+      "project/E010_gsm8k_six_model_completion/experiment_results/hourly_reports/20261018T0456_maintenance_handoff.json"
+    ],
+    "affected": [
+      "SM020"
+    ],
+    "created_at": "2026-10-18T04:57:35.058662+00:00",
+    "reviews": []
+  },
+  "EV_SM017_R002_AT003_native_postreport_failed": {
+    "event_id": "EV_SM017_R002_AT003_native_postreport_failed",
+    "small_mission": "SM017",
+    "trigger": "anomaly",
+    "summary": "23 native synthesis runs completed, outer selected qualification failed naturally at XDC Tcl boundary and overbroad payload selector",
+    "impact": "No qualified selected synthesis/G4/place yet; fresh current-version23/22 DCP provenance preserved",
+    "action": "Preserve AT003 and proceed ordinary entry fix/native qualification/new AT with A007 independent delta review",
+    "requires_decision": false,
+    "evidence": [
+      "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT003_fresh_selected_synthesis/evidence/AT003_terminal_and_raw_native_lineage.json"
+    ],
+    "affected": [
+      "SM017",
+      "SM018"
+    ],
+    "created_at": "2026-10-18T06:16:16.680082+00:00",
+    "reviews": []
+  },
+  "EV_SM017_R002_AT008_type_registry_reset": {
+    "event_id": "EV_SM017_R002_AT008_type_registry_reset",
+    "small_mission": "SM017",
+    "trigger": "anomaly",
+    "summary": "AT008 native recovery naturally failed before loading netlist: FILE_TYPE conversion reset USED_IN to include synthesis",
+    "impact": "Original23/22 production netlists unchanged; formal selected graph/G4 still pending",
+    "action": "Restore original frozen implementation-only policy after type conversion, preserve native metadata, independently review v2 and run newAT009",
+    "requires_decision": false,
+    "evidence": [
+      "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT008_selected_native_postreport_requalification/evidence/TCL_conversion_registry_attribution.json",
+      "project/E011_m003_joint_routability_implementation/experiment_source/R002_AT008_terminal_registration.json"
+    ],
+    "affected": [
+      "SM017",
+      "SM018"
+    ],
+    "created_at": "2026-10-18T06:47:31.929537+00:00",
+    "reviews": []
+  },
+  "EV_SM017_E011_user_server_restart_paused_20261018": {
+    "event_id": "EV_SM017_E011_user_server_restart_paused_20261018",
+    "small_mission": "SM017",
+    "trigger": "milestone",
+    "summary": "User explicitly requested interruption for server reboot. AT013 controlled SIGTERM ended07:44:47Z; supervisor and all owned children absent, EDA lock and observer closed; inputs and partial evidence preserved.",
+    "impact": "M003 paused. No new run/retry/resume until a new explicit user instruction. G4/physical unqualified; interruption is not a method failure.",
+    "action": "Await explicit user resume after reboot; then validate handoff and sources before a new bounded attempt. No automatic restart.",
+    "requires_decision": false,
+    "evidence": [
+      "mission/M003_joint_routability_closure/server_restart_handoff_2026-10-18.md",
+      ".research-agent/project_pause.json",
+      "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT013_fresh_core_native_role_attribution/evidence/server_restart_pause/pause_closure.json",
+      "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT013_fresh_core_native_role_attribution/evidence/server_restart_pause/engineering_restart_handoff.md"
+    ],
+    "affected": [
+      "SM017",
+      "SM018",
+      "SM019"
+    ],
+    "created_at": "2026-10-18T07:49:05.054932+00:00",
+    "reviews": []
+  },
+  "EV_SM017_M003_user_server_restart_resumed_20261018": {
+    "event_id": "EV_SM017_M003_user_server_restart_resumed_20261018",
+    "small_mission": "SM017",
+    "trigger": "milestone",
+    "summary": "User explicitly authorized continuation after server reboot; Root set pause state resumed and actually dispatched A006/A007 continuation.",
+    "impact": "Original M003 G2 scope, ordinary repair authority and G4/full implementation dependencies retained; AT013 partial0B table provides no completed family count or intermediate checkpoint.",
+    "action": "Verify post-reboot identities/resources, optimize bounded role export, independently review and run new attempt; continue strict qualification then implementation without ordinary reapproval.",
+    "requires_decision": false,
+    "evidence": [
+      "mission/M003_joint_routability_closure/server_restart_resume_2026-10-18.md",
+      ".research-agent/decision_inputs/M003_user_server_restart_resume_20261018T081902Z.json",
+      ".research-agent/decision_inputs/M003_server_restart_resume_actual_dispatch_20261018.json"
+    ],
+    "affected": [
+      "SM017",
+      "SM018",
+      "SM019"
+    ],
+    "created_at": "2026-10-18T08:20:08.856874+00:00",
+    "reviews": []
+  },
+  "EV_SM020_R003_GPU0_user_resume_20261018T082920Z": {
+    "event_id": "EV_SM020_R003_GPU0_user_resume_20261018T082920Z",
+    "small_mission": "SM020",
+    "trigger": "milestone",
+    "summary": "用户明确恢复GPU0单卡；R003于08:29:20Z真实启动，首worker Llama3.2-3B/BF16 smoke，GPU1继续暂停。",
+    "impact": "仅M004/E010 GPU0队列及原每小时提醒恢复；M003与GPU1不操作，正式接受仍0/39570。",
+    "action": "按原门持续完成30组smoke/pilot/formal；正式全覆盖后独立复算和更新表格。",
+    "requires_decision": false,
+    "evidence": [
+      "project/E010_gsm8k_six_model_completion/experiment_results/gpu0_resume/20261018T082458Z/startup_observed.json"
+    ],
+    "affected": [
+      "SM020"
+    ],
+    "created_at": "2026-10-18T08:31:04.142692+00:00",
+    "reviews": []
+  },
+  "EV_SM020_GPU0_external_attempt03_20261018T1030Z": {
+    "event_id": "EV_SM020_GPU0_external_attempt03_20261018T1030Z",
+    "small_mission": "SM020",
+    "trigger": "resource_conflict",
+    "summary": "18:30实测GPU0另有yqh ScaleLUT attempt03 PID23186占约12GiB，与本项目R003 worker31810共享GPU0。",
+    "impact": "本项目仍单worker、无失败；GPU0独占性能bench和新资格验证不能在当前共享槽启动，CPU候选及独审可继续。GPU1仍停用，M003不触碰。",
+    "action": "保留运行证据，不因本通知终止或通知其他用户任务；真实资源交接/外部释放后才执行GPU benchmark，继续CPU独立审核及每小时报告。",
+    "requires_decision": false,
+    "evidence": [
+      "project/E010_gsm8k_six_model_completion/experiment_results/hourly_reports/20261018T103242Z_gpu0_progress.json"
+    ],
+    "affected": [
+      "SM020"
+    ],
+    "created_at": "2026-10-18T10:33:22.069387+00:00",
+    "reviews": []
+  },
+  "EV_SM020_GPU0_integrity_speed_repair_validated_20261018": {
+    "event_id": "EV_SM020_GPU0_integrity_speed_repair_validated_20261018",
+    "small_mission": "SM020",
+    "trigger": "milestone",
+    "summary": "GPU0逐题完整性性能修复在8B BF16/a8w4四题训练diag及独立复核通过；持续间隔107.437→9.290s/112.019→14.246s，原始token及15phase保持；最终来源门120CPU通过。",
+    "impact": "仅有限共享诊断观测；CPU/加载/全部验收保持，未取得独占/全30组/正式ACC资格；我们的GPU worker均退出，yqh/GPU1/M003不动，ACC继续暂停。",
+    "action": "保留ACC暂停和原始证据；后续用户恢复时须新R/本版16源/实际资源核验及全30组smoke-pilot-formal，旧行不复用。",
+    "requires_decision": false,
+    "evidence": [
+      "project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/performance_repair_report.md",
+      "project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/release_sources.json"
+    ],
+    "affected": [
+      "SM020"
+    ],
+    "created_at": "2026-10-18T11:43:19.484953+00:00",
+    "reviews": []
+  },
+  "EV_SM020_historical_accuracy_table_anomalies_20261019": {
+    "event_id": "EV_SM020_historical_accuracy_table_anomalies_20261019",
+    "small_mission": "SM020",
+    "trigger": "anomaly",
+    "summary": "历史ACC表DeepSeek BoolQ四配置恰等于多数类基线2033/3270；Qwen2.5低分case与设备ordinal/批次混杂；旧记录无逐题预测与逐run有效权重内容证据。",
+    "impact": "同协议/身份/attach记录提供支持但不足以归因异常；不能把相同ACC作为鲁棒性证明或把少数反超作为增益证明，也不能断言旧分数错误或GPU1原因。",
+    "action": "保留原始表与CPU审计，Q005解释answered、异常原因awaiting_validation。ACC继续暂停；后续用户明确恢复时做同设备同版来源的逐题配对验证，当前不启动新实验。",
+    "requires_decision": false,
+    "evidence": [
+      "project/E010_gsm8k_six_model_completion/experiment_results/accuracy_table_audit_20261019/report.md",
+      "project/E010_gsm8k_six_model_completion/experiment_results/accuracy_table_audit_20261019/parent_receipt.json"
+    ],
+    "affected": [
+      "SM020"
+    ],
+    "created_at": "2026-10-19T00:52:06.305621+00:00",
+    "reviews": []
+  },
+  "EV_SM021_AT002_local_rounding_milestone": {
+    "event_id": "EV_SM021_AT002_local_rounding_milestone",
+    "small_mission": "SM021",
+    "trigger": "milestone",
+    "summary": "303条合成局部舍入实验已执行并独审；264合法域无理论界违例；最大当前与仅输出差2 LSB，不能称完全无损。",
+    "impact": "支持局部CPU公式回放与数值工具；真实输入及全模型精度未测。M003/M004不受影响。",
+    "action": "按已授权合同继续BF16真实输入有界采集与局部成对回放，无新增用户决策。",
+    "requires_decision": false,
+    "evidence": [
+      "results/reviews/SM021_rounding_local_stage.md",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R001/attempts/AT002_cpu_local_rounding_v2/summary.json"
+    ],
+    "affected": [
+      "SM021",
+      "SM022"
+    ],
+    "created_at": "2026-10-19T02:41:19.365591+00:00",
+    "reviews": []
+  },
+  "EV_SM022_R002_bf16_local_rounding_milestone": {
+    "event_id": "EV_SM022_R002_bf16_local_rounding_milestone",
+    "small_mission": "SM022",
+    "trigger": "milestone",
+    "summary": "32/128-token真实BF16局部输入各168行独立复算一致、无理论界违例，最大两路径差1输出LSB。",
+    "impact": "支持所采单prompt/三层/七算子范围；不是V5轨迹或全模型PPL/ACC。所有本轮自有实验进程已退出。",
+    "action": "本轮局部阶段收尾；SM023全链及任务级方案保留planned，未声称整个M005目标达成。",
+    "requires_decision": false,
+    "evidence": [
+      "results/reviews/SM022_real_input_local_stage.md",
+      "project/software/0_Software/rounding_precision/source/review.md",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R002/attempts/AT005_cpu_replay_bf16_128token/summary.json"
+    ],
+    "affected": [
+      "SM022",
+      "SM023"
+    ],
+    "created_at": "2026-10-19T03:02:36.992744+00:00",
+    "reviews": []
+  },
+  "EV_M005_R004_FORMAL16_QUEUE_START_20261019": {
+    "event_id": "EV_M005_R004_FORMAL16_QUEUE_START_20261019",
+    "small_mission": "SM023",
+    "trigger": "milestone",
+    "summary": "首16篇正式数值测量与限定独审完成，剩余1008篇的冻结24组后台队列已实际启动；整体精度结论仍inconclusive。",
+    "impact": "已有32层传播证据及可读双图。局部最大误差分布与最终隐藏向量误差分开，不将ACC或scalar数量当本次数值结论。首批正式16篇finalnorm相对L2为1.17395%–1.78056%；不能由小批或0见证违例外推完整目标。",
+    "action": "按用户既有授权执行固定队列及28条预定后处理；失败或触限停止并保全证据。Root在完整终态后审核全1024结论，无新增用户审批请求。",
+    "requires_decision": false,
+    "evidence": [
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R004/attempts/AT002_formal_batch_b001_numerical/gpu_receipt.json",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R004/attempts/AT002_formal_batch_b001_numerical/independent_audit/generic_v2.json",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R004/attempts/AT002_formal_batch_b001_numerical/report_v2/report_manifest.json",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R004/queues/Q001/root_launch_receipt.json",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R004/attempts/AT003_formal_group_g001_b002_b004/gpu_launch_manifest.json",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R004/preflight_queue/actual_plan_validation.json"
+    ],
+    "affected": [
+      "SM021",
+      "SM022"
+    ],
+    "created_at": "2026-10-19T05:05:14.725694+00:00",
+    "reviews": []
+  },
+  "EV_M005_R004_FINAL_ERROR_DIAGNOSIS_20261019": {
+    "event_id": "EV_M005_R004_FINAL_ERROR_DIAGNOSIS_20261019",
+    "small_mission": "SM023",
+    "trigger": "anomaly",
+    "summary": "正式16篇整体输出相对L2中位1.44054%/P95 1.75554%；只读核算排除百分比重复与零分母，最后解码层绝对误差上升，主因未因果定位。",
+    "impact": "局部误差小不能证明整体精度保持；维持inconclusive。Q001原冻结采集继续，不改源/预算/样本。",
+    "action": "已完成已有数据与实现只读诊断；后续优先同输入最后层2×2回放及attention/MLP/残差分解，模型干预尚未执行。",
+    "requires_decision": false,
+    "evidence": [
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R004/analysis/final_error_diagnosis_v1/interpretation.md",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R004/analysis/final_error_diagnosis_v1/data_diagnosis.json",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R004/analysis/final_error_diagnosis_v1/implementation_review.md"
+    ],
+    "affected": [
+      "SM023"
+    ],
+    "created_at": "2026-10-19T05:47:04.786673+00:00",
+    "reviews": []
+  },
+  "EV_M005_R004_Q001_COST_STOP_MLP_TOP1_20261019": {
+    "event_id": "EV_M005_R004_Q001_COST_STOP_MLP_TOP1_20261019",
+    "small_mission": "SM023",
+    "trigger": "anomaly",
+    "summary": "Q001 G003在48篇前向结束后的汇总阶段触及原900秒预算，cost_stop；成功attempt112、独审16、durable160，完整1024未完成。已有16篇MLP三投影已拆分出图。",
+    "impact": "原完整六列图依赖任务已停止且未生成最终图。用户明确要求MLP各节点及最高分词一致率，新增指标尚未实测，研究判断仍inconclusive。",
+    "action": "保全失败与部分证据，记录更小运行组等后继提案；后继采集未启动。新扩展合同固定MLP与词表/Top1覆盖定义，不更换冻结Q001源或追认成功。",
+    "requires_decision": false,
+    "evidence": [
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R004/queues/Q001/queue_receipt.json",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R004/analysis/Q001_stop_diagnosis_v1/stop_diagnosis.json",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R004/analysis/mlp_precision_v1/mlp_projection_summary.json",
+      "mission/M005_multistage_rounding_precision/mlp_and_logit_measurement_extension.md"
+    ],
+    "affected": [
+      "SM023",
+      "SM022"
+    ],
+    "created_at": "2026-10-19T06:03:23.733494+00:00",
+    "reviews": []
+  },
+  "EV_M005_R005_EXTENSION_QUALIFICATION_20261019": {
+    "event_id": "EV_M005_R005_EXTENSION_QUALIFICATION_20261019",
+    "small_mission": "SM023",
+    "trigger": "milestone",
+    "summary": "用户授权完整补测与Python PNG；R005新增MLP/全词表/Top1模块完成CPU资格，旧批汇总254秒瓶颈已定位并以0.746秒等价统计验证替代流程",
+    "impact": "R004原失败和部分结果保留；1024篇新增指标须全部重采；尚无R005真实模型结果或精度通过结论",
+    "action": "在新冻结源及独立入口资格后启动独立900秒dev4 pilot，实测成本与只读性后冻结完整1024连续采集计划；最终交付一张实测PNG",
+    "requires_decision": false,
+    "evidence": [
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R005/run.md",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R005/qualification/logit_cpu/result.json",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT001_cpu_summary_cost_qualification/evidence/original_tmp_execution/summary_cost.json"
+    ],
+    "affected": [
+      "SM023"
+    ],
+    "created_at": "2026-10-19T06:28:45.771548+00:00",
+    "reviews": []
+  },
+  "EV_M005_R005_PILOT_COMPLETE_FORMAL_PLAN_20261019": {
+    "event_id": "EV_M005_R005_PILOT_COMPLETE_FORMAL_PLAN_20261019",
+    "small_mission": "SM023",
+    "trigger": "milestone",
+    "summary": "R005扩展预跑4篇完成且独审无阻断；原轨迹只读性与全MLP/词表测量已实核，Root冻结1024完整常驻正式成本合同",
+    "impact": "具备正式补测数值测量资格，尚无正式1024结果/整体精度通过结论；6144MiB为全数据证据总预算，单worker资源不增",
+    "action": "完成新缓存/监督入口双组与故障核验后执行64组正式采集，全部核心+扩展审核后聚合并用Python输出单张PNG",
+    "requires_decision": false,
+    "evidence": [
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT002_extended_mlp_logits_pilot/gpu_receipt.json",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R005/independent_review/AT002_extended_audit_v1.json",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R005/run.md"
+    ],
+    "affected": [
+      "SM023"
+    ],
+    "created_at": "2026-10-19T06:45:44.001899+00:00",
+    "reviews": []
+  },
+  "EV_M005_R006_TV_SUPPLEMENT_20261019": {
+    "event_id": "EV_M005_R006_TV_SUPPLEMENT_20261019",
+    "small_mission": "SM023",
+    "trigger": "milestone",
+    "summary": "用户明确追加全样本Softmax后TV，按gpt-6.1-sol/xhigh参数真实启动A017；R006合同与新批次已建立，正在实现与CPU资格，GPU尚未启动",
+    "impact": "原R005全量结果/PNG不变；R006补测同1024文本、103700位置的实际概率分布TV，需新两臂运行并增加图面板",
+    "action": "CPU独立资格→有界GPU资格→同样本完整后台补测→独审→Python整合PNG，按既有授权连续完成；普通修复不新增用户确认",
+    "requires_decision": false,
+    "evidence": [
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R006/run.md",
+      "project/E012_multistage_rounding_precision/experiment_results/runs/R006/agent_launch_request.json",
+      ".research-agent/decision_inputs/M005_R006_softmax_tv_contract.json"
+    ],
+    "affected": [
+      "SM023"
+    ],
+    "created_at": "2026-10-19T10:56:14.490786+00:00",
+    "reviews": []
   }
 }

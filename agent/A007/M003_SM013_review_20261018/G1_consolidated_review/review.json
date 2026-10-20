@@ -1,0 +1,100 @@
+{
+  "event_id": "A007_M003_SM013_G1_INDEPENDENT_REVIEW_20261018",
+  "observed_utc": "2026-10-18T02:30:00.413070+00:00",
+  "owner": "A007",
+  "runtime_id": "/root/m002_physical_architecture_review",
+  "experiment": "E009/R001/AT003",
+  "prepared_manifest_sha256": "f0ac0b91d8d91703ba34405bdd5a1154da1ff12f9b892b8ba6209ad119812101",
+  "execution": "completed: actual native0/supervisor0 natural terminal and independent review",
+  "verdict": {
+    "fixed_native_query_census_alias_classification_deep_selection": "supported",
+    "representative_timing_DATA_scope": "supported with explicit header/native argv limitation",
+    "exact_547548_report_reconciliation": "OPEN: canonical569597 minus native547548 =22049 unexplained",
+    "optimization_effectiveness": "inconclusive; no selected candidate or modified design"
+  },
+  "applicability": "AT003 failed-DCP query set and bounded path samples only",
+  "review": {
+    "recommendation": "LIMITED_ACCEPT_FOR_SM014_DESIGN_AND_CANDIDATE_EVALUATION",
+    "unconditional_G1_PASS": false,
+    "formal_G1_owner": "Root",
+    "candidate_selected": false,
+    "G2_passed": false,
+    "dependency_rule": "Block only claims/candidates actually requiring unreconciled report membership or unmeasured physical facts; preserve all unresolved facts; no gate bypass."
+  },
+  "timing_independent_replay": {
+    "actual_tool_session": 40815,
+    "actual_tool_exit_code": 0,
+    "reports": 56,
+    "paths": 104,
+    "launch_C_CLK_negative_cases": 104,
+    "no_path_reports": 4,
+    "candidate_endpoint_bytes": 269620299,
+    "artifact": {
+      "path": "agent/A007/M003_SM013_review_20261018/AT003_prelaunch_f0ac0b91/timing_scope_independent_replay.json",
+      "bytes": 225054,
+      "sha256": "c4b959d12d2992abf93298c34525699ca2470b8276ba2da24cb4d3e02a5560de"
+    }
+  },
+  "candidate_dependencies": {
+    "C-M1": [
+      "F1 actual fields/D/Q/readers/tail-to-head",
+      "F2 full FIFO no same-cycle pop credit",
+      "F3 upstream D/CE/clear/clock and downstream Q total cost",
+      "F4 compatible resources"
+    ],
+    "C-A1": [
+      "F1 actual address bits/URAM readers/control sources",
+      "F2 exact reset/system_clear/launch/rsp NBA semantics and sampled address equality",
+      "F3 control replication cost",
+      "F4 compatible local FF placement"
+    ],
+    "C-A2": [
+      "actual URAM mapping",
+      "bank/response mux and full connection cost",
+      "same-cycle memory/response/stall semantics",
+      "compatible regions; no default bank count"
+    ],
+    "C-R1": [
+      "specific internal arithmetic/controls/hard-block attribution",
+      "bit exact and original II/external cycles",
+      "complete resource/connection budget; coarse module counts insufficient"
+    ],
+    "C-P1": [
+      "actual macro/physical parent/hard constraints/compatible resources",
+      "C01 explicit strategy decision",
+      "new graph object/overlay qualification in SM017/G4"
+    ]
+  },
+  "open_items": [
+    "canonical/report +22049 unexplained",
+    "constant22050 does not prove difference explanation",
+    "22 nonconstant physical-unknown IDs outside fixed deep scope; exact unknown endpoint owners NOT_MEASURED",
+    "full overlap-node mapping, full cutTNS, per-netSLL NOT_MEASURED",
+    "native timing argv not independently dumped; headers preserved"
+  ],
+  "audit_method_boundary": "A007 reviewed raw v3 algorithms/fixtures and actual engineering7567 receipt/source/result; did not rescan full3.66GB endpoints. A007 independently replayed269MB candidate endpoints/56timing reports. A006 owns DCP/144 inputs integrity verification.",
+  "sources": [
+    {
+      "path": "agent/A007/M003_SM013_review_20261018/G1_consolidated_review/review.md",
+      "bytes": 10186,
+      "sha256": "02edb7af891a59cb95d863119d3c1e064125076b4e37cfe6ca2cfa59a3269af3"
+    },
+    {
+      "path": "agent/A007/M003_SM013_review_20261018/G1_consolidated_review/final_binding_checks.json",
+      "bytes": 7544,
+      "sha256": "d4940dfe4cd116f15097f5494b5b64332875ffabff4661def36a89f6294e84c7"
+    },
+    {
+      "path": "agent/A007/M003_SM013_review_20261018/AT003_prelaunch_f0ac0b91/native_terminal_review.json",
+      "bytes": 10355,
+      "sha256": "d40a748242e8d06f267814616fcda1898a003723e1fc5a6d48062d007614d0df"
+    },
+    {
+      "path": "agent/A007/M003_SM013_review_20261018/raw_audit_v3_preparation/review.json",
+      "bytes": 4187,
+      "sha256": "96390f50fce51e37d941f9ecb7a57d77846aa882d9c9560ea13ea203668008ea"
+    }
+  ],
+  "authorization": "User mission start authorization inherited from Root. No new user decision or approval gate created.",
+  "side_effects": "Only owned A007 review/state/status files; no EDA/DCP/production/signals/lock edits/subagents/external rebinding."
+}

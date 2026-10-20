@@ -1,0 +1,31 @@
+{
+  "reviewed_utc": "2026-10-18T01:31:30.379159+00:00",
+  "execution": "bounded static delta review complete; collector not executed by reviewer",
+  "verdict": "accepted independent CPU terminal metadata correction; no blocker to frozen native package",
+  "applicability": "exact v3 identity below; native f0ac0b91 package unchanged",
+  "review": "independent accepted",
+  "delta": [
+    "terminal_facts_v3.json append-only target preserves old v2 output",
+    "success-only census ids renamed canonical_ids; registered_pid_start_count retains original process identity dictionary",
+    "all grouping/census arithmetic and live/lock/input checking unchanged"
+  ],
+  "prior_attempts": "AT001 and AT002 did not enter complete-census branch; their original counts are unaffected",
+  "limits": [
+    "actual new success-branch output and G1 arithmetic not yet measured",
+    "no DCP/production rehash or EDA by reviewer; only source delta reviewed"
+  ],
+  "files": {
+    "collect_terminal_v2.py": {
+      "bytes": 5264,
+      "sha256": "3d8a603b8c2fa1ff722ac1cb46a00404d5ba8e0b9c80587ae2b25f68e355eb3c"
+    },
+    "collect_terminal_v3.py": {
+      "bytes": 5314,
+      "sha256": "1ba32d9db8afeab3a9273e163308ab72020f8ecc9c9c37145ab2be9a6b0cdbc3"
+    },
+    "collect_terminal_v3_revision.json": {
+      "bytes": 998,
+      "sha256": "265093065b15c67412610340d29b376c05063fbb7efc0478154312e79845283b"
+    }
+  }
+}

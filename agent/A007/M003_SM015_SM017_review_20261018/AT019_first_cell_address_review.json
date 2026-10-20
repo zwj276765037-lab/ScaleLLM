@@ -1,0 +1,38 @@
+{
+  "schema": "A007_AT019_first_cell_address_increment_v1",
+  "observed_utc": "2026-10-18T16:22:53.156614+00:00",
+  "execution": "completed_bounded_92row_increment",
+  "verdict": "accepted_actual_first_cell_raw_evidence",
+  "observation_sha256": "bc86ea0be0b867b04b333de77a0f5f32b765bc16e6cf62142ce4147d918a2ebb",
+  "address_prefix": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT019_fresh_core_uram_address_attribution/evidence/first_native_closed_cell_address_prefix.jsonl",
+    "bytes": 68426,
+    "sha256": "52df2156931758514a24477f9c114cd4835cbf2f5674c56095de492321d303fe"
+  },
+  "config": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT019_fresh_core_uram_address_attribution/evidence/first_native_cell_config.json",
+    "bytes": 3711,
+    "sha256": "3eace6795290728f7cac3d820da50cc6fd8d6d032df862a075f6c213bcd89d90"
+  },
+  "source_binding": "a079 package / f2ef diagnostic / exact e51 standalone fresh core; prior actual activation70c57944 and startup reviewdac07681 hashes matched",
+  "actual_prefix_verified": "Read only68426B of actual address stream and first actual config line; equal immutable prefix and saved config. No complete-table scan.",
+  "cell": "inst/u_core/u_compute/u_attention/u_meta/g_m003_width_slices.g_slice[0].meta_mem_reg_uram_0",
+  "coverage": "92 unique rows: ADDR_A/B and CAS_IN_ADDR_A/B each23, all exact same cell/slice0",
+  "actual_findings": {
+    "ADDR_A_bits_0_to_16": "Exact one-to-one bit mapping to slice0 protected address_r_reg[bit]/Q direct driver; native startpoints are same FDCE /C pins, not /Q.",
+    "ADDR_B_bits_0_to_16": "Exact corresponding artifact_index_r_reg[bit] or replicated bit/Q direct driver; native startpoint is its /C pin.",
+    "constant_rows": 58,
+    "constant_scope": "A/B[17..22] plus all46 CAS_IN_ADDR rows have one actual u_meta/GND/G driver, GND ref, u_meta/<const0> net, raw empty startpoints and derived0.",
+    "actual_config": "FIRST/FIRST; IREG_PRE_A/B FALSE; REG_CAS_A/B FALSE; SELF_ADDR_A/B000; SELF_MASK_A/B7E0; RDB_WR/EN/CLK inversion0; USE_EXT_CE_A/B FALSE.",
+    "source_supported_interpretation": "For this exact FIRST cell, effective address is direct ADDR; vendor model uses low12 for row index and high11 for SELF_ADDR/MASK decode. Actual7E0 masks physical bits17..22, while12..16 remain decoded. This cell ADDR_A22 therefore has actual GND/empty-startpoint evidence and is masked, not an unknown empty connection."
+  },
+  "limitations": [
+    "AT018 stack omitted cell; do not identify this as its exact failing cell.",
+    "Only this complete first cell accepted, not all80/full capacity/cascade/active-mode legality or G4. Mode pin drivers and auxiliary table not examined in this increment.",
+    "No production assertion exemption authorized here; preserve unconnected/error/unknown distinctions and inspect full results before a repair.",
+    "Observed /C startpoints must remain raw. Existing helper D_startpoints validation expects ownQ; this is a followup API-semantics risk, not a proven helper-D failure from these92 memory rows."
+  ],
+  "G4": false,
+  "review_scope": "A007 bounded read-only evidence; no EDA/DCP content/hash/process or source changes.",
+  "continuation": "Normal owner execution continues; full native result/terminal sent directly for next increment."
+}

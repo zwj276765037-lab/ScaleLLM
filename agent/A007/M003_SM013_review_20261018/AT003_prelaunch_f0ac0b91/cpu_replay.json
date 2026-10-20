@@ -1,0 +1,115 @@
+{
+  "observed_utc": "2026-10-18T01:29:57.708394+00:00",
+  "manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_source/AT003_scalar_property_fix/prepared_manifest.json",
+    "bytes": 3774,
+    "sha256": "f0ac0b91d8d91703ba34405bdd5a1154da1ff12f9b892b8ba6209ad119812101"
+  },
+  "verified_source_files": [
+    {
+      "name": "aggregate.py",
+      "bytes": 9230,
+      "sha256": "cdc44d1543cd29217ca37781b6e03484258f197a1316cc14e87cc9b0ac561160"
+    },
+    {
+      "name": "attribution.tcl",
+      "bytes": 12887,
+      "sha256": "0bffb546261e0d00a67702e4c35c769dc6c76f50455fbd7d8cf3ddd9198b55bc"
+    },
+    {
+      "name": "baseline.json",
+      "bytes": 40268,
+      "sha256": "78b8ce3b8a55a7a1a04e165f43dc9cdfd79fddadbbbb2758104a6acfcd43fe52"
+    },
+    {
+      "name": "check_cpu.py",
+      "bytes": 9070,
+      "sha256": "b8878de514881f4f8eeaac9357aea1380a86f614e49f288a3d5467aa73df596c"
+    },
+    {
+      "name": "launch.py",
+      "bytes": 822,
+      "sha256": "bf0d908894e1fdcc42bfdc28e19df9ccf7cde0d0c56be99316c4735b71314393"
+    },
+    {
+      "name": "prepare.py",
+      "bytes": 11792,
+      "sha256": "1de27c22296bfd2c0fce11f4359c456920eba1973268b3dd08c5cfa43cdaf608"
+    },
+    {
+      "name": "query_plan.json",
+      "bytes": 11726,
+      "sha256": "3e722eeda18e720bb16d26de5c3d311c59728878a4bb56d5d20224edd987c465"
+    },
+    {
+      "name": "reference_SM013.md",
+      "bytes": 3210,
+      "sha256": "76a496f33596a8932c29ea8de9d2065564fc857afa228140b81c0d3a690b15b1"
+    },
+    {
+      "name": "reference_contract.md",
+      "bytes": 23014,
+      "sha256": "54f681b6f9b71c8146d345062c9492df6147a2b7bdcf60c8ff400e9f1cbfbdb9"
+    },
+    {
+      "name": "reference_verification_matrix.md",
+      "bytes": 5774,
+      "sha256": "2976a43de9c225b535e132b06b6524ab746ad5d3667d67edad080fc70bfbcde2"
+    },
+    {
+      "name": "supervise.py",
+      "bytes": 6737,
+      "sha256": "7769c07de6fe02e70f7b5ca61fcf8fdab5c5120970292c80295d84d60c867385"
+    },
+    {
+      "name": "targets.tcl",
+      "bytes": 8071,
+      "sha256": "895aade0e9c63666db3918427c29844b9eb0717bc8be7c5fd0f7b1d323fad710"
+    }
+  ],
+  "old_12_prepared_sources_unchanged": true,
+  "changed_files": [
+    "attribution.tcl",
+    "baseline.json",
+    "check_cpu.py",
+    "prepare.py"
+  ],
+  "baseline_delta": "Only 3 prior terminal/observer/status bindings replaced; 144 production and all retained baseline/reference identities unchanged",
+  "new_prior_bindings_verified": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/status.json",
+      "bytes": 2701,
+      "sha256": "dbb0f42d816fba0da853f94bb9e224662a4d52cfa9626100bc62d7727a0eb668"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/terminal_facts_v2.json",
+      "bytes": 1681,
+      "sha256": "fb112e6d841400724a43882557cdfd23940b2fdfd16ad069b60b3097ca98038b"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/observer_terminal_facts.json",
+      "bytes": 894,
+      "sha256": "8248d31df40b7a8d8c4e5336d6f77adf82fbf278c072bf6ea6165df421dfd23c"
+    }
+  ],
+  "saved_native_scalar_matches_cpu_fixture_exactly": true,
+  "actual_isolated_cpu_replay": {
+    "command": [
+      "python3",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM013_review_20261018/AT003_prelaunch_f0ac0b91/source_snapshot/check_cpu.py"
+    ],
+    "returncode": 0,
+    "stdout": "CPU_ONLY_PASS actual Tcl vals body: exact saved 162-byte/two-backslash scalar, whitespace/list metacharacters, zero objects, optional/required empty scalar/vector, proper vector and scalar alignment fallback; actual vals+alias integration retains bytes and rejects true NAME mismatch. Existing actual alias body accepts representation-only difference, rejects NAME/cardinality mismatch. Syntax/read-only scope, synthetic unique-group/unknown/union oracle unchanged; no native EDA.\n",
+    "stderr": ""
+  },
+  "preflight_identity_verified": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/preflight.json",
+    "bytes": 1259,
+    "sha256": "ebfb6858aa0047e52aad485f02483897c7bb01e7642272ad0bdf1ac361d45227"
+  },
+  "DCP_and_production_preflight": "A006 verification; no reviewer DCP reads or EDA",
+  "execution": "independent incremental package review completed",
+  "verdict": "no substantive blocker to same-scope AT003 under existing authorization",
+  "applicability": "f0ac0b91 fixed package only; full native identity/census/G1 pending",
+  "review": "accepted for execution, not physical optimization validation"
+}

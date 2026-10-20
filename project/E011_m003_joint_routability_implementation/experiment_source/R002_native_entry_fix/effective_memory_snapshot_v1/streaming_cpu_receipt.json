@@ -1,0 +1,42 @@
+{
+  "schema": "M003_snapshot_streaming_CPU_byte_equivalence_v1",
+  "started_utc": "2026-10-18T16:43:50.150839+00:00",
+  "ended_utc": "2026-10-18T16:43:50.363772+00:00",
+  "command": [
+    "taskset",
+    "-c",
+    "0-7",
+    "nice",
+    "-n",
+    "5",
+    "python3",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/effective_memory_snapshot_v1/test_streaming_json.py"
+  ],
+  "exit_code": 0,
+  "candidate": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/effective_memory_snapshot_v1/m003_joint_checks.tcl.proposed",
+    "bytes": 32213,
+    "sha256": "059e7fb17d42eea4c3145065e76ad648a468ece7681e057f7751fe3249733c51"
+  },
+  "test": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/effective_memory_snapshot_v1/test_streaming_json.py",
+    "bytes": 5235,
+    "sha256": "084f617ae7c4f3f3a5808de1713b58a994bfe25a3623bf9db5b40e80121b2c9a"
+  },
+  "old_output_block": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/effective_memory_snapshot_v1/old_snapshot_output_block.tcl",
+    "bytes": 506,
+    "sha256": "e22530f2bc504826b4cd66ae3f1d4603f91aabe366667e9a3b989969a26d05b7"
+  },
+  "baseline": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/effective_memory_snapshot_v1/m003_joint_checks.before_combined_repair.tcl",
+    "bytes": 30835,
+    "sha256": "6e2e0343a43d3c429725e7da5367727b7c395c6757202c4e45f6ad16883e935d"
+  },
+  "log": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/effective_memory_snapshot_v1/streaming_cpu_tests.log",
+    "bytes": 790,
+    "sha256": "737e9933d5dbcc1e52106e5401b5c529d5f33b2e2e8a17c29a06e758ab9072f8"
+  },
+  "scope": "Candidate CPU byte equivalence and exclusivepartial/rename/errorbehavior only; notproductionapplied or nativeperformance/graph/G4 proof."
+}

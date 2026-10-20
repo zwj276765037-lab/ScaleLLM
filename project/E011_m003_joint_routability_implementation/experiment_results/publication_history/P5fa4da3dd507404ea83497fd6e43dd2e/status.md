@@ -1,0 +1,20 @@
+# E011当前状态
+
+execution_state: running；verdict: inconclusive。AT018/session26467，supervisor56625/native56718 start1880563，单EDA/CPU0–7/nice5/原资源保护实际有效。实际22read/23metadata及启动独立通过，open_run流程继续；不将读取记录当载图/约束完整成功。
+
+完整selected图预算及native0、输入/进程/锁闭合后freeze-recovered-synth recovery schema；再新严格INIT/OPT/debug→actual包A007G4→新R003固定完整place/physopt/route。正常无墙钟/静默强停、无热改、原禁区保持。
+
+---
+Published: 2026-10-18T13:23:21.985453+00:00
+Publication: P3590c6ba1d434c0fbe11ca9dd58c7322
+Execution state: running
+Research verdict: inconclusive
+Applicability: AT018 actualstartup and22readrecords/23metadata independently accepted; fullopen_run/overlay/selectedbudget/native0/restore/G4/physical pending
+Evidence:
+- project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/snapshot_collection_serialization_v1/actual_v2_applied_source_qualification.json
+- project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/snapshot_collection_serialization_v1/production_v2_72_tests_receipt.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT018_snapshot_collection_postreport_recovery/evidence/actual_source_review_binding.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT018_snapshot_collection_postreport_recovery/evidence/actual_native_activation.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT018_snapshot_collection_postreport_recovery/evidence/AT018_dependency_read_facts.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT018_snapshot_collection_postreport_recovery/evidence/dependency_independent_review_binding.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT017_original_address_entry_postreport_recovery/evidence/AT017_terminal_and_two_apply_failure_facts.json

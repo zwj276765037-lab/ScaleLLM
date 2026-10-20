@@ -1,0 +1,792 @@
+{
+  "schema": "A007_AT004_cached12FF_collector_limited_incremental_review_v1",
+  "observed_utc": "2026-10-19T23:41:20.543401+00:00",
+  "execution": "completed_readonly_source_review_plus_two_incremental_CPU_cases",
+  "verdict": "CANDIDATE_READY_NO_MATERIAL_BLOCKER_FOR_CONDITIONAL_SINGLE_SUCCESSOR",
+  "candidate_ready": true,
+  "actual_stop_authorized": false,
+  "actual_stop_performed": false,
+  "actual_native_started_by_A007": false,
+  "actual_replica_equivalence_proven": false,
+  "current_place_POST_passed": false,
+  "applicability": {
+    "package": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query_package_AT004_cached.json",
+      "bytes": 10555,
+      "sha256": "b18b072cba7d86ecfbc9db5f44d9cb7ef81aa6f337af37bbf40d664cc6ca1db7"
+    },
+    "checkpoint": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/place.dcp",
+      "bytes": 580960506,
+      "sha256": "b9e2f6dbf4fc6e013c6e4cf6078218983529f799e7ce2ecf9d0f905892f242e5"
+    },
+    "query_scope": "12_selected_FDCE_48_state_pins_24_URAM_root_pins_read_only",
+    "targets": "Exactly the previously reviewed3original+9actualFDCE,48state-inputpins,24affectedURAMrootpins;12individualclock rows and12parent rows retained.",
+    "required_dependency": "Current AT003 naturally terminates and closes, or user gives a new explicit exception only for this AT003 and A018 performs the specified owned stop/closure. No parallel EDA and no modification to active AT003 source.",
+    "frozen_library": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_shared_connectivity.tcl",
+      "bytes": 13721,
+      "sha256": "59c22aed01befb55c4144f9869558548ec4bb6e2598e5d068f594d9325e05030"
+    },
+    "unchanged_production_manifest": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_entry_manifest.json",
+      "bytes": 11688,
+      "sha256": "42dafce33f4727734dcf169b285a3decfcfa18d78d10f9a36463b4bea7c904d5"
+    },
+    "prior_minimal_scope": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/R003_AT001_minimal12FF_equivalence_probe_scope_20261020.json",
+      "bytes": 4977,
+      "sha256": "c9a942c2fdeb74967fb81fb1cf8beb55aea0d2a09c98d408e313134c4a06ee57"
+    }
+  },
+  "review": {
+    "source_delta": {
+      "new_collector": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query_cached.tcl",
+        "bytes": 2252,
+        "sha256": "6d2e25c887d4c7b991d94daa56bfd7e704d9ba54d86bc4e4712dbc2bc46501b0"
+      },
+      "new_launcher": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/run_cached_query.py",
+        "bytes": 2513,
+        "sha256": "8a6c7c1d07d89698e29e41b38b9c07089b37927b4adaaca99a653cb490245fc4"
+      },
+      "original_collector": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query.tcl",
+        "bytes": 3812,
+        "sha256": "1990dc3a79b243ed126020d6bfa467e3d7e129823b1253ee6fe968704f2e6135"
+      },
+      "original_launcher": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/run_query.py",
+        "bytes": 2408,
+        "sha256": "27a2433197e93a84a85d2dd786945d03ef01d8b909bad7a77833bebffc05e60e"
+      },
+      "targets": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/targets.tcl",
+        "bytes": 4724,
+        "sha256": "4068ba092c69965905405089e36e30b890d934a8e93d83308eec04f74cd16352"
+      },
+      "mechanism": "Read unchanged query body; require each of4 exact string replacements occurs exactly once; use existing frozen m003_conn rather than adding another connectivity implementation. Tcl info complete checked before execution. Collector and target scope remain unchanged."
+    },
+    "membership": {
+      "actual_direct_objects": "Each pin still resolves exactly once by actual cell/REF_PIN_NAME and exact native pin NAME. bind obtains exactly one actual direct net, checks CLASS, object/NAME uniqueness and membership in the complete native segment group. Cached reuse requires that actual direct object already belongs to the current group, not a name-derived alias.",
+      "complete_group": "Native collection is iterated into ordinary list with131072bound; no display-limit500 truncation. Each object/name/class is complete and unique; nonidentical overlapping groups, missing direct membership and foreign canonical top reject.",
+      "sources": "One get_pins -leaf over the complete group; original owner NAME/REF pairs retained. get_ports operates on exactly one actual canonical top object proven inside the group. Primary-port direction and actual leaf-driver identities preserve the original collector schema."
+    },
+    "per_pin_preservation": {
+      "state_inputs": 48,
+      "root_inputs": 24,
+      "cell_rows": 12,
+      "parent_rows": 12,
+      "clock_rows": 12,
+      "total_rows": 108,
+      "properties": "Original per-cell REF/INIT/inversion/protection/parent fields and each pin DIRECTION/REF_PIN_NAME/IS_INVERTED are outside the cache replacement and still queried per-object. Each FF C independently requires one actual clock and records NAME/PERIOD/WAVEFORM/master/source.",
+      "raw_unknowns": "Unsupported cell/pin attributes remain NOT_SUPPORTED/empty exactly as the original prop helper emits; no zero/default coercion is added. Collector completion is not acceptance of an unknown state function. The future equivalence predicate must reject unresolved values or obtain bound effective default-model evidence."
+    },
+    "context": {
+      "begin": "After exactly one open_checkpoint on the frozen actual placeDCP; create a fresh placed_write_replica_proof token.",
+      "checks": "Before each bind and group source access: active token, actual current design object/name/part must match. Nested begin, duplicate endpoint or expired token rejects. No design/netlist mutation or reopen occurs between begin and finish in this collector.",
+      "finish": "All published groups must have source inventory; finish records72endpoints/currentgroups/counters and clears caches before close_design. On abort/error a fresh process is required and outputs remain partial; no cache reuse across attempts or phases."
+    },
+    "legal_empty_and_errors": "Empty primary-port lists are valid for internal leaf-driven groups; empty leaf-driver lists are valid when an actual primary IN port supplies the signal. Missing direct/segment/canonical/clock or native get_* error propagates; unknown/no-source facts never become semantic equivalence by collector success. Canonical source proof is from the actual complete group, not a fabricated top name.",
+    "reused_native_library_proof": {
+      "priors": [
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT023_complete_native_clock_increment.json",
+          "bytes": 4911,
+          "sha256": "e8025c945100a7653f85bcc041ba9bc76d3475d10919cb4c4121b5e422c98ed8"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT025_independent_clock_boundary_increment.json",
+          "bytes": 4170,
+          "sha256": "c026b97ba181c82b20a78f5bdb9fa65b8f7cda5a8f8c16b0991ca5a1793cf863"
+        },
+        {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT027_final_reset_exports_budget_and_freeze_one_shot_review.json",
+          "bytes": 59354,
+          "sha256": "f1bf83f611ecd1e44715f45d614e23c7712423b3ecc7c2dce11e7d939347ae4a"
+        }
+      ],
+      "scope": "Earlier native complete direct/group sources and later production full qualifier/source closure retained; current library hash59c22aed exactly matches finalAT027review. Do not re-run old suites or read large DCP/graphs to review this unchanged library."
+    },
+    "CPU_validation": {
+      "owner_complete_suite": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/cached_collector_CPU_integration_fixed_fixture.log",
+        "bytes": 952,
+        "sha256": "8053b7464b65a345b79444440af1bf1063d7eb998962b2f8c3efe2a5543ab4a6"
+      },
+      "owner_cases": [
+        {
+          "case": "positive",
+          "complete_original_schema": {
+            "cell": 12,
+            "parent": 12,
+            "state_pin": 48,
+            "state_clock": 12,
+            "memory_root_pin": 24
+          },
+          "endpoints": 72,
+          "groups": 15,
+          "calls": {
+            "segments": 15,
+            "drivers": 15,
+            "canonical": 15,
+            "ports": 15
+          },
+          "all_primary_port_queries_one_canonical_object": true,
+          "complete_12560_clock_and_10183_reset_members": true,
+          "native_executed": false
+        },
+        {
+          "case": "canonical_missing",
+          "rejected": true
+        },
+        {
+          "case": "canonical_foreign",
+          "rejected": true
+        },
+        {
+          "case": "direct_omitted",
+          "rejected": true
+        },
+        {
+          "case": "native_port_error",
+          "rejected": true
+        },
+        {
+          "case": "clock_missing",
+          "rejected": true
+        }
+      ],
+      "independent_delta_receipt": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT004_cached_collector_incremental_CPU_review_20261020.json",
+        "bytes": 1005,
+        "sha256": "f652771c96a4ccb4e6beafdcbca663db97d2cff816a61f188d27ee8ff023d3f1"
+      },
+      "independent_results": [
+        {
+          "case": "actual_original_collector_vs_cached_complete_schema_with_primary_IN_clock",
+          "rows": 108,
+          "equal_row_dictionaries": true,
+          "original_bytes": 1966374,
+          "cached_bytes": 1966374,
+          "original_sha256": "86eaacab90a673f8c8be9608f76bbbbf088062d9e04fd64605db2b5b9c92f143",
+          "cached_sha256": "86eaacab90a673f8c8be9608f76bbbbf088062d9e04fd64605db2b5b9c92f143",
+          "legitimate_empty_leaf_drivers": true,
+          "nonempty_primary_IN_port_retained": true,
+          "full12560clock_members_retained": true,
+          "independent_per_pin_inversion_and_per_cell_INIT_retained": true
+        },
+        {
+          "case": "design_context_changes_during_same_call",
+          "rejected": true,
+          "no_complete_marker": true
+        }
+      ],
+      "interpretation": "CPU API-spy fixtures only. Independent valid-primary-IN-clock case compares the original actual query.tcl and cached query_cached.tcl output byte-for-byte across108rows, including full12560clock members, per-pin inversion difference and per-cell INIT difference; a design-context mutation rejects with no complete marker. No claim of native speed or current12FFstate equivalence."
+    },
+    "launcher": {
+      "actual_preparation": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT004_cached_place_write_replica_proof/evidence/full_cached_launcher_preparation_receipt.json",
+        "bytes": 1380,
+        "sha256": "3ea1bc4a6ed5d433dff8e462c30cc0a273b6205473c045700f04fb989708c36f"
+      },
+      "boundary": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT004_cached_query_preparation/cached_query_native_boundary.json",
+        "bytes": 2070,
+        "sha256": "b4a304ff19ff9716ab08b05fb70b6022296b8ed1db43840fa5156959dc6f8c4b"
+      },
+      "full_original_guards_retained": true,
+      "changed_command_indices": [
+        5
+      ],
+      "source_count": 53,
+      "core_source_count": 48,
+      "query_dependencies": 5,
+      "source_accounting": "Actual successor command contains exactly53unique--archive-source paths matching48current manifest sources plus unchanged query/targets/base launcher and2new wrappers. Owner archive_inputs records all command file arguments plus package/supervisor/helper/G2; base and wrapper each check their exact respective source set. Original package-bound DCP/snapshot/full-input hashing executed in owner prepare-only receipt.",
+      "separate_reports": true,
+      "normal_execution": "Original run_query.main is invoked; only subprocess source argument5 is changed in-place after original guards. Original status records the adapted command. --prepare-only exits at that same boundary without native/status."
+    },
+    "switch_plan": {
+      "identity": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT004_cached_place_write_replica_proof/evidence/AT003_single_switch_preservation_and_successor_plan.json",
+        "bytes": 21355,
+        "sha256": "6dca143b87a4792c6d2acf43a1ddefccc5c76a458414e67cb02700f5d30c4e18"
+      },
+      "authorized_now": false,
+      "sole_owner": "A018",
+      "scope": "Only currently normalAT003; no prior exception reused, no time/quiet trigger.",
+      "supervisor": {
+        "pid": 818200,
+        "start_ticks": 13827154
+      },
+      "owned_native_identity": {
+        "pid": 818301,
+        "start_ticks": 13827382
+      },
+      "action": "On newly granted exception only, first revalidate actual PID/start and command ownership; signal only supervisor818200, not a broad process name/group. Original supervisor catches SIGTERM and uses tracked PID/start terminate_and_reap, retains EDA lock until tracked survivors drain, then records actual native/stop reason/status.",
+      "preservation": "Keep original source archive/command/resources/logs/status and selected raw partials; hash partial bytes only after terminal and label incomplete. Original AT001 placeDCP/failed qualification and AT003 source bytes remain unchanged.",
+      "closure_before_successor": "Verify all tracked identities gone, original status/stop attribution retained, source bindings unchanged and EDA lock released; then one exact original owned successor command from plan. Terminal waiter is not independently stopped and returns on original status.",
+      "command": [
+        "/usr/bin/python3",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m003_owned.py",
+        "--attempt",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT004_cached_place_write_replica_proof",
+        "--job",
+        "native_bounded_place_write_replica_query",
+        "--report",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT004_cached_place_write_replica_proof",
+        "--",
+        "/usr/bin/python3",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/run_cached_query.py",
+        "--package",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query_package_AT004_cached.json",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query_cached.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/run_cached_query.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/run_query.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/targets.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_attention_board_cohort16_core.sv",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_weight_meta_resident.sv",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/mlp/hap_mlp_shared_dual_slice16x12_s44_s54.sv",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_joint_locality.xdc",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_joint_locality_data.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_joint_locality_spec.json",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/build_vcu118_board.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/create_vcu118_board.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/emit_current_board_evidence.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_common.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_init_post.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_opt_post.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_physopt_post.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_place_post.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_route_post.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_elaborate_verify.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_execution_profile.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_fresh_project_opt_recovery.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_impl_threads.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_optimized_preflight.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_optimized_structure.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_physical.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_physical_evidence.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_resume_physical.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_route_failure_capture.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_synth_threads.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_synthesis_recovery.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_entry.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_checks.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_evidence.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_native_init.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_physical.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_physical_evidence.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_recover_synthesis.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_resource_budget.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_shared_connectivity.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_snapshot_decode.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_snapshot_stream.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_stage.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_synth_recovery.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_system_python.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/mission0004_metadata_physical.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/mission0005_coordinated_physical.tcl",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m002_no_wall.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m003_owned.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m003_stage.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_managed_eda.py",
+        "--archive-source",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_vcu118_board.sh"
+      ],
+      "not_a_stop_approval": true
+    },
+    "success_interpretation": "A raw read_only_complete marker is written before grouped finish/close in the inherited order; any later error still leaves a failed/partial attempt. Actual success must include complete grouped finish/source/binding coverage and original terminal/launcher outcome, not the marker alone. This candidate review does not authorize skipping later FF-equivalence or full-place-entry validation."
+  },
+  "evidence": {
+    "small_identities": [
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query_package_AT004_cached.json",
+        "bytes": 10555,
+        "sha256": "b18b072cba7d86ecfbc9db5f44d9cb7ef81aa6f337af37bbf40d664cc6ca1db7"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/place_command_result.txt",
+        "bytes": 125,
+        "sha256": "43aaea3de6d0b13765a3d41c48674b449575d33bd067adb34dd796eb051f3ec5"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_qualification_place.json",
+        "bytes": 16036,
+        "sha256": "efbf966f7c936e02c62a1666ab0e0b62ee601e27c1ba4225a9b7d36dce65db66"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT001_fixed_complete_physical/evidence/place_write_address_source_delta.json",
+        "bytes": 60488,
+        "sha256": "6be10e4ec9f1ae7351a1b2af32f9a4fc67972de2163d7454973c75cbf36fb2db"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT035_qualified_OPT_POST_to_actual_debug/M003_preplace_package.json",
+        "bytes": 2234,
+        "sha256": "94e3f3350af829d7fd61d4e01988e262b1344697801a062d762a8ca295e98e52"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT035_qualified_OPT_POST_to_actual_debug/A007_G4_no_blocker.json",
+        "bytes": 1035,
+        "sha256": "680ead99520e0f26233a7681fb41a449e920b05bc6a1e078a39b742825541470"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_entry_manifest.json",
+        "bytes": 11688,
+        "sha256": "42dafce33f4727734dcf169b285a3decfcfa18d78d10f9a36463b4bea7c904d5"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/mission/M003_joint_routability_closure/g2_joint_design_freeze_2026-10-18.md",
+        "bytes": 11044,
+        "sha256": "4424c426859b6b1e64be2f52a008ff6c03e1a6854f71570970cbba4941fff709"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query.tcl",
+        "bytes": 3812,
+        "sha256": "1990dc3a79b243ed126020d6bfa467e3d7e129823b1253ee6fe968704f2e6135"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/targets.tcl",
+        "bytes": 4724,
+        "sha256": "4068ba092c69965905405089e36e30b890d934a8e93d83308eec04f74cd16352"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/run_query.py",
+        "bytes": 2408,
+        "sha256": "27a2433197e93a84a85d2dd786945d03ef01d8b909bad7a77833bebffc05e60e"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/query_cached.tcl",
+        "bytes": 2252,
+        "sha256": "6d2e25c887d4c7b991d94daa56bfd7e704d9ba54d86bc4e4712dbc2bc46501b0"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/run_cached_query.py",
+        "bytes": 2513,
+        "sha256": "8a6c7c1d07d89698e29e41b38b9c07089b37927b4adaaca99a653cb490245fc4"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_attention_board_cohort16_core.sv",
+        "bytes": 40661,
+        "sha256": "672d37c9a5d02161affec0b8c4fd753d598cd7621ee3e544e4ccd55fd2cdaf57"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/attention/hap_weight_meta_resident.sv",
+        "bytes": 7299,
+        "sha256": "55f3e8ef6e16933bbfea9c6e76fb47f5f1015d5a1bf5de69323d319cc44501f3"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/rtl/mlp/hap_mlp_shared_dual_slice16x12_s44_s54.sv",
+        "bytes": 123051,
+        "sha256": "5829f33fb3314906a2026eccca46e599bd16409a66e1a912c04dfa2187a66157"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_joint_locality.xdc",
+        "bytes": 636,
+        "sha256": "9124ea7eb710d8bbb4fe5c0c83e09f6cda1909d42e13d38bf6bae6765c9f3528"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_joint_locality_data.tcl",
+        "bytes": 185414,
+        "sha256": "a03bf3f1175daec24bdad55ff56831f7d015f73ebe1e748266dd53ddd48a7e44"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/constraints/m003_joint_locality_spec.json",
+        "bytes": 2616050,
+        "sha256": "a5eadb9d8edcedb042c5f21e1e6f83e700576887669b8ebfc73e3f5c82675e7e"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/build_vcu118_board.tcl",
+        "bytes": 34608,
+        "sha256": "6e558b028a406055e2748e054a3e3b1dda7461ddb2e2345e30a17f4784589c2d"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/create_vcu118_board.tcl",
+        "bytes": 38597,
+        "sha256": "96fbe56e7a3e50425a2e8f44373b6f4ef9cea7b39c6012c89accd6eab476ac02"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/emit_current_board_evidence.py",
+        "bytes": 12107,
+        "sha256": "af231cade67b1a01b47452d4c62451108245dbad1210063ea093b21bc9782e91"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_common.tcl",
+        "bytes": 49306,
+        "sha256": "b5675dfb628b8b558be32f76cba2f6be64fbda8f147bb2984604326fb7ccfdfb"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_init_post.tcl",
+        "bytes": 107,
+        "sha256": "2c7d895773a92986234759cb08b43923db45dcab69e2529a3adc106bfac6647f"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_opt_post.tcl",
+        "bytes": 106,
+        "sha256": "6816f54c02fe93cdc5dfdea9411f38c75d6558e40ac5a2acb93c6c8c941c6c90"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_physopt_post.tcl",
+        "bytes": 110,
+        "sha256": "f643b0a11cddbcd7405a7be7fd84b30cd2ef132457a4c944be651ec97af0528e"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_place_post.tcl",
+        "bytes": 108,
+        "sha256": "ab97e6dbee49458e6e624ffcbe007e1006aa38d0153ece49e13f71e5b786cf08"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_diagnostic_route_post.tcl",
+        "bytes": 108,
+        "sha256": "81c29f7b3971719f3f80587881e4ec52b31344d75ac41166dfa261579eb45fc3"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_elaborate_verify.tcl",
+        "bytes": 3581,
+        "sha256": "87aac0680b5dd59ccb5a5d2f0702e24703125fee7e07daf05ffebd834d9891cc"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_execution_profile.py",
+        "bytes": 7776,
+        "sha256": "424b541158ff15d86a3006e3b70b7a87c4f9e24169d434bc62295dbf2da72b9d"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_fresh_project_opt_recovery.py",
+        "bytes": 36328,
+        "sha256": "22755988fa5f4ad75d31cb54ecccbffe623a230d93ffcbc1dbbda169e674cde6"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_impl_threads.tcl",
+        "bytes": 356,
+        "sha256": "263d591ae7c2b77fe8796eee26df4634da1273feb4c943b0638cf8784cb8d881"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_optimized_preflight.tcl",
+        "bytes": 1763,
+        "sha256": "0a5351c11470c03d5379c67c79bd62cab2f4772b2d8898120a819fe6643eea0d"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_optimized_structure.tcl",
+        "bytes": 4374,
+        "sha256": "28866b163981a9fa5c3051c2e45d13b35a1c3c04155d5a41bb633464312e455e"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_physical.tcl",
+        "bytes": 6776,
+        "sha256": "69cf54da99db13df16c5461f00ce515446006c32f8f42cbe2dfaaf1bbeb391d2"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_physical_evidence.py",
+        "bytes": 154895,
+        "sha256": "9444d1a5127ec5e7c0174df1f70dc72f5bf77df124a307b939defcb25207dac9"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_resume_physical.tcl",
+        "bytes": 12775,
+        "sha256": "91cd2750632f7adaf6543bda53e16208255052b5026b44239e192e03032c95fd"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_route_failure_capture.tcl",
+        "bytes": 2741,
+        "sha256": "d17306c772173da6e70c55edd010e1c53d6e4101b7221f447ed30ad044306942"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_synth_threads.tcl",
+        "bytes": 148,
+        "sha256": "0ce78ffd339146a51a92fd23a9595bdd86efb5192ec5b10bbfbca48e1e773136"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_synthesis_recovery.py",
+        "bytes": 9931,
+        "sha256": "879a50ab0455b60b06b63f2a35d667724b4886f04e43760394ae288714f2c6eb"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_entry.py",
+        "bytes": 5470,
+        "sha256": "b7cf410cf901deee4c63bfff18d19d9b5e522a314e2302424cc0b8d0958d81f3"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_checks.tcl",
+        "bytes": 45760,
+        "sha256": "f5dc49c682c56129f593e3a6ad1a2eb768ce87ed8efe3771bf714c657cfd1d09"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_evidence.py",
+        "bytes": 36631,
+        "sha256": "7f8a7186558e566d4f6fdd11460b30fc68936e9218a0e0d5d38c63ece10bee05"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_native_init.py",
+        "bytes": 3325,
+        "sha256": "242067918c4d4b12c1ef4457cdfa65a9bc472bfa7513a664524830dee5162b7b"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_physical.tcl",
+        "bytes": 6413,
+        "sha256": "0fdeb0a64d33aec204a95dd424a82e94dc38c50d59e174b2ad5371f576379650"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_physical_evidence.py",
+        "bytes": 9694,
+        "sha256": "23827a62013f55a8ed191b98ed516520148e1e131499f1dc1b3d4055c70be95d"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_recover_synthesis.tcl",
+        "bytes": 2692,
+        "sha256": "81a44d082210c9b2e84fb280842c4cb1c94e0831264825aaa6aa613394f7bd39"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_resource_budget.py",
+        "bytes": 4060,
+        "sha256": "47a716ece2f1ea034edb7dbc36826229b79a902441300d6f51d7b2a0bae8bf60"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_shared_connectivity.tcl",
+        "bytes": 13721,
+        "sha256": "59c22aed01befb55c4144f9869558548ec4bb6e2598e5d068f594d9325e05030"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_snapshot_decode.py",
+        "bytes": 5744,
+        "sha256": "e04258119378a783271959ccad9e795a954b704aeb05a652047775bcf10bb451"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_snapshot_stream.tcl",
+        "bytes": 4280,
+        "sha256": "71e2524bd095e92a70ef2e075d901245b623e1ebd901494a656d20f18bda789c"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_stage.py",
+        "bytes": 10735,
+        "sha256": "87f3c67e1ccfca04bce42e9bfbbf6d0dbf4cba09f4a2c58ec8e4d1d01a6e294c"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_synth_recovery.py",
+        "bytes": 15444,
+        "sha256": "cd6c8c55ebf13336f7a40dd045da110a26e222eb5aa934e274df1fefd1a4e31c"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_system_python.tcl",
+        "bytes": 272,
+        "sha256": "2d4ab5ce258829789a7558b583909f43be45607f4efbd22136792387f44bcf1e"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/mission0004_metadata_physical.tcl",
+        "bytes": 8420,
+        "sha256": "9fd03febc4ae0cc765004b62043bb7cabc252a9294a36c9135bb3bbcb01b1bf5"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/mission0005_coordinated_physical.tcl",
+        "bytes": 104468,
+        "sha256": "04ebc8ea4c6f3eb332e022b844bde84080260971954f1ba73511d649d7fd7dfc"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m002_no_wall.py",
+        "bytes": 13257,
+        "sha256": "147d73052d6a110b4261d7110ce3d878377fa5b676d18235a251fee945edca8e"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m003_owned.py",
+        "bytes": 8381,
+        "sha256": "080b26ce0d315bad08bcc8518daa0fcb30930b7f04ab82991729b8a464e24abf"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_m003_stage.py",
+        "bytes": 4092,
+        "sha256": "679311ccfe1f2aae35c6968593d789474ae754949c38880b22c8a565073d4418"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_managed_eda.py",
+        "bytes": 12813,
+        "sha256": "ef3cc774f30764a4b7f40eca073e4cf8f69a9704f860b0c813bfa88c2bc37839"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/run_vcu118_board.sh",
+        "bytes": 7499,
+        "sha256": "b5cc6fa2bd06e45fc53be50e8a2b7ea4cf7f7d1319de7733617429d34e2673a4"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT004_cached_place_write_replica_proof/evidence/full_cached_launcher_preparation_receipt.json",
+        "bytes": 1380,
+        "sha256": "3ea1bc4a6ed5d433dff8e462c30cc0a273b6205473c045700f04fb989708c36f"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT004_cached_query_preparation/cached_query_native_boundary.json",
+        "bytes": 2070,
+        "sha256": "b4a304ff19ff9716ab08b05fb70b6022296b8ed1db43840fa5156959dc6f8c4b"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/cached_collector_CPU_integration_fixed_fixture.log",
+        "bytes": 952,
+        "sha256": "8053b7464b65a345b79444440af1bf1063d7eb998962b2f8c3efe2a5543ab4a6"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R003/attempts/AT004_cached_place_write_replica_proof/evidence/AT003_single_switch_preservation_and_successor_plan.json",
+        "bytes": 21355,
+        "sha256": "6dca143b87a4792c6d2acf43a1ddefccc5c76a458414e67cb02700f5d30c4e18"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/R003_AT001_minimal12FF_equivalence_probe_scope_20261020.json",
+        "bytes": 4977,
+        "sha256": "c9a942c2fdeb74967fb81fb1cf8beb55aea0d2a09c98d408e313134c4a06ee57"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/R003_AT001_write_address_delta_independent_review_20261020.json",
+        "bytes": 93378,
+        "sha256": "e7cba51b8279932077baedc4920b66a5323a4514b70e5d528b8aeb333cc3defa"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT023_complete_native_clock_increment.json",
+        "bytes": 4911,
+        "sha256": "e8025c945100a7653f85bcc041ba9bc76d3475d10919cb4c4121b5e422c98ed8"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT025_independent_clock_boundary_increment.json",
+        "bytes": 4170,
+        "sha256": "c026b97ba181c82b20a78f5bdb9fa65b8f7cda5a8f8c16b0991ca5a1793cf863"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT027_final_reset_exports_budget_and_freeze_one_shot_review.json",
+        "bytes": 59354,
+        "sha256": "f1bf83f611ecd1e44715f45d614e23c7712423b3ecc7c2dce11e7d939347ae4a"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT035_actual_G4_consolidated_independent_review_20261020.json",
+        "bytes": 29439,
+        "sha256": "06954c10f62c382aaa53b18914233eb4c30e367790c9e9127bb461af41334a6b"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/place_write_replica_proof/test_cached_collector.py",
+        "bytes": 8747,
+        "sha256": "50d7685b35413eace2668b6a168df5dee65b53196f906e868abc14a6484bba69"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT004_cached_collector_incremental_CPU_review.py",
+        "bytes": 4977,
+        "sha256": "54ba0e512899655b1eb1d676d252e5d755570973edf32302d08d15093404ac01"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT004_cached_collector_incremental_CPU_review_20261020.json",
+        "bytes": 1005,
+        "sha256": "f652771c96a4ccb4e6beafdcbca663db97d2cff816a61f188d27ee8ff023d3f1"
+      }
+    ],
+    "large_input_identity_checks_delegated": [
+      {
+        "identity": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/place.dcp",
+          "bytes": 580960506,
+          "sha256": "b9e2f6dbf4fc6e013c6e4cf6078218983529f799e7ce2ecf9d0f905892f242e5"
+        },
+        "A007": "size-only; full frozen identity checked by owner original actual prepare-only launcher"
+      },
+      {
+        "identity": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/m003_native_place.json",
+          "bytes": 107153507,
+          "sha256": "6eb90ed584d1a0b8a0e4db0e5e40c3cf79f130a2fe503d0c3f5b2b70ea02ed8f"
+        },
+        "A007": "size-only; full frozen identity checked by owner original actual prepare-only launcher"
+      }
+    ],
+    "prior_reviews": [
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/R003_AT001_minimal12FF_equivalence_probe_scope_20261020.json",
+        "bytes": 4977,
+        "sha256": "c9a942c2fdeb74967fb81fb1cf8beb55aea0d2a09c98d408e313134c4a06ee57"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/R003_AT001_write_address_delta_independent_review_20261020.json",
+        "bytes": 93378,
+        "sha256": "e7cba51b8279932077baedc4920b66a5323a4514b70e5d528b8aeb333cc3defa"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT023_complete_native_clock_increment.json",
+        "bytes": 4911,
+        "sha256": "e8025c945100a7653f85bcc041ba9bc76d3475d10919cb4c4121b5e422c98ed8"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT025_independent_clock_boundary_increment.json",
+        "bytes": 4170,
+        "sha256": "c026b97ba181c82b20a78f5bdb9fa65b8f7cda5a8f8c16b0991ca5a1793cf863"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT027_final_reset_exports_budget_and_freeze_one_shot_review.json",
+        "bytes": 59354,
+        "sha256": "f1bf83f611ecd1e44715f45d614e23c7712423b3ecc7c2dce11e7d939347ae4a"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT035_actual_G4_consolidated_independent_review_20261020.json",
+        "bytes": 29439,
+        "sha256": "06954c10f62c382aaa53b18914233eb4c30e367790c9e9127bb461af41334a6b"
+      }
+    ]
+  },
+  "boundaries": {
+    "no_EDA": true,
+    "no_process_or_lock_action": true,
+    "no_current_job_polling": true,
+    "no_wait": true,
+    "no_observer": true,
+    "no_descendants": true,
+    "no_hot_edit": true,
+    "no_large_DCP_snapshot_graph_read": true,
+    "no_old_suite_rerun": true
+  },
+  "next": "Root can present the concrete reviewed candidate and singleAT003preservation plan for the user exception. If AT003 has naturally ended first, use actual closure and existing continuous authorization. A018 executes only after the applicable actual prerequisite; ordinary engineering proof/repair continues without another invented approval gate.",
+  "delivery": "Real Root notification immediately after artifact creation; no ongoing background monitoring established."
+}

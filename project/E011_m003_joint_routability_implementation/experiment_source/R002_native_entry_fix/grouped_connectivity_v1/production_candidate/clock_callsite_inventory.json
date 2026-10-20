@@ -1,0 +1,36 @@
+{
+  "scope": "Only proven clock paths optimized; D startpoint/C raw facts and nonclock D/Q/CE/R/data/cascade queries retain native semantics",
+  "callsites": [
+    {
+      "scope": "core_address17/C",
+      "path": "snapshot_body core_address",
+      "method": "clock_group actual bind"
+    },
+    {
+      "scope": "payload13120/C",
+      "path": "snapshot_body head/tail",
+      "method": "clock_group actual bind"
+    },
+    {
+      "scope": "address34/C",
+      "path": "snapshot_body addresses",
+      "method": "clock_group actual bind"
+    },
+    {
+      "scope": "same address34/C in helper_pins",
+      "path": "helper_pin_row",
+      "method": "exact existing-binding lookup; no native net/source query"
+    },
+    {
+      "scope": "URAM80/CLK",
+      "path": "memory_pin_row",
+      "method": "actual bind + source once/group"
+    },
+    {
+      "scope": "selected metadata/clk",
+      "path": "snapshot_body control_sources",
+      "method": "actual bind; original boundary witness retained"
+    }
+  ],
+  "unoptimized_clock_collection_paths_found": []
+}

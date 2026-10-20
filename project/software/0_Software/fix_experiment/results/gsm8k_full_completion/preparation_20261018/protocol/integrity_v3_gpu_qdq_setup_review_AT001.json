@@ -1,0 +1,42 @@
+{
+  "schema": "scalellm_gsm8k_gpu0_QDQ_setup_independent_review_v1",
+  "reviewed_at_utc": "2026-10-18T04:40:14.182773+00:00",
+  "CPU_only": true,
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "cuda_initialized": false,
+  "attempt": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/weight_integrity_v1_gpu_smoke/Llama-3.1-8B-Instruct/a8w4_fp32/AT001",
+  "live_integrity_snapshot_sha256": "f8a89c44aa0238c783d30ef60cc38298e9c10ba41b46205f3fbb9ceb88db3efd",
+  "checkpoint_manifest_root_matches_independently_reviewed_BF16": true,
+  "input_names": 293,
+  "QDQ_modules_fullshape_rebuilt": 224,
+  "per_op": {
+    "down_proj": 32,
+    "gate_proj": 32,
+    "up_proj": 32,
+    "k_proj": 32,
+    "o_proj": 32,
+    "q_proj": 32,
+    "v_proj": 32
+  },
+  "QDQ_buffer_names": 224,
+  "effective_static_names": 295,
+  "external_cache_checks": [
+    {
+      "name": "external_cache:scalepath4_method_inference._H_CACHE:[\"cuda:0\",\"32\",\"torch.bfloat16\"]",
+      "sha256": "c60b6cb0db86a5ed5e9d50823ed4d8e23913886299124d759804c2dac02de2a9",
+      "independent_Sylvester_CPU_values_exact": true
+    },
+    {
+      "name": "external_cache:scalepath4_method_inference._H_CACHE:[\"cuda:0\",\"32\",\"torch.float32\"]",
+      "sha256": "9b2ff7218eb39d82b12a0589407c44e44c34dcc15de797faeffdbb61d4e7ca14",
+      "independent_Sylvester_CPU_values_exact": true
+    }
+  ],
+  "qdq_rebuild_phase_root_and_coverage_verified": true,
+  "execution_state": "setup_evidence_accepted_awaiting_v2_generation_and_terminal",
+  "limitations": "same-GPU/fullshape reconstruction evidence only; no CPU/GPU QDQ numerical equality imposed, no formal or matrix stage acceptance"
+}

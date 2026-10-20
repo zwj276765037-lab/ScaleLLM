@@ -1,0 +1,25 @@
+# E010：ACC保持暂停，速度修复与有限验证已完成
+
+execution_state: paused
+repair_state: completed_limited_two_case_GPU_validation
+performance_verdict: supported_within_two_case_training_diagnostic_scope
+verdict: inconclusive（正式GSM8K补测未完成）
+
+原ACC监督13056/worker35181已停止；本轮GPU诊断40866/42122自然exit0并退出，项目GPU0锁已释放，最终NVML仅见yqh23186/attempt03约12146MiB。没有控制/通知/修改yqh任务，GPU1/M003/EDA未操作。
+
+生产修复、两例真实GPU验证、独立原始证据审核及120 CPU最终来源门通过，16源最终快照已保存。当前没有本项目GPU worker，ACC matrix仍hold；stop marker明确gpu0_acc_paused=true、automatic_acc_resume_allowed=false，小时提醒enabled=false。
+
+若用户后续要求恢复，应采用全新R和修复版完整来源身份，先核实际资源并保持yqh不动，再全30组smoke→pilot→formal；旧R003行/资格不复用。有限共享诊断不替代独占资源资格、30组门或正式独立复算。当前不自动恢复，不承诺完整矩阵ETA。
+
+---
+Published: 2026-10-18T11:43:18.774273+00:00
+Publication: Pba1b1c69295b442e9475470cb2173ba7
+Execution state: paused
+Research verdict: inconclusive
+Applicability: 速度修复在8B BF16/a8w4四题共享训练诊断及独立审核内成立；正式ACC暂停，未取得全矩阵资格
+Evidence:
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/performance_repair_report.md
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/release_sources.json
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/measured_model_results.json
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/independent_model_reviews_received.json
+- project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/after_model_diagnostics_resources.json

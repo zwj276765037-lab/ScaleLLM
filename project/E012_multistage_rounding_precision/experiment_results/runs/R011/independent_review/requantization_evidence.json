@@ -1,0 +1,264 @@
+{
+  "execution_state": "completed",
+  "scope": "3 predeclared R006 diagnostic documents,299real prefix positions,decoder index31 only; existing data, no newGPU/model",
+  "comparison": {
+    "A": "CURRENT on saved current H30",
+    "C": "OUTPUT_ONLY on exactly the same saved current H30",
+    "same_layer_entrance": true,
+    "same_stage_quantizer_entrance": false,
+    "meaning": "Prior in-layer arithmetic creates different stage inputs; the same deterministic A8 quantizer is then applied to both."
+  },
+  "stage_definitions": {
+    "prepare2": "Post-attention norm activation for MLP Gate/Up: after original F16 Hadamard reconstruction and S27 clamp -> shared Group32 A8 encoding -> physical decode",
+    "prepare3": "Shared SiLU/up gated product for MLP Down: after original F16 Hadamard reconstruction and S35 clamp -> shared Group32 A8 encoding -> physical decode",
+    "before": "Compare A versus C physical Hadamard output, fixed integer divided by2^16; reconstructed from actual input with production formula, not a hardware register capture",
+    "after": "Compare A versus C reconstructed physical A8 values(q-zero_point)*ScaleCode*2^-shift, not differences between code integers"
+  },
+  "per_document": [
+    {
+      "doc_index": 0,
+      "doc_id": "c4_official_validation_first10000:6896",
+      "tokens": 128,
+      "prepare2": {
+        "count": 524288,
+        "before_relative_L2_percent": 0.032521891019065094,
+        "after_relative_L2_percent": 0.21391233921598773,
+        "before_absolute_RMSE": 0.0001313482393679676,
+        "after_absolute_RMSE": 0.0008639600303162635,
+        "before_reference_RMS": 0.40387638987833824,
+        "after_reference_RMS": 0.4038850837136241,
+        "RMSE_factor": 6.577629319384396,
+        "relative_L2_increases": true,
+        "absolute_RMSE_increases": true,
+        "before_physical_changed_count": 494622,
+        "after_physical_changed_count": 17449,
+        "after_physical_changed_percent": 3.3281326293945312,
+        "decoded_A8_from_saved_q_zp_code_shift_independently_verified": true
+      },
+      "prepare3": {
+        "count": 1835008,
+        "before_relative_L2_percent": 0.18221823013213997,
+        "after_relative_L2_percent": 0.39635894254724446,
+        "before_absolute_RMSE": 0.0010040121230648724,
+        "after_absolute_RMSE": 0.0021838836178959707,
+        "before_reference_RMS": 0.5509943337375128,
+        "after_reference_RMS": 0.5509863367434078,
+        "RMSE_factor": 2.1751566218437612,
+        "relative_L2_increases": true,
+        "absolute_RMSE_increases": true,
+        "before_physical_changed_count": 1817456,
+        "after_physical_changed_count": 562496,
+        "after_physical_changed_percent": 30.653599330357142,
+        "decoded_A8_from_saved_q_zp_code_shift_independently_verified": true
+      }
+    },
+    {
+      "doc_index": 1,
+      "doc_id": "imdb_test:10960",
+      "tokens": 128,
+      "prepare2": {
+        "count": 524288,
+        "before_relative_L2_percent": 0.032011677685299014,
+        "after_relative_L2_percent": 0.21432812167150342,
+        "before_absolute_RMSE": 0.0001254079866968842,
+        "after_absolute_RMSE": 0.0008396617138940924,
+        "before_reference_RMS": 0.391756995461929,
+        "after_reference_RMS": 0.3917646024916066,
+        "RMSE_factor": 6.695440505903234,
+        "relative_L2_increases": true,
+        "absolute_RMSE_increases": true,
+        "before_physical_changed_count": 494148,
+        "after_physical_changed_count": 17711,
+        "after_physical_changed_percent": 3.3781051635742188,
+        "decoded_A8_from_saved_q_zp_code_shift_independently_verified": true
+      },
+      "prepare3": {
+        "count": 1835008,
+        "before_relative_L2_percent": 0.1838932690438488,
+        "after_relative_L2_percent": 0.4017335537324433,
+        "before_absolute_RMSE": 0.0010352582780737412,
+        "after_absolute_RMSE": 0.002261643736723142,
+        "before_reference_RMS": 0.5629669228550648,
+        "after_reference_RMS": 0.5629710826269217,
+        "RMSE_factor": 2.1846178722968355,
+        "relative_L2_increases": true,
+        "absolute_RMSE_increases": true,
+        "before_physical_changed_count": 1817483,
+        "after_physical_changed_count": 588754,
+        "after_physical_changed_percent": 32.084546770368306,
+        "decoded_A8_from_saved_q_zp_code_shift_independently_verified": true
+      }
+    },
+    {
+      "doc_index": 2,
+      "doc_id": "ag_news_test:4667",
+      "tokens": 43,
+      "prepare2": {
+        "count": 176128,
+        "before_relative_L2_percent": 0.031163634908043074,
+        "after_relative_L2_percent": 0.2091064502907656,
+        "before_absolute_RMSE": 0.00012866359173214817,
+        "after_absolute_RMSE": 0.0008633246277175013,
+        "before_reference_RMS": 0.41286452017489517,
+        "after_reference_RMS": 0.4128637000518327,
+        "RMSE_factor": 6.7099372564911,
+        "relative_L2_increases": true,
+        "absolute_RMSE_increases": true,
+        "before_physical_changed_count": 164456,
+        "after_physical_changed_count": 5952,
+        "after_physical_changed_percent": 3.379360465116279,
+        "decoded_A8_from_saved_q_zp_code_shift_independently_verified": true
+      },
+      "prepare3": {
+        "count": 616448,
+        "before_relative_L2_percent": 0.15750889696720186,
+        "after_relative_L2_percent": 0.35579772698992385,
+        "before_absolute_RMSE": 0.0009747508504281107,
+        "after_absolute_RMSE": 0.0022018727658641105,
+        "before_reference_RMS": 0.61885447057069,
+        "after_reference_RMS": 0.618855208686161,
+        "RMSE_factor": 2.2589082788663872,
+        "relative_L2_increases": true,
+        "absolute_RMSE_increases": true,
+        "before_physical_changed_count": 608447,
+        "after_physical_changed_count": 179594,
+        "after_physical_changed_percent": 29.133681997508305,
+        "decoded_A8_from_saved_q_zp_code_shift_independently_verified": true
+      }
+    }
+  ],
+  "pooled": {
+    "prepare2": {
+      "before": {
+        "count": 1224704,
+        "changed_count": 1153226,
+        "error_energy": 0.020206447457894683,
+        "reference_signal_energy": 196006.44131440972,
+        "absolute_rmse": 0.00012844861173841202,
+        "reference_rms": 0.40005490880036737,
+        "pooled_relative_l2_percent": 0.03210774544014145
+      },
+      "after": {
+        "count": 1224704,
+        "changed_count": 41112,
+        "error_energy": 0.8922557722835336,
+        "reference_signal_energy": 196013.12877603766,
+        "absolute_rmse": 0.0008535502914399691,
+        "reference_rms": 0.4000617333950448,
+        "pooled_relative_l2_percent": 0.21335464509351676
+      },
+      "RMSE_factor": 6.645072141209592,
+      "relative_L2_factor": 6.6449587838945074,
+      "reference_RMS_factor": 1.0000170591449506
+    },
+    "prepare3": {
+      "before": {
+        "count": 4286464,
+        "changed_count": 4243386,
+        "error_energy": 4.402161144185811,
+        "reference_signal_energy": 1374758.896367527,
+        "absolute_rmse": 0.0010134057818246747,
+        "reference_rms": 0.5663223207949315,
+        "pooled_relative_l2_percent": 0.17894505383474624
+      },
+      "after": {
+        "count": 4286464,
+        "changed_count": 1330844,
+        "error_energy": 21.12660658203822,
+        "reference_signal_energy": 1374751.8829956113,
+        "absolute_rmse": 0.00222006291476212,
+        "reference_rms": 0.566320876238313,
+        "pooled_relative_l2_percent": 0.3920150232688751
+      },
+      "RMSE_factor": 2.190694936400318,
+      "relative_L2_factor": 2.190700524368204,
+      "reference_RMS_factor": 0.999997449232415
+    }
+  },
+  "prepare3_representation_changes": [
+    {
+      "coordinate": "prepare3",
+      "field": "codes_u8",
+      "denominator": 133952,
+      "AC_changed": 26713,
+      "AC_percent": 19.942218107978977,
+      "AB_changed": 97982,
+      "AB_percent": 73.14709746774965
+    },
+    {
+      "coordinate": "prepare3",
+      "field": "shifts_u8",
+      "denominator": 133952,
+      "AC_changed": 187,
+      "AC_percent": 0.13960224558050646,
+      "AB_changed": 1445,
+      "AB_percent": 1.078744624940277
+    },
+    {
+      "coordinate": "prepare3",
+      "field": "values_u8",
+      "denominator": 4286464,
+      "AC_changed": 849611,
+      "AC_percent": 19.82078934991639,
+      "AB_changed": 2715760,
+      "AB_percent": 63.356650143334925
+    },
+    {
+      "coordinate": "prepare3",
+      "field": "zero_points_u8",
+      "denominator": 133952,
+      "AC_changed": 11225,
+      "AC_percent": 8.379867415193502,
+      "AB_changed": 56076,
+      "AB_percent": 41.86275680840898
+    }
+  ],
+  "silu_address_changes": {
+    "coordinate": "silu",
+    "field": "lut_address",
+    "denominator": 4286464,
+    "AC_changed": 835466,
+    "AC_percent": 19.49079707656474,
+    "AB_changed": 3339683,
+    "AB_percent": 77.91230720705924
+  },
+  "silu_address_difference_histogram": {
+    "0": 3450998,
+    "1": 833691,
+    "2": 1701,
+    "3": 62,
+    "4": 10,
+    "7": 1,
+    "5": 1
+  },
+  "conclusion": "Dynamic quantization amplification is observed in each of these3 last-layer cases; no claim that it dominates all32layers or all1024documents.",
+  "limitations": [
+    "A/C internal-stage differences are cumulative from a common layer entrance, not isolated local error at each node.",
+    "Code/shift/value changed percentages are representation-event frequencies with different denominators, not relative numerical error or causal fractions.",
+    "Before/after physical reference RMS is reported to separate error-amplitude amplification from denominator changes.",
+    "The shared quantizer is intentionally discontinuous; the evidence does not identify a quantizer implementation bug or unique whole-network root cause.",
+    "SiLU address changes and gated-product differences include upstream input perturbations; shared-rule extra zero does not imply zero total approximation/exit loss."
+  ],
+  "source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/independent_review/accumulation_explanation.json",
+    "sha256": "76188b7151b3b66136162978353602c12c3a9b7d7ad56207f9b8dd095e1f2d93",
+    "bytes": 53783
+  },
+  "primary_sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/attempts/AT002_singleblock_fourway_v2/documents/doc000/primary_summary.json",
+      "sha256": "cad39cc1438b4b8ba25923262462958a48e5a67fd0514a4b66bd194a5d970ab0",
+      "bytes": 121581
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/attempts/AT002_singleblock_fourway_v2/documents/doc001/primary_summary.json",
+      "sha256": "e7021948acfe020016abc4f79d5cc7f62b036fb3120a94747edc589857bcf7a4",
+      "bytes": 120625
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/attempts/AT002_singleblock_fourway_v2/documents/doc002/primary_summary.json",
+      "sha256": "3444fd6d07af54de1a4e676a85371a6e8bc4a7f37d311db8bbc223c6d491d06c",
+      "bytes": 120578
+    }
+  ]
+}

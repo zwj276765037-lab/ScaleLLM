@@ -1,0 +1,61 @@
+{
+  "observed_utc": "2026-10-18T03:04:08.721595+00:00",
+  "execution": "actual81-group bit/object/region mapping independently reconstructed; proposed CE/data formula256case check completed",
+  "verdict": "C-M2 design mechanism and F4 regional partition supported; G2 final package and actual implementation remain pending",
+  "applicability": "head42/tail39 proposed81LUT1 version, supersedes27-group prototype; no payload duplication or requested oldCR relocation",
+  "review": "A007 independent exact sets, native site count join, source/schema review and formula check",
+  "groups_per_entry": {
+    "head": 42,
+    "tail": 39
+  },
+  "total_LUT1": 81,
+  "physical_payload_FF": 13120,
+  "max_group_width": 256,
+  "CR_count": 23,
+  "distinct_CE_upper_bound": 81,
+  "potential_control_set_delta": 79,
+  "all_group_members_match_current_native_CR": true,
+  "all_bit_sets_disjoint_and_complete": true,
+  "actual_grouping_matches_sorted_bit_chunks_per_entry_SLR_CR": true,
+  "old_fixed_LOC_BEL_count": 0,
+  "M2_CR_intersection_A3_address_CR": [],
+  "sources": [
+    {
+      "path": "agent/A006/M003_SM014_design_20261018/F1_F3_C_M2_region_groups.json",
+      "bytes": 2224433,
+      "sha256": "75abfae1d81cb75d13a8543a63f4f79ef1c70e25fee08d19d77a2c0f1627ad0f"
+    },
+    {
+      "path": "agent/A006/M003_SM014_design_20261018/build_M2_region_groups.py",
+      "bytes": 2751,
+      "sha256": "f028f8609a6e2d480e8feb13bd622510d74ace3bb9629066bd2da139acc6af37"
+    },
+    {
+      "path": "agent/A006/M003_SM014_design_20261018/F4_C_M2_region_distribution_rules.md",
+      "bytes": 3804,
+      "sha256": "034e1b67c3aa39b61681b984824effb46613f9ebd137c16ceeb72414b5251013"
+    },
+    {
+      "path": "agent/A006/M003_SM014_design_20261018/F4_parent_meta_register_objects.json",
+      "bytes": 11705889,
+      "sha256": "1c83139703c7724e1c46294656e23ab1d3c9017a37079344f32ff9ee2064eae3"
+    }
+  ],
+  "formula_check": {
+    "path": "agent/A007/M003_SM014_review_20261018/M2_equation_check.json",
+    "bytes": 849,
+    "sha256": "9c17fe8edc5a2ee4248f924d8fc33df049c133f07ffd6dcb927c7b0c939c8681"
+  },
+  "risks": [
+    "Added combinational LUT delay and global master-to-buffer routes remain; no guaranteed timing gain.",
+    "81 CE identities may add79 controlsets relative to prior2, reducing packing flexibility.",
+    "Hard existing-CR binding restricts placer freedom even without intended CR relocation; full D/Q/control timing remains required.",
+    "Nominal region site count is not compatible free LUT/FF capacity."
+  ],
+  "G4_and_placed_requirements": [
+    "81 live LUT1 INIT2 with exact pin partitions and master only42/39 inputs",
+    "No old direct master-to-FF CE, no bypass/merge or conversion to data mux",
+    "All13120FF exact role/bit, same original semantics and no added reset/clock/FF",
+    "Current/new hard constraints and physicalparent qualified preplace; real sameCR/SLR andfanout checked only after placement"
+  ]
+}

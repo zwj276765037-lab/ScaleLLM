@@ -1,0 +1,7421 @@
+{
+  "formal_prompt_byte_parity": {
+    "compared": 1319,
+    "mismatches": 0
+  },
+  "harness": {
+    "version": "0.4.11",
+    "task_yaml": "/home/zwj/.local/lib/python3.10/site-packages/lm_eval/tasks/gsm8k/gsm8k.yaml",
+    "task_yaml_sha256": "82eb1780b263bc040729032b3e076990c7933f42163c91e359f38820dd1d8833",
+    "metadata_version": 3.0
+  },
+  "official_gold_score_parity": {
+    "compared": 1319,
+    "mismatches": 0
+  },
+  "snapshot_and_tamper_guards": {
+    "portable_relative_snapshot": "passed",
+    "dataset_tamper": "rejected",
+    "fewshot_tamper": "rejected"
+  },
+  "test_gold_isolation": {
+    "perturbed_answers": 1319,
+    "prompt_changes": 0
+  },
+  "score_cases": [
+    {
+      "response": "#### 42",
+      "gold": "calculation\n#### 42",
+      "local": {
+        "strict_prediction": "42",
+        "flexible_prediction": "42",
+        "normalized_gold": "42",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "42",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "42",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 1\n#### 42",
+      "gold": "#### 42",
+      "local": {
+        "strict_prediction": "1",
+        "flexible_prediction": "42",
+        "normalized_gold": "42",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "1",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "42",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 42\n#### 1",
+      "gold": "#### 42",
+      "local": {
+        "strict_prediction": "42",
+        "flexible_prediction": "1",
+        "normalized_gold": "42",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "42",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "1",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "No final marker. The answer is 42.",
+      "gold": "#### 42",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "42.",
+        "normalized_gold": "42",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "42.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "####42",
+      "gold": "#### 42",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "42",
+        "normalized_gold": "42",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "42",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "####  42",
+      "gold": "#### 42",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "42",
+        "normalized_gold": "42",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "42",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### +42",
+      "gold": "#### 42",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "42",
+        "normalized_gold": "42",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "42",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -42",
+      "gold": "#### -42",
+      "local": {
+        "strict_prediction": "-42",
+        "flexible_prediction": "-42",
+        "normalized_gold": "-42",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-42",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-42",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### $1,234.00",
+      "gold": "#### 1234.00",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$1,234.00",
+        "normalized_gold": "1234.00",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$1,234.00",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 1,234",
+      "gold": "#### 1234",
+      "local": {
+        "strict_prediction": "1,234",
+        "flexible_prediction": "1,234",
+        "normalized_gold": "1234",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "1,234",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "1,234",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 42.",
+      "gold": "#### 42",
+      "local": {
+        "strict_prediction": "42.",
+        "flexible_prediction": "42.",
+        "normalized_gold": "42",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "42.",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "42.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 42.0",
+      "gold": "#### 42",
+      "local": {
+        "strict_prediction": "42.0",
+        "flexible_prediction": "42.0",
+        "normalized_gold": "42",
+        "correct_strict": false,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "42.0",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "42.0",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "#### .5",
+      "gold": "#### 0.5",
+      "local": {
+        "strict_prediction": ".5",
+        "flexible_prediction": ".5",
+        "normalized_gold": "0.5",
+        "correct_strict": false,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": ".5",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": ".5",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "#### -0",
+      "gold": "#### 0",
+      "local": {
+        "strict_prediction": "-0",
+        "flexible_prediction": "-0",
+        "normalized_gold": "0",
+        "correct_strict": false,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-0",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-0",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "#### 00042",
+      "gold": "#### 42",
+      "local": {
+        "strict_prediction": "00042",
+        "flexible_prediction": "00042",
+        "normalized_gold": "42",
+        "correct_strict": false,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "00042",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "00042",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "#### 1/2",
+      "gold": "#### 1",
+      "local": {
+        "strict_prediction": "1",
+        "flexible_prediction": "2",
+        "normalized_gold": "1",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "1",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "#### 4e2",
+      "gold": "#### 4",
+      "local": {
+        "strict_prediction": "4",
+        "flexible_prediction": "2",
+        "normalized_gold": "4",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "#### ４２",
+      "gold": "#### 42",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "[invalid]",
+        "normalized_gold": "42",
+        "correct_strict": false,
+        "correct_flexible": false,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "[invalid]",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "\\boxed{42}",
+      "gold": "#### 42",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "42",
+        "normalized_gold": "42",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "42",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 42 apples, later 99",
+      "gold": "#### 42",
+      "local": {
+        "strict_prediction": "42",
+        "flexible_prediction": "99",
+        "normalized_gold": "42",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "42",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "99",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "#### -1,234.50.",
+      "gold": "work\n#### -1234.50",
+      "local": {
+        "strict_prediction": "-1,234.50.",
+        "flexible_prediction": "-1,234.50.",
+        "normalized_gold": "-1234.50",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-1,234.50.",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-1,234.50.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "one number 3",
+      "gold": "#### 3",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "3",
+        "normalized_gold": "3",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "3",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "numbers 11 and -7",
+      "gold": "#### -7",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-7",
+        "normalized_gold": "-7",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-7",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 42",
+      "gold": "work\n#### 42\n",
+      "local": {
+        "strict_prediction": "42",
+        "flexible_prediction": "42",
+        "normalized_gold": "42\n",
+        "correct_strict": false,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "42",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "42",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "#### 42",
+      "gold": "work\n#### 42 ",
+      "local": {
+        "strict_prediction": "42",
+        "flexible_prediction": "42",
+        "normalized_gold": "42 ",
+        "correct_strict": false,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "42",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "42",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "#### 42",
+      "gold": "#### 0\n#### 42",
+      "local": {
+        "strict_prediction": "42",
+        "flexible_prediction": "42",
+        "normalized_gold": "42",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "42",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "42",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 42",
+      "gold": "#### $42.",
+      "local": {
+        "strict_prediction": "42",
+        "flexible_prediction": "42",
+        "normalized_gold": "42",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "42",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "42",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "",
+      "gold": "#### 42",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "[invalid]",
+        "normalized_gold": "42",
+        "correct_strict": false,
+        "correct_flexible": false,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "[invalid]",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": null,
+      "gold": "#### 42",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "[invalid]",
+        "normalized_gold": "42",
+        "correct_strict": false,
+        "correct_flexible": false,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "[invalid]",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": 123,
+      "gold": "#### 123",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "[invalid]",
+        "normalized_gold": "123",
+        "correct_strict": false,
+        "correct_flexible": false,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "[invalid]",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "The answer is zero.",
+      "gold": "#### 0",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "[invalid]",
+        "normalized_gold": "0",
+        "correct_strict": false,
+        "correct_flexible": false,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "[invalid]",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "[invalid]",
+      "gold": "#### 0",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "[invalid]",
+        "normalized_gold": "0",
+        "correct_strict": false,
+        "correct_flexible": false,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "[invalid]",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "#### --42",
+      "gold": "#### -42",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-42",
+        "normalized_gold": "-42",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-42",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 1.2.3",
+      "gold": "#### 1.2.3",
+      "local": {
+        "strict_prediction": "1.2.3",
+        "flexible_prediction": "1.2.3",
+        "normalized_gold": "1.2.3",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "1.2.3",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "1.2.3",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### ,",
+      "gold": "#### 0",
+      "local": {
+        "strict_prediction": ",",
+        "flexible_prediction": "[invalid]",
+        "normalized_gold": "0",
+        "correct_strict": false,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": ",",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "[invalid]",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "work -6871\n#### -3,782",
+      "gold": "work\n#### -3782",
+      "local": {
+        "strict_prediction": "-3,782",
+        "flexible_prediction": "-3,782",
+        "normalized_gold": "-3782",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-3,782",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-3,782",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -6871\nother -3782",
+      "gold": "#### -6871",
+      "local": {
+        "strict_prediction": "-6871",
+        "flexible_prediction": "-3782",
+        "normalized_gold": "-6871",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-6871",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-3782",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-3,782.",
+      "gold": "#### -3782",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-3,782.",
+        "normalized_gold": "-3782",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-3,782.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -2374\n#### 2,198",
+      "gold": "work\n#### 2198",
+      "local": {
+        "strict_prediction": "2,198",
+        "flexible_prediction": "2,198",
+        "normalized_gold": "2198",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "2,198",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2,198",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -2374\nother 2198",
+      "gold": "#### -2374",
+      "local": {
+        "strict_prediction": "-2374",
+        "flexible_prediction": "2198",
+        "normalized_gold": "-2374",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-2374",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2198",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $2,198.",
+      "gold": "#### 2198",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$2,198.",
+        "normalized_gold": "2198",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$2,198.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 2307\n#### 3,777",
+      "gold": "work\n#### 3777",
+      "local": {
+        "strict_prediction": "3,777",
+        "flexible_prediction": "3,777",
+        "normalized_gold": "3777",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "3,777",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "3,777",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 2307\nother 3777",
+      "gold": "#### 2307",
+      "local": {
+        "strict_prediction": "2307",
+        "flexible_prediction": "3777",
+        "normalized_gold": "2307",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "2307",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "3777",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $3,777.",
+      "gold": "#### 3777",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$3,777.",
+        "normalized_gold": "3777",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$3,777.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 887\n#### -8,336",
+      "gold": "work\n#### -8336",
+      "local": {
+        "strict_prediction": "-8,336",
+        "flexible_prediction": "-8,336",
+        "normalized_gold": "-8336",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-8,336",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-8,336",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 887\nother -8336",
+      "gold": "#### 887",
+      "local": {
+        "strict_prediction": "887",
+        "flexible_prediction": "-8336",
+        "normalized_gold": "887",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "887",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-8336",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-8,336.",
+      "gold": "#### -8336",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-8,336.",
+        "normalized_gold": "-8336",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-8,336.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 1942\n#### 2,973",
+      "gold": "work\n#### 2973",
+      "local": {
+        "strict_prediction": "2,973",
+        "flexible_prediction": "2,973",
+        "normalized_gold": "2973",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "2,973",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2,973",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 1942\nother 2973",
+      "gold": "#### 1942",
+      "local": {
+        "strict_prediction": "1942",
+        "flexible_prediction": "2973",
+        "normalized_gold": "1942",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "1942",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2973",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $2,973.",
+      "gold": "#### 2973",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$2,973.",
+        "normalized_gold": "2973",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$2,973.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -3154\n#### 7,767",
+      "gold": "work\n#### 7767",
+      "local": {
+        "strict_prediction": "7,767",
+        "flexible_prediction": "7,767",
+        "normalized_gold": "7767",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "7,767",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7,767",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -3154\nother 7767",
+      "gold": "#### -3154",
+      "local": {
+        "strict_prediction": "-3154",
+        "flexible_prediction": "7767",
+        "normalized_gold": "-3154",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-3154",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7767",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $7,767.",
+      "gold": "#### 7767",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$7,767.",
+        "normalized_gold": "7767",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$7,767.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -5605\n#### -4,632",
+      "gold": "work\n#### -4632",
+      "local": {
+        "strict_prediction": "-4,632",
+        "flexible_prediction": "-4,632",
+        "normalized_gold": "-4632",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-4,632",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-4,632",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -5605\nother -4632",
+      "gold": "#### -5605",
+      "local": {
+        "strict_prediction": "-5605",
+        "flexible_prediction": "-4632",
+        "normalized_gold": "-5605",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-5605",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-4632",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-4,632.",
+      "gold": "#### -4632",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-4,632.",
+        "normalized_gold": "-4632",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-4,632.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -8139\n#### 6,164",
+      "gold": "work\n#### 6164",
+      "local": {
+        "strict_prediction": "6,164",
+        "flexible_prediction": "6,164",
+        "normalized_gold": "6164",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6,164",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6,164",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -8139\nother 6164",
+      "gold": "#### -8139",
+      "local": {
+        "strict_prediction": "-8139",
+        "flexible_prediction": "6164",
+        "normalized_gold": "-8139",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-8139",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6164",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $6,164.",
+      "gold": "#### 6164",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$6,164.",
+        "normalized_gold": "6164",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$6,164.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 6340\n#### -5,378",
+      "gold": "work\n#### -5378",
+      "local": {
+        "strict_prediction": "-5,378",
+        "flexible_prediction": "-5,378",
+        "normalized_gold": "-5378",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-5,378",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-5,378",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 6340\nother -5378",
+      "gold": "#### 6340",
+      "local": {
+        "strict_prediction": "6340",
+        "flexible_prediction": "-5378",
+        "normalized_gold": "6340",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6340",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-5378",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-5,378.",
+      "gold": "#### -5378",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-5,378.",
+        "normalized_gold": "-5378",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-5,378.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 3277\n#### 6,084",
+      "gold": "work\n#### 6084",
+      "local": {
+        "strict_prediction": "6,084",
+        "flexible_prediction": "6,084",
+        "normalized_gold": "6084",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6,084",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6,084",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 3277\nother 6084",
+      "gold": "#### 3277",
+      "local": {
+        "strict_prediction": "3277",
+        "flexible_prediction": "6084",
+        "normalized_gold": "3277",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "3277",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6084",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $6,084.",
+      "gold": "#### 6084",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$6,084.",
+        "normalized_gold": "6084",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$6,084.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 4073\n#### -5,969",
+      "gold": "work\n#### -5969",
+      "local": {
+        "strict_prediction": "-5,969",
+        "flexible_prediction": "-5,969",
+        "normalized_gold": "-5969",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-5,969",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-5,969",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 4073\nother -5969",
+      "gold": "#### 4073",
+      "local": {
+        "strict_prediction": "4073",
+        "flexible_prediction": "-5969",
+        "normalized_gold": "4073",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4073",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-5969",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-5,969.",
+      "gold": "#### -5969",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-5,969.",
+        "normalized_gold": "-5969",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-5,969.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -1556\n#### -7,296",
+      "gold": "work\n#### -7296",
+      "local": {
+        "strict_prediction": "-7,296",
+        "flexible_prediction": "-7,296",
+        "normalized_gold": "-7296",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-7,296",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-7,296",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -1556\nother -7296",
+      "gold": "#### -1556",
+      "local": {
+        "strict_prediction": "-1556",
+        "flexible_prediction": "-7296",
+        "normalized_gold": "-1556",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-1556",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-7296",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-7,296.",
+      "gold": "#### -7296",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-7,296.",
+        "normalized_gold": "-7296",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-7,296.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 235\n#### 2,180",
+      "gold": "work\n#### 2180",
+      "local": {
+        "strict_prediction": "2,180",
+        "flexible_prediction": "2,180",
+        "normalized_gold": "2180",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "2,180",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2,180",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 235\nother 2180",
+      "gold": "#### 235",
+      "local": {
+        "strict_prediction": "235",
+        "flexible_prediction": "2180",
+        "normalized_gold": "235",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "235",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2180",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $2,180.",
+      "gold": "#### 2180",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$2,180.",
+        "normalized_gold": "2180",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$2,180.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 7245\n#### -3,017",
+      "gold": "work\n#### -3017",
+      "local": {
+        "strict_prediction": "-3,017",
+        "flexible_prediction": "-3,017",
+        "normalized_gold": "-3017",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-3,017",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-3,017",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 7245\nother -3017",
+      "gold": "#### 7245",
+      "local": {
+        "strict_prediction": "7245",
+        "flexible_prediction": "-3017",
+        "normalized_gold": "7245",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "7245",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-3017",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-3,017.",
+      "gold": "#### -3017",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-3,017.",
+        "normalized_gold": "-3017",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-3,017.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 5023\n#### -3,129",
+      "gold": "work\n#### -3129",
+      "local": {
+        "strict_prediction": "-3,129",
+        "flexible_prediction": "-3,129",
+        "normalized_gold": "-3129",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-3,129",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-3,129",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 5023\nother -3129",
+      "gold": "#### 5023",
+      "local": {
+        "strict_prediction": "5023",
+        "flexible_prediction": "-3129",
+        "normalized_gold": "5023",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "5023",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-3129",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-3,129.",
+      "gold": "#### -3129",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-3,129.",
+        "normalized_gold": "-3129",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-3,129.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 7379\n#### 6,829",
+      "gold": "work\n#### 6829",
+      "local": {
+        "strict_prediction": "6,829",
+        "flexible_prediction": "6,829",
+        "normalized_gold": "6829",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6,829",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6,829",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 7379\nother 6829",
+      "gold": "#### 7379",
+      "local": {
+        "strict_prediction": "7379",
+        "flexible_prediction": "6829",
+        "normalized_gold": "7379",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "7379",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6829",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $6,829.",
+      "gold": "#### 6829",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$6,829.",
+        "normalized_gold": "6829",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$6,829.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 9161\n#### -8,664",
+      "gold": "work\n#### -8664",
+      "local": {
+        "strict_prediction": "-8,664",
+        "flexible_prediction": "-8,664",
+        "normalized_gold": "-8664",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-8,664",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-8,664",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 9161\nother -8664",
+      "gold": "#### 9161",
+      "local": {
+        "strict_prediction": "9161",
+        "flexible_prediction": "-8664",
+        "normalized_gold": "9161",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "9161",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-8664",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-8,664.",
+      "gold": "#### -8664",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-8,664.",
+        "normalized_gold": "-8664",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-8,664.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -371\n#### 1,434",
+      "gold": "work\n#### 1434",
+      "local": {
+        "strict_prediction": "1,434",
+        "flexible_prediction": "1,434",
+        "normalized_gold": "1434",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "1,434",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "1,434",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -371\nother 1434",
+      "gold": "#### -371",
+      "local": {
+        "strict_prediction": "-371",
+        "flexible_prediction": "1434",
+        "normalized_gold": "-371",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-371",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "1434",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $1,434.",
+      "gold": "#### 1434",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$1,434.",
+        "normalized_gold": "1434",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$1,434.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 4877\n#### 5,780",
+      "gold": "work\n#### 5780",
+      "local": {
+        "strict_prediction": "5,780",
+        "flexible_prediction": "5,780",
+        "normalized_gold": "5780",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "5,780",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "5,780",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 4877\nother 5780",
+      "gold": "#### 4877",
+      "local": {
+        "strict_prediction": "4877",
+        "flexible_prediction": "5780",
+        "normalized_gold": "4877",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4877",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "5780",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $5,780.",
+      "gold": "#### 5780",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$5,780.",
+        "normalized_gold": "5780",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$5,780.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 6120\n#### 846",
+      "gold": "work\n#### 846",
+      "local": {
+        "strict_prediction": "846",
+        "flexible_prediction": "846",
+        "normalized_gold": "846",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "846",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "846",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 6120\nother 846",
+      "gold": "#### 6120",
+      "local": {
+        "strict_prediction": "6120",
+        "flexible_prediction": "846",
+        "normalized_gold": "6120",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6120",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "846",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $846.",
+      "gold": "#### 846",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$846.",
+        "normalized_gold": "846",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$846.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -8490\n#### 7,369",
+      "gold": "work\n#### 7369",
+      "local": {
+        "strict_prediction": "7,369",
+        "flexible_prediction": "7,369",
+        "normalized_gold": "7369",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "7,369",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7,369",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -8490\nother 7369",
+      "gold": "#### -8490",
+      "local": {
+        "strict_prediction": "-8490",
+        "flexible_prediction": "7369",
+        "normalized_gold": "-8490",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-8490",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7369",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $7,369.",
+      "gold": "#### 7369",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$7,369.",
+        "normalized_gold": "7369",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$7,369.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -4106\n#### -1,620",
+      "gold": "work\n#### -1620",
+      "local": {
+        "strict_prediction": "-1,620",
+        "flexible_prediction": "-1,620",
+        "normalized_gold": "-1620",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-1,620",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-1,620",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -4106\nother -1620",
+      "gold": "#### -4106",
+      "local": {
+        "strict_prediction": "-4106",
+        "flexible_prediction": "-1620",
+        "normalized_gold": "-4106",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-4106",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-1620",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-1,620.",
+      "gold": "#### -1620",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-1,620.",
+        "normalized_gold": "-1620",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-1,620.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -9586\n#### 4,414",
+      "gold": "work\n#### 4414",
+      "local": {
+        "strict_prediction": "4,414",
+        "flexible_prediction": "4,414",
+        "normalized_gold": "4414",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4,414",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "4,414",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -9586\nother 4414",
+      "gold": "#### -9586",
+      "local": {
+        "strict_prediction": "-9586",
+        "flexible_prediction": "4414",
+        "normalized_gold": "-9586",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-9586",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "4414",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $4,414.",
+      "gold": "#### 4414",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$4,414.",
+        "normalized_gold": "4414",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$4,414.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 6157\n#### -5,391",
+      "gold": "work\n#### -5391",
+      "local": {
+        "strict_prediction": "-5,391",
+        "flexible_prediction": "-5,391",
+        "normalized_gold": "-5391",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-5,391",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-5,391",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 6157\nother -5391",
+      "gold": "#### 6157",
+      "local": {
+        "strict_prediction": "6157",
+        "flexible_prediction": "-5391",
+        "normalized_gold": "6157",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6157",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-5391",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-5,391.",
+      "gold": "#### -5391",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-5,391.",
+        "normalized_gold": "-5391",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-5,391.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 1115\n#### -8,283",
+      "gold": "work\n#### -8283",
+      "local": {
+        "strict_prediction": "-8,283",
+        "flexible_prediction": "-8,283",
+        "normalized_gold": "-8283",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-8,283",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-8,283",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 1115\nother -8283",
+      "gold": "#### 1115",
+      "local": {
+        "strict_prediction": "1115",
+        "flexible_prediction": "-8283",
+        "normalized_gold": "1115",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "1115",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-8283",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-8,283.",
+      "gold": "#### -8283",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-8,283.",
+        "normalized_gold": "-8283",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-8,283.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 9908\n#### -2,824",
+      "gold": "work\n#### -2824",
+      "local": {
+        "strict_prediction": "-2,824",
+        "flexible_prediction": "-2,824",
+        "normalized_gold": "-2824",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-2,824",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-2,824",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 9908\nother -2824",
+      "gold": "#### 9908",
+      "local": {
+        "strict_prediction": "9908",
+        "flexible_prediction": "-2824",
+        "normalized_gold": "9908",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "9908",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-2824",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-2,824.",
+      "gold": "#### -2824",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-2,824.",
+        "normalized_gold": "-2824",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-2,824.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 1487\n#### -7,336",
+      "gold": "work\n#### -7336",
+      "local": {
+        "strict_prediction": "-7,336",
+        "flexible_prediction": "-7,336",
+        "normalized_gold": "-7336",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-7,336",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-7,336",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 1487\nother -7336",
+      "gold": "#### 1487",
+      "local": {
+        "strict_prediction": "1487",
+        "flexible_prediction": "-7336",
+        "normalized_gold": "1487",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "1487",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-7336",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-7,336.",
+      "gold": "#### -7336",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-7,336.",
+        "normalized_gold": "-7336",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-7,336.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -9900\n#### 8,524",
+      "gold": "work\n#### 8524",
+      "local": {
+        "strict_prediction": "8,524",
+        "flexible_prediction": "8,524",
+        "normalized_gold": "8524",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "8,524",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "8,524",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -9900\nother 8524",
+      "gold": "#### -9900",
+      "local": {
+        "strict_prediction": "-9900",
+        "flexible_prediction": "8524",
+        "normalized_gold": "-9900",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-9900",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "8524",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $8,524.",
+      "gold": "#### 8524",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$8,524.",
+        "normalized_gold": "8524",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$8,524.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -5799\n#### -187",
+      "gold": "work\n#### -187",
+      "local": {
+        "strict_prediction": "-187",
+        "flexible_prediction": "-187",
+        "normalized_gold": "-187",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-187",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-187",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -5799\nother -187",
+      "gold": "#### -5799",
+      "local": {
+        "strict_prediction": "-5799",
+        "flexible_prediction": "-187",
+        "normalized_gold": "-5799",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-5799",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-187",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-187.",
+      "gold": "#### -187",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-187.",
+        "normalized_gold": "-187",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-187.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 429\n#### -4,895",
+      "gold": "work\n#### -4895",
+      "local": {
+        "strict_prediction": "-4,895",
+        "flexible_prediction": "-4,895",
+        "normalized_gold": "-4895",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-4,895",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-4,895",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 429\nother -4895",
+      "gold": "#### 429",
+      "local": {
+        "strict_prediction": "429",
+        "flexible_prediction": "-4895",
+        "normalized_gold": "429",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "429",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-4895",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-4,895.",
+      "gold": "#### -4895",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-4,895.",
+        "normalized_gold": "-4895",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-4,895.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 6835\n#### 2,870",
+      "gold": "work\n#### 2870",
+      "local": {
+        "strict_prediction": "2,870",
+        "flexible_prediction": "2,870",
+        "normalized_gold": "2870",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "2,870",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2,870",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 6835\nother 2870",
+      "gold": "#### 6835",
+      "local": {
+        "strict_prediction": "6835",
+        "flexible_prediction": "2870",
+        "normalized_gold": "6835",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6835",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2870",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $2,870.",
+      "gold": "#### 2870",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$2,870.",
+        "normalized_gold": "2870",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$2,870.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -8007\n#### -499",
+      "gold": "work\n#### -499",
+      "local": {
+        "strict_prediction": "-499",
+        "flexible_prediction": "-499",
+        "normalized_gold": "-499",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-499",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-499",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -8007\nother -499",
+      "gold": "#### -8007",
+      "local": {
+        "strict_prediction": "-8007",
+        "flexible_prediction": "-499",
+        "normalized_gold": "-8007",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-8007",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-499",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-499.",
+      "gold": "#### -499",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-499.",
+        "normalized_gold": "-499",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-499.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -1636\n#### 9,396",
+      "gold": "work\n#### 9396",
+      "local": {
+        "strict_prediction": "9,396",
+        "flexible_prediction": "9,396",
+        "normalized_gold": "9396",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "9,396",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "9,396",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -1636\nother 9396",
+      "gold": "#### -1636",
+      "local": {
+        "strict_prediction": "-1636",
+        "flexible_prediction": "9396",
+        "normalized_gold": "-1636",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-1636",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "9396",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $9,396.",
+      "gold": "#### 9396",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$9,396.",
+        "normalized_gold": "9396",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$9,396.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 7263\n#### -7,561",
+      "gold": "work\n#### -7561",
+      "local": {
+        "strict_prediction": "-7,561",
+        "flexible_prediction": "-7,561",
+        "normalized_gold": "-7561",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-7,561",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-7,561",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 7263\nother -7561",
+      "gold": "#### 7263",
+      "local": {
+        "strict_prediction": "7263",
+        "flexible_prediction": "-7561",
+        "normalized_gold": "7263",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "7263",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-7561",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-7,561.",
+      "gold": "#### -7561",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-7,561.",
+        "normalized_gold": "-7561",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-7,561.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 8659\n#### -9,471",
+      "gold": "work\n#### -9471",
+      "local": {
+        "strict_prediction": "-9,471",
+        "flexible_prediction": "-9,471",
+        "normalized_gold": "-9471",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-9,471",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-9,471",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 8659\nother -9471",
+      "gold": "#### 8659",
+      "local": {
+        "strict_prediction": "8659",
+        "flexible_prediction": "-9471",
+        "normalized_gold": "8659",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "8659",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-9471",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-9,471.",
+      "gold": "#### -9471",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-9,471.",
+        "normalized_gold": "-9471",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-9,471.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 8339\n#### -3,045",
+      "gold": "work\n#### -3045",
+      "local": {
+        "strict_prediction": "-3,045",
+        "flexible_prediction": "-3,045",
+        "normalized_gold": "-3045",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-3,045",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-3,045",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 8339\nother -3045",
+      "gold": "#### 8339",
+      "local": {
+        "strict_prediction": "8339",
+        "flexible_prediction": "-3045",
+        "normalized_gold": "8339",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "8339",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-3045",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-3,045.",
+      "gold": "#### -3045",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-3,045.",
+        "normalized_gold": "-3045",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-3,045.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -6698\n#### 8,000",
+      "gold": "work\n#### 8000",
+      "local": {
+        "strict_prediction": "8,000",
+        "flexible_prediction": "8,000",
+        "normalized_gold": "8000",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "8,000",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "8,000",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -6698\nother 8000",
+      "gold": "#### -6698",
+      "local": {
+        "strict_prediction": "-6698",
+        "flexible_prediction": "8000",
+        "normalized_gold": "-6698",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-6698",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "8000",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $8,000.",
+      "gold": "#### 8000",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$8,000.",
+        "normalized_gold": "8000",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$8,000.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -9459\n#### 3,495",
+      "gold": "work\n#### 3495",
+      "local": {
+        "strict_prediction": "3,495",
+        "flexible_prediction": "3,495",
+        "normalized_gold": "3495",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "3,495",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "3,495",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -9459\nother 3495",
+      "gold": "#### -9459",
+      "local": {
+        "strict_prediction": "-9459",
+        "flexible_prediction": "3495",
+        "normalized_gold": "-9459",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-9459",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "3495",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $3,495.",
+      "gold": "#### 3495",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$3,495.",
+        "normalized_gold": "3495",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$3,495.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 5340\n#### 8,516",
+      "gold": "work\n#### 8516",
+      "local": {
+        "strict_prediction": "8,516",
+        "flexible_prediction": "8,516",
+        "normalized_gold": "8516",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "8,516",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "8,516",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 5340\nother 8516",
+      "gold": "#### 5340",
+      "local": {
+        "strict_prediction": "5340",
+        "flexible_prediction": "8516",
+        "normalized_gold": "5340",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "5340",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "8516",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $8,516.",
+      "gold": "#### 8516",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$8,516.",
+        "normalized_gold": "8516",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$8,516.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 9987\n#### 9,781",
+      "gold": "work\n#### 9781",
+      "local": {
+        "strict_prediction": "9,781",
+        "flexible_prediction": "9,781",
+        "normalized_gold": "9781",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "9,781",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "9,781",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 9987\nother 9781",
+      "gold": "#### 9987",
+      "local": {
+        "strict_prediction": "9987",
+        "flexible_prediction": "9781",
+        "normalized_gold": "9987",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "9987",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "9781",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $9,781.",
+      "gold": "#### 9781",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$9,781.",
+        "normalized_gold": "9781",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$9,781.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -6193\n#### -5,673",
+      "gold": "work\n#### -5673",
+      "local": {
+        "strict_prediction": "-5,673",
+        "flexible_prediction": "-5,673",
+        "normalized_gold": "-5673",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-5,673",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-5,673",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -6193\nother -5673",
+      "gold": "#### -6193",
+      "local": {
+        "strict_prediction": "-6193",
+        "flexible_prediction": "-5673",
+        "normalized_gold": "-6193",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-6193",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-5673",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-5,673.",
+      "gold": "#### -5673",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-5,673.",
+        "normalized_gold": "-5673",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-5,673.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -9481\n#### -7,219",
+      "gold": "work\n#### -7219",
+      "local": {
+        "strict_prediction": "-7,219",
+        "flexible_prediction": "-7,219",
+        "normalized_gold": "-7219",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-7,219",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-7,219",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -9481\nother -7219",
+      "gold": "#### -9481",
+      "local": {
+        "strict_prediction": "-9481",
+        "flexible_prediction": "-7219",
+        "normalized_gold": "-9481",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-9481",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-7219",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-7,219.",
+      "gold": "#### -7219",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-7,219.",
+        "normalized_gold": "-7219",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-7,219.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 2979\n#### 2,348",
+      "gold": "work\n#### 2348",
+      "local": {
+        "strict_prediction": "2,348",
+        "flexible_prediction": "2,348",
+        "normalized_gold": "2348",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "2,348",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2,348",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 2979\nother 2348",
+      "gold": "#### 2979",
+      "local": {
+        "strict_prediction": "2979",
+        "flexible_prediction": "2348",
+        "normalized_gold": "2979",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "2979",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2348",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $2,348.",
+      "gold": "#### 2348",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$2,348.",
+        "normalized_gold": "2348",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$2,348.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 4534\n#### -6,072",
+      "gold": "work\n#### -6072",
+      "local": {
+        "strict_prediction": "-6,072",
+        "flexible_prediction": "-6,072",
+        "normalized_gold": "-6072",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-6,072",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-6,072",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 4534\nother -6072",
+      "gold": "#### 4534",
+      "local": {
+        "strict_prediction": "4534",
+        "flexible_prediction": "-6072",
+        "normalized_gold": "4534",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4534",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-6072",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-6,072.",
+      "gold": "#### -6072",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-6,072.",
+        "normalized_gold": "-6072",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-6,072.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -2298\n#### 5,873",
+      "gold": "work\n#### 5873",
+      "local": {
+        "strict_prediction": "5,873",
+        "flexible_prediction": "5,873",
+        "normalized_gold": "5873",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "5,873",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "5,873",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -2298\nother 5873",
+      "gold": "#### -2298",
+      "local": {
+        "strict_prediction": "-2298",
+        "flexible_prediction": "5873",
+        "normalized_gold": "-2298",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-2298",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "5873",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $5,873.",
+      "gold": "#### 5873",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$5,873.",
+        "normalized_gold": "5873",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$5,873.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -9268\n#### 186",
+      "gold": "work\n#### 186",
+      "local": {
+        "strict_prediction": "186",
+        "flexible_prediction": "186",
+        "normalized_gold": "186",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "186",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "186",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -9268\nother 186",
+      "gold": "#### -9268",
+      "local": {
+        "strict_prediction": "-9268",
+        "flexible_prediction": "186",
+        "normalized_gold": "-9268",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-9268",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "186",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $186.",
+      "gold": "#### 186",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$186.",
+        "normalized_gold": "186",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$186.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -826\n#### -8,636",
+      "gold": "work\n#### -8636",
+      "local": {
+        "strict_prediction": "-8,636",
+        "flexible_prediction": "-8,636",
+        "normalized_gold": "-8636",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-8,636",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-8,636",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -826\nother -8636",
+      "gold": "#### -826",
+      "local": {
+        "strict_prediction": "-826",
+        "flexible_prediction": "-8636",
+        "normalized_gold": "-826",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-826",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-8636",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-8,636.",
+      "gold": "#### -8636",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-8,636.",
+        "normalized_gold": "-8636",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-8,636.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -1154\n#### -9,864",
+      "gold": "work\n#### -9864",
+      "local": {
+        "strict_prediction": "-9,864",
+        "flexible_prediction": "-9,864",
+        "normalized_gold": "-9864",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-9,864",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-9,864",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -1154\nother -9864",
+      "gold": "#### -1154",
+      "local": {
+        "strict_prediction": "-1154",
+        "flexible_prediction": "-9864",
+        "normalized_gold": "-1154",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-1154",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-9864",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-9,864.",
+      "gold": "#### -9864",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-9,864.",
+        "normalized_gold": "-9864",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-9,864.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -6705\n#### 6,488",
+      "gold": "work\n#### 6488",
+      "local": {
+        "strict_prediction": "6,488",
+        "flexible_prediction": "6,488",
+        "normalized_gold": "6488",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6,488",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6,488",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -6705\nother 6488",
+      "gold": "#### -6705",
+      "local": {
+        "strict_prediction": "-6705",
+        "flexible_prediction": "6488",
+        "normalized_gold": "-6705",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-6705",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6488",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $6,488.",
+      "gold": "#### 6488",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$6,488.",
+        "normalized_gold": "6488",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$6,488.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -3767\n#### 9,368",
+      "gold": "work\n#### 9368",
+      "local": {
+        "strict_prediction": "9,368",
+        "flexible_prediction": "9,368",
+        "normalized_gold": "9368",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "9,368",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "9,368",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -3767\nother 9368",
+      "gold": "#### -3767",
+      "local": {
+        "strict_prediction": "-3767",
+        "flexible_prediction": "9368",
+        "normalized_gold": "-3767",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-3767",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "9368",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $9,368.",
+      "gold": "#### 9368",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$9,368.",
+        "normalized_gold": "9368",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$9,368.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -6202\n#### 7,124",
+      "gold": "work\n#### 7124",
+      "local": {
+        "strict_prediction": "7,124",
+        "flexible_prediction": "7,124",
+        "normalized_gold": "7124",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "7,124",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7,124",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -6202\nother 7124",
+      "gold": "#### -6202",
+      "local": {
+        "strict_prediction": "-6202",
+        "flexible_prediction": "7124",
+        "normalized_gold": "-6202",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-6202",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7124",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $7,124.",
+      "gold": "#### 7124",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$7,124.",
+        "normalized_gold": "7124",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$7,124.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -2144\n#### -3,976",
+      "gold": "work\n#### -3976",
+      "local": {
+        "strict_prediction": "-3,976",
+        "flexible_prediction": "-3,976",
+        "normalized_gold": "-3976",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-3,976",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-3,976",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -2144\nother -3976",
+      "gold": "#### -2144",
+      "local": {
+        "strict_prediction": "-2144",
+        "flexible_prediction": "-3976",
+        "normalized_gold": "-2144",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-2144",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-3976",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-3,976.",
+      "gold": "#### -3976",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-3,976.",
+        "normalized_gold": "-3976",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-3,976.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -9657\n#### -6,637",
+      "gold": "work\n#### -6637",
+      "local": {
+        "strict_prediction": "-6,637",
+        "flexible_prediction": "-6,637",
+        "normalized_gold": "-6637",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-6,637",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-6,637",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -9657\nother -6637",
+      "gold": "#### -9657",
+      "local": {
+        "strict_prediction": "-9657",
+        "flexible_prediction": "-6637",
+        "normalized_gold": "-9657",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-9657",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-6637",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-6,637.",
+      "gold": "#### -6637",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-6,637.",
+        "normalized_gold": "-6637",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-6,637.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -8408\n#### 4,817",
+      "gold": "work\n#### 4817",
+      "local": {
+        "strict_prediction": "4,817",
+        "flexible_prediction": "4,817",
+        "normalized_gold": "4817",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4,817",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "4,817",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -8408\nother 4817",
+      "gold": "#### -8408",
+      "local": {
+        "strict_prediction": "-8408",
+        "flexible_prediction": "4817",
+        "normalized_gold": "-8408",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-8408",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "4817",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $4,817.",
+      "gold": "#### 4817",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$4,817.",
+        "normalized_gold": "4817",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$4,817.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 9328\n#### 2,502",
+      "gold": "work\n#### 2502",
+      "local": {
+        "strict_prediction": "2,502",
+        "flexible_prediction": "2,502",
+        "normalized_gold": "2502",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "2,502",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2,502",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 9328\nother 2502",
+      "gold": "#### 9328",
+      "local": {
+        "strict_prediction": "9328",
+        "flexible_prediction": "2502",
+        "normalized_gold": "9328",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "9328",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2502",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $2,502.",
+      "gold": "#### 2502",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$2,502.",
+        "normalized_gold": "2502",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$2,502.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -3536\n#### 7,655",
+      "gold": "work\n#### 7655",
+      "local": {
+        "strict_prediction": "7,655",
+        "flexible_prediction": "7,655",
+        "normalized_gold": "7655",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "7,655",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7,655",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -3536\nother 7655",
+      "gold": "#### -3536",
+      "local": {
+        "strict_prediction": "-3536",
+        "flexible_prediction": "7655",
+        "normalized_gold": "-3536",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-3536",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7655",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $7,655.",
+      "gold": "#### 7655",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$7,655.",
+        "normalized_gold": "7655",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$7,655.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -8007\n#### 6,618",
+      "gold": "work\n#### 6618",
+      "local": {
+        "strict_prediction": "6,618",
+        "flexible_prediction": "6,618",
+        "normalized_gold": "6618",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6,618",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6,618",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -8007\nother 6618",
+      "gold": "#### -8007",
+      "local": {
+        "strict_prediction": "-8007",
+        "flexible_prediction": "6618",
+        "normalized_gold": "-8007",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-8007",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6618",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $6,618.",
+      "gold": "#### 6618",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$6,618.",
+        "normalized_gold": "6618",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$6,618.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -5168\n#### 4,756",
+      "gold": "work\n#### 4756",
+      "local": {
+        "strict_prediction": "4,756",
+        "flexible_prediction": "4,756",
+        "normalized_gold": "4756",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4,756",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "4,756",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -5168\nother 4756",
+      "gold": "#### -5168",
+      "local": {
+        "strict_prediction": "-5168",
+        "flexible_prediction": "4756",
+        "normalized_gold": "-5168",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-5168",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "4756",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $4,756.",
+      "gold": "#### 4756",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$4,756.",
+        "normalized_gold": "4756",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$4,756.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 9086\n#### -9,944",
+      "gold": "work\n#### -9944",
+      "local": {
+        "strict_prediction": "-9,944",
+        "flexible_prediction": "-9,944",
+        "normalized_gold": "-9944",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-9,944",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-9,944",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 9086\nother -9944",
+      "gold": "#### 9086",
+      "local": {
+        "strict_prediction": "9086",
+        "flexible_prediction": "-9944",
+        "normalized_gold": "9086",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "9086",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-9944",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-9,944.",
+      "gold": "#### -9944",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-9,944.",
+        "normalized_gold": "-9944",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-9,944.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -374\n#### 8,094",
+      "gold": "work\n#### 8094",
+      "local": {
+        "strict_prediction": "8,094",
+        "flexible_prediction": "8,094",
+        "normalized_gold": "8094",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "8,094",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "8,094",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -374\nother 8094",
+      "gold": "#### -374",
+      "local": {
+        "strict_prediction": "-374",
+        "flexible_prediction": "8094",
+        "normalized_gold": "-374",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-374",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "8094",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $8,094.",
+      "gold": "#### 8094",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$8,094.",
+        "normalized_gold": "8094",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$8,094.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 6547\n#### 1,845",
+      "gold": "work\n#### 1845",
+      "local": {
+        "strict_prediction": "1,845",
+        "flexible_prediction": "1,845",
+        "normalized_gold": "1845",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "1,845",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "1,845",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 6547\nother 1845",
+      "gold": "#### 6547",
+      "local": {
+        "strict_prediction": "6547",
+        "flexible_prediction": "1845",
+        "normalized_gold": "6547",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6547",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "1845",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $1,845.",
+      "gold": "#### 1845",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$1,845.",
+        "normalized_gold": "1845",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$1,845.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 8083\n#### 8,340",
+      "gold": "work\n#### 8340",
+      "local": {
+        "strict_prediction": "8,340",
+        "flexible_prediction": "8,340",
+        "normalized_gold": "8340",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "8,340",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "8,340",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 8083\nother 8340",
+      "gold": "#### 8083",
+      "local": {
+        "strict_prediction": "8083",
+        "flexible_prediction": "8340",
+        "normalized_gold": "8083",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "8083",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "8340",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $8,340.",
+      "gold": "#### 8340",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$8,340.",
+        "normalized_gold": "8340",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$8,340.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 4195\n#### -6,003",
+      "gold": "work\n#### -6003",
+      "local": {
+        "strict_prediction": "-6,003",
+        "flexible_prediction": "-6,003",
+        "normalized_gold": "-6003",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-6,003",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-6,003",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 4195\nother -6003",
+      "gold": "#### 4195",
+      "local": {
+        "strict_prediction": "4195",
+        "flexible_prediction": "-6003",
+        "normalized_gold": "4195",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4195",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-6003",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-6,003.",
+      "gold": "#### -6003",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-6,003.",
+        "normalized_gold": "-6003",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-6,003.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -2845\n#### 7,625",
+      "gold": "work\n#### 7625",
+      "local": {
+        "strict_prediction": "7,625",
+        "flexible_prediction": "7,625",
+        "normalized_gold": "7625",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "7,625",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7,625",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -2845\nother 7625",
+      "gold": "#### -2845",
+      "local": {
+        "strict_prediction": "-2845",
+        "flexible_prediction": "7625",
+        "normalized_gold": "-2845",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-2845",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7625",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $7,625.",
+      "gold": "#### 7625",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$7,625.",
+        "normalized_gold": "7625",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$7,625.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -3136\n#### -5,459",
+      "gold": "work\n#### -5459",
+      "local": {
+        "strict_prediction": "-5,459",
+        "flexible_prediction": "-5,459",
+        "normalized_gold": "-5459",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-5,459",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-5,459",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -3136\nother -5459",
+      "gold": "#### -3136",
+      "local": {
+        "strict_prediction": "-3136",
+        "flexible_prediction": "-5459",
+        "normalized_gold": "-3136",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-3136",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-5459",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-5,459.",
+      "gold": "#### -5459",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-5,459.",
+        "normalized_gold": "-5459",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-5,459.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 9935\n#### 6,003",
+      "gold": "work\n#### 6003",
+      "local": {
+        "strict_prediction": "6,003",
+        "flexible_prediction": "6,003",
+        "normalized_gold": "6003",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6,003",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6,003",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 9935\nother 6003",
+      "gold": "#### 9935",
+      "local": {
+        "strict_prediction": "9935",
+        "flexible_prediction": "6003",
+        "normalized_gold": "9935",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "9935",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6003",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $6,003.",
+      "gold": "#### 6003",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$6,003.",
+        "normalized_gold": "6003",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$6,003.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -4837\n#### 7,791",
+      "gold": "work\n#### 7791",
+      "local": {
+        "strict_prediction": "7,791",
+        "flexible_prediction": "7,791",
+        "normalized_gold": "7791",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "7,791",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7,791",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -4837\nother 7791",
+      "gold": "#### -4837",
+      "local": {
+        "strict_prediction": "-4837",
+        "flexible_prediction": "7791",
+        "normalized_gold": "-4837",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-4837",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7791",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $7,791.",
+      "gold": "#### 7791",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$7,791.",
+        "normalized_gold": "7791",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$7,791.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 4933\n#### 4,582",
+      "gold": "work\n#### 4582",
+      "local": {
+        "strict_prediction": "4,582",
+        "flexible_prediction": "4,582",
+        "normalized_gold": "4582",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4,582",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "4,582",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 4933\nother 4582",
+      "gold": "#### 4933",
+      "local": {
+        "strict_prediction": "4933",
+        "flexible_prediction": "4582",
+        "normalized_gold": "4933",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4933",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "4582",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $4,582.",
+      "gold": "#### 4582",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$4,582.",
+        "normalized_gold": "4582",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$4,582.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 4122\n#### 9,231",
+      "gold": "work\n#### 9231",
+      "local": {
+        "strict_prediction": "9,231",
+        "flexible_prediction": "9,231",
+        "normalized_gold": "9231",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "9,231",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "9,231",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 4122\nother 9231",
+      "gold": "#### 4122",
+      "local": {
+        "strict_prediction": "4122",
+        "flexible_prediction": "9231",
+        "normalized_gold": "4122",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4122",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "9231",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $9,231.",
+      "gold": "#### 9231",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$9,231.",
+        "normalized_gold": "9231",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$9,231.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -1189\n#### -4,855",
+      "gold": "work\n#### -4855",
+      "local": {
+        "strict_prediction": "-4,855",
+        "flexible_prediction": "-4,855",
+        "normalized_gold": "-4855",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-4,855",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-4,855",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -1189\nother -4855",
+      "gold": "#### -1189",
+      "local": {
+        "strict_prediction": "-1189",
+        "flexible_prediction": "-4855",
+        "normalized_gold": "-1189",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-1189",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-4855",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-4,855.",
+      "gold": "#### -4855",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-4,855.",
+        "normalized_gold": "-4855",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-4,855.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -9025\n#### 708",
+      "gold": "work\n#### 708",
+      "local": {
+        "strict_prediction": "708",
+        "flexible_prediction": "708",
+        "normalized_gold": "708",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "708",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "708",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -9025\nother 708",
+      "gold": "#### -9025",
+      "local": {
+        "strict_prediction": "-9025",
+        "flexible_prediction": "708",
+        "normalized_gold": "-9025",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-9025",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "708",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $708.",
+      "gold": "#### 708",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$708.",
+        "normalized_gold": "708",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$708.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 2059\n#### 8,039",
+      "gold": "work\n#### 8039",
+      "local": {
+        "strict_prediction": "8,039",
+        "flexible_prediction": "8,039",
+        "normalized_gold": "8039",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "8,039",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "8,039",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 2059\nother 8039",
+      "gold": "#### 2059",
+      "local": {
+        "strict_prediction": "2059",
+        "flexible_prediction": "8039",
+        "normalized_gold": "2059",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "2059",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "8039",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $8,039.",
+      "gold": "#### 8039",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$8,039.",
+        "normalized_gold": "8039",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$8,039.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 3285\n#### 7,819",
+      "gold": "work\n#### 7819",
+      "local": {
+        "strict_prediction": "7,819",
+        "flexible_prediction": "7,819",
+        "normalized_gold": "7819",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "7,819",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7,819",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 3285\nother 7819",
+      "gold": "#### 3285",
+      "local": {
+        "strict_prediction": "3285",
+        "flexible_prediction": "7819",
+        "normalized_gold": "3285",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "3285",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7819",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $7,819.",
+      "gold": "#### 7819",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$7,819.",
+        "normalized_gold": "7819",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$7,819.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -4963\n#### -9,418",
+      "gold": "work\n#### -9418",
+      "local": {
+        "strict_prediction": "-9,418",
+        "flexible_prediction": "-9,418",
+        "normalized_gold": "-9418",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-9,418",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-9,418",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -4963\nother -9418",
+      "gold": "#### -4963",
+      "local": {
+        "strict_prediction": "-4963",
+        "flexible_prediction": "-9418",
+        "normalized_gold": "-4963",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-4963",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-9418",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-9,418.",
+      "gold": "#### -9418",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-9,418.",
+        "normalized_gold": "-9418",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-9,418.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -3966\n#### -9,409",
+      "gold": "work\n#### -9409",
+      "local": {
+        "strict_prediction": "-9,409",
+        "flexible_prediction": "-9,409",
+        "normalized_gold": "-9409",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-9,409",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-9,409",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -3966\nother -9409",
+      "gold": "#### -3966",
+      "local": {
+        "strict_prediction": "-3966",
+        "flexible_prediction": "-9409",
+        "normalized_gold": "-3966",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-3966",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-9409",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-9,409.",
+      "gold": "#### -9409",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-9,409.",
+        "normalized_gold": "-9409",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-9,409.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 1955\n#### 4,083",
+      "gold": "work\n#### 4083",
+      "local": {
+        "strict_prediction": "4,083",
+        "flexible_prediction": "4,083",
+        "normalized_gold": "4083",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4,083",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "4,083",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 1955\nother 4083",
+      "gold": "#### 1955",
+      "local": {
+        "strict_prediction": "1955",
+        "flexible_prediction": "4083",
+        "normalized_gold": "1955",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "1955",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "4083",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $4,083.",
+      "gold": "#### 4083",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$4,083.",
+        "normalized_gold": "4083",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$4,083.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -5426\n#### -7,447",
+      "gold": "work\n#### -7447",
+      "local": {
+        "strict_prediction": "-7,447",
+        "flexible_prediction": "-7,447",
+        "normalized_gold": "-7447",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-7,447",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-7,447",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -5426\nother -7447",
+      "gold": "#### -5426",
+      "local": {
+        "strict_prediction": "-5426",
+        "flexible_prediction": "-7447",
+        "normalized_gold": "-5426",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-5426",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-7447",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-7,447.",
+      "gold": "#### -7447",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-7,447.",
+        "normalized_gold": "-7447",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-7,447.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 3508\n#### 8,318",
+      "gold": "work\n#### 8318",
+      "local": {
+        "strict_prediction": "8,318",
+        "flexible_prediction": "8,318",
+        "normalized_gold": "8318",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "8,318",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "8,318",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 3508\nother 8318",
+      "gold": "#### 3508",
+      "local": {
+        "strict_prediction": "3508",
+        "flexible_prediction": "8318",
+        "normalized_gold": "3508",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "3508",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "8318",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $8,318.",
+      "gold": "#### 8318",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$8,318.",
+        "normalized_gold": "8318",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$8,318.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -4695\n#### 2,211",
+      "gold": "work\n#### 2211",
+      "local": {
+        "strict_prediction": "2,211",
+        "flexible_prediction": "2,211",
+        "normalized_gold": "2211",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "2,211",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2,211",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -4695\nother 2211",
+      "gold": "#### -4695",
+      "local": {
+        "strict_prediction": "-4695",
+        "flexible_prediction": "2211",
+        "normalized_gold": "-4695",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-4695",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2211",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $2,211.",
+      "gold": "#### 2211",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$2,211.",
+        "normalized_gold": "2211",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$2,211.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -9191\n#### -1,632",
+      "gold": "work\n#### -1632",
+      "local": {
+        "strict_prediction": "-1,632",
+        "flexible_prediction": "-1,632",
+        "normalized_gold": "-1632",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-1,632",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-1,632",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -9191\nother -1632",
+      "gold": "#### -9191",
+      "local": {
+        "strict_prediction": "-9191",
+        "flexible_prediction": "-1632",
+        "normalized_gold": "-9191",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-9191",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-1632",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-1,632.",
+      "gold": "#### -1632",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-1,632.",
+        "normalized_gold": "-1632",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-1,632.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 8191\n#### 6,306",
+      "gold": "work\n#### 6306",
+      "local": {
+        "strict_prediction": "6,306",
+        "flexible_prediction": "6,306",
+        "normalized_gold": "6306",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6,306",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6,306",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 8191\nother 6306",
+      "gold": "#### 8191",
+      "local": {
+        "strict_prediction": "8191",
+        "flexible_prediction": "6306",
+        "normalized_gold": "8191",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "8191",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6306",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $6,306.",
+      "gold": "#### 6306",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$6,306.",
+        "normalized_gold": "6306",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$6,306.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -4991\n#### -339",
+      "gold": "work\n#### -339",
+      "local": {
+        "strict_prediction": "-339",
+        "flexible_prediction": "-339",
+        "normalized_gold": "-339",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-339",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-339",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -4991\nother -339",
+      "gold": "#### -4991",
+      "local": {
+        "strict_prediction": "-4991",
+        "flexible_prediction": "-339",
+        "normalized_gold": "-4991",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-4991",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-339",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-339.",
+      "gold": "#### -339",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-339.",
+        "normalized_gold": "-339",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-339.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -2444\n#### -276",
+      "gold": "work\n#### -276",
+      "local": {
+        "strict_prediction": "-276",
+        "flexible_prediction": "-276",
+        "normalized_gold": "-276",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-276",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-276",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -2444\nother -276",
+      "gold": "#### -2444",
+      "local": {
+        "strict_prediction": "-2444",
+        "flexible_prediction": "-276",
+        "normalized_gold": "-2444",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-2444",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-276",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-276.",
+      "gold": "#### -276",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-276.",
+        "normalized_gold": "-276",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-276.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 6428\n#### 1,886",
+      "gold": "work\n#### 1886",
+      "local": {
+        "strict_prediction": "1,886",
+        "flexible_prediction": "1,886",
+        "normalized_gold": "1886",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "1,886",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "1,886",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 6428\nother 1886",
+      "gold": "#### 6428",
+      "local": {
+        "strict_prediction": "6428",
+        "flexible_prediction": "1886",
+        "normalized_gold": "6428",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6428",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "1886",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $1,886.",
+      "gold": "#### 1886",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$1,886.",
+        "normalized_gold": "1886",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$1,886.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 8823\n#### 2,541",
+      "gold": "work\n#### 2541",
+      "local": {
+        "strict_prediction": "2,541",
+        "flexible_prediction": "2,541",
+        "normalized_gold": "2541",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "2,541",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2,541",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 8823\nother 2541",
+      "gold": "#### 8823",
+      "local": {
+        "strict_prediction": "8823",
+        "flexible_prediction": "2541",
+        "normalized_gold": "8823",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "8823",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2541",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $2,541.",
+      "gold": "#### 2541",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$2,541.",
+        "normalized_gold": "2541",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$2,541.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 2039\n#### -8,906",
+      "gold": "work\n#### -8906",
+      "local": {
+        "strict_prediction": "-8,906",
+        "flexible_prediction": "-8,906",
+        "normalized_gold": "-8906",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-8,906",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-8,906",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 2039\nother -8906",
+      "gold": "#### 2039",
+      "local": {
+        "strict_prediction": "2039",
+        "flexible_prediction": "-8906",
+        "normalized_gold": "2039",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "2039",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-8906",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-8,906.",
+      "gold": "#### -8906",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-8,906.",
+        "normalized_gold": "-8906",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-8,906.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -2847\n#### -2,372",
+      "gold": "work\n#### -2372",
+      "local": {
+        "strict_prediction": "-2,372",
+        "flexible_prediction": "-2,372",
+        "normalized_gold": "-2372",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-2,372",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-2,372",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -2847\nother -2372",
+      "gold": "#### -2847",
+      "local": {
+        "strict_prediction": "-2847",
+        "flexible_prediction": "-2372",
+        "normalized_gold": "-2847",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-2847",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-2372",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-2,372.",
+      "gold": "#### -2372",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-2,372.",
+        "normalized_gold": "-2372",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-2,372.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 4935\n#### 4,084",
+      "gold": "work\n#### 4084",
+      "local": {
+        "strict_prediction": "4,084",
+        "flexible_prediction": "4,084",
+        "normalized_gold": "4084",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4,084",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "4,084",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 4935\nother 4084",
+      "gold": "#### 4935",
+      "local": {
+        "strict_prediction": "4935",
+        "flexible_prediction": "4084",
+        "normalized_gold": "4935",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4935",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "4084",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $4,084.",
+      "gold": "#### 4084",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$4,084.",
+        "normalized_gold": "4084",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$4,084.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -4845\n#### 2,051",
+      "gold": "work\n#### 2051",
+      "local": {
+        "strict_prediction": "2,051",
+        "flexible_prediction": "2,051",
+        "normalized_gold": "2051",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "2,051",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2,051",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -4845\nother 2051",
+      "gold": "#### -4845",
+      "local": {
+        "strict_prediction": "-4845",
+        "flexible_prediction": "2051",
+        "normalized_gold": "-4845",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-4845",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "2051",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $2,051.",
+      "gold": "#### 2051",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$2,051.",
+        "normalized_gold": "2051",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$2,051.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 6708\n#### -2,391",
+      "gold": "work\n#### -2391",
+      "local": {
+        "strict_prediction": "-2,391",
+        "flexible_prediction": "-2,391",
+        "normalized_gold": "-2391",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-2,391",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-2,391",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 6708\nother -2391",
+      "gold": "#### 6708",
+      "local": {
+        "strict_prediction": "6708",
+        "flexible_prediction": "-2391",
+        "normalized_gold": "6708",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6708",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-2391",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-2,391.",
+      "gold": "#### -2391",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-2,391.",
+        "normalized_gold": "-2391",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-2,391.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 9948\n#### 7,450",
+      "gold": "work\n#### 7450",
+      "local": {
+        "strict_prediction": "7,450",
+        "flexible_prediction": "7,450",
+        "normalized_gold": "7450",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "7,450",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7,450",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 9948\nother 7450",
+      "gold": "#### 9948",
+      "local": {
+        "strict_prediction": "9948",
+        "flexible_prediction": "7450",
+        "normalized_gold": "9948",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "9948",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "7450",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $7,450.",
+      "gold": "#### 7450",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$7,450.",
+        "normalized_gold": "7450",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$7,450.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -4093\n#### 9,271",
+      "gold": "work\n#### 9271",
+      "local": {
+        "strict_prediction": "9,271",
+        "flexible_prediction": "9,271",
+        "normalized_gold": "9271",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "9,271",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "9,271",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -4093\nother 9271",
+      "gold": "#### -4093",
+      "local": {
+        "strict_prediction": "-4093",
+        "flexible_prediction": "9271",
+        "normalized_gold": "-4093",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-4093",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "9271",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $9,271.",
+      "gold": "#### 9271",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$9,271.",
+        "normalized_gold": "9271",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$9,271.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 9661\n#### 5,182",
+      "gold": "work\n#### 5182",
+      "local": {
+        "strict_prediction": "5,182",
+        "flexible_prediction": "5,182",
+        "normalized_gold": "5182",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "5,182",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "5,182",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 9661\nother 5182",
+      "gold": "#### 9661",
+      "local": {
+        "strict_prediction": "9661",
+        "flexible_prediction": "5182",
+        "normalized_gold": "9661",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "9661",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "5182",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $5,182.",
+      "gold": "#### 5182",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$5,182.",
+        "normalized_gold": "5182",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$5,182.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work -5323\n#### -9,110",
+      "gold": "work\n#### -9110",
+      "local": {
+        "strict_prediction": "-9,110",
+        "flexible_prediction": "-9,110",
+        "normalized_gold": "-9110",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-9,110",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-9,110",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### -5323\nother -9110",
+      "gold": "#### -5323",
+      "local": {
+        "strict_prediction": "-5323",
+        "flexible_prediction": "-9110",
+        "normalized_gold": "-5323",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-5323",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-9110",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-9,110.",
+      "gold": "#### -9110",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-9,110.",
+        "normalized_gold": "-9110",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-9,110.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 8558\n#### -1,240",
+      "gold": "work\n#### -1240",
+      "local": {
+        "strict_prediction": "-1,240",
+        "flexible_prediction": "-1,240",
+        "normalized_gold": "-1240",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-1,240",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-1,240",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 8558\nother -1240",
+      "gold": "#### 8558",
+      "local": {
+        "strict_prediction": "8558",
+        "flexible_prediction": "-1240",
+        "normalized_gold": "8558",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "8558",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-1240",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-1,240.",
+      "gold": "#### -1240",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-1,240.",
+        "normalized_gold": "-1240",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-1,240.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 212\n#### 4,609",
+      "gold": "work\n#### 4609",
+      "local": {
+        "strict_prediction": "4,609",
+        "flexible_prediction": "4,609",
+        "normalized_gold": "4609",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4,609",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "4,609",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 212\nother 4609",
+      "gold": "#### 212",
+      "local": {
+        "strict_prediction": "212",
+        "flexible_prediction": "4609",
+        "normalized_gold": "212",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "212",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "4609",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $4,609.",
+      "gold": "#### 4609",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$4,609.",
+        "normalized_gold": "4609",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$4,609.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 473\n#### 6,342",
+      "gold": "work\n#### 6342",
+      "local": {
+        "strict_prediction": "6,342",
+        "flexible_prediction": "6,342",
+        "normalized_gold": "6342",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6,342",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6,342",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 473\nother 6342",
+      "gold": "#### 473",
+      "local": {
+        "strict_prediction": "473",
+        "flexible_prediction": "6342",
+        "normalized_gold": "473",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "473",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6342",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $6,342.",
+      "gold": "#### 6342",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$6,342.",
+        "normalized_gold": "6342",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$6,342.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 6826\n#### -7,759",
+      "gold": "work\n#### -7759",
+      "local": {
+        "strict_prediction": "-7,759",
+        "flexible_prediction": "-7,759",
+        "normalized_gold": "-7759",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "-7,759",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-7,759",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 6826\nother -7759",
+      "gold": "#### 6826",
+      "local": {
+        "strict_prediction": "6826",
+        "flexible_prediction": "-7759",
+        "normalized_gold": "6826",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6826",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "-7759",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $-7,759.",
+      "gold": "#### -7759",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "-7,759.",
+        "normalized_gold": "-7759",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "-7,759.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 2471\n#### 5,269",
+      "gold": "work\n#### 5269",
+      "local": {
+        "strict_prediction": "5,269",
+        "flexible_prediction": "5,269",
+        "normalized_gold": "5269",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "5,269",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "5,269",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 2471\nother 5269",
+      "gold": "#### 2471",
+      "local": {
+        "strict_prediction": "2471",
+        "flexible_prediction": "5269",
+        "normalized_gold": "2471",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "2471",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "5269",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $5,269.",
+      "gold": "#### 5269",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$5,269.",
+        "normalized_gold": "5269",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$5,269.",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "work 4125\n#### 6,829",
+      "gold": "work\n#### 6829",
+      "local": {
+        "strict_prediction": "6,829",
+        "flexible_prediction": "6,829",
+        "normalized_gold": "6829",
+        "correct_strict": true,
+        "correct_flexible": true,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "6,829",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6,829",
+          "correct": true
+        }
+      }
+    },
+    {
+      "response": "#### 4125\nother 6829",
+      "gold": "#### 4125",
+      "local": {
+        "strict_prediction": "4125",
+        "flexible_prediction": "6829",
+        "normalized_gold": "4125",
+        "correct_strict": true,
+        "correct_flexible": false,
+        "invalid_strict": false
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "4125",
+          "correct": true
+        },
+        "flexible-extract": {
+          "prediction": "6829",
+          "correct": false
+        }
+      }
+    },
+    {
+      "response": "Reasoned result is $6,829.",
+      "gold": "#### 6829",
+      "local": {
+        "strict_prediction": "[invalid]",
+        "flexible_prediction": "$6,829.",
+        "normalized_gold": "6829",
+        "correct_strict": false,
+        "correct_flexible": true,
+        "invalid_strict": true
+      },
+      "harness": {
+        "strict-match": {
+          "prediction": "[invalid]",
+          "correct": false
+        },
+        "flexible-extract": {
+          "prediction": "$6,829.",
+          "correct": true
+        }
+      }
+    }
+  ],
+  "score_case_parity": {
+    "compared": 335,
+    "mismatches": 0,
+    "seed": 20260913
+  },
+  "train_prompt_byte_parity": {
+    "pilot_compared": 32,
+    "smoke_compared": 4,
+    "mismatches": 0
+  },
+  "schema": "scalellm_gsm8k_cpu_protocol_parity_v1",
+  "completed_at_utc": "2026-10-18T01:48:38.459885+00:00",
+  "success": true,
+  "tests_run": 9,
+  "failures": 0,
+  "errors": 0,
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "plan_sha256": "77a98257ea43b7969f2c70e91b0f0331ff8ac430f3763af9c22ce96719cc140b",
+  "implementation_sha256": "179cadffd87ce099a4afd19c759716a1f4c724c0c8e404e83c666714d83831d1",
+  "test_sha256": "114958be86a3cd0264dfa7efa27833e3208fda1af937df815cd4afedb03cd165"
+}

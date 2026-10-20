@@ -1,0 +1,104 @@
+{
+  "recorded_utc": "2026-10-19T01:29:13.192388+00:00",
+  "execution": "offline_independent_review_completed",
+  "verdict": "four_serialization_wrappers_supported_by_source_and_CPU_boundary_evidence",
+  "review": "accepted_with_native_applicability_limit",
+  "applicability": "Exact d915 candidate only; not applied to frozen AT024; actual nonclock cardinalities/truncation unknown",
+  "identities": {
+    "delivery": {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/grouped_connectivity_v1/production_candidate/serialization_fields_pending.json",
+      "bytes": 2294,
+      "sha256": "42d14495e69622ee7cf6e74b9dfd869dc458969fd131ecc483b11e0ffbdca671"
+    },
+    "baseline": {
+      "path": "project/hardware/vivado/scripts/m003_joint_checks.tcl",
+      "bytes": 36694,
+      "sha256": "604f22e3e0372e5ae8c56dbb03aa2e4f9fd9e86e936f3a611b9d0600debd9774"
+    },
+    "proposed": {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/grouped_connectivity_v1/production_candidate/m003_joint_checks.serialization_fields_pending.tcl.proposed",
+      "bytes": 36802,
+      "sha256": "d915b6cd9e1fbb26ea635e199dba6e21ccf75b33fda92f68e0170a0e6559cbee"
+    },
+    "supplied_test": {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/grouped_connectivity_v1/production_candidate/test_serialization_fields_pending.py",
+      "bytes": 4273,
+      "sha256": "e4b680694481ff29f358f23e0b8f55e3dac834397e8ae645e4aa09b4372081c1"
+    },
+    "supplied_log": {
+      "path": "project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/grouped_connectivity_v1/production_candidate/serialization_fields_pending_CPU.log",
+      "bytes": 100,
+      "sha256": "fc0a2e7ec617815ae081159b672a57c2e0519eb6936c20d2d310957d8f9d61d2"
+    },
+    "independent_review_script": {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/review_serialization_fields_pending.py",
+      "bytes": 5803,
+      "sha256": "d36cf616bd8b870b6e79e491668333e73bc4d8098077c15ace47b5bd50184cb3"
+    }
+  },
+  "exact_four_wrapper_diff": true,
+  "unchanged_native_pin_net_guards_and_consumers": true,
+  "independent_boundary_cases": [
+    {
+      "case": "core/CLR_nets",
+      "result": "PASS",
+      "actual_NAME_values": 600,
+      "baseline_opaque_negative_control": true,
+      "native_CE_object_consumer_checked": false
+    },
+    {
+      "case": "address/CE_nets",
+      "result": "PASS",
+      "actual_NAME_values": 600,
+      "baseline_opaque_negative_control": true,
+      "native_CE_object_consumer_checked": true
+    },
+    {
+      "case": "address/CLR_nets",
+      "result": "PASS",
+      "actual_NAME_values": 600,
+      "baseline_opaque_negative_control": true,
+      "native_CE_object_consumer_checked": true
+    },
+    {
+      "case": "control/write_enable",
+      "result": "PASS",
+      "actual_NAME_values": 600,
+      "baseline_opaque_negative_control": true,
+      "native_CE_object_consumer_checked": false
+    },
+    {
+      "case": "core/CLR/getter_error_stack",
+      "result": "PASS",
+      "original_errorcode_message_and_stack": true
+    },
+    {
+      "case": "address/CE/getter_error_stack",
+      "result": "PASS",
+      "original_errorcode_message_and_stack": true
+    },
+    {
+      "case": "address/CLR/getter_error_stack",
+      "result": "PASS",
+      "original_errorcode_message_and_stack": true
+    },
+    {
+      "case": "control/meta_wr_valid/getter_error_stack",
+      "result": "PASS",
+      "original_errorcode_message_and_stack": true
+    }
+  ],
+  "seconds": 0.2264148490066873,
+  "supplied_CPU_evidence": {
+    "functions": 2,
+    "log_runner_seconds": 0.204,
+    "delivery_total_elapsed_seconds": 0.27917407500353875,
+    "rerun_unchanged_suite": false
+  },
+  "limits": [
+    "CPU opaque-token model is not a native collection performance or cardinality measurement",
+    "No hot edit or stop of AT024",
+    "No fullgraph/G4/physical acceptance from this review"
+  ],
+  "G4": false
+}

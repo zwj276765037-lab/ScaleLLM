@@ -1,0 +1,23 @@
+{
+  "schema": "scalellm_R003_maintenance_hold_launch_source_review_v1",
+  "reviewed_at_utc": "2026-10-18T04:55:20.515279+00:00",
+  "reviewer": "A010",
+  "CPU_only": true,
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "launcher_sha256": "68ddfa8ea876cb5b861bd99750fe4e68a99937b56806f6554dbc1815eaccc036",
+  "earlier_review": "R003_parent_launcher_review_AT001.json",
+  "source_change": "Add active maintenance hold refusal at entry for --launch and immediately before writing launch readiness",
+  "hold_read_and_refusal_lines": [
+    40,
+    109
+  ],
+  "subprocess_popen_line": 121,
+  "hold_active_observed": true,
+  "no_launch_receipt_observed": true,
+  "explicit_blocking_source_findings": [],
+  "actual_execution": "No launcher/resource query/root or GPU operation was executed",
+  "limitations": "Source review only; release maintenance hold only by actual controller after maintenance state is resolved"
+}

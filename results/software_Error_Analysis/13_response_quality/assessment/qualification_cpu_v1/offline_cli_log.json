@@ -1,0 +1,46 @@
+{
+  "scope": "synthetic contract wiring only, not benchmark quality evidence",
+  "executions": [
+    {
+      "command": [
+        "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+        "-B",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/response_quality_assessment/pack.py",
+        "--prompts",
+        "/tmp/A015_response_quality_cli_gue_67pd/prompts.jsonl",
+        "--responses",
+        "/tmp/A015_response_quality_cli_gue_67pd/responses.jsonl",
+        "--output-dir",
+        "/tmp/A015_response_quality_cli_gue_67pd/pack",
+        "--batch-size",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"question_clusters_planned\": 1, \"eligible_clusters\": 1, \"blinded_cases\": 2, \"batches\": 2}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+        "-B",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/response_quality_assessment/aggregate.py",
+        "--pack-dir",
+        "/tmp/A015_response_quality_cli_gue_67pd/pack",
+        "--scores",
+        "/tmp/A015_response_quality_cli_gue_67pd/scores.jsonl",
+        "--judge-manifest",
+        "/tmp/A015_response_quality_cli_gue_67pd/judge.json",
+        "--output-dir",
+        "/tmp/A015_response_quality_cli_gue_67pd/aggregate",
+        "--bootstrap-replicates",
+        "1000"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"synthetic\": {\"planned_question_clusters\": 1, \"resolved_question_clusters\": 1, \"submitted_generation_question_clusters\": 1, \"no_generation_question_clusters\": 0, \"unresolved_question_clusters\": 0, \"assessment_coverage_percent\": 100.0, \"assessment_coverage_of_submitted_percent\": 100.0, \"counts\": {\"Better\": 0, \"Comparable\": 1, \"Worse\": 0}, \"percent_of_resolved\": {\"Better\": 0.0, \"Comparable\": 100.0, \"Worse\": 0.0}, \"percent_of_all_planned\": {\"Better\": 0.0, \"Comparable\": 100.0, \"Worse\": 0.0}, \"percent_of_all_submitted\": {\"Better\": 0.0, \"Comparable\": 100.0, \"Worse\": 0.0}, \"unresolved_percent_of_all_planned\": 0.0, \"unresolved_percent_of_all_submitted\": 0.0, \"conditional_question_wilson_95_ci_percent\": {\"Better\": {\"low\": 0.0, \"high\": 79.34506856227625}, \"Comparable\": {\"low\": 20.654931437723747, \"high\": 100.0}, \"Worse\": {\"low\": 0.0, \"high\": 79.34506856227625}}, \"conditional_cluster_bootstrap_95_ci_percent\": {\"Better\": {\"low\": 0.0, \"high\": 0.0}, \"Comparable\": {\"low\": 100.0, \"high\": 100.0}, \"Worse\": {\"low\": 0.0, \"high\": 0.0}}, \"unresolved_reason_counts\": {}, \"primary_ci_method\": {\"method\": \"Wilson score, pointwise 95%\", \"unit\": \"one unique question-cluster outcome\", \"denominator\": \"resolved questions; conditional on resolved selection, no missingness correction\", \"assumptions\": \"independent Bernoulli category indicators across question clusters; sampling/exchangeability unverified\", \"scope\": \"not simultaneous and not a guarantee for untested prompts, free generations, tasks, or all-world quality\"}, \"ci_method\": {\"unit\": \"question cluster, whole conversation and both orders collapsed\", \"population\": \"resolved question clusters only; conditional, no missingness correction\", \"method\": \"percentile nonparametric question-cluster bootstrap, exact categorical multinomial implementation\", \"replicates\": 1000, \"seed\": 20261020, \"confidence_level\": 0.95, \"coverage\": \"pointwise, not simultaneous across categories or benchmarks\", \"assumptions\": \"IID question clusters/exchangeability unverified; benchmark-fixed-set proportions are descriptive\", \"boundary_caution\": \"Auxiliary only. A zero/all category gives a degenerate percentile interval; use the nondegenerate Wilson interval as primary, not a zero-risk proof\"}}}\n",
+      "stderr": ""
+    },
+    {
+      "checks": "CLI pack and aggregate serialization + CSV writer passed; temporary synthetic outputs removed; no figure rendered"
+    }
+  ]
+}

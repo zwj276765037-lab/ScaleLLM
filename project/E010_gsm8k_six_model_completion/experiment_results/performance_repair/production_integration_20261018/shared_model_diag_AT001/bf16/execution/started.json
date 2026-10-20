@@ -1,0 +1,89 @@
+{
+  "started_at": "2026-10-18T11:20:18.767740+00:00",
+  "state": "checking",
+  "scope": {
+    "kind": "shared_model_speed_diagnostic",
+    "exclusive_verified": false,
+    "formal_progression_eligible": false,
+    "matrix_resume": false,
+    "sample_ids": [
+      "train:0000",
+      "train:0001",
+      "train:0002",
+      "train:0003"
+    ],
+    "cases": [
+      "bf16",
+      "a8w4_fp32"
+    ]
+  },
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/nvidia-smi",
+        "-i",
+        "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+        "--query-compute-apps=pid,process_name,used_memory",
+        "--format=csv,noheader,nounits"
+      ],
+      "captured_at": "2026-10-18T11:20:18.826737+00:00",
+      "exit_code": 0,
+      "stdout": "23186, /home/user/anaconda3/envs/zhouwenjun/bin/python, 12146\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/nvidia-smi",
+        "-i",
+        "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+        "--query-gpu=index,uuid,memory.free",
+        "--format=csv,noheader,nounits"
+      ],
+      "captured_at": "2026-10-18T11:20:18.861162+00:00",
+      "exit_code": 0,
+      "stdout": "0, GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6, 36383\n",
+      "stderr": ""
+    }
+  ],
+  "process_control_actions_on_other_tasks": [],
+  "execute_requested": true,
+  "guard_sha256": "ee1e04e6c7ef415459a085439a0d6adfbf891702f2d58831aa879a391f3b283f",
+  "spec_sha256": "e2f11b776ed50ad7b167f4dd73045e74aee1390737520b64ccb1063358db032c",
+  "resource_observation": {
+    "external_client_pids": [
+      23186
+    ],
+    "gpu_free_bytes": 38150340608,
+    "minimum_gpu_free_bytes": 29636113204,
+    "host_available_bytes": 530219565056,
+    "exclusive_verified": false,
+    "formal_progression_eligible": false
+  },
+  "child_pid": 40866,
+  "command": [
+    "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+    "-B",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_worker.py",
+    "--plan",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/shared_model_diag_AT001/plan.json",
+    "--stage",
+    "smoke",
+    "--model",
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.1-8B-Instruct",
+    "--case",
+    "bf16",
+    "--model-identity",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/model_identities/Llama-3.1-8B-Instruct.json",
+    "--output",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/shared_model_diag_AT001/bf16/execution/worker",
+    "--device",
+    "cuda:0",
+    "--batch-size",
+    "1",
+    "--context-length",
+    "8192",
+    "--max-gen-toks",
+    "64",
+    "--verify-generation"
+  ]
+}

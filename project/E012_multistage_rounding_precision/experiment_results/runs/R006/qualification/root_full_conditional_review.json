@@ -1,0 +1,55 @@
+{
+  "recorded_at": "2026-10-19T11:03:42.213616+00:00",
+  "reviewer": "Root",
+  "decision": "conditional_launch_authorized_not_yet_satisfied",
+  "scope": "One full1024 finite GPU0 R006 run with automatic independent checks, aggregation and PNG after successful dev4 qualification",
+  "reviewed_sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_softmax_tv_session_v2.py",
+      "bytes": 20573,
+      "sha256": "2343078bce29b5cf16fe79c8d6c76d1712ae8cccb88306c93e63fd9d9ab7f1ff"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/bounded_softmax_tv_session_v2.py",
+      "bytes": 13359,
+      "sha256": "d7adb553b7d506c917e83d6bad3286e4cf34e35cb41b1cd9437f470d3487654c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/extended_session_cache.py",
+      "bytes": 4414,
+      "sha256": "7c960f323d4db42ad4af67bc369a7dd95206eaffc439a8180977d1e5368feb31"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_formal_numerical_queue.py",
+      "bytes": 29036,
+      "sha256": "da6c8046ca4ead82907a86e7895e885d363af8c243fbb9ab2d0dcde3e7d3592f"
+    }
+  ],
+  "basis": [
+    "27 pilot source hashes verified in root_pilot_review.json",
+    "TV FP64 normalization and whole-vocabulary reduction read byRoot",
+    "Session/supervisor compared against R005 completed implementation; only new R006 entry/schema and TV coverage guards changed",
+    "CPU control test cases reviewed; actual receipt required before formal launch"
+  ],
+  "conditions": [
+    "Pilot GPU receipt native_exit_code0, worker reaped, source unchanged, no resource stop, actual limits respected",
+    "All four pilot documents complete with actual whole-vocabulary TV for every real position; normalization/range finite and within1e-10 implementation guards",
+    "Every original numeric head field and final hidden identity strictly matches same input R005 AT002; any excluded run path/time metadata is enumerated, never exclude numeric data",
+    "Independent CPU recomputation agrees for all saved pilot full-vocabulary rows; errors and precision tolerance recorded",
+    "pilot_acceptance.json records actual timings/resources and conservative full run estimate inside unchanged14400s/6144MiB total and per-group limits",
+    "A014 independent prelaunch review has zero unresolved blocking findings for TV definition, full coverage, independent audit, aggregation denominators and tails shown in PNG; reviewed source hashes equal launch sources",
+    "All9 TV and8 CPU session/control tests have actual successful native receipts and no GPU use",
+    "Freeze exact64group16document partition of original formal batch plan,1024 doc IDs,103700 real positions,15 original audit documents; no resampling or exclusions",
+    "Freeze all consumed implementation and finalizer sources, exact argv, stage/input hashes and source copies in new R006 locations; preserve old R005 data",
+    "Automatic finalizers include every required group audit, full1024 old hidden/head consistency check,45 audit-row independent TV reference, full population aggregation, integrated PNG and provenance",
+    "Validate-only on exact frozen formal plan passes after prerequisite evidence exists; resource admission and source identities rechecked by supervisor",
+    "A017 records condition outcomes in formal_launch_gate.json and launches one actual finite background run only if all pass; no silent budget expansion or retry after failure"
+  ],
+  "authority": "Latest explicit user request and established background preference; internal technical review, no additional user approval",
+  "not_claimed": [
+    "pilot complete",
+    "formal GPU launched",
+    "full TV measured",
+    "numerical fidelity accepted"
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "schema": "scalellm_gpu1_maintenance_independent_source_mock_review_v1",
+  "reviewed_at_utc": "2026-10-18T05:02:16.376717+00:00",
+  "reviewer": "A010 /root/gsm8k_protocol",
+  "CPU_only": true,
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "helper": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/gpu1_maintenance_20261018/gpu1_maintenance.py",
+  "helper_sha256": "2249afac1537e04a993e55f6cf75a30d3df0030a0ea7c7bc663d0b94527ca15a",
+  "review_source_sha256": "2e6f5c86f010577fbe372c47cb81d074a408eb24a29a3118ed8427610f9d4b8f",
+  "author_test_source_sha256": "e52b01f5c08e4abc4babd95653c08a8f97fe545300dced78c6a6b1b63a23f570",
+  "author_mock_receipt_sha256": "f66e1025700336f97bf448048bf7cd7a6024984799f8c12f02c41052366cebd4",
+  "author_tests_independently_rerun": 21,
+  "author_tests_failures": 0,
+  "author_tests_errors": 0,
+  "additional_independent_checks": [
+    {
+      "name": "reject_ambiguous_or_zero_display_:0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reject_ambiguous_or_zero_display_:0.0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reject_ambiguous_or_zero_display_:0.9",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reject_ambiguous_or_zero_display_:00.0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reject_ambiguous_or_zero_display_localhost:0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reject_ambiguous_or_zero_display_unix:0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reject_ambiguous_or_zero_display_0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reject_ambiguous_or_zero_display_:01.0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "allow_reviewed_xrdp_:10",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "allow_reviewed_xrdp_:10.0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "allow_reviewed_xrdp_:10.1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reject_xrdp_display_with_wrong_cgroup",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reject_wayland_dependency",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "reject_lightdm_authority_under_xrdp_label",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "protected_pid_disappearance_before_stop_refuses_without_mutation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "new_locked_protected_pid_is_required_after_stop",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "KeyboardInterrupt_during_stop_restores_before_unlock",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "SystemExit_during_single_reset_still_restores",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "active_but_not_running_restore_cannot_report_success",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "default_check_has_zero_actions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "actual_flock_refuses_scratch_busy_GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_scratch_locks_released_after_GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "actual_flock_refuses_scratch_busy_GPU-d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all_scratch_locks_released_after_GPU-d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "source_stable_during_independent_CPU_review",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "additional_independent_checks_passed": 25,
+  "real_system_commands": 0,
+  "real_GPU_calls": 0,
+  "real_service_actions": 0,
+  "production_GPU_locks_opened": 0,
+  "execution_state": "source_and_CPU_mock_review_complete",
+  "verdict": "bounded source and CPU mock qualification accepted for this exact helper version; actual maintenance unexecuted",
+  "blocking_source_findings": [],
+  "resolved_findings": [
+    "Initial and locked protected PID/start identities are bound before stop; newly observed protected identities are retained for postchecks.",
+    "Physical display0 aliases cannot pass the XRDP exemption; only explicit matching nonzero local XRDP display numbers are accepted.",
+    "Restoration checks active/running unit and root LightDM MainPID; greeter observation is reported separately.",
+    "Repeated NVIDIA library identity checks preserve separate raw records."
+  ],
+  "source_reviewed_controls": [
+    "Default check cannot call stop/reset/start; nonroot execute refuses without escalation.",
+    "Both original GPU locks are held throughout stop/reset/restoration, and unexpected NVML-enumerated GPU0/GPU1 clients refuse even with free locks.",
+    "Only the fixed lightdm.service and GPU1 UUID can be mutated; there is no fallback target, retry or driver installation/restart.",
+    "Human/unknown seat sessions, affected Codex/EDA/helper cgroups/display dependencies and unknown NVML clients refuse before stop.",
+    "The stop-attempt marker is set before calling stop; BaseException paths attempt restoration before releasing locks.",
+    "A reset exit0 is labelled reset_completed_not_qualified and cannot establish postreset model/byte qualification."
+  ],
+  "limitations": [
+    "No real system inventory command, service action, GPU reset, postreset validation or restoration was executed by reviewer.",
+    "CPU mock success proves orchestration behavior within the covered cases; it does not prove real reset support or device repair.",
+    "Actual helper may legitimately refuse due to existing external GPU0 compute, unknown session ownership, permission or other preconditions.",
+    "NVML process inventory may omit clients holding only monitor/device descriptors; reset may naturally refuse in-use despite the inventory gate. No descriptor scan or client control was added under the final bounded scope.",
+    "Finally restoration cannot guarantee recovery after process/host failure such as SIGKILL or power loss; actual result and service evidence must be reviewed.",
+    "Only the controller can release the existing R003 maintenance hold after resolving the real maintenance state."
+  ]
+}

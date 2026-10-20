@@ -1,0 +1,83 @@
+{
+  "schema": "A007_AT020_adopted_resource_guard_independent_review_v1",
+  "utc": "2026-10-18T23:11:32.859930+00:00",
+  "execution": "bounded_source_owner_receipt_incremental_CPU_and_live_proc_review_completed",
+  "verdict": "current_existing_tree_guard_and_readonly_watch_extension_accepted_with_explicit_continuity_and_exit_limits",
+  "applicability": "Exact guard68afb4b5 and helper ef3cc774, existing AT020 four PID/start identities only; not G4 or native-success acceptance",
+  "review": "independently_reviewed",
+  "no_blocker_for_current_guard": true,
+  "G4": false,
+  "source_identities": [
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/adopt_AT020_resource_guard.py",
+      "bytes": 7350,
+      "sha256": "68afb4b5eaf14b5cad1ad7c80d251efea3044f11378a72878a6ed6a5d5c3c5e2"
+    },
+    {
+      "path": "project/hardware/vivado/scripts/run_managed_eda.py",
+      "bytes": 12813,
+      "sha256": "ef3cc774f30764a4b7f40eca073e4cf8f69a9704f860b0c813bfa88c2bc37839"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT020_adopted_guard_live_observation.json",
+      "bytes": 15691,
+      "sha256": "7fcea83ee9df955afc2c905d4009bee0869345d9b29824ac923e94f54ebb376b"
+    },
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/adopt_AT020_resource_guard_initial_CPU_receipt.json",
+      "bytes": 1573,
+      "sha256": "5ce520b46291ea9e89825b6bfbc0145abf5bd0dc8e6c39045dded645f7076722"
+    },
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/adopt_AT020_resource_guard_initial_CPU_source.py",
+      "bytes": 1054,
+      "sha256": "81ff5bb81b09436217a0a381ca18913cfd10727bf8c926e66cd14c38d8e97488"
+    },
+    {
+      "path": "agent/A006/M003_SM015_SM018_20261018/adopt_AT020_resource_guard_initial_CPU_stdout.log",
+      "bytes": 61,
+      "sha256": "2fc136c4f44ca8a82e2c9b8b341c67ac75c50653f79c3becd1104986cef67181"
+    },
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT020_guard_incremental_CPU_review.json",
+      "bytes": 1009,
+      "sha256": "1f411d526b36881779b1e104ac4ce4eaa818734a63fd5a444d042e4150023a24"
+    },
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT020_guard_readonly_watcher_validation.json",
+      "bytes": 3551,
+      "sha256": "88a6fa4b915b1136557f047350a18dc161b59173bf35ebe988f10ef9452f3b37"
+    },
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT020_guard_readonly_watcher_start.json",
+      "bytes": 621,
+      "sha256": "1cec7b028e093bb585aef35b5a68c64b73c58ceaa89382b83bd2a93485fd11e4"
+    },
+    {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT020_guard_readonly_watcher_actual_identity.json",
+      "bytes": 1921,
+      "sha256": "60e089591bd90ec88939af76660fdcdf9cac4a9c1ce6accc1d0eaada7cf17801"
+    }
+  ],
+  "findings": {
+    "initial_identity": "All four fixed PID/start values and pgrp=86002 checked before and after exclusive lock acquisition.",
+    "live_identity": "23:08:57Z guard137896/start5431142 alive with CPU0-7/nice5, all original four identities match, exact lock103:02:169247080 held by guard; heartbeat23:08:56.864451Z current.",
+    "thresholds": "RSS>192GiB; MemAvailable<48GiB continuously>=30s; disk<30GiB. No wall/quiet or exception stop path in adopted guard main.",
+    "signals": "Only measured resource_reason branch calls existing terminate_owned. SIGHUP/SIGTERM/SIGINT handlers record event without forwarding to native. Main of imported legacy helper is never called.",
+    "ownership_after_adoption": "Existing helper collects current process group, exact tracked PID/start matches and descendants; guard detects reused leader while surviving tracked identities. This uses /proc snapshots and numeric PID signalling, not pidfd atomic signalling; no claim beyond reviewed mechanism.",
+    "records": "New adopted_supervision_v1 only; original job status not reconstructed. No EDA subprocess launch in guard source.",
+    "owner_CPU": "7 assertions/exception rejection branches and final PASS sentinel reviewed from post-execution archive. Owner reports composite exit0; standalone CPU numeric exit not separately captured. Prior7 not reexecuted.",
+    "independent_CPU": "6 uncovered threshold-equality and missing/PGRP ownership cases PASS, main/native controls never called.",
+    "observer": "Actual additional observer138737/start5462179, own session26076; 10 synthetic event-detection cases PASS. Every15s bounded<=128KiB metadata, PID/start/dead-state, exact lock identity, 120s heartbeat alert, monitor_error/new status/lock_released. Original93658/start3424468 finalCLK/complete/error/status observer kept."
+  },
+  "limits": [
+    "Resource protection continuity is unproven from last original resource sample2026-10-18T20:35:23.924577Z until adopted guard started2026-10-18T23:05:05.207030Z; no retrospective coverage claim.",
+    "Original supervisor86001 exit cause and original native/supervisor return codes unavailable; leave null/UNKNOWN. Foreign launcher cannot waitpid here.",
+    "Zombie identities count as tracked survivors, so guard may retain lock pending actual reaping. Preserve raw exit observations separately; do not decode them into an asserted native exit without evidence.",
+    "monitor_error retains lane and retries without native signal; observer alerts owner. Guard loss/stale heartbeat also alerts only, never authorizes normal native stop.",
+    "No full80 CLK closure yet; final CLK audit and owner closure still pending."
+  ],
+  "next_action": "Keep both actual observers and A007 turn active; any dependency event immediately invokes actual collaboration.followup_task to A006 and reports Root. Review final80 CLK once available and separate adopted drain status from missing original exit."
+}

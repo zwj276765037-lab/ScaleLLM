@@ -1,0 +1,46 @@
+{
+  "observed_at": "2026-10-18T01:53:29.562089+00:00",
+  "hostname": "user",
+  "torch": "2.10.0+cu128",
+  "cuda_build": "12.8",
+  "devices": [
+    {
+      "index": 0,
+      "name": "NVIDIA RTX A6000",
+      "uuid": "78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+      "total_memory_bytes": 50895192064,
+      "free_memory_before_test_bytes": 50506563584,
+      "bf16_matmul_passed": true,
+      "compute_capability": [
+        8,
+        6
+      ]
+    },
+    {
+      "index": 1,
+      "name": "NVIDIA RTX A6000",
+      "uuid": "d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "total_memory_bytes": 50897289216,
+      "free_memory_before_test_bytes": 50562662400,
+      "bf16_matmul_passed": true,
+      "compute_capability": [
+        8,
+        6
+      ]
+    }
+  ],
+  "nvidia_kernel": "NVRM version: NVIDIA UNIX x86_64 Kernel Module  580.159.03  Fri Apr 24 06:16:47 UTC 2026\nGCC version:  gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) \n",
+  "loaded_cuda_libraries": [
+    "/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12",
+    "/usr/lib/x86_64-linux-gnu/libcuda.so.580.178.04",
+    "/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.580.178.04"
+  ],
+  "nvidia_smi": {
+    "exit_code": 18,
+    "stdout": "Failed to initialize NVML: Driver/library version mismatch\nNVML library version: 580.178\n",
+    "stderr": ""
+  },
+  "gpu_monitoring_method": "CUDA mem_get_info + per-worker torch CUDA peak counters and progress logs; NVML remains unavailable",
+  "system_driver_modified": false,
+  "cuda_preflight_passed": true
+}

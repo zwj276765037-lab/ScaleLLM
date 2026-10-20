@@ -1,0 +1,87 @@
+{
+  "schema": "m005_r005_independent_persistent_qualification_v1",
+  "at": "2026-10-19T06:50:56.014864+00:00",
+  "execution_state": "completed",
+  "review": "no_blocking_issue_for_frozen_execution_framework",
+  "overall_precision_verdict": "inconclusive",
+  "sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/audit_extended_numerical.py",
+      "sha256": "e97a639c51a4925f2146f201b142967109b751d0ea66eac4af96fab30214bc48"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/audit_formal_numerical.py",
+      "sha256": "1b0eae5f16b2b6b7957d319b570c95c5ab918a2bec94b288a3a240ca8773e421"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/extended_session_cache.py",
+      "sha256": "7c960f323d4db42ad4af67bc369a7dd95206eaffc439a8180977d1e5368feb31"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_extended_numerical_session.py",
+      "sha256": "c18ce371b972236f83462115c115bc5b593ca9f31468b5f4ae517b2fc550ee88"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/bounded_extended_session.py",
+      "sha256": "1855a75eb00fec974ee491d4c96b746674aa806d528a030bcd5641d774098a3f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/analysis/final_precision_png/make_inputs.py",
+      "sha256": "462e6ddd8a6873676446b702a26f8369bd055def8596b5d8dedb17dd19c06d79"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/analysis/final_precision_png/aggregate_final.py",
+      "sha256": "2a101a445b9c996737ce549a925b9849042b7ef4196791482aad7bd3ba8fc693"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/analysis/final_precision_png/render_final.py",
+      "sha256": "c50177ef5e97dc478798cdfcd2c6e8a1d8118d5756a2b62fa390f77fcd5bccde"
+    }
+  ],
+  "independent_cpu_checks": {
+    "checker_tests": 5,
+    "checker_seconds": 3.212,
+    "checker_log": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/independent_review/checker_cpu_qualification_v3.log",
+    "cache_tests": 2,
+    "cache_seconds": 0.003,
+    "orchestration_tests": 8,
+    "orchestration_seconds": 0.072,
+    "result": "all passed; no GPU execution"
+  },
+  "resolved_issues": [
+    "atomic replacement for mutable progress and unpublished group runtime annotations",
+    "global evidence storage includes sibling groups without duplicate nested roots",
+    "data output identity whitelist excludes mutable management/navigation files",
+    "plan identity captured before parsing and rechecked after validation",
+    "direct Popen child cleanup remains bounded when exec identity is unavailable",
+    "disappeared atomic temporary file is skipped during disk stat; other I/O errors still propagate",
+    "independent adapter uses execution_receipt.json and verifies global launch/receipt/shared process/analysis membership plus data source and output identities"
+  ],
+  "frozen_audit_cli": {
+    "command": [
+      "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+      "-B",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/audit_extended_numerical.py",
+      "--attempt",
+      "<canonical_group>",
+      "--session",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/session_S001",
+      "--output",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/independent_review/formal/<group_id>_extended.json",
+      "--core-output",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/independent_review/formal/<group_id>_core.json"
+    ],
+    "wall_seconds_per_command": 60,
+    "cpu_threads": 1,
+    "max_rss_gib": 8,
+    "requires_global_native_zero_reaped_before_final_audit": true
+  },
+  "limitations": [
+    "Persistent GPU execution and full1024 numerical results have not been independently observed by this review.",
+    "Tests use CPU fixtures only; not new formal model evidence.",
+    "Shared-session temporary /tmp evidence view is not an independent per-group launch.",
+    "Per-command60seconds is a finite ceiling;64ceilings are not a measured total postprocessing cost.",
+    "Whole-vocabulary FP32 head chunk sensitivity and selected fsum checks remain distinct from algorithm rounding differences.",
+    "Source fact: preselected4dev pilot passed numerical measurement qualification; this does not prove global numerical precision."
+  ]
+}

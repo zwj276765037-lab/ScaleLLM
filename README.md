@@ -1,28 +1,26 @@
 # ScaleLLM
 
-面向 Xilinx VCU118（xcvu9p-flga2104-2L-e）的 Llama-3.1-8B-Instruct 硬件与软件协同工程，保持 Hadamard、ScaleCode 和 format 05 数值合同。
+面向 Xilinx VCU118（xcvu9p-flga2104-2L-e）的 Llama-3.1-8B-Instruct 软硬件工程，保持 Hadamard、ScaleCode 和 format 05 数值合同。
 
-## 当前版本：M003 已定义
+## 当前版本：M003 已执行，完整实现未布通
 
-2026-10-18，已建立 **M003：联合可布线改造与完整实现验收**。七个子任务覆盖失败网络归因、联合设计冻结、RTL 改造、物理约束与功能回归、新综合、完整布局布线和全局验收。主合同及验收矩阵已通过独立文档审核；工程状态为 planned，尚未启动 M003 RTL 修改、仿真、综合或 implementation。
+2026-10-20：M003 联合版本已完成RTL修复、限定功能验证、新综合，以及实际布局和物理优化；E011/R003/AT006完整place/physopt阶段检查通过，route原生自然失败，最终797175个重叠路由节点、615840条资源冲突网。失败检查点和原始诊断已保存在服务器。当前E011/R004对同一失败检查点的只读原生取数已自然完成；初步离线归因已保存，独立结果审核尚未结束。
 
 | 内容 | 入口 |
 | --- | --- |
-| M003 完整合同与子任务 | [主合同](mission/M003_joint_routability_closure/contract.md) · [任务导航](mission/M003_joint_routability_closure/README.md) |
-| 验收要求 | [验证矩阵](mission/M003_joint_routability_closure/verification_matrix.md) |
-| 独立文档审核 | [审核记录](results/reviews/M003_definition_review_2026-10-18.md) |
-| 软件算法、整数参考与导出 | [project/software](project/software/README.md) |
-| RTL、Host、测试与 Vivado 源脚本 | [project/hardware](project/hardware/README.md) |
-| 项目目标与数值合同 | [goal/goal.md](goal/goal.md) |
-| 最新实际实验 | [E008 结果](project/E008_m002_exact_hotspot_offload_implementation/experiment_results/summary.md) · [状态](project/E008_m002_exact_hotspot_offload_implementation/experiment_status/summary.md) |
-| 原工作台首页快照 | [WORKSPACE_README.md](WORKSPACE_README.md) |
+| 硬件RTL、Host、测试与Vivado构建源 | [project/hardware](project/hardware/README.md) |
+| 软件算法、整数参考与实验 | [project/software](project/software/README.md) |
+| 当前时序、资源与条件性能估算 | [硬件指标](results/hardware_metrics.md) |
+| 当前硬件实验与原始记录索引 | [E011](project/E011_m003_joint_routability_implementation/README.md) |
+| M003合同、设计冻结与验收 | [任务入口](mission/M003_joint_routability_closure/README.md) |
+| 当前任务与项目目标 | [mission](mission/current.md) · [goal](goal/goal.md) |
+| 现成失败报告的具体冲突位置 | [定位记录](project/E011_m003_joint_routability_implementation/experiment_results/runs/R004/attempts/AT001_failed_route_driver_region_localization/evidence/existing_report_localization_findings.md) |
+| 工作台首页原文快照 | [WORKSPACE_README.md](WORKSPACE_README.md) |
 
-最近实际实验 E008/R001/AT004 已自然布线失败：702396 个重叠节点、547548 条冲突网络；C01 的 9491 个物理对象实际位于 SLR2，但尚未合法布通。终态收尾与独立核验已完成。M003 承接这些证据，不将任务定义完成视为优化有效或布通成功。
+资源为本版physopt postPlace实测：LUT801147（67.77%）、寄存器1021742（43.21%）、DSP5451（79.69%）、BRAM941（43.56%）、URAM752（78.33%）；CLB站点占用98.65%。目标core100MHz尚未收敛，physopt WNS−2.753ns；失败route图时序不能作为合法布线签核。阵列理论算力与历史tokens/s模型均是有条件估算，当前没有上板吞吐或可用bitstream。
 
 ## 仓库范围
 
-保存当前源码、规格、脚本、测试和有界实验记录；保留远端已有的 `ScaleLLM_pictures` 图片。Vivado 生成工程、大型 DCP/网表、运行日志、模型权重、大型原始证据和本地会话回执保留在服务器。本次推送不修改生产源、不启动或中断工程运行。
+本次更新保存当前源码、规格、脚本、测试、结果图表和有界记录，保留已有ScaleLLM_pictures图片与提交历史。Vivado生成工程/大型网表、原始张量/模型权重、工具缓存、大型运行记录和本地会话回执保留在服务器，不随源码快照上传。排除范围和导出文件SHA见[EXPORT_MANIFEST.json](EXPORT_MANIFEST.json)。
 
-144 项冻结生产输入在服务器原件与发布副本之间逐项核对。历史服务器绝对路径及哈希原样保留，部分证据只能在服务器读取；此源码快照不包含可用 bitstream，也不承诺在全新机器直接构建。
-
-文件身份、排除范围及快照时间见 [EXPORT_MANIFEST.json](EXPORT_MANIFEST.json)。
+这是运行期间的逐文件稳定快照，记录文件可以来自快照时间窗内不同阶段；生产源文件在副本与服务器间单独核对。历史绝对路径与原始哈希保留，部分链接只在原服务器有效。本次同步不改动当前生产源或EDA进程。

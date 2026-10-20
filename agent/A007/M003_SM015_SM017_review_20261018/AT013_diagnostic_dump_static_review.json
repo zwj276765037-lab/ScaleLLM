@@ -1,0 +1,81 @@
+{
+  "reviewer": "A007",
+  "observed_utc": "2026-10-18T07:40:31.844141+00:00",
+  "execution": "bounded static source review completed; no CPU mock or native query executed",
+  "verdict": "avoidable repeated property enumeration visible; no static evidence proving global collision or full-graph property expansion",
+  "applicability": "AT013 source719daa5a, immutable current attempt only",
+  "review": "no stop or current source change recommended; native attribution remains pending",
+  "source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT013_fresh_core_native_role_attribution/evidence/diagnostic_inputs/read_core_roles.tcl",
+    "bytes": 1764,
+    "sha256": "719daa5ac881be55c144d22e7ae621b11195a1ff0a67826804d89588341547ac"
+  },
+  "preserved_source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT013_fresh_core_native_role_attribution/evidence/jobs/native_core_roles/sources/719daa5ac881be55c144d22e7ae621b11195a1ff0a67826804d89588341547ac_read_core_roles.tcl",
+    "bytes": 1764,
+    "sha256": "719daa5ac881be55c144d22e7ae621b11195a1ff0a67826804d89588341547ac"
+  },
+  "source_archive": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT013_fresh_core_native_role_attribution/evidence/jobs/native_core_roles/source_archive.json",
+    "bytes": 7800,
+    "sha256": "a42e77c8d883a696d1f49fcfe06b6ff54c159f300029a1841b81b2de1cfa1ea4"
+  },
+  "findings": [
+    {
+      "lines": "6-8,15",
+      "fact": "prop calls list_property once for every key; dump_rows passes seven keys per object, so seven list_property calls per row plus up to seven get_property calls",
+      "limit": "Source-level count only; no measurement of native duration or expansion behavior"
+    },
+    {
+      "lines": "12-17",
+      "fact": "No get_cells/all_fanout/global table loop in dump_rows/prop; outer loop iterates supplied collection and inner loop exact seven keys",
+      "limit": "Native internal computation and collection semantics cannot be inferred from Tcl text"
+    },
+    {
+      "line": 21,
+      "fact": "parent NAME filter has leading wildcard and exact final suffix, no trailing wildcard",
+      "limit": "Actual count not yet emitted; cannot infer exact count from source alone"
+    },
+    {
+      "line": 6,
+      "fact": "Global ::prop is defined without namespace or existing-command guard",
+      "limit": "No matching global proc or call found in bounded installed Vivado scripts scan or actual injected MCP Tcl source; compiled/other loaded packages unexamined. Collision is possible generically, not established here"
+    },
+    {
+      "fact": "Parent output is buffered and currently zero bytes",
+      "limit": "Cannot identify which native property is running or derive a hang from file size"
+    }
+  ],
+  "bounded_static_searches": [
+    {
+      "scope": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/scripts/**/*.tcl",
+      "pattern": "global proc prop/dump_rows definitions",
+      "matches": 0
+    },
+    {
+      "source": {
+        "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/scripts/Vivado_init.tcl",
+        "bytes": 429,
+        "sha256": "2165de85e988a0eb1a80edcf81dfe683c8ecc56c5e7eab9ba004b44034ad1815"
+      },
+      "fact": "actual init explicitly sources vivado_mcp_server.tcl"
+    },
+    {
+      "source": {
+        "path": "/home/yqh/Desktop/Workspace/Tools/vivado-mcp/scripts/vivado_mcp_server.tcl",
+        "bytes": 6350,
+        "sha256": "2605413133019d22cf55b9eac44b789d36ecb666187e184485f1a63309fc51f2"
+      },
+      "pattern": "prop/dump_rows/list_property/get_property/source references",
+      "matches": 0
+    }
+  ],
+  "future_same_scope_repair_options": [
+    "For a subsequent frozen attempt only, use private namespace instead of global prop/dump_rows",
+    "Enumerate available properties once per object or fixed known object class; preserve NOT_SUPPORTED handling",
+    "Write/flush bounded query start/end and per-field timing markers around first representative object; complete family cardinality remains required",
+    "For naming-only diagnosis, emit NAME/REF first; optional origin metadata in distinct finite step"
+  ],
+  "current_action": "Current native process and immutable diagnostic source remain unchanged; continue normally. Source-level repetition does not authorize a time/quiet stop.",
+  "G4_no_blocker": false
+}

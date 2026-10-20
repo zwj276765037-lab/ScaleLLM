@@ -1,0 +1,87 @@
+{
+  "checked_at": "2026-10-18T11:28:58.091356+00:00",
+  "result": {
+    "case": "bf16",
+    "scope": "observed_shared_four_train_question_speed_diagnostic_not_ACC",
+    "exclusive_verified": false,
+    "formal_progression_eligible": false,
+    "baseline_resource_caveat": "R003 baseline was earlier on same GPU/driver; current run shares GPU0 with yqh. Observed speed ratios are not a controlled exclusive throughput qualification.",
+    "baseline_worker": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R003_gsm8k_gpu0_weight_integrity/smoke/Llama-3.1-8B-Instruct/bf16/AT001",
+    "new_worker": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/shared_model_diag_AT001/bf16/execution/worker",
+    "manifest_sha256": "2529a84b3fcf73d1ea2d881cbf0cb45de1dd546ba1653dc0584313e1fb241a20",
+    "summary_sha256": "b845a156a57a092063200996988b5dc59eb64ab25f3177e2646494bd74b7a123",
+    "canonical_identities_and_all_declared_artifact_hashes_checked": true,
+    "fixed_four_requests_byte_identical_to_baseline": true,
+    "token_and_text_parity": [
+      {
+        "sample_id": "train:0000",
+        "all_prompt_tokens_and_raw_generation_equal": true,
+        "output_tokens": 64,
+        "native_generation_seconds": 2.3232168499998807,
+        "actual_before_plus_after_guard_seconds": 6.99862012900121,
+        "actual_sample_before_commit_seconds": 9.325079383001139
+      },
+      {
+        "sample_id": "train:0001",
+        "all_prompt_tokens_and_raw_generation_equal": true,
+        "output_tokens": 49,
+        "native_generation_seconds": 1.7935928110000532,
+        "actual_before_plus_after_guard_seconds": 6.948749303001023,
+        "actual_sample_before_commit_seconds": 8.745730681001078
+      },
+      {
+        "sample_id": "train:0002",
+        "all_prompt_tokens_and_raw_generation_equal": true,
+        "output_tokens": 64,
+        "native_generation_seconds": 2.314828390999537,
+        "actual_before_plus_after_guard_seconds": 6.861818965000566,
+        "actual_sample_before_commit_seconds": 9.180604655000934
+      },
+      {
+        "sample_id": "train:0003",
+        "all_prompt_tokens_and_raw_generation_equal": true,
+        "output_tokens": 64,
+        "native_generation_seconds": 2.3506092290008382,
+        "actual_before_plus_after_guard_seconds": 7.196407612002076,
+        "actual_sample_before_commit_seconds": 9.550909550000142
+      }
+    ],
+    "same_two_native_verification_32_token_prefixes": true,
+    "same_complete_static_baseline_and_root": true,
+    "unchanged_15_phase_order_and_all_exact": true,
+    "old_completion_gaps_seconds": [
+      107.437156,
+      107.363854,
+      107.460092
+    ],
+    "new_completion_gaps_seconds": [
+      8.891218,
+      9.290226,
+      9.334413
+    ],
+    "old_median_completion_gap_seconds": 107.437156,
+    "new_median_completion_gap_seconds": 9.290226,
+    "observed_steady_cycle_speedup": 11.564536320214383,
+    "old_worker_wall_seconds": 979.3888996189999,
+    "new_worker_wall_seconds": 433.2381895159997,
+    "observed_short_worker_wall_speedup": 2.260624578625312,
+    "old_native_generation_total_seconds": 7.724277876000087,
+    "new_native_generation_total_seconds": 8.78224728100031,
+    "new_timing_breakdown": {
+      "schema": "scalellm_gsm8k_performance_timing_v1",
+      "setup_observation_seconds": 259.63593701600075,
+      "runtime_check_seconds": 39.196204592006325,
+      "finish_with_checkpoint_reverify_seconds": 39.31724547000158,
+      "integrity_call_count": 15,
+      "native_generation_seconds_this_attempt": 8.78224728100031,
+      "generation_timing_scope": "original generate_one.elapsed_seconds: model.generate plus its completion synchronize",
+      "attached_breakdown": {
+        "legacy_attached_validation_seconds": 50.59616967799957,
+        "immutable_capture_seconds": 41.605910355998276,
+        "scope": "attached validation and immutable capture measured separately; neither is repeated per sample"
+      }
+    },
+    "new_peak_memory_reserved_bytes": 16793993216,
+    "immutable_capture_bytes": 16060523008
+  }
+}

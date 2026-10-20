@@ -1,0 +1,74 @@
+{
+  "command_abi": 327680,
+  "format_id": 1211647493,
+  "geometry": {
+    "groups": 4,
+    "lanes_per_row": 32,
+    "metadata_words": 64,
+    "q_bytes": 2048,
+    "rows": 64
+  },
+  "golden": {
+    "executed_or_imported": false,
+    "path": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/FPtoQ/experiment/v5_fullchain.py",
+    "sha256": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898"
+  },
+  "helper": {
+    "path": "tests/rebuild_v5_frontend_fixtures.py",
+    "sha256": "57edd2d1b2d51e23a6644c3760f62873d31a9bd32c8f54390201f2f3b0559a80"
+  },
+  "historical_difference": {
+    "different_meta_words": 52,
+    "different_q_bytes": 903,
+    "different_rows": 62,
+    "scope": "diagnostic_only_not_oracle"
+  },
+  "input": {
+    "copied_filename": "product_s32x16x32.mem",
+    "sha256": "13c6fab5f0d5ded3e77e74bb1184a859bec6a671129d3e973b30aa520401a7cd",
+    "source_path": "data/mlp_product_frontend16_q4/product_s32x16x32.mem",
+    "source_sha256": "13c6fab5f0d5ded3e77e74bb1184a859bec6a671129d3e973b30aa520401a7cd"
+  },
+  "kind": "product",
+  "outputs": {
+    "expected_meta_u24x16.mem": {
+      "bytes": 388,
+      "sha256": "290c0d558c74dcf9ddc5edf65c13ecb7d99540c3eb46e389a31d123ad8094a31"
+    },
+    "expected_u8x16x32.mem": {
+      "bytes": 4100,
+      "sha256": "43418fd6e866477f563e5b00cc5463ed49c0946e4b0efcf22107b82dd2c5d10b"
+    },
+    "product_s32x16x32.mem": {
+      "bytes": 16388,
+      "sha256": "13c6fab5f0d5ded3e77e74bb1184a859bec6a671129d3e973b30aa520401a7cd"
+    }
+  },
+  "packing": {
+    "input_slot_order": "low_first_row_major",
+    "meta_slot_bits": "24*row",
+    "q_slot_bits": "8*(row*32+lane)",
+    "swiglu_tile_order": [
+      "Gate0",
+      "Up0",
+      "Gate1",
+      "Up1"
+    ]
+  },
+  "profile": "core100_ddr200_format05",
+  "purpose": "finite_integer_unit_fixture_not_model_or_weight_evidence",
+  "qualification": {
+    "format_events": 0,
+    "hadamard_saturations": 0,
+    "product_overflows": 0,
+    "source_preclip": false
+  },
+  "rom": {
+    "literal_endpoint": 1048576,
+    "path": "data/mlp_silu_q16.mem",
+    "sha256": "8263e8981b637b00143c6dfd6674f2397a73c85c6ed8934f0ee839f76db6ea67",
+    "stored_signed24_entries": 8192,
+    "used": false
+  },
+  "schema": "scalellm_v5_frontend_unit_fixture_v1"
+}

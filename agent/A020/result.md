@@ -1,0 +1,3 @@
+# A020 current delivery
+
+True32-layer paired free-generation implementation and CPU qualification delivered. GPU0AT003was cancelled without launching a worker. GPU1AT004really allocated16GiB and reproduced27082wrong rawbytes at first00pattern; native1/reaped/cleanup0 and A019independent FAIL_BYTE_INTEGRITY confirmed. No GPU1model. Root-authorized GPU0-only AT005queue actually running as PID/PGID1083509, create_time1792485050.9; six-hour bound, three empty checks, one1800spilot only, no GPU1fallback/formal805batch. No answer quality result exists yet. Follow R012/runtime/AT005_wait_for_gpu0_after_gpu1_failure/current_status.json and eventual waiter_exit_receipt.json.

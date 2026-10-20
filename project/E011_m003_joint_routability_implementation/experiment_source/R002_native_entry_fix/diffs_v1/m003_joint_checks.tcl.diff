@@ -1,0 +1,98 @@
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_checks.tcl (AT003 archived)
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_joint_checks.tcl
+@@ -1,5 +1,6 @@
+ # Native M003 role resolution and constraints. No EDA runs are launched here.
+ set m003_scripts [file dirname [file normalize [info script]]]
++if {[info exists ::env(HAP_M003_SCRIPTS_DIR)] && [file normalize $::env(HAP_M003_SCRIPTS_DIR)] ne $m003_scripts} {error "M003 explicit script root differs from loaded frozen helper"}
+ source [file join $m003_scripts m003_system_python.tcl]
+ source [file join $m003_scripts ../constraints/m003_joint_locality_data.tcl]
+ namespace eval m003 {
+@@ -7,6 +8,7 @@
+     variable cache [dict create]
+     variable resolved [dict create]
+     variable ancestor_pblocks [dict create]
++    if {![info exists apply_attempts]} {variable apply_attempts 0}
+ }
+ proc m003::require_project {{context registry}} {
+     variable scripts
+@@ -25,9 +27,9 @@
+     set f [lindex $files 0]
+     if {[yes [prop $f USED_IN_SYNTHESIS]] || ![yes [prop $f USED_IN_IMPLEMENTATION]] || ![yes [prop $f IS_ENABLED]] ||
+         [prop $f PROCESSING_ORDER] ne "LATE" || [prop $f SCOPED_TO_REF] ne "" ||
+-        [prop $f SCOPED_TO_CELLS] ne ""} {error "M003 overlay must be global implementation-only LATE"}
++        [prop $f SCOPED_TO_CELLS] ne "" || [prop $f FILE_TYPE] ne "TCL"} {error "M003 overlay must be global implementation-only LATE TCL"}
+     set row [dict create NAME $path source_manifest_sha256 [lindex [exec sha256sum -- [file join $scripts ../constraints/m003_entry_manifest.json]] 0] overlay_sha256 [lindex [exec sha256sum -- $path] 0]]
+-    foreach property {USED_IN_SYNTHESIS USED_IN_IMPLEMENTATION IS_ENABLED PROCESSING_ORDER SCOPED_TO_REF SCOPED_TO_CELLS} {dict set row $property [prop $f $property]}
++    foreach property {USED_IN_SYNTHESIS USED_IN_IMPLEMENTATION IS_ENABLED PROCESSING_ORDER SCOPED_TO_REF SCOPED_TO_CELLS FILE_TYPE} {dict set row $property [prop $f $property]}
+     set receipt [file join $::env(HAP_REPORT_DIR) m003_candidate_registration.json]
+     set content [jobject $row]
+     if {[file exists $receipt]} {
+@@ -81,23 +83,29 @@
+     }
+     return [lsort -unique $result]
+ }
++proc m003::payload_members {} {
++    variable parent_scope
++    set family_bits [dict create]
++    # Select only the two payload families. Count/state registers are distinct
++    # roles; replicas and malformed members of either family still fail below.
++    set selected [get_cells -quiet -hier -filter [format {IS_PRIMITIVE == 1 && (NAME =~ "%s/parent_head_r_reg*" || NAME =~ "%s/parent_tail_r_reg*")} $parent_scope $parent_scope]]
++    foreach cell $selected {
++        set name [get_property NAME $cell]
++        if {![regexp {parent_(head|tail)_r_reg\[([0-9]+)\]$} $name -> family bit]} {error "M003 unresolved/replicated payload origin: $name"}
++        if {[get_property REF_NAME $cell] ni {FDRE FDCE FDSE FDPE} || $bit>=6560 || [dict exists $family_bits $family $bit]} {error "M003 invalid payload member: $name"}
++        dict set family_bits $family $bit $cell
++    }
++    foreach family {head tail} {
++        if {![dict exists $family_bits $family] || [dict size [dict get $family_bits $family]] != 6560} {error "M003 $family production payload incomplete"}
++    }
++    return $family_bits
++}
+ proc m003::resolve {} {
+     variable parent_scope;variable meta_scope;variable core_meta_scope;variable c01_root
+     variable resolved;variable groups
+     set resolved [dict create]
+     foreach root [list $parent_scope $meta_scope $core_meta_scope $c01_root] {one get_cells $root}
+-    set family_bits [dict create];set buffers [dict create]
+-    # Bounded name filters avoid iterating the complete shared-compute subtree.
+-    set selected [get_cells -quiet -hier -filter [format {IS_PRIMITIVE == 1 && NAME =~ "%s/*parent_*_r_reg*"} $parent_scope]]
+-    foreach cell $selected {
+-        set name [get_property NAME $cell]
+-        if {![regexp {parent_(head|tail)_r_reg\[([0-9]+)\]$} $name -> family bit]} {error "M003 unresolved/replicated payload origin: $name"}
+-        if {[get_property REF_NAME $cell] ni {FDRE FDCE FDSE FDPE} || $bit>=6560 || [dict exists $family_bits $family $bit]} {error "M003 invalid payload member: $name"}
+-        dict set family_bits $family $bit $cell
+-    }
+-    foreach family {head tail} {
+-        if {![dict exists $family_bits $family] || [dict size [dict get $family_bits $family]] != 6560} {error "M003 $family production payload incomplete"}
+-    }
++    set family_bits [payload_members];set buffers [dict create]
+     foreach cell [get_cells -quiet -hier -filter [format {IS_PRIMITIVE == 1 && NAME =~ "%s/*u_ce_buffer"} $parent_scope]] {
+         set name [get_property NAME $cell]
+         if {![regexp {g_(head|tail)_ce\[([0-9]+)\].*u_ce_buffer$} $name -> family index]} {error "M003 buffer origin unknown: $name"}
+@@ -190,6 +198,10 @@
+     return $pb
+ }
+ proc m003::apply {} {
++    variable apply_attempts;incr apply_attempts
++    set trace [open [file join $::env(HAP_REPORT_DIR) m003_apply_attempts_[pid].txt] a]
++    puts $trace "attempt=$apply_attempts restore_verify_only=[info exists ::env(HAP_M003_RESTORE_VERIFY_ONLY)]";close $trace
++    if {[info exists ::env(HAP_M003_RESTORE_VERIFY_ONLY)]} {error "M003 restore must verify stored constraints without any apply"}
+     variable groups;variable regions;variable meta_pools;variable c01_protected
+     # Native implementation child reads sources in a temporary run project;
+     # preserve original XPR policy in the parent-native registration receipt.
+@@ -222,7 +234,15 @@
+         set cell [one get_cells $name]
+         if {![yes [get_property DONT_TOUCH $cell]]} {error "M003 C01 original protection lost: $name"}
+     }
++    variable scripts
++    set d [dict create kind native success true attempt $apply_attempts pid [pid] source_manifest_sha256 [lindex [exec sha256sum -- [file join $scripts ../constraints/m003_entry_manifest.json]] 0] overlay_sha256 [lindex [exec sha256sum -- [file join $scripts ../constraints/m003_joint_locality.xdc]] 0]]
++    set h [open [file join $::env(HAP_REPORT_DIR) m003_apply_success_[pid]_${apply_attempts}.json] {WRONLY CREAT EXCL}]
++    puts $h [jobject $d];close $h
+     puts "M003_OVERLAY_APPLIED head42 tail39 URAM40+40 address34 C01_retained"
++}
++proc m003::require_actual_apply {} {
++    variable scripts
++    m003_python [file join $scripts m003_entry.py] check-apply --report $::env(HAP_REPORT_DIR)
+ }
+ proc m003::jq {s} {
+     return \"[string map [list \\ \\\\ \" \\\" \n \\n \r \\r \t \\t] $s]\"

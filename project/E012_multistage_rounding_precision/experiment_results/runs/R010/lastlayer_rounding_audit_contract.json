@@ -1,0 +1,52 @@
+{
+  "schema": "m005_r010_lastlayer_scalar_rounding_audit_v1",
+  "at": "2026-10-20T01:59:56.102498+00:00",
+  "authorization": "User: 仅核验最后一层有多少占比的数舍入后误差过大导致如此大的输出误差，舍入了多少位，相比原数舍入后的数值差异",
+  "scope": "Pure audit of original production layer31 attention o_proj and MLP down_proj. No new optimization; no full32-layer inference or model-wide candidate search.",
+  "data": {
+    "source": "R006 formal1024 predeclared audit roster",
+    "documents": 15,
+    "tokens": 1746,
+    "outputs_each": 7151616,
+    "outputs_total": 14303232,
+    "input": "Exact saved current PreparedActivation01 and03 for all15docs, immutable source identities; do not select by observed error",
+    "coverage": "Census of scalar values in these15saved documents, not scalar census of all1024documents. Existing1024 aggregate counts may be analyzed separately with explicit mathematical qualification."
+  },
+  "implementation": "Load/quantize only two layer31 checkpoint matrices through original V5 exporter/chunked rules. Replay exact saved current activation integers/codes/shifts/zero points. Instrument a private copied production kernel without changing its arithmetic, and reuse independent exact quotient/remainder reference. Baseline raw/counters and old R006 local aggregates/witnesses must match.",
+  "statistics": [
+    "Perdoc/peroperator active group rightshift bit histogram and nonzero discarded remainder counts; distinguish group-term denominator from output count",
+    "Final output round: accumulator/2^24 before, roundedcode/2^16 after, actualdrop8, saturation separate",
+    "Total numerical loss: current output versus sameinput exact unrounded Linear result (includes intermediate floor and final round)",
+    "Additional intermediate loss: current output versus independent same-F16 OUTPUT_ONLY reference, matched to R006",
+    "For each definition absolute mean/RMSE/max and quantiles, pointwise relative error count above0.1/1/5/10percent among nonzero original values; original0/current0 and original0/currentnonzero separate",
+    "Count and error energy share of high-relative-error sets, plus reference-RMS-normalized thresholds to expose near-zero denominators",
+    "Deterministic before/after examples: fixed sample positions plus explicitly labelled largest absolute and largest relative cases, never present selected examples as a random sample"
+  ],
+  "definitions": "All before/after values decoded to the same real units. Rightshift count differs from number of nonzero lost bits. Relative=abs(after-before)/abs(before), no epsilon denominator. Keep all unfavorable tails and exact counts.",
+  "verification": [
+    "CPU arbitrary precision/Fraction independent checks of signed rightshift, half-away, wrap and saturation",
+    "GPU instrumented output identical to original production on real preparedinputs; prefix not recomputed",
+    "Exact sameinput reference matches frozen witnesses; recomputed tensor aggregate matches R006",
+    "Counts close with correct denominators; raw final accumulator/code CPU checks; overflow/sat/errors reported",
+    "Measured output error does not by itself establish that final-layer rounding causes overall 32-layer discrepancy; no subtraction of relativeL2 percentages for attribution"
+  ],
+  "resources": {
+    "gpu_uuid": "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+    "gpu_processes": 1,
+    "cpu_threads": 1,
+    "max_rss_gib": 8,
+    "max_gpu_gib": 24,
+    "launch_free_gpu_gib": 30,
+    "runtime_free_gpu_gib": 8,
+    "minimum_available_ram_gib": 32,
+    "total_gpu_wall_seconds": 900,
+    "max_evidence_mib": 512
+  },
+  "storage": "Do not dump4.1b group terms. Stream group summaries; save per-output final accumulator/current/reference codes or bounded independent witness data, all source IDs, perdoc counts, compact tables and CSV before/after examples. Preserve failures and frozen source.",
+  "owners": {
+    "engineering": "A019/rounding_optimization_runner: new R010 implementation/attempts and local summaries",
+    "root": "existing1024 aggregate algebraic recovery under R010/analysis_existing",
+    "review": "rounding_reference_implementation: scoped arithmetic and denominator review"
+  },
+  "execution": "Existing environment/source checks then bounded background replay authorized. No extra permission needed for this requested read-only numerical audit. No production modifications, no RNE/widening new candidate, no ACC/PPL/full32forward. Any missing/full-layer causal attribution remains explicit rather than guessed."
+}

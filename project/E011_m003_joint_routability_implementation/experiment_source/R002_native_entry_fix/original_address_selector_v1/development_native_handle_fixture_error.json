@@ -1,0 +1,9 @@
+{
+  "recorded_utc": "2026-10-18T11:17:42.937579+00:00",
+  "observed_result": "Six selector tests pass; combined resolver CPU replay fails slice0/u_local_ce count0",
+  "attribution": "Fixture used objN identifiers as native cells, but real Vivado cell handle string is full NAME and resolve intentionally uses file tail on it. Wrong fixture identifier caused false local-control absence.",
+  "repair": "Use actual native NAME as Tcl object identifier for combined resolver fixture; keep separate opaque IDs in isolated selector tests. No production candidate/expectation/assertion changes.",
+  "prior_test_source": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/original_address_selector_v1/test_selector_before_native_handle_fixture_refresh.py",
+  "raw_log_captured": false,
+  "evidence_origin": "Actual exec tool output from session58324, recorded without pretending a raw file existed"
+}

@@ -1,0 +1,94 @@
+{
+  "schema": "A007_Vivado_installed_canonical_net_API_advice_v1",
+  "utc": "2026-10-19T00:31:43.046280+00:00",
+  "execution": "read_only_installed_command_manual_review_completed",
+  "verdict": "Documented canonical-top-net API supports a candidate per-group primary-port fast path; native equivalence and timing remain to be measured.",
+  "applicability": "Vivado2025.2 installed docs; future grouped_connectivity_v1 candidate only, current AT020 untouched.",
+  "review": "source-backed API advice, not native validation",
+  "evidence": {
+    "get_nets": {
+      "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/doc/eng/man/get_nets",
+      "bytes": 9305,
+      "sha256": "b89934abaf117b90658c85947c2fa90c9ce2de2a3fffa8296cd7d390d3dd6882",
+      "bounded_excerpts": [
+        {
+          "line": 89,
+          "text": "  -of_objects <arg> - (Optional) Get a list of the nets connected to the\n  specified cells, pins, ports, or clocks; or nets associated with specified\n  DRC violation objects.\n\n  Note: The -of_objects option requires objects to be specified using the"
+        },
+        {
+          "line": 108,
+          "text": "  -top_net_of_hierarchical_group - (Optional) Returns the top-level net\n  segment of a hierarchical net, or nets, or the top-level net segments of\n  all nets. Use this option with -segment to return the top-level net segment\n  from all the segments of a hierarchical net.\n"
+        },
+        {
+          "line": 113,
+          "text": "  -segments - (Optional) Get all the segments of a hierarchical net, across\n  all levels of the hierarchy. This differs from the -hierarchical argument\n  in that it returns all segments of the specified net, rather than just the\n  specified net.\n"
+        },
+        {
+          "line": 134,
+          "text": "  -quiet - (Optional) Execute the command quietly, returning no messages from\n  the command. The command also returns TCL_OK regardless of any errors\n  encountered during execution.\n\n  Note: Any errors encountered on the command-line, while launching the"
+        },
+        {
+          "line": 185,
+          "text": "    get_nets -top -segments \\  \n       -of [get_pins cpuEngine/or1200_cpu/or1200_sprs/esr_reg[9]_i_3/I0]  \n    \n\n  In the following example, the first command applies the -filter to find"
+        }
+      ]
+    },
+    "get_ports": {
+      "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/doc/eng/man/get_ports",
+      "bytes": 6277,
+      "sha256": "a9a476fe7db2c2a005044e05fa1456c1cc8290d5abb0505a04499f0167d86d03",
+      "bounded_excerpts": [
+        {
+          "line": 67,
+          "text": "  -of_objects <arg> - (Optional) Get the ports connected to the specified\n  nets, bels, sites, clocks, timing paths, io_standards, iobanks, or\n  package_pins; or ports associated with specified DRC violation objects.\n\n  Note: The -of_objects option requires objects to be specified using the"
+        },
+        {
+          "line": 89,
+          "text": "  -quiet - (Optional) Execute the command quietly, returning no messages from\n  the command. The command also returns TCL_OK regardless of any errors\n  encountered during execution.\n\n  Note: Any errors encountered on the command-line, while launching the"
+        }
+      ]
+    },
+    "get_pins": {
+      "path": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/doc/eng/man/get_pins",
+      "bytes": 8510,
+      "sha256": "6513b141862f6f0be3860822c7b24264436357eb213baa821b764b4a4598954e",
+      "bounded_excerpts": [
+        {
+          "line": 67,
+          "text": "  -leaf - (Optional) Include leaf pins, from primitive or black box cells,\n  for the objects specified with the -of_object argument.\n\n  -filter <args> - (Optional) Filter the results list with the specified\n  expression. The -filter argument filters the list of objects returned by"
+        },
+        {
+          "line": 99,
+          "text": "  -of_objects <arg> - (Optional) Get the pins connected to the specified\n  cell, clock, timing path, or net; or pins associated with specified DRC\n  violation objects.\n\n  Note: The -of_objects option requires objects to be specified using the"
+        },
+        {
+          "line": 117,
+          "text": "  -quiet - (Optional) Execute the command quietly, returning no messages from\n  the command. The command also returns TCL_OK regardless of any errors\n  encountered during execution.\n\n  Note: Any errors encountered on the command-line, while launching the"
+        }
+      ]
+    }
+  },
+  "recommended_call": "get_nets -top_net_of_hierarchical_group -segments -of_objects $actual_seed_pin",
+  "primary_port_call": "get_ports -of_objects $actual_canonical_top_net_object",
+  "required_checks": [
+    "Canonical query must return exactly one actual net object for this fast path, and its full NAME must be a member of the independently acquired complete group. Preserve seed, canonical identity, raw source values and epoch.",
+    "Use actual objects, never guess top from no slash or a clock name. -of_objects get_nets documentation does not promise net-input support; use the documented actual pin form.",
+    "Do not conflate -parent_net with top: parent_net is the segment attached to the driver leaf pin, and the options are mutually exclusive.",
+    "Keep complete group membership proof for all80 direct nets. Top-source optimization does not replace80 actual endpoint associations.",
+    "Primary ports are queried from the actual highest-level segment; do not enable scoped/prop_thru_buffers options that alter the physical group semantics.",
+    "Record full-group queries K and canonical selector queries K separately. Canonical selector uses -segments too; total such invocations may be2K. It is not legitimate to report onlyK total -segments calls.",
+    "Top selection is an additional O(K) candidate operation. The docs establish meaning, not that it avoids all internal traversal or gives a particular runtime speedup.",
+    "Canonical0/multiple/foreign group result is not proof of empty ports. Reject the fast path or explicitly use a separately validated full-group path with its cost/error evidence; never silently fabricate a singleton.",
+    "Do not narrow leaf-driver queries to top only based on these docs: get_pins says -leaf includes primitive/black-box pins but does not explicitly establish complete alias-group equivalence in this text. Keep actual leaf-source query on the complete set once per group until separately proven."
+  ],
+  "error_propagation_finding": "All three manuals explicitly say -quiet returns TCL_OK regardless of errors occurring inside the command. Proof-critical future queries should omit -quiet and preserve catch/-errorinfo; an empty valid leaf or port collection must not hide an internal query failure.",
+  "additional_targeted_tests": [
+    "Canonical selector yields a genuine group member despite names with slashes or misleading root-looking aliases.",
+    "Canonical query empty/multiple/foreign group result rejected; direct mappings/group membership still required.",
+    "Spy counters distinguish N direct, K full closure, optional K canonical, K leaf and K port calls.",
+    "API internal failure must propagate even when another source field alone looks legal; future query implementation cannot hide it via -quiet."
+  ],
+  "no_EDA_launched": true,
+  "installation_tree_scan": "Only bounded top entries and exact doc/eng/man command files; no full install scan.",
+  "G4": false
+}

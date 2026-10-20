@@ -1,0 +1,17 @@
+{
+  "event_id": "EV_M005_R004_FINAL_ERROR_DIAGNOSIS_20261019",
+  "small_mission": "SM023",
+  "trigger": "anomaly",
+  "summary": "正式16篇整体输出相对L2中位1.44054%/P95 1.75554%；只读核算排除百分比重复与零分母，最后解码层绝对误差上升，主因未因果定位。",
+  "impact": "局部误差小不能证明整体精度保持；维持inconclusive。Q001原冻结采集继续，不改源/预算/样本。",
+  "evidence": [
+    "project/E012_multistage_rounding_precision/experiment_results/runs/R004/analysis/final_error_diagnosis_v1/interpretation.md",
+    "project/E012_multistage_rounding_precision/experiment_results/runs/R004/analysis/final_error_diagnosis_v1/data_diagnosis.json",
+    "project/E012_multistage_rounding_precision/experiment_results/runs/R004/analysis/final_error_diagnosis_v1/implementation_review.md"
+  ],
+  "affected": [
+    "SM023"
+  ],
+  "action": "已完成已有数据与实现只读诊断；后续优先同输入最后层2×2回放及attention/MLP/残差分解，模型干预尚未执行。",
+  "requires_decision": false
+}

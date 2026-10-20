@@ -1,0 +1,15 @@
+# GPU1 repair investigation — controller handoff
+
+GPU1 is **not repaired or qualified for production evaluation**. The authorized nondisruptive diagnostic sequence completed, and the isolated software repair candidate failed. No further AT is running.
+
+- AT001: system libcuda580.178.04 / kernel580.159.03;04:21:18–04:32:14Z, PID303981, natural exit0,9modes/1440complete readbacks.70failed readbacks, all failures on virtual allocation indices46–50. Device memset reproduces the fault without model loading or H2D data transfer.
+- AT002: same diagnostic source, only process-local matched libcuda580.159.03;04:32:36–04:43:43Z, PID310000, natural exit0,9modes/1440complete readbacks.80failed readbacks. Matching the user library did not repair the issue. Actual loaded library path/SHA verified before CUDA initialization.
+- AT003: matched library, native sm_86 CUDA observer;04:43:54–04:46:07Z, PID315231, natural exit0,2modes/320complete readbacks. Positive/negative controls exactly detect independently injected bytes. Device00 has212992wrong bytes in both native GPU observation and complete CPU readback; ff has0. All320comparisons match count/direction/first coordinate/value, and small counter readbacks are stable.
+
+Most discriminating conclusion: these faults are visible to code reading on the GPU. Pure model-loader, H2D-only and pure full-buffer D2H-only explanations cannot explain the complete evidence. The data do **not** uniquely identify physical DRAM, controller or kernel-driver root cause; virtual allocation indices/pointers are not physical bad-page identities. Avoiding a tested allocation would be an avoidance workaround, not a verified hardware repair.
+
+All three workers are absent, all allocation/context cleanup return codes are0 and GPU1 flock was independently reacquired/released at04:46:25Z. Resources stayed on GPU1/CPU18,19, data working set20GiB (AT003 adds80counter bytes), with enforced GPU8GiB and host80GiB reserves. No production source, global index, GPU0 environment, system driver, reset, reboot or process kill was performed by A012. No model or formal GSM8K result was produced.
+
+The existing maintenance inventory records Xorg2653 on both GPUs, SYS topology and no NVLink; NVIDIA documentation requires root and no target CUDA/Xorg/monitor clients for reset. A reset or driver/system restart therefore needs controller handling of the graphical/shared tasks and fresh eligibility checks. The concrete reset candidate and post-maintenance acceptance sequence are in [maintenance_candidate.md](maintenance_candidate.md); no maintenance command was executed.
+
+Evidence: [source summary](experiment_source/summary.md), [per-mode results](experiment_results/summary.md), [status](experiment_status/summary.md), [machine-readable comparison](comparison.json), [full final consistency check](final_consistency_check.json). Each AT preserves protocol, source, actual library identity, launch/terminal, raw mismatch NPZ and engineering CPU audit. Independent review remains separately owned by A010/the controller; engineering self-audit does not certify independent acceptance.

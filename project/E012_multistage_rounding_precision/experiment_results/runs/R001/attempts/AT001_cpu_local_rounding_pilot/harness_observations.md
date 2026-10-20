@@ -1,0 +1,5 @@
+# 执行环境和例行修复记录
+
+首次默认sandbox工具未初始化成功：bwrap loopback Failed RTM_NEWADDR Operation not permitted；后续授权工作使用require_escalated执行。早先相对路径工具命令被login shell切到/home/user/EDA-202，未找到脚本并退出；改为login=false和绝对路径后成功。以上均没有运行数值worker，不作为方法失败。
+
+runner单测首次把subprocess.Popen全局mock后影响platform.platform内部查询而报错；将platform查询隔离后4/4通过。后来新增真实source hash测试后A016共9项通过。AT001数值执行自身第一次真实启动即exit0；输入和原始结果未覆盖。

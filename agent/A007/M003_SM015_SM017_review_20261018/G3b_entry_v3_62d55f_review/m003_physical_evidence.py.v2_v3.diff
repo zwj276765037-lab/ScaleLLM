@@ -1,0 +1,19 @@
+--- v2/m003_physical_evidence.py
++++ v3/m003_physical_evidence.py
+@@ -35,6 +35,7 @@
+     lineage = selected.lineage(*(Path(os.environ[k]).resolve() for k in
+         ("HAP_PROJECT_DIR", "HAP_SYNTH_REPORT_DIR", "HAP_SYNTH_ATTEMPT_DIR")))
+     input_manifest(report / "stage_inputs.sha256")
++    native_probe=selected.verify_probe(report,point)
+     constraints = constraint_chain(point, report)
+     if point == 'opt':
+         receipt=key_values(report/'opt_command_result.txt')
+@@ -73,7 +74,7 @@
+     resources=collect('resources',lambda:utilization_metrics(report / f"utilization_{point}.rpt"))
+     (report / f"integrity_{point}.json").write_text(json.dumps({
+         "observed_utc": dt.datetime.now(dt.timezone.utc).isoformat(), "phase": point,
+-        "synthesis": lineage, "resources": resources,
++        "synthesis": lineage, "resources": resources, "native_probe":native_probe,
+         "constraints": file_id(report / f"constraints_{point}.json"), "cdc_classification": cdc,
+         "reset_io_classification": io, "reset_structure": structure, "debug_clock_observation":debug_clocks,
+         "reset_fanout_observation":fanout,

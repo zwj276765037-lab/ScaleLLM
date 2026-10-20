@@ -1,0 +1,23 @@
+--- /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT001_fresh_selected_project_create/evidence/jobs/fresh_create/sources/4e7a05de16af88faceabce9fbeb3be52e33d42cb018c9901b370bb9fc8cda511_m003_physical.tcl
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m003_physical.tcl
+@@ -18,9 +18,9 @@
+ }
+ write_identity [file join $report_dir effective_build_identity.txt]
+ if {[hash_file [file join $report_dir effective_build_identity.txt]] ne [hash_file [file join $::env(HAP_SYNTH_REPORT_DIR) build_identity.txt]]} {error "M003 original synthesis identity changed"}
+-exec /usr/bin/python3 [file join $script_dir m003_stage.py] lineage --project $project_dir --report $::env(HAP_SYNTH_REPORT_DIR) --attempt $::env(HAP_SYNTH_ATTEMPT_DIR)
++m003_python [file join $script_dir m003_stage.py] lineage --project $project_dir --report $::env(HAP_SYNTH_REPORT_DIR) --attempt $::env(HAP_SYNTH_ATTEMPT_DIR)
+ m002_dump_xdc project
+-exec /usr/bin/python3 [file join $script_dir m003_physical_evidence.py] constraints project $report_dir
++m003_python [file join $script_dir m003_physical_evidence.py] constraints project $report_dir
+ proc m003_command {point command} {
+     set started_epoch [clock seconds]
+     if {$point eq "route"} {
+@@ -60,7 +60,7 @@
+     m002_put [file join $report_dir debug_materialization_condition.txt] "debug_core_count=[llength $cores]\ndebug_cores=$cores\ncondition=actual_get_debug_cores_nonempty"
+     if {[llength $cores]} {m003_command debug_materialization implement_debug_core} else {m003_command debug_materialization {set ::m002_debug_skipped no_debug_cores}}
+     m002_post debug_materialized
+-    exec /usr/bin/python3 [file join $script_dir m003_stage.py] preplace --report $report_dir
++    m003_python [file join $script_dir m003_stage.py] preplace --report $report_dir
+     close_design
+     close_project
+     puts "M003_G4_NATIVE_PREPLACE_COMPLETED independent_review_required=true no_place_started=true"

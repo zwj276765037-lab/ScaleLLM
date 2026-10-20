@@ -1,0 +1,93 @@
+{
+  "schema": "m005_r009_lastlayer_output_precision_v1",
+  "at": "2026-10-20T01:23:08.744795+00:00",
+  "authorization": [
+    "User: 只需要32层的时候将舍入位宽放大多几位",
+    "User clarification: 最后一层输出也提高精度"
+  ],
+  "supersedes": "R008 operator ablation canceled before any GPU run; R007 equal-width RNE not adopted",
+  "target": "Only decoder layer index31 attention o_proj and MLP down_proj actual branch output boundaries; preceding31layers and other layer31operators unchanged",
+  "candidates": [
+    {
+      "name": "extra2",
+      "extra_fractional_bits": 2,
+      "guard_fractional_bits": 26,
+      "output_fractional_bits": 18,
+      "attention_output_signed_bits": 26,
+      "down_output_signed_bits": 34,
+      "final_drop_bits": 8
+    },
+    {
+      "name": "extra4",
+      "extra_fractional_bits": 4,
+      "guard_fractional_bits": 28,
+      "output_fractional_bits": 20,
+      "attention_output_signed_bits": 28,
+      "down_output_signed_bits": 36,
+      "final_drop_bits": 8
+    }
+  ],
+  "rules": [
+    "Keep original floor group alignment and half-away exit rule; no RNE",
+    "At selected branch exits increase both guard and accumulator widths by b to preserve dynamic range; F24 to F24+b and F16 to F16+b",
+    "Use signed int64 result storage where widened output exceeds32bits; no silent int32 truncation",
+    "Bypass inappropriate24bit signed-wire interpretation through audited temporary effective output_width; finally restore all mutated attrs/functions/hooks",
+    "Scale widened branch output by2^-(16+b) before residual addition; host remainsFP32 with its finite mantissa",
+    "No output/reference calibration or changes to base weights/ScaleCode/Hadamard/LUTs/dynamic quant algorithms",
+    "Report experimental last-layer format overlay; production format05 and ABI files remain unchanged"
+  ],
+  "arms": [
+    "baseline_b0",
+    "candidate_b2",
+    "candidate_b4",
+    "output_only_reference_b0",
+    "output_only_reference_b2",
+    "output_only_reference_b4"
+  ],
+  "reference_policy": "Main comparison uses common fixed output_only_reference_b4 for all baseline/candidates. Also report matched-format candidate_b versus reference_b and reference_b0/b2 drift versus b4. All references retain exact intermediate arithmetic, with only final two layer31 branch exits changing precision; do not relabel this as pure intermediate-rounding comparison when exits differ.",
+  "data": "Same frozen development first36documents asR007: first4 plus previously used next32; all three widths measured on all36, no selection-based omission. Repeat development validation, not new heldout/formal1024.",
+  "metrics": [
+    "layer32 pre-finalnorm L2",
+    "finalhidden L2",
+    "fullvocab logitsL2",
+    "temperature1 softmaxTV",
+    "Top1agreement",
+    "prefix layer0..30 output hashes",
+    "output/guard/acc overflow saturation",
+    "reference drift",
+    "runtime"
+  ],
+  "verification": [
+    "b0 candidate kernel matches original production rawcodes and counters",
+    "CPU arbitrary precision exact oracle for b2/b4 signed alignment, half ties, saturation/wrap and shifts",
+    "GPU actual grouped kernels including int64 output beyondint32 and positiveS26 codes aboveoldS24range",
+    "Reference GPU formula checked against independent exact Fraction; candidate/ref implementations separate",
+    "Baseline and legacyref parity withR007",
+    "Perdocument candidate b2/b4 allfirst31 output hashes identical tobaseline; reference b2/b4 prefixidentical toref0",
+    "All original attributes and functions restored; frozen consumed sources unchanged",
+    "Independent finalhidden NPZ and fixed full-vocab CPU head witnesses"
+  ],
+  "storage": "Save all new finalhidden arrays; save pre-norm raw only fixed docs0/4/35, others energy/hash statistics. Baseline/legacyref raw may be linked by SHA to immutableR007 when bit-identical. Keep all document metrics and unfavorable tails; total<=512MiB.",
+  "resources": {
+    "gpu_uuid": "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+    "gpu_processes": 1,
+    "cpu_threads": 1,
+    "max_rss_gib": 8,
+    "max_gpu_gib": 24,
+    "launch_free_gpu_gib": 30,
+    "runtime_free_gpu_gib": 8,
+    "minimum_available_ram_gib": 32,
+    "total_gpu_wall_seconds": 2400,
+    "max_evidence_mib": 512
+  },
+  "basis": "R007 measured one assembly383.58s,116forwards totalGPU665.205s. New bounded216forwards one resident model; no repeated loading qualification.",
+  "engineering_owner": "A019/rounding_optimization_runner",
+  "review_owner": "rounding_reference_implementation",
+  "write_boundary": [
+    "new R009-specific files under experiment/rounding_optimization",
+    "R009 evidence and reports",
+    "E012 three summaries and agent status by A019 sole publisher"
+  ],
+  "verdict": "Report measured improvements and regressions under fixed/matched references; no universal numerical fidelity, taskACC, or RTLtiming claim. No adopting a version based on a tiny metric fluctuation.",
+  "execution": "Routine implementation/test fixes and new attempts authorized. After independent arithmetic checks and resource qualification, launch background and complete without more user approval. No modifications of prior frozen sources or other tasks; no full1024/ACC/PPL/EDA stage in this batch."
+}

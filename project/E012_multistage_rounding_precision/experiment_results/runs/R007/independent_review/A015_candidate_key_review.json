@@ -1,0 +1,20 @@
+{
+  "execution_state": "completed",
+  "scope": "narrow static AST and CPU-only helper review; noGPU/model run",
+  "candidate_source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/rounding_optimization/candidate.py",
+    "sha256": "3a01f438bb6fb1c8fce899ab7acf3e43ee2e0af197a4d547ce45ef3f596fd2f9"
+  },
+  "source_v5_sha256": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+  "checks": {
+    "kernel_only_alignment_block_changed": true,
+    "grouped_wrapper_AST_identical": true,
+    "PV_only_guard_assignment_changed": true,
+    "signed_helper_Fraction_cases": 49188,
+    "helper_mismatches": 0,
+    "cuda_initialized_before": false,
+    "cuda_initialized_after": false
+  },
+  "context_static": "linear_last1 gates layer==31; onlylinear_all32/linear_pv_all32 otherwise; finally restores both functions and marker",
+  "pending": "GPU actual kernel arithmetic/overflow/counters and runner prehook layer state are outside this CPU/static check"
+}

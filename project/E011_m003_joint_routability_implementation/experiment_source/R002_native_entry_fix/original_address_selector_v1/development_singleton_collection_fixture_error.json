@@ -1,0 +1,8 @@
+{
+  "recorded_utc": "2026-10-18T11:19:21.161230+00:00",
+  "actual_failed_receipt": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/original_address_selector_v1/cpu_actual_native_handles_receipt.json",
+  "actual_failed_receipt_sha256": "51a07b3a6e74027781d066a25414a743930bbe26722e69f0d7a300990ddd05fc",
+  "attribution": "Native get_property accepts a singleton collection from get_cells; the CPU dictionary mock treated the Tcl list serialization with braces around C01 vector name as a literal dictionary key. Candidate address selectors still pass six tests.",
+  "repair": "Mock get_property unwraps one-element collection if raw key absent. No production/candidate source or expectations/assertions changed.",
+  "preserved_test_source": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/original_address_selector_v1/test_selector_before_singleton_collection_fixture_refresh.py"
+}

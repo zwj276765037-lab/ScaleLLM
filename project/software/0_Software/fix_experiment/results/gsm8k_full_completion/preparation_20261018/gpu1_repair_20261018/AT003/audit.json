@@ -1,0 +1,329 @@
+{
+  "schema": "scalellm_gpu_internal_observer_evidence_audit_v1",
+  "attempt": "AT003",
+  "created_at": "2026-10-18T04:46:19.043997+00:00",
+  "analyzer_sha256": "c482fe4c250445cc4deb61c713aa7f26f2257f97ca9526c2a4a1a48571babf14",
+  "cpu_affinity": [
+    18,
+    19
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "status_sha256": "d3b2c909472423a6fb507a6374503ff70a04e1594bf3a66c71169364b8461120",
+  "launch_sha256": "9b70c2ca16a58361db9f8d65a5e15107f670f33af9d2f522f33a74f9cc275641",
+  "terminal_sha256": "71db0cfd8da12ef638459579212af82450f8c37c6253d9c7006a1035f2bc0d9c",
+  "execution_state": "completed",
+  "raw_cuda_test_count": 2,
+  "reads_total": 320,
+  "failing_reads_total": 10,
+  "byte_for_byte_diff_records_recomputed": 10,
+  "source_identity_and_resource_cleanup_verified": true,
+  "tests": [
+    {
+      "test_id": "device_memset_00",
+      "route": "device_memset",
+      "pattern": "00",
+      "read_count": 160,
+      "failing_reads": 10,
+      "failing_allocations": [
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "changed_bytes_total_including_repeats": 425984,
+      "changed_bytes_first_read_only": 212992,
+      "repeat_read_transition_changed_bytes": 0,
+      "failures": {
+        "46": [
+          {
+            "repeat": 0,
+            "changed_bytes": 49152,
+            "even_byte_offsets": 49152,
+            "odd_byte_offsets": 0,
+            "observed_ff_count": 48114,
+            "set_bit_bytes": 49152,
+            "cleared_bit_bytes": 0,
+            "first_byte_offset": 25169152,
+            "last_byte_offset": 238578686,
+            "raw_diff_sha256": "ffa9c5db933f6ea94d6db86c07c05f6ce17bc5aeb4694a901f61fd2babbcad67"
+          },
+          {
+            "repeat": 1,
+            "changed_bytes": 49152,
+            "even_byte_offsets": 49152,
+            "odd_byte_offsets": 0,
+            "observed_ff_count": 48114,
+            "set_bit_bytes": 49152,
+            "cleared_bit_bytes": 0,
+            "first_byte_offset": 25169152,
+            "last_byte_offset": 238578686,
+            "raw_diff_sha256": "ffa9c5db933f6ea94d6db86c07c05f6ce17bc5aeb4694a901f61fd2babbcad67"
+          }
+        ],
+        "47": [
+          {
+            "repeat": 0,
+            "changed_bytes": 43008,
+            "even_byte_offsets": 43008,
+            "odd_byte_offsets": 0,
+            "observed_ff_count": 42116,
+            "set_bit_bytes": 43008,
+            "cleared_bit_bytes": 0,
+            "first_byte_offset": 59029504,
+            "last_byte_offset": 267313918,
+            "raw_diff_sha256": "f91dfedf18595c47331e521227733c6f6e15ac8f4e72182347f6ed44f671942c"
+          },
+          {
+            "repeat": 1,
+            "changed_bytes": 43008,
+            "even_byte_offsets": 43008,
+            "odd_byte_offsets": 0,
+            "observed_ff_count": 42116,
+            "set_bit_bytes": 43008,
+            "cleared_bit_bytes": 0,
+            "first_byte_offset": 59029504,
+            "last_byte_offset": 267313918,
+            "raw_diff_sha256": "f91dfedf18595c47331e521227733c6f6e15ac8f4e72182347f6ed44f671942c"
+          }
+        ],
+        "48": [
+          {
+            "repeat": 0,
+            "changed_bytes": 38912,
+            "even_byte_offsets": 38912,
+            "odd_byte_offsets": 0,
+            "observed_ff_count": 38074,
+            "set_bit_bytes": 38912,
+            "cleared_bit_bytes": 0,
+            "first_byte_offset": 168960,
+            "last_byte_offset": 205475838,
+            "raw_diff_sha256": "2a2ffbb412596e2e3b97864757467cae11c9370b4c58cd8a6b571695c528cc8a"
+          },
+          {
+            "repeat": 1,
+            "changed_bytes": 38912,
+            "even_byte_offsets": 38912,
+            "odd_byte_offsets": 0,
+            "observed_ff_count": 38074,
+            "set_bit_bytes": 38912,
+            "cleared_bit_bytes": 0,
+            "first_byte_offset": 168960,
+            "last_byte_offset": 205475838,
+            "raw_diff_sha256": "2a2ffbb412596e2e3b97864757467cae11c9370b4c58cd8a6b571695c528cc8a"
+          }
+        ],
+        "49": [
+          {
+            "repeat": 0,
+            "changed_bytes": 49152,
+            "even_byte_offsets": 49152,
+            "odd_byte_offsets": 0,
+            "observed_ff_count": 48114,
+            "set_bit_bytes": 49152,
+            "cleared_bit_bytes": 0,
+            "first_byte_offset": 25331712,
+            "last_byte_offset": 238646270,
+            "raw_diff_sha256": "be43b3ba0de0c1a4634797a243a854e2f7dfe30b4143d8fe8aaabee0668bafde"
+          },
+          {
+            "repeat": 1,
+            "changed_bytes": 49152,
+            "even_byte_offsets": 49152,
+            "odd_byte_offsets": 0,
+            "observed_ff_count": 48114,
+            "set_bit_bytes": 49152,
+            "cleared_bit_bytes": 0,
+            "first_byte_offset": 25331712,
+            "last_byte_offset": 238646270,
+            "raw_diff_sha256": "be43b3ba0de0c1a4634797a243a854e2f7dfe30b4143d8fe8aaabee0668bafde"
+          }
+        ],
+        "50": [
+          {
+            "repeat": 0,
+            "changed_bytes": 32768,
+            "even_byte_offsets": 32768,
+            "odd_byte_offsets": 0,
+            "observed_ff_count": 32076,
+            "set_bit_bytes": 32768,
+            "cleared_bit_bytes": 0,
+            "first_byte_offset": 58983424,
+            "last_byte_offset": 171765758,
+            "raw_diff_sha256": "f9a9b50ab2945b95fdb76fa3e5dd8d9dd46a69b5ff1e84c70da0546f7e028b1e"
+          },
+          {
+            "repeat": 1,
+            "changed_bytes": 32768,
+            "even_byte_offsets": 32768,
+            "odd_byte_offsets": 0,
+            "observed_ff_count": 32076,
+            "set_bit_bytes": 32768,
+            "cleared_bit_bytes": 0,
+            "first_byte_offset": 58983424,
+            "last_byte_offset": 171765758,
+            "raw_diff_sha256": "f9a9b50ab2945b95fdb76fa3e5dd8d9dd46a69b5ff1e84c70da0546f7e028b1e"
+          }
+        ]
+      }
+    },
+    {
+      "test_id": "device_memset_ff",
+      "route": "device_memset",
+      "pattern": "ff",
+      "read_count": 160,
+      "failing_reads": 0,
+      "failing_allocations": [],
+      "changed_bytes_total_including_repeats": 0,
+      "changed_bytes_first_read_only": 0,
+      "repeat_read_transition_changed_bytes": 0,
+      "failures": {}
+    }
+  ],
+  "review": "engineering self-audit only; independent reviewer pending",
+  "native_observer_controls_passed": true,
+  "gpu_observer_self_tests": [
+    {
+      "expected_byte": 0,
+      "injected_byte": 255,
+      "injected_byte_offset": 12345,
+      "clean": {
+        "counter_index": 0,
+        "counter_ptr": 123449445974016,
+        "small_result_words": [
+          0,
+          18446744073709551615,
+          0,
+          0,
+          18446744073709551615
+        ],
+        "small_result_repeated_words": [
+          0,
+          18446744073709551615,
+          0,
+          0,
+          18446744073709551615
+        ],
+        "small_result_reads_equal": true,
+        "mismatch_byte_count": 0,
+        "first_mismatch_byte_offset": null,
+        "set_bit_byte_count": 0,
+        "cleared_bit_byte_count": 0,
+        "first_observed_byte": null,
+        "captured_at": "2026-10-18T04:43:55.995647+00:00"
+      },
+      "injected": {
+        "counter_index": 1,
+        "counter_ptr": 123449445974528,
+        "small_result_words": [
+          1,
+          12345,
+          1,
+          0,
+          255
+        ],
+        "small_result_repeated_words": [
+          1,
+          12345,
+          1,
+          0,
+          255
+        ],
+        "small_result_reads_equal": true,
+        "mismatch_byte_count": 1,
+        "first_mismatch_byte_offset": 12345,
+        "set_bit_byte_count": 1,
+        "cleared_bit_byte_count": 0,
+        "first_observed_byte": 255,
+        "captured_at": "2026-10-18T04:43:55.996590+00:00"
+      },
+      "passed": true
+    },
+    {
+      "expected_byte": 255,
+      "injected_byte": 0,
+      "injected_byte_offset": 12345,
+      "clean": {
+        "counter_index": 0,
+        "counter_ptr": 123449445974016,
+        "small_result_words": [
+          0,
+          18446744073709551615,
+          0,
+          0,
+          18446744073709551615
+        ],
+        "small_result_repeated_words": [
+          0,
+          18446744073709551615,
+          0,
+          0,
+          18446744073709551615
+        ],
+        "small_result_reads_equal": true,
+        "mismatch_byte_count": 0,
+        "first_mismatch_byte_offset": null,
+        "set_bit_byte_count": 0,
+        "cleared_bit_byte_count": 0,
+        "first_observed_byte": null,
+        "captured_at": "2026-10-18T04:43:55.999288+00:00"
+      },
+      "injected": {
+        "counter_index": 1,
+        "counter_ptr": 123449445974528,
+        "small_result_words": [
+          1,
+          12345,
+          0,
+          1,
+          0
+        ],
+        "small_result_repeated_words": [
+          1,
+          12345,
+          0,
+          1,
+          0
+        ],
+        "small_result_reads_equal": true,
+        "mismatch_byte_count": 1,
+        "first_mismatch_byte_offset": 12345,
+        "set_bit_byte_count": 0,
+        "cleared_bit_byte_count": 1,
+        "first_observed_byte": 0,
+        "captured_at": "2026-10-18T04:43:56.000222+00:00"
+      },
+      "passed": true
+    }
+  ],
+  "gpu_internal_failing_reads": 10,
+  "gpu_cpu_count_mismatching_reads": 0,
+  "gpu_cpu_results": [
+    {
+      "test": "device_memset_00",
+      "gpu_first_read_mismatch_bytes": 212992,
+      "cpu_first_read_mismatch_bytes": 212992,
+      "gpu_failing_allocations": [
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "cpu_failing_allocations": [
+        46,
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    {
+      "test": "device_memset_ff",
+      "gpu_first_read_mismatch_bytes": 0,
+      "cpu_first_read_mismatch_bytes": 0,
+      "gpu_failing_allocations": [],
+      "cpu_failing_allocations": []
+    }
+  ]
+}

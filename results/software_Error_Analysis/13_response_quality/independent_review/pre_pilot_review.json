@@ -1,0 +1,83 @@
+{
+  "schema": "r012_independent_pre_pilot_review_v1",
+  "created_at": "2026-10-20T08:07:24.469170+00:00",
+  "execution_state": "completed",
+  "verdict": "no_static_blocker_to_bounded_pilot",
+  "role": "independent engineering qualification reviewer; later blind judge",
+  "runtime_identity": "collaboration:/root/rounding_optimization_runner",
+  "desired_model": "gpt-6.1-sol",
+  "desired_effort": "xhigh",
+  "actual_model": "unverified",
+  "source": [
+    {
+      "path": "project/software/0_Software/rounding_precision/experiment/response_quality/generation_core.py",
+      "sha256": "d8fc6ebc0d1f95511ddf887e9c4be7e4de0150a415b6f21eb2c56048d3b4f6dd",
+      "bytes": 3771
+    },
+    {
+      "path": "project/software/0_Software/rounding_precision/experiment/response_quality/cached_adapter.py",
+      "sha256": "6667914921f3e07b87c1e21ecf1421aebf22a14f7afdc1c16ead786ccdbef48a",
+      "bytes": 6913
+    },
+    {
+      "path": "project/software/0_Software/rounding_precision/experiment/response_quality/run_generation.py",
+      "sha256": "33c2bef959ff2ad304e3f7b171a25b5a84c9e2bc4374fd20860e4e00e74ba9ca",
+      "bytes": 20922
+    },
+    {
+      "path": "project/software/0_Software/FPtoQ/experiment/v5_fullchain.py",
+      "sha256": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898",
+      "bytes": 79824
+    },
+    {
+      "path": "project/software/0_Software/rounding_precision/experiment/numerical_reference/gpu_reference.py",
+      "sha256": "a8f4309cb07ec84687903693888602c1fd09fa876d477dcd4c7f488ce4358837",
+      "bytes": 11501
+    },
+    {
+      "path": "project/software/0_Software/rounding_precision/experiment/numerical_reference/model_compat.py",
+      "sha256": "53ef45e269b997bad32d09003bac53a7ccfa9ae006d9e1eecd95e13cb0f23dc0",
+      "bytes": 6290
+    },
+    {
+      "path": "project/software/model/fixbit_v2.py",
+      "sha256": "fb4b34397edc9d14ed3ef4f0b46d60a61b545a52a7a47d15c2eec8ba7b6db271",
+      "bytes": 24347
+    },
+    {
+      "path": "results/software_Error_Analysis/13_response_quality/contract.md",
+      "sha256": "aa4f0c8933d214b916a0325b0e940225c9aacbdd136ac98ee5b377ce87b40930",
+      "bytes": 5614
+    }
+  ],
+  "cpu_evidence": "cpu_controls_result.json",
+  "checks": {
+    "kv_axis": "production KV12 maximum over last dimension32 only; independent token/head/group; retained raw12/code/shift, no float KV",
+    "activation_axis": "production activation min/max over last dimension32 only; no cross-token calibration",
+    "rope": "production raw checkpoint inv_freq, float64 angles, half-away Q16; first128 equality asserted",
+    "mask_position": "unpadded batch1; rejects supplied mask/external cache; builds absolute causal key<=query and validates contiguous positions",
+    "cache_qualification_gate": "CURRENT and OUTPUT_ONLY: native17/adapter17/cached16+1, extended130 and512 full-vs-chunked then last token; all32 layer last hidden, final norm, full vocabulary logits bitwise required",
+    "generation_semantics": "first prompt shared; separate prefix list and own output history; EOS/eot retained raw and immediate stop; full common cap required, no silent truncation",
+    "numeric_path": "unchanged V5 integer ops, arithmetic_context OUTPUT_ONLY sequentially; base quantization/common exits retained, FP32 Host/head; no BF16 substitute",
+    "bounds": "CPU bound checks fit int64 up to32768 keys; linear per-output bounds independent of token count",
+    "pilot_memory": "max_context2048/chunk128 implies at most256MiB for one PV int64 product; qualification full512 also256MiB; multiple temporaries and model still require actual peak guard"
+  },
+  "pilot_scope": {
+    "max_context": 2048,
+    "max_new_tokens": 512,
+    "prefill_chunk": 128,
+    "gpu_phase_limit_seconds": 1800,
+    "cpu_threads": 1,
+    "rss_gib": 8,
+    "gpu_memory_gib": 24,
+    "evidence_mib": 512,
+    "admission_owner": "Root"
+  },
+  "limitations": [
+    "No GPU operations or model inference performed by reviewer",
+    "No generated answers, token output logs, or anonymous mappings read",
+    "Static permission to pilot is not functional cache qualification",
+    "No admission for full805/80 benchmark,32768 context,or claimed quality results",
+    "Runtime GPU identity, resource guards, actual qualified cases and native exit remain to review after pilot"
+  ]
+}

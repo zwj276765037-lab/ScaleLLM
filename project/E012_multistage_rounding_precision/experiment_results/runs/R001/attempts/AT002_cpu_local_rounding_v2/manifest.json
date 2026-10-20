@@ -1,0 +1,154 @@
+{
+  "schema": "m005_cpu_attempt_manifest_v1",
+  "started_at": "2026-10-19T02:37:47.537118+00:00",
+  "execution_state": "starting",
+  "parent_command": [
+    "/usr/bin/python3",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_local_experiment.py",
+    "--input",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R001/attempts/AT002_cpu_local_rounding_v2/input.synthetic.jsonl",
+    "--attempt-dir",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R001/attempts/AT002_cpu_local_rounding_v2",
+    "--threads",
+    "2",
+    "--memory-gib",
+    "8",
+    "--wall-seconds",
+    "240"
+  ],
+  "worker_command": [
+    "/usr/bin/python3",
+    "-B",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_local_experiment.py",
+    "--worker",
+    "--input",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R001/attempts/AT002_cpu_local_rounding_v2/input.synthetic.jsonl",
+    "--attempt-dir",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R001/attempts/AT002_cpu_local_rounding_v2",
+    "--wall-seconds",
+    "240",
+    "--memory-gib",
+    "8",
+    "--max-samples",
+    "10000",
+    "--threads",
+    "2"
+  ],
+  "cwd": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM",
+  "input": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R001/attempts/AT002_cpu_local_rounding_v2/input.synthetic.jsonl",
+    "bytes": 964434,
+    "sha256": "2013745767fba05cedc103172d63e64ce2dea5bf28725fb32f8270e4c7b145ea"
+  },
+  "code": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/data_inventory.py",
+      "bytes": 7947,
+      "sha256": "2d460056aade6c33e7d82062ce33265eab6e53ecf9e57ba299d8391266e0765e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/exact_oracle.py",
+      "bytes": 2928,
+      "sha256": "a98128643201475725b80193facb7bdc0318b0b692e4cf732e54a7d788ead557"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/linear_recovery.py",
+      "bytes": 9379,
+      "sha256": "bfb7460d2c5b742bc90bee611001808dc6d145b5beb6e5901bc71b8bea1bb11a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/metrics.py",
+      "bytes": 9505,
+      "sha256": "dc7a3c68255ebb711dd346ae0a72fb3751e09fa5b4f2436b9aa1a194c015d2e8"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/prepare_replay_data.py",
+      "bytes": 13637,
+      "sha256": "0fbf068eb2aa5fd68bee00090f3d917882938c38659fbb1ed070b045accecbe9"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/production_replay.py",
+      "bytes": 11191,
+      "sha256": "c68930e6e3ec1c34c991dfc7fdd8d05a5a5995626c9281265961b5cb75df7999"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_local_experiment.py",
+      "bytes": 13393,
+      "sha256": "6d128c03f0b953554edc638f4df935818fa898ada258c230fb2f917f2b0dec38"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/FPtoQ/experiment/v5_fullchain.py",
+      "bytes": 79824,
+      "sha256": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/model/export_scalellm_llama31_artifacts.py",
+      "bytes": 25539,
+      "sha256": "689ddf269ff951e437cc3232c5b544b461e4a0b2ff737e21f69e2f93b8f2a300"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/model/fixbit_v2.py",
+      "bytes": 24347,
+      "sha256": "fb4b34397edc9d14ed3ef4f0b46d60a61b545a52a7a47d15c2eec8ba7b6db271"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/model/mlp_fixed.py",
+      "bytes": 16696,
+      "sha256": "61be35fb5dc09b2f9121b9f536c953fc7515adb58b7b49c74fe70fbc9744dc43"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_source/protocol.md",
+      "bytes": 6050,
+      "sha256": "dceb935374e931a71f5ca348ec6f439c749f240010be5ecbbfcb3b4ff3e88e4a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/tests/test_data_inventory.py",
+      "bytes": 2833,
+      "sha256": "3069ca24606e6e00ef59f666be6659b19b20f90af3b4262ecc11fc54a774a149"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/tests/test_exact_oracle.py",
+      "bytes": 3080,
+      "sha256": "fca69a80dfcbb22a6ef424649e29a35dd871ee848830766c8951764a826adcc3"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/tests/test_metrics.py",
+      "bytes": 10801,
+      "sha256": "6737eac95828e4fc7651ebea80dda1e538183a359dc2a25bbc10462927e23556"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/tests/test_production_replay.py",
+      "bytes": 7423,
+      "sha256": "d8491ae506863d74d63f8d7a504f4c05eaf508b1448047180a71ac29b905f683"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/tests/test_run_local_experiment.py",
+      "bytes": 3976,
+      "sha256": "f432a557289229d97f98e5f85fe45611cc614d2df8f5f86eae26d15c7fdbebc9"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/source/design.md",
+      "bytes": 9668,
+      "sha256": "0217bb641ffa928066035cbbd3939d3a49d07edd4d267b63bfc29b90f2276210"
+    }
+  ],
+  "environment": {
+    "hostname": "user",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "executable": "/usr/bin/python3",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "thread_limits": {
+      "OMP_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2"
+    }
+  },
+  "resources": {
+    "threads": 2,
+    "memory_gib": 8,
+    "wall_seconds": 240,
+    "memory_available_bytes": 502055378944,
+    "minimum_available_bytes": 34359738368
+  },
+  "scope": "local exact integer Linear recovery; no model inference or hardware execution"
+}

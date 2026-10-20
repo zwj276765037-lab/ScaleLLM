@@ -1,0 +1,2811 @@
+{
+  "reviewed_at": "2026-10-18T05:30:55.920822+00:00",
+  "reviewer": "A007",
+  "execution": "partial core OOC native utilization independently compared",
+  "verdict": "same-core/same-device/tool/synthesized metric increments consistent with frozen whole-design caps, pending exact cone and top-stage proof",
+  "applicability": "E011 R002/AT003 natural core OOC report only vs E005 actual core OOC; not top synthesis/selected topology/G4/physical",
+  "review": "accepted_partial",
+  "delivery": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT003_fresh_selected_synthesis/evidence/early_core_native/receipt.json",
+    "bytes": 3694,
+    "sha256": "02525cf0f59b128fd895e8a2c68d0178ce0021c1c4de868729d253e94b546a5c"
+  },
+  "sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/m002_E005_R002_AT006_fresh/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_core_0_synth_1/scalellm_vcu118_f05_bd_core_0_utilization_synth.rpt",
+      "bytes": 13063,
+      "sha256": "664544f04f71cfcbed203008bb9267aa30f09dbc78e5257184fa79220daa3b41"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT003_fresh_selected_synthesis/evidence/early_core_native/baseline_scalellm_vcu118_f05_bd_core_0_utilization_synth.rpt",
+      "bytes": 13063,
+      "sha256": "664544f04f71cfcbed203008bb9267aa30f09dbc78e5257184fa79220daa3b41"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/project/scalellm_m003_E011_R002_AT002/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_core_0_synth_1/scalellm_vcu118_f05_bd_core_0_utilization_synth.rpt",
+      "bytes": 13063,
+      "sha256": "f511e1892eb7561539c05ff48c958add776ede7d2b49c2d538fe888eab4d757e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT003_fresh_selected_synthesis/evidence/early_core_native/new_scalellm_vcu118_f05_bd_core_0_utilization_synth.rpt",
+      "bytes": 13063,
+      "sha256": "f511e1892eb7561539c05ff48c958add776ede7d2b49c2d538fe888eab4d757e"
+    }
+  ],
+  "parsed_reports": {
+    "baseline": {
+      "headers": {
+        "Tool Version": "Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025",
+        "Design": "scalellm_vcu118_f05_bd_core_0",
+        "Device": "xcvu9p-flga2104-2L-e",
+        "Design State": "Synthesized"
+      },
+      "rows": {
+        "CLB LUTs*": [
+          {
+            "line": 38,
+            "count": 742483,
+            "columns": [
+              "CLB LUTs*",
+              "742483",
+              "0",
+              "0",
+              "1182240",
+              "62.80"
+            ]
+          }
+        ],
+        "LUT as Logic": [
+          {
+            "line": 39,
+            "count": 714581,
+            "columns": [
+              "LUT as Logic",
+              "714581",
+              "0",
+              "0",
+              "1182240",
+              "60.44"
+            ]
+          }
+        ],
+        "LUT as Memory": [
+          {
+            "line": 40,
+            "count": 27902,
+            "columns": [
+              "LUT as Memory",
+              "27902",
+              "0",
+              "0",
+              "591840",
+              "4.71"
+            ]
+          }
+        ],
+        "LUT as Distributed RAM": [
+          {
+            "line": 41,
+            "count": 17150,
+            "columns": [
+              "LUT as Distributed RAM",
+              "17150",
+              "0",
+              "",
+              "",
+              ""
+            ]
+          }
+        ],
+        "LUT as Shift Register": [
+          {
+            "line": 42,
+            "count": 10752,
+            "columns": [
+              "LUT as Shift Register",
+              "10752",
+              "0",
+              "",
+              "",
+              ""
+            ]
+          }
+        ],
+        "CLB Registers": [
+          {
+            "line": 43,
+            "count": 892884,
+            "columns": [
+              "CLB Registers",
+              "892884",
+              "0",
+              "0",
+              "2364480",
+              "37.76"
+            ]
+          }
+        ],
+        "Register as Flip Flop": [
+          {
+            "line": 44,
+            "count": 892884,
+            "columns": [
+              "Register as Flip Flop",
+              "892884",
+              "0",
+              "0",
+              "2364480",
+              "37.76"
+            ]
+          }
+        ],
+        "Register as Latch": [
+          {
+            "line": 45,
+            "count": 0,
+            "columns": [
+              "Register as Latch",
+              "0",
+              "0",
+              "0",
+              "2364480",
+              "0.00"
+            ]
+          }
+        ],
+        "CARRY8": [
+          {
+            "line": 46,
+            "count": 53863,
+            "columns": [
+              "CARRY8",
+              "53863",
+              "0",
+              "0",
+              "147780",
+              "36.45"
+            ]
+          },
+          {
+            "line": 186,
+            "count": 53863,
+            "columns": [
+              "CARRY8",
+              "53863",
+              "CLB"
+            ]
+          }
+        ],
+        "F7 Muxes": [
+          {
+            "line": 47,
+            "count": 10782,
+            "columns": [
+              "F7 Muxes",
+              "10782",
+              "0",
+              "0",
+              "591120",
+              "1.82"
+            ]
+          }
+        ],
+        "F8 Muxes": [
+          {
+            "line": 48,
+            "count": 2798,
+            "columns": [
+              "F8 Muxes",
+              "2798",
+              "0",
+              "0",
+              "295560",
+              "0.95"
+            ]
+          }
+        ],
+        "F9 Muxes": [
+          {
+            "line": 49,
+            "count": 0,
+            "columns": [
+              "F9 Muxes",
+              "0",
+              "0",
+              "0",
+              "147780",
+              "0.00"
+            ]
+          }
+        ],
+        "Unique Control Sets": [
+          {
+            "line": 50,
+            "count": 19125,
+            "columns": [
+              "Unique Control Sets",
+              "19125",
+              "",
+              "0",
+              "295560",
+              "6.47"
+            ]
+          }
+        ],
+        "Block RAM Tile": [
+          {
+            "line": 83,
+            "count": 844,
+            "columns": [
+              "Block RAM Tile",
+              "844",
+              "0",
+              "0",
+              "2160",
+              "39.07"
+            ]
+          }
+        ],
+        "RAMB36/FIFO*": [
+          {
+            "line": 84,
+            "count": 833,
+            "columns": [
+              "RAMB36/FIFO*",
+              "833",
+              "0",
+              "0",
+              "2160",
+              "38.56"
+            ]
+          }
+        ],
+        "RAMB36E2 only": [
+          {
+            "line": 85,
+            "count": 833,
+            "columns": [
+              "RAMB36E2 only",
+              "833",
+              "",
+              "",
+              "",
+              ""
+            ]
+          }
+        ],
+        "RAMB18": [
+          {
+            "line": 86,
+            "count": 22,
+            "columns": [
+              "RAMB18",
+              "22",
+              "0",
+              "0",
+              "4320",
+              "0.51"
+            ]
+          }
+        ],
+        "RAMB18E2 only": [
+          {
+            "line": 87,
+            "count": 22,
+            "columns": [
+              "RAMB18E2 only",
+              "22",
+              "",
+              "",
+              "",
+              ""
+            ]
+          }
+        ],
+        "URAM": [
+          {
+            "line": 88,
+            "count": 752,
+            "columns": [
+              "URAM",
+              "752",
+              "0",
+              "0",
+              "960",
+              "78.33"
+            ]
+          }
+        ],
+        "DSPs": [
+          {
+            "line": 99,
+            "count": 5445,
+            "columns": [
+              "DSPs",
+              "5445",
+              "0",
+              "0",
+              "6840",
+              "79.61"
+            ]
+          }
+        ],
+        "DSP48E2 only": [
+          {
+            "line": 100,
+            "count": 5445,
+            "columns": [
+              "DSP48E2 only",
+              "5445",
+              "",
+              "",
+              "",
+              ""
+            ]
+          }
+        ],
+        "Bonded IOB": [
+          {
+            "line": 110,
+            "count": 0,
+            "columns": [
+              "Bonded IOB",
+              "0",
+              "0",
+              "0",
+              "832",
+              "0.00"
+            ]
+          }
+        ],
+        "HPIOB_M": [
+          {
+            "line": 111,
+            "count": 0,
+            "columns": [
+              "HPIOB_M",
+              "0",
+              "0",
+              "0",
+              "384",
+              "0.00"
+            ]
+          }
+        ],
+        "HPIOB_S": [
+          {
+            "line": 112,
+            "count": 0,
+            "columns": [
+              "HPIOB_S",
+              "0",
+              "0",
+              "0",
+              "384",
+              "0.00"
+            ]
+          }
+        ],
+        "HPIOB_SNGL": [
+          {
+            "line": 113,
+            "count": 0,
+            "columns": [
+              "HPIOB_SNGL",
+              "0",
+              "0",
+              "0",
+              "64",
+              "0.00"
+            ]
+          }
+        ],
+        "HPIOBDIFFINBUF": [
+          {
+            "line": 114,
+            "count": 0,
+            "columns": [
+              "HPIOBDIFFINBUF",
+              "0",
+              "0",
+              "0",
+              "720",
+              "0.00"
+            ]
+          }
+        ],
+        "HPIOBDIFFOUTBUF": [
+          {
+            "line": 115,
+            "count": 0,
+            "columns": [
+              "HPIOBDIFFOUTBUF",
+              "0",
+              "0",
+              "0",
+              "720",
+              "0.00"
+            ]
+          }
+        ],
+        "BITSLICE_CONTROL": [
+          {
+            "line": 116,
+            "count": 0,
+            "columns": [
+              "BITSLICE_CONTROL",
+              "0",
+              "0",
+              "0",
+              "240",
+              "0.00"
+            ]
+          }
+        ],
+        "BITSLICE_RX_TX": [
+          {
+            "line": 117,
+            "count": 0,
+            "columns": [
+              "BITSLICE_RX_TX",
+              "0",
+              "0",
+              "0",
+              "9360",
+              "0.00"
+            ]
+          }
+        ],
+        "BITSLICE_TX": [
+          {
+            "line": 118,
+            "count": 0,
+            "columns": [
+              "BITSLICE_TX",
+              "0",
+              "0",
+              "0",
+              "240",
+              "0.00"
+            ]
+          }
+        ],
+        "RIU_OR": [
+          {
+            "line": 119,
+            "count": 0,
+            "columns": [
+              "RIU_OR",
+              "0",
+              "0",
+              "0",
+              "120",
+              "0.00"
+            ]
+          }
+        ],
+        "BUFGCE": [
+          {
+            "line": 129,
+            "count": 0,
+            "columns": [
+              "BUFGCE",
+              "0",
+              "0",
+              "0",
+              "720",
+              "0.00"
+            ]
+          }
+        ],
+        "BUFGCE_DIV": [
+          {
+            "line": 130,
+            "count": 0,
+            "columns": [
+              "BUFGCE_DIV",
+              "0",
+              "0",
+              "0",
+              "120",
+              "0.00"
+            ]
+          }
+        ],
+        "BUFG_GT": [
+          {
+            "line": 131,
+            "count": 0,
+            "columns": [
+              "BUFG_GT",
+              "0",
+              "0",
+              "0",
+              "720",
+              "0.00"
+            ]
+          }
+        ],
+        "BUFGCTRL*": [
+          {
+            "line": 132,
+            "count": 0,
+            "columns": [
+              "BUFGCTRL*",
+              "0",
+              "0",
+              "0",
+              "240",
+              "0.00"
+            ]
+          }
+        ],
+        "PLL": [
+          {
+            "line": 133,
+            "count": 0,
+            "columns": [
+              "PLL",
+              "0",
+              "0",
+              "0",
+              "60",
+              "0.00"
+            ]
+          }
+        ],
+        "MMCM": [
+          {
+            "line": 134,
+            "count": 0,
+            "columns": [
+              "MMCM",
+              "0",
+              "0",
+              "0",
+              "30",
+              "0.00"
+            ]
+          }
+        ],
+        "CMACE4": [
+          {
+            "line": 145,
+            "count": 0,
+            "columns": [
+              "CMACE4",
+              "0",
+              "0",
+              "0",
+              "9",
+              "0.00"
+            ]
+          }
+        ],
+        "GTYE4_CHANNEL": [
+          {
+            "line": 146,
+            "count": 0,
+            "columns": [
+              "GTYE4_CHANNEL",
+              "0",
+              "0",
+              "0",
+              "52",
+              "0.00"
+            ]
+          }
+        ],
+        "GTYE4_COMMON": [
+          {
+            "line": 147,
+            "count": 0,
+            "columns": [
+              "GTYE4_COMMON",
+              "0",
+              "0",
+              "0",
+              "13",
+              "0.00"
+            ]
+          }
+        ],
+        "ILKNE4": [
+          {
+            "line": 148,
+            "count": 0,
+            "columns": [
+              "ILKNE4",
+              "0",
+              "0",
+              "0",
+              "9",
+              "0.00"
+            ]
+          }
+        ],
+        "OBUFDS_GTE4": [
+          {
+            "line": 149,
+            "count": 0,
+            "columns": [
+              "OBUFDS_GTE4",
+              "0",
+              "0",
+              "0",
+              "26",
+              "0.00"
+            ]
+          }
+        ],
+        "OBUFDS_GTE4_ADV": [
+          {
+            "line": 150,
+            "count": 0,
+            "columns": [
+              "OBUFDS_GTE4_ADV",
+              "0",
+              "0",
+              "0",
+              "26",
+              "0.00"
+            ]
+          }
+        ],
+        "PCIE40E4": [
+          {
+            "line": 151,
+            "count": 0,
+            "columns": [
+              "PCIE40E4",
+              "0",
+              "0",
+              "0",
+              "6",
+              "0.00"
+            ]
+          }
+        ],
+        "SYSMONE4": [
+          {
+            "line": 152,
+            "count": 0,
+            "columns": [
+              "SYSMONE4",
+              "0",
+              "0",
+              "0",
+              "3",
+              "0.00"
+            ]
+          }
+        ],
+        "BSCANE2": [
+          {
+            "line": 162,
+            "count": 0,
+            "columns": [
+              "BSCANE2",
+              "0",
+              "0",
+              "0",
+              "12",
+              "0.00"
+            ]
+          }
+        ],
+        "DNA_PORTE2": [
+          {
+            "line": 163,
+            "count": 0,
+            "columns": [
+              "DNA_PORTE2",
+              "0",
+              "0",
+              "0",
+              "3",
+              "0.00"
+            ]
+          }
+        ],
+        "EFUSE_USR": [
+          {
+            "line": 164,
+            "count": 0,
+            "columns": [
+              "EFUSE_USR",
+              "0",
+              "0",
+              "0",
+              "3",
+              "0.00"
+            ]
+          }
+        ],
+        "FRAME_ECCE4": [
+          {
+            "line": 165,
+            "count": 0,
+            "columns": [
+              "FRAME_ECCE4",
+              "0",
+              "0",
+              "0",
+              "3",
+              "0.00"
+            ]
+          }
+        ],
+        "ICAPE3": [
+          {
+            "line": 166,
+            "count": 0,
+            "columns": [
+              "ICAPE3",
+              "0",
+              "0",
+              "0",
+              "6",
+              "0.00"
+            ]
+          }
+        ],
+        "MASTER_JTAG": [
+          {
+            "line": 167,
+            "count": 0,
+            "columns": [
+              "MASTER_JTAG",
+              "0",
+              "0",
+              "0",
+              "3",
+              "0.00"
+            ]
+          }
+        ],
+        "STARTUPE3": [
+          {
+            "line": 168,
+            "count": 0,
+            "columns": [
+              "STARTUPE3",
+              "0",
+              "0",
+              "0",
+              "3",
+              "0.00"
+            ]
+          }
+        ],
+        "FDRE": [
+          {
+            "line": 178,
+            "count": 829464,
+            "columns": [
+              "FDRE",
+              "829464",
+              "Register"
+            ]
+          }
+        ],
+        "LUT6": [
+          {
+            "line": 179,
+            "count": 195978,
+            "columns": [
+              "LUT6",
+              "195978",
+              "CLB"
+            ]
+          }
+        ],
+        "LUT2": [
+          {
+            "line": 180,
+            "count": 194682,
+            "columns": [
+              "LUT2",
+              "194682",
+              "CLB"
+            ]
+          }
+        ],
+        "LUT3": [
+          {
+            "line": 181,
+            "count": 176428,
+            "columns": [
+              "LUT3",
+              "176428",
+              "CLB"
+            ]
+          }
+        ],
+        "LUT5": [
+          {
+            "line": 182,
+            "count": 152614,
+            "columns": [
+              "LUT5",
+              "152614",
+              "CLB"
+            ]
+          }
+        ],
+        "LUT4": [
+          {
+            "line": 183,
+            "count": 92904,
+            "columns": [
+              "LUT4",
+              "92904",
+              "CLB"
+            ]
+          }
+        ],
+        "LUT1": [
+          {
+            "line": 184,
+            "count": 61601,
+            "columns": [
+              "LUT1",
+              "61601",
+              "CLB"
+            ]
+          }
+        ],
+        "FDCE": [
+          {
+            "line": 185,
+            "count": 58359,
+            "columns": [
+              "FDCE",
+              "58359",
+              "Register"
+            ]
+          }
+        ],
+        "RAMD32": [
+          {
+            "line": 187,
+            "count": 28112,
+            "columns": [
+              "RAMD32",
+              "28112",
+              "CLB"
+            ]
+          }
+        ],
+        "MUXF7": [
+          {
+            "line": 188,
+            "count": 10782,
+            "columns": [
+              "MUXF7",
+              "10782",
+              "CLB"
+            ]
+          }
+        ],
+        "SRL16E": [
+          {
+            "line": 189,
+            "count": 10752,
+            "columns": [
+              "SRL16E",
+              "10752",
+              "CLB"
+            ]
+          }
+        ],
+        "DSP48E2": [
+          {
+            "line": 190,
+            "count": 5445,
+            "columns": [
+              "DSP48E2",
+              "5445",
+              "Arithmetic"
+            ]
+          }
+        ],
+        "FDSE": [
+          {
+            "line": 191,
+            "count": 4491,
+            "columns": [
+              "FDSE",
+              "4491",
+              "Register"
+            ]
+          }
+        ],
+        "RAMS32": [
+          {
+            "line": 192,
+            "count": 3934,
+            "columns": [
+              "RAMS32",
+              "3934",
+              "CLB"
+            ]
+          }
+        ],
+        "MUXF8": [
+          {
+            "line": 193,
+            "count": 2798,
+            "columns": [
+              "MUXF8",
+              "2798",
+              "CLB"
+            ]
+          }
+        ],
+        "RAMB36E2": [
+          {
+            "line": 194,
+            "count": 833,
+            "columns": [
+              "RAMB36E2",
+              "833",
+              "BLOCKRAM"
+            ]
+          }
+        ],
+        "RAMD64E": [
+          {
+            "line": 195,
+            "count": 808,
+            "columns": [
+              "RAMD64E",
+              "808",
+              "CLB"
+            ]
+          }
+        ],
+        "URAM288": [
+          {
+            "line": 196,
+            "count": 752,
+            "columns": [
+              "URAM288",
+              "752",
+              "BLOCKRAM"
+            ]
+          }
+        ],
+        "FDPE": [
+          {
+            "line": 197,
+            "count": 570,
+            "columns": [
+              "FDPE",
+              "570",
+              "Register"
+            ]
+          }
+        ],
+        "RAMB18E2": [
+          {
+            "line": 198,
+            "count": 22,
+            "columns": [
+              "RAMB18E2",
+              "22",
+              "BLOCKRAM"
+            ]
+          }
+        ],
+        "SLR2 <-> SLR1": [
+          {
+            "line": 224,
+            "count": 0,
+            "columns": [
+              "SLR2 <-> SLR1",
+              "0",
+              "",
+              "17280",
+              "0.00"
+            ]
+          }
+        ],
+        "SLR1 -> SLR2": [
+          {
+            "line": 225,
+            "count": 0,
+            "columns": [
+              "SLR1 -> SLR2",
+              "0",
+              "",
+              "",
+              "0.00"
+            ]
+          }
+        ],
+        "Using TX_REG only": [
+          {
+            "line": 226,
+            "count": 0,
+            "columns": [
+              "Using TX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 230,
+            "count": 0,
+            "columns": [
+              "Using TX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 235,
+            "count": 0,
+            "columns": [
+              "Using TX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 239,
+            "count": 0,
+            "columns": [
+              "Using TX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          }
+        ],
+        "Using RX_REG only": [
+          {
+            "line": 227,
+            "count": 0,
+            "columns": [
+              "Using RX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 231,
+            "count": 0,
+            "columns": [
+              "Using RX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 236,
+            "count": 0,
+            "columns": [
+              "Using RX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 240,
+            "count": 0,
+            "columns": [
+              "Using RX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          }
+        ],
+        "Using Both TX_REG and RX_REG": [
+          {
+            "line": 228,
+            "count": 0,
+            "columns": [
+              "Using Both TX_REG and RX_REG",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 232,
+            "count": 0,
+            "columns": [
+              "Using Both TX_REG and RX_REG",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 237,
+            "count": 0,
+            "columns": [
+              "Using Both TX_REG and RX_REG",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 241,
+            "count": 0,
+            "columns": [
+              "Using Both TX_REG and RX_REG",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          }
+        ],
+        "SLR2 -> SLR1": [
+          {
+            "line": 229,
+            "count": 0,
+            "columns": [
+              "SLR2 -> SLR1",
+              "0",
+              "",
+              "",
+              "0.00"
+            ]
+          }
+        ],
+        "SLR1 <-> SLR0": [
+          {
+            "line": 233,
+            "count": 0,
+            "columns": [
+              "SLR1 <-> SLR0",
+              "0",
+              "",
+              "17280",
+              "0.00"
+            ]
+          }
+        ],
+        "SLR0 -> SLR1": [
+          {
+            "line": 234,
+            "count": 0,
+            "columns": [
+              "SLR0 -> SLR1",
+              "0",
+              "",
+              "",
+              "0.00"
+            ]
+          }
+        ],
+        "SLR1 -> SLR0": [
+          {
+            "line": 238,
+            "count": 0,
+            "columns": [
+              "SLR1 -> SLR0",
+              "0",
+              "",
+              "",
+              "0.00"
+            ]
+          }
+        ],
+        "Total SLLs Used": [
+          {
+            "line": 243,
+            "count": 0,
+            "columns": [
+              "Total SLLs Used",
+              "0",
+              "",
+              "",
+              ""
+            ]
+          }
+        ],
+        "SLR2": [
+          {
+            "line": 253,
+            "count": 0,
+            "columns": [
+              "SLR2",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          {
+            "line": 265,
+            "count": 0,
+            "columns": [
+              "SLR2",
+              "0",
+              "0.00",
+              "0",
+              "0.00",
+              "0",
+              "0.00",
+              "0"
+            ]
+          }
+        ],
+        "SLR1": [
+          {
+            "line": 254,
+            "count": 0,
+            "columns": [
+              "SLR1",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          {
+            "line": 266,
+            "count": 0,
+            "columns": [
+              "SLR1",
+              "0",
+              "0.00",
+              "0",
+              "0.00",
+              "0",
+              "0.00",
+              "0"
+            ]
+          }
+        ],
+        "SLR0": [
+          {
+            "line": 255,
+            "count": 0,
+            "columns": [
+              "SLR0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          {
+            "line": 267,
+            "count": 0,
+            "columns": [
+              "SLR0",
+              "0",
+              "0.00",
+              "0",
+              "0.00",
+              "0",
+              "0.00",
+              "0"
+            ]
+          }
+        ],
+        "Total": [
+          {
+            "line": 269,
+            "count": 0,
+            "columns": [
+              "Total",
+              "0",
+              "",
+              "0",
+              "",
+              "0",
+              "",
+              "0"
+            ]
+          }
+        ]
+      },
+      "reviewer_copy": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT003_early_core_resource_review/baseline_core_utilization_synth.rpt",
+        "bytes": 13063,
+        "sha256": "664544f04f71cfcbed203008bb9267aa30f09dbc78e5257184fa79220daa3b41"
+      }
+    },
+    "new": {
+      "headers": {
+        "Tool Version": "Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025",
+        "Design": "scalellm_vcu118_f05_bd_core_0",
+        "Device": "xcvu9p-flga2104-2L-e",
+        "Design State": "Synthesized"
+      },
+      "rows": {
+        "CLB LUTs*": [
+          {
+            "line": 38,
+            "count": 742594,
+            "columns": [
+              "CLB LUTs*",
+              "742594",
+              "0",
+              "0",
+              "1182240",
+              "62.81"
+            ]
+          }
+        ],
+        "LUT as Logic": [
+          {
+            "line": 39,
+            "count": 714692,
+            "columns": [
+              "LUT as Logic",
+              "714692",
+              "0",
+              "0",
+              "1182240",
+              "60.45"
+            ]
+          }
+        ],
+        "LUT as Memory": [
+          {
+            "line": 40,
+            "count": 27902,
+            "columns": [
+              "LUT as Memory",
+              "27902",
+              "0",
+              "0",
+              "591840",
+              "4.71"
+            ]
+          }
+        ],
+        "LUT as Distributed RAM": [
+          {
+            "line": 41,
+            "count": 17150,
+            "columns": [
+              "LUT as Distributed RAM",
+              "17150",
+              "0",
+              "",
+              "",
+              ""
+            ]
+          }
+        ],
+        "LUT as Shift Register": [
+          {
+            "line": 42,
+            "count": 10752,
+            "columns": [
+              "LUT as Shift Register",
+              "10752",
+              "0",
+              "",
+              "",
+              ""
+            ]
+          }
+        ],
+        "CLB Registers": [
+          {
+            "line": 43,
+            "count": 892918,
+            "columns": [
+              "CLB Registers",
+              "892918",
+              "0",
+              "0",
+              "2364480",
+              "37.76"
+            ]
+          }
+        ],
+        "Register as Flip Flop": [
+          {
+            "line": 44,
+            "count": 892918,
+            "columns": [
+              "Register as Flip Flop",
+              "892918",
+              "0",
+              "0",
+              "2364480",
+              "37.76"
+            ]
+          }
+        ],
+        "Register as Latch": [
+          {
+            "line": 45,
+            "count": 0,
+            "columns": [
+              "Register as Latch",
+              "0",
+              "0",
+              "0",
+              "2364480",
+              "0.00"
+            ]
+          }
+        ],
+        "CARRY8": [
+          {
+            "line": 46,
+            "count": 53867,
+            "columns": [
+              "CARRY8",
+              "53867",
+              "0",
+              "0",
+              "147780",
+              "36.45"
+            ]
+          },
+          {
+            "line": 186,
+            "count": 53867,
+            "columns": [
+              "CARRY8",
+              "53867",
+              "CLB"
+            ]
+          }
+        ],
+        "F7 Muxes": [
+          {
+            "line": 47,
+            "count": 10782,
+            "columns": [
+              "F7 Muxes",
+              "10782",
+              "0",
+              "0",
+              "591120",
+              "1.82"
+            ]
+          }
+        ],
+        "F8 Muxes": [
+          {
+            "line": 48,
+            "count": 2798,
+            "columns": [
+              "F8 Muxes",
+              "2798",
+              "0",
+              "0",
+              "295560",
+              "0.95"
+            ]
+          }
+        ],
+        "F9 Muxes": [
+          {
+            "line": 49,
+            "count": 0,
+            "columns": [
+              "F9 Muxes",
+              "0",
+              "0",
+              "0",
+              "147780",
+              "0.00"
+            ]
+          }
+        ],
+        "Unique Control Sets": [
+          {
+            "line": 50,
+            "count": 19206,
+            "columns": [
+              "Unique Control Sets",
+              "19206",
+              "",
+              "0",
+              "295560",
+              "6.50"
+            ]
+          }
+        ],
+        "Block RAM Tile": [
+          {
+            "line": 83,
+            "count": 844,
+            "columns": [
+              "Block RAM Tile",
+              "844",
+              "0",
+              "0",
+              "2160",
+              "39.07"
+            ]
+          }
+        ],
+        "RAMB36/FIFO*": [
+          {
+            "line": 84,
+            "count": 833,
+            "columns": [
+              "RAMB36/FIFO*",
+              "833",
+              "0",
+              "0",
+              "2160",
+              "38.56"
+            ]
+          }
+        ],
+        "RAMB36E2 only": [
+          {
+            "line": 85,
+            "count": 833,
+            "columns": [
+              "RAMB36E2 only",
+              "833",
+              "",
+              "",
+              "",
+              ""
+            ]
+          }
+        ],
+        "RAMB18": [
+          {
+            "line": 86,
+            "count": 22,
+            "columns": [
+              "RAMB18",
+              "22",
+              "0",
+              "0",
+              "4320",
+              "0.51"
+            ]
+          }
+        ],
+        "RAMB18E2 only": [
+          {
+            "line": 87,
+            "count": 22,
+            "columns": [
+              "RAMB18E2 only",
+              "22",
+              "",
+              "",
+              "",
+              ""
+            ]
+          }
+        ],
+        "URAM": [
+          {
+            "line": 88,
+            "count": 752,
+            "columns": [
+              "URAM",
+              "752",
+              "0",
+              "0",
+              "960",
+              "78.33"
+            ]
+          }
+        ],
+        "DSPs": [
+          {
+            "line": 99,
+            "count": 5445,
+            "columns": [
+              "DSPs",
+              "5445",
+              "0",
+              "0",
+              "6840",
+              "79.61"
+            ]
+          }
+        ],
+        "DSP48E2 only": [
+          {
+            "line": 100,
+            "count": 5445,
+            "columns": [
+              "DSP48E2 only",
+              "5445",
+              "",
+              "",
+              "",
+              ""
+            ]
+          }
+        ],
+        "Bonded IOB": [
+          {
+            "line": 110,
+            "count": 0,
+            "columns": [
+              "Bonded IOB",
+              "0",
+              "0",
+              "0",
+              "832",
+              "0.00"
+            ]
+          }
+        ],
+        "HPIOB_M": [
+          {
+            "line": 111,
+            "count": 0,
+            "columns": [
+              "HPIOB_M",
+              "0",
+              "0",
+              "0",
+              "384",
+              "0.00"
+            ]
+          }
+        ],
+        "HPIOB_S": [
+          {
+            "line": 112,
+            "count": 0,
+            "columns": [
+              "HPIOB_S",
+              "0",
+              "0",
+              "0",
+              "384",
+              "0.00"
+            ]
+          }
+        ],
+        "HPIOB_SNGL": [
+          {
+            "line": 113,
+            "count": 0,
+            "columns": [
+              "HPIOB_SNGL",
+              "0",
+              "0",
+              "0",
+              "64",
+              "0.00"
+            ]
+          }
+        ],
+        "HPIOBDIFFINBUF": [
+          {
+            "line": 114,
+            "count": 0,
+            "columns": [
+              "HPIOBDIFFINBUF",
+              "0",
+              "0",
+              "0",
+              "720",
+              "0.00"
+            ]
+          }
+        ],
+        "HPIOBDIFFOUTBUF": [
+          {
+            "line": 115,
+            "count": 0,
+            "columns": [
+              "HPIOBDIFFOUTBUF",
+              "0",
+              "0",
+              "0",
+              "720",
+              "0.00"
+            ]
+          }
+        ],
+        "BITSLICE_CONTROL": [
+          {
+            "line": 116,
+            "count": 0,
+            "columns": [
+              "BITSLICE_CONTROL",
+              "0",
+              "0",
+              "0",
+              "240",
+              "0.00"
+            ]
+          }
+        ],
+        "BITSLICE_RX_TX": [
+          {
+            "line": 117,
+            "count": 0,
+            "columns": [
+              "BITSLICE_RX_TX",
+              "0",
+              "0",
+              "0",
+              "9360",
+              "0.00"
+            ]
+          }
+        ],
+        "BITSLICE_TX": [
+          {
+            "line": 118,
+            "count": 0,
+            "columns": [
+              "BITSLICE_TX",
+              "0",
+              "0",
+              "0",
+              "240",
+              "0.00"
+            ]
+          }
+        ],
+        "RIU_OR": [
+          {
+            "line": 119,
+            "count": 0,
+            "columns": [
+              "RIU_OR",
+              "0",
+              "0",
+              "0",
+              "120",
+              "0.00"
+            ]
+          }
+        ],
+        "BUFGCE": [
+          {
+            "line": 129,
+            "count": 0,
+            "columns": [
+              "BUFGCE",
+              "0",
+              "0",
+              "0",
+              "720",
+              "0.00"
+            ]
+          }
+        ],
+        "BUFGCE_DIV": [
+          {
+            "line": 130,
+            "count": 0,
+            "columns": [
+              "BUFGCE_DIV",
+              "0",
+              "0",
+              "0",
+              "120",
+              "0.00"
+            ]
+          }
+        ],
+        "BUFG_GT": [
+          {
+            "line": 131,
+            "count": 0,
+            "columns": [
+              "BUFG_GT",
+              "0",
+              "0",
+              "0",
+              "720",
+              "0.00"
+            ]
+          }
+        ],
+        "BUFGCTRL*": [
+          {
+            "line": 132,
+            "count": 0,
+            "columns": [
+              "BUFGCTRL*",
+              "0",
+              "0",
+              "0",
+              "240",
+              "0.00"
+            ]
+          }
+        ],
+        "PLL": [
+          {
+            "line": 133,
+            "count": 0,
+            "columns": [
+              "PLL",
+              "0",
+              "0",
+              "0",
+              "60",
+              "0.00"
+            ]
+          }
+        ],
+        "MMCM": [
+          {
+            "line": 134,
+            "count": 0,
+            "columns": [
+              "MMCM",
+              "0",
+              "0",
+              "0",
+              "30",
+              "0.00"
+            ]
+          }
+        ],
+        "CMACE4": [
+          {
+            "line": 145,
+            "count": 0,
+            "columns": [
+              "CMACE4",
+              "0",
+              "0",
+              "0",
+              "9",
+              "0.00"
+            ]
+          }
+        ],
+        "GTYE4_CHANNEL": [
+          {
+            "line": 146,
+            "count": 0,
+            "columns": [
+              "GTYE4_CHANNEL",
+              "0",
+              "0",
+              "0",
+              "52",
+              "0.00"
+            ]
+          }
+        ],
+        "GTYE4_COMMON": [
+          {
+            "line": 147,
+            "count": 0,
+            "columns": [
+              "GTYE4_COMMON",
+              "0",
+              "0",
+              "0",
+              "13",
+              "0.00"
+            ]
+          }
+        ],
+        "ILKNE4": [
+          {
+            "line": 148,
+            "count": 0,
+            "columns": [
+              "ILKNE4",
+              "0",
+              "0",
+              "0",
+              "9",
+              "0.00"
+            ]
+          }
+        ],
+        "OBUFDS_GTE4": [
+          {
+            "line": 149,
+            "count": 0,
+            "columns": [
+              "OBUFDS_GTE4",
+              "0",
+              "0",
+              "0",
+              "26",
+              "0.00"
+            ]
+          }
+        ],
+        "OBUFDS_GTE4_ADV": [
+          {
+            "line": 150,
+            "count": 0,
+            "columns": [
+              "OBUFDS_GTE4_ADV",
+              "0",
+              "0",
+              "0",
+              "26",
+              "0.00"
+            ]
+          }
+        ],
+        "PCIE40E4": [
+          {
+            "line": 151,
+            "count": 0,
+            "columns": [
+              "PCIE40E4",
+              "0",
+              "0",
+              "0",
+              "6",
+              "0.00"
+            ]
+          }
+        ],
+        "SYSMONE4": [
+          {
+            "line": 152,
+            "count": 0,
+            "columns": [
+              "SYSMONE4",
+              "0",
+              "0",
+              "0",
+              "3",
+              "0.00"
+            ]
+          }
+        ],
+        "BSCANE2": [
+          {
+            "line": 162,
+            "count": 0,
+            "columns": [
+              "BSCANE2",
+              "0",
+              "0",
+              "0",
+              "12",
+              "0.00"
+            ]
+          }
+        ],
+        "DNA_PORTE2": [
+          {
+            "line": 163,
+            "count": 0,
+            "columns": [
+              "DNA_PORTE2",
+              "0",
+              "0",
+              "0",
+              "3",
+              "0.00"
+            ]
+          }
+        ],
+        "EFUSE_USR": [
+          {
+            "line": 164,
+            "count": 0,
+            "columns": [
+              "EFUSE_USR",
+              "0",
+              "0",
+              "0",
+              "3",
+              "0.00"
+            ]
+          }
+        ],
+        "FRAME_ECCE4": [
+          {
+            "line": 165,
+            "count": 0,
+            "columns": [
+              "FRAME_ECCE4",
+              "0",
+              "0",
+              "0",
+              "3",
+              "0.00"
+            ]
+          }
+        ],
+        "ICAPE3": [
+          {
+            "line": 166,
+            "count": 0,
+            "columns": [
+              "ICAPE3",
+              "0",
+              "0",
+              "0",
+              "6",
+              "0.00"
+            ]
+          }
+        ],
+        "MASTER_JTAG": [
+          {
+            "line": 167,
+            "count": 0,
+            "columns": [
+              "MASTER_JTAG",
+              "0",
+              "0",
+              "0",
+              "3",
+              "0.00"
+            ]
+          }
+        ],
+        "STARTUPE3": [
+          {
+            "line": 168,
+            "count": 0,
+            "columns": [
+              "STARTUPE3",
+              "0",
+              "0",
+              "0",
+              "3",
+              "0.00"
+            ]
+          }
+        ],
+        "FDRE": [
+          {
+            "line": 178,
+            "count": 829464,
+            "columns": [
+              "FDRE",
+              "829464",
+              "Register"
+            ]
+          }
+        ],
+        "LUT6": [
+          {
+            "line": 179,
+            "count": 195980,
+            "columns": [
+              "LUT6",
+              "195980",
+              "CLB"
+            ]
+          }
+        ],
+        "LUT2": [
+          {
+            "line": 180,
+            "count": 194716,
+            "columns": [
+              "LUT2",
+              "194716",
+              "CLB"
+            ]
+          }
+        ],
+        "LUT3": [
+          {
+            "line": 181,
+            "count": 176421,
+            "columns": [
+              "LUT3",
+              "176421",
+              "CLB"
+            ]
+          }
+        ],
+        "LUT5": [
+          {
+            "line": 182,
+            "count": 152611,
+            "columns": [
+              "LUT5",
+              "152611",
+              "CLB"
+            ]
+          }
+        ],
+        "LUT4": [
+          {
+            "line": 183,
+            "count": 92907,
+            "columns": [
+              "LUT4",
+              "92907",
+              "CLB"
+            ]
+          }
+        ],
+        "LUT1": [
+          {
+            "line": 184,
+            "count": 61684,
+            "columns": [
+              "LUT1",
+              "61684",
+              "CLB"
+            ]
+          }
+        ],
+        "FDCE": [
+          {
+            "line": 185,
+            "count": 58393,
+            "columns": [
+              "FDCE",
+              "58393",
+              "Register"
+            ]
+          }
+        ],
+        "RAMD32": [
+          {
+            "line": 187,
+            "count": 28112,
+            "columns": [
+              "RAMD32",
+              "28112",
+              "CLB"
+            ]
+          }
+        ],
+        "MUXF7": [
+          {
+            "line": 188,
+            "count": 10782,
+            "columns": [
+              "MUXF7",
+              "10782",
+              "CLB"
+            ]
+          }
+        ],
+        "SRL16E": [
+          {
+            "line": 189,
+            "count": 10752,
+            "columns": [
+              "SRL16E",
+              "10752",
+              "CLB"
+            ]
+          }
+        ],
+        "DSP48E2": [
+          {
+            "line": 190,
+            "count": 5445,
+            "columns": [
+              "DSP48E2",
+              "5445",
+              "Arithmetic"
+            ]
+          }
+        ],
+        "FDSE": [
+          {
+            "line": 191,
+            "count": 4491,
+            "columns": [
+              "FDSE",
+              "4491",
+              "Register"
+            ]
+          }
+        ],
+        "RAMS32": [
+          {
+            "line": 192,
+            "count": 3934,
+            "columns": [
+              "RAMS32",
+              "3934",
+              "CLB"
+            ]
+          }
+        ],
+        "MUXF8": [
+          {
+            "line": 193,
+            "count": 2798,
+            "columns": [
+              "MUXF8",
+              "2798",
+              "CLB"
+            ]
+          }
+        ],
+        "RAMB36E2": [
+          {
+            "line": 194,
+            "count": 833,
+            "columns": [
+              "RAMB36E2",
+              "833",
+              "BLOCKRAM"
+            ]
+          }
+        ],
+        "RAMD64E": [
+          {
+            "line": 195,
+            "count": 808,
+            "columns": [
+              "RAMD64E",
+              "808",
+              "CLB"
+            ]
+          }
+        ],
+        "URAM288": [
+          {
+            "line": 196,
+            "count": 752,
+            "columns": [
+              "URAM288",
+              "752",
+              "BLOCKRAM"
+            ]
+          }
+        ],
+        "FDPE": [
+          {
+            "line": 197,
+            "count": 570,
+            "columns": [
+              "FDPE",
+              "570",
+              "Register"
+            ]
+          }
+        ],
+        "RAMB18E2": [
+          {
+            "line": 198,
+            "count": 22,
+            "columns": [
+              "RAMB18E2",
+              "22",
+              "BLOCKRAM"
+            ]
+          }
+        ],
+        "SLR2 <-> SLR1": [
+          {
+            "line": 224,
+            "count": 0,
+            "columns": [
+              "SLR2 <-> SLR1",
+              "0",
+              "",
+              "17280",
+              "0.00"
+            ]
+          }
+        ],
+        "SLR1 -> SLR2": [
+          {
+            "line": 225,
+            "count": 0,
+            "columns": [
+              "SLR1 -> SLR2",
+              "0",
+              "",
+              "",
+              "0.00"
+            ]
+          }
+        ],
+        "Using TX_REG only": [
+          {
+            "line": 226,
+            "count": 0,
+            "columns": [
+              "Using TX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 230,
+            "count": 0,
+            "columns": [
+              "Using TX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 235,
+            "count": 0,
+            "columns": [
+              "Using TX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 239,
+            "count": 0,
+            "columns": [
+              "Using TX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          }
+        ],
+        "Using RX_REG only": [
+          {
+            "line": 227,
+            "count": 0,
+            "columns": [
+              "Using RX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 231,
+            "count": 0,
+            "columns": [
+              "Using RX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 236,
+            "count": 0,
+            "columns": [
+              "Using RX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 240,
+            "count": 0,
+            "columns": [
+              "Using RX_REG only",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          }
+        ],
+        "Using Both TX_REG and RX_REG": [
+          {
+            "line": 228,
+            "count": 0,
+            "columns": [
+              "Using Both TX_REG and RX_REG",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 232,
+            "count": 0,
+            "columns": [
+              "Using Both TX_REG and RX_REG",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 237,
+            "count": 0,
+            "columns": [
+              "Using Both TX_REG and RX_REG",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          },
+          {
+            "line": 241,
+            "count": 0,
+            "columns": [
+              "Using Both TX_REG and RX_REG",
+              "0",
+              "0",
+              "",
+              ""
+            ]
+          }
+        ],
+        "SLR2 -> SLR1": [
+          {
+            "line": 229,
+            "count": 0,
+            "columns": [
+              "SLR2 -> SLR1",
+              "0",
+              "",
+              "",
+              "0.00"
+            ]
+          }
+        ],
+        "SLR1 <-> SLR0": [
+          {
+            "line": 233,
+            "count": 0,
+            "columns": [
+              "SLR1 <-> SLR0",
+              "0",
+              "",
+              "17280",
+              "0.00"
+            ]
+          }
+        ],
+        "SLR0 -> SLR1": [
+          {
+            "line": 234,
+            "count": 0,
+            "columns": [
+              "SLR0 -> SLR1",
+              "0",
+              "",
+              "",
+              "0.00"
+            ]
+          }
+        ],
+        "SLR1 -> SLR0": [
+          {
+            "line": 238,
+            "count": 0,
+            "columns": [
+              "SLR1 -> SLR0",
+              "0",
+              "",
+              "",
+              "0.00"
+            ]
+          }
+        ],
+        "Total SLLs Used": [
+          {
+            "line": 243,
+            "count": 0,
+            "columns": [
+              "Total SLLs Used",
+              "0",
+              "",
+              "",
+              ""
+            ]
+          }
+        ],
+        "SLR2": [
+          {
+            "line": 253,
+            "count": 0,
+            "columns": [
+              "SLR2",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          {
+            "line": 265,
+            "count": 0,
+            "columns": [
+              "SLR2",
+              "0",
+              "0.00",
+              "0",
+              "0.00",
+              "0",
+              "0.00",
+              "0"
+            ]
+          }
+        ],
+        "SLR1": [
+          {
+            "line": 254,
+            "count": 0,
+            "columns": [
+              "SLR1",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          {
+            "line": 266,
+            "count": 0,
+            "columns": [
+              "SLR1",
+              "0",
+              "0.00",
+              "0",
+              "0.00",
+              "0",
+              "0.00",
+              "0"
+            ]
+          }
+        ],
+        "SLR0": [
+          {
+            "line": 255,
+            "count": 0,
+            "columns": [
+              "SLR0",
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          {
+            "line": 267,
+            "count": 0,
+            "columns": [
+              "SLR0",
+              "0",
+              "0.00",
+              "0",
+              "0.00",
+              "0",
+              "0.00",
+              "0"
+            ]
+          }
+        ],
+        "Total": [
+          {
+            "line": 269,
+            "count": 0,
+            "columns": [
+              "Total",
+              "0",
+              "",
+              "0",
+              "",
+              "0",
+              "",
+              "0"
+            ]
+          }
+        ]
+      },
+      "reviewer_copy": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT003_early_core_resource_review/new_core_utilization_synth.rpt",
+        "bytes": 13063,
+        "sha256": "f511e1892eb7561539c05ff48c958add776ede7d2b49c2d538fe888eab4d757e"
+      }
+    }
+  },
+  "comparison": {
+    "CLB LUTs*": {
+      "old": 742483,
+      "new": 742594,
+      "delta": 111,
+      "baseline_line": 38,
+      "new_line": 38
+    },
+    "LUT as Logic": {
+      "old": 714581,
+      "new": 714692,
+      "delta": 111,
+      "baseline_line": 39,
+      "new_line": 39
+    },
+    "LUT as Memory": {
+      "old": 27902,
+      "new": 27902,
+      "delta": 0,
+      "baseline_line": 40,
+      "new_line": 40
+    },
+    "LUT as Distributed RAM": {
+      "old": 17150,
+      "new": 17150,
+      "delta": 0,
+      "baseline_line": 41,
+      "new_line": 41
+    },
+    "LUT as Shift Register": {
+      "old": 10752,
+      "new": 10752,
+      "delta": 0,
+      "baseline_line": 42,
+      "new_line": 42
+    },
+    "CLB Registers": {
+      "old": 892884,
+      "new": 892918,
+      "delta": 34,
+      "baseline_line": 43,
+      "new_line": 43
+    },
+    "Register as Flip Flop": {
+      "old": 892884,
+      "new": 892918,
+      "delta": 34,
+      "baseline_line": 44,
+      "new_line": 44
+    },
+    "Register as Latch": {
+      "old": 0,
+      "new": 0,
+      "delta": 0,
+      "baseline_line": 45,
+      "new_line": 45
+    },
+    "CARRY8": {
+      "old": 53863,
+      "new": 53867,
+      "delta": 4,
+      "baseline_line": 46,
+      "new_line": 46
+    },
+    "Block RAM Tile": {
+      "old": 844,
+      "new": 844,
+      "delta": 0,
+      "baseline_line": 83,
+      "new_line": 83
+    },
+    "URAM": {
+      "old": 752,
+      "new": 752,
+      "delta": 0,
+      "baseline_line": 88,
+      "new_line": 88
+    },
+    "DSPs": {
+      "old": 5445,
+      "new": 5445,
+      "delta": 0,
+      "baseline_line": 99,
+      "new_line": 99
+    },
+    "RAMB36E2": {
+      "old": 833,
+      "new": 833,
+      "delta": 0,
+      "baseline_line": 194,
+      "new_line": 194
+    },
+    "RAMB18E2": {
+      "old": 22,
+      "new": 22,
+      "delta": 0,
+      "baseline_line": 198,
+      "new_line": 198
+    },
+    "FDRE": {
+      "old": 829464,
+      "new": 829464,
+      "delta": 0,
+      "baseline_line": 178,
+      "new_line": 178
+    },
+    "FDCE": {
+      "old": 58359,
+      "new": 58393,
+      "delta": 34,
+      "baseline_line": 185,
+      "new_line": 185
+    },
+    "LUT1": {
+      "old": 61601,
+      "new": 61684,
+      "delta": 83,
+      "baseline_line": 184,
+      "new_line": 184
+    },
+    "LUT2": {
+      "old": 194682,
+      "new": 194716,
+      "delta": 34,
+      "baseline_line": 180,
+      "new_line": 180
+    },
+    "LUT3": {
+      "old": 176428,
+      "new": 176421,
+      "delta": -7,
+      "baseline_line": 181,
+      "new_line": 181
+    },
+    "LUT4": {
+      "old": 92904,
+      "new": 92907,
+      "delta": 3,
+      "baseline_line": 183,
+      "new_line": 183
+    },
+    "LUT5": {
+      "old": 152614,
+      "new": 152611,
+      "delta": -3,
+      "baseline_line": 182,
+      "new_line": 182
+    },
+    "LUT6": {
+      "old": 195978,
+      "new": 195980,
+      "delta": 2,
+      "baseline_line": 179,
+      "new_line": 179
+    }
+  },
+  "raw_LUT1_to_6_sum_delta": 112,
+  "adjusted_report_LUT_delta": 111,
+  "counter_increment_FDCE_delta": 34,
+  "CARRY8_delta": 4,
+  "BRAM_URAM_DSP_delta": 0,
+  "native_log_observed_subset": [
+    {
+      "line": 10724,
+      "text": "Synthesis finished with 0 errors, 0 critical warnings and 578 warnings."
+    },
+    {
+      "line": 10757,
+      "text": "INFO: [Vivado 12-24828] Executing command : report_utilization -file scalellm_vcu118_f05_bd_core_0_utilization_synth.rpt -pb scalellm_vcu118_f05_bd_core_0_utilization_synth.pb"
+    },
+    {
+      "line": 10758,
+      "text": "report_utilization: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 13544.949 ; gain = 0.000 ; free physical = 334622 ; free virtual = 496292"
+    }
+  ],
+  "native_log_mutable": true,
+  "DCP_access": false,
+  "G4_passed": false,
+  "scope_limits": [
+    "Core resource aggregate is not exact M2 +81 protected buffers / A3 independent +34 FF and own-address topology proof.",
+    "Core URAM752 unchanged cannot prove selected resident40+40; actual slice primitive roles/ports/cascade remain G4.",
+    "LUT net delta does not prove per-mechanism additions or budgets; reportLUT adjusted for combining differs from primitive sum.",
+    "Final same-stage top E005 baseline comparison and23produced/22consumed fresh lineage remain pending."
+  ]
+}

@@ -1,0 +1,26 @@
+--- prechange/m002_physical.tcl
++++ /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/scripts/m002_physical.tcl
+@@ -19,7 +19,7 @@
+ foreach name {mission0004_metadata_width_local.xdc mission0005_coordinated_partition.xdc} {
+     if {[llength [get_files -quiet -of_objects [get_filesets constrs_1] "*/$name"]]} {error "Legacy constraint active: $name"}
+ }
+-foreach name {attention_mlp_vcu118_board_v5.xdc vcu118_ddr4_explicit_pins.xdc board_clock_domains.xdc ddr_timing_recovery.xdc} {
++foreach name {attention_mlp_vcu118_board_v5.xdc vcu118_ddr4_explicit_pins.xdc board_clock_domains.xdc ddr_timing_recovery.xdc m003_joint_locality.xdc} {
+     set path [file join $root vivado constraints $name]
+     set file [get_files -quiet -of_objects [get_filesets constrs_1] $path]
+     if {[llength $file] != 1} {error "Required board XDC not active: $path"}
+@@ -33,11 +33,13 @@
+ if {[dict get $marker project] ne $project_dir ||
+     [dict get $marker inputs_sha256] ne [hash_file [file join $synth_report_dir inputs.sha256]] ||
+     [dict get $marker identity_sha256] ne [hash_file [file join $synth_report_dir build_identity.txt]]} {error "Original completion lineage changed"}
++source [file join $script_dir m003_joint_checks.tcl]
++m003::require_project
+ set run [get_runs impl_1]
+ if {$stage eq "place"} {
+     reset_run impl_1
+     set_property STRATEGY {Vivado Implementation Defaults} $run
+-    if {[info exists ::env(HAP_EXECUTION_PROFILE)] && $::env(HAP_EXECUTION_PROFILE) eq "m002_optimized_implementation"} {
++    if {([info exists ::env(HAP_EXECUTION_PROFILE)] && $::env(HAP_EXECUTION_PROFILE) eq "m002_optimized_implementation") || [info exists ::env(HAP_M003_ACTIVE)]} {
+         set_property STEPS.PLACE_DESIGN.ARGS.DIRECTIVE SSI_SpreadSLLs $run
+         set_property STEPS.PHYS_OPT_DESIGN.ARGS.DIRECTIVE Default $run
+         set_property STEPS.ROUTE_DESIGN.ARGS.DIRECTIVE Default $run

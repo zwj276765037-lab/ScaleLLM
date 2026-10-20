@@ -1,0 +1,60 @@
+{
+  "scope": "Post-hoc clarification from existing full1024 paired statistics; no model rerun; all pooled rows share 103700 positions x 4096 channels.",
+  "sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/05_layer32_diagnosis/independent_review/R011/residual_cross_review.json",
+      "sha256": "0ef30f76f7e5325ac384f3d9da5db485897cb9a865b60dcdd671eb51b9036d8c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/05_layer32_diagnosis/independent_review/R011/existing_stage_review.json",
+      "sha256": "4b0ac480446c2d4b6aa8e8baefb4bcee3ea5d5fe219bd3d90f8beb4bb5749e66"
+    }
+  ],
+  "formula": "100 * sqrt(error_energy / reference_energy)",
+  "rows": [
+    {
+      "stage": "Attention残差相加后，MLP残差基底",
+      "scalar_count": 424755200,
+      "error_energy": 68905.19346692105,
+      "reference_energy": 585293967.9120767,
+      "absolute_RMSE": 0.012736691391651594,
+      "reference_RMS": 1.1738636974047325,
+      "pooled_relative_L2_percent": 1.0850230243776042
+    },
+    {
+      "stage": "MLP纯分支，残差相加前",
+      "scalar_count": 424755200,
+      "error_energy": 71889.81507497886,
+      "reference_energy": 664677519.7231791,
+      "absolute_RMSE": 0.013009611602786214,
+      "reference_RMS": 1.2509390304658274,
+      "pooled_relative_L2_percent": 1.0399876641423256
+    },
+    {
+      "stage": "第32块输出，最终RMSNorm之前",
+      "scalar_count": 424755200,
+      "error_energy": 138623.31756753795,
+      "reference_energy": 567028569.4569634,
+      "absolute_RMSE": 0.018065450328432625,
+      "reference_RMS": 1.1554020091296613,
+      "pooled_relative_L2_percent": 1.5635640396748944
+    }
+  ],
+  "aggregation_comparison_layer32_before_final_norm": {
+    "document_median_percent": 1.4316203411236916,
+    "pooled_percent": 1.5635640396748944
+  },
+  "final_vs_attention_residual": {
+    "absolute_RMSE_factor": 1.418378586158869,
+    "reference_RMS_factor": 0.9842727155496097,
+    "relative_L2_factor": 1.4410422678097485
+  },
+  "interpretation": [
+    "实际输出差的绝对RMSE增加约41.84%，而参考RMS降低约1.57%；并非仅由分母接近零造成。",
+    "参考两分支的能量交叉项明显为负，误差交叉项接近零：相加后信号幅度未随两分支能量同步增长。",
+    "54.64%的信号抵消比例以两分支能量之和为基准，不是相对Attention残差基底下降54.64%。",
+    "按文档求中位数与全体能量合池是不同聚合方式，二者都支持真实差异存在；不能把替换聚合方式当作算法精度改善。",
+    "不能将向量相对L2、误差能量比、逐标量相对误差和任务准确率混为一谈。"
+  ],
+  "new_experiment": false
+}

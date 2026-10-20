@@ -1,0 +1,11 @@
+--- v2/m003_physical.tcl
++++ v3/m003_physical.tcl
+@@ -31,7 +31,7 @@
+     if {$rc} {return -options $options $result}
+ }
+ if {$stage eq "qualify"} {
+-    foreach run [get_runs -quiet -filter {NAME == synth_1 || NAME =~ *_synth_1}] {require_complete_run [get_property NAME $run]}
++    m003::require_synthesis_runs
+     reset_run impl_1
+     set run [get_runs impl_1]
+     set_property STRATEGY {Vivado Implementation Defaults} $run

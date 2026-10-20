@@ -274,8 +274,10 @@ module hap_attention_board_cohort16_core #(
     wire meta_rd_fire = meta_rd_valid && meta_rd_ready;
     wire meta_rsp_fire = meta_rsp_valid && meta_rsp_ready;
 
-    hap_weight_meta_resident u_meta (
+    hap_weight_meta_resident #(.LOCAL_ADDR_COPIES(1)) u_meta (
         .clk(core_clk), .rst_n(core_rst_n), .clear(datapath_clear),
+        .addr_system_clear(system_clear),
+        .addr_launch(state_r==ST_LAUNCH && weight_command_ready),
         .wr_valid(meta_wr_valid), .wr_ready(meta_wr_ready),
         .wr_addr(artifact_index_r), .wr_meta16(dma_rd_data),
         .rd_valid(meta_rd_valid), .rd_ready(meta_rd_ready),

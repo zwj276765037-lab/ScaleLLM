@@ -1,0 +1,825 @@
+{
+  "schema": "m005_r005_persistent_group_receipt_v1",
+  "group_id": "G056",
+  "canonical_group_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056",
+  "session_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/session_S001",
+  "runtime_kind": "segment_of_shared_gpu_worker",
+  "shared_worker_identity": {
+    "pid": 330520,
+    "ppid": 330188,
+    "pgid": 330520,
+    "starttime": 8235802,
+    "argv": [
+      "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+      "-B",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_extended_numerical_session.py",
+      "--worker",
+      "--plan",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/qualification/persistent_source_v1/session_plan_final.json",
+      "--output-dir",
+      "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/session_S001"
+    ]
+  },
+  "session_launch_identity": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/session_S001/session_launch_manifest.json",
+    "bytes": 12460,
+    "sha256": "d959412515fec22fce75ee47f7f2e8af5de9a22c5219f801147097a264daa117"
+  },
+  "global_receipt_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/session_S001/session_gpu_receipt.json",
+  "logical_batch_ids": [
+    "B056"
+  ],
+  "doc_ids": [
+    "c4_official_validation_first10000:3706",
+    "c4_official_validation_first10000:4806",
+    "ag_news_test:6774",
+    "imdb_test:9422",
+    "c4_official_validation_first10000:1045",
+    "c4_official_validation_first10000:7402",
+    "ag_news_test:6971",
+    "imdb_test:19531",
+    "c4_official_validation_first10000:7364",
+    "c4_official_validation_first10000:7287",
+    "ag_news_test:179",
+    "imdb_test:4695",
+    "c4_official_validation_first10000:6899",
+    "c4_official_validation_first10000:980",
+    "ag_news_test:673",
+    "imdb_test:18280"
+  ],
+  "actual_token_lengths": [
+    128,
+    128,
+    47,
+    76,
+    128,
+    128,
+    52,
+    128,
+    128,
+    128,
+    43,
+    128,
+    128,
+    128,
+    56,
+    128
+  ],
+  "started_at": "2026-10-19T09:09:22.522471+00:00",
+  "code": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_paired_numerical_model.py",
+      "bytes": 8432,
+      "sha256": "3f979d5f03d6d126e0efad3cf4fe8f5284be6eee7bcb179d7854d999172a27bf"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_numerical_fidelity.py",
+      "bytes": 19572,
+      "sha256": "5e7d949ddc7994254d90aa66b4aee779a87ac498905b4844770968170de6f501"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_model_stream.py",
+      "bytes": 21870,
+      "sha256": "87d8763defbd215c377efd1a0caf81d289ae274ba6381aa10f096177aea20519"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/formal_numerical_inputs.py",
+      "bytes": 10383,
+      "sha256": "58dd1a226db2b0364280b95e44b78b6ad3b48924d07f9f79bb67d7a7f402dddd"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/formal_storage_plan.py",
+      "bytes": 3138,
+      "sha256": "4001f54754bdf79ea3752bfb93df28be4b2e5714cd514c30c401f95aacb0c1d3"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/capture_real_inputs.py",
+      "bytes": 35491,
+      "sha256": "069040ad1a8904d03fa1150e9db160bd17331275c07b549e017297a1e87e1023"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/prepare_replay_data.py",
+      "bytes": 13637,
+      "sha256": "0fbf068eb2aa5fd68bee00090f3d917882938c38659fbb1ed070b045accecbe9"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_local_experiment.py",
+      "bytes": 13872,
+      "sha256": "00710ddb75d08e144d204b2242dcd47cce53d50694bd7b6b8c7f861630f787c1"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/policy.py",
+      "bytes": 15052,
+      "sha256": "43bcf51ec86deb10a5d7e27a6bc3052ed63b9c6fbc9fd8cf2f13f8e4f4c6f921"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/current_nodes.py",
+      "bytes": 9587,
+      "sha256": "a5e6c719dc61df325e3bc8b5c3364c7bf911b673523cfdb4889830567c702404"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/exact_reductions.py",
+      "bytes": 6719,
+      "sha256": "f8990e5e82db13d8d41d536e4c350eac53c5a2099786957832d2208477e12551"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/model_compat.py",
+      "bytes": 6290,
+      "sha256": "53ef45e269b997bad32d09003bac53a7ccfa9ae006d9e1eecd95e13cb0f23dc0"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/gpu_reference.py",
+      "bytes": 11501,
+      "sha256": "a8f4309cb07ec84687903693888602c1fd09fa876d477dcd4c7f488ce4358837"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/chunked_quantization.py",
+      "bytes": 1316,
+      "sha256": "281c7a5b82f7531b43569d265d76c6779e698f9df790c9427d616a95d60d183e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/local_observer.py",
+      "bytes": 13718,
+      "sha256": "b3b2340da40a6ec5c71a50f2e2b218827ebe7e66fa50f2afa517a9f1cfa4a0a8"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/numerical_reference/node_witnesses.py",
+      "bytes": 21702,
+      "sha256": "d5c5dccfefe7a7cb30dab1322570b17be325033ddd743b4210f7b7af2f6fe049"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/production_replay.py",
+      "bytes": 11191,
+      "sha256": "c68930e6e3ec1c34c991dfc7fdd8d05a5a5995626c9281265961b5cb75df7999"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/model/export_scalellm_llama31_artifacts.py",
+      "bytes": 25539,
+      "sha256": "689ddf269ff951e437cc3232c5b544b461e4a0b2ff737e21f69e2f93b8f2a300"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/model/fixbit_v2.py",
+      "bytes": 24347,
+      "sha256": "fb4b34397edc9d14ed3ef4f0b46d60a61b545a52a7a47d15c2eec8ba7b6db271"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/FPtoQ/experiment/v5_fullchain.py",
+      "bytes": 79824,
+      "sha256": "58a6bb7c769209925bd3bcd9d1a06414b0a25415a46591f70d8efd62db0b9898"
+    },
+    {
+      "path": "/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py",
+      "bytes": 21837,
+      "sha256": "c44cb7bbd82d6128ab475d801ff3e3aeaca9356f975a1758baa78890fce19e77"
+    },
+    {
+      "path": "/home/user/anaconda3/envs/zhouwenjun/lib/python3.10/site-packages/accelerate/utils/modeling.py",
+      "bytes": 95664,
+      "sha256": "d6052abc0625740115176a4d2dfc0861a189a2dba94443c09cc8500254b57e2e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_extended_numerical.py",
+      "bytes": 5372,
+      "sha256": "b4fd7c06deb5cf0e64fbdf58148ca42911e952b245cc21d4c98dbe773d886877"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/extended_numerical_stream.py",
+      "bytes": 27654,
+      "sha256": "31906288a1f262b7f9f474c464d130653730b24f9a3e45e8f03b8c583955a2e3"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/mlp_numerical_extension.py",
+      "bytes": 27396,
+      "sha256": "49cd112093c9ec105d8b9eb69645eb77ef39893b8decb68d30924f857068eb23"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/logit_numerical_extension.py",
+      "bytes": 13300,
+      "sha256": "dd2e80c12270010347c3460a6526958fe9737265326911d4a2782af2db848e99"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/extended_session_cache.py",
+      "bytes": 4414,
+      "sha256": "7c960f323d4db42ad4af67bc369a7dd95206eaffc439a8180977d1e5368feb31"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_extended_numerical_session.py",
+      "bytes": 19488,
+      "sha256": "c18ce371b972236f83462115c115bc5b593ca9f31468b5f4ae517b2fc550ee88"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/bounded_extended_session.py",
+      "bytes": 13369,
+      "sha256": "1855a75eb00fec974ee491d4c96b746674aa806d528a030bcd5641d774098a3f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/rounding_precision/experiment/run_formal_numerical_queue.py",
+      "bytes": 29036,
+      "sha256": "da6c8046ca4ead82907a86e7895e885d363af8c243fbb9ab2d0dcde3e7d3592f"
+    }
+  ],
+  "input_identities": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R004/attempts/AT001_frozen_formal_input_plan/formal_batch_plan.json",
+      "bytes": 96291,
+      "sha256": "b70834bc4c18abf9c7b551d8579e6929178eb62f49a47aecfa4c0a0a646aebf5"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R004/attempts/AT002_formal_batch_b001_numerical/preflight_storage/formal_storage_plan.json",
+      "bytes": 19000,
+      "sha256": "43dd788f2bfd6679332660c5031a100400f96bbd9ad93e95cc522f3b0ce08559"
+    }
+  ],
+  "execution_state": "completed",
+  "exit_code": 0,
+  "ended_at": "2026-10-19T09:11:40.971794+00:00",
+  "wall_seconds": 138.44933154400496,
+  "source_unchanged": true,
+  "coverage_complete": true,
+  "completed_doc_ids": [
+    "c4_official_validation_first10000:3706",
+    "c4_official_validation_first10000:4806",
+    "ag_news_test:6774",
+    "imdb_test:9422",
+    "c4_official_validation_first10000:1045",
+    "c4_official_validation_first10000:7402",
+    "ag_news_test:6971",
+    "imdb_test:19531",
+    "c4_official_validation_first10000:7364",
+    "c4_official_validation_first10000:7287",
+    "ag_news_test:179",
+    "imdb_test:4695",
+    "c4_official_validation_first10000:6899",
+    "c4_official_validation_first10000:980",
+    "ag_news_test:673",
+    "imdb_test:18280"
+  ],
+  "output_identities": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/document_summary.json",
+      "bytes": 589521,
+      "sha256": "e729c5ddb00613c95ef39351076a96fa1a8a5ccfc76fce666f8e65dc28414ffd"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0000/audit_current.json",
+      "bytes": 77736,
+      "sha256": "84efdf2d4a71162fdf7f1b9df0fe8dc2472ec22ce6af0de463f84fb83c205c6d"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0000/audit_reference.json",
+      "bytes": 80530,
+      "sha256": "db05927fec3efb52f465d5861a60e2d092d1398408adbbe8bc9d5e71cb8f2793"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0000/document_result.json",
+      "bytes": 968,
+      "sha256": "e66bfa4b31dbd98344e8e9598b7e9fa1d7157c705aa39f7c54b6a374fb810861"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0000/final_norm_comparison.json",
+      "bytes": 1483,
+      "sha256": "a269b6b54f14121986c3f597602e3cfb8c4032e1b882dd1a9b5c7c281f7f4677"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0000/input_identity.json",
+      "bytes": 3302,
+      "sha256": "edc3300d879669fbf83124da0dcf8cf5045d8246e81ae9ac6ad188326813a391"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0000/logit_metrics.json",
+      "bytes": 48685,
+      "sha256": "534a7c2be1732c3bf95712b81f5aa9010efaa0be36186bd12d34fc51fe063bf0"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0001/audit_current.json",
+      "bytes": 77736,
+      "sha256": "b0d0e37e5e5f7d6fab519b9ea2b992a8d9ae554a370e3c72ea5d641f39b16b60"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0001/audit_reference.json",
+      "bytes": 80530,
+      "sha256": "ebd400d7a719bad4e25289ffbe01fea5ede6e7ccf74beb7054f7588ce271c158"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0001/document_result.json",
+      "bytes": 968,
+      "sha256": "a4cde5b6c93e9776e05b3072591c5cd1759751da5fca8ea4883b605ec80f20ec"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0001/final_norm_comparison.json",
+      "bytes": 1484,
+      "sha256": "08ed3bcc8970a7a42c241c9a6e38ac5047f426762807073c68351b0e0d72b2d5"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0001/input_identity.json",
+      "bytes": 3279,
+      "sha256": "06f5214a1f3e3e54c5e61b099e83b6f0564de2d27cbe5df78c6d37c9e6a3ab60"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0001/logit_metrics.json",
+      "bytes": 48764,
+      "sha256": "5ccb6bb7691186cb1a47c0bc145b0e39ccd646a79c5e41dfc1290036ada59e62"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0002/audit_current.json",
+      "bytes": 77735,
+      "sha256": "988d8bec9171604d4b504486c38e5389ab39e6cf1f13a93dcc6db04bcbc12116"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0002/audit_reference.json",
+      "bytes": 80529,
+      "sha256": "84c01f2a528edb4828c25975bbc855066883229d3409467240e78acf44c31908"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0002/document_result.json",
+      "bytes": 940,
+      "sha256": "76c47598b71afee27ea2108c03898620453583f00b24b821d4eb578b450c4fa4"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0002/final_norm_comparison.json",
+      "bytes": 1465,
+      "sha256": "3bd9da7cb475297f13dd8a1c221ac28fb98ed92b4a5bf760f4e3d09de1e49b11"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0002/input_identity.json",
+      "bytes": 1601,
+      "sha256": "9069bc1ee07a93a33d9ff8c9bd1db44a708f597ec61f2b99f0047adfb6c9a963"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0002/logit_metrics.json",
+      "bytes": 20639,
+      "sha256": "591df198ddb04b572f6011a96e7db8b33122aa89ac35443508599031b31c706e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0003/audit_current.json",
+      "bytes": 77735,
+      "sha256": "793ce52644892deefa2cf22168595e57ee2efaac5582a1a0e848d4a1b2e31672"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0003/audit_reference.json",
+      "bytes": 80529,
+      "sha256": "9ce461c637f4b2270b69d9f3b28645d586b03941cc7164e992582e050be2f466"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0003/document_result.json",
+      "bytes": 939,
+      "sha256": "c244f0af9e6f978f0c0b0db6b2fb42fd02bb3dc6047a3eb790ccfafe7f6d9091"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0003/final_norm_comparison.json",
+      "bytes": 1466,
+      "sha256": "773d2c750e744fef397750f4fdd0f0d538f8c52aeb9910cc4990225c37e3602c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0003/input_identity.json",
+      "bytes": 2176,
+      "sha256": "4122f2d793b4ecbbf86ea9a1303c08f7d44ddebebe70e917bb7fdd960cf71235"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0003/logit_metrics.json",
+      "bytes": 30684,
+      "sha256": "2b131bab9af971b75b8fefda690d86738e328a326ab18f253f7f43afafb810fe"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0004/audit_current.json",
+      "bytes": 77736,
+      "sha256": "44e6219cad66e3c6750847797911ed789c75a2e5cfcfdc63332818dea4a7fa5e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0004/audit_reference.json",
+      "bytes": 80530,
+      "sha256": "151ddaa8aa9471791e8bd03588c6c78e267e6d03efd8649bfbd0bb3ad4c36ba9"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0004/document_result.json",
+      "bytes": 967,
+      "sha256": "407cb014b96c7b90516f19859de8d9f812522112d3cceefb096eae8e158ed9a2"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0004/final_norm_comparison.json",
+      "bytes": 1482,
+      "sha256": "bc91e6407e55b5314145e785f7b7914b5b4c570d6f87f6d90074c459dd92c0f2"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0004/input_identity.json",
+      "bytes": 3279,
+      "sha256": "4762bfc137f2d6a3cc8466a855bc6bf8d23a18a1e499b0218207c8d9b8469565"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0004/logit_metrics.json",
+      "bytes": 48717,
+      "sha256": "bff85e17a9d54d159938e2d1a1e789f963023222dfcced98ee6185ffc006ac4d"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0005/audit_current.json",
+      "bytes": 77736,
+      "sha256": "1ba98d0bc941f85c31d492a107d3e29028ec0556ab492dbceb2df1b68f87b3e8"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0005/audit_reference.json",
+      "bytes": 80530,
+      "sha256": "7041893d7e6cbd12c9b9c4eb6abdb93fee9c24657b245461d8a8f1230a630397"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0005/document_result.json",
+      "bytes": 967,
+      "sha256": "341292267009235ce4cee94439ea3f510cba320151aaa9d8f4eda12647bc670a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0005/final_norm_comparison.json",
+      "bytes": 1485,
+      "sha256": "d99a78d2ad8a7c956e8402e5d4785ad5bc8962895fbee8358733693db866a542"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0005/input_identity.json",
+      "bytes": 3315,
+      "sha256": "400144c29b4bd9d33ee0259eda4715a979a16c4d091bc4a2bee76b3c39884c8e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0005/logit_metrics.json",
+      "bytes": 48876,
+      "sha256": "8ddc4640b263ff3821b8bcda75a8e9197b5461e53116a79daf0b4086725c6ce3"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0006/audit_current.json",
+      "bytes": 77735,
+      "sha256": "6e1388a1854feefaa7ce40f1322c61f98a5becbf83510d076705084504d9eeaf"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0006/audit_reference.json",
+      "bytes": 80529,
+      "sha256": "e685408c2193810cba1d838a6ec57745703b8aab9cb6dbb1bb1788306b9b4483"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0006/document_result.json",
+      "bytes": 941,
+      "sha256": "7ea6165cd84e2fc07bf4e3364d3eef981ea1e0b60076e904ba6db82084c61967"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0006/final_norm_comparison.json",
+      "bytes": 1462,
+      "sha256": "a5a8c0d2f83b123f525ed9a37463d238e4ff8d7cbbc6f5730d0a3a7096d8fa84"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0006/input_identity.json",
+      "bytes": 1699,
+      "sha256": "344df4b6b82f2ad950adeecb21fb9507528c19eee73bc25d48f92b3649fc9997"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0006/logit_metrics.json",
+      "bytes": 22297,
+      "sha256": "771b35c9aa53dd57d949b3e81d78a2fbd4399c2cc9c8da0c784635f14eb51730"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0007/audit_current.json",
+      "bytes": 77736,
+      "sha256": "70c265a49ef5ce8549a0bb35d61bdffe1c0f1c115b38bc4f8eb86d551090b1c9"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0007/audit_reference.json",
+      "bytes": 80530,
+      "sha256": "4f45cfdfef97bd81757b2d75157c9a391388dca0af71ef2590a9d3f91cf85404"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0007/document_result.json",
+      "bytes": 945,
+      "sha256": "48df72335d7fcbda41912cad099341d82b08db7cb7a9074c7ddc890eeee4caa2"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0007/final_norm_comparison.json",
+      "bytes": 1466,
+      "sha256": "cf207f9184bce6ea4ff0b4a423f5eb80e64829100e6e83ffc01a845dcd2f139f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0007/input_identity.json",
+      "bytes": 3245,
+      "sha256": "4280e680f7aabad250389288fae99dafeaefbb90ed3e223b34681665aca5d4d9"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0007/logit_metrics.json",
+      "bytes": 48822,
+      "sha256": "632a4286f5fd778a414f5d6fa5f3395634449d0077f928ea9153c95e790f430e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0008/audit_current.json",
+      "bytes": 77736,
+      "sha256": "c6b06841b905e2b149e493da1c686809182214b01c17b1c20fd5ff5fa83037e5"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0008/audit_reference.json",
+      "bytes": 80530,
+      "sha256": "07e0a3b1990171fe00a4f053f6656f63c4f80c7239eaaffd28ec00adf92de2c6"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0008/document_result.json",
+      "bytes": 967,
+      "sha256": "4c05a821e2b777913d3799dd8c05f1d4a08e42fadbfa688ad57fdaa11eb3177b"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0008/final_norm_comparison.json",
+      "bytes": 1484,
+      "sha256": "0a740552623da757c79b0681ef2315f7fa7190478eee02ca70a0e746ef428aa6"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0008/input_identity.json",
+      "bytes": 3313,
+      "sha256": "8b1fbca1d152ce3e818a48ae2c28970770b14187b5b66e357bd8def6bdeace8c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0008/logit_metrics.json",
+      "bytes": 48804,
+      "sha256": "c239a70e8407abbf619b9d016b17a1a2cccff851ca9fe723fc9a6311a79720ea"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0009/audit_current.json",
+      "bytes": 77736,
+      "sha256": "7c9c16dd434dda0490dbb2cb16b4feb09cab6c45097235c5a624affa4fa7cc85"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0009/audit_reference.json",
+      "bytes": 80530,
+      "sha256": "db45994d91a289141aaef0d21c94ee255fc87978c3ab6e950d55d582c03f3c6e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0009/document_result.json",
+      "bytes": 967,
+      "sha256": "dd1a7e993ad4cf2466237808d8dc6e209ddc6fed214418cbeb327ff3b1f513c3"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0009/final_norm_comparison.json",
+      "bytes": 1482,
+      "sha256": "6f05eef5c6d736bea4f236f385d1861adfbb8b7c9b4208c3fdcff5f64a0a33cb"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0009/input_identity.json",
+      "bytes": 3286,
+      "sha256": "597e86cc31ec6f858e6c6b743c17b83ccb8fdc0cf4ba20e66f0e5aafcacf0748"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0009/logit_metrics.json",
+      "bytes": 48372,
+      "sha256": "28913640e5ddb96b93e17073d57ee4312ed3f0cc20485d28fc09b3dc2c196039"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0010/audit_current.json",
+      "bytes": 77735,
+      "sha256": "95e0ee190d02e5642800e9ee9efddf7affd5d24ff30b45a95fa1a9a52e832948"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0010/audit_reference.json",
+      "bytes": 80529,
+      "sha256": "52857d766d1847466a6ca339c89a8527602980cc614c56f027b10ef944a92e87"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0010/document_result.json",
+      "bytes": 938,
+      "sha256": "0da366ca5584afcd7dd068ad73ccfd5c550dacccea396e0fb2cff55139621f70"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0010/final_norm_comparison.json",
+      "bytes": 1459,
+      "sha256": "419e60447ff476b0270a305bd5771640671fdf57bd71508c697d625b5ab47195"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0010/input_identity.json",
+      "bytes": 1513,
+      "sha256": "5557b7fd138317fdb7a01fb3cbb426eb90dd8777e221c26a40d8a1c1d244261f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0010/logit_metrics.json",
+      "bytes": 19117,
+      "sha256": "b53b73e6d4854d3fc1479efbb8b9786333dcd4fe679a6aaaa5180b685891dc81"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0011/audit_current.json",
+      "bytes": 77736,
+      "sha256": "2598379b9a97b7d2409dcc38be67a4ea3a60ce54fe199ef701c4cc68040e698f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0011/audit_reference.json",
+      "bytes": 80530,
+      "sha256": "c883551632d241f8d0d0a4e44403dca8df0256c665365925e3549269c36f63ff"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0011/document_result.json",
+      "bytes": 944,
+      "sha256": "4429f31fe766d392c03fe86366f2390cf39e4d140574b15076cc432c854e2e8b"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0011/final_norm_comparison.json",
+      "bytes": 1463,
+      "sha256": "507831b5d885e01a820d7d14878012efc80dafb2f70922102b2a5503855c230f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0011/input_identity.json",
+      "bytes": 3268,
+      "sha256": "c65eec15f6d223252a378cce9d48a06b6aa74ea9b49c17204143bcb79e603522"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0011/logit_metrics.json",
+      "bytes": 48701,
+      "sha256": "a3b9abe268904df8fe9736a925b45ba9feb274330353a68e27195801fb032223"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0012/audit_current.json",
+      "bytes": 77736,
+      "sha256": "180f0fb95ce31dd68743f8197a831742663b44bf49f143c8456906c61dc5f0a3"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0012/audit_reference.json",
+      "bytes": 80530,
+      "sha256": "a28e4b7a0449b594b1f0fa20396b65bfa231f25cc9827feb1e20d588ecdaa3b5"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0012/document_result.json",
+      "bytes": 968,
+      "sha256": "0f17e176337a558316e3088b6bc1e0fadb7db16dac4c00229ad7effcdc4ee120"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0012/final_norm_comparison.json",
+      "bytes": 1483,
+      "sha256": "a3f039c73aba0e13d562fd3ef64ea646d857b93b6e24dcb8dcf537e2dcb9561c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0012/input_identity.json",
+      "bytes": 3276,
+      "sha256": "2225cfbe5e6af5695a047a07e08e2c4cf4ba065fc9613fc331809bdc3335c94a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0012/logit_metrics.json",
+      "bytes": 48750,
+      "sha256": "272e6a12bcf91e5eab9604d3a47326ade4576c4b4a1d8285a3db7deafd8c57d9"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0013/audit_current.json",
+      "bytes": 77736,
+      "sha256": "10f36c1ca674b58e021edbe77748c80d61fe1b621570272beedfb2810328d66a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0013/audit_reference.json",
+      "bytes": 80530,
+      "sha256": "464fb890d21cd109a1352f4fc7fcef8006bb2e69ee2b6964992fe6e021878462"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0013/document_result.json",
+      "bytes": 965,
+      "sha256": "e6a3b3f0e60b295270a91f20780a673a3838364e9bc3c9f9aa55c082e78b4e7b"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0013/final_norm_comparison.json",
+      "bytes": 1482,
+      "sha256": "de2e47698ed8bf6658f4b41a6850761df1a0890ee87bb21d71c44f222d8fefb0"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0013/input_identity.json",
+      "bytes": 3286,
+      "sha256": "0c86ae8c5b5c00c41f84c9bb2cf17fa3cc479472ce06b42da0215ed71ef3bdd2"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0013/logit_metrics.json",
+      "bytes": 48866,
+      "sha256": "2b44e526f9d313192030e434cdfcb68110fd3c32e516a257269a774054ee692f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0014/audit_current.json",
+      "bytes": 77735,
+      "sha256": "8f2841f95f23428cf343afef4ce19cac8d22829dcb7a80072de872eec68ef30a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0014/audit_reference.json",
+      "bytes": 80529,
+      "sha256": "9a0203c56d10c5800f4a415b28cc10b50f438881655d1955885be622782769ab"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0014/document_result.json",
+      "bytes": 938,
+      "sha256": "38f435edf641854831e2843cb8a63f954f570332833e2bc22c9416ef7d2c6186"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0014/final_norm_comparison.json",
+      "bytes": 1460,
+      "sha256": "ddfbbed74bdc376939ce0290ba8cda3bcb88c7dbf19b7b00934c4159f1c45e53"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0014/input_identity.json",
+      "bytes": 1779,
+      "sha256": "0642876e4a38ed90f5d62878b6643f30b4881cbef1e6be051a7a89c711678cd3"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0014/logit_metrics.json",
+      "bytes": 23662,
+      "sha256": "9a12527e96dba65cb9023eb997fb31a545580d5ac53bc977f62b8e97c588a51c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0015/audit_current.json",
+      "bytes": 77736,
+      "sha256": "5c4c248cf6a3c9bfa6e88b97d26a4ee62d3ef73887b849f56c81f1c3d099e041"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0015/audit_reference.json",
+      "bytes": 80530,
+      "sha256": "12b0f479b4bb037310d0ea2fe153e37027b7f250727f55d64a9facc320ff6b29"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0015/document_result.json",
+      "bytes": 944,
+      "sha256": "aa69426df4348cf6c04928a095b6973d3042b81e76bec676cffd0c7248d9e1b2"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0015/final_norm_comparison.json",
+      "bytes": 1466,
+      "sha256": "e1ecf4ddd9dacbc176c93ba3c97b36af958b990507617251816697dbf53c894b"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0015/input_identity.json",
+      "bytes": 3258,
+      "sha256": "113955802faa3d91d5383b5cb56c3d619db8493357c6bf12a8c71dfacdf7817f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/documents/doc0015/logit_metrics.json",
+      "bytes": 48726,
+      "sha256": "56106d8d4acf525287e48aa36f4642bbb79952b0aa09648f0953a2d6030a1ede"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/dynamic_metadata.jsonl",
+      "bytes": 3911031,
+      "sha256": "707f3fbec00f8a0a45602f96151aa9f44794776a93fc7f337e91c5396bba5f72"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/final_norm_document_summary.json",
+      "bytes": 19310,
+      "sha256": "873fd9703a912d32c647487b9403233ea13510589d0ddfc9a0c2191e125a159a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/local_document_summary.json",
+      "bytes": 6973446,
+      "sha256": "8fc1df08a31061832c414efc50da8f9719fa901da3d303b18fd64b533bbd7075"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/local_tensor_metrics.jsonl",
+      "bytes": 15082710,
+      "sha256": "fc8f26799e4e76227f33ab5e5365aab4c6157290960c289c2313b1633b22e3a1"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/logit_metrics.jsonl",
+      "bytes": 461814,
+      "sha256": "6907431db62a0e412c29e1bef674209a4e907137a471bc49a5df84c2a5af023f"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/mlp_metrics.jsonl",
+      "bytes": 10770630,
+      "sha256": "fe86bbd7de360e4e99b7dde0547fdbe71656e0f8a82060d3f44daa9de83da1f2"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/node_witness_policy.json",
+      "bytes": 148,
+      "sha256": "6ffa851081367a6d33e95d53e42a04c8d02de4e5f406bf7e25a7f0027e477d66"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/output_head/output_head_identity.json",
+      "bytes": 1098,
+      "sha256": "f9c640a23eb5cfcd89928fe121bff0a7d48557eae3230a90d7b7adc686df6068"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/output_head/shared_head_reference.json",
+      "bytes": 356,
+      "sha256": "65f082f4e81efa06f5a7d613a0d7dc161e3ba8e30bda85d7be8ec1d7ae6cf0d0"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/paired_result.json",
+      "bytes": 20227,
+      "sha256": "350894709c668f9ea01d64ef6cde0ebd4af0b0eebef0edccc18543495bb50ce0"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/paired_stages.jsonl",
+      "bytes": 177201,
+      "sha256": "684a2ffe7aa2b826cf638de2872068676774527bb730dd0629a272a6d51b53cc"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/paired_worker_manifest.json",
+      "bytes": 39138,
+      "sha256": "7aacaafca0724a24867b61fdb53bd44a7462c9097dda0fe581679e226e2da0bf"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/shared_loader_reference.json",
+      "bytes": 353,
+      "sha256": "8d7e977d460da233efd43771ae2f13b27a2fc076b1c4cfc11cfff78db23030a8"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/tensor_metrics.jsonl",
+      "bytes": 666161,
+      "sha256": "812c56e887fd1bb2e86db9663471bcf47bdd1a2753283983e6c27a16b80e6447"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/tokenizer_identity.json",
+      "bytes": 1112,
+      "sha256": "376db1c183e1af9a0dc69788cc6b39499e515063f213d568e621f2eb4140900c"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R005/attempts/AT058_formal_resident_b056/v5_attach_metadata.json",
+      "bytes": 1240,
+      "sha256": "db05756e70e4ee1b010a340deb2d76edb57671e040b8b53b4835b95ff5a71fb0"
+    }
+  ],
+  "numerical_verdict": "not_evaluated; independent audit and final collection analysis required"
+}

@@ -1,0 +1,13 @@
+{
+  "source": "# E011来源与当前方法\n\nM003 G2 M2+A3+C-P1保持，productionchecks6e2e/45manifest7ed、3RTL及e51freshcore冻结。AT018两次actualapply独立成功后在ADDR_A22空startpoints自然失败，原AT003outer1/23生产22依赖真实来源不变。\n\nAT019同版80URAM完整只读诊断与终态已独立ee740限定接受；按实际CAS选择核有效A读/B写和own17读地址，不以直接端口或厂商默认值推断。AT020现对34helperD取得原始startpoints/fullfanin/onlycells、实际sourceowner/Q-in-cone和80URAMCLK primaryports；原/C不改写。精确包fa5e/4source与入口c1d0无阻断，工程5+独立3=8CPU通过。\n",
+  "results": "# E011当前实测结果\n\nAT020于16:38:25.830432Z实际启动session74874/supervisor86001/leader86002/start3111217/native86095/start3111314，原e51core消费/包fa5e/reviewc1d0/唯一锁owner86001已绑定；初始RSS3.74GiB。当前载核心，34D/80clock是采集目标，不是已取得原生结果。\n\nAT019于16:22:19.460375Z自然native0，stop=null/survivors空、峰值12940132352B（约12.05GiB）；session11069实际finalexit0排空。完整80URAM、7360ADDR/CAS地址、160mode、26960aux输入记录已关闭/hash；45源/3RTL/G2/e51核心身份不变，4trackedPID+supervisor退出、EDA锁可取得释放。\n\n实测FIRST12/MIDDLE56/LAST12。696空startpoints均有singletonGND/VCC驱动；只12FIRST的ADDR_A22直接GND，其余68非FIRST的直接ADDR_A/B各1564条无driver，须结合实际CAS选择解释。aux仅CLK80条无leafdriver（standalone顶层input候选），其他auxdriver非空。动态native all_fanin startpoints为FF/C、directdriver为FF/Q，原始值保持，不迎合检查改写。\n\n首cell92行独立14b398c8保持；完整80cell及终态已独立ee740a27限定接受（issues0），12条同slice级联链有效A读/B写按实际选择确认。66条aux跨slice命名已定位为共享BWE_B/EN控制，无CAS/address跨片违规。helper D_startpoints是否需API语义适配及CLOCK端口需下一小probe真实证据，无selected全图/预算/G4/place/route通过。AT018自然失败事实与两次apply独立成功保留。TOP01−2.896ns/22049 OPEN。\n",
+  "status": "# E011当前状态\n\nexecution_state: running；verdict: inconclusive。AT020/session74874真实只读helperD与CLK语义探针运行；A007限定核实际启动。生产6e2e/45manifest7ed冻结，不改原/C值、不修改RTL/约束池/预算。\n\nAT019全量/终态已独立ee740接受仅诊断。待AT020真实helperD raw/fullcone/sourceowner/Q成员与clock primaryport数据后集中修复snapshot/validator对合法常量、未选直接ADDR、有效CAS读写模式和原生fanin语义的假设，保持G2原17位状态/读A写B/资源/完整实现验收。后续完整selected/预算/native0→freeze-recovered-synth→严格INIT/explicitOPT/debug→actual包A007G4→新R003固定完整place/physopt/route。单EDA/原资源/正常无墙钟静默强停和禁区保持。\n",
+  "execution_state": "running",
+  "verdict": "inconclusive",
+  "applicability": "Actual AT020 readonly startup only plus independently accepted AT019 complete rawaddress attribution; no productionrepair/nativefullgraph/G4/physical acceptance",
+  "evidence": [
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT020_fresh_core_state_source_semantics/evidence/actual_native_activation.json",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT019_fresh_core_uram_address_attribution/evidence/AT019_terminal_and_complete_native_facts.json",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT019_fresh_core_uram_address_attribution/evidence/AT019_complete_independent_review_binding.json"
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "observed_at": "2026-10-18T02:27:30.278538+00:00",
+  "supervisor_pid": 271368,
+  "stage": "smoke",
+  "active": [
+    {
+      "stage": "smoke",
+      "model": "Llama-3.2-3B-Instruct",
+      "case": "a8w4_fp32",
+      "gpu_uuid": "GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+      "pid": 271537,
+      "attempt": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/smoke/Llama-3.2-3B-Instruct/a8w4_fp32/AT001",
+      "started_at": "2026-10-18T02:25:45.527204+00:00",
+      "command": [
+        "taskset",
+        "-c",
+        "16,17",
+        "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+        "-B",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_worker.py",
+        "--plan",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/frozen_inputs/plan.json",
+        "--stage",
+        "smoke",
+        "--model",
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.2-3B-Instruct",
+        "--case",
+        "a8w4_fp32",
+        "--model-identity",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/model_identities/Llama-3.2-3B-Instruct.json",
+        "--output",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/smoke/Llama-3.2-3B-Instruct/a8w4_fp32/AT001",
+        "--device",
+        "cuda:0",
+        "--batch-size",
+        "1",
+        "--context-length",
+        "8192",
+        "--max-gen-toks",
+        "64",
+        "--verify-generation"
+      ],
+      "stdout": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/smoke/Llama-3.2-3B-Instruct/a8w4_fp32/AT001.stdout.log",
+      "stderr": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/smoke/Llama-3.2-3B-Instruct/a8w4_fp32/AT001.stderr.log"
+    },
+    {
+      "stage": "smoke",
+      "model": "Llama-3.2-3B-Instruct",
+      "case": "a8w4_fp16",
+      "gpu_uuid": "GPU-d87ce710-76bf-872d-9739-f0d7c9b52533",
+      "pid": 271682,
+      "attempt": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/smoke/Llama-3.2-3B-Instruct/a8w4_fp16/AT001",
+      "started_at": "2026-10-18T02:26:36.843580+00:00",
+      "command": [
+        "taskset",
+        "-c",
+        "18,19",
+        "/home/user/anaconda3/envs/zhouwenjun/bin/python",
+        "-B",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/exp/run_gsm8k_worker.py",
+        "--plan",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/frozen_inputs/plan.json",
+        "--stage",
+        "smoke",
+        "--model",
+        "/home/user/EDA-202/zhuowenjun/fpga_llm_project/configs/models/Llama-3.2-3B-Instruct",
+        "--case",
+        "a8w4_fp16",
+        "--model-identity",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/preparation_20261018/model_identities/Llama-3.2-3B-Instruct.json",
+        "--output",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/smoke/Llama-3.2-3B-Instruct/a8w4_fp16/AT001",
+        "--device",
+        "cuda:0",
+        "--batch-size",
+        "1",
+        "--context-length",
+        "8192",
+        "--max-gen-toks",
+        "64",
+        "--verify-generation"
+      ],
+      "stdout": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/smoke/Llama-3.2-3B-Instruct/a8w4_fp16/AT001.stdout.log",
+      "stderr": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/smoke/Llama-3.2-3B-Instruct/a8w4_fp16/AT001.stderr.log"
+    }
+  ],
+  "completed_smoke": [
+    {
+      "case": "bf16",
+      "attempt": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/smoke/Llama-3.2-3B-Instruct/bf16/AT001",
+      "n_completed": 4,
+      "verification_contract_id": "native_cache_call_parity_v2",
+      "verification_passed": true,
+      "cache_off_logit_diagnostics": [
+        true,
+        true
+      ],
+      "verification_sha256": "335efd2e538a2ee9d35fb7245733d7b1a9c09bf9ea6f7e9eac3386787bcddcc3"
+    },
+    {
+      "case": "a8w8_fp32",
+      "attempt": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/software/0_Software/fix_experiment/results/gsm8k_full_completion/R002_gsm8k_native_cache_v2/smoke/Llama-3.2-3B-Instruct/a8w8_fp32/AT001",
+      "n_completed": 4,
+      "verification_contract_id": "native_cache_call_parity_v2",
+      "verification_passed": true,
+      "cache_off_logit_diagnostics": [
+        true,
+        false
+      ],
+      "verification_sha256": "40cde54d54b222a15c84d684e2b58c9d1c54b190b9587d42b94d50571c44356d"
+    }
+  ],
+  "formal_groups_completed": 0
+}

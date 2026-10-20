@@ -1,0 +1,40 @@
+{
+  "captured_at": "2026-10-18T08:26:50.515147+00:00",
+  "boot_id": "2dcf1a88-8c21-4ba0-8c83-ccb32f3f8f7c",
+  "kernel_driver": "NVRM version: NVIDIA UNIX x86_64 Kernel Module  580.178.04  Tue Jul  7 12:38:21 UTC 2026\nGCC version:  gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) \n",
+  "gpu_queries": [
+    {
+      "argv": [
+        "/usr/bin/nvidia-smi",
+        "--query-gpu=index,uuid,name,driver_version,memory.used,memory.free,utilization.gpu",
+        "--format=csv,noheader"
+      ],
+      "exit_code": 0,
+      "stdout": "0, GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6, NVIDIA RTX A6000, 580.178.04, 2 MiB, 48537 MiB, 0 %\n1, GPU-d87ce710-76bf-872d-9739-f0d7c9b52533, NVIDIA RTX A6000, 580.178.04, 2 MiB, 48539 MiB, 0 %\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/nvidia-smi",
+        "--query-compute-apps=gpu_uuid,pid,process_name,used_memory",
+        "--format=csv,noheader"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "gpu0_index_and_uuid": "0 / GPU-78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6",
+  "worker_cpu_affinity": [
+    16,
+    17
+  ],
+  "supervisor_cpu_affinity": [
+    14,
+    15
+  ],
+  "gpu1_disposition": "remains excluded and paused; no reset or diagnosis in this resume",
+  "existing_preparation_scope": "pre-reboot training evidence only; all 30 fresh smoke/pilot groups required under new boot; no formal row reuse",
+  "environment_ld_library_path_inherited": false,
+  "launch_environment_policy": "launcher strips LD_LIBRARY_PATH; matching system driver libraries used"
+}

@@ -1,0 +1,58 @@
+{
+  "utc": "2026-10-19T01:59:49.153452+00:00",
+  "execution": "completed_new_open_run_boundary_review_native_second_apply_in_progress",
+  "verdict": "open_run_return_observed_and_second_explicit_apply_entered",
+  "review": "accepted_stage_boundary_only",
+  "applicability": "AT024 recover_synthesis Tcl81a44d manifest16f and current native158026; not second apply completion or selected-graph qualification",
+  "evidence": {
+    "immutable_native_prefix": {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT024_first_apply_launcher_prefix.log",
+      "bytes": 105635,
+      "sha256": "e9bd3d5d6d3687084d445b0a28cf141c5a6eb505fc3561a5f5b9b55ec7eb1d5f"
+    },
+    "current_recovery_Tcl": {
+      "path": "project/hardware/vivado/scripts/m003_recover_synthesis.tcl",
+      "bytes": 2692,
+      "sha256": "81a44d082210c9b2e84fb280842c4cb1c94e0831264825aaa6aa613394f7bd39"
+    },
+    "manifest": {
+      "path": "project/hardware/vivado/constraints/m003_entry_manifest.json",
+      "bytes": 11688,
+      "sha256": "16f9523c2e4968a34abdce8d8e5c126476f206ce8c0f93ceec146799c0d9cf75"
+    },
+    "first_apply_independent_review": {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT024_first_apply_success_independent_review.json",
+      "bytes": 7199,
+      "sha256": "fc1baf5090356ac6af8e3e780dfae8a75e0978bd364fc0ff2de6dea4b596fd58"
+    }
+  },
+  "native_prefix_line319": "open_run: Time (s): cpu = 01:01:20 ; elapsed = 00:44:36 . Memory (MB): peak = 21605.543 ; gain = 19854.344 ; free physical = 411166 ; free virtual = 489008",
+  "line320_marker": "REAL_CLOCK_FAMILIES emitted after open_run by require_board_clock_groups",
+  "source_sequence": [
+    "35 open_run synth_1",
+    "36 require_board_clock_groups",
+    "37 source $overlay",
+    "38 require_actual_apply",
+    "39 snapshot",
+    "40 same_stage_budget"
+  ],
+  "trace_observed": {
+    "identity": {
+      "path": "project/hardware/vivado/reports/m003_E011_R002_AT024_grouped_stream_postreport_recovery/m003_apply_attempts_158026.txt",
+      "bytes": 64,
+      "sha256": "8b3757961ee7527dcf234c1fe5778b0e78a03281ea5080679b39b32dc4e845ae"
+    },
+    "text": "attempt=1 restore_verify_only=0\nattempt=2 restore_verify_only=0\n"
+  },
+  "reported_open_run_elapsed_seconds": 2676,
+  "reported_open_run_CPU_seconds": 3680,
+  "timing_scope": "Whole open_run including first overlay; not clock collector duration or whole recovery completion",
+  "identity_note": "Tcl recovery identity81a44d differs from Python recovery cd6c; actual Tcl checked against frozen manifest source entry",
+  "pending": [
+    "Second apply success",
+    "Snapshot/structure/budget",
+    "Natural terminal and strict INIT/OPT/restore",
+    "G4 and physical acceptance"
+  ],
+  "G4": false
+}

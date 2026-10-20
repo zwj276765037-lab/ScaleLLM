@@ -1,0 +1,32 @@
+--- v2/m003_joint_checks.tcl
++++ v3/m003_joint_checks.tcl
+@@ -51,6 +51,29 @@
+ proc m003::exact_count {objects n label} {
+     if {[llength $objects] != $n || [llength [lsort -unique $objects]] != $n} {error "M003 $label count/duplicate mismatch: [llength $objects], expected $n"}
+ }
++proc m003::require_synthesis_runs {} {
++    variable scripts
++    if {![info exists ::env(HAP_M003_RECOVERED_SYNTHESIS)] || $::env(HAP_M003_RECOVERED_SYNTHESIS) ne "1"} {
++        foreach run [get_runs -quiet -filter {NAME == synth_1 || NAME =~ *_synth_1}] {require_complete_run [get_property NAME $run]}
++        return
++    }
++    # A metadata-only type change can leave the original native run stale.
++    # Preserve actual values, then qualify the original completed bytes. Never
++    # clear a run flag or relax the ordinary fresh-run guard above.
++    set rows {}
++    foreach run [get_runs -quiet -filter {NAME == synth_1 || NAME =~ *_synth_1}] {
++        set row [dict create]
++        foreach property {NAME DIRECTORY STATUS PROGRESS NEEDS_REFRESH} {dict set row $property [prop $run $property]}
++        lappend rows [jobject $row]
++    }
++    set output [file join $::env(HAP_REPORT_DIR) native_synthesis_run_metadata.json]
++    set h [open $output {WRONLY CREAT EXCL}];puts $h "\[[join $rows ,]\]";close $h
++    set args [list admit-runs --project $::env(HAP_PROJECT_DIR) --report $::env(HAP_REPORT_DIR)]
++    if {[info exists ::env(HAP_SYNTH_REPORT_DIR)]} {
++        lappend args --synth-report $::env(HAP_SYNTH_REPORT_DIR) --synth-attempt $::env(HAP_SYNTH_ATTEMPT_DIR)
++    }
++    m003_python [file join $scripts m003_synth_recovery.py] {*}$args
++}
+ proc m003::init_value {value} {
+     if {![regexp -nocase {^[0-9]+'([hb])([0-9a-f]+)$} $value -> base digits]} {error "M003 unknown LUT INIT encoding: $value"}
+     if {[string tolower $base] eq "h"} {return [scan $digits %x]}

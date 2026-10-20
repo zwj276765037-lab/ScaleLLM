@@ -1,0 +1,16 @@
+{
+  "source": "# E009：SM013全量归因，AT002自然失败已收尾\n\nM003/SM013，E008/R001/AT004失败DCP与144冻结生产输入只读。R001固定范围、完整CONFLICTS别名/全端点/唯一主组、top20 union及有界深查保持。AT002 manifest47d12c26…与AT001 query_plan字节一致，原始包和失败证据不覆盖。\n\nAT002于01:21:12.045955Z自然失败完成；原因是单对象属性getter返回scalar，被vals当Tcl列表解析使转义名称丢一反斜杠。旧逐元素身份检查正确拒绝，不能删除检查或unescape名称。A007已独立接受失败归因与最小singleton list包装修复方向。下一步登记同R001/AT003，追加实际vals函数正负/整合CPU回归并封包审核后连续启动。\n\n正常无墙钟/无输出强停、单EDA与原资源保护保持；144输入及13档案来源均核验、锁空、旧PID/start缺席。无生产RTL/XDC、综合或implementation。实际模型无独立运行回执，不声称已核。\n",
+  "results": "# E009：AT002自然失败，未产出全量归因\n\nAT002实际01:00:02Z启动，01:09:18Z载图、01:12:53Z全量cell库存完成（445140901B）。本次原生route report仍为547548冲突网；702396节点是独立历史指标。真实前8 alias pair逐元素一致，但转义XDMA网络出现直接scalar NAME与handle均2反斜杠、vals解析值1反斜杠；原始证据及独立离线复现已存。\n\n01:21:12.045955Z监督器自然terminal：native1/supervisor1、stop_reason=null；无清理、无survivor、无post_integrity_error。4个登记PID/start缺席、锁空、144输入及13来源档案无差异。观察器85343/PID257373已实际exit0并drained。最大树RSS27605745664B。\n\ncanonical全集、全端点、唯一主组、top20/supplemental union与G1均未完成；此失败不判优化方法有效或无效。\n\n[终态复核](runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/terminal_facts_v2.json) · [原样名称证据](runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/escaped_identifier_saved_evidence.json) · [观察器收尾](runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/observer_terminal_facts.json)。\n",
+  "status": "# E009：AT002自然失败已闭合；准备AT003最小修复\n\nexecution_state: failed  \nverdict: inconclusive\n\nAT002在alias全量枚举时因vals单对象scalar/list语义失败，01:21:12.045955Z自然退出（native1/supervisor1、stop_reason=null）。锁已释放，登记PID/start与观察器均已结束，144生产输入及来源完整。\n\nA007独立收尾/原因复核已接受；下一步同R001登记AT003，只修复单对象scalar list包装、实际函数CPU回归及前次收尾绑定。封包delta审核后按已授权流程真实启动，不新增用户审批。全量归因/G1未过，无生产改动或候选选择。\n",
+  "execution_state": "failed",
+  "verdict": "inconclusive",
+  "applicability": "AT002 native extraction failed naturally at scalar NAME alignment; complete process/input/archive closure verified, full attribution and G1 incomplete.",
+  "evidence": [
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/status.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/terminal_facts_v2.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/observer_terminal_facts.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/escaped_identifier_saved_evidence.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/evidence/native/alias_identity_sample.tsv",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/evidence/native/native_error.tcllist"
+  ]
+}

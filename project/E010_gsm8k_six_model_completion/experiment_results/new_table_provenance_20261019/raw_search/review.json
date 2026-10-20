@@ -1,0 +1,999 @@
+{
+  "schema": "scalellm_new_accuracy_table_provenance_readonly_v1",
+  "execution_state": "completed",
+  "owner": "A010 /root/gsm8k_protocol",
+  "checked_at": "2026-10-19T01:07:05.728854+00:00",
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "CUDA_VISIBLE_DEVICES": "",
+  "torch_imported": false,
+  "exact_anchor_rows_match": true,
+  "exact_table_archive": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/_summary/截图模型精度.csv",
+  "archive_table_scope": "6 models x2 BF16/ScaleCode rows, not full30 five-configuration screenshot",
+  "comparison_wide_archive": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/_summary/final_accuracy_comparison.csv",
+  "MCQA_actual_counts": {
+    "piqa": 1838,
+    "arc_challenge": 299,
+    "openbookqa": 500,
+    "hellaswag": 10042,
+    "winogrande": 1267
+  },
+  "MCQA_splits": "PIQA/ARC-Challenge/OpenBookQA/HellaSwag validation; WinoGrande dev",
+  "MCQA_recorded_protocol": "gyrot_aligned_lm_eval_style_zero_shot_full_split",
+  "MCQA_primary_metric": "score_char_norm for first4; score_sum for WinoGrande; custom local lm-eval-style protocol, not automatically identical to current canonical harness",
+  "archive_file_identity_checks": [
+    {
+      "archive_file": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/DeepSeek-R1-Distill-Llama-8B/accuracy_bf16_fullsplit.csv",
+      "actual_sha256": "b63b46023ecc992cf491eeb0e24193c51577e3866cc309823f5c0c047cc4da31",
+      "registered_archive_sha256": "b63b46023ecc992cf491eeb0e24193c51577e3866cc309823f5c0c047cc4da31",
+      "archive_hash_matches": true,
+      "historical_source_file": "fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/DeepSeek-R1-Distill-Llama-8B__original_bf16/gyrot_aligned_quality_by_model.csv",
+      "historical_source_sha256": "239685b68d9b1198225fdd8fa975cb360fe48c937ce069d3a78244d58b41b3f7"
+    },
+    {
+      "archive_file": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/DeepSeek-R1-Distill-Llama-8B/accuracy_scalecode_fullsplit.csv",
+      "actual_sha256": "e8a562d5785e938881593bc7a36aa3844a65bd64a1a84fb4f1d27910be488634",
+      "registered_archive_sha256": "e8a562d5785e938881593bc7a36aa3844a65bd64a1a84fb4f1d27910be488634",
+      "archive_hash_matches": true,
+      "historical_source_file": "fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/DeepSeek-R1-Distill-Llama-8B__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv",
+      "historical_source_sha256": "0cab41cd47daa6aafa34febe22da13948b9c692062414fce150e100e923bd58f"
+    },
+    {
+      "archive_file": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/GLM-4-9B-0414/accuracy_bf16_fullsplit.csv",
+      "actual_sha256": "8f55c2b1afc67bb360f8d651af4d1d72bec962812ab3156c6dc616f07f3e6ab4",
+      "registered_archive_sha256": "8f55c2b1afc67bb360f8d651af4d1d72bec962812ab3156c6dc616f07f3e6ab4",
+      "archive_hash_matches": true,
+      "historical_source_file": "fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/GLM-4-9B-0414__original_bf16/gyrot_aligned_quality_by_model.csv",
+      "historical_source_sha256": "d7a20c1934a8f834afcf94ad096b05876f8f186cbbc7e6bb19392636ae4ed028"
+    },
+    {
+      "archive_file": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/GLM-4-9B-0414/accuracy_scalecode_fullsplit.csv",
+      "actual_sha256": "7f7fe2053995fb485996ad7d3af426ff5be3ee005317870e147e2b2226e01919",
+      "registered_archive_sha256": "7f7fe2053995fb485996ad7d3af426ff5be3ee005317870e147e2b2226e01919",
+      "archive_hash_matches": true,
+      "historical_source_file": "fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/GLM-4-9B-0414__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv",
+      "historical_source_sha256": "b5ce5ee42d814aef6313818c2fa8514f68fdd6a1cddb9c6a0b3aff4670f3fae2"
+    },
+    {
+      "archive_file": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.1-8B/accuracy_bf16_fullsplit.csv",
+      "actual_sha256": "381c05dd33b7e51c26fa408365ba10a4195626aaf36c2fd8fa2fa3980c9665a6",
+      "registered_archive_sha256": "381c05dd33b7e51c26fa408365ba10a4195626aaf36c2fd8fa2fa3980c9665a6",
+      "archive_hash_matches": true,
+      "historical_source_file": "fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.1-8B__original_bf16/gyrot_aligned_quality_by_model.csv",
+      "historical_source_sha256": "5c1e3e6491d87c865ea370aa8ba0d3aa1245f8977ee82f973accb4765f480ed7"
+    },
+    {
+      "archive_file": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.1-8B/accuracy_scalecode_fullsplit.csv",
+      "actual_sha256": "ea2f1ca1b008ff1a5da7d76f84dcd2a3316c682529dee3b86dfc95717a83d26f",
+      "registered_archive_sha256": "ea2f1ca1b008ff1a5da7d76f84dcd2a3316c682529dee3b86dfc95717a83d26f",
+      "archive_hash_matches": true,
+      "historical_source_file": "fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.1-8B__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv",
+      "historical_source_sha256": "57493c7e833fb2a0004454670928e6ec6832d2f6edd12ae6864dc6787990a92a"
+    },
+    {
+      "archive_file": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.2-3B-Instruct/accuracy_bf16_fullsplit.csv",
+      "actual_sha256": "38fa1c7243001d525025fe2261285c454cd528e67eab555282a5e5a8fdf2b95d",
+      "registered_archive_sha256": "38fa1c7243001d525025fe2261285c454cd528e67eab555282a5e5a8fdf2b95d",
+      "archive_hash_matches": true,
+      "historical_source_file": "fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.2-3B-Instruct__original_bf16/gyrot_aligned_quality_by_model.csv",
+      "historical_source_sha256": "67464e6ad9033b1404866738a63a34f2d104b30a314df6731a79322f0b6ddd08"
+    },
+    {
+      "archive_file": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.2-3B-Instruct/accuracy_scalecode_fullsplit.csv",
+      "actual_sha256": "7f0d0f603c58dc63f2c111186e21397e6538db84cd27a01ffa4e636b945ae815",
+      "registered_archive_sha256": "7f0d0f603c58dc63f2c111186e21397e6538db84cd27a01ffa4e636b945ae815",
+      "archive_hash_matches": true,
+      "historical_source_file": "fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.2-3B-Instruct__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv",
+      "historical_source_sha256": "8d2f5853b3070ac3db8ade01ff370d4ab305002bee15a84a59bd73d73d4351e9"
+    },
+    {
+      "archive_file": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Qwen2.5-7B-Instruct/accuracy_bf16_fullsplit.csv",
+      "actual_sha256": "306e728d4ffb1e3507d638ed3cc73a45d846da68c2af12e3d437dbbf6ee57a0d",
+      "registered_archive_sha256": "306e728d4ffb1e3507d638ed3cc73a45d846da68c2af12e3d437dbbf6ee57a0d",
+      "archive_hash_matches": true,
+      "historical_source_file": "fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen2.5-7B-Instruct__original_bf16/gyrot_aligned_quality_by_model.csv",
+      "historical_source_sha256": "64f68f724214341e4e3bd63f1388940bfee871ff4d06a804e6d4c2dc30402ab6"
+    },
+    {
+      "archive_file": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Qwen2.5-7B-Instruct/accuracy_scalecode_fullsplit.csv",
+      "actual_sha256": "ae27f716e027b36d142fdd82373e60e16700e7679f533da37b2f8627fa8f1b6f",
+      "registered_archive_sha256": "ae27f716e027b36d142fdd82373e60e16700e7679f533da37b2f8627fa8f1b6f",
+      "archive_hash_matches": true,
+      "historical_source_file": "fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen2.5-7B-Instruct__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv",
+      "historical_source_sha256": "7836bb57c6762f3083fc2787312b4f9a0e6b742e33954050514bb310b3807d82"
+    },
+    {
+      "archive_file": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Qwen3-8B/accuracy_bf16_fullsplit.csv",
+      "actual_sha256": "bda43b362659914eaa582ca730b7302878717036940b362bdb5693c36194b08e",
+      "registered_archive_sha256": "bda43b362659914eaa582ca730b7302878717036940b362bdb5693c36194b08e",
+      "archive_hash_matches": true,
+      "historical_source_file": "fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen3-8B__original_bf16/gyrot_aligned_quality_by_model.csv",
+      "historical_source_sha256": "9e8f231c5a2f50a3ee0ac530c9f37a83e20643c4e95ae4ff71e153e325484415"
+    },
+    {
+      "archive_file": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Qwen3-8B/accuracy_scalecode_fullsplit.csv",
+      "actual_sha256": "62220d72c8e10684dbf2f34f708efd36756854c9064cab0b6e766bcc4e40ddae",
+      "registered_archive_sha256": "62220d72c8e10684dbf2f34f708efd36756854c9064cab0b6e766bcc4e40ddae",
+      "archive_hash_matches": true,
+      "historical_source_file": "fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen3-8B__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv",
+      "historical_source_sha256": "5004286d276ef6acfe99dd82f7fda9e1ce5921e4c43fcbff28709b2fa8cc0a7a"
+    }
+  ],
+  "cap_or_replacement_audit": [
+    {
+      "model": "DeepSeek-R1-Distill-Llama-8B",
+      "actual_display_cap_status": "raw_kept_no_above_bf16",
+      "actual_gsm_status": "replaced_verified",
+      "all5_MCQA_values_match_archive": {
+        "piqa": true,
+        "arc_challenge": true,
+        "openbookqa": true,
+        "hellaswag": true,
+        "winogrande": true
+      },
+      "above_BF16_preserved": []
+    },
+    {
+      "model": "GLM-4-9B-0414",
+      "actual_display_cap_status": "raw_kept_above_bf16_audited:OpenBookQA,WinoG.",
+      "actual_gsm_status": "ok",
+      "all5_MCQA_values_match_archive": {
+        "piqa": true,
+        "arc_challenge": true,
+        "openbookqa": true,
+        "hellaswag": true,
+        "winogrande": true
+      },
+      "above_BF16_preserved": [
+        "OpenBookQA",
+        "WinoG."
+      ]
+    },
+    {
+      "model": "Llama-3.1-8B-Instruct",
+      "actual_display_cap_status": "raw_kept_above_bf16_audited:ARC-c,WinoG.",
+      "actual_gsm_status": "replaced_verified",
+      "all5_MCQA_values_match_archive": {
+        "piqa": true,
+        "arc_challenge": true,
+        "openbookqa": true,
+        "hellaswag": true,
+        "winogrande": true
+      },
+      "above_BF16_preserved": [
+        "ARC-c",
+        "WinoG."
+      ]
+    },
+    {
+      "model": "Llama-3.2-3B-Instruct",
+      "actual_display_cap_status": "raw_kept_no_above_bf16",
+      "actual_gsm_status": "repaired_existing_fair_first300",
+      "all5_MCQA_values_match_archive": {
+        "piqa": true,
+        "arc_challenge": true,
+        "openbookqa": true,
+        "hellaswag": true,
+        "winogrande": true
+      },
+      "above_BF16_preserved": []
+    },
+    {
+      "model": "Qwen2.5-7B-Instruct",
+      "actual_display_cap_status": "raw_kept_above_bf16_audited:WinoG.",
+      "actual_gsm_status": "repaired_sdpa_full_rerun",
+      "all5_MCQA_values_match_archive": {
+        "piqa": true,
+        "arc_challenge": true,
+        "openbookqa": true,
+        "hellaswag": true,
+        "winogrande": true
+      },
+      "above_BF16_preserved": [
+        "WinoG."
+      ]
+    },
+    {
+      "model": "Qwen3-8B",
+      "actual_display_cap_status": "raw_kept_above_bf16_audited:PIQA",
+      "actual_gsm_status": "repaired_existing_fair_first300",
+      "all5_MCQA_values_match_archive": {
+        "piqa": true,
+        "arc_challenge": true,
+        "openbookqa": true,
+        "hellaswag": true,
+        "winogrande": true
+      },
+      "above_BF16_preserved": [
+        "PIQA"
+      ]
+    }
+  ],
+  "GSM_first300_evidence": "Per-model provenance explicitly says first300; script/sh launcher also default/request max_samples300. Individual original generation records presently absent, so no raw sample recount claimed.",
+  "GSM_strict_EM_qualification": "Not established for each historical table run. Archived associated scorer extracts ####/boxed/numeric_answer/final answer/answer patterns then last-number fallback; compares normalized numeric strings. This is not the pinned lm_eval strict ####-only metric. Actual historical prompt/backend/decoding cannot be fully revalidated without missing raw records.",
+  "missing_original_raw_roots": [
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results",
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results"
+  ],
+  "referenced_path_existence": {
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/DeepSeek-R1-Distill-Llama-8B__original_bf16/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/DeepSeek-R1-Distill-Llama-8B__original_bf16/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/DeepSeek-R1-Distill-Llama-8B__original_bf16/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/DeepSeek-R1-Distill-Llama-8B__original_bf16/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/DeepSeek-R1-Distill-Llama-8B__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/DeepSeek-R1-Distill-Llama-8B__mlp_w4_scalecode/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/DeepSeek-R1-Distill-Llama-8B__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/DeepSeek-R1-Distill-Llama-8B__mlp_w4_scalecode/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/GLM-4-9B-0414__original_bf16/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/GLM-4-9B-0414__original_bf16/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/GLM-4-9B-0414__original_bf16/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/GLM-4-9B-0414__original_bf16/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/GLM-4-9B-0414__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/GLM-4-9B-0414__mlp_w4_scalecode/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/GLM-4-9B-0414__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/GLM-4-9B-0414__mlp_w4_scalecode/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Llama-3.1-8B__original_bf16/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Llama-3.1-8B__original_bf16/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Llama-3.1-8B__original_bf16/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Llama-3.1-8B__original_bf16/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Llama-3.1-8B__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Llama-3.1-8B__mlp_w4_scalecode/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Llama-3.1-8B__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Llama-3.1-8B__mlp_w4_scalecode/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Llama-3.2-3B-Instruct__original_bf16/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Llama-3.2-3B-Instruct__original_bf16/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Llama-3.2-3B-Instruct__original_bf16/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Llama-3.2-3B-Instruct__original_bf16/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Llama-3.2-3B-Instruct__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Llama-3.2-3B-Instruct__mlp_w4_scalecode/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Llama-3.2-3B-Instruct__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Llama-3.2-3B-Instruct__mlp_w4_scalecode/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Qwen2.5-7B-Instruct__original_bf16/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Qwen2.5-7B-Instruct__original_bf16/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Qwen2.5-7B-Instruct__original_bf16/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Qwen2.5-7B-Instruct__original_bf16/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/severe_regression_fix/quality_accuracy/Qwen2.5-7B-Instruct__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/severe_regression_fix/quality_accuracy/Qwen2.5-7B-Instruct__mlp_w4_scalecode/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Qwen3-8B__original_bf16/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Qwen3-8B__original_bf16/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Qwen3-8B__original_bf16/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Qwen3-8B__original_bf16/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Qwen3-8B__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Qwen3-8B__mlp_w4_scalecode/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Qwen3-8B__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Qwen3-8B__mlp_w4_scalecode/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/DeepSeek-R1-Distill-Llama-8B__iah_fp32_scale_mlp_w8/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/DeepSeek-R1-Distill-Llama-8B__mlp_w8_fp32_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/DeepSeek-R1-Distill-Llama-8B__iah_fp32_scale_mlp_w4/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/DeepSeek-R1-Distill-Llama-8B__mlp_w4_fp32_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/DeepSeek-R1-Distill-Llama-8B__iah_fp16_scale_mlp_w4/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/DeepSeek-R1-Distill-Llama-8B__mlp_w4_fp16_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/GLM-4-9B-0414__iah_fp32_scale_mlp_w8/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/GLM-4-9B-0414__mlp_w8_fp32_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/GLM-4-9B-0414__mlp_w4_fp32_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/GLM-4-9B-0414__mlp_w4_fp16_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.1-8B__mlp_w8_fp32_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.1-8B__mlp_w4_fp32_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.1-8B__mlp_w4_fp16_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Llama-3.2-3B-Instruct__iah_fp32_scale_mlp_w8/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.2-3B-Instruct__mlp_w8_fp32_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Llama-3.2-3B-Instruct__iah_fp32_scale_mlp_w4/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.2-3B-Instruct__mlp_w4_fp32_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Llama-3.2-3B-Instruct__iah_fp16_scale_mlp_w4/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.2-3B-Instruct__mlp_w4_fp16_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_qwen25_7b_sdpa_fix/Qwen2.5-7B-Instruct__w8a8_fp32_payload__chat_fewshot_cot_sdpa/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen2.5-7B-Instruct__mlp_w8_fp32_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_qwen25_7b_sdpa_fix/Qwen2.5-7B-Instruct__w4a8_fp32_payload__chat_fewshot_cot_sdpa/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen2.5-7B-Instruct__mlp_w4_fp32_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_qwen25_7b_sdpa_fix/Qwen2.5-7B-Instruct__w4a8_fp16_payload__chat_fewshot_cot_sdpa/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen2.5-7B-Instruct__mlp_w4_fp16_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Qwen3-8B__iah_fp32_scale_mlp_w8/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen3-8B__mlp_w8_fp32_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Qwen3-8B__iah_fp32_scale_mlp_w4/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen3-8B__mlp_w4_fp32_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Qwen3-8B__iah_fp16_scale_mlp_w4/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen3-8B__mlp_w4_fp16_scale/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_llama32_3b_fp32_sdpa_fix/Llama-3.2-3B-Instruct__original_fp32__fair_sdpa/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Llama-3.2-3B-Instruct__iah_scale_code_mlp_w4/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_qwen25_7b_sdpa_fix/Qwen2.5-7B-Instruct__original_bf16__chat_fewshot_cot_sdpa/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_qwen25_7b_sdpa_fix/Qwen2.5-7B-Instruct__original_fp16__chat_fewshot_cot_sdpa/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_qwen25_7b_sdpa_fix/Qwen2.5-7B-Instruct__original_fp32__chat_fewshot_cot_sdpa/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_qwen25_7b_sdpa_fix/Qwen2.5-7B-Instruct__w4a8_scalecode__chat_fewshot_cot_sdpa/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Qwen3-8B__iah_scale_code_mlp_w4/gsm8k_first300_summary.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Llama-3.1-8B-Instruct__original_bf16/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy/Llama-3.1-8B-Instruct__original_bf16/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Llama-3.1-8B-Instruct__original_bf16/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/openbookqa_fix/quality_accuracy/Llama-3.1-8B-Instruct__original_bf16/gyrot_aligned_mcqa_records.jsonl": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/severe_regression_fix/quality_accuracy/Llama-3.1-8B-Instruct__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv": false,
+    "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/severe_regression_fix/quality_accuracy/Llama-3.1-8B-Instruct__mlp_w4_scalecode/gyrot_aligned_mcqa_records.jsonl": false
+  },
+  "control_18row_coverage": "Actual6-checkpoint18 control rows not located as complete original MCQA/raw sources; see actual_control_18row_source_status_AT002.json for historical GSM pointers only. Parent separately matches84 archived BF16/ScaleCode display cells.",
+  "rerun_files_within_explicit_archive": [
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/_rerun/final_scalecode_quality_accuracy/Llama-3.1-8B__iah_scale_code_mlp_w4/quality_smoke_manifest.json",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/_rerun/final_scalecode_quality_accuracy/Llama-3.1-8B__iah_scale_code_mlp_w4/quality_smoke_invalid_rows.csv",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/_rerun/final_scalecode_quality_accuracy/Llama-3.1-8B__iah_scale_code_mlp_w4/quality_smoke_by_model.csv"
+  ],
+  "input_sha256": {
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/_summary/截图模型精度.csv": "0f276e86291825e5b6d5a1bc173ec96b52a98a76d276b829644a2c07e3960d8b",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/_summary/final_accuracy_comparison.csv": "958fe32122d2d8668cc911d1fde72f038060e82cdd923d7337868cac8fbf51e6",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/_summary/final_scalecode_accuracy_raw_observed.csv": "9bba23b6dbfca73f3c5aebc5b07e1b68041cb62826c5e8666e6249f1bd013d1e",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/_summary/accuracy_gsm8k_kept_audit.csv": "768abbb34a1bb40ee22fc95e1441c490f89851db4d3b9b6c8d9bf7bbfa27bc65",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/_summary/accuracy_raw_observed_merge_audit.csv": "4c4bf51349383d67d6d2068467871c49f641ac5097906dc796102c296bc67c0a",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/_summary/source_manifest.csv": "1a56eaf0bd0e6f47a20c28962a1c9885fb17738cac270928d9b8e656c2a7e7e4",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/DeepSeek-R1-Distill-Llama-8B/provenance.md": "8dc7e7ada7f0e74eeeee5c0cca0a137c4ac79f6a9ae44dbbfa7fb894ac0e6b13",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/DeepSeek-R1-Distill-Llama-8B/accuracy_bf16_fullsplit.csv": "b63b46023ecc992cf491eeb0e24193c51577e3866cc309823f5c0c047cc4da31",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/DeepSeek-R1-Distill-Llama-8B/accuracy_scalecode_fullsplit.csv": "e8a562d5785e938881593bc7a36aa3844a65bd64a1a84fb4f1d27910be488634",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/GLM-4-9B-0414/provenance.md": "b7fd0f50e3a8f2fce3c7fad36ad01b2211de109a6e30e90d2b1fbcffa0b9c3fa",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/GLM-4-9B-0414/accuracy_bf16_fullsplit.csv": "8f55c2b1afc67bb360f8d651af4d1d72bec962812ab3156c6dc616f07f3e6ab4",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/GLM-4-9B-0414/accuracy_scalecode_fullsplit.csv": "7f7fe2053995fb485996ad7d3af426ff5be3ee005317870e147e2b2226e01919",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.1-8B/provenance.md": "607e565ed2aa54388d7187ef7885a5bbff0aed6289e4cd5960e3f035a4587d6e",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.1-8B/accuracy_bf16_fullsplit.csv": "381c05dd33b7e51c26fa408365ba10a4195626aaf36c2fd8fa2fa3980c9665a6",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.1-8B/accuracy_scalecode_fullsplit.csv": "ea2f1ca1b008ff1a5da7d76f84dcd2a3316c682529dee3b86dfc95717a83d26f",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.2-3B-Instruct/provenance.md": "457e21dc41e79e810d299b1c0d437ef42e9638a07e7d7faea586ee03a1fc740e",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.2-3B-Instruct/accuracy_bf16_fullsplit.csv": "38fa1c7243001d525025fe2261285c454cd528e67eab555282a5e5a8fdf2b95d",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.2-3B-Instruct/accuracy_scalecode_fullsplit.csv": "7f0d0f603c58dc63f2c111186e21397e6538db84cd27a01ffa4e636b945ae815",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Qwen2.5-7B-Instruct/provenance.md": "daf010163a5db6a16f57447f12e19cd9a144bd8924991bc797fa8c9b928dba69",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Qwen2.5-7B-Instruct/accuracy_bf16_fullsplit.csv": "306e728d4ffb1e3507d638ed3cc73a45d846da68c2af12e3d437dbbf6ee57a0d",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Qwen2.5-7B-Instruct/accuracy_scalecode_fullsplit.csv": "ae27f716e027b36d142fdd82373e60e16700e7679f533da37b2f8627fa8f1b6f",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Qwen3-8B/provenance.md": "a73efd8a0577a8da7fba35fd80cbaf8c69d64a475d8cbf95e345c75af01739b7",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Qwen3-8B/accuracy_bf16_fullsplit.csv": "bda43b362659914eaa582ca730b7302878717036940b362bdb5693c36194b08e",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Qwen3-8B/accuracy_scalecode_fullsplit.csv": "62220d72c8e10684dbf2f34f708efd36756854c9064cab0b6e766bcc4e40ddae",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/experiment/scripts/scale_code_linear/run_s11_cross_model_gsm8k_accuracy.py": "37705983b4774a44c604aed03c262e7fee1ab5d1915c2f5ec63d65cebf35f575",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/experiment/scripts/accuracy_MLP_4bit/run_mlp4_gsm8k_accuracy.py": "8e626ed4402e42ca0f20d5879571cb06c69b29293647b523761c8f611a5c7e49",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/experiment/run_final_scalecode.sh": "5f33f4cdb17347db6d798ce07eb661dcc4df859b989765907246bad75feb47da",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.1-8B-Instruct/accuracy_bf16_fullsplit.csv": "9427d328e26e9d0ebbcea8c9d5d28ef85dc8da497381e4068c97b574b7cd21c3",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.1-8B-Instruct/accuracy_scalecode_fullsplit.csv": "90348ab8f872129621d72d253063f457685766755a5349bed45f867394a366d5",
+    "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.1-8B-Instruct/provenance.md": "230c5a2ac97f534bc59dd5d09d869bf990e9d42619a3a817e6f079b71b4f95e4"
+  },
+  "limitations": [
+    "Archived fullsplit CSV records declare completeness, but no corresponding individual JSONL is presently at its recorded source path.",
+    "GSM figures have explicit repair/rerun/merge history; these are provenance changes, not proof of display capping or fabricated measurements.",
+    "All6 ScaleCode Display Cap Status values are raw_kept_*; above-BF16 MCQA values remain visible and match archive raw fractions to2 decimals.",
+    "No new E010 formal ACC result or GPU/model experiment was run; original files read only."
+  ],
+  "all60_MCQA_archive_values_match_table_to_display_precision": "Historical secondary archive check only; parent independently checks actual screenshot checkpoint mapping against wide primary table. Do not treat base Llama mapping as screenshot validation.",
+  "primary_table_archive": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/_summary/final_accuracy_comparison.csv",
+  "exact_table_archive_scope_correction": "截图模型精度.csv matches the two provided anchor rows and other10 BF16/SC rows, but its Llama-3.1-8B base pair is not the user screenshot Instruct pair. Use final_accuracy_comparison.csv Llama-3.1-8B-Instruct and other5 exact checkpoints as primary source.",
+  "actual_screenshot_model_checkpoints": [
+    "DeepSeek-R1-Distill-Llama-8B",
+    "GLM-4-9B-0414",
+    "Llama-3.1-8B-Instruct",
+    "Llama-3.2-3B-Instruct",
+    "Qwen2.5-7B-Instruct",
+    "Qwen3-8B"
+  ],
+  "wrong_Llama_base_pair_in_secondary_archive": {
+    "model": "Llama-3.1-8B",
+    "BF16_PIQA": "81.50",
+    "BF16_ARC-c": "53.18",
+    "BF16_GSM8K": "NA"
+  },
+  "correct_Llama_pair_in_primary_wide_archive": {
+    "Model": "Llama-3.1-8B-Instruct",
+    "BF16_PIQA": "80.41",
+    "BF16_ARC-c": "54.18",
+    "BF16_OpenBookQA": "50.6",
+    "BF16_HellaSwag": "78.59",
+    "BF16_WinoGrande": "69.53",
+    "BF16_GSM8K": "83.33",
+    "BF16_Avg": "69.44",
+    "ScaleCode_PIQA": "79.6",
+    "ScaleCode_ARC-c": "55.18",
+    "ScaleCode_OpenBookQA": "49.8",
+    "ScaleCode_HellaSwag": "77.56",
+    "ScaleCode_WinoGrande": "71.59",
+    "ScaleCode_GSM8K": "79.67",
+    "ScaleCode_Avg": "68.90",
+    "Delta_Avg_pp": "-0.54",
+    "Average_Task_Count": "6"
+  },
+  "actual_screenshot_MCQA_evidence": "actual_screenshot_MCQA_archive_rows_AT002.json",
+  "archive_file_identity_checks_additional_corrected_Llama": [
+    {
+      "archive_file": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.1-8B-Instruct/accuracy_bf16_fullsplit.csv",
+      "actual_sha256": "9427d328e26e9d0ebbcea8c9d5d28ef85dc8da497381e4068c97b574b7cd21c3",
+      "registered_archive_sha256": "9427d328e26e9d0ebbcea8c9d5d28ef85dc8da497381e4068c97b574b7cd21c3",
+      "historical_source_file": "fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.1-8B-Instruct__original_bf16/gyrot_aligned_quality_by_model.csv",
+      "historical_source_sha256": "e83f8e292bb7a1c95679482c6482d56f93fc03a6474d1284a864087b6ec8d6eb"
+    },
+    {
+      "archive_file": "/home/user/EDA-202/zhuowenjun/ScaleLLM/0_Software/results/Llama-3.1-8B-Instruct/accuracy_scalecode_fullsplit.csv",
+      "actual_sha256": "90348ab8f872129621d72d253063f457685766755a5349bed45f867394a366d5",
+      "registered_archive_sha256": "90348ab8f872129621d72d253063f457685766755a5349bed45f867394a366d5",
+      "historical_source_file": "fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.1-8B-Instruct__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv",
+      "historical_source_sha256": "34c191178c6dba12771b43f3eec0c80a1c14fdae0d468a9dd630d7158af20927"
+    }
+  ],
+  "parent_primary_table_cell_match": "parent_archived_table_match.json reports84/84 for actual6 checkpoint BF16/ScaleCode cells; parent-owned evidence, not independently rerun here.",
+  "historical_secondary_archive_discovery_retained": true,
+  "actual6_historical_GSM_audits": {
+    "kept": [
+      {
+        "Model": "DeepSeek-R1-Distill-Llama-8B",
+        "Current Method": "Full Precision BF16",
+        "Mapped GSM8K Method": "Original BF16",
+        "GSM8K": "63.00",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "-2.00",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/DeepSeek-R1-Distill-Llama-8B__original_bf16/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "DeepSeek-R1-Distill-Llama-8B",
+        "Current Method": "Full Precision FP16",
+        "Mapped GSM8K Method": "Original FP16",
+        "GSM8K": "63.33",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "-1.67",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/DeepSeek-R1-Distill-Llama-8B__original_fp16/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "DeepSeek-R1-Distill-Llama-8B",
+        "Current Method": "Full Precision FP32",
+        "Mapped GSM8K Method": "Original FP32",
+        "GSM8K": "65.00",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "0.00",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/DeepSeek-R1-Distill-Llama-8B__original_fp32/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "DeepSeek-R1-Distill-Llama-8B",
+        "Current Method": "A8W8 FP32-payload",
+        "Mapped GSM8K Method": "",
+        "GSM8K": "NA",
+        "GSM8K Status": "not_requested_for_gsm8k_kept_set",
+        "GSM8K Delta vs baseline (pp)": "",
+        "Source used": "",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/DeepSeek-R1-Distill-Llama-8B__mlp_w8_fp32_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "DeepSeek-R1-Distill-Llama-8B",
+        "Current Method": "A8W4 FP32-payload",
+        "Mapped GSM8K Method": "W4A8 FP32 payload",
+        "GSM8K": "NA*",
+        "GSM8K Status": "invalid_severe_drop",
+        "GSM8K Delta vs baseline (pp)": "NA",
+        "Source used": "excluded by no-severe-drop policy",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/DeepSeek-R1-Distill-Llama-8B__mlp_w4_fp32_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "DeepSeek-R1-Distill-Llama-8B",
+        "Current Method": "A8W4 FP16-payload",
+        "Mapped GSM8K Method": "W4A8 FP16 payload",
+        "GSM8K": "NA*",
+        "GSM8K Status": "invalid_severe_drop",
+        "GSM8K Delta vs baseline (pp)": "NA",
+        "Source used": "excluded by no-severe-drop policy",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/DeepSeek-R1-Distill-Llama-8B__mlp_w4_fp16_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "DeepSeek-R1-Distill-Llama-8B",
+        "Current Method": "A8W4 ScaleCode",
+        "Mapped GSM8K Method": "W4A8 ScaleCode",
+        "GSM8K": "60.67",
+        "GSM8K Status": "replaced_verified",
+        "GSM8K Delta vs baseline (pp)": "-4.33",
+        "Source used": "fixedpoint_tail_auto_v5_isolated_FXP16_Q5p10 midA8; 300/300 complete; same ScaleCode path with corrected fixed-point tail handling",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/DeepSeek-R1-Distill-Llama-8B__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "GLM-4-9B-0414",
+        "Current Method": "Full Precision BF16",
+        "Mapped GSM8K Method": "Original BF16",
+        "GSM8K": "88.67",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "0.00",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/GLM-4-9B-0414__original_bf16/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "GLM-4-9B-0414",
+        "Current Method": "Full Precision FP16",
+        "Mapped GSM8K Method": "Original FP16",
+        "GSM8K": "88.67",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "0.00",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/GLM-4-9B-0414__original_fp16/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "GLM-4-9B-0414",
+        "Current Method": "Full Precision FP32",
+        "Mapped GSM8K Method": "Original FP32",
+        "GSM8K": "88.33",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "-0.34",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/GLM-4-9B-0414__original_fp32/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "GLM-4-9B-0414",
+        "Current Method": "A8W8 FP32-payload",
+        "Mapped GSM8K Method": "",
+        "GSM8K": "NA",
+        "GSM8K Status": "not_requested_for_gsm8k_kept_set",
+        "GSM8K Delta vs baseline (pp)": "",
+        "Source used": "",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/GLM-4-9B-0414__mlp_w8_fp32_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "GLM-4-9B-0414",
+        "Current Method": "A8W4 FP32-payload",
+        "Mapped GSM8K Method": "W4A8 FP32 payload",
+        "GSM8K": "84.33",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "-4.34",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/GLM-4-9B-0414__mlp_w4_fp32_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "GLM-4-9B-0414",
+        "Current Method": "A8W4 FP16-payload",
+        "Mapped GSM8K Method": "W4A8 FP16 payload",
+        "GSM8K": "83.33",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "-5.34",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/GLM-4-9B-0414__mlp_w4_fp16_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "GLM-4-9B-0414",
+        "Current Method": "A8W4 ScaleCode",
+        "Mapped GSM8K Method": "W4A8 ScaleCode",
+        "GSM8K": "85.00",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "-3.67",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/GLM-4-9B-0414__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Llama-3.1-8B-Instruct",
+        "Current Method": "Full Precision BF16",
+        "Mapped GSM8K Method": "Original BF16",
+        "GSM8K": "83.33",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "-2.34",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.1-8B-Instruct__original_bf16/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Llama-3.1-8B-Instruct",
+        "Current Method": "Full Precision FP16",
+        "Mapped GSM8K Method": "Original FP16",
+        "GSM8K": "84.67",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "-1.00",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.1-8B-Instruct__original_fp16/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Llama-3.1-8B-Instruct",
+        "Current Method": "Full Precision FP32",
+        "Mapped GSM8K Method": "Original FP32",
+        "GSM8K": "85.67",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "0.00",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.1-8B-Instruct__original_fp32/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Llama-3.1-8B-Instruct",
+        "Current Method": "A8W8 FP32-payload",
+        "Mapped GSM8K Method": "",
+        "GSM8K": "NA",
+        "GSM8K Status": "not_requested_for_gsm8k_kept_set",
+        "GSM8K Delta vs baseline (pp)": "",
+        "Source used": "",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.1-8B-Instruct__mlp_w8_fp32_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Llama-3.1-8B-Instruct",
+        "Current Method": "A8W4 FP32-payload",
+        "Mapped GSM8K Method": "W4A8 FP32 payload",
+        "GSM8K": "NA*",
+        "GSM8K Status": "invalid_severe_drop",
+        "GSM8K Delta vs baseline (pp)": "NA",
+        "Source used": "excluded by no-severe-drop policy",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.1-8B-Instruct__mlp_w4_fp32_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Llama-3.1-8B-Instruct",
+        "Current Method": "A8W4 FP16-payload",
+        "Mapped GSM8K Method": "W4A8 FP16 payload",
+        "GSM8K": "NA*",
+        "GSM8K Status": "invalid_severe_drop",
+        "GSM8K Delta vs baseline (pp)": "NA",
+        "Source used": "excluded by no-severe-drop policy",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.1-8B-Instruct__mlp_w4_fp16_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Llama-3.1-8B-Instruct",
+        "Current Method": "A8W4 ScaleCode",
+        "Mapped GSM8K Method": "W4A8 ScaleCode",
+        "GSM8K": "79.67",
+        "GSM8K Status": "replaced_verified",
+        "GSM8K Delta vs baseline (pp)": "-6.00",
+        "Source used": "gsm8k_fairdt_retest_summary; 300/300 complete; fair prompt W4A8 ScaleCode row",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.1-8B-Instruct__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Llama-3.2-3B-Instruct",
+        "Current Method": "Full Precision BF16",
+        "Mapped GSM8K Method": "Original BF16",
+        "GSM8K": "71.33",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "0.00",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.2-3B-Instruct__original_bf16/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Llama-3.2-3B-Instruct",
+        "Current Method": "Full Precision FP16",
+        "Mapped GSM8K Method": "Original FP16",
+        "GSM8K": "70.67",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "-0.66",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.2-3B-Instruct__original_fp16/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Llama-3.2-3B-Instruct",
+        "Current Method": "Full Precision FP32",
+        "Mapped GSM8K Method": "Original FP32",
+        "GSM8K": "65.33",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "-6.00",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.2-3B-Instruct__original_fp32/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Llama-3.2-3B-Instruct",
+        "Current Method": "A8W8 FP32-payload",
+        "Mapped GSM8K Method": "",
+        "GSM8K": "NA",
+        "GSM8K Status": "not_requested_for_gsm8k_kept_set",
+        "GSM8K Delta vs baseline (pp)": "",
+        "Source used": "",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.2-3B-Instruct__mlp_w8_fp32_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Llama-3.2-3B-Instruct",
+        "Current Method": "A8W4 FP32-payload",
+        "Mapped GSM8K Method": "W4A8 FP32 payload",
+        "GSM8K": "64.00",
+        "GSM8K Status": "replaced_verified",
+        "GSM8K Delta vs baseline (pp)": "-7.33",
+        "Source used": "gsm8k_corrected_all_models; 300/300 complete; chat_fewshot_cot corrected run",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.2-3B-Instruct__mlp_w4_fp32_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Llama-3.2-3B-Instruct",
+        "Current Method": "A8W4 FP16-payload",
+        "Mapped GSM8K Method": "W4A8 FP16 payload",
+        "GSM8K": "63.33",
+        "GSM8K Status": "replaced_verified",
+        "GSM8K Delta vs baseline (pp)": "-8.00",
+        "Source used": "gsm8k_corrected_all_models; 300/300 complete; chat_fewshot_cot corrected run",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.2-3B-Instruct__mlp_w4_fp16_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Llama-3.2-3B-Instruct",
+        "Current Method": "A8W4 ScaleCode",
+        "Mapped GSM8K Method": "W4A8 ScaleCode",
+        "GSM8K": "62.67",
+        "GSM8K Status": "replaced_verified",
+        "GSM8K Delta vs baseline (pp)": "-8.66",
+        "Source used": "gsm8k_corrected_all_models; 300/300 complete; chat_fewshot_cot corrected run",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Llama-3.2-3B-Instruct__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Qwen2.5-7B-Instruct",
+        "Current Method": "Full Precision BF16",
+        "Mapped GSM8K Method": "Original BF16",
+        "GSM8K": "NA*",
+        "GSM8K Status": "invalid_run",
+        "GSM8K Delta vs baseline (pp)": "NA",
+        "Source used": "invalidated by record/protocol audit",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen2.5-7B-Instruct__original_bf16/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Qwen2.5-7B-Instruct",
+        "Current Method": "Full Precision FP16",
+        "Mapped GSM8K Method": "Original FP16",
+        "GSM8K": "NA*",
+        "GSM8K Status": "invalid_run",
+        "GSM8K Delta vs baseline (pp)": "NA",
+        "Source used": "invalidated by record/protocol audit",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen2.5-7B-Instruct__original_fp16/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Qwen2.5-7B-Instruct",
+        "Current Method": "Full Precision FP32",
+        "Mapped GSM8K Method": "Original FP32",
+        "GSM8K": "86.00",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "0.00",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen2.5-7B-Instruct__original_fp32/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Qwen2.5-7B-Instruct",
+        "Current Method": "A8W8 FP32-payload",
+        "Mapped GSM8K Method": "",
+        "GSM8K": "NA",
+        "GSM8K Status": "not_requested_for_gsm8k_kept_set",
+        "GSM8K Delta vs baseline (pp)": "",
+        "Source used": "",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen2.5-7B-Instruct__mlp_w8_fp32_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Qwen2.5-7B-Instruct",
+        "Current Method": "A8W4 FP32-payload",
+        "Mapped GSM8K Method": "W4A8 FP32 payload",
+        "GSM8K": "NA*",
+        "GSM8K Status": "invalid_run",
+        "GSM8K Delta vs baseline (pp)": "NA",
+        "Source used": "invalidated by record/protocol audit",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen2.5-7B-Instruct__mlp_w4_fp32_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Qwen2.5-7B-Instruct",
+        "Current Method": "A8W4 FP16-payload",
+        "Mapped GSM8K Method": "W4A8 FP16 payload",
+        "GSM8K": "NA*",
+        "GSM8K Status": "invalid_run",
+        "GSM8K Delta vs baseline (pp)": "NA",
+        "Source used": "invalidated by record/protocol audit",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen2.5-7B-Instruct__mlp_w4_fp16_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Qwen2.5-7B-Instruct",
+        "Current Method": "A8W4 ScaleCode",
+        "Mapped GSM8K Method": "W4A8 ScaleCode",
+        "GSM8K": "NA*",
+        "GSM8K Status": "invalid_run",
+        "GSM8K Delta vs baseline (pp)": "NA",
+        "Source used": "invalidated by record/protocol audit",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen2.5-7B-Instruct__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Qwen3-8B",
+        "Current Method": "Full Precision BF16",
+        "Mapped GSM8K Method": "Original BF16",
+        "GSM8K": "89.33",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "0.00",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen3-8B__original_bf16/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Qwen3-8B",
+        "Current Method": "Full Precision FP16",
+        "Mapped GSM8K Method": "Original FP16",
+        "GSM8K": "89.33",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "0.00",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen3-8B__original_fp16/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Qwen3-8B",
+        "Current Method": "Full Precision FP32",
+        "Mapped GSM8K Method": "Original FP32",
+        "GSM8K": "89.00",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "-0.33",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen3-8B__original_fp32/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Qwen3-8B",
+        "Current Method": "A8W8 FP32-payload",
+        "Mapped GSM8K Method": "",
+        "GSM8K": "NA",
+        "GSM8K Status": "not_requested_for_gsm8k_kept_set",
+        "GSM8K Delta vs baseline (pp)": "",
+        "Source used": "",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen3-8B__mlp_w8_fp32_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Qwen3-8B",
+        "Current Method": "A8W4 FP32-payload",
+        "Mapped GSM8K Method": "W4A8 FP32 payload",
+        "GSM8K": "84.67",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "-4.66",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen3-8B__mlp_w4_fp32_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Qwen3-8B",
+        "Current Method": "A8W4 FP16-payload",
+        "Mapped GSM8K Method": "W4A8 FP16 payload",
+        "GSM8K": "85.33",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "-4.00",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen3-8B__mlp_w4_fp16_scale/gyrot_aligned_quality_by_model.csv"
+      },
+      {
+        "Model": "Qwen3-8B",
+        "Current Method": "A8W4 ScaleCode",
+        "Mapped GSM8K Method": "W4A8 ScaleCode",
+        "GSM8K": "84.67",
+        "GSM8K Status": "ok",
+        "GSM8K Delta vs baseline (pp)": "-4.66",
+        "Source used": "source workbook",
+        "Base row source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/0_Final_results/fix_accuracy/results/gyrot_aligned_accuracy/quality_accuracy_repaired/Qwen3-8B__mlp_w4_scalecode/gyrot_aligned_quality_by_model.csv"
+      }
+    ],
+    "merge": [
+      {
+        "Model": "DeepSeek-R1-Distill-Llama-8B",
+        "Method": "A8W8 FP32-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "NA->64.67",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/DeepSeek-R1-Distill-Llama-8B__iah_fp32_scale_mlp_w8/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "DeepSeek-R1-Distill-Llama-8B",
+        "Method": "A8W4 FP32-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "NA*->64.33",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/DeepSeek-R1-Distill-Llama-8B__iah_fp32_scale_mlp_w4/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "DeepSeek-R1-Distill-Llama-8B",
+        "Method": "A8W4 FP16-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "NA*->60.33",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/DeepSeek-R1-Distill-Llama-8B__iah_fp16_scale_mlp_w4/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "GLM-4-9B-0414",
+        "Method": "A8W8 FP32-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "NA->88.67",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/GLM-4-9B-0414__iah_fp32_scale_mlp_w8/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Llama-3.1-8B-Instruct",
+        "Method": "A8W8 FP32-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "NA->87.00",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Llama-3.1-8B-Instruct__iah_fp32_scale_mlp_w8/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Llama-3.1-8B-Instruct",
+        "Method": "A8W4 FP32-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "NA*->79.33",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Llama-3.1-8B-Instruct__iah_fp32_scale_mlp_w4/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Llama-3.1-8B-Instruct",
+        "Method": "A8W4 FP16-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "NA*->78.33",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Llama-3.1-8B-Instruct__iah_fp16_scale_mlp_w4/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Llama-3.2-3B-Instruct",
+        "Method": "Full Precision FP32",
+        "Action": "replace_gsm8k",
+        "Detail": "65.33->69.67",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_llama32_3b_fp32_sdpa_fix/Llama-3.2-3B-Instruct__original_fp32__fair_sdpa/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Llama-3.2-3B-Instruct",
+        "Method": "A8W8 FP32-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "NA->72.00",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Llama-3.2-3B-Instruct__iah_fp32_scale_mlp_w8/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Llama-3.2-3B-Instruct",
+        "Method": "A8W4 FP32-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "64.00->70.33",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Llama-3.2-3B-Instruct__iah_fp32_scale_mlp_w4/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Llama-3.2-3B-Instruct",
+        "Method": "A8W4 FP16-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "63.33->71.00",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Llama-3.2-3B-Instruct__iah_fp16_scale_mlp_w4/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Llama-3.2-3B-Instruct",
+        "Method": "A8W4 ScaleCode",
+        "Action": "replace_gsm8k",
+        "Detail": "62.67->67.33",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Llama-3.2-3B-Instruct__iah_scale_code_mlp_w4/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Qwen2.5-7B-Instruct",
+        "Method": "Full Precision BF16",
+        "Action": "replace_gsm8k",
+        "Detail": "NA*->90.67",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_qwen25_7b_sdpa_fix/Qwen2.5-7B-Instruct__original_bf16__chat_fewshot_cot_sdpa/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Qwen2.5-7B-Instruct",
+        "Method": "Full Precision FP16",
+        "Action": "replace_gsm8k",
+        "Detail": "NA*->89.00",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_qwen25_7b_sdpa_fix/Qwen2.5-7B-Instruct__original_fp16__chat_fewshot_cot_sdpa/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Qwen2.5-7B-Instruct",
+        "Method": "Full Precision FP32",
+        "Action": "replace_gsm8k",
+        "Detail": "86.00->89.33",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_qwen25_7b_sdpa_fix/Qwen2.5-7B-Instruct__original_fp32__chat_fewshot_cot_sdpa/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Qwen2.5-7B-Instruct",
+        "Method": "A8W8 FP32-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "NA->89.33",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_qwen25_7b_sdpa_fix/Qwen2.5-7B-Instruct__w8a8_fp32_payload__chat_fewshot_cot_sdpa/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Qwen2.5-7B-Instruct",
+        "Method": "A8W4 FP32-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "NA*->87.33",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_qwen25_7b_sdpa_fix/Qwen2.5-7B-Instruct__w4a8_fp32_payload__chat_fewshot_cot_sdpa/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Qwen2.5-7B-Instruct",
+        "Method": "A8W4 FP16-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "NA*->86.33",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_qwen25_7b_sdpa_fix/Qwen2.5-7B-Instruct__w4a8_fp16_payload__chat_fewshot_cot_sdpa/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Qwen2.5-7B-Instruct",
+        "Method": "A8W4 ScaleCode",
+        "Action": "replace_gsm8k",
+        "Detail": "NA*->88.00",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/scala_code_accuracy/gsm8k_qwen25_7b_sdpa_fix/Qwen2.5-7B-Instruct__w4a8_scalecode__chat_fewshot_cot_sdpa/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Qwen3-8B",
+        "Method": "A8W8 FP32-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "NA->91.67",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Qwen3-8B__iah_fp32_scale_mlp_w8/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Qwen3-8B",
+        "Method": "A8W4 FP32-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "84.67->88.33",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Qwen3-8B__iah_fp32_scale_mlp_w4/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Qwen3-8B",
+        "Method": "A8W4 FP16-payload",
+        "Action": "replace_gsm8k",
+        "Detail": "85.33->89.33",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Qwen3-8B__iah_fp16_scale_mlp_w4/gsm8k_first300_summary.csv"
+      },
+      {
+        "Model": "Qwen3-8B",
+        "Method": "A8W4 ScaleCode",
+        "Action": "replace_gsm8k",
+        "Detail": "84.67->88.67",
+        "Source": "/home/user/EDA-202/zhuowenjun/fpga_llm_project/results/All_results/accuracy_MLP_4bit/gsm8k_accuracy/Qwen3-8B__iah_scale_code_mlp_w4/gsm8k_first300_summary.csv"
+      }
+    ]
+  },
+  "all_read_inputs_stable_at_finalization": true
+}

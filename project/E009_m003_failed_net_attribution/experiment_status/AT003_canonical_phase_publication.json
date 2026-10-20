@@ -1,0 +1,22 @@
+{
+  "source": "# E009：SM013只读全量归因，AT003单对象属性修复包\n\nM003/SM013，VCU118/Vivado2025.2。基线E008/R001/AT004失败DCP（765705446B/SHA51679d9a…）、144冻结生产输入与原失败证据保持只读。R001固定全部CONFLICTS canonical别名/全端点/唯一主组，consumer与CR关联分表；top20 whole-group与固定补充net union、有界深查/时序按协议执行。\n\nAT003 manifest f0ac0b91…/3774B，query_plan与AT002/AT001字节一致；targets/aggregate/supervise/launch不变。仅修复单对象属性scalar先list包装，保留真实逐元素NAME身份拒绝；增加实际vals/alias CPU正负回归并重新绑定前次终态。A007独立delta审核无实质阻断，回执SHA22941413…已真实绑定。\n\n01:31:02Z实际OPEN_CHECKPOINT_BEGIN，01:40:21Z载图完成、01:43:59Z全量cell库存完成，01:52:26Z完整native alias资格/CONFLICTS canonical集合已闭合，当前全端点导出中；input_bindings db010528…/5683B。144输入/DCP/前次PID-start/锁/资源重新核实，单EDA/CPU0–7/nice5/max8、192GiB/48GiB持续30s/disk30GiB，正常无墙钟/静默强停。无生产RTL/XDC修改或物理实现；实际模型未独立核实。\n\n当前canonical=569597与本次native report547548相差+22049，两口径与原始alias映射保留，待独立复算/解释；不强制改数或宣G1。\n",
+  "results": "# E009：AT003全量alias资格闭合，全端点导出中\n\n01:52:26Z CONFLICT_CANONICALIZATION_COMPLETE count=569597；闭合alias summary记录2914086个native元素配对，ALL_ELEMENTS_EXACT_MATCH、list representation差异0。前8真实配对native_handle与NAME逐元素全等；singleton scalar修复已越过AT002转义名称失败，旧资格检查完整保留。\n\n本次原生report仍547548冲突网，canonical集合569597，差+22049；原始raw→alias→canonical两口径保留待独立对账，不假定相等或外推节点数。702396重叠节点是独立历史指标。\n\n全端点导出实际2026-10-18T01:53:50Z已90112/569597个canonical网；尚无完整group/union/候选有界深查/G1。无native_error/终态；进程/锁/CPU与原资源保护保持。\n\n[闭合alias资格与差异](runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/alias_qualification_observed.json) · [原生资格summary](runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/evidence/native/alias_identity_summary.tsv) · [本次report](runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/schema_and_route_status_observed.json)。\n",
+  "status": "# E009：AT003全端点导出中；canonical/report差异待对账\n\nexecution_state: running  \nverdict: inconclusive\n\n01:52:26Z完整alias资格和canonical闭合；2914086元素配对全等，canonical=569597，相对本次report547548差+22049，明确保留待审。实际2026-10-18T01:53:50Z端点导出90112/569597网；全量输出未关闭，G1未过。\n\n按冻结范围继续全端点、唯一组/union及有界深查，正常无墙钟/静默强停；不插入新query或热改包。自然终态后collector v3/raw audit v2独立复算，向A007提交范围/差异/关键候选事实。无生产RTL/XDC/选型/implementation。\n",
+  "execution_state": "running",
+  "verdict": "inconclusive",
+  "applicability": "AT003 full alias identity qualification closed; native canonical569597 vs current report547548 difference+22049 retained. Full endpoints/grouping/union/G1 pending.",
+  "evidence": [
+    "project/E009_m003_failed_net_attribution/experiment_source/AT003_scalar_property_fix/prepared_manifest.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/native_start_observed.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/started.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/input_bindings.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/independent_prelaunch_accepted.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/delta_and_cpu_checks.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/observer_started.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/terminal_facts_v2.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/observer_terminal_facts.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/schema_and_route_status_observed.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/observer_events.jsonl",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT003_failed_route_full_attribution_scalar_fix/alias_qualification_observed.json"
+  ]
+}

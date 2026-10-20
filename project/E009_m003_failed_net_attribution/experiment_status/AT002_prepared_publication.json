@@ -1,0 +1,15 @@
+{
+  "source": "# E009：SM013只读全量归因，AT002同范围修复包\n\nM003/SM013，VCU118/Vivado2025.2；基线为E008/R001/AT004失败DCP（765705446B/SHA51679d9a…）、已审终态与144冻结生产输入。原547548冲突网已由AT001本次原生route report再核，702396节点作为独立历史指标。生产RTL/XDC与旧证据只读。\n\n当前R001/AT002 planned，原生EDA尚未启动。修复包[manifest](AT002_alias_alignment_fix/prepared_manifest.json) SHA47d12c26…，query_plan与AT001字节一致；aggregate/supervise/launch不变。只修复alias逐元素NAME身份资格/有界配对回执、AT/收尾绑定和实际函数CPU正负例，不删除资格检查，不新增EDA查询。AT001原始包/失败证据保留。\n\n全量canonical/唯一主组、consumer/CR关联分表、前20与固定supplemental union及有界时序按[协议](protocol.md)和固定query_plan。144输入/DCP/前次PID-start/锁/资源已重新核实，A007正在delta审核；无实质阻断后按已有授权直接启动。单EDA/CPU0–7/nice5/max8、192GiB/48GiB持续30s/disk30GiB，正常无墙钟/静默强停。实际模型无独立回执，不默换。\n",
+  "results": "# E009：AT001自然失败保全，AT002修复对照通过\n\nAT001于00:53:21.909734Z自然结束：native1/supervisor1、stop_reason=null、无cleanup/残留，144输入/基线及13归档项不变、4登记PID/start均不在、单EDA锁空闲；原观察器session15611真实exit0并排空。00:53:05Z cell库存已完成，首次parent_head别名资格检查的列表字符串比较触发异常；实际两侧元素未记录，不能提前断言其具体配对相等。\n\n本次原生route report为logical7145555/routable2031733/fully1484185/conflict547548，schema所需字段存在；终态独立CPU解析见AT001/terminal_facts_v2.json，原v1解析空记录保持。canonical全量清单/归因/G1未建，source/工具失败不作为RTL方法否定。\n\nAT002对实际alias函数的CPU反例证明：表示差异接受，真实NAME及数量差异拒绝。固定query_plan、aggregate/supervise/launch均与AT001字节一致；新manifest47d12c26…、144/DCP/前次收尾/资源核验通过。尚无AT002原生结果。\n\n[AT001终态](runs/R001/attempts/AT001_failed_route_full_attribution/terminal_facts_v2.json) · [原异常](runs/R001/attempts/AT001_failed_route_full_attribution/evidence/native/native_error.tcllist) · [AT002实际delta与CPU对照](runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/delta_and_cpu_checks.json)。\n",
+  "status": "# E009：AT002固定包待独立delta审核，无活动EDA\n\nexecution_state: running  \nverdict: inconclusive\n\nAT001自然失败已登记并完成收尾，全部原证据保留。AT002已真实登记planned，逐项别名资格修复包已冻结，CPU正负对照和144输入/DCP/旧收尾/锁资源重新核验通过；A007仅审变化部分，无新的用户审批门。\n\n下一步接受无实质阻断的独立回执后直接启动真实只读AT002，分别核监督/原生PID-start/锁/来源。范围、唯一归组/union及固定深查不变；G1/G2未通过，生产RTL和选型未动。正常无墙钟/静默强停，不复用旧停止例外或旧观察器。\n",
+  "execution_state": "running",
+  "verdict": "inconclusive",
+  "applicability": "AT001 natural qualification failure closed; AT002 same-scope fix and CPU positive/negative checks prepared, native not started; G1 not established.",
+  "evidence": [
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT001_failed_route_full_attribution/terminal_facts_v2.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT001_failed_route_full_attribution/observer_terminal_facts.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/preflight.json",
+    "project/E009_m003_failed_net_attribution/experiment_results/runs/R001/attempts/AT002_failed_route_full_attribution_alias_fix/delta_and_cpu_checks.json",
+    "project/E009_m003_failed_net_attribution/experiment_source/AT002_alias_alignment_fix/prepared_manifest.json"
+  ]
+}

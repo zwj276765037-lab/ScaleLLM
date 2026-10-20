@@ -1,0 +1,151 @@
+{
+  "actual_gpu_uuid": null,
+  "allocation_mode": "cpu_only",
+  "applicability": "synthetic tensor only; no model inference or full-model throughput measurement",
+  "capture": {
+    "byte_order": "little",
+    "capture_sha_source": "actual_saved_immutable_chunk_bytes_in_logical_order",
+    "chunk_bytes": 16777216,
+    "gpu_weight_replica_bytes": 0,
+    "logical_baseline_bytes": 67108901,
+    "method_id": "immutable_cpu_chunks_memcmp_full_content_v1",
+    "per_tensor": {
+      "synthetic.weight": {
+        "bytes": 67108901,
+        "sha256": "9a2d6d8ee0b33af723d2cc043151136b85191fa4016d809bb6dcda70e95a892c",
+        "sha_matches_verified_baseline": true
+      }
+    },
+    "staging_buffer_bytes": 16777216,
+    "staging_buffer_pinned": false,
+    "unique_immutable_baseline_bytes": 67108901
+  },
+  "capture_seconds": 0.1875813789993117,
+  "corruption_controls": [
+    {
+      "bit": 0,
+      "candidate_rejects": true,
+      "compared_bytes": 67108901,
+      "legacy_rejects": true,
+      "offset": 0
+    },
+    {
+      "bit": 0,
+      "candidate_rejects": true,
+      "compared_bytes": 67108901,
+      "legacy_rejects": true,
+      "offset": 16777215
+    },
+    {
+      "bit": 0,
+      "candidate_rejects": true,
+      "compared_bytes": 67108901,
+      "legacy_rejects": true,
+      "offset": 16777216
+    },
+    {
+      "bit": 0,
+      "candidate_rejects": true,
+      "compared_bytes": 67108901,
+      "legacy_rejects": true,
+      "offset": 67108900
+    }
+  ],
+  "device": "cpu",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "cpu_affinity": [
+      18,
+      19
+    ],
+    "cuda_initialized": false,
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "python": "3.10.19 (main, Oct 21 2025, 16:43:05) [GCC 11.2.0]",
+    "torch": "2.10.0+cu128",
+    "torch_threads": 2
+  },
+  "exclusive_qualification_proven_by_cli_flag": false,
+  "exclusive_verified": false,
+  "external_guard_evidence": null,
+  "finished_epoch": 1792321777.8080473,
+  "gpu_uuid": null,
+  "immutable_capture_resource_guard": {
+    "checked_epoch_seconds": 1792321775.6227882,
+    "logical_static_bytes": 67108901,
+    "measurement_source": "proc_meminfo_MemAvailable",
+    "mem_available_before_capture_bytes": 523620306944,
+    "minimum_host_reserve_bytes": 85899345920,
+    "passed": true,
+    "projected_available_after_capture_bytes": 523536420827,
+    "schema": "scalellm_immutable_capture_memory_guard_v1",
+    "staging_buffer_bytes": 16777216,
+    "unique_immutable_baseline_bytes": 67108901
+  },
+  "measured_median_speedup_this_synthetic_case": 10.727722786042358,
+  "median_seconds": {
+    "candidate_compare_seconds": 0.016745091999837314,
+    "legacy_tensor_descriptor_seconds": 0.17963670500103035
+  },
+  "memory": {
+    "gpu_weight_replica_bytes": 0,
+    "logical_baseline_bytes": 67108901,
+    "ru_maxrss_bytes_after": 744529920,
+    "ru_maxrss_bytes_before": 595492864,
+    "staging_buffer_bytes": 16777216,
+    "unique_immutable_baseline_bytes": 67108901
+  },
+  "method_id": "immutable_cpu_chunks_memcmp_full_content_v1",
+  "model_or_ACC_qualified": false,
+  "positive_last_phase": {
+    "compared_bytes": 67108901,
+    "direct_sha256_this_phase": false,
+    "equal_bytes": 67108901,
+    "expected_bytes": 67108901,
+    "full_coverage_exact": true,
+    "hash_derivation": "verified_immutable_baseline_sha_reused_only_after_full_exact_bytewise_inventory_and_storage_match",
+    "inventory_exact": true,
+    "memcmp_byte_count_semantics": "submitted_chunk_lengths; equal chunks cover every byte; mismatch may short_circuit",
+    "method_id": "immutable_cpu_chunks_memcmp_full_content_v1",
+    "missing_names": [],
+    "per_tensor": {
+      "synthetic.weight": {
+        "all_chunks_equal": true,
+        "compared_bytes": 67108901,
+        "complete": true,
+        "equal_bytes": 67108901,
+        "exact": true,
+        "expected_bytes": 67108901
+      }
+    },
+    "unexpected_names": []
+  },
+  "qualification_scope": "synthetic_tensor_only_not_model_or_ACC_qualification",
+  "repeats": 5,
+  "schema": "integrity_bytewise_synthetic_benchmark_v1",
+  "shared_diagnostic_only": false,
+  "source_sha256": {
+    "benchmark_bytewise_integrity.py": "6ff9dbf8b1a359d87eb898f689da6c876ba6f6647abd4c14fa4bde5a653cd6de",
+    "gsm8k_integrity_bytewise.py": "17bdabd32e792391622239b32ad81e316fa2ccd688310b4a9fb9bb3f46146542",
+    "gsm8k_weight_integrity.py": "0e11092488523d97acd7ec76776ada669068c70bec1efc190bf5159c43f99121"
+  },
+  "started_epoch": 1792321775.3791296,
+  "state": "complete",
+  "tensor_bytes": 67108901,
+  "tensor_count": 1,
+  "timings": {
+    "candidate_compare_seconds": [
+      0.016745091999837314,
+      0.030365007000000332,
+      0.016433500000857748,
+      0.016661777000990696,
+      0.017636537000726094
+    ],
+    "legacy_tensor_descriptor_seconds": [
+      0.17919380199964507,
+      0.1896712050001952,
+      0.17924449000020104,
+      0.17963670500103035,
+      0.18067017800058238
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "A007_AT023_bounded_objects_independent_spy_v1",
+  "utc": "2026-10-19T01:01:39.123955+00:00",
+  "source": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/agent/A007/M003_SM015_SM017_review_20261018/AT023_bounded_objects_independent_v1/shared_native_connectivity.tcl",
+    "bytes": 12088,
+    "sha256": "01919f5e10a35bca2f6546851e9955e488a71b21cc4b14a25c5c0a72a369ca31"
+  },
+  "cases": [
+    {
+      "case": "full12062_opaque_preserved",
+      "exit_code": 0,
+      "expected_success": true,
+      "pass": true
+    },
+    {
+      "case": "limit_before_iteration",
+      "exit_code": 0,
+      "expected_success": true,
+      "pass": true
+    },
+    {
+      "case": "native_iteration_truncation_rejected",
+      "exit_code": 1,
+      "expected_success": false,
+      "pass": true
+    },
+    {
+      "case": "materialization_does_not_hide_duplicates",
+      "exit_code": 0,
+      "expected_success": true,
+      "pass": true
+    }
+  ],
+  "all_pass": true,
+  "scope": "CPU opaque-collection behavior emulation only; no assertion about real Vivado conversion until actual native result. Existing unchanged full suites not rerun.",
+  "EDA_used": false
+}

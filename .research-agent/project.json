@@ -33,6 +33,26 @@
         "role": null,
         "experiment": null,
         "experiment_kind": null
+      },
+      "M004": {
+        "id": "M004",
+        "title": "gsm8k_accuracy_completion",
+        "path": "mission/M004_gsm8k_accuracy_completion/contract.md",
+        "mission": null,
+        "small_mission": null,
+        "role": null,
+        "experiment": null,
+        "experiment_kind": null
+      },
+      "M005": {
+        "id": "M005",
+        "title": "multistage_rounding_precision",
+        "path": "mission/M005_multistage_rounding_precision/contract.md",
+        "mission": null,
+        "small_mission": null,
+        "role": null,
+        "experiment": null,
+        "experiment_kind": null
       }
     },
     "small-mission": {
@@ -225,6 +245,56 @@
         "role": null,
         "experiment": null,
         "experiment_kind": null
+      },
+      "SM020": {
+        "id": "SM020",
+        "title": "gsm8k_dual_gpu_completion",
+        "path": "mission/M004_gsm8k_accuracy_completion/tasks/SM020.md",
+        "mission": "M004",
+        "small_mission": null,
+        "role": null,
+        "experiment": null,
+        "experiment_kind": null
+      },
+      "SM021": {
+        "id": "SM021",
+        "title": "rounding_reference_and_local_validation",
+        "path": "mission/M005_multistage_rounding_precision/tasks/SM021.md",
+        "mission": "M005",
+        "small_mission": null,
+        "role": null,
+        "experiment": null,
+        "experiment_kind": null
+      },
+      "SM022": {
+        "id": "SM022",
+        "title": "real_activation_rounding_replay",
+        "path": "mission/M005_multistage_rounding_precision/tasks/SM022.md",
+        "mission": "M005",
+        "small_mission": null,
+        "role": null,
+        "experiment": null,
+        "experiment_kind": null
+      },
+      "SM023": {
+        "id": "SM023",
+        "title": "rounding_propagation_and_task_quality",
+        "path": "mission/M005_multistage_rounding_precision/tasks/SM023.md",
+        "mission": "M005",
+        "small_mission": null,
+        "role": null,
+        "experiment": null,
+        "experiment_kind": null
+      },
+      "SM024": {
+        "id": "SM024",
+        "title": "paired_response_quality",
+        "path": "mission/M005_multistage_rounding_precision/tasks/SM024.md",
+        "mission": "M005",
+        "small_mission": null,
+        "role": null,
+        "experiment": null,
+        "experiment_kind": null
       }
     },
     "experiment": {
@@ -307,6 +377,46 @@
         "role": null,
         "experiment": null,
         "experiment_kind": "hardware"
+      },
+      "E009": {
+        "id": "E009",
+        "title": "m003_failed_net_attribution",
+        "path": "project/E009_m003_failed_net_attribution",
+        "mission": "M003",
+        "small_mission": "SM013",
+        "role": null,
+        "experiment": null,
+        "experiment_kind": "hardware"
+      },
+      "E010": {
+        "id": "E010",
+        "title": "gsm8k_six_model_completion",
+        "path": "project/E010_gsm8k_six_model_completion",
+        "mission": "M004",
+        "small_mission": "SM020",
+        "role": null,
+        "experiment": null,
+        "experiment_kind": "software"
+      },
+      "E011": {
+        "id": "E011",
+        "title": "m003_joint_routability_implementation",
+        "path": "project/E011_m003_joint_routability_implementation",
+        "mission": "M003",
+        "small_mission": "SM015",
+        "role": null,
+        "experiment": null,
+        "experiment_kind": "hardware"
+      },
+      "E012": {
+        "id": "E012",
+        "title": "multistage_rounding_precision",
+        "path": "project/E012_multistage_rounding_precision",
+        "mission": "M005",
+        "small_mission": "SM021",
+        "role": null,
+        "experiment": null,
+        "experiment_kind": "software"
       }
     },
     "agent": {
@@ -399,6 +509,116 @@
         "role": "engineering",
         "experiment": "E005",
         "experiment_kind": null
+      },
+      "A010": {
+        "id": "A010",
+        "title": "gsm8k_protocol",
+        "path": "agent/A010",
+        "mission": null,
+        "small_mission": "SM020",
+        "role": "engineering",
+        "experiment": "E010",
+        "experiment_kind": null
+      },
+      "A011": {
+        "id": "A011",
+        "title": "gsm8k_worker",
+        "path": "agent/A011",
+        "mission": null,
+        "small_mission": "SM020",
+        "role": "engineering",
+        "experiment": "E010",
+        "experiment_kind": null
+      },
+      "A012": {
+        "id": "A012",
+        "title": "gpu1_repair",
+        "path": "agent/A012",
+        "mission": null,
+        "small_mission": "SM020",
+        "role": "engineering",
+        "experiment": "E010",
+        "experiment_kind": null
+      },
+      "A013": {
+        "id": "A013",
+        "title": "gpu0_integrity_performance_repair",
+        "path": "agent/A013",
+        "mission": null,
+        "small_mission": "SM020",
+        "role": "engineering",
+        "experiment": "E010",
+        "experiment_kind": null
+      },
+      "A014": {
+        "id": "A014",
+        "title": "rounding_design_and_review",
+        "path": "agent/A014",
+        "mission": null,
+        "small_mission": "SM021",
+        "role": "research",
+        "experiment": "E012",
+        "experiment_kind": null
+      },
+      "A015": {
+        "id": "A015",
+        "title": "rounding_reference_implementation",
+        "path": "agent/A015",
+        "mission": null,
+        "small_mission": "SM021",
+        "role": "engineering",
+        "experiment": "E012",
+        "experiment_kind": null
+      },
+      "A016": {
+        "id": "A016",
+        "title": "rounding_data_and_experiment_runner",
+        "path": "agent/A016",
+        "mission": null,
+        "small_mission": "SM021",
+        "role": "engineering",
+        "experiment": "E012",
+        "experiment_kind": null
+      },
+      "A017": {
+        "id": "A017",
+        "title": "softmax_tv_measurement",
+        "path": "agent/A017",
+        "mission": null,
+        "small_mission": "SM021",
+        "role": "engineering",
+        "experiment": "E012",
+        "experiment_kind": null
+      },
+      "A018": {
+        "id": "A018",
+        "title": "m003_sol61_verification",
+        "path": "agent/A018",
+        "mission": "M003",
+        "small_mission": "SM017",
+        "role": "engineering",
+        "experiment": null,
+        "experiment_kind": null
+      },
+      "A019": {
+        "id": "A019",
+        "title": "rounding_optimization_runner",
+        "path": "agent/A019",
+        "mission": null,
+        "small_mission": "SM021",
+        "role": "engineering",
+        "experiment": "E012",
+        "experiment_kind": null
+      },
+      "A020": {
+        "id": "A020",
+        "title": "response_quality_generation",
+        "path": "agent/A020",
+        "mission": null,
+        "small_mission": "SM024",
+        "role": "engineering",
+        "experiment": null,
+        "experiment_kind": null
       }
     },
     "question": {
@@ -430,6 +650,36 @@
         "small_mission": "SM012",
         "role": "controller",
         "experiment": "E008",
+        "experiment_kind": null
+      },
+      "Q004": {
+        "id": "Q004",
+        "title": "GSM8K_accuracy_fairness_and_hardware_scope",
+        "path": "question/Q004_GSM8K_accuracy_fairness_and_hardware_scope",
+        "mission": "M004",
+        "small_mission": "SM020",
+        "role": "engineering",
+        "experiment": "E010",
+        "experiment_kind": null
+      },
+      "Q005": {
+        "id": "Q005",
+        "title": "Accuracy_table_equal_scores_and_quantization_gains",
+        "path": "question/Q005_Accuracy_table_equal_scores_and_quantization_gains",
+        "mission": "M004",
+        "small_mission": "SM020",
+        "role": "engineering",
+        "experiment": "E010",
+        "experiment_kind": null
+      },
+      "Q006": {
+        "id": "Q006",
+        "title": "New_accuracy_table_provenance_and_publication_scope",
+        "path": "question/Q006_New_accuracy_table_provenance_and_publication_scope",
+        "mission": "M004",
+        "small_mission": "SM020",
+        "role": "engineering",
+        "experiment": "E010",
         "experiment_kind": null
       }
     }

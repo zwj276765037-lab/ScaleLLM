@@ -1,0 +1,14 @@
+{
+  "source": "# E012 R012：完整回答质量配对实验\n\n用户已授权CURRENT/OUTPUT_ONLY在相同问题下自由生成并比较完整回答质量，现有子智能体作匿名裁判，结果明确为初步评估。主模型Llama-3.1-8B-Instruct，基础量化/ScaleCode/Hadamard/LUT/共同出口保持。新独立适配器扩展RoPE及KV缓存；原128范围一致性与17/130/512两臂缓存/重算逐值资格在真实GPU生成前执行。\n\n公开输入AlpacaEval805单轮、MT-Bench80双轮已冻结revision、SHA及许可；2048总context、每轮512预算，CPU长度覆盖全部问题。两基准分别统计，MT两轮整题给一个winner。权威合同：results/software_Error_Analysis/13_response_quality/contract.md。",
+  "results": "# E012 R012：CPU准备通过，GPU资格待执行\n\n生成器自身5项CPU检查、独立审核12项通过；评分工具13项CPU检查与临时合成CLI接线通过，合成数据不是模型质量结果。匿名AB/BA、缺失/冲突/截断单列；Wilson比例区间为主，问题级bootstrap为辅。\n\n首次GPU准入因外部PID1061312占用而未创建worker，未干预外部进程。AT003有限后台队列已真实启动，PID1071314，2026-10-20T08:13:40Z；最多等待6小时，每30秒检查GPU0，连续3次空闲和SHA/资源复核后仅执行一次已放行的1800秒资格/成本pilot。不自动启动完整805/80正式集。\n\n尚无真实生成回答、盲评分数或新质量图，不作质量保持结论。后续状态以runtime/AT003_wait_for_gpu_and_pilot/current_status.json和终态回执为准。",
+  "status": "# E012 R012：后台等待GPU资格试跑\n\nexecution_state: running\nverdict: unassessed\n\nRoot统筹；A020生成，A015数据/评分工具，A019独审及后续匿名裁判。GPU0单进程、CPU1/RSS8GiB/GPU24GiB；GPU1和其他任务不触碰。当前仅有限等机队列已启动，正式运行规模需GPU资格通过与实测成本后冻结。先验证正确性，随后生成pilot并记录速度，再据资源启动正式有限批次。没有人工核验，不把模型复核称为人工评审。",
+  "execution_state": "running",
+  "verdict": "unassessed",
+  "applicability": "CPU准备与后台单次资格/成本pilot队列；尚无真实生成质量结论，正式集尚未启动",
+  "evidence": [
+    "project/E012_multistage_rounding_precision/experiment_results/runs/R012/response_quality_scope.md",
+    "project/E012_multistage_rounding_precision/experiment_results/runs/R012/pilot_admission.json",
+    "project/E012_multistage_rounding_precision/experiment_results/runs/R012/runtime/AT002_gpu_qualification_and_cost/admission_exit_receipt.json",
+    "project/E012_multistage_rounding_precision/experiment_results/runs/R012/runtime/AT003_wait_for_gpu_and_pilot/started.json"
+  ]
+}

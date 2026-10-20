@@ -1,6 +1,10 @@
 # ScaleLLM：项目目标与硬件-软件对齐规范
 
-> **当前任务（2026-10-18）：[M003联合可布线改造与完整实现验收](../mission/M003_joint_routability_closure/contract.md)已定义，工程planned、verdict unassessed。** 本轮仅登记主合同、SM013–SM019及验收矩阵，未启动新RTL/仿真/EDA。M002架构与E008失败证据为前置，原数值/接口/时钟/验收目标不变；下一技术入口SM013。
+**2026-10-20最新：AT006已自然布线失败，原生Route35-2确认797175个重叠节点，最终route_status确认615840条资源冲突网。** 原尝试07:07:38Z监督结束native1/stop=null/owned_survivors空，route_failed.dcp及status/timing/congestion/DRC已保存；正式route POST未执行。完整place/physopt及其结构资格通过不代表可合法布通。现有证据显示局部跨SLR列需求0–1最高124%、1–2最高112%（对应总需求仅63.17%/62.30%），physopt占用CLB站点SLR0/1/2为96.71%/99.33%/99.90%，支持严重局部互连/打包压力；不将占用站点等同LUT槽耗尽，不将告警或top样本当唯一根因。用户随后明确要求“详细定位到底哪个地方无法布线成功”：A018已获派发，先现成报告离线归因，必要时新批次有界只读载入失败DCP，交付区域→模块→具体信号通路及覆盖/未知；不改RTL/XDC、不启动新implementation。单EDA、原资源保护及正常无墙钟/静默强停保持。M003整体未完成。
+
+[验证提速与执行决定](../mission/M003_joint_routability_closure/validation_efficiency_2026-10-19.md)
+
+[重启后恢复合同](../mission/M003_joint_routability_closure/server_restart_resume_2026-10-18.md) · [工程状态](../project/E011_m003_joint_routability_implementation/experiment_status/summary.md)。
 
 > **最近实际实验：E008/AT004自然失败，14项收尾与独立审核已完成，无活动EDA。** 下列M002过程文字为历史，不覆盖当前M003定义和E008终态。
 
@@ -308,13 +312,13 @@ T3      L2 MLP         L3 Attn         Active    Active  ← 并行
 
 ## 当前任务与交付
 
-**当前 mission：** [M003联合可布线改造与完整实现验收](../mission/M003_joint_routability_closure/contract.md)，定义完成、工程planned。SM013–SM019覆盖归因、冻结、联合改造/回归、新综合、完整实现与最终验收；未启动新E/R/AT。M002全局目标未完成，E008/AT004自然route失败且收尾/独立审核完成，原证据保持。不原样重复route，下一版具体修改先由归因和四表集中冻结。
+**当前 mission：** [M003联合可布线改造与完整实现验收](../mission/M003_joint_routability_closure/contract.md)，用户已授权执行，SM013/E009/R001/AT001已登记、当前入口准备/待独立审核，无原生EDA启动。SM013–SM019覆盖归因、冻结、联合改造/回归、新综合、完整实现与最终验收。M002全局目标未完成，E008/AT004自然route失败且收尾/独立审核完成，原证据保持。不原样重复route，下一版具体修改先由归因和四表集中冻结。
 
 E001快速验证和E002正式综合/OPT/debug/pre_place为前置。E003已完成place及独立physopt的DCP/完整POST，正式physopt时序仍FAIL；R003/AT001 route实际19065秒后自然exit1，245279重叠节点、248289拥塞失败信号，没有最终route DCP/完整报告。全部进程已自然退出，无时间/资源强停。原证据保留，[E003状态](../project/E003_m002_full_implementation/experiment_status/summary.md)为失败终态。完整数值、时序和板级目标未验收。
 
 **当前地址与兼容合同：** Attention 32 层 1280 MiB 常驻 DDR0；KV 96 MiB 仅保留地址，未新增外部 KV 生命周期；MLP 四 artifact 共 84 MiB 在 DDR1 按层加载并由 lease 保护。六个逻辑权重 CSR 保持 local offsets，layout ID 0x2B8=0x4D303032 与数值 format05/ABI 分开验证。
 
-**执行边界：** 后继按M003合同集中选择MLP/Attention局部化、必要算术结构及配套物理入口/测试，再新综合和完整实现；本轮仅定义任务。保持既有授权与技术依赖，不扩大为bitstream、GPU、PPL/ACC或板卡，不改变数值/接口/时钟及验收目标。
+**执行边界：** 后继按M003合同集中选择MLP/Attention局部化、必要算术结构及配套物理入口/测试，再新综合和完整实现；本轮按用户最新指令开始执行。保持既有授权与技术依赖，不扩大为bitstream、GPU、PPL/ACC或板卡，不改变数值/接口/时钟及验收目标。
 
 ---
 

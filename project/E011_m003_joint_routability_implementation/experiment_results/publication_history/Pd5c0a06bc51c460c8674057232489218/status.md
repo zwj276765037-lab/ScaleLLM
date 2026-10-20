@@ -1,0 +1,22 @@
+# E011当前状态
+
+execution_state: running；verdict: inconclusive。AT025两次native apply成功，结构snapshot流式写入继续；六独立非clock锚实际选中，clock独立core/core_clk→实际BUFGCE clkout1_buf/O及G00000012602成员绑定实证已保全。此组为fullgraph12602，AT023独立core12062是不同范围。
+
+尚无完整snapshot/最终6源NAME向量核验/结构资格/预算/native0/G4，不能把clock边界事件当全部80存储或全图通过。原48源冻结、资源保护/无墙钟静默强停和禁区保持；全图产出后严格checker及独审，再真实终态收尾→freeze recovered synth→strict INIT/OPT/restore→actual G4→完整物理。A007实际观察继续。
+
+
+---
+Published: 2026-10-19T07:02:56.971527+00:00
+Publication: P813d7f1deeab4702b7f048abc44a4fba
+Execution state: running
+Research verdict: inconclusive
+Applicability: AT025 actual48-source native postreport recovery running; entry-only independent boundary repair passed7 affected CPU functions; no full freshgraph/G4/physical pass.
+Evidence:
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT024_grouped_stream_postreport_recovery/evidence/AT024_owner_terminal_and_input_closure.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT024_grouped_stream_postreport_recovery/evidence/jobs/native_postreport/status.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT025_boundary_sources_postreport_recovery/evidence/actual_native_activation.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT025_boundary_sources_postreport_recovery/evidence/boundary_repair_application_receipt.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT025_boundary_sources_postreport_recovery/evidence/AT025_first_apply_and_open_run_stage.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT025_boundary_sources_postreport_recovery/evidence/AT025_second_apply_started_stage.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT025_boundary_sources_postreport_recovery/evidence/AT025_second_apply_and_six_source_selection_stage.json
+- project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT025_boundary_sources_postreport_recovery/evidence/AT025_independent_clock_source_binding_stage.json

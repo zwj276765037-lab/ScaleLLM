@@ -1,0 +1,12 @@
+{
+  "source": "# E011来源与当前方法\n\nM003 G2 M2+A3+C-P1保持，source checks6e2e/45manifest7ed；snapshot v2实际72/72回归和独立4ab47170已通过。AT018使用原AT003的23新综合生产者/22实际依赖，保留原outer native1，不伪写综合整体成功。\n\nAT018两次native overlay apply获1a364/8f3e独立接受，随后真实snapshot在ADDR_A[22]空startpoints自然失败。下一步只读本版fresh core物理地址pin/net/driver/constant和startpoint归因；不凭17位RTL或旧模型推断合法常量，不降低17位完整连接/跨slice/旧core禁用规则。\n",
+  "results": "# E011当前实测结果\n\nAT018于15:54:39.852665Z自然native1，stop_reason=null、survivors={}；maxRSS68076539904B（63.40GiB），无保护或显式停止。两个actual overlay apply成功保持；实际970B栈定位memory_startpoint_names→ADDR_A[22]空起点，未包含具体URAM cell。无selected完整图、结构资格、预算或G4。\n\n45冻结源、3RTL、G2和e51 fresh core不变；7 tracked PID/start及supervisor均退出，EDA锁取得释放，startup runtime_binding未覆盖。原始终态/栈/log已保全于AT018/evidence/closed_terminal_outputs及terminal事实80f1f2d8。会话由既有observer轮询到终态；额外排空返回Unknown process id，单独记录此限制。\n\n同版ADDR只读诊断准备中；无新综合/布局布线/时序成功。TOP01−2.896ns和22049差异OPEN。\n",
+  "status": "# E011当前状态\n\nexecution_state: running；verdict: inconclusive。AT018原生后报告尝试自然失败并完成来源/进程/锁闭合，当前无活动EDA；A006准备有界fresh-core ADDR pin/driver/constant诊断，A007独立核终态与地址合同。失败栈精确到ADDR_A[22]空startpoints，不能据此判定A3结构失败或合法常量。\n\n普通修复按已有授权继续，不盲重跑完整入口、不增用户批准、不削弱完整17位连接检查。后续仍须实际完整图预算/native0→freeze-recovered-synth→新严格INIT/explicitOPT/debug→actual包A007G4→新R003固定完整place/physopt/route。原资源/单EDA/正常无墙钟静默强停/禁区保持。\n",
+  "execution_state": "running",
+  "verdict": "inconclusive",
+  "applicability": "AT018 natural snapshot address-startpoint failure and closed identity/process/lock only; actual ADDR constant/structure cause and G4 remain unproven",
+  "evidence": [
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT018_snapshot_collection_postreport_recovery/evidence/AT018_terminal_and_address_startpoint_failure_facts.json",
+    "project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT018_snapshot_collection_postreport_recovery/evidence/AT018_terminal_registration.json"
+  ]
+}

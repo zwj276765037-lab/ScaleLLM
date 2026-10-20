@@ -1,0 +1,120 @@
+{
+  "schema": "A007_M003_readonly_uram_address_diagnostic_v3_review",
+  "reviewed_utc": "2026-10-18T16:12:56.077606+00:00",
+  "reviewer": "A007 /root/m002_physical_architecture_review",
+  "no_blocker": true,
+  "package_sha256": "a079be3577a25bc5a7c54bf660d40317b3eca70950296a30daca5bc7daf67998",
+  "package": {
+    "path": "project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/uram_address_diagnostic_v1/diagnostic_package.v3.json",
+    "bytes": 7943,
+    "sha256": "a079be3577a25bc5a7c54bf660d40317b3eca70950296a30daca5bc7daf67998"
+  },
+  "execution": "bounded_source_delta_review_and_CPU_validation_completed",
+  "verdict": "No blocker for this exact standalone fresh-core read-only URAM diagnostic package. No production assertion repair or G4 acceptance is granted.",
+  "applicability": {
+    "mission": "M003",
+    "small_mission": "SM017",
+    "planned_attempt": "E011/R002/AT019",
+    "source_identity": "Exact v3 package 7943B/a079be35 and its three current sources; launcher c01 unchanged from v1",
+    "native_input_scope": "A006 must verify exact e51 fresh-core checkpoint/original AT003 lineage at launch; A007 did not read/hash DCP. Standalone core only, not merged board or applied/restored overlay.",
+    "prior_terminal_review": {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT018_terminal_and_address_contract_review.json",
+      "bytes": 5841,
+      "sha256": "d7f60f2ea89a4e49d0f3f5e4c839f579a093e0177e4aef5ba300037f19847275"
+    },
+    "prior_v1_increment": {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT019_uram_address_diagnostic_v1_increment_review.json",
+      "bytes": 3681,
+      "sha256": "8b3d018245e73548d1a384dc23c0328daf17d0b849213fb5c34b3f60624ad189"
+    },
+    "superseded_packages": [
+      "v1 db04eeb5 not launched",
+      "v2 f092f426 not launched"
+    ]
+  },
+  "review": {
+    "source_identities": [
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/uram_address_diagnostic_v1/read_uram_address.tcl",
+        "bytes": 11346,
+        "sha256": "f2ef10b221635964b4ac947f4c7c5b3ce597fc7ea5ca513eafcb323e7b7ab389"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/uram_address_diagnostic_v1/launch.py",
+        "bytes": 3687,
+        "sha256": "c01fb77686b488ec0019c8107a0191e74c80e43c0d0f69e4428c40d8b0b13ae7"
+      },
+      {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E011_m003_joint_routability_implementation/experiment_source/R002_native_entry_fix/uram_address_diagnostic_v1/test_diagnostic.py",
+        "bytes": 9833,
+        "sha256": "2853e2248a3b9c5a99e13b6399920d1bb4bbe8d4672d14e6dddc0e3c8e23f074"
+      }
+    ],
+    "15_small_identity_records": "All current source/frozen-copy/receipt/log/previous terminal/manifest/G2/original lineage/inherited launcher records match declared bytes and SHA.",
+    "production_sources": "45 current source identities individually verified before tests, no mismatch; manifest7ed/G2 unchanged.",
+    "post_test_binding": "Package and all three live/frozen-fixture source hashes checked unchanged after tests.",
+    "launcher_delta_inherited": "Relative to previously reviewed original-address diagnostic: schema string, output-binding filename, descriptive scope only. It pins exact package/review/source/manifest/G2/original lineage and hashes e51 core before native consumption.",
+    "allowed_native_commands": "Read-only open_checkpoint and object/property/net/driver/fanin queries; general.maxThreads8; close_design. No production helpers, constraint apply, synthesis, optimization, implementation, or checkpoint write.",
+    "resource_contract": "Inherited sole A006 run_m003_owned supervisor; CPU0-7/nice5/max8/RSS192GiB/MemAvailable48GiB30s/disk30GiB; no wall/quietstop, no descendants/GPU/board/bitstream.",
+    "bounded_collections": "Exactly80 selected URAM names,40 each slice;92 unique indexed direct/cascade address pins and2 unique mode pins percell; max131072 for an individual returned collection and max1024 selected auxiliary input pins percell. Post-return collection bounds do not impose a runtime timeout.",
+    "raw_semantics": "Empty pin nets/drivers/startpoints remain data. Singleton actual GND/VCC driver reference yields only a derived raw0/1 field; no dynamic/constant/disabled legality inferred. Multi-driver or unresolved source is not constant.",
+    "auxiliary_delta": "Additional input selection follows snapshot *EN*/*WE*/*CLK*/*RDB_WR*/CAS* after excluding *ADDR* and RDB_WR_A/B; streams distinct JSONL, no added all_fanin. Empty nets bypass downstream get_pins. Driver-owner/API errors remain failures.",
+    "actual_config_delta": "Supported property enumeration once percell now includes RDB_WR, EN, USE_EXT_CE, INVERTED and REG_ as well as CAS/SELF/ADDR/MASK/OREG/IREG/READ/WRITE/BWE/CLOCK. Nondefault inversion/control values are preserved by CPU tests; no vendor defaults substituted.",
+    "failure_and_progress": "Address pin_begin and cell progress, fanin/row timing, row-flushed partial outputs. API/cardinality/bound errors preserve partial and native stack, propagate failure, and do not emit diagnostic_complete. No complete native pin mapping before actual run."
+  },
+  "CPU": {
+    "execution": "completed",
+    "exit_code": 0,
+    "submitted_tests": 9,
+    "independent_tests": 7,
+    "total_tests": 16,
+    "result": "PASS",
+    "unittest_elapsed_seconds": 0.363,
+    "driver": {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT019_uram_diagnostic_final_cpu.py",
+      "bytes": 6536,
+      "sha256": "66fd4e914a92f68cba4a9a139c831f8a8ce6a701cd23a5110bb170c1717be8e4"
+    },
+    "log": {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT019_uram_diagnostic_final_cpu.log",
+      "bytes": 2220,
+      "sha256": "96628d989433f0fb57f9f4d5fb719c33550fb9e81402d30b6271bc585394166a"
+    },
+    "pretest_binding": {
+      "path": "agent/A007/M003_SM015_SM017_review_20261018/AT019_v3_pretest_binding.json",
+      "bytes": 16415,
+      "sha256": "7eaacefad98ef66a8e6c5da675ae8bc3369f3c79d54d478f9a3de2ca62706e98"
+    },
+    "fixture_sources": [
+      {
+        "path": "agent/A007/M003_SM015_SM017_review_20261018/AT019_final_diagnostic_fixture/read_uram_address.tcl",
+        "bytes": 11346,
+        "sha256": "f2ef10b221635964b4ac947f4c7c5b3ce597fc7ea5ca513eafcb323e7b7ab389"
+      },
+      {
+        "path": "agent/A007/M003_SM015_SM017_review_20261018/AT019_final_diagnostic_fixture/launch.py",
+        "bytes": 3687,
+        "sha256": "c01fb77686b488ec0019c8107a0191e74c80e43c0d0f69e4428c40d8b0b13ae7"
+      },
+      {
+        "path": "agent/A007/M003_SM015_SM017_review_20261018/AT019_final_diagnostic_fixture/test_diagnostic.py",
+        "bytes": 9833,
+        "sha256": "2853e2248a3b9c5a99e13b6399920d1bb4bbe8d4672d14e6dddc0e3c8e23f074"
+      }
+    ],
+    "independent_cases": [
+      "singleton actual VCC ->1",
+      "multiple drivers -> no constant",
+      "all four 23-bit families plus modes",
+      "physical address bit23 rejects",
+      "duplicate mode rejects",
+      "exact auxiliary predicate including non-address cascade and no extra fanin",
+      "non-singleton auxiliary driver owner rejects with partial/no complete"
+    ]
+  },
+  "native_counts_measured": null,
+  "G4": false,
+  "production_ADDR_assertion_weakening_accepted": false,
+  "continuation": "A006 may launch this exact reviewed v3 package under existing authorization and send actual startup/native results directly to same A007. Actual fullcell/pin/connectivity/config proof remains necessary before any repair decision.",
+  "delivery": "Final exact review identity will be actually messaged to A006 and Root."
+}

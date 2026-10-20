@@ -1,0 +1,448 @@
+{
+  "execution_state": "completed",
+  "scope": "Same decoder index31 pure branches BEFORE residual additions;3 predeclared diagnostic docs,299prefix positions; no GPU or new model run",
+  "comparison_definition": "AB=current arithmetic on Hcurrent versus OUTPUT_ONLY arithmetic on Hreference, both original freely propagated saved inputs",
+  "pooled_attention_branch": {
+    "count": 1224704,
+    "error_energy": 8.280014772899449,
+    "reference_signal_energy": 64511.83735661791,
+    "absolute_RMSE": 0.0026001594893615156,
+    "reference_RMS": 0.22951133410375132,
+    "pooled_relative_L2_percent": 1.1329111477283755
+  },
+  "pooled_MLP_branch": {
+    "count": 1224704,
+    "error_energy": 173.43760759267025,
+    "reference_signal_energy": 1963916.9785709118,
+    "absolute_RMSE": 0.011900249557004852,
+    "reference_RMS": 1.266327371586092,
+    "pooled_relative_L2_percent": 0.9397451104685219
+  },
+  "ratios_MLP_over_attention": {
+    "absolute_RMSE": 4.576738313820522,
+    "reference_RMS": 5.517493837640475,
+    "relative_L2": 0.8294958632482565,
+    "error_energy": 20.946533593192715
+  },
+  "per_document": [
+    {
+      "doc_index": 0,
+      "doc_id": "c4_official_validation_first10000:6896",
+      "tokens": 128,
+      "attention_branch_AB": {
+        "count": 524288,
+        "error_energy": 3.1632395253982395,
+        "signal_energy": 25566.86073046038,
+        "current_signal_energy": 25555.31403840636,
+        "absolute_rmse": 0.00245629814640381,
+        "reference_rms": 0.22082779910951247,
+        "relative_l2_percent": 1.1123138283806777,
+        "max_absolute_error": 0.083709716796875,
+        "max_reference_magnitude": 10.18389892578125,
+        "changed_count": 522711
+      },
+      "MLP_branch_AB": {
+        "count": 524288,
+        "error_energy": 58.39631476462819,
+        "signal_energy": 748633.8272382393,
+        "current_signal_energy": 747662.109359456,
+        "absolute_rmse": 0.010553773312308825,
+        "reference_rms": 1.1949500855098698,
+        "relative_l2_percent": 0.8831978373226917,
+        "max_absolute_error": 0.7907867431640625,
+        "max_reference_magnitude": 312.92010498046875,
+        "changed_count": 523891
+      },
+      "MLP_absolute_RMSE_higher": true,
+      "MLP_relative_L2_lower": true,
+      "MLP_over_Attention_RMSE": 4.296617382446132,
+      "MLP_over_Attention_reference_RMS": 5.411230335711822
+    },
+    {
+      "doc_index": 1,
+      "doc_id": "imdb_test:10960",
+      "tokens": 128,
+      "attention_branch_AB": {
+        "count": 524288,
+        "error_energy": 3.2021180882584304,
+        "signal_energy": 31018.298269145656,
+        "current_signal_energy": 31012.765101411613,
+        "absolute_rmse": 0.002471346911654431,
+        "reference_rms": 0.24323385618746685,
+        "relative_l2_percent": 1.016037384922968,
+        "max_absolute_error": 0.057769775390625,
+        "max_reference_magnitude": 8.13592529296875,
+        "changed_count": 522720
+      },
+      "MLP_branch_AB": {
+        "count": 524288,
+        "error_energy": 71.54482162673958,
+        "signal_energy": 793750.3973395466,
+        "current_signal_energy": 793959.4329724496,
+        "absolute_rmse": 0.011681648758397759,
+        "reference_rms": 1.230430304877104,
+        "relative_l2_percent": 0.9493954035506732,
+        "max_absolute_error": 0.6739349365234375,
+        "max_reference_magnitude": 312.92010498046875,
+        "changed_count": 523940
+      },
+      "MLP_absolute_RMSE_higher": true,
+      "MLP_relative_L2_lower": true,
+      "MLP_over_Attention_RMSE": 4.726834870211539,
+      "MLP_over_Attention_reference_RMS": 5.058630916613756
+    },
+    {
+      "doc_index": 2,
+      "doc_id": "ag_news_test:4667",
+      "tokens": 43,
+      "attention_branch_AB": {
+        "count": 176128,
+        "error_energy": 1.914657159242779,
+        "signal_energy": 7926.678357011871,
+        "current_signal_energy": 7917.681974642677,
+        "absolute_rmse": 0.003297093841969038,
+        "reference_rms": 0.21214432385869214,
+        "relative_l2_percent": 1.554174904139886,
+        "max_absolute_error": 0.0581512451171875,
+        "max_reference_magnitude": 6.9909210205078125,
+        "changed_count": 175647
+      },
+      "MLP_branch_AB": {
+        "count": 176128,
+        "error_energy": 43.496471201302484,
+        "signal_energy": 421532.75399312587,
+        "current_signal_energy": 421801.29399287794,
+        "absolute_rmse": 0.01571494301788461,
+        "reference_rms": 1.5470397088893038,
+        "relative_l2_percent": 1.015807346610847,
+        "max_absolute_error": 0.685516357421875,
+        "max_reference_magnitude": 312.92010498046875,
+        "changed_count": 176048
+      },
+      "MLP_absolute_RMSE_higher": true,
+      "MLP_relative_L2_lower": true,
+      "MLP_over_Attention_RMSE": 4.766301406968624,
+      "MLP_over_Attention_reference_RMS": 7.2923926539735096
+    }
+  ],
+  "MLP_chain_separate_dimensions_and_AB_AC_CB": {
+    "attention_output": {
+      "AB_cross": {
+        "count": 1224704,
+        "error_energy": 8.280014772899449,
+        "reference_signal_energy": 64511.83735661791,
+        "absolute_RMSE": 0.0026001594893615156,
+        "reference_RMS": 0.22951133410375132,
+        "pooled_relative_L2_percent": 1.1329111477283755
+      },
+      "AC_same_input_local": {
+        "count": 1224704,
+        "error_energy": 0.06485872622579336,
+        "reference_signal_energy": 64486.55767249619,
+        "absolute_RMSE": 0.00023012756355971365,
+        "reference_RMS": 0.22946636140750104,
+        "pooled_relative_L2_percent": 0.10028814774773824
+      },
+      "CB_inherited": {
+        "count": 1224704,
+        "error_energy": 8.282453159336,
+        "reference_signal_energy": 64511.83735661791,
+        "absolute_RMSE": 0.002600542322429601,
+        "reference_RMS": 0.22951133410375132,
+        "pooled_relative_L2_percent": 1.1330779512849756
+      }
+    },
+    "post_attention_norm": {
+      "AB_cross": {
+        "count": 1224704,
+        "error_energy": 58.53773848556322,
+        "reference_signal_energy": 195971.5681698346,
+        "absolute_RMSE": 0.006913570596622859,
+        "reference_RMS": 0.4000193186606335,
+        "pooled_relative_L2_percent": 1.7283091776095345
+      },
+      "AC_same_input_local": {
+        "count": 1224704,
+        "error_energy": 0.020113281308831207,
+        "reference_signal_energy": 196014.45828606284,
+        "absolute_RMSE": 0.00012815214971555734,
+        "reference_RMS": 0.4000630901541217,
+        "pooled_relative_L2_percent": 0.03203298501398556
+      },
+      "CB_inherited": {
+        "count": 1224704,
+        "error_energy": 58.536880189066125,
+        "reference_signal_energy": 195971.5681698346,
+        "absolute_RMSE": 0.006913519912095832,
+        "reference_RMS": 0.4000193186606335,
+        "pooled_relative_L2_percent": 1.7282965070897216
+      }
+    },
+    "gate_proj": {
+      "AB_cross": {
+        "count": 4286464,
+        "error_energy": 336.8895600629039,
+        "reference_signal_energy": 7246156.875147093,
+        "absolute_RMSE": 0.008865315298204649,
+        "reference_RMS": 1.3001823784548785,
+        "pooled_relative_L2_percent": 0.6818516728968503
+      },
+      "AC_same_input_local": {
+        "count": 4286464,
+        "error_energy": 4.328697745222598,
+        "reference_signal_energy": 7247648.014640138,
+        "absolute_RMSE": 0.001004914333147769,
+        "reference_RMS": 1.3003161496107811,
+        "pooled_relative_L2_percent": 0.07728230811011355
+      },
+      "CB_inherited": {
+        "count": 4286464,
+        "error_energy": 336.77497213939205,
+        "reference_signal_energy": 7246156.875147093,
+        "absolute_RMSE": 0.008863807468059927,
+        "reference_RMS": 1.3001823784548785,
+        "pooled_relative_L2_percent": 0.6817357022322954
+      }
+    },
+    "up_proj": {
+      "AB_cross": {
+        "count": 4286464,
+        "error_energy": 226.32405390427448,
+        "reference_signal_energy": 3650872.8222852685,
+        "absolute_RMSE": 0.007266340859182061,
+        "reference_RMS": 0.9228874962575,
+        "pooled_relative_L2_percent": 0.7873485000770495
+      },
+      "AC_same_input_local": {
+        "count": 4286464,
+        "error_energy": 2.939851484959945,
+        "reference_signal_energy": 3651145.5771019645,
+        "absolute_RMSE": 0.0008281578166473197,
+        "reference_RMS": 0.922921969836942,
+        "pooled_relative_L2_percent": 0.08973215978308927
+      },
+      "CB_inherited": {
+        "count": 4286464,
+        "error_energy": 225.9884707792662,
+        "reference_signal_energy": 3650872.8222852685,
+        "absolute_RMSE": 0.007260951759102366,
+        "reference_RMS": 0.9228874962575,
+        "pooled_relative_L2_percent": 0.7867645610702313
+      }
+    },
+    "silu": {
+      "AB_cross": {
+        "count": 4286464,
+        "error_energy": 106.63165287463926,
+        "reference_signal_energy": 5169025.057441006,
+        "absolute_RMSE": 0.004987621406866182,
+        "reference_RMS": 1.098132458095339,
+        "pooled_relative_L2_percent": 0.45419123805128075
+      },
+      "AC_same_input_local": {
+        "count": 4286464,
+        "error_energy": 3.5296732110437006,
+        "reference_signal_energy": 5170921.187704794,
+        "absolute_RMSE": 0.0009074394567640725,
+        "reference_RMS": 1.0983338511286576,
+        "pooled_relative_L2_percent": 0.08261963844887232
+      },
+      "CB_inherited": {
+        "count": 4286464,
+        "error_energy": 106.59498325223103,
+        "reference_signal_energy": 5169025.057441006,
+        "absolute_RMSE": 0.004986763735080289,
+        "reference_RMS": 1.098132458095339,
+        "pooled_relative_L2_percent": 0.4541131352887615
+      }
+    },
+    "gated_product": {
+      "AB_cross": {
+        "count": 4286464,
+        "error_energy": 244.3998107961379,
+        "reference_signal_energy": 1373738.2422967043,
+        "absolute_RMSE": 0.007550936922444629,
+        "reference_RMS": 0.5661120561051288,
+        "pooled_relative_L2_percent": 1.3338237264182897
+      },
+      "AC_same_input_local": {
+        "count": 4286464,
+        "error_energy": 4.402187592582777,
+        "reference_signal_energy": 1374815.2551099588,
+        "absolute_RMSE": 0.0010134088261155659,
+        "reference_RMS": 0.5663339289710225,
+        "pooled_relative_L2_percent": 0.17894192353208258
+      },
+      "CB_inherited": {
+        "count": 4286464,
+        "error_energy": 244.06308791949414,
+        "reference_signal_energy": 1373738.2422967043,
+        "absolute_RMSE": 0.007545733461857523,
+        "reference_RMS": 0.5661120561051288,
+        "pooled_relative_L2_percent": 1.3329045690657852
+      }
+    },
+    "prepare3_dequant": {
+      "AB_cross": {
+        "count": 4286464,
+        "error_energy": 278.99982338193513,
+        "reference_signal_energy": 1374096.0355504046,
+        "absolute_RMSE": 0.008067748919503287,
+        "reference_RMS": 0.5661857738925762,
+        "pooled_relative_L2_percent": 1.4249296417387556
+      },
+      "AC_same_input_local": {
+        "count": 4286464,
+        "error_energy": 21.12660658203822,
+        "reference_signal_energy": 1374751.8829956113,
+        "absolute_RMSE": 0.00222006291476212,
+        "reference_RMS": 0.566320876238313,
+        "pooled_relative_L2_percent": 0.3920150232688751
+      },
+      "CB_inherited": {
+        "count": 4286464,
+        "error_energy": 278.8493848590879,
+        "reference_signal_energy": 1374096.0355504046,
+        "absolute_RMSE": 0.008065573534823234,
+        "reference_RMS": 0.5661857738925762,
+        "pooled_relative_L2_percent": 1.4245454242644986
+      }
+    },
+    "down_proj": {
+      "AB_cross": {
+        "count": 1224704,
+        "error_energy": 173.4376235762611,
+        "reference_signal_energy": 1963916.9785709118,
+        "absolute_RMSE": 0.011900250105353963,
+        "reference_RMS": 1.266327371586092,
+        "pooled_relative_L2_percent": 0.9397451537708403
+      },
+      "AC_same_input_local": {
+        "count": 1224704,
+        "error_energy": 12.604478815337643,
+        "reference_signal_energy": 1963444.2354545803,
+        "absolute_RMSE": 0.0032080924722156824,
+        "reference_RMS": 1.266174950790157,
+        "pooled_relative_L2_percent": 0.253368815282096
+      },
+      "CB_inherited": {
+        "count": 1224704,
+        "error_energy": 173.14923103316687,
+        "reference_signal_energy": 1963916.9785709118,
+        "absolute_RMSE": 0.011890352105228432,
+        "reference_RMS": 1.266327371586092,
+        "pooled_relative_L2_percent": 0.9389635233372242
+      }
+    },
+    "mlp_output": {
+      "AB_cross": {
+        "count": 1224704,
+        "error_energy": 173.43760759267025,
+        "reference_signal_energy": 1963916.9785709118,
+        "absolute_RMSE": 0.011900249557004852,
+        "reference_RMS": 1.266327371586092,
+        "pooled_relative_L2_percent": 0.9397451104685219
+      },
+      "AC_same_input_local": {
+        "count": 1224704,
+        "error_energy": 12.604478685418144,
+        "reference_signal_energy": 1963444.2068229986,
+        "absolute_RMSE": 0.0032080924556821245,
+        "reference_RMS": 1.2661749415582695,
+        "pooled_relative_L2_percent": 0.25336881582366133
+      },
+      "CB_inherited": {
+        "count": 1224704,
+        "error_energy": 173.14924814272672,
+        "reference_signal_energy": 1963916.9785709118,
+        "absolute_RMSE": 0.01189035269269476,
+        "reference_RMS": 1.266327371586092,
+        "pooled_relative_L2_percent": 0.9389635697285714
+      }
+    }
+  },
+  "R006_full1024_coverage": {
+    "attention_pure_freerun_branch_available": false,
+    "MLP_pure_freerun_branch_available": true,
+    "MLP_branch_existing_summary": {
+      "documents": 1024,
+      "scalar_outputs": 424755200,
+      "relative_l2_percent": {
+        "0.5": 0.9172816567624404,
+        "0.95": 1.5173899850430652,
+        "0.99": 2.2262303288314955,
+        "1.0": 3.6350277677474674
+      },
+      "signal_rms": {
+        "0.5": 1.2407147736099606,
+        "0.95": 1.625587364332323,
+        "0.99": 1.8357888538452445,
+        "1.0": 2.466304584520312
+      },
+      "absolute_rmse": {
+        "0.5": 0.011565889947667576,
+        "0.95": 0.019269234400630608,
+        "0.99": 0.0276371764064063,
+        "1.0": 0.06244384792504634
+      },
+      "absolute_max": {
+        "0.5": 0.5250396728515625,
+        "0.95": 2.0747611999511704,
+        "0.99": 4.7788703918457,
+        "1.0": 15.988372802734375
+      },
+      "error_energy": 71889.81507497886,
+      "reference_signal_energy": 664677519.7231791,
+      "pooled_relative_l2_percent": 1.0399876641423256
+    },
+    "proof_of_missing_scope": "Earlier full R006 tensor_metrics scan contains only decoder_hidden/block outputs. mlp_metrics paired residual input is after Attention+first residual; same-input local o_proj is a different comparison. Exact pure Attention branch energy cannot be reconstructed from those sums without cross terms/raw branch outputs.",
+    "not_substitutes": [
+      "attention_residual second-residual base",
+      "same-current-input o_proj local common-exit difference",
+      "sampled o_proj witnesses",
+      "3doc R011 pure-branch traces"
+    ]
+  },
+  "interpretation": [
+    "MLP has larger absolute branch discrepancy in each of3docs, but lower relative L2 because its reference branch amplitude is larger. This is not a contradiction.",
+    "Both final branch outputs have4096channels and identical token counts, so their direct error-energy comparison is not inflated by dimension. Gate/Up/product internal14336channels require separate RMSE/referenceRMS; raw energy must not be ranked across those dimensions.",
+    "AB includes different branch inputs and downstream amplification. It is not local arithmetic rounding loss.",
+    "A/C shares decoder entrance. Attention entrance/input_norm is identical, while MLP entrance/post_attention_norm already differs. Therefore AC MLP is not same-MLP-entrance local error and cannot directly rank local Attention versus MLP rounding quality.",
+    "For true same-MLP-entrance reference use R006 mlp_extension whole_mlp_local, not v5 checkpoint/BF16 record_mlp trace.",
+    "CB preserves almost all AB branch discrepancy; together with A/C dynamics this supports inherited-input sensitivity, not a proven unique whole32layer source.",
+    "MLP chain amplifies physical perturbations through shared dynamic A8 re-encoding and weighted transforms. A Down AB discrepancy includes its changed input; it must not be assigned to Down local rounding alone.",
+    "No full1024 pure Attention comparison exists in current saved summaries; do not present the3doc branch table as1024 statistics."
+  ],
+  "sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/attempts/AT002_singleblock_fourway_v2/manifest.json",
+      "sha256": "8e91c06805b372acf37097e3702a08d8330c95e323eee16b18f680501697e93d",
+      "bytes": 8654
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/independent_review/actual_singleblock_review.json",
+      "sha256": "4b9f121cf095f9031a1a405177befc14162423f5f649ae68b86f13836cb61d54",
+      "bytes": 22426
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/independent_review/existing_stage_review.json",
+      "sha256": "4b0ac480446c2d4b6aa8e8baefb4bcee3ea5d5fe219bd3d90f8beb4bb5749e66",
+      "bytes": 619821
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/attempts/AT002_singleblock_fourway_v2/documents/doc000/primary_summary.json",
+      "sha256": "cad39cc1438b4b8ba25923262462958a48e5a67fd0514a4b66bd194a5d970ab0",
+      "bytes": 121581
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/attempts/AT002_singleblock_fourway_v2/documents/doc001/primary_summary.json",
+      "sha256": "e7021948acfe020016abc4f79d5cc7f62b036fb3120a94747edc589857bcf7a4",
+      "bytes": 120625
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R011/attempts/AT002_singleblock_fourway_v2/documents/doc002/primary_summary.json",
+      "sha256": "3444fd6d07af54de1a4e676a85371a6e8bc4a7f37d311db8bbc223c6d491d06c",
+      "bytes": 120578
+    }
+  ]
+}

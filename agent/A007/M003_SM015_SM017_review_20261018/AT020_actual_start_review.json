@@ -1,0 +1,76 @@
+{
+  "schema": "A007_AT020_actual_start_review_v1",
+  "reviewed_utc": "2026-10-18T16:40:47.600148+00:00",
+  "execution": "completed_bounded_actual_start_audit",
+  "verdict": "accepted_actual_readonly_start",
+  "started_utc": "2026-10-18T16:38:25.830432+00:00",
+  "activation_sha256": "ee738b22f29be587f75a058724e8f4b79ee653289615e4ed258d5e894d8b4899",
+  "package_sha256": "fa5e333d593048829eee1578afdffeed500c8f54832200c08ea5aecc8ae3baed",
+  "entry_review_sha256": "c1d0f49a39e5914641cd945333af0316a99a35630e60a150dc2bd8321260e5ef",
+  "core_consumption_binding_sha256": "6aa1d4f3587ee74df333827bb47c0d1268991cc4f789a1d84bea82d1128444f5",
+  "verified": {
+    "small_identity_records": 42,
+    "runtime_archive_pairs": 12,
+    "package_current_and_frozen_sources": 4,
+    "library_scope": "f2ef library checked in package4-source closure and frozen_sources; it is not claimed as one of12runtime command-path archives.",
+    "core": "A007 stat only177165461B; e51 content hash checked by reviewed launcher. Original completion hash verified/error marker absent.",
+    "production": "Manifest7ed/startup copy, archived current3RTL/G2 match; full45-source terminal review reused, launcher rechecks.",
+    "runtime_processes": [
+      {
+        "pid": 86002,
+        "start_ticks": 3111217,
+        "ppid": 86001,
+        "pgrp": 86002,
+        "nice": 5,
+        "CPU": "0-7"
+      },
+      {
+        "pid": 86005,
+        "start_ticks": 3111300,
+        "ppid": 86002,
+        "pgrp": 86002,
+        "nice": 5,
+        "CPU": "0-7"
+      },
+      {
+        "pid": 86024,
+        "start_ticks": 3111303,
+        "ppid": 86005,
+        "pgrp": 86002,
+        "nice": 5,
+        "CPU": "0-7"
+      },
+      {
+        "pid": 86095,
+        "start_ticks": 3111314,
+        "ppid": 86024,
+        "pgrp": 86002,
+        "nice": 5,
+        "CPU": "0-7"
+      }
+    ],
+    "supervisor": {
+      "pid": 86001,
+      "start_ticks": 3111203,
+      "script_and_attempt_argv_match": true
+    },
+    "native_exact_argv_report_env_match": true,
+    "state_library_only_env_absent": true,
+    "EDA_lock_read_only": [
+      "10: FLOCK  ADVISORY  WRITE 86001 103:02:169247080 0 EOF"
+    ]
+  },
+  "resources": {
+    "initial_RSS_bytes_receipt": 4015804416,
+    "RSS_limit_bytes": 206158430208,
+    "MemAvailable_floor_bytes": 51539607552,
+    "grace_seconds": 30,
+    "disk_floor_bytes": 32212254720,
+    "wall_timeout": null,
+    "quiet_timeout": null
+  },
+  "applicability": "AT020 actual standalonee51 core startup only. No helperD/clock-source semantic result, productionrepair, overlayapply/new synthesis/budget/G4 accepted.",
+  "G4": false,
+  "review_scope": "A007 bounded source/metadata and/proc reads; noEDA/DCPcontent/hash/processorlockcontrol.",
+  "next": "Owner continues normal readonly native; actual helperD/CLK result/error/terminal is directly followed up."
+}

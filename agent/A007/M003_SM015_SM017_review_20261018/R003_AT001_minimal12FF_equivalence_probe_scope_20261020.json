@@ -1,0 +1,62 @@
+{
+  "schema": "A007_minimal_place_FF_replica_equivalence_scope_v1",
+  "new_EDA_by_A007": false,
+  "query_checkpoint": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R003_AT001_fixed_complete_physical/place.dcp",
+  "checkpoint_bytes": 580960506,
+  "checkpoint_identity": "Owner binds current saved actual place DCP SHA; A007 has not read or hashed DCP.",
+  "max_seed_FFs": 12,
+  "original_cells": [
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]"
+  ],
+  "actual_replica_cells": [
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_1",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_3",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[10]_replica_4",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_1",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_2",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[11]_replica_4",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_1",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_2",
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/artifact_index_r_reg[12]_replica_4"
+  ],
+  "required_cell_properties": [
+    "NAME",
+    "REF_NAME",
+    "ORIG_CELL_NAME (corroboration only)",
+    "INIT effective value with explicit export or bound primitive default model",
+    "DONT_TOUCH",
+    "LOC",
+    "BEL",
+    "PBLOCKS",
+    "IS_C_INVERTED",
+    "IS_D_INVERTED",
+    "IS_CLR_INVERTED"
+  ],
+  "required_pin_evidence": {
+    "pins": [
+      "D",
+      "CE",
+      "CLR",
+      "C",
+      "Q"
+    ],
+    "fields": [
+      "native pin identity/REF_PIN_NAME",
+      "actual IS_INVERTED; preserve unsupported/empty distinctly",
+      "direct net object and actual canonical hierarchical segment identity",
+      "unique leaf source pin/owner/ref or actual constant primitive",
+      "C clock names, 10ns core period, waveform and effective active edge"
+    ]
+  },
+  "output_binding": "Keep actual replica Q, expected original-bit Q and exact 24 destination rows as separate fields. Bind existing memory-pin streams and actual place snapshot identity. Do not rewrite raw driver names or pretend original Q directly drives those roots.",
+  "sufficient_proof": "For each replica versus its designated same-bit original FDCE in the same frozen place checkpoint: equal effective INIT, identical effective D, CE, asynchronous CLR and C active edge. Shared actual net/leaf-source identities plus equal pin/model inversion suffice; matching aliases or ORIG_CELL_NAME alone do not. Equal initial state and equal state transition imply Q equivalence at each sampling edge, with no new latency.",
+  "if_direct_inputs_differ": "Only expand the differing D/CE/CLR/C combinational cone for these 12 FFs: actual LUT INIT/input map, invert/buffer truth function, constants and exact source boundary/state bit identities. Reuse existing actual RTL/proof anchors. Reject unknown/multiple sources, new sequential boundaries, different bit/state/clock/reset/enable/INIT. No broad fanout, full graph export, alternate checkpoint or implementation run is required merely to conduct this first probe.",
+  "protection_scope": "34 protected A3 address FFs + four protected local CE/INC LUTs remain a separate existing complete qualification; do not treat unselected artifact_index as an A3 helper or grant it a blanket name-based exemption. Read actual DONT_TOUCH properties for all12; inherited hierarchy constraints only if needed to explain a conflict.",
+  "validation_after_proof": [
+    "Full original real place-data qualifier/entry replay with the explicit new same-state proof dependency; raw originals and failed AT001 receipt preserved.",
+    "Negative mutations: wrong bit/original association; changed D or CE; different reset source/polarity; clock/edge mismatch; INIT mismatch; new state/retiming; missing or multi-driver proof; changed checkpoint/exports/models; attempts to apply proof to an A3 helper or unknown replica."
+  ],
+  "resource_scope": "The observed nine FFs are distinct used write-source cells outside the frozen two17-bit read helpers; account them in physical tool resource observations. Do not silently enlarge the architecture-state budget or claim nine is the full replication count. Existing global placed register total increased342 relative to debug; this is a cross-stage net change, not same-stage synthesis budget evidence."
+}

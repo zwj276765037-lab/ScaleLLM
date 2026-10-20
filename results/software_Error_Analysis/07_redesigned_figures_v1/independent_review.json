@@ -1,0 +1,163 @@
+{
+  "schema": "software_error_analysis_redesigned_figures_independent_review_v1",
+  "execution_state": "completed",
+  "review": "data_and_figure_scope_verified",
+  "reviewer": "A015 independent AI review",
+  "created_utc": "2026-10-20T05:58:48.444172+00:00",
+  "directory": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/07_redesigned_figures_v1",
+  "execution_scope": "CPU-only review of07 artifacts and nine declared input files; no GPU/model execution, no global historical package re-audit, no modifications outside this review JSON",
+  "source_manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/07_redesigned_figures_v1/source_manifest.json",
+    "bytes": 4756,
+    "sha256": "fe2fe8af3e065867490f6273c66bae6090d08033ed354e5397ffaefba883dcdb"
+  },
+  "output_manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/07_redesigned_figures_v1/output_manifest.json",
+    "bytes": 5419,
+    "sha256": "0ebfb3d936571daafd9f3d85717dc97139306a21461c5ec0c4dc67ef1e947afe"
+  },
+  "renderer": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/07_redesigned_figures_v1/plot_and_tables.py",
+    "bytes": 35813,
+    "sha256": "bfe22e028b6a7ece8a6d443fff16a05246a0d554357f68d437637728b81b7d11"
+  },
+  "plot_data": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/07_redesigned_figures_v1/plot_data.json",
+    "bytes": 2765736,
+    "sha256": "4115b5a53a2832eeb7cf8e00aca2590db1a151416b078429db61ffe40d6f2da8"
+  },
+  "Root_viewer": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/07_redesigned_figures_v1/index.html",
+    "bytes": 7910,
+    "sha256": "dd9b4e374955cd601c7eebcd2d424228cfc025ea6bad2e64d0320135880bc064"
+  },
+  "checks": [
+    {
+      "check": "declared_source_and_output_SHA",
+      "source_files": 9,
+      "font_and_renderer": 2,
+      "outputs": 16,
+      "status": "passed"
+    },
+    {
+      "check": "panel_data_exactly_matches_declared_inputs",
+      "local_columns": 11,
+      "local_quantiles_P50_P95": 22,
+      "block_P50_P95_points": 64,
+      "separate_terminal_rows": 2,
+      "pooled_residual_stages": 3,
+      "coverage_thresholds": 12,
+      "margin_buckets": 8,
+      "Top1_matches_total": [
+        102647,
+        103700
+      ],
+      "pure_branch_scope": {
+        "documents": 3,
+        "positions": 299
+      },
+      "status": "passed"
+    },
+    {
+      "check": "strict_full_TV_ECDF",
+      "positions": 103700,
+      "unique_documents": 1024,
+      "maximum_TV_percent": 29.720073606708663,
+      "full_sorted_array_exact": true,
+      "origin": [
+        0,
+        0
+      ],
+      "drawstyle": "post step",
+      "tail_omitted": 0,
+      "status": "passed"
+    },
+    {
+      "check": "all_nine_CSV_tables",
+      "row_counts": {
+        "local_computation_1024.csv": 11,
+        "layer_outputs_1024.csv": 32,
+        "cumulative_outputs_1024.csv": 2,
+        "layer32_residual_1024.csv": 3,
+        "vocabulary_coverage_1024.csv": 12,
+        "TV_1024.csv": 12,
+        "margin_stratification_1024.csv": 8,
+        "pure_branches_3docs.csv": 2,
+        "top1_1024.csv": 3
+      },
+      "null_macro_count_preserved": true,
+      "status": "passed"
+    },
+    {
+      "check": "PNG_identities_preview_and_visual_review",
+      "images": {
+        "main_overview.png": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/07_redesigned_figures_v1/main_overview.png",
+          "bytes": 1380708,
+          "sha256": "c9a3c0261687b19bfdd4a6cf91dd49e383863742e3808d4e7de8c46dbaee6c20"
+        },
+        "main_overview_preview.png": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/07_redesigned_figures_v1/main_overview_preview.png",
+          "bytes": 985194,
+          "sha256": "169088143dcb00ada79b792e14063a0a0fc794f510d4b1ff793b1ceeb0bbc854"
+        },
+        "layer32_residual_detail.png": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/07_redesigned_figures_v1/layer32_residual_detail.png",
+          "bytes": 343971,
+          "sha256": "e14af6a3d0b2d4b772d18c5249a160122f03b273072833e12933137a59bf3407"
+        },
+        "pure_attention_mlp_3docs.png": {
+          "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/07_redesigned_figures_v1/pure_attention_mlp_3docs.png",
+          "bytes": 310552,
+          "sha256": "8985adf15860d678b3531d8aa570df1f157cf8b65ac0ecf48ad0c6c879d657a7"
+        }
+      },
+      "preview_exact_LANCZOS_half_size": true,
+      "visually_reviewed": [
+        "main_overview.png (final step revision)",
+        "layer32_residual_detail.png",
+        "pure_attention_mlp_3docs.png"
+      ],
+      "visual_findings": "Chinese labels legible; no observed footer/axis collision; main/supplement scopes separated; full TV tail and two zero-flip buckets visible",
+      "status": "passed"
+    },
+    {
+      "check": "both_HTML_viewers_links_anchors_and_scope",
+      "links": 38,
+      "broken": [],
+      "root_index_identity": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/07_redesigned_figures_v1/index.html",
+        "bytes": 7910,
+        "sha256": "dd9b4e374955cd601c7eebcd2d424228cfc025ea6bad2e64d0320135880bc064"
+      },
+      "table_viewer_identity": {
+        "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/results/software_Error_Analysis/07_redesigned_figures_v1/tables.html",
+        "bytes": 39684,
+        "sha256": "7d9923bee64943ba9e96f833873b8ce36571d7acea030fa2505d0f44b9055b4a"
+      },
+      "status": "passed"
+    }
+  ],
+  "errors": [],
+  "resolved_issue": {
+    "issue": "Initial TV trace linearly connected empirical rank points",
+    "resolution": "Engineering changed only panelE to right-continuous post-step ECDF and prepended(0,0); sorted103700 values, all quantiles and maximum unchanged",
+    "verified_final_source_SHA": "bfe22e028b6a7ece8a6d443fff16a05246a0d554357f68d437637728b81b7d11"
+  },
+  "panel_definitions": {
+    "A": "11 local items; per-document maximum across declared32layer/sites followed by1024document P50/P95. Eight base categories use same actual node input/common exits; gating includes shared product exit loss versus exact same-LUT product; whole MLP and fixed-residual are same-entrance interventions, not single linear nodes.",
+    "B": "32 separate block outputs before final RMSNorm, document P50/P95; shaded P50–P95 is descriptive, not CI. Final RMSNorm/logits listed independently, not connected as layers33/34.",
+    "C": "Full1024 pooled energies, N424755200 per stage: Attention after residual / pure MLP branch before residual / block32 final residual; not pureAttention versusMLP and not isolated Adder rounding.",
+    "D": "12 frozen raw-logit thresholds; exact pooled score coverage denominator13300147200; not probability error or relativeL2. Document-level all-score coverage remains distinct in table.",
+    "E": "Full103700position equal-weight TV ECDF in probability-mass percent, all tail through29.7200736067%; Top1=102647/103700 is separate text, not curve point, not taskACC.",
+    "F": "Eight reference top1−top2 raw-logit margin buckets; y=flips/positions within bucket, not share of1053flips; counts shown, two nonempty zero-flip buckets retained.",
+    "supplement": "Pure Attention/MLP branch comparison limited to3documents299positions, pooled energy ratios; not full1024 pure branch comparison."
+  },
+  "applicability_limits": [
+    "No new measurements were created; no metric or sampling definition changed to reduce displayed errors.",
+    "These checks establish figure/data correspondence and scope, not universal numerical fidelity, task accuracy, semantic correctness or free-generation quality.",
+    "No full1024 hidden token-wise quantile/cosine values were fabricated; pooled-only branch diagnostics remain without document quantiles.",
+    "AI visual inspection is not independent human assessment."
+  ],
+  "review_self_SHA": "Returned separately to controller; not embedded recursively"
+}

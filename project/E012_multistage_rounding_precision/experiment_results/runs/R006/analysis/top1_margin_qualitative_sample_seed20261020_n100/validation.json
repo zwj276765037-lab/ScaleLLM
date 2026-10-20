@@ -1,0 +1,46 @@
+{
+  "execution_state": "completed",
+  "data_validation": "PASS",
+  "eligible_positions": 876,
+  "sample_count": 100,
+  "unique_documents": 93,
+  "domain_sample_counts": {
+    "news": 13,
+    "reviews": 33,
+    "web": 54
+  },
+  "domain_unique_documents": {
+    "news": 11,
+    "reviews": 32,
+    "web": 50
+  },
+  "seed": 20261020,
+  "equal_probability_without_replacement": true,
+  "sampling_reproduced_exactly": true,
+  "all_frozen_sources_SHA_unchanged": true,
+  "sample_manifest": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/E012_multistage_rounding_precision/experiment_results/runs/R006/analysis/top1_margin_qualitative_sample_seed20261020_n100/sample_manifest.json",
+    "bytes": 294010,
+    "sha256": "713d34e6473efe4e18eec9822bf7bc3139956fb762390ce79c039f3306a08abb"
+  },
+  "position_semantics_verified": "Every prefix is exactly saved input_ids[:t+1]; logits at t predict next token",
+  "all_candidate_ids_and_margins_match_frozen_manifest": true,
+  "JSONL_CSV_compact_packet_all_100_rows_agree": true,
+  "all_single_and_joint_decodes_verified_with_independent_tokenizers_backend": true,
+  "tokenizer_files_SHA_match_original_experiment": true,
+  "source_text_retokenization_performed": false,
+  "actual_next_available_inside_saved_artifact": 100,
+  "actual_next_unavailable_at_saved_artifact_end": 0,
+  "single_token_contains_unicode_replacement_counts": {
+    "reference": 0,
+    "current": 0
+  },
+  "joint_decode_differs_from_string_concatenation_counts": {
+    "reference": 0,
+    "current": 0
+  },
+  "semantic_annotations_performed": false,
+  "GPU_or_model_used": false,
+  "finalizer_torch_loaded": false,
+  "prior_execution_note": "v3 completed all100 decoded rows then failed an extra assertion that torch was not indirectly imported by AutoTokenizer. No CUDA/model call occurred. This finalizer uses tokenizers only and independently verifies every row. v1/v2/v3 sources and native1 receipts are preserved."
+}

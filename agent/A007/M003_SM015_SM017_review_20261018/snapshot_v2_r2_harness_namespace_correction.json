@@ -1,0 +1,22 @@
+{
+  "cause": "The independent test extracted one line from m003::snapshot_body but evaluated it in the global namespace. Its unqualified helper call therefore could not resolve. Correct the test evaluation namespace to ::m003, matching the real proc.",
+  "direct_reproduction_stdout": "1 {invalid command name \"memory_startpoint_names\"}\n",
+  "direct_reproduction_stderr": "",
+  "initial_runner": {
+    "path": "agent/A007/M003_SM015_SM017_review_20261018/snapshot_v2_independent_checks.py",
+    "bytes": 9025,
+    "sha256": "7d90f8cf4fafec1ffff86f242a2598628aa9c7e86d921e7b0364a5f6ad7b718a"
+  },
+  "initial_receipt": {
+    "path": "agent/A007/M003_SM015_SM017_review_20261018/snapshot_v2_independent_CPU14_receipt.json",
+    "bytes": 5466,
+    "sha256": "ce265e358bb04c7d303f5eeb7e0dd4aadbd3eeeef490a29a14e4d56caf564538"
+  },
+  "initial_log": {
+    "path": "agent/A007/M003_SM015_SM017_review_20261018/snapshot_v2_independent_CPU14.log",
+    "bytes": 5359,
+    "sha256": "374804cf632c81fdab726b2adc1f15d847da90de4c91d46427559c9be048aadb"
+  },
+  "candidate_and_expectations_changed": false,
+  "correction": "Only wrap exact memory expression/setup in namespace eval ::m003; retain old/new terminal expectations and exact source bytes."
+}
