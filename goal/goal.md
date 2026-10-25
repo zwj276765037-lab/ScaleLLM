@@ -1,3 +1,15 @@
+# ScaleLLM_MLP_fix：当前硬件目标（2026-10-24）
+
+当前活动任务是[M006线性MLP硬件工程](../mission/M006_mlp_linear_only_hardware/contract.md)。用户要求创建子智能体完成新项目工程搭建，最重要目标为完成硬件工程。
+
+采用[新设计](../PRO_plan/ScaleLLM_MLP_Linear_Only_Dual_DDR_Design.md)：FPGA保留GU/DOWN量化线性任务，MLP两处H32、动态A8/ScaleCode编码和SwiGLU由Host执行。Attention、双DDR分工和format05数值保持；新的数据/控制ABI按设计升级。
+
+优先级：真实RTL和验证 → 新根可构建Vivado工程 → 功能闭合后新综合/物理验证。Host优先支撑硬件数值oracle、codec与测试驱动。完成以真实阶段证据判断，目录登记或源码编译不代表route/板级通过。
+
+下方均为克隆基线的历史目标与结果；其中旧FPGA完整MLP职责、旧S24输入ABI、旧任务状态不覆盖M006的新合同。
+
+---
+
 # ScaleLLM：项目目标与硬件-软件对齐规范
 
 **2026-10-20最新：AT006已自然布线失败，原生Route35-2确认797175个重叠节点，最终route_status确认615840条资源冲突网。** 原尝试07:07:38Z监督结束native1/stop=null/owned_survivors空，route_failed.dcp及status/timing/congestion/DRC已保存；正式route POST未执行。完整place/physopt及其结构资格通过不代表可合法布通。现有证据显示局部跨SLR列需求0–1最高124%、1–2最高112%（对应总需求仅63.17%/62.30%），physopt占用CLB站点SLR0/1/2为96.71%/99.33%/99.90%，支持严重局部互连/打包压力；不将占用站点等同LUT槽耗尽，不将告警或top样本当唯一根因。用户随后明确要求“详细定位到底哪个地方无法布线成功”：A018已获派发，先现成报告离线归因，必要时新批次有界只读载入失败DCP，交付区域→模块→具体信号通路及覆盖/未知；不改RTL/XDC、不启动新implementation。单EDA、原资源保护及正常无墙钟/静默强停保持。M003整体未完成。

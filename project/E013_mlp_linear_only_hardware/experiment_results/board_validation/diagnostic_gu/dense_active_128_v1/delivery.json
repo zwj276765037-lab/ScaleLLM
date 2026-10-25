@@ -1,0 +1,219 @@
+{
+  "execution_state": "completed",
+  "stage": "dense128_diagnostic_delivery",
+  "verdict": "CPU_PREPARATION_PASS",
+  "board_execution": "NOT_RUN_BY_VECTOR_AUTHOR",
+  "runtime_id": "/root/board_gu_vectors",
+  "desired_model": "gpt-6.1-sol",
+  "desired_effort": "xhigh",
+  "actual_model": null,
+  "actual_effort": null,
+  "created_utc": "2026-10-25T01:41:03.962402+00:00",
+  "manifest_sha256": "3e8074092cd9247f47d66743b0f83a285003e84505baf59c730c0fa9efcc1210",
+  "verification_sha256": "704e85a372704faf258879770244cedbbddfaa978662c2211965a4fa85425d1a",
+  "files": {
+    "mlp_gate_up_c0": {
+      "path": "mlp_gate_up_c0.bin",
+      "size": 29360128,
+      "sha256": "81add6518b2a9887e01ace5555f30255484bb7d2a9a7742ab73aa6d17821bc74"
+    },
+    "mlp_gate_up_c1": {
+      "path": "mlp_gate_up_c1.bin",
+      "size": 29360128,
+      "sha256": "dee6a12084117e4f77d85692685b35677cb58efd9ce19e068c08b9dcdcaa4bae"
+    },
+    "mlp_gate_meta": {
+      "path": "mlp_gate_meta.bin",
+      "size": 7340032,
+      "sha256": "28eab6b41642bcc446b5aafd6eaae09447f116fc85624d10e9f6cb159728c9aa"
+    },
+    "input_rec576": {
+      "path": "input_rec576.bin",
+      "size": 73728,
+      "sha256": "8c2db7696dda2b7aba291ac926e88407c5e243597b56010f41c5027ad0e9b328"
+    },
+    "gold_gu_s24": {
+      "path": "gold_gu_s24.bin",
+      "size": 1376256,
+      "sha256": "8d67b8ddd9df84a1e5d72d77b466e1946f4e05d2839302f9680ec6cf8892f48d"
+    }
+  },
+  "output_statistics": {
+    "values": 458752,
+    "nonzero": 458752,
+    "positive": 229376,
+    "negative": 229376,
+    "min": -3935,
+    "max": 3942,
+    "saturation_count": 0,
+    "tail32_nonzero": 1024,
+    "tail_column_14335": [
+      [
+        -2581,
+        3809,
+        -2561,
+        2594,
+        -3853,
+        2569,
+        -2578,
+        3843,
+        -2551,
+        2586,
+        -3818,
+        2550,
+        -2592,
+        3790,
+        -2566,
+        2591
+      ],
+      [
+        2587,
+        -2567,
+        3884,
+        -2611,
+        2569,
+        -3876,
+        2575,
+        -2560,
+        3891,
+        -2572,
+        2562,
+        -3879,
+        2580,
+        -2540,
+        3896,
+        -2619
+      ]
+    ],
+    "per_row_nonzero": [
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672
+    ],
+    "per_matrix_half": [
+      {
+        "matrix": 0,
+        "logical_half": 0,
+        "nonzero": 114688,
+        "positive": 57344,
+        "negative": 57344
+      },
+      {
+        "matrix": 0,
+        "logical_half": 1,
+        "nonzero": 114688,
+        "positive": 57344,
+        "negative": 57344
+      },
+      {
+        "matrix": 1,
+        "logical_half": 0,
+        "nonzero": 114688,
+        "positive": 57344,
+        "negative": 57344
+      },
+      {
+        "matrix": 1,
+        "logical_half": 1,
+        "nonzero": 114688,
+        "positive": 57344,
+        "negative": 57344
+      }
+    ]
+  },
+  "nonzero_counts": {
+    "activation_codes_nonzero": 2048,
+    "activation_q_minus_zp_nonzero": 65536,
+    "weight_codes_nonzero": 3670016,
+    "weight_s4_values_nonzero": 117440512
+  },
+  "runtime_source_identity": [
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/dense_active_128/README.md",
+      "size": 4882,
+      "sha256": "02c2737780ca7f8d92909f584cd97af3f84b6867c0d1dd97b5fe3f922fe512c8"
+    },
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/dense_active_128/check_runner.py",
+      "size": 2285,
+      "sha256": "5569e7b5e672863831cb4e5ecceb4accf879387178a614d4d24622442ed3e47a"
+    },
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/dense_active_128/dense.py",
+      "size": 5249,
+      "sha256": "53cc1dacdcd167042cfe9f59567320597255b31992f6a51b0ff176c7c0bda29e"
+    },
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/dense_active_128/finalize_delivery.py",
+      "size": 3260,
+      "sha256": "d733ad4f2be115fe79ac52cc24c9cbfdd438a1e83087bf3f958c3fcb4ceecd06"
+    },
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/dense_active_128/generate_dense.py",
+      "size": 4565,
+      "sha256": "1c741a0192207f178e9f9388d63c75b860c47300d53ffda8cbc75c227df50041"
+    },
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/dense_active_128/run_dense_gu.py",
+      "size": 10169,
+      "sha256": "ec5c48c2b8119252228b3c7188407a391c2d79e3189b1769b9445cf82daa7265"
+    },
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/dense_active_128/verify_dense.py",
+      "size": 9672,
+      "sha256": "45da41c41bb182bdaf1d0fbde7b1007f8c25f2492d07841d439eb7c8bfe3a197"
+    }
+  ],
+  "version_boundary": "manifest source_identity is generation-time provenance; this delivery freezes final provider/verifier/runner/docs; binary inputs/gold and manifest unchanged",
+  "old_source_hashes_preserved": [
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/audit_packing.py",
+      "sha256": "a1ec6ed940c3dee1e17a8ffa87038ad3724632f92629dc0434f8791755870bfe"
+    },
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/diagnostic.py",
+      "sha256": "9506a4c9e5f89e10aae81d4417e7dfcaa28c198f888c2af50c4b386f92b02096"
+    },
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/generate.py",
+      "sha256": "5d3b7f682289c33ceb8e5ea23fa5860c0a6a37e9aac6dfc04a97e86035d39161"
+    },
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/run_gu.py",
+      "sha256": "fde29b2090c44e89a895895feac7aed2d3dfb0921e0eeec7ebde6c7d191cf100"
+    },
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/selfcheck_runner.py",
+      "sha256": "411835127e723d1cda0136ace9d2324728038dfec962355cd24316deff687688"
+    },
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/summarize.py",
+      "sha256": "5f3174df1046cb6b5bd2d3f58f31b92b0723bd6a73e9f342e4deca3f4da2e32c"
+    },
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/verify.py",
+      "sha256": "d181f34c8597ba21bc152adc73f8d96f83117d1d997630bb749264ed8a72a894"
+    }
+  ],
+  "old_bundle_manifests_and_binary_hashes_preserved": true,
+  "CPU_runner_pair_check": {
+    "verdict": "PASS",
+    "scope": "CPU scripted transport with injected gold/DONE; provider/runner/persist-before-ACK integration only, not DUT or board evidence",
+    "acks": 2,
+    "layer_released": true
+  },
+  "limits": "32-column periodic diagnostic, not a model or maximum switching/power guarantee; actual measurement remains host-owned"
+}

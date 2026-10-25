@@ -1,0 +1,42 @@
+{
+  "recorded_at": "2026-10-24T02:52:33.996381+00:00",
+  "user_feedback": "最多使用 8 个 CPU 核，限制本任务进程树内存 会不会太苛刻了",
+  "decision_by": "Root",
+  "observed": {
+    "logical_cpus": 96,
+    "allowed_cpus": 96,
+    "loadavg": [
+      8.1,
+      7.49,
+      7.34
+    ],
+    "mem_available_kib": 460954104
+  },
+  "future_board_profile": {
+    "cpu_affinity_max": 32,
+    "process_tree_rss_gib": 192,
+    "mem_available_floor_gib": 64,
+    "low_memory_grace_seconds": 30,
+    "free_disk_floor_gib": 30,
+    "vivado_general_maxThreads": 8,
+    "independent_ip_ooc_jobs_max": 4,
+    "full_implementation_concurrency": 1
+  },
+  "small_sim_profile_unchanged": {
+    "cpu_affinity_max": 8,
+    "process_tree_rss_gib": 96
+  },
+  "running_attempts": "retain frozen profile, no restart or input mutation",
+  "source": "https://docs.amd.com/r/2025.2-English/ug835-vivado-tcl-commands/set_param",
+  "dispatched_to": "/root/mlp_linear_engineering",
+  "actual_board_execution": {
+    "constructor": "project/E013_mlp_linear_only_hardware/experiment_results/runs/R003/attempts/AT003_constructor/result.json",
+    "constructor_peak_tree_rss_bytes": 3139215360,
+    "constructor_verdict": "NATIVE_STAGE_COMPLETED",
+    "synthesis_launch": "project/E013_mlp_linear_only_hardware/experiment_results/runs/R003/attempts/AT004_synth/launch.json",
+    "synthesis_resource_samples": "project/E013_mlp_linear_only_hardware/experiment_results/runs/R003/attempts/AT004_synth/resource_samples.jsonl",
+    "synthesis_status": "AT004 native1 after synthesis/DCP completion: final identity probe mismatch; no resource protection",
+    "synthesis_peak_tree_rss_bytes": 53746458624,
+    "synthesis_result": "project/E013_mlp_linear_only_hardware/experiment_results/runs/R003/attempts/AT004_synth/result.json"
+  }
+}

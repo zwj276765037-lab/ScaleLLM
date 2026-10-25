@@ -1,0 +1,54 @@
+{
+  "scope": "READ_ONLY_EXPECTATIONS_FOR_REQUESTED_GU_ONLY_BITSTREAM_NOT_AN_OBSERVATION",
+  "schema_path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/source/mlp_linear/abi_gu_only.json",
+  "schema_sha256": "318cf64064354aed52943fd21909aa8b67f11ca8fb565a37c65441d522d4938a",
+  "endpoint": "XDMA user CSR; do not use control/config endpoint",
+  "width_bytes": 4,
+  "byte_order": "little",
+  "checks": [
+    {
+      "name": "FULL_FORMAT_ID",
+      "offset": 256,
+      "expected": 1211647493,
+      "offset_hex": "0x100",
+      "expected_hex": "0x48384605"
+    },
+    {
+      "name": "MLP_ABI_VERSION",
+      "offset": 260,
+      "expected": 458752,
+      "offset_hex": "0x104",
+      "expected_hex": "0x00070000"
+    },
+    {
+      "name": "MEMORY_LAYOUT_ID",
+      "offset": 696,
+      "expected": 1295003698,
+      "offset_hex": "0x2b8",
+      "expected_hex": "0x4d303032"
+    },
+    {
+      "name": "MLP_LINEAR_ABI_ID",
+      "offset": 768,
+      "expected": 1296826370,
+      "offset_hex": "0x300",
+      "expected_hex": "0x4d4c0002"
+    },
+    {
+      "name": "MLP_BUFFER_LAYOUT_VERSION",
+      "offset": 776,
+      "expected": 1,
+      "offset_hex": "0x308",
+      "expected_hex": "0x00000001"
+    },
+    {
+      "name": "MLP_CAPABILITIES",
+      "offset": 772,
+      "expected": 29,
+      "offset_hex": "0x304",
+      "expected_hex": "0x0000001d"
+    }
+  ],
+  "on_mismatch": "Stop before any CSR write or DMA; preserve observed identity.",
+  "hardware_read_status": "NOT_RUN"
+}

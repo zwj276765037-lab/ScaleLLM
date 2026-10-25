@@ -1,0 +1,191 @@
+{
+  "ended": "2026-10-24T06:18:01.543576+00:00",
+  "native_returncode": 0,
+  "stop_reason": null,
+  "peak_tree_rss_bytes": 21519392768,
+  "changed_inputs": [],
+  "execution_state": "completed",
+  "verdict": "NATIVE_STAGE_COMPLETED",
+  "quality": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT009_dcp_qualification/stage_quality.json",
+    "sha256": "2507c39c8d631f0067ebdbdd58a85dc0d6ec278504481737fa5ff4f353cfb7a6",
+    "assessment": {
+      "stage": "qualify",
+      "process": {
+        "status": "NATIVE_STAGE_COMPLETED"
+      },
+      "overall": {
+        "status": "FAIL",
+        "reason": "native_completion_is_not_route_timing_DRC_CDC_acceptance"
+      },
+      "quality_is_native_exit_code": false,
+      "inherited_quality": {
+        "assessment": {
+          "stage": "synth",
+          "process": {
+            "status": "NATIVE_STAGE_COMPLETED"
+          },
+          "overall": {
+            "status": "FAIL",
+            "reason": "native_completion_is_not_route_timing_DRC_CDC_acceptance"
+          },
+          "quality_is_native_exit_code": false,
+          "utilization": {
+            "native_status": "COMPLETE",
+            "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT004_synth/utilization_hierarchical.rpt",
+            "sha256": "69ba7cd5b8cc9f13b7131fb0e5b90872332ea4d32064eb324f19f070be125286"
+          },
+          "timing": {
+            "native_status": "COMPLETE",
+            "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT004_synth/timing_summary.rpt",
+            "sha256": "5f22e162a5d9e085f2fa00e09769e3253da36da2d5801bcea7f11f7cec366c47",
+            "setup": {
+              "worst_slack_ns": 0.904,
+              "status": "PASS"
+            },
+            "hold": {
+              "worst_slack_ns": -0.814,
+              "status": "FAIL"
+            },
+            "aggregate_metrics_status": "RECORDED_NATIVE_TABLE",
+            "wns_ns": 0.904,
+            "tns_ns": 0.0,
+            "setup_failing_endpoints": 0,
+            "setup_total_endpoints": 3056022,
+            "whs_ns": -0.814,
+            "ths_ns": -46941.938,
+            "hold_failing_endpoints": 936065,
+            "hold_total_endpoints": 3054561
+          },
+          "clock_interaction": {
+            "native_status": "COMPLETE",
+            "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT004_synth/clock_interaction.rpt",
+            "sha256": "84b34a7923da0bd62b1bf3be4ed8946075c56b7e98e9646a6182a6a77da133cf"
+          },
+          "cdc": {
+            "native_status": "COMPLETE",
+            "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT004_synth/cdc.rpt",
+            "sha256": "a16a76a6c40ec581135761cd6910be550387451d4250a0ebee2cca44fe97aa0f",
+            "status": "PENDING_REVIEW",
+            "reason": "native_topology_and_waiver_review_required_no_automatic_pass"
+          },
+          "drc": {
+            "native_status": "COMPLETE",
+            "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT004_synth/drc.rpt",
+            "sha256": "e4239a545e3e134b367598d6e3990566125955f74811cd95ef4c4ea028117725",
+            "error_or_critical_count": 0,
+            "warning_count": 15769,
+            "unknown_severity_count": 0,
+            "status": "PENDING_REVIEW",
+            "objects_report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT004_synth/drc_native_objects.txt"
+          },
+          "netlist": {
+            "attention_cells": 0,
+            "shared_kernel_cells": 0,
+            "forbidden_mlp_cells": 0,
+            "blackbox_query_available": 1,
+            "blackbox_cells": 1,
+            "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT004_synth/netlist_identity.txt",
+            "status": "FAIL"
+          },
+          "clocks": {
+            "core": {
+              "pins": "",
+              "clocks": "",
+              "expected_period_ns": 10.0,
+              "status": "FAIL"
+            },
+            "ddr0": {
+              "pins": "",
+              "clocks": "",
+              "expected_period_ns": 5.0,
+              "status": "FAIL"
+            },
+            "ddr1": {
+              "pins": "",
+              "clocks": "",
+              "expected_period_ns": 5.0,
+              "status": "FAIL"
+            },
+            "status": "FAIL",
+            "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT004_synth/clock_identity.txt"
+          },
+          "unconstrained": {
+            "native_status": "COMPLETE",
+            "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT004_synth/check_timing.rpt",
+            "sha256": "38583ef484ccbe2a5c6ea169f71f644e31c2abea576c74a9ceb6c92ba9fe9963",
+            "status": "FAIL",
+            "no_clock": 530,
+            "unconstrained_internal_endpoints": 554,
+            "no_input_delay": 1,
+            "no_output_delay": 2
+          },
+          "route": {
+            "status": "NOT_RUN",
+            "reason": "synthesis_stage_only"
+          }
+        },
+        "status": "FAIL",
+        "scope": "same_immutable_synthesized_DCP_same_analysis_context_reports_reused_without_recomputation",
+        "applicable_sections": "timing unconstrained drc cdc clock_interaction utilization",
+        "superseded_identity_sections": "netlist clocks",
+        "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT009_dcp_qualification/inherited_stage_quality.json",
+        "sha256": "a6a8fcac2924c65ab5ba1be5dfc6623a4671c7fe544a616a4b3dc91aa2232339"
+      },
+      "constraints": {
+        "native_objects_report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT009_dcp_qualification/constraint_identity.txt",
+        "effective_xdc": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT009_dcp_qualification/effective_constraints.xdc",
+        "status": "RECORDED_NATIVE_OBJECTS"
+      },
+      "qualification_reset_cdc": {
+        "synchronizer_chains": 6,
+        "observed_stages": 24,
+        "status": "PASS",
+        "scope": "six_reviewed_reset_level_paths_only_CDC10_native_findings_not_waived",
+        "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT009_dcp_qualification/qualification_reset_cdc_identity.txt"
+      },
+      "netlist": {
+        "attention_cells": 1,
+        "shared_kernel_cells": 1,
+        "forbidden_mlp_cells": 0,
+        "blackbox_query_available": 1,
+        "blackbox_cells": 1,
+        "unresolved_user_blackboxes": 0,
+        "pre_opt_debug_placeholder_cells": 1,
+        "debug_placeholder_scope": "PENDING_NATIVE_OPT_IMPLEMENTATION",
+        "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT009_dcp_qualification/netlist_identity.txt",
+        "status": "PASS"
+      },
+      "clocks": {
+        "core": {
+          "pins": "scalellm_vcu118_f05_bd_i/core/inst/core_clk",
+          "clocks": "clk_out1_scalellm_vcu118_f05_bd_clk_core_0",
+          "expected_period_ns": 10.0,
+          "period_ns": 10.0,
+          "status": "PASS"
+        },
+        "ddr0": {
+          "pins": "scalellm_vcu118_f05_bd_i/core/inst/ddr0_clk",
+          "clocks": "mmcm_clkout0",
+          "expected_period_ns": 5.0,
+          "period_ns": 5.0,
+          "status": "PASS"
+        },
+        "ddr1": {
+          "pins": "scalellm_vcu118_f05_bd_i/core/inst/ddr1_clk",
+          "clocks": "mmcm_clkout0_1",
+          "expected_period_ns": 5.0,
+          "period_ns": 5.0,
+          "status": "PASS"
+        },
+        "status": "PASS",
+        "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT009_dcp_qualification/clock_identity.txt"
+      },
+      "route": {
+        "status": "NOT_RUN",
+        "reason": "synthesis_stage_only"
+      }
+    },
+    "scope": "native-stage quality evidence; independent acceptance required"
+  }
+}

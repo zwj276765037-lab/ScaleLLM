@@ -1,0 +1,10 @@
+$ErrorActionPreference='Stop';$ProgressPreference='SilentlyContinue';[Console]::OutputEncoding=New-Object Text.UTF8Encoding($false);
+
+$root='C:/pcie_demo/hap_tools/xdma_driver_win_9018_src';$vswhere='C:/Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe'
+$vs=@();if(Test-Path -LiteralPath $vswhere){$vs=@(& $vswhere -all -products '*' -format json | ConvertFrom-Json)}
+$kits='C:/Program Files (x86)/Windows Kits/10'
+$files=@(Get-ChildItem -LiteralPath $root -File -Recurse | Where-Object {$_.Extension -in @('.sln','.vcxproj','.props','.targets','.inf','.md','.ps1','.bat','.cmd','.cer') -and $_.FullName -notmatch '\\(build|build_tmp)\\'}|ForEach-Object {[ordered]@{path=$_.FullName;size=$_.Length;sha256=(Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLower();content=if($_.Extension -ne '.cer'){[IO.File]::ReadAllText($_.FullName)}else{$null}}})
+$boot=@(& bcdedit.exe /enum '{current}');$bcdexit=$LASTEXITCODE
+$secure=$null;$secureerror=$null;try{$secure=Confirm-SecureBootUEFI}catch{$secureerror=$_.Exception.Message}
+$sig=Get-AuthenticodeSignature -LiteralPath 'C:/Windows/System32/drivers/XDMA.sys'
+[ordered]@{utc=[DateTime]::UtcNow.ToString('o');visual_studio=$vs;path_commands=@(Get-Command msbuild.exe,cl.exe,signtool.exe,inf2cat.exe -ErrorAction SilentlyContinue|Select-Object Name,Source);kits_directories=@(foreach($dir in @('Include','Lib','bin','build')){$p=Join-Path $kits $dir;if(Test-Path -LiteralPath $p){[ordered]@{path=$p;children=@(Get-ChildItem -LiteralPath $p -Directory|Select-Object Name)}}});vs_tools=@(foreach($v in $vs){$p=Join-Path $v.installationPath 'MSBuild/Current/Bin/MSBuild.exe';[ordered]@{path=$p;exists=(Test-Path -LiteralPath $p);compiler_versions=@(Get-ChildItem -LiteralPath (Join-Path $v.installationPath 'VC/Tools/MSVC') -Directory -ErrorAction SilentlyContinue|Select-Object Name)}});bcdedit_exit=$bcdexit;bcdedit=$boot;secure_boot=$secure;secure_boot_error=$secureerror;installed_signature=[ordered]@{status=$sig.Status.ToString();message=$sig.StatusMessage;subject=$sig.SignerCertificate.Subject;thumbprint=$sig.SignerCertificate.Thumbprint};project_inputs=$files}|ConvertTo-Json -Depth 10

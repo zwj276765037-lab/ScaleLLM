@@ -1,0 +1,139 @@
+--- a/project/hardware/rtl/mlp/hap_mlp_linear_compute16_s54.sv
++++ b/project/hardware/rtl/mlp/hap_mlp_linear_compute16_s54.sv
+@@ -91,6 +91,7 @@
+     output wire                          gu_out_matrix,
+     output wire                          gu_out_last,
+     output wire                          compute_quiescent,
++    output wire                          flow_stall,
+     output wire                          out_valid,
+     input  wire                          out_ready,
+     output wire                          out_last,
+@@ -481,6 +482,19 @@
+ 
+     assign compute_quiescent=state_r==P_IDLE&&!frontend_busy&&gate_quiescent&&
+         !down_busy&&!down_request_pending_r&&!shared_gate_valid&&!shared_down_valid;
++    // Core-clock observation only: no observer signal enters control/data.
++    assign flow_stall=busy&&(
++        (cache_rd_req_valid&&!cache_rd_req_ready)||
++        (cache_rd_rsp_valid&&!cache_rd_rsp_ready)||
++        (frontend_command_valid&&!frontend_command_ready)||
++        (gate_command_valid&&!gate_command_ready)||
++        (frontend_meta_valid&&!frontend_meta_ready)||
++        (frontend_out_valid&&!frontend_out_ready)||
++        (gate_compute_valid&&!gate_compute_ready)||
++        (down_compute_valid&&!down_compute_ready)||
++        (shared_gate_valid&&!shared_gate_ready)||
++        (shared_down_valid&&!shared_down_ready)||
++        (gu_out_valid&&!gu_out_ready)||(out_valid&&!out_ready));
+     wire shared_input_ready;
+     wire shared_error;
+     wire [31:0] shared_gate_saturation;
+--- a/project/hardware/rtl/integration/hap_attention_mlp_resource_top_linear.sv
++++ b/project/hardware/rtl/integration/hap_attention_mlp_resource_top_linear.sv
+@@ -19,7 +19,7 @@
+     input wire mlp_cache_begin_valid,output wire mlp_cache_begin_ready,
+     input wire mlp_cache_seal_valid,output wire mlp_cache_seal_ready,
+     output wire mlp_cache_sealed,output wire mlp_cache_quiescent,
+-    output wire mlp_compute_quiescent,output wire [31:0] mlp_cache_error_code,
++    output wire mlp_compute_quiescent,output wire mlp_flow_stall,output wire [31:0] mlp_cache_error_code,
+     input wire [1:0] mlp_command_opcode,
+     output wire mlp_gu_valid,input wire mlp_gu_ready,
+     output wire [6143:0] mlp_gu_s24x16x16,output wire [9:0] mlp_gu_tile,
+@@ -188,7 +188,7 @@
+       .cache_rd_rsp_valid(rsp_valid),.cache_rd_rsp_ready(rsp_ready),.cache_rd_rsp_bank(1'b0),.cache_rd_rsp_group(rsp_group),
+       .cache_rd_rsp_u8x16x32(rsp_u8),.cache_rd_rsp_meta_u24x16(rsp_meta),
+       .gu_out_valid(mlp_gu_valid),.gu_out_ready(mlp_gu_ready),.gu_out_s24x16x16(mlp_gu_s24x16x16),
+-      .gu_out_tile(mlp_gu_tile),.gu_out_matrix(mlp_gu_matrix),.gu_out_last(mlp_gu_last),.compute_quiescent(mlp_compute_quiescent),
++      .gu_out_tile(mlp_gu_tile),.gu_out_matrix(mlp_gu_matrix),.gu_out_last(mlp_gu_last),.compute_quiescent(mlp_compute_quiescent),.flow_stall(mlp_flow_stall),
+       .gate_ddr0_base_addr(mlp_gate_ddr0_base_addr),
+       .gate_ddr1_base_addr(mlp_gate_ddr1_base_addr),
+       .down_ddr0_base_addr(mlp_down_ddr0_base_addr),
+--- a/project/hardware/rtl/integration/hap_mlp_linear_tensor_dma.sv
++++ b/project/hardware/rtl/integration/hap_mlp_linear_tensor_dma.sv
+@@ -15,7 +15,7 @@
+  input wire [9:0] gu_tile,input wire gu_matrix,input wire gu_last,
+  input wire down_valid,output wire down_ready,input wire [8191:0] down_s32x16x16,
+  input wire [7:0] down_tile,input wire down_last,
+- output wire busy,output wire quiescent,output wire transport_quiescent,output wire axi_active,output wire error,output wire [31:0] error_code,
++ output wire busy,output wire quiescent,output wire transport_quiescent,output wire axi_active,output wire flow_stall,output wire error,output wire [31:0] error_code,
+  output wire [31:0] input_bytes,output reg [31:0] output_bytes,
+  output reg [31:0] record_count,
+     output wire                     m_axi_arvalid,
+@@ -71,6 +71,11 @@
+  assign gu_ready=rst_n&&!job_clear&&state==STORE&&opcode==1&&!gu_buffer_valid&&record_count<GU_OUTPUT_RECORDS;
+  assign down_ready=rst_n&&!job_clear&&state==STORE&&opcode==2&&!down_buffer_valid&&record_count<DOWN_OUTPUT_RECORDS;
+  assign busy=state!=IDLE;
++ assign flow_stall=busy&&((rd_valid&&!rd_ready)||(wr_valid&&!wr_ready)||
++   (cache_wr_valid&&!cache_wr_ready)||(gu_valid&&!gu_ready)||(down_valid&&!down_ready)||
++   (m_axi_arvalid&&!m_axi_arready)||(m_axi_rvalid&&!m_axi_rready)||
++   (m_axi_awvalid&&!m_axi_awready)||(m_axi_wvalid&&!m_axi_wready)||
++   (m_axi_bvalid&&!m_axi_bready));
+  assign transport_quiescent=dma_transport_quiescent;
+  assign axi_active=!dma_transport_quiescent;
+  assign quiescent=state==IDLE&&dma_ready&&parser_quiescent&&!gu_buffer_valid&&!down_buffer_valid;
+--- a/project/hardware/rtl/integration/hap_attention_mlp_production_core_linear.sv
++++ b/project/hardware/rtl/integration/hap_attention_mlp_production_core_linear.sv
+@@ -124,6 +124,7 @@
+  wire [31:0] mlp_cache_error_code,tensor_error_code,live_input_bytes,live_output_bytes;
+  wire mlp_gu_valid,mlp_gu_ready,mlp_gu_matrix,mlp_gu_last,mlp_out_last,tensor_quiescent;
+  wire tensor_transport_quiescent,tensor_gu_ready,tensor_down_ready,mlp_sink_discard,mlp_fault_clear_safe;
++ wire mlp_flow_stall,tensor_flow_stall;
+  wire [6143:0] mlp_gu_s24x16x16;wire [9:0] mlp_gu_tile;
+  wire submit_valid,submit_ready,submit_result_valid,submit_result_ready,epoch_valid,epoch_result_valid,ack_valid,ack_result_valid,ack_error,abort_valid,abort_result_valid,abort_error;
+  wire [543:0] submit_descriptor,config_descriptor,active_descriptor,done_descriptor;
+@@ -241,7 +242,7 @@
+   .cache_wr_valid(mlp_input_valid),.cache_wr_ready(mlp_input_ready),.cache_wr_group(mlp_input_group),.cache_wr_u8x16x32(mlp_input_u8x16x32),.cache_wr_meta_u24x16(mlp_input_meta_u24x16),
+   .gu_valid(mlp_gu_valid&&!mlp_sink_discard),.gu_ready(tensor_gu_ready),.gu_s24x16x16(mlp_gu_s24x16x16),.gu_tile(mlp_gu_tile),.gu_matrix(mlp_gu_matrix),.gu_last(mlp_gu_last),
+   .down_valid(mlp_out_valid&&!mlp_sink_discard),.down_ready(tensor_down_ready),.down_s32x16x16(mlp_projection_s32x16x16),.down_tile(mlp_out_tile_index),.down_last(mlp_out_last),
+-  .busy(tensor_busy),.quiescent(tensor_quiescent),.transport_quiescent(tensor_transport_quiescent),.axi_active(tensor_axi_active),.error(tensor_error),.error_code(tensor_error_code),.input_bytes(live_input_bytes),.output_bytes(live_output_bytes),.record_count(tot),
++  .busy(tensor_busy),.quiescent(tensor_quiescent),.transport_quiescent(tensor_transport_quiescent),.axi_active(tensor_axi_active),.flow_stall(tensor_flow_stall),.error(tensor_error),.error_code(tensor_error_code),.input_bytes(live_input_bytes),.output_bytes(live_output_bytes),.record_count(tot),
+   .m_axi_arvalid(c1_arvalid),.m_axi_arready(c1_arready),.m_axi_araddr(c1_araddr),
+   .m_axi_arlen(c1_arlen),.m_axi_arsize(c1_arsize),.m_axi_arburst(c1_arburst),
+   .m_axi_rvalid(c1_rvalid),.m_axi_rready(c1_rready),.m_axi_rdata(c1_rdata),
+@@ -398,7 +399,14 @@
+  .store_valid(tensor_store_valid),.store_ready(tensor_store_ready),.store_armed(tensor_store_armed),.store_done(tensor_store_done),
+  .compute_valid(mlp_command_valid),.compute_ready(mlp_command_ready),.compute_done(mlp_compute_done),
+  .input_bytes(live_input_bytes),.output_bytes(live_output_bytes),.record_count(tot),
+- .stall((mlp_input_valid&&!mlp_input_ready)||(mlp_gu_valid&&!mlp_gu_ready)||(mlp_out_valid&&!mlp_out_ready)||(gate_meta_valid&&!gate_meta_ready)||(down_meta_valid&&!down_meta_ready)||(tensor_load_valid&&!tensor_load_ready)||(mlp_command_valid&&!mlp_command_ready)),
++ .stall(mlp_flow_stall||tensor_flow_stall||
++  (mlp_input_valid&&!mlp_input_ready)||(mlp_gu_valid&&!mlp_gu_ready)||(mlp_out_valid&&!mlp_out_ready)||
++  (gate_meta_valid&&!gate_meta_ready)||(down_meta_valid&&!down_meta_ready)||
++  (gate_rd_valid&&!gate_rd_ready)||(gate_rsp_valid&&!gate_rsp_ready)||
++  (down_rd_valid&&!down_rd_ready)||(down_rsp_valid&&!down_rsp_ready)||
++  (mlp_cache_begin_valid&&!mlp_cache_begin_ready)||(mlp_cache_seal_valid&&!mlp_cache_seal_ready)||
++  (tensor_load_valid&&!tensor_load_ready)||(tensor_store_valid&&!tensor_store_ready)||
++  (mlp_command_valid&&!mlp_command_ready)),
+  .busy(mlp_transaction_busy_r),.completion_valid(job_completion_valid),.reset_required(job_reset_required),.phase(job_phase),
+  .done_descriptor(done_descriptor),.done_error(done_error),.done_input_bytes(done_input_bytes),.done_output_bytes(done_output_bytes),.done_records(done_records),
+  .load_cycles(job_load_cycles),.compute_cycles(job_compute_cycles),.store_cycles(job_store_cycles),.stall_cycles(job_stall_cycles),.active_epoch(active_epoch),.maintenance_request(job_maintenance_request));
+--- a/project/hardware/rtl/integration/hap_mlp_linear_job_control.sv
++++ b/project/hardware/rtl/integration/hap_mlp_linear_job_control.sv
+@@ -126,8 +126,8 @@
+  if(maintenance_pending&&!abort_pending)begin abort_pending<=1;if(live_error==0)live_error<=32'h2202;end
+  total_cycles<=inc(total_cycles);if(stall)stall_cycles<=inc(stall_cycles);
+  if(phase==LOAD)load_cycles<=inc(load_cycles);
+- if(compute_started&&phase<=COMPUTE)compute_cycles<=inc(compute_cycles);
+- if(store_started)store_cycles<=inc(store_cycles);
++ if((compute_started||(compute_valid&&compute_ready))&&phase<=COMPUTE)compute_cycles<=inc(compute_cycles);
++ if(store_started||(store_valid&&store_ready))store_cycles<=inc(store_cycles);
+  if(store_done)store_seen<=1;
+  if(cache_begin_valid&&cache_begin_ready)begun<=1;
+  if(load_valid&&load_ready)load_started<=1;
+--- a/project/hardware/tb/hap_mlp_linear_compute16_tb.sv
++++ b/project/hardware/tb/hap_mlp_linear_compute16_tb.sv
+@@ -1,5 +1,6 @@
+ `timescale 1ns/1ps
+ module hap_mlp_linear_compute16_tb;
++ wire flow_stall; // observation only
+  localparam AXI_ADDR_W=32,DOWN_OUTPUT_W=2;
+  reg [23:0] gu_gold[0:4095];reg [31:0] down_gold[0:1023];
+  reg  core_clk=0;
+--- a/project/hardware/tb/hap_mlp_linear_tensor_dma_tb.sv
++++ b/project/hardware/tb/hap_mlp_linear_tensor_dma_tb.sv
+@@ -1,5 +1,6 @@
+ `timescale 1ns/1ps
+ module hap_mlp_linear_tensor_dma_tb;
++ wire flow_stall; // observation only
+  reg clk=0;always #5 clk=~clk;
+  reg rst_n=0,job_clear=0,load_valid=0,store_valid=0;
+  reg [1:0] load_opcode=1,store_opcode=1;reg [31:0] load_base=32'h10000fc0,load_bytes=73728,store_base=32'h10100fc0,store_bytes=1376256;

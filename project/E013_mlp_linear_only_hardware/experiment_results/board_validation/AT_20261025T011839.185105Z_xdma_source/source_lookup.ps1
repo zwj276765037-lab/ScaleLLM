@@ -1,0 +1,1 @@
+[Console]::OutputEncoding=New-Object Text.UTF8Encoding($false);$p='D:\project\FPGA';[ordered]@{directories=@([IO.Directory]::GetDirectories($p));files=@([IO.Directory]::GetFiles($p))}|ConvertTo-Json -Depth 3 -Compress

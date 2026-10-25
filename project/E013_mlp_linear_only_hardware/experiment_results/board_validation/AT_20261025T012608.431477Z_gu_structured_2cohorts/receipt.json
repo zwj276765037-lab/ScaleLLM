@@ -1,0 +1,238 @@
+{
+  "execution_state": "completed",
+  "verdict": "PASS",
+  "stage": "completed",
+  "scope": "GU-only production-shape diagnostic; no Attention/Host Down/full model claim",
+  "bundle": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_results/board_validation/diagnostic_gu/structured_v1",
+  "started_utc": "2026-10-25T01:26:09.029973+00:00",
+  "cohorts_requested": 2,
+  "epoch": 1,
+  "command_base": 1,
+  "request_id": 1,
+  "timeout_s": 10.0,
+  "chunk_bytes": 1048576,
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "cohorts": [
+    {
+      "verdict": "PASS",
+      "compared_bytes": 1376256,
+      "compared_s24_values": 458752,
+      "mismatched_values": 0,
+      "mismatched_bytes": 0,
+      "first_mismatched_byte": null,
+      "coordinates": [],
+      "gold_sha256": "23e993b366a9e90580237ab63474f2813bf0f6009aced7f701ba2bc6893b20bc",
+      "output_sha256": "23e993b366a9e90580237ab63474f2813bf0f6009aced7f701ba2bc6893b20bc",
+      "descriptor": {
+        "fields": {
+          "command_id": 1,
+          "request_id": 1,
+          "cohort_id": 0,
+          "layer_id": 0,
+          "buffer_id": 0,
+          "buffer_generation": 1,
+          "metadata_generation": 1,
+          "epoch_id": 1,
+          "opcode": 1,
+          "down_half0_base": 0,
+          "down_half1_base": 0
+        },
+        "words_u32": [
+          1,
+          1,
+          0,
+          0,
+          1,
+          1211647493,
+          268435456,
+          269484032,
+          73728,
+          1376256,
+          1,
+          1,
+          1,
+          0,
+          29360128,
+          0,
+          0
+        ],
+        "packed_hex": "01000000010000000000000000000000010000000546384800000010000010100020010000001500010000000100000001000000000000000000c0010000000000000000"
+      },
+      "gu_seconds_including_io": 1.8526181320194155,
+      "acked": true
+    },
+    {
+      "verdict": "PASS",
+      "compared_bytes": 1376256,
+      "compared_s24_values": 458752,
+      "mismatched_values": 0,
+      "mismatched_bytes": 0,
+      "first_mismatched_byte": null,
+      "coordinates": [],
+      "gold_sha256": "23e993b366a9e90580237ab63474f2813bf0f6009aced7f701ba2bc6893b20bc",
+      "output_sha256": "23e993b366a9e90580237ab63474f2813bf0f6009aced7f701ba2bc6893b20bc",
+      "descriptor": {
+        "fields": {
+          "command_id": 2,
+          "request_id": 1,
+          "cohort_id": 1,
+          "layer_id": 0,
+          "buffer_id": 3,
+          "buffer_generation": 1,
+          "metadata_generation": 1,
+          "epoch_id": 1,
+          "opcode": 1,
+          "down_half0_base": 0,
+          "down_half1_base": 0
+        },
+        "words_u32": [
+          2,
+          1,
+          196609,
+          0,
+          1,
+          1211647493,
+          293601280,
+          294649856,
+          73728,
+          1376256,
+          1,
+          1,
+          1,
+          0,
+          29360128,
+          0,
+          0
+        ],
+        "packed_hex": "02000000010000000100030000000000010000000546384800008011000090110020010000001500010000000100000001000000000000000000c0010000000000000000"
+      },
+      "gu_seconds_including_io": 1.8051565599162132,
+      "acked": true
+    }
+  ],
+  "transport_class": "scalellm_windows_xdma.SshWindowsSession",
+  "code_identity": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/run_gu.py",
+      "sha256": "fde29b2090c44e89a895895feac7aed2d3dfb0921e0eeec7ebde6c7d191cf100"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/diagnostic.py",
+      "sha256": "9506a4c9e5f89e10aae81d4417e7dfcaa28c198f888c2af50c4b386f92b02096"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/verify.py",
+      "sha256": "d181f34c8597ba21bc152adc73f8d96f83117d1d997630bb749264ed8a72a894"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/host/scalellm_mlp_gu_only_backend.py",
+      "sha256": "7a613a819ebde6abe65dda26853566304dab94e808d4f7bf05c9e266ad2d0fa0"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/host/scalellm_mlp_gu_only_runtime.py",
+      "sha256": "536bad6c0a669ab1d1bd886f836ddf5abe56b013060fbccaad490577219f4c21"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/host/scalellm_mlp_linear.py",
+      "sha256": "227e457e4d0464115241d2de6a8521496413b0a071344d776ab9c3a861a3c716"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/source/mlp_linear/abi_gu_only.json",
+      "sha256": "318cf64064354aed52943fd21909aa8b67f11ca8fb565a37c65441d522d4938a"
+    }
+  ],
+  "metadata_generation": 1,
+  "layer_released": true,
+  "retained_layer_lease": null,
+  "gold_statistics": {
+    "values": 458752,
+    "nonzero": 458752,
+    "negative": 189095,
+    "positive": 269657,
+    "min": -8388608,
+    "max": 8388607,
+    "saturation_endpoint_count": 64,
+    "per_matrix_nonzero": [
+      229376,
+      229376
+    ],
+    "per_row_nonzero": [
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672
+    ],
+    "tail_block_columns": [
+      14304,
+      14335
+    ],
+    "tail_block_nonzero": 1024,
+    "tail_column_14335": [
+      [
+        -15500,
+        36679,
+        -168297,
+        155516,
+        49072,
+        42349,
+        -36657,
+        100193,
+        -145349,
+        65079,
+        -33594,
+        -235309,
+        103534,
+        -34489,
+        133423,
+        -237050
+      ],
+      [
+        26118,
+        78854,
+        76036,
+        -365123,
+        46716,
+        198696,
+        91386,
+        -121985,
+        -71540,
+        -14749,
+        262567,
+        5464,
+        -542068,
+        214351,
+        171855,
+        225327
+      ]
+    ],
+    "row_markers_0_7_8_15_column_14335": [
+      [
+        -15500,
+        100193,
+        -145349,
+        -237050
+      ],
+      [
+        26118,
+        -121985,
+        -71540,
+        225327
+      ]
+    ]
+  },
+  "ended_utc": "2026-10-25T01:26:19.722138+00:00",
+  "elapsed_seconds": 10.692402267013676
+}

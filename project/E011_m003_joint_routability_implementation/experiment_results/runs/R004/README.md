@@ -1,7 +1,7 @@
 
 
 <!-- research-agent:navigation:begin -->
-生成时间（UTC）：2026-10-20T08:57:35.240611+00:00。来源修订：`cfb9c0cd3fc1`。
+生成时间（UTC）：2026-10-25T01:29:20.089604+00:00。来源修订：`7fd112f32442`。
 
 # E011 / R004 运行结果
 
@@ -30,7 +30,7 @@ A run record alone does not establish PASS or a method verdict.
 
 | 尝试 | 收据中的阶段状态 | 适用范围 | 原始结果 / 证据 |
 | --- | --- | --- | --- |
-| [AT001_failed_route_driver_region_localization](attempts/AT001_failed_route_driver_region_localization) | running | R004_final_failed_route_read_only_localization | [执行收据](attempts/AT001_failed_route_driver_region_localization/run.json) · [report.md](attempts/AT001_failed_route_driver_region_localization/report.md) |
+| [AT001_failed_route_driver_region_localization](attempts/AT001_failed_route_driver_region_localization) | completed | R004_final_failed_route_read_only_localization | [执行收据](attempts/AT001_failed_route_driver_region_localization/run.json) · [report.md](attempts/AT001_failed_route_driver_region_localization/report.md) |
 
 ## 本批问题与交付文件
 

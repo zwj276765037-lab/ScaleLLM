@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "scope": "AT004_same_DCP_native_identity_qualification",
+  "origin_record": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/dcp_qualification/AT004_origin.json",
+  "origin_record_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "current_input_manifest_sha256": "7daabbed5fcd7cab11ffebc6dc7ec6f7ec48e3d84c06cc1bb9b812f130f67f24",
+  "changes": {
+    "vivado/constraints/ddr_timing_recovery.xdc": {
+      "parent_sha256": "f096a53a386d4ce023d51de1cb03833922494a6793c98854d7dc2c9c5b567fac",
+      "current_sha256": "16d9fc7418ba2a3562ec82eb4c6de085994ca75adf5084d5276f7797e09522e4"
+    },
+    "vivado/constraints/mlp_linear_physical.xdc": {
+      "parent_sha256": "7db90e6683c40253fd013bf79f42cd9a74178c199ede0abc099a1ef45477ffc0",
+      "current_sha256": "05d09a454165985c2cad54738bfd092a523ba590cd0ce014df05899809f2f441"
+    },
+    "vivado/scripts/build_mlp_linear_board.tcl": {
+      "parent_sha256": "debaf4f8aedebf46dcf29d3088b7effba013e1fe77ebe0778257e7b13d124fae",
+      "current_sha256": "3def7cce7a55c7c6cd88778bcfcf73ae6938d8473db20204620495a66da3b0e4"
+    },
+    "vivado/scripts/run_mlp_linear_board.py": {
+      "parent_sha256": "212a109e0a210a43558ad43e05fdc438728ea27b485b8b84e61dc910e47f4f50",
+      "current_sha256": "43819703f5fa9660660e575212c8a7cd6a623b067a41c9fa147aaaffac51a73c"
+    }
+  },
+  "patches": {
+    "vivado/scripts/run_mlp_linear_board.py": {
+      "path": "run_mlp_linear_board.py.patch",
+      "sha256": "d3ca9bc31a0c4292c61b0b8f6eb09f404b9dcb876332e2dad9d5ae889ad1a0da"
+    },
+    "vivado/scripts/build_mlp_linear_board.tcl": {
+      "path": "build_mlp_linear_board.tcl.patch",
+      "sha256": "4c88c4f2d9e1adde609d933ec845740433945127fac7f598a8fca4b6d71d5cc3"
+    }
+  },
+  "changed_design_semantics": "none: two literal diagnostic deletions; driver qualification/probe/phase checks only",
+  "superseded_draft": "diagnostic_cleanup 13-case candidate is not applied and does not qualify this FAIL parent"
+}

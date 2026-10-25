@@ -1,0 +1,37 @@
+{
+  "runner_argv": [
+    "project/hardware/vivado/scripts/run_mlp_linear_sim.py",
+    "hap_attention_mlp_linear_integration_tb",
+    "tb/hap_attention_mlp_linear_integration_tb.sv",
+    "vivado/manifests/mlp_linear/integration.list",
+    "AT028_integration",
+    "--define",
+    "HAP_ATTENTION_BOARD_MODULE=hap_attention_board_cohort16_core",
+    "--support-input",
+    "project/E013_mlp_linear_only_hardware/experiment_results/host_reference/integration_gold/generate_integration_gold.py",
+    "--support-input",
+    "project/E013_mlp_linear_only_hardware/experiment_results/host_reference/integration_gold/all_values.json",
+    "--support-input",
+    "project/E013_mlp_linear_only_hardware/experiment_results/host_reference/integration_gold/gold_words.bin",
+    "--support-input",
+    "project/E013_mlp_linear_only_hardware/experiment_results/host_reference/integration_gold/gold_rows.svtext",
+    "--support-input",
+    "project/E013_mlp_linear_only_hardware/experiment_results/host_reference/integration_gold/manifest.json",
+    "--support-input",
+    "project/E013_mlp_linear_only_hardware/experiment_results/host_reference/integration_gold/generation.log"
+  ],
+  "top": "hap_attention_mlp_linear_integration_tb",
+  "tb": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/tb/hap_attention_mlp_linear_integration_tb.sv",
+  "manifest": "vivado/manifests/mlp_linear/integration.list",
+  "defines": [
+    "HAP_ATTENTION_BOARD_MODULE=hap_attention_board_cohort16_core"
+  ],
+  "support_inputs": [
+    "project/E013_mlp_linear_only_hardware/experiment_results/host_reference/integration_gold/generate_integration_gold.py",
+    "project/E013_mlp_linear_only_hardware/experiment_results/host_reference/integration_gold/all_values.json",
+    "project/E013_mlp_linear_only_hardware/experiment_results/host_reference/integration_gold/gold_words.bin",
+    "project/E013_mlp_linear_only_hardware/experiment_results/host_reference/integration_gold/gold_rows.svtext",
+    "project/E013_mlp_linear_only_hardware/experiment_results/host_reference/integration_gold/manifest.json",
+    "project/E013_mlp_linear_only_hardware/experiment_results/host_reference/integration_gold/generation.log"
+  ]
+}

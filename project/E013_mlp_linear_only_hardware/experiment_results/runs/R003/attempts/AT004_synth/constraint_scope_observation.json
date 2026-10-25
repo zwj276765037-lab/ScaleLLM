@@ -1,0 +1,81 @@
+{
+  "observed_utc": "2026-10-24T05:10:17.100271+00:00",
+  "xpr_sha256": "a97abf28f3b6c1f99ab4aa2233f59b48ac19e06f7bd647d2bebdce94ab27a71a",
+  "constraints": [
+    {
+      "path": "$PPRDIR/../../constraints/attention_mlp_vcu118_board_v5.xdc",
+      "attributes": [
+        {
+          "Name": "UsedIn",
+          "Val": "synthesis"
+        },
+        {
+          "Name": "UsedIn",
+          "Val": "implementation"
+        }
+      ]
+    },
+    {
+      "path": "$PPRDIR/../../constraints/vcu118_ddr4_explicit_pins.xdc",
+      "attributes": [
+        {
+          "Name": "UsedIn",
+          "Val": "synthesis"
+        },
+        {
+          "Name": "UsedIn",
+          "Val": "implementation"
+        }
+      ]
+    },
+    {
+      "path": "$PPRDIR/../../constraints/ddr_timing_recovery.xdc",
+      "attributes": [
+        {
+          "Name": "UsedIn",
+          "Val": "synthesis"
+        },
+        {
+          "Name": "UsedIn",
+          "Val": "implementation"
+        }
+      ]
+    },
+    {
+      "path": "$PPRDIR/../../constraints/board_clock_domains.xdc",
+      "attributes": [
+        {
+          "Name": "UsedIn",
+          "Val": "synthesis"
+        },
+        {
+          "Name": "UsedIn",
+          "Val": "implementation"
+        },
+        {
+          "Name": "ProcessingOrder",
+          "Val": "LATE"
+        }
+      ]
+    },
+    {
+      "path": "$PPRDIR/../../constraints/mlp_linear_physical.xdc",
+      "attributes": [
+        {
+          "Name": "UsedIn",
+          "Val": "implementation"
+        },
+        {
+          "Name": "UsedIn",
+          "Val": "simulation"
+        },
+        {
+          "Name": "ProcessingOrder",
+          "Val": "LATE"
+        }
+      ]
+    }
+  ],
+  "scope": "Actual XPR settings only; final DCP effective object coverage pending",
+  "finding": "All four effective board/DDR/clock constraint files are synthesis+implementation. The only implementation-only M006 file contains a puts message and comments, no physical or timing commands. No missing effective constraint has been demonstrated."
+}

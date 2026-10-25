@@ -1,0 +1,9 @@
+{
+  "csr": "NOT_RUN",
+  "error": "RuntimeError: Application CSR identity mismatch0x000: actual0xffffffff expected0x48384103",
+  "execution_state": "failed",
+  "hardware_writes": false,
+  "scope": "P3",
+  "scratch": "NOT_RUN",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/validate_csr_and_scratch.py\", line 91, in main\n    csr(session,args.result);report['csr']='PASS';save(args.result/'result.json',report)\n    ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/validate_csr_and_scratch.py\", line 39, in csr\n    check(item)\n  File \"/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/validate_csr_and_scratch.py\", line 27, in check\n    if actual!=expected:raise RuntimeError('Application CSR identity mismatch0x%03x: actual0x%08x expected0x%08x'%(offset,actual,expected))\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Application CSR identity mismatch0x000: actual0xffffffff expected0x48384103\n"
+}

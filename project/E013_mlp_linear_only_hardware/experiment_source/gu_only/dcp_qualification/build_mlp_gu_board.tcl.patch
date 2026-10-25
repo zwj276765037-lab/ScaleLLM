@@ -1,0 +1,180 @@
+--- parent/vivado/scripts/build_mlp_gu_board.tcl
++++ current/vivado/scripts/build_mlp_gu_board.tcl
+@@ -62,7 +62,7 @@
+  set debug_placeholder {};set unresolved {}
+  if {$blackbox_query_available} {
+   foreach cell $blackboxes {
+-   if {$stage eq "synth" && $cell eq "dbg_hub" && [get_property REF_NAME $cell] eq "dbg_hub_CV"} {lappend debug_placeholder $cell} else {lappend unresolved $cell}
++   if {$stage in {synth qualify} && $cell eq "dbg_hub" && [get_property REF_NAME $cell] eq "dbg_hub_CV"} {lappend debug_placeholder $cell} else {lappend unresolved $cell}
+   }
+  }
+  puts $out "pre_opt_debug_placeholder=$debug_placeholder unresolved_user_blackboxes=$unresolved"
+@@ -248,6 +248,59 @@
+  m006_q drc.objects_report [file join $report_dir drc_native_objects.txt]
+ }
+ 
++# Bounded native evidence for the two vendor Constraints18-401 objects.
++# No constraints are added/removed; no exception is waived or inferred valid.
++proc m006_xpm_fifo_exception_evidence {report_dir} {
++ set out [open [file join $report_dir post_opt_xpm_endpoint_identity.txt] w]
++ set prefix scalellm_vcu118_f05_bd_i
++ set suffix {inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.gen_fifo_req.inst_fifo_req/gen_xpm_memory_fifo.inst_fifo}
++ foreach smc {d0_smc d1_smc} {
++  set scope "$prefix/$smc/$suffix/gen_mem_rep\[0\].inst_xpm_memory/xpm_memory_base_inst"
++  # The broad pattern contains no generated [] characters. Validate every
++  # returned native object against the full literal scope before using it.
++  set pattern "$prefix/$smc/$suffix/*doutb*reg*"
++  set cells [get_cells -quiet -hierarchical -filter [format {NAME =~ "%s"} $pattern]]
++  if {[llength $cells]>512} {error "Unexpected XPM scope expansion: $smc"}
++  foreach cell $cells {
++   set name [get_property NAME $cell]
++   if {[string first "$scope/" $name]!=0} {error "XPM endpoint outside exact memory scope: $name"}
++   puts $out "$smc.object=$name ref=[get_property REF_NAME $cell] primitive=[get_property IS_PRIMITIVE $cell]"
++  }
++  set regs {};if {[llength $cells]} {set regs [filter $cells {IS_PRIMITIVE == 1 && REF_NAME =~ FD*}]}
++  puts $out "$smc.live_doutb_registers=[llength $regs]"
++  set data_pins {};if {[llength $regs]} {set data_pins [get_pins -quiet -of_objects $regs -filter {REF_PIN_NAME == D}]}
++  puts $out "$smc.live_D_endpoints=[llength $data_pins]"
++  set missing_clock 0
++  foreach reg $regs {
++   set clock_pin [get_pins -quiet -of_objects $reg -filter {REF_PIN_NAME == C}]
++   set clocks [get_clocks -quiet -of_objects $clock_pin]
++   if {[llength $clock_pin]!=1 || [llength $clocks]!=1} {incr missing_clock}
++   puts $out "$smc.register=$reg clock_pin=$clock_pin clocks=$clocks"
++  }
++  puts $out "$smc.missing_register_clock=$missing_clock"
++  set bad_name "$scope/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg\[0\]_i_1"
++  set bad {};if {[llength $cells]} {set bad [filter $cells [format {NAME == "%s"} $bad_name]]}
++  puts $out "$smc.original_invalid_object_count=[llength $bad]"
++  foreach cell $bad {puts $out "$smc.original_invalid_object=$cell ref=[get_property REF_NAME $cell]"}
++  if {[llength $regs]} {
++   foreach {tag flags} {coverage {-coverage} valid {-write_valid_exceptions} ignored {-ignored_objects}} {
++    set path [file join $report_dir post_opt_${smc}_doutb_${tag}_exceptions.rpt]
++    m006_report xpm_exception.$smc.$tag [concat [list report_exceptions -to $regs] $flags [list -file $path]] $path
++   }
++  } else {
++   m006_q xpm_exception.$smc.exception_coverage NOT_COLLECTED_NO_LIVE_REGISTER
++  }
++  m006_q xpm_exception.$smc.registers [llength $regs]
++  m006_q xpm_exception.$smc.D_endpoints [llength $data_pins]
++  m006_q xpm_exception.$smc.missing_clock $missing_clock
++ }
++ puts $out {scope=exact_two_SMC_request_FIFO_memories; original_name_absence_is_not_proof_of_exception_coverage}
++ puts $out {coverage_assessment=requires_review_of_native_valid_and_ignored_exception_reports; no_automatic_waiver}
++ close $out
++ m006_q xpm_exception.status PENDING_REVIEW
++ m006_q xpm_exception.report [file join $report_dir post_opt_xpm_endpoint_identity.txt]
++}
++
+ # New GU source graph is checked against actual synthesized hierarchy.
+ proc m006_gu_structure {report_dir} {
+  set base scalellm_vcu118_f05_bd_i/core/inst/u_core
+@@ -261,21 +314,42 @@
+  set urams [get_cells -quiet -hierarchical -filter "NAME =~ $base/u_meta_bank/* && REF_NAME =~ URAM288*"]
+  set lanes [get_cells -quiet -hierarchical -filter "NAME =~ $compute/u_shared_compute/* && REF_NAME =~ *hap_a8w4_gu_group32_lane2_s37*"]
+  set lane_width_mismatches 0;set guard0_total 0;set guard1_total 0
++ set allowed {};foreach lane $lanes {dict set allowed [get_property NAME $lane] 1}
++ set expected {};foreach channel {0 1} {foreach entry {0 1} {for {set bit 0} {$bit<37} {incr bit} {lappend expected "$channel:$entry:$bit"}}}
++ set expected [lsort -dictionary $expected];set actual {};set unmatched_guard_FF 0
++ # Actual generated core funcsim Verilog proves these precise FDRE names for
++ # every one of the 96 lane types. Rebuilt boundary ports are renamed CO/DI/Q,
++ # so original RTL port spelling cannot measure logical guard width.
++ set guard_regs [get_cells -quiet -hierarchical -filter "NAME =~ $compute/u_shared_compute/* && IS_PRIMITIVE == 1 && REF_NAME =~ FD* && (NAME =~ *guard0_mem_reg* || NAME =~ *guard1_mem_reg*)"]
++ set dump [open [file join $report_dir guard_storage_objects.txt] w]
++ foreach reg $guard_regs {
++  set name [get_property NAME $reg]
++  puts $dump "cell=$name ref=[get_property REF_NAME $reg]"
++  if {![regexp {^(.*)/guard([01])_mem_reg\[([0-9]+)\]\[([0-9]+)\]$} $name -> owner channel entry bit] || ![dict exists $allowed $owner]} {incr unmatched_guard_FF;continue}
++  dict lappend actual $owner "$channel:$entry:$bit"
++  if {$channel==0} {incr guard0_total} else {incr guard1_total}
++ }
++ close $dump
+  foreach lane $lanes {
+-  set pins0 [get_pins -quiet -of_objects $lane -filter {DIRECTION == OUT && REF_PIN_NAME =~ guard0_s37*}]
+-  set pins1 [get_pins -quiet -of_objects $lane -filter {DIRECTION == OUT && REF_PIN_NAME =~ guard1_s37*}]
+-  incr guard0_total [llength $pins0];incr guard1_total [llength $pins1]
+-  if {[llength $pins0]!=37 || [llength $pins1]!=37} {incr lane_width_mismatches}
+-  puts $out "lane=$lane guard0_bits=[llength $pins0] guard1_bits=[llength $pins1]"
+- }
++  set name [get_property NAME $lane];set tuples {}
++  if {[dict exists $actual $name]} {set tuples [dict get $actual $name]}
++  set complete [expr {[llength $tuples]==148 && [lsort -dictionary -unique $tuples] eq $expected}]
++  if {!$complete} {incr lane_width_mismatches}
++  puts $out "lane=$lane guard_storage_FF=[llength $tuples] channels=2 entries_per_channel=2 bits_per_entry=37 complete_index_set=$complete"
++ }
++ set dump [open [file join $report_dir lane_pin_objects.txt] w]
++ if {[llength $lanes]} {
++  foreach pin [get_pins -quiet -of_objects [lindex $lanes 0]] {puts $dump "pin=[get_property NAME $pin] direction=[get_property DIRECTION $pin] ref_pin_name=[get_property REF_PIN_NAME $pin]"}
++ }
++ close $dump
+  puts $out "scope=actual_synthesized_hierarchy_not_text_search"
+  puts $out "forbidden_down_cells=[llength $banned] mlp_dsp=[llength $dsps] gu_metadata_uram=[llength $urams] lane_instances=[llength $lanes]"
+- puts $out "all_lane_width_mismatches=$lane_width_mismatches guard0_total_bits=$guard0_total guard1_total_bits=$guard1_total"
++ puts $out "all_lane_width_mismatches=$lane_width_mismatches guard0_storage_FF=$guard0_total guard1_storage_FF=$guard1_total unmatched_guard_FF=$unmatched_guard_FF"
+  puts $out {cache_depth_source=bound_new_RTL_memory_0_to_127; primitive_BRAM_depth_rounding_does_not_prove_logical_depth_or_savings}
+  foreach cell $banned {puts $out "forbidden=$cell ref=[get_property REF_NAME $cell]"}
+  close $out
+- set ok [expr {[llength $cache]==1 && [llength $gu]==1 && [llength $meta]==1 && [llength $banned]==0 && [llength $dsps]==3072 && [llength $urams]==448 && [llength $lanes]==96 &&  $lane_width_mismatches==0 && $guard0_total==3552 && $guard1_total==3552}]
+- foreach {label count} [list forbidden_down [llength $banned] mlp_dsp [llength $dsps] gu_metadata_uram [llength $urams] lanes [llength $lanes] lane_width_mismatches $lane_width_mismatches guard0_total_bits $guard0_total guard1_total_bits $guard1_total] {m006_q gu_structure.$label $count}
++ set ok [expr {[llength $cache]==1 && [llength $gu]==1 && [llength $meta]==1 && [llength $banned]==0 && [llength $dsps]==3072 && [llength $urams]==448 && [llength $lanes]==96 &&  $lane_width_mismatches==0 && $guard0_total==7104 && $guard1_total==7104 && $unmatched_guard_FF==0 && [llength $guard_regs]==14208}]
++ foreach {label count} [list forbidden_down [llength $banned] mlp_dsp [llength $dsps] gu_metadata_uram [llength $urams] lanes [llength $lanes] lane_width_mismatches $lane_width_mismatches guard0_storage_FF $guard0_total guard1_storage_FF $guard1_total unmatched_guard_FF $unmatched_guard_FF] {m006_q gu_structure.$label $count}
+  m006_q gu_structure.status [expr {$ok?"PASS":"FAIL"}]
+  m006_q gu_structure.report [file join $report_dir gu_structure_identity.txt]
+  return $ok
+@@ -322,7 +396,7 @@
+ open_project [file join $project_dir scalellm_vcu118_f05.xpr]
+ config_ip_cache -disable_cache
+ set stage $::env(HAP_STAGE)
+-if {$stage ni {synth impl}} {error "Unknown M006 stage $stage"}
++if {$stage ni {synth qualify impl}} {error "Unknown M006 stage $stage"}
+ set quality [dict create stage $stage process.status RUNNING overall.status PENDING_REVIEW quality_is_native_exit_code false]
+ set stage_failed [catch {
+ if {$stage eq "synth"} {
+@@ -359,11 +433,16 @@
+  open_run synth_1
+  write_checkpoint -force [file join $report_dir synthesized.dcp]
+  m006_pre_opt_debug_targets $report_dir
++} elseif {$stage eq "qualify"} {
++ if {![info exists ::env(HAP_SYNTH_DCP)] || ![info exists ::env(HAP_PARENT_QUALITY)]} {error "Qualification provenance missing"}
++ open_checkpoint $::env(HAP_SYNTH_DCP)
++ m006_pre_opt_debug_targets $report_dir
+ } elseif {$stage eq "impl"} {
+  if {![info exists ::env(HAP_SYNTH_DCP)]} {error "HAP_SYNTH_DCP required"}
+  open_checkpoint $::env(HAP_SYNTH_DCP)
+  opt_design
+  m006_post_opt_debug $report_dir
++ m006_xpm_fifo_exception_evidence $report_dir
+  write_checkpoint -force [file join $report_dir optimized.dcp]
+  place_design
+  write_checkpoint -force [file join $report_dir placed.dcp]
+@@ -381,6 +460,18 @@
+ 
+ # Preserve report provenance and continue collecting independent diagnostics if
+ # one quality report fails. The native failure is re-raised after JSON is saved.
++if {$stage eq "qualify"} {
++ set f [open $::env(HAP_PARENT_QUALITY) r];set inherited_json [read $f];close $f
++ m006_q inherited_quality.assessment $inherited_json
++ m006_q inherited_quality.status FAIL
++ m006_q inherited_quality.scope same_immutable_synthesized_DCP_same_analysis_context_reports_reused_without_recomputation
++ m006_q inherited_quality.applicable_sections {timing unconstrained drc cdc clock_interaction utilization}
++ m006_q inherited_quality.superseded_identity_sections {netlist clocks gu_structure}
++ m006_q inherited_quality.report $::env(HAP_PARENT_QUALITY)
++ m006_q inherited_quality.sha256 [lindex [exec sha256sum -- $::env(HAP_PARENT_QUALITY)] 0]
++ m006_constraint_identity $report_dir
++ m006_reset_cdc_identity $report_dir qualification
++} else {
+ foreach {label command filename} {
+  utilization {report_utilization -hierarchical} utilization_hierarchical.rpt
+  timing {report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose} timing_summary.rpt
+@@ -393,8 +484,9 @@
+ }
+ m006_q cdc.status PENDING_REVIEW
+ m006_q cdc.reason native_topology_and_waiver_review_required_no_automatic_pass
+-set probes {netlist m006_netlist_identity clocks m006_clock_identity}
+-lappend probes timing_metrics m006_timing_metrics drc_metrics m006_drc_metrics gu_structure m006_gu_structure
++}
++set probes {netlist m006_netlist_identity clocks m006_clock_identity gu_structure m006_gu_structure}
++if {$stage ne "qualify"} {lappend probes timing_metrics m006_timing_metrics drc_metrics m006_drc_metrics}
+ foreach {label command} $probes {
+  if {[catch {$command $report_dir} detail]} {
+   m006_q $label.status PENDING_REVIEW;m006_q $label.collection_error $detail

@@ -1,0 +1,32 @@
+{
+  "checked_utc": "2026-10-24T15:45:31.610893+00:00",
+  "scope": "bounded default exporter output and root artifact locations; hardware data fixture manifests only; not a whole-host search",
+  "default_exporter_source": "project/hardware/model/export_scalellm_llama31_artifacts.py:19",
+  "locations": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/artifacts/llama31_8b_scalellm_v5/scalecode_manifest.json",
+      "exists": false
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/artifacts",
+      "exists": false
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/artifacts",
+      "exists": false
+    }
+  ],
+  "hardware_fixture_manifests": [
+    "project/hardware/data/a8w4_group32_lane2/manifest.json",
+    "project/hardware/data/a8w4_group32_pack2/manifest.json",
+    "project/hardware/data/a8w4_pack2/manifest.json",
+    "project/hardware/data/mlp_gu_lane/manifest.json",
+    "project/hardware/data/mlp_input_frontend16_cache/manifest.json",
+    "project/hardware/data/projection_core16x16_w8_reuse/manifest.json",
+    "project/hardware/data/rebuild_v5_frontend/product/manifest.json",
+    "project/hardware/data/rebuild_v5_frontend/swiglu/manifest.json",
+    "project/hardware/data/softmax_row_128/manifest.json"
+  ],
+  "real_model_export_found": false,
+  "limitation": "No supplied real32-layer W4F5 scalecode manifest; no real checkpoint/weight correctness or throughput claim."
+}

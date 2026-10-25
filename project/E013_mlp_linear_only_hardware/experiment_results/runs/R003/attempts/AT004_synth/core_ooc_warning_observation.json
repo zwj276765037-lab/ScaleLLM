@@ -1,0 +1,25 @@
+{
+  "observed_utc": "2026-10-24T05:10:17.105691+00:00",
+  "scope": "Intermediate OOC warning classification; not full warning/physical acceptance",
+  "visible_warning_counts_by_id": {
+    "Synth 8-6014": 64,
+    "Synth 8-4767": 3,
+    "Synth 8-7137": 18,
+    "Synth 8-6026": 4,
+    "Synth 8-3848": 1,
+    "Synth 8-12182": 12,
+    "Synth 8-3936": 65,
+    "Synth 8-3917": 100,
+    "Synth 8-3332": 31,
+    "Synth 8-6849": 4,
+    "Synth 8-6057": 36
+  },
+  "native_summary": "Synthesis finished with 0 errors, 0 critical warnings and 547 warnings.",
+  "undriven_legacy_bank": {
+    "id": "Synth 8-3848",
+    "signal": "mlp_input_bank",
+    "source": "rtl/integration/hap_attention_mlp_production_core_linear.sv:218",
+    "finding": "Legacy resource input is declared and connected by .* but has no read/use inside selected resource RTL; linear cache has no bank selector and compute rsp bank is explicitly 0. Does not participate in functional or timing control; retained frozen input unchanged."
+  },
+  "remaining_scope": "Attention reset/RAM/style warnings and metadata URAM no-output-register warnings retained for native timing/physical review; no blanket waiver."
+}

@@ -1,0 +1,1 @@
+& 'C:/Users/dell/ScaleLLM_board_validation/M006_GU_66a305348d30_20261025/probe_jtag_checked.ps1'

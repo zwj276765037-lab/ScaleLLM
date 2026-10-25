@@ -1,0 +1,39 @@
+def validate_diagnostic_inheritance(path,receipt,constructor_path,freeze_sha):
+ """Reuse a qualified DCP across this narrowly scoped diagnostic cleanup."""
+ path=path.resolve()
+ scope=ROOT/'project/E013_mlp_linear_only_hardware/experiment_source/diagnostic_cleanup'
+ if not path.is_relative_to(scope):raise ValueError('inheritance record outside diagnostic cleanup evidence')
+ record=json.loads(path.read_text())
+ if record.get('schema')!=1 or record.get('scope')!='impl_diagnostic_cleanup_only':raise ValueError('unsupported synthesis inheritance scope')
+ parent=Path(receipt['synth_evidence']).resolve()
+ runs=ROOT/'project/E013_mlp_linear_only_hardware/experiment_results/runs'
+ if not parent.is_relative_to(runs):raise ValueError('parent synthesis evidence outside new root')
+ old_manifest=parent/'input_manifest.json'
+ if sha(old_manifest)!=receipt['input_manifest_sha256']:raise ValueError('parent frozen manifest bytes changed')
+ old=json.loads(old_manifest.read_text());current=json.loads(INPUTS.read_text())
+ if {k:v for k,v in old.items() if k!='files'}!={k:v for k,v in current.items() if k!='files'}:raise ValueError('source graph, production shape, root, or baseline changed')
+ if old['files'].keys()!=current['files'].keys():raise ValueError('dependency membership changed')
+ changes={rel:dict(parent_sha256=h,current_sha256=current['files'][rel]) for rel,h in old['files'].items() if h!=current['files'][rel]}
+ xdc={'vivado/constraints/ddr_timing_recovery.xdc','vivado/constraints/mlp_linear_physical.xdc'}
+ allowed=xdc|{'vivado/scripts/run_mlp_linear_board.py'}
+ if set(changes)!=allowed or record.get('changes')!=changes:raise ValueError('inheritance changes differ from exact diagnostic/driver allowlist')
+ for rel in xdc:
+  original=parent/'source_snapshot'/rel
+  if sha(original)!=old['files'][rel]:raise ValueError('parent constraint snapshot changed: '+rel)
+  lines=original.read_bytes().splitlines(keepends=True)
+  # Only one plain literal puts diagnostic may be deleted. No Tcl executable
+  # text, XDC object expression, timing exception, or whitespace is rewritten.
+  diagnostic=[line for line in lines if re.fullmatch(rb'puts \{[^{}\r\n]*\}\r?\n?',line)]
+  if len(diagnostic)!=1 or (HW/rel).read_bytes()!=b''.join(line for line in lines if line not in diagnostic):raise ValueError('constraint change is not exactly deletion of one literal diagnostic: '+rel)
+ parent_driver=parent/'source_snapshot/vivado/scripts/run_mlp_linear_board.py'
+ if sha(parent_driver)!=old['files']['vivado/scripts/run_mlp_linear_board.py']:raise ValueError('parent runner snapshot changed')
+ expected=dict(parent_input_manifest_sha256=receipt['input_manifest_sha256'],current_input_manifest_sha256=freeze_sha,parent_synth_receipt_sha256=sha(Path(receipt['dcp']).parent/'m006_synth_identity.json'),constructor_sha256=sha(constructor_path),dcp_sha256=receipt['dcp_sha256'])
+ if any(record.get(k)!=v for k,v in expected.items()):raise ValueError('inheritance parent/current artifact identity mismatch')
+ result=json.loads((parent/'result.json').read_text())
+ if result.get('verdict')!='NATIVE_STAGE_COMPLETED' or result.get('native_returncode')!=0 or result.get('stop_reason') is not None or result.get('changed_inputs'):raise ValueError('parent synthesis did not qualify natively')
+ if json.loads((parent/'owned_processes.json').read_text()).get('survivors'):raise ValueError('parent synthesis left owned processes')
+ patch=scope/record['driver_patch']
+ if not patch.resolve().is_relative_to(scope) or sha(patch)!=record['driver_patch_sha256']:raise ValueError('runner change patch evidence changed')
+ actual_patch=''.join(difflib.unified_diff(parent_driver.read_text().splitlines(True),(HW/'vivado/scripts/run_mlp_linear_board.py').read_text().splitlines(True),fromfile='parent/run_mlp_linear_board.py',tofile='current/run_mlp_linear_board.py'))
+ if patch.read_text()!=actual_patch:raise ValueError('runner change is not the recorded exact patch')
+ return dict(record=str(path),record_sha256=sha(path),parent_synth_evidence=str(parent),verified_changes=changes,scope=record['scope'],constraint_semantics='unchanged; literal diagnostic deletion only',rtl_ip_rom_shape_graph='unchanged exact hashes',driver_patch_sha256=sha(patch))

@@ -1,0 +1,645 @@
+`timescale 1ns/1ps
+// Revision3 section9: real production graph, GU-only N128, complete K128.
+// No stub/force/internal state writes. Attention is real but idle; no concurrent-attention claim.
+// BFM image definitions follow export_scalellm_llama31_artifacts.py pack_w4/pack_mlp_meta.
+module hap_attention_mlp_gu_metadata_fault_tb;
+ reg  core_clk=0;
+ reg  core_rst_n=0;
+ reg  core_clear=0;
+ reg  ddr0_clk=0;
+ reg  ddr0_rst_n=0;
+ reg  ddr1_clk=0;
+ reg  ddr1_rst_n=0;
+ reg [11:0] ctrl_awaddr=0;
+ reg  ctrl_awvalid=0;
+ wire  ctrl_awready;
+ reg [31:0] ctrl_wdata=0;
+ reg [3:0] ctrl_wstrb=0;
+ reg  ctrl_wvalid=0;
+ wire  ctrl_wready;
+ wire [1:0] ctrl_bresp;
+ wire  ctrl_bvalid;
+ reg  ctrl_bready=0;
+ reg [11:0] ctrl_araddr=0;
+ reg  ctrl_arvalid=0;
+ wire  ctrl_arready;
+ wire [31:0] ctrl_rdata;
+ wire [1:0] ctrl_rresp;
+ wire  ctrl_rvalid;
+ reg  ctrl_rready=0;
+ wire  data_axi_arvalid;
+ reg  data_axi_arready=0;
+ wire [31:0] data_axi_araddr;
+ wire [7:0] data_axi_arlen;
+ wire [2:0] data_axi_arsize;
+ wire [1:0] data_axi_arburst;
+ reg  data_axi_rvalid=0;
+ wire  data_axi_rready;
+ reg [255:0] data_axi_rdata=0;
+ reg [1:0] data_axi_rresp=0;
+ reg  data_axi_rlast=0;
+ wire  data_axi_awvalid;
+ reg  data_axi_awready=0;
+ wire [31:0] data_axi_awaddr;
+ wire [7:0] data_axi_awlen;
+ wire [2:0] data_axi_awsize;
+ wire [1:0] data_axi_awburst;
+ wire  data_axi_wvalid;
+ reg  data_axi_wready=0;
+ wire [255:0] data_axi_wdata;
+ wire [31:0] data_axi_wstrb;
+ wire  data_axi_wlast;
+ reg  data_axi_bvalid=0;
+ wire  data_axi_bready;
+ reg [1:0] data_axi_bresp=0;
+ wire  mlp_data_axi_arvalid;
+ reg  mlp_data_axi_arready=0;
+ wire [31:0] mlp_data_axi_araddr;
+ wire [7:0] mlp_data_axi_arlen;
+ wire [2:0] mlp_data_axi_arsize;
+ wire [1:0] mlp_data_axi_arburst;
+ reg  mlp_data_axi_rvalid=0;
+ wire  mlp_data_axi_rready;
+ reg [255:0] mlp_data_axi_rdata=0;
+ reg [1:0] mlp_data_axi_rresp=0;
+ reg  mlp_data_axi_rlast=0;
+ wire  mlp_data_axi_awvalid;
+ reg  mlp_data_axi_awready=0;
+ wire [31:0] mlp_data_axi_awaddr;
+ wire [7:0] mlp_data_axi_awlen;
+ wire [2:0] mlp_data_axi_awsize;
+ wire [1:0] mlp_data_axi_awburst;
+ wire  mlp_data_axi_wvalid;
+ reg  mlp_data_axi_wready=0;
+ wire [255:0] mlp_data_axi_wdata;
+ wire [31:0] mlp_data_axi_wstrb;
+ wire  mlp_data_axi_wlast;
+ reg  mlp_data_axi_bvalid=0;
+ wire  mlp_data_axi_bready;
+ reg [1:0] mlp_data_axi_bresp=0;
+ wire  ddr0_axi_arvalid;
+ reg  ddr0_axi_arready=0;
+ wire [31:0] ddr0_axi_araddr;
+ wire [7:0] ddr0_axi_arlen;
+ wire [2:0] ddr0_axi_arsize;
+ wire [1:0] ddr0_axi_arburst;
+ reg  ddr0_axi_rvalid=0;
+ wire  ddr0_axi_rready;
+ reg [511:0] ddr0_axi_rdata=0;
+ reg [1:0] ddr0_axi_rresp=0;
+ reg  ddr0_axi_rlast=0;
+ wire  ddr1_axi_arvalid;
+ reg  ddr1_axi_arready=0;
+ wire [31:0] ddr1_axi_araddr;
+ wire [7:0] ddr1_axi_arlen;
+ wire [2:0] ddr1_axi_arsize;
+ wire [1:0] ddr1_axi_arburst;
+ reg  ddr1_axi_rvalid=0;
+ wire  ddr1_axi_rready;
+ reg [511:0] ddr1_axi_rdata=0;
+ reg [1:0] ddr1_axi_rresp=0;
+ reg  ddr1_axi_rlast=0;
+ wire  attention_irq;
+ wire  mlp_irq;
+ wire  integration_error;
+ hap_attention_mlp_production_core_gu_only #(.INTERMEDIATE_COLUMNS(128),.HIDDEN_COLUMNS(4096),.ENFORCE_PRODUCTION_SHAPE(0)) dut(.*);
+ localparam [31:0] META_G=32'h06800000;
+ localparam integer JOB_BOUND=2000000,RUN_BOUND=18000000;
+ integer cycles=0,checks=0,job_op=1,job_cohort=0,job_id=0;
+ integer epoch_number=9,meta_generation=7;
+ reg [31:0] input_base=0,output_base=0;
+ integer input_size=73728,output_size=12288;
+ integer fault_kind=0; // 0 healthy,1 badREC,2 BRESP,3 ABORT,4 physical RLAST
+ reg input_bad=0,inject_b_error=0,inject_weight_framing=0,framing_injected=0;
+ reg metadata_bad=0;
+ reg hold_final_b=0,final_b_waiting=0;
+ integer read_left=0,write_left=0,weight_left=0;
+ reg [31:0] read_address=0,write_address=0,weight_address=0;
+ integer data_read_bytes=0,data_write_bytes=0,data_b_bytes=0;
+ integer job_aw_count=0,job_b_count=0,weight_beats=0,weight_ar_count=0;
+ integer meta_read_bytes=0,job_cache_reads=0,job_compute_starts=0;
+ integer job_meta_g_issue=0,job_meta_g_deliver=0,job_meta_d_issue=0,job_meta_d_deliver=0;
+ integer job_gu_records=0,job_down_records=0;
+ integer clear_pulses=0,soft_clear_pulses=0,job_clear_baseline=0,soft_clear_baseline=0;
+ integer b_delay=0,b_bytes=0;
+ reg b_pending=0,b_will_error=0,b_is_final=0;
+ reg [31:0] last_status=0;
+ reg [3071:0] frozen_gu_rows[0:63];
+ longint signed gold_gu[0:1][0:1][0:15][0:127];
+ integer gold_groups_evaluated=0;
+ reg [255:0] previous_data_r=0;
+ reg [511:0] previous_weight_r=0;
+ reg previous_data_r_stall=0,previous_weight_r_stall=0;
+ reg previous_data_last=0,previous_weight_last=0;
+ integer start_cycle,old_aw,old_soft,old_clear;
+ reg [31:0] saved_records,saved_input,saved_output,saved_error;
+
+ always #5 core_clk=~core_clk;
+ always #2.5 ddr0_clk=~ddr0_clk;
+ initial begin #1;forever #2.5 ddr1_clk=~ddr1_clk;end
+
+ task automatic check(input bit condition,input string message);
+ begin checks=checks+1;if(!condition)$fatal(1,"integration: %s cycle=%0d job=%0d",message,cycles,job_id);end
+ endtask
+ function automatic integer activation(input integer cohort,g,row,lane);
+ activation=(g*3+row*5+lane*7+cohort*11)%31-15;
+ endfunction
+ function automatic integer zero_point(input integer row);zero_point=120+row%9;endfunction
+ function automatic integer activation_code(input integer cohort,row);activation_code=1+row%7+cohort;endfunction
+ function automatic integer activation_shift(input integer op,g,row);activation_shift=(op==1?10:6)+(g+row)%2;endfunction
+ function automatic integer weight_value(input integer g,col,matrix,lane);
+ weight_value=(g*7+col*3+matrix*5+lane*11)%16-8;
+ endfunction
+ function automatic integer weight_code(input integer g,col,matrix);weight_code=1+(col+g+matrix)%7;endfunction
+ function automatic integer weight_shift(input integer op,g,col);
+ weight_shift=(op==1?10:6)+10*(col%3)+(g%2);
+ endfunction
+
+ // Frozen complete mathematical gold, generated with Python arbitrary integers.
+ // Formula: dot=sum_k activation*W4; raw=dot*acode*wcode; guard=raw<<(24-s)
+ // or signed raw>>(s-24); sum all128/448 guards; half-away >>8; saturateS24/S32.
+ // The original SV arithmetic function failed its independent literal check at
+ // time0 in AT024. It is not used to produce expected results. Literal checks
+ // and all mathematical inputs remain unchanged. No values are fitted to DUT.
+ // Tables contain every cohort/matrix/row/column, LSB column0, signed words.
+ function automatic longint signed oracle(input integer op,cohort,matrix,row,col);
+ reg [23:0] word_value;
+ begin
+  word_value=frozen_gu_rows[(cohort*2+matrix)*16+row][col*24+:24];
+  oracle={{40{word_value[23]}},word_value};
+ end endfunction
+
+ function automatic [255:0] metadata_beat(input integer op,record_number);
+ integer tile,matrix,g,col;reg [255:0] result;
+ begin
+  result=0;
+  if(op==1)begin tile=record_number/256;matrix=(record_number/128)%2;g=record_number%128;end
+  else begin tile=record_number%4;matrix=0;g=record_number/4;end
+  for(integer lane=0;lane<16;lane=lane+1)begin
+   col=tile*16+lane;
+   result[lane*8+:8]=8'(weight_code(g,col,matrix));
+   result[128+lane*6+:6]=6'(weight_shift(op,g,col));
+  end
+  metadata_beat=result;
+ end endfunction
+
+ function automatic [7:0] input_byte(input integer offset);
+ integer g,position,row,lane,meta_byte;reg [23:0] metadata;
+ begin
+  g=offset/576;position=offset%576;
+  if(position<512)begin row=position/32;lane=position%32;
+   input_byte=8'(zero_point(row)+activation(job_cohort,g,row,lane));
+  end else if(position<560)begin
+   row=(position-512)/3;meta_byte=(position-512)%3;
+   metadata=(activation_shift(job_op,g,row)<<16)|(activation_code(job_cohort,row)<<8)|zero_point(row);
+   input_byte=8'(metadata>>(meta_byte*8));
+  end else input_byte=(input_bad&&g==7&&position==560)?8'd1:8'd0;
+ end endfunction
+ function automatic [255:0] data_memory(input [31:0] address);
+ reg [255:0] result;
+ begin
+  result=0;
+  if(address>=META_G&&address<META_G+65536)begin
+   result=metadata_beat(1,(address-META_G)/32);
+   if(metadata_bad&&address==META_G+7*32)result[255:224]=32'h80000001;
+  end else if(address>=input_base&&address<input_base+input_size)begin
+   for(integer b=0;b<32;b=b+1)result[b*8+:8]=input_byte(address-input_base+b);
+  end else $fatal(1,"unexpected data read address %h",address);
+  data_memory=result;
+ end endfunction
+
+ function automatic [511:0] weight_memory(input [31:0] address);
+ integer op,half_number,source,beat,tile,matrix,g,col,lane;
+ reg [31:0] base;reg [511:0] result;
+ begin
+  if(address<32'h00040000)begin op=1;half_number=0;base=0;end
+  else if(address>=32'h01c00000&&address<32'h01c40000)begin op=1;half_number=1;base=32'h01c00000;end
+  else begin $fatal(1,"unexpected DDR1 weight read address %h",address);op=0;half_number=0;base=0;end
+  source=(address-base)/128;beat=((address-base)%128)/64;
+  if(op==1)begin tile=source/256;matrix=(source/128)%2;g=source%128;end
+  else begin tile=source%4;matrix=0;g=source/4;end
+  result=0;
+  for(integer n=0;n<128;n=n+1)begin
+   col=tile*16+half_number*8+beat*4+n/32;lane=n%32;
+   result[n*4+:4]=4'(weight_value(g,col,matrix,lane));
+  end
+  weight_memory=result;
+ end endfunction
+
+ function automatic [7:0] expected_output_byte(input integer offset);
+ integer record_number,position,element,row,col,matrix,byte_number;
+ longint signed value;
+ begin
+  record_number=offset/768;position=offset%768;element=position/3;byte_number=position%3;
+  row=element/16;col=(record_number/2)*16+element%16;matrix=record_number%2;
+  value=gold_gu[job_cohort][matrix][row][col];
+  expected_output_byte=8'(value>>>(byte_number*8));
+ end endfunction
+
+ // AXI256 core-domain DDR model. One accepted read and one accepted write
+ // burst can progress independently. All valid responses hold their payload
+ // until handshake. Stalls are deterministic; there is no guessed rate gold.
+ always @(negedge core_clk)begin
+  mlp_data_axi_arready=core_rst_n&&read_left==0&&!mlp_data_axi_rvalid&&(cycles%11!=3);
+  mlp_data_axi_awready=core_rst_n&&write_left==0&&!b_pending&&!mlp_data_axi_bvalid&&(cycles%13!=4);
+  mlp_data_axi_wready=core_rst_n&&write_left>0&&(cycles%17>3);
+  if(core_rst_n&&!mlp_data_axi_rvalid&&read_left>0&&cycles%7!=2)begin
+   mlp_data_axi_rdata=data_memory(read_address);mlp_data_axi_rresp=0;
+   mlp_data_axi_rlast=read_left==1;mlp_data_axi_rvalid=1;
+  end
+  if(core_rst_n&&b_pending&&!mlp_data_axi_bvalid)begin
+   if(b_delay>0)b_delay=b_delay-1;
+   else if(!(b_is_final&&hold_final_b))begin
+    mlp_data_axi_bvalid=1;mlp_data_axi_bresp=b_will_error?2'b10:2'b00;
+   end
+  end
+ end
+ always @(posedge core_clk)begin
+  cycles<=cycles+1;
+  if(cycles>RUN_BOUND)$fatal(1,"integration global bounded-cycle watchdog");
+  if(!core_rst_n)begin
+   read_left=0;write_left=0;b_pending=0;mlp_data_axi_rvalid<=0;mlp_data_axi_bvalid<=0;
+   previous_data_r_stall<=0;final_b_waiting=0;
+  end else begin
+   if(data_axi_arvalid||data_axi_awvalid||ddr0_axi_arvalid||attention_irq)
+    $fatal(1,"idle real Attention branch produced unexpected traffic/IRQ");
+   if(previous_data_r_stall&&(mlp_data_axi_rvalid!==1||mlp_data_axi_rdata!==previous_data_r||mlp_data_axi_rlast!==previous_data_last))
+    $fatal(1,"data BFM violated RVALID payload hold");
+   previous_data_r_stall<=mlp_data_axi_rvalid&&!mlp_data_axi_rready;
+   previous_data_r<=mlp_data_axi_rdata;previous_data_last<=mlp_data_axi_rlast;
+   if(mlp_data_axi_arvalid&&mlp_data_axi_arready)begin
+    check(mlp_data_axi_arsize==5&&mlp_data_axi_arburst==1,"data AR size/type");
+    check((mlp_data_axi_araddr&4095)+(mlp_data_axi_arlen+1)*32<=4096,"data AR does not cross4KiB");
+    read_left=mlp_data_axi_arlen+1;read_address=mlp_data_axi_araddr;
+   end
+   if(mlp_data_axi_rvalid&&mlp_data_axi_rready)begin
+    if(read_address>=META_G&&read_address<META_G+65536)meta_read_bytes=meta_read_bytes+32;
+    else data_read_bytes=data_read_bytes+32;
+    read_left=read_left-1;read_address=read_address+32;mlp_data_axi_rvalid<=0;
+   end
+   if(mlp_data_axi_awvalid&&mlp_data_axi_awready)begin
+    check(mlp_data_axi_awsize==5&&mlp_data_axi_awburst==1,"data AW size/type");
+    check((mlp_data_axi_awaddr&4095)+(mlp_data_axi_awlen+1)*32<=4096,"data AW does not cross4KiB");
+    check(mlp_data_axi_awaddr==output_base+data_write_bytes,"output AW address/order");
+    if(inject_b_error&&job_b_count>0)$fatal(1,"new AW after injected failing BRESP");
+    write_left=mlp_data_axi_awlen+1;write_address=mlp_data_axi_awaddr;
+    b_bytes=write_left*32;job_aw_count=job_aw_count+1;
+   end
+   if(mlp_data_axi_wvalid&&mlp_data_axi_wready)begin
+    check(write_left>0&&mlp_data_axi_wstrb==32'hffffffff,"W follows accepted AW with full strobe");
+    check(mlp_data_axi_wlast==(write_left==1),"WLAST matches burst count");
+    for(integer byte_number=0;byte_number<32;byte_number=byte_number+1)
+     if(mlp_data_axi_wdata[byte_number*8+:8]!==expected_output_byte(write_address-output_base+byte_number))
+      $fatal(1,"output numeric/layout mismatch op%0d cohort%0d offset%0d actual%h expected%h",job_op,job_cohort,write_address-output_base+byte_number,mlp_data_axi_wdata[byte_number*8+:8],expected_output_byte(write_address-output_base+byte_number));
+    write_left=write_left-1;write_address=write_address+32;data_write_bytes=data_write_bytes+32;
+    if(write_left==0)begin
+     b_pending=1;b_delay=9;b_is_final=data_write_bytes==output_size;
+     b_will_error=inject_b_error&&job_b_count==0;
+     if(b_is_final)final_b_waiting=1;
+    end
+   end
+   if(mlp_data_axi_bvalid&&mlp_data_axi_bready)begin
+    if(mlp_data_axi_bresp==0)data_b_bytes=data_b_bytes+b_bytes;
+    job_b_count=job_b_count+1;b_pending=0;mlp_data_axi_bvalid<=0;
+   end
+   if(dut.engine_soft_clear)soft_clear_pulses=soft_clear_pulses+1;
+   if(dut.mlp_job_clear)clear_pulses=clear_pulses+1;
+   if(dut.u_compute.req_valid&&dut.u_compute.req_ready)begin
+    check(dut.u_compute.req_group<(128),"cache group range");
+    job_cache_reads=job_cache_reads+1;
+   end
+   if(dut.mlp_command_valid&&dut.mlp_command_ready)job_compute_starts=job_compute_starts+1;
+   if(dut.gate_rd_valid&&dut.gate_rd_ready)job_meta_g_issue=job_meta_g_issue+1;
+   if(dut.gate_meta_valid&&dut.gate_meta_ready)job_meta_g_deliver=job_meta_g_deliver+1;
+   if(dut.mlp_gu_valid&&dut.mlp_gu_ready)job_gu_records=job_gu_records+1;
+  end
+ end
+
+ // Both logical MLP half-streams reach the actual physical DDR1 port.
+ // The other physical DDR port remains idle with real Attention instantiated.
+ always @(negedge ddr1_clk)begin
+  ddr1_axi_arready=ddr1_rst_n&&weight_left==0&&!ddr1_axi_rvalid;
+  if(ddr1_rst_n&&!ddr1_axi_rvalid&&weight_left>0)begin
+   ddr1_axi_rdata=weight_memory(weight_address);ddr1_axi_rresp=0;
+   ddr1_axi_rlast=weight_left==1;
+   if(inject_weight_framing&&!framing_injected&&weight_left>1)begin
+    ddr1_axi_rlast=1;framing_injected=1;
+   end
+   ddr1_axi_rvalid=1;
+  end
+ end
+ always @(posedge ddr1_clk)begin
+  if(!ddr1_rst_n)begin weight_left=0;ddr1_axi_rvalid<=0;previous_weight_r_stall<=0;end
+  else begin
+   if(previous_weight_r_stall&&(ddr1_axi_rvalid!==1||ddr1_axi_rdata!==previous_weight_r||ddr1_axi_rlast!==previous_weight_last))
+    $fatal(1,"weight BFM violated RVALID payload hold");
+   previous_weight_r_stall<=ddr1_axi_rvalid&&!ddr1_axi_rready;
+   previous_weight_r<=ddr1_axi_rdata;previous_weight_last<=ddr1_axi_rlast;
+   if(ddr1_axi_arvalid&&ddr1_axi_arready)begin
+    check(ddr1_axi_arsize==6&&ddr1_axi_arburst==1,"weight AR format");
+    check((ddr1_axi_araddr&4095)+(ddr1_axi_arlen+1)*64<=4096,"weight AR does not cross4KiB");
+    weight_left=ddr1_axi_arlen+1;weight_address=ddr1_axi_araddr;weight_ar_count=weight_ar_count+1;
+   end
+   if(ddr1_axi_rvalid&&ddr1_axi_rready)begin
+    weight_left=weight_left-1;weight_address=weight_address+64;
+    weight_beats=weight_beats+1;ddr1_axi_rvalid<=0;
+   end
+  end
+ end
+
+ task automatic write_csr(input [11:0] address,input [31:0] value,input [1:0] response);
+ begin
+  @(negedge core_clk);ctrl_awaddr=address;ctrl_awvalid=1;
+  ctrl_wdata=value;ctrl_wstrb=15;ctrl_wvalid=1;ctrl_bready=0;
+  fork
+   begin @(posedge core_clk);while(!ctrl_awready)@(posedge core_clk);@(negedge core_clk);ctrl_awvalid=0;end
+   begin @(posedge core_clk);while(!ctrl_wready)@(posedge core_clk);@(negedge core_clk);ctrl_wvalid=0;end
+  join
+  while(!ctrl_bvalid)@(negedge core_clk);
+  check(ctrl_bresp===response,$sformatf("CSR write response address%h actual%0d expected%0d",address,ctrl_bresp,response));
+  repeat(2)@(negedge core_clk);ctrl_bready=1;@(negedge core_clk);ctrl_bready=0;
+ end endtask
+ task automatic read_csr(input [11:0] address,output reg [31:0] value);
+ begin
+  @(negedge core_clk);ctrl_araddr=address;ctrl_arvalid=1;ctrl_rready=0;
+  @(posedge core_clk);while(!ctrl_arready)@(posedge core_clk);
+  @(negedge core_clk);ctrl_arvalid=0;
+  while(!ctrl_rvalid)@(negedge core_clk);
+  check(ctrl_rresp==0,"CSR read OKAY");value=ctrl_rdata;
+  ctrl_rready=1;@(negedge core_clk);ctrl_rready=0;
+ end endtask
+ task automatic expect_csr(input [11:0] address,input [31:0] expected);
+ reg [31:0] value;
+ begin read_csr(address,value);check(value===expected,$sformatf("CSR%h actual%h expected%h",address,value,expected));end endtask
+ task automatic poll_csr(input [11:0] address,input [31:0] mask,expected);
+ reg [31:0] value;integer began;
+ begin
+  began=cycles;value=~expected;
+  while((value&mask)!==expected)begin
+   read_csr(address,value);check(cycles-began<JOB_BOUND,$sformatf("CSR bounded wait addr%h value%h",address,value));
+   if((value&mask)!==expected)repeat(31)@(negedge core_clk);
+  end
+ end endtask
+ task automatic session_reset;
+ begin
+  @(negedge core_clk);core_rst_n=0;ddr0_rst_n=0;ddr1_rst_n=0;core_clear=0;
+  ctrl_awvalid=0;ctrl_wvalid=0;ctrl_bready=0;ctrl_arvalid=0;ctrl_rready=0;
+  input_bad=0;metadata_bad=0;inject_b_error=0;inject_weight_framing=0;hold_final_b=0;framing_injected=0;
+  repeat(16)@(negedge core_clk);core_rst_n=1;ddr0_rst_n=1;ddr1_rst_n=1;
+  repeat(80)@(negedge core_clk);
+  expect_csr(12'h104,32'h00070000);expect_csr(12'h300,32'h4d4c0002);
+  poll_csr(12'h10c,32'h20,32'h20);write_csr(12'h108,3,0);
+  poll_csr(12'h10c,32'h1f,32'h1b);
+  check(!integration_error,"new session healthy in SHARED mode");
+ end endtask
+ task automatic load_metadata_and_epoch;
+ integer before_bytes;
+ begin
+  before_bytes=meta_read_bytes;
+  write_csr(12'h150,1,0);write_csr(12'h16c,META_G,0);write_csr(12'h170,0,0);
+  write_csr(12'h154,1,0);poll_csr(12'h14c,32'h10,32'h10);
+  poll_csr(12'h178,32'h14,0);
+  expect_csr(12'h160,2048);expect_csr(12'h168,0);
+  check(meta_read_bytes-before_bytes==65536,"all2048 padded GU metadata records DMA-read");
+  write_csr(12'h158,meta_generation,0);write_csr(12'h154,2,0);
+  poll_csr(12'h144,32'hffffffff,meta_generation);
+  write_csr(12'h11c,2,0);write_csr(12'h12c,0,0);write_csr(12'h130,32'h01c00000,0);
+  write_csr(12'h134,0,0);write_csr(12'h138,0,0);
+  write_csr(12'h374,1,0);write_csr(12'h36c,epoch_number,0);
+  expect_csr(12'h370,0);expect_csr(12'h368,epoch_number);
+ end endtask
+ task automatic configure_job(input integer op,cohort,id,kind);
+ reg [31:0] base;
+ begin
+  @(negedge core_clk);
+  job_op=op;job_cohort=cohort;job_id=id;fault_kind=kind;
+  base=32'h10000000+cohort*3*32'h00800000;
+  input_base=base+(0);output_base=base+(32'h00100000);
+  input_size=73728;output_size=12288;
+  input_bad=kind==1;inject_b_error=kind==2;inject_weight_framing=kind==4;framing_injected=0;
+  hold_final_b=kind==0||kind==3;final_b_waiting=0;
+  data_read_bytes=0;data_write_bytes=0;data_b_bytes=0;job_aw_count=0;job_b_count=0;
+  weight_beats=0;weight_ar_count=0;job_cache_reads=0;job_compute_starts=0;job_gu_records=0;job_down_records=0;
+  job_meta_g_issue=0;job_meta_g_deliver=0;job_meta_d_issue=0;job_meta_d_deliver=0;
+  job_clear_baseline=clear_pulses;soft_clear_baseline=soft_clear_pulses;
+  write_csr(12'h118,id,0);write_csr(12'h280,100+cohort,0);
+  write_csr(12'h284,(cohort*3<<16)|cohort,0);write_csr(12'h11c,2,0);
+  write_csr(12'h30c,op,0);write_csr(12'h120,32'h48384605,0);
+  write_csr(12'h124,input_base,0);write_csr(12'h128,output_base,0);
+  write_csr(12'h310,input_size,0);write_csr(12'h314,output_size,0);
+  write_csr(12'h318,id+1,0);write_csr(12'h140,meta_generation,0);write_csr(12'h31c,epoch_number,0);
+  write_csr(12'h374,1,0);write_csr(12'h320,1,0);expect_csr(12'h370,0);
+  check(clear_pulses==job_clear_baseline+1,"accepted START performs exactly one admission job_clear");
+  job_clear_baseline=clear_pulses;
+  start_cycle=cycles;
+ end endtask
+ task automatic reject_old_down(input integer op);
+ integer old_data,old_weights,old_clears;
+ begin
+  old_data=data_read_bytes;old_weights=weight_ar_count;old_clears=clear_pulses;
+  write_csr(12'h118,90,0);write_csr(12'h280,100,0);write_csr(12'h284,0,0);
+  write_csr(12'h30c,op,0);write_csr(12'h120,32'h48384605,0);
+  write_csr(12'h124,32'h10000000,0);write_csr(12'h128,32'h10100000,0);
+  write_csr(12'h310,73728,0);write_csr(12'h314,12288,0);write_csr(12'h318,91,0);
+  write_csr(12'h140,meta_generation,0);write_csr(12'h31c,epoch_number,0);
+  write_csr(12'h374,1,0);write_csr(12'h320,1,2);expect_csr(12'h370,32'h1010);
+  repeat(97)@(negedge core_clk);
+  check(data_read_bytes==old_data&&weight_ar_count==old_weights&&clear_pulses==old_clears&&!dut.job_completion_valid&&!dut.mlp_cache_begin_valid&&!dut.mlp_command_valid&&!mlp_data_axi_arvalid&&!mlp_data_axi_awvalid&&!ddr1_axi_arvalid,"old Down/full32 alias rejection takes no AXI/cache/compute owner");
+  expect_csr(12'h368,epoch_number);
+ end endtask
+ function automatic [223:0] expected_meta_word(input integer index);
+ reg[255:0] value;begin value=metadata_beat(1,index);expected_meta_word=value[223:0];end
+ endfunction
+ function automatic [223:0] active_meta_word(input integer index);
+  active_meta_word={dut.u_meta_bank.u_gate_bank1.g_width[3].u_width_local.mem[index],dut.u_meta_bank.u_gate_bank1.g_width[2].u_width_local.mem[index],dut.u_meta_bank.u_gate_bank1.g_width[1].u_width_local.mem[index],dut.u_meta_bank.u_gate_bank1.g_width[0].u_width_local.mem[index]};
+ endfunction
+ task automatic bad_inactive_load;
+ integer bytes_before;
+ begin
+  bytes_before=meta_read_bytes;metadata_bad=1;
+  write_csr(12'h150,0,0);write_csr(12'h16c,META_G,0);write_csr(12'h154,1,0);
+  poll_csr(12'h178,32'h14,32'h10);
+  check(meta_read_bytes-bytes_before==65536,"padding fault consumes entire accepted2048x32B metadata command");
+  check(dut.meta_error&&dut.meta_dma_error&&dut.meta_gate_count==7&&dut.meta_bank_valid==2&&dut.meta_bank_loading==0,"inactive padding7 invalidates target and preserves legal prefix");
+  check(dut.meta_active_bank==1&&dut.meta_active_generation==meta_generation,"padding fault retains active bank/generation");
+  check(active_meta_word(0)==expected_meta_word(0)&&active_meta_word(7)==expected_meta_word(7)&&active_meta_word(2047)==expected_meta_word(2047),"active memory bytes retained after unrelated inactive padding fault");
+  expect_csr(12'h368,0);metadata_bad=0;
+ end endtask
+ task automatic recover_meta_fault(input integer held,id,code);
+ begin
+  old_soft=soft_clear_pulses;write_csr(12'h110,2,0);start_cycle=cycles;
+  while(soft_clear_pulses==old_soft)begin @(negedge core_clk);check(cycles-start_cycle<JOB_BOUND,"actual metadata fault reaches physical maintenance barrier");end
+  repeat(80)@(negedge core_clk);
+  check(!dut.job_reset_required&&dut.job_paths_quiescent&&!dut.meta_dma_busy&&!dut.tensor_axi_active,"metadata fault transport drained before hard clear");
+  check(dut.job_completion_valid==held,"maintenance preserves exact completion ownership");
+  if(held)begin
+   expect_csr(12'h338,id);expect_csr(12'h350,code);
+   expect_csr(12'h348,saved_input);expect_csr(12'h34c,saved_output);expect_csr(12'h364,saved_records);
+   ack_job();
+  end
+  expect_csr(12'h368,0);poll_csr(12'h14c,6,0);
+ end endtask
+ task automatic wait_done;
+ begin
+  while(!dut.job_completion_valid)begin
+   @(negedge core_clk);check(cycles-start_cycle<JOB_BOUND,"job completed within finite structural bound");
+  end
+ end endtask
+ task automatic finish_success(input integer abort_expected);
+ begin
+  while(!final_b_waiting)begin
+   @(negedge core_clk);check(cycles-start_cycle<JOB_BOUND,"reached final output B");
+   check(!dut.job_completion_valid,"no DONE before full output W");
+  end
+  repeat(64)begin
+   @(negedge core_clk);
+   check(!dut.job_completion_valid&&clear_pulses==job_clear_baseline,$sformatf("final B hold blocks DONE and job_clear valid=%0d done_status=%h phase=%0d clears=%0d/%0d",dut.job_completion_valid,dut.done_error,dut.job_phase,clear_pulses,job_clear_baseline));
+  end
+  hold_final_b=0;wait_done();
+  expect_csr(12'h338,job_id);expect_csr(12'h33c,100+job_cohort);
+  expect_csr(12'h340,(job_cohort*3<<16)|job_cohort);expect_csr(12'h344,2);
+  expect_csr(12'h328,job_op);expect_csr(12'h32c,job_id+1);
+  expect_csr(12'h334,meta_generation);expect_csr(12'h330,epoch_number);
+  expect_csr(12'h348,input_size);expect_csr(12'h34c,output_size);
+  expect_csr(12'h350,abort_expected?32'h2201:0);expect_csr(12'h364,16);
+  check(data_read_bytes==input_size&&data_write_bytes==output_size&&data_b_bytes==output_size,"exact external input/W/OKAY-B byte counts");
+  check(job_compute_starts==1&&job_cache_reads==(2816),"completeK cache requests and one compute start");
+  check(job_gu_records==(16)&&job_down_records==(0),"exact GU writer-accepted records; reserved Down counters zero");
+  check(job_meta_g_issue==(2048)&&job_meta_g_deliver==(2048)&&job_meta_d_issue==(0)&&job_meta_d_deliver==(0),"all metadata issued and delivered once");
+  check(weight_beats==(8192),"both physical weight halves include all records");
+  if(!abort_expected)begin
+   check(soft_clear_pulses==soft_clear_baseline&&!integration_error,"normal SHARED job never invokes maintenance");
+   check(dut.attention_launch_enable,"normal MLP job retains Attention launch permission");
+   expect_csr(12'h368,epoch_number);expect_csr(12'h144,meta_generation);
+  end
+  $display("INTEGRATION_JOB id=%0d op=%0d cohort=%0d cycles=%0d input=%0d output=%0d cache=%0d weights=%0d abort=%0d",job_id,job_op,job_cohort,cycles-start_cycle,data_read_bytes,data_b_bytes,job_cache_reads,weight_beats,abort_expected);
+ end endtask
+ task automatic ack_job;
+ begin
+  write_csr(12'h2a0,job_id,0);poll_csr(12'h29c,1,0);
+  repeat(8)@(negedge core_clk);
+ end endtask
+
+ initial begin : run
+  // Everything used by the very first transfer is initialized explicitly;
+  // no always-@* time-zero trigger is required for memory image generation.
+  // BEGIN_FROZEN_PYTHON_GOLD SHA256=9f53ded7be5164d82f3957b5429cf6d527173c398fb7f33fdefcc9c05dd9c39e
+  frozen_gu_rows[0]=3072'h000000fffed4000000fffffffffe09000000fffffffffdcd000000ffffffffff2b000000000000ffff8300000000000000016900000000000000030f0000000000000001f4000000000000fffef0000000fffffffffc84000000fffffffffd84000000ffffffffffcf00000000000000046600000000000100044f000000000000000195000000fffffffffdde000000fffffffffc6d000000fffffffffdf3000000000000ffff9900000000000000024800000000000000006800000000000000002c000000000000ffffd4000000fffffffffe1c000000fffffffffd04000000fffffffffcee000000ffffffffff5f00000000000000024f00000000000100055c0000000000010003b7000000000000000019000000fffffffffd1c000000fffffffffd04000000ffffffffffd20000000000000002bf0000000000010003c00000000000000000b9000000000000ffff33000000fffffffffe28000000fffffffffdd7000000fffffffffe48000000000000ffff600000000000000000af;
+  frozen_gu_rows[1]=3072'hfffffffffe610000000000000001140000000000000003370000000000010004d0000000000000000035000000fffffffffc0a000000fffffefffaa4000000fffffffffd630000000000000004de0000000000010006fb000000000001000547000000fffffffffe16000000fffffffffb86000000fffffefffb42000000fffffffffeab00000000000000027f00000000000000013400000000000000005b000000000000ffff5e000000000000fffec2000000fffffffffb61000000fffffffffb67000000fffffffffd150000000000000000bc000000000001000765000000000002000717000000000001000318000000fffffffffc6c000000fffffffffb87000000fffffffffd5a0000000000000002fa00000000000100062d00000000000100025d000000000000ffff92000000fffffffffd1d000000fffffffffd9b000000fffffffffc99000000fffffffffebd0000000000000000560000000000000002580000000000010004e00000000000010000ef000000fffffffffe04;
+  frozen_gu_rows[2]=3072'h0000010003bd000000fffffffff92c000000fffffdfff746000000fffffdfff78a000000ffffff000614000000000002000be2000000000004000cf100000000000000000a000000fffffffff84a000000fffffdfff646000000fffffefff9a70000000000000004980000000000010003cd000000000001000314000000fffffffffe1b000000000000ffff4f000000fffffefff897000000fffffefff6c1000000fffffefff9dd000000fffffffffd7a000000000001000bcf000000000003000e660000000000030009b1000000fffffffffc7f000000fffffefff819000000fffffdfff893000000000000000120000000000002000be40000000000020007fd00000000000100029a000000fffffffffaf8000000fffffffffbe6000000fffffefff8ea000000fffffffffbe0000000ffffffffffad00000000000000012a000000000001000a4a000000000001000504000000000000fffebf000000fffffdfff5a6000000fffffefff6d5000000fffffeffff060000000000020008f4;
+  frozen_gu_rows[3]=3072'hfffffefffd23000000000002000cfe000000000003000d9a00000000000300067d000000fffffffffab3000000fffffdfff517000000fffffdfff867000000fffffffffe610000000000010006fd0000000000010001cf000000000000ffffdc000000fffffffffe9a000000fffffffffa9b000000fffffdfff73b000000fffffdfff65c000000fffffefffc6d0000000000000004960000000000030010db000000000003000cb3000000000002000210000000fffffefff7fa000000fffffdfff634000000fffffefffe2c000000000001000791000000000003000cf800000000000100035a000000000000fffdac000000fffffefff9d5000000fffffefff96f000000fffffefffb11000000fffffffffdcf000000000000000240000000000001000629000000000002000a04000000000001ffffd5000000fffffffff8d3000000fffffdfff4f0000000fffffefff9bc00000000000000077b000000000003000e06000000000003000b32000000000000fffbdc000000fffffefff655;
+  frozen_gu_rows[4]=3072'h000001fffcb8000000fffffdfff3b8000000fffffbffef07000000fffffdfffb6f0000000000000003fa0000000000020007c80000000000000001ae000000000000fffe45000000fffffffffd2f000000fffffdfff2df000000fffffcfff27f000000fffffcfff275000000ffffff00019e00000000000300136b0000000000060018da000000000004000ba4000000fffffffff7b5000000fffffcfff2e9000000fffffcfff4a60000000000000006db0000000000040010fd000000000004000bbc000000000000000170000000fffffffff8d6000000fffffefff7d5000000fffffdfff490000000fffffefffb43000000fffffffffc830000000000010006cb000000000002000fb10000000000030006db000000fffffffffb8c000000fffffcffebfd000000fffffcfff3c3000000ffffff00011a00000000000400157200000000000500145f00000000000300033c000000fffffdfff580000000fffffcffed4d000000fffffcfff699000000ffffffffffae00000000000200094a;
+  frozen_gu_rows[5]=3072'hfffffffffff5000000000002000a6e0000000000000002ea000000000000ffff7c000000fffffffffeb1000000fffffefff5aa000000fffffcfff273000000fffffcfff1b2000000fffffefffcee000000000001000be200000000000600194700000000000500114e000000000001fffe7b000000fffffdfff278000000fffffcfff240000000fffffe0001a7000000000002000da5000000000005001120000000000001000343000000fffffffffbad000000fffffefff789000000fffffdfff5df000000fffffdfffa54000000fffffffffc7400000000000000042b000000000002000b15000000000003000c86000000000000fffe44000000fffffdfff23b000000fffffbfff073000000fffffdfff8d9000000000002000f7700000000000500146d000000000005000b9b000000fffffffff855000000fffffdfff0d1000000fffffcfff1a8000000fffffefffb980000000000010007d400000000000200027a00000000000000001d000000fffffffffe50000000fffffffffabe;
+  frozen_gu_rows[6]=3072'hfffffeffff57000000fffffffff48c000000fffffbffef27000000fffffaffea01000000fffffdfff485000000ffffff00042a00000000000700234f0000000000070020af00000000000500071c000000fffffdfff256000000fffffaffe8f9000000fffffcfff91f000000000002000ca9000000000007001c9f000000000004000acd000000000000fffd10000000fffffdfff535000000fffffdfff060000000fffffbfff3ce000000fffffefffabc0000000000000001f60000000000010008c900000000000500163400000000000200062f000000fffffefff0bb000000fffff9ffe7e9000000fffffbffeddb000000000000000ee1000000000007001b1c000000000008001c9d000000000001fffa93000000fffffcffeb97000000fffff9ffe8ed000000fffffcfff2280000000000000009120000000000030006f700000000000200043c000000000000fff908000000000000fffb52000000fffffbffed9c000000fffffbffe8f2000000fffffbfff337000000fffffefffb44;
+  frozen_gu_rows[7]=3072'hfffffffffde8000000000000ffffbf0000000000000002b6000000000001000432000000000000000247000000000000ffff08000000fffffffffdb0000000fffffffffe1c0000000000000000bf00000000000000029800000000000100027700000000000000004d000000000000ffff14000000fffffffffe87000000fffffffffe4d000000ffffffffff26000000000000ffff850000000000000000d300000000000000023500000000000000019c000000000000ffff3f000000fffffffffd4e000000fffffffffd9a000000ffffffffffa50000000000000002fc00000000000100036600000000000000011e000000fffffffffe5c000000fffffffffd58000000fffffffffdee000000000000ffffbb00000000000000016100000000000000004d000000000000ffffd8000000000000ffffaa000000000000fffeb8000000fffffffffd90000000fffffffffd9c000000ffffffffff3900000000000000018e0000000000010004030000000000010002e500000000000000003b;
+  frozen_gu_rows[8]=3072'h000002000879000000000001ffff80000000fffffffffba7000000fffffefff9ac000000fffffffffff70000000000000004fa0000000000020007370000000000010001da000000000000fffe7c000000fffffffffd28000000fffffffffb36000000fffffffffdef000000fffffffffe8a00000000000000011b00000000000000038d0000000000010005e2000000000000000082000000fffffffffabd000000fffffefff940000000fffffefffbff0000000000010005a40000000000020008bf000000000002000589000000000000fffd7a000000fffffffffa3f000000fffffefff9f4000000fffffffffd600000000000000003320000000000000001d5000000000000000014000000000000fffecf000000000000fffe4e000000fffffefffa79000000fffffefff99d000000fffffffffc500000000000000000170000000000010009510000000000020008f400000000000100036b000000fffffffffbcb000000fffffefffa58000000fffffffffd410000000000000002f1;
+  frozen_gu_rows[9]=3072'hfffffefffbd100000000000000041400000000000200085e0000000000020004da000000000000ffffd0000000fffffffffc28000000fffffffffb41000000fffffefffb65000000fffffffffe56000000ffffffffffb20000000000000002b50000000000010006e50000000000010002ab000000fffffffffc57000000fffffefff74d000000fffffefffa43000000ffffff0001f3000000000002000a1c000000000003000974000000000001000047000000fffffffff9f5000000fffffefff778000000fffffefffb3e000000000000000116000000000001000435000000000000000126000000000000fffed0000000000000fffe95000000fffffffffa5c000000fffffefff8f3000000fffffefff9c1000000fffffffffefe000000000001000769000000000003000c7100000000000200070c000000000000fffdd1000000fffffefff91c000000fffffefff9f5000000ffffff00016200000000000100086100000000000200086f00000000000100014f000000fffffffffcc6;
+  frozen_gu_rows[10]=3072'h00000100025a000000000000fffd13000000fffffefff9cb000000fffffefff61d000000fffffefffb46000000fffffffffd1500000000000000041700000000000100091c0000000000030009de000000000000ffffa0000000fffffefff2cb000000fffffcfff24f000000fffffefff942000000000002000eba000000000004000fab000000000004000976000000fffffffff8ed000000fffffdfff3ed000000fffffcfff57a000000fffffffffaeb0000000000010007a6000000000001ffffea000000000000000249000000fffffffffd8e000000fffffffffab9000000fffffdfff4c4000000fffffdfff263000000fffffefffa020000000000000002920000000000040015d1000000000005000f090000000000020004ad000000fffffefff4e4000000fffffdfff53f000000fffffefffd840000000000010008e90000000000040011760000000000020003c1000000000000ffff10000000fffffefff815000000fffffefff803000000fffffdfff856000000fffffffffc78;
+  frozen_gu_rows[11]=3072'hfffffdfff96e000000fffffffffdad000000ffffff000189000000000001000679000000000003000b900000000000010002d2000000fffffffff672000000fffffcfff168000000fffffdfff7750000000000000007da0000000000040010f5000000000005000dd0000000000001fffce8000000fffffefff3cb000000fffffcfff301000000fffffefff97700000000000000043b00000000000200053400000000000000018f000000000000fffe42000000000000fffc9d000000fffffefff5f2000000fffffdfff38c000000fffffdfff6df000000ffffffffffbe000000000003000fb30000000000050013510000000000040008f0000000000000fff97f000000fffffdfff3ae000000fffffdfff7dc0000000000000004ce000000000003000f5f000000000003000a6e000000000001000153000000fffffffffa5c000000fffffefff799000000fffffefff6e0000000fffffefffb4d000000fffffffffe5a00000000000000043e000000000002000c1e00000000000200067e;
+  frozen_gu_rows[12]=3072'h00000300127a000000000003000793000000000000fffbf5000000fffffbffeb24000000fffffcffecff000000fffffd000073000000000005001643000000000007001cc80000000000040001ad000000fffffefff421000000fffffaffe8d3000000fffffcfff25b000000fffffe00000900000000000300090a0000000000010005bc000000000000fffb69000000000000ffff78000000fffffdfff103000000fffffcffeeac000000fffffbffefe1000000fffffefff8ae000000000001000e3e000000000007001c6500000000000700182b000000000001fffaf7000000fffffdffefe3000000fffffbffedac000000ffffff00029e00000000000300117d0000000000060015b5000000000002000634000000fffffffff638000000fffffefff7cf000000fffffcffeeed000000fffffefff9f6000000fffffefff9ee000000000001000441000000000002000c7c000000000004000b5a00000000000100016c000000fffffdffeb81000000fffffbffef2c000000fffffcfff5f7;
+  frozen_gu_rows[13]=3072'hfffffbffeca9000000fffffdfff5b20000000000020010220000000000060018de000000000006000e0f000000000000fff8e9000000fffffcffed5c000000fffffcfff081000000fffffefff7b90000000000010008220000000000020005a300000000000000017f000000ffffffffff12000000fffffffff852000000fffffdfff1b4000000fffffcffecad000000fffffcfff52e000000ffffff000253000000000005001a460000000000060019fe0000000000040006a1000000fffffefff45e000000fffffcffedda000000fffffdfff9780000000000010008a9000000000005001729000000000004000b00000000000000ffff25000000fffffefff84e000000fffffefff268000000fffffdfff573000000fffffefff8dd000000ffffff00003600000000000100077d000000000004001125000000000002000677000000fffffffff4a2000000fffffbffec1f000000fffffcfff39b000000000000000a430000000000050017dc00000000000600180b00000000000100013a;
+  frozen_gu_rows[14]=3072'h0000010003a4000000000000ffff91000000fffffffffda1000000fffffffffc30000000fffffffffec3000000000000fffff00000000000000001ef000000000000ffffc5000000000000fffff8000000000000ffff77000000fffffffffd38000000fffffffffd96000000fffffffffcfe00000000000000000500000000000000029300000000000100058d0000000000010002b5000000000000fffeba000000fffffffffd24000000fffffffffd2e00000000000000015600000000000000031a00000000000100035a000000000000000001000000000000ffff13000000fffffffffe26000000fffffffffd63000000ffffffffff1a000000ffffffffff1600000000000000015300000000000000022600000000000100025d000000000000ffff20000000fffffffffc7b000000fffffffffd03000000ffffffffff4300000000000000046f00000000000100045d000000000001000228000000fffffffffe05000000fffffffffd1f000000fffffffffdb6000000000000ffff5f;
+  frozen_gu_rows[15]=3072'hfffffffffc6c000000fffffffffec000000000000000027d0000000000000000d0000000000000ffffff000000000000ffffb4000000fffffffffcd3000000fffffffffc1a000000fffffefffaf6000000fffffffffdce0000000000000001f50000000000020007dd0000000000020006ad000000000001000035000000fffffffffc3e000000fffffffffb11000000ffffffffffad0000000000000003a600000000000200064d0000000000010001c9000000000000fffef9000000fffffffffda6000000fffffffffbe2000000fffffffffdc7000000fffffffffe6a0000000000000000e300000000000000029800000000000100045a0000000000000000de000000fffffffffbb9000000fffffefffab7000000fffffffffd260000000000000004d100000000000100072b000000000002000582000000000000fffea8000000fffffffffba0000000fffffefffb95000000fffffffffded0000000000000002cd0000000000000001cd0000000000000000d3000000000000ffff03;
+  frozen_gu_rows[16]=3072'h0000010002d8000000000000fffe57000000fffffffffcd7000000fffffffffce1000000ffffffffff0200000000000000014f0000000000000000a100000000000000005a000000000000ffffb3000000000000fffecc000000fffffffffcf3000000fffffffffcfe000000fffffffffdf40000000000000000af0000000000010004a600000000000100043b000000000000000164000000fffffffffd54000000fffffffffd0c000000fffffffffead0000000000000002580000000000010003c70000000000010001bb000000000000ffffd7000000fffffffffe70000000fffffffffdf5000000fffffffffdb5000000000000ffff86000000000000ffffab00000000000000018d00000000000100030c0000000000000000ac000000fffffffffe53000000fffffffffc01000000fffffffffe300000000000000001970000000000010004e8000000000001000412000000000000ffffe5000000fffffffffd88000000fffffffffcef000000fffffffffeaa0000000000000000b8;
+  frozen_gu_rows[17]=3072'hfffffffffdcb0000000000000000d600000000000100028b000000000000000091000000000000ffff4e000000000000ffff50000000fffffffffb6b000000fffffffffbdc000000fffffefffc2e000000ffffffffffa30000000000000005530000000000020007fd0000000000010004b4000000000000fffd62000000fffffffffb5c000000fffffffffbbd00000000000000021500000000000100059c0000000000020004d100000000000000006c000000000000fffdf5000000fffffffffd57000000fffffffffba4000000fffffffffe94000000ffffffffff350000000000000001ec0000000000010003f9000000000001000304000000000000ffff04000000fffffffffa13000000fffffefffb2e000000ffffffffff1700000000000100071d00000000000200074f0000000000010002c5000000fffffffffd13000000fffffffffac2000000fffffffffc84000000ffffffffff180000000000000003b20000000000000000e000000000000000007f000000000000ffff95;
+  frozen_gu_rows[18]=3072'h000000fffd6b000000ffffff0000cb000000fffffffff958000000fffffefff7db000000fffffdfff7d9000000fffffffffb62000000000000000642000000000003000c53000000000003000dd7000000000001fffed8000000fffffffff9bd000000fffffdfff688000000ffffffffffaa00000000000100084a000000000003000a000000000000010003fb000000000000fffbcd000000fffffffffd2c000000fffffefff7df000000fffffffffc7b000000fffffffffd8500000000000000019a00000000000100052f0000000000020006390000000000010002cb000000fffffefff6e4000000fffffefff791000000fffffefff9be00000000000100097b000000000003000d0f000000000003000879000000000000fffe45000000fffffefff5a3000000fffffdfff975000000fffffefffb820000000000010005930000000000010002f1000000000001000145000000fffffffffedd000000000000fffb2b000000fffffefff9b4000000fffffdfff55b000000fffffefffb8e;
+  frozen_gu_rows[19]=3072'hfffffefff67c000000fffffdfff9db000000ffffff00006e000000000002000d82000000000004000ead00000000000300075c000000fffffffff8d6000000fffffefff64c000000fffffefff93800000000000100052f000000000002000cdc0000000000030006de00000000000000004c000000fffffffffacf000000fffffffffa6d000000fffffefff7cd000000fffffffffcaa000000ffffffffffa400000000000100042c00000000000200093f000000000001000373000000fffffffffc7e000000fffffdfff3ee000000fffffdfff7bf000000ffffff0001df000000000003000e61000000000003000e7d0000000000010001b0000000fffffefff91b000000fffffdfff55b000000fffffefffb08000000ffffff00007100000000000200062200000000000000019f000000000000ffff7b000000ffffffffff35000000fffffefff820000000fffffefff751000000fffffdfff6c7000000fffffffffe1a00000000000100087200000000000400107a000000000003000b4a;
+  frozen_gu_rows[20]=3072'h000007001a1f000000000005000fd2000000000001fffc48000000fffffdfff2c7000000fffffcfff24e000000ffffff000266000000000003000fe30000000000050010f9000000000002fffffb000000000000fffb8d000000fffffefff729000000fffffdfff49e000000fffffdfff892000000fffffffffd0e0000000000010003a1000000000002000a4b000000000004000cd2000000000001fffdd4000000fffffdfff187000000fffffbffef04000000fffffefffb0a00000000000200116700000000000500168b000000000004000c94000000fffffffff622000000fffffdfff1ae000000fffffbfff2c6000000fffffffffc800000000000010008a6000000000002000315000000000000000342000000fffffffffdeb000000fffffffff967000000fffffcfff1ad000000fffffcffefe4000000fffffcfff8d100000000000000047c000000000005001aea00000000000600153300000000000300059f000000fffffefff349000000fffffcfff1c9000000fffffdfffd61;
+  frozen_gu_rows[21]=3072'hfffffcfff18b000000fffffdfffa91000000000002000a830000000000040013ef000000000003000678000000000000fffe37000000fffffefff775000000fffffefff61e000000fffffdfff61d000000fffffffffb87000000ffffff0001570000000000010007c9000000000003000e010000000000020001e9000000fffffffff700000000fffffbffef0a000000fffffcfff6c90000000000000008f100000000000500169700000000000500134d000000000001fffcee000000fffffdfff356000000fffffcfff0a2000000fffffdfffab800000000000000041c0000000000020007b4000000000000000199000000000000fffe26000000fffffffffda6000000fffffdfff28c000000fffffcfff29d000000fffffcfff457000000ffffff0000020000000000030011c30000000000060017c4000000000004000d79000000fffffffff8a8000000fffffcfff2e6000000fffffcfff6bd0000000000000008430000000000030011b1000000000004000d86000000000001000195;
+  frozen_gu_rows[22]=3072'h0000070010a6000000000002000186000000fffffefff382000000fffffefff333000000fffffbffeeca000000fffffefff875000000ffffffffff0f0000000000010005ac0000000000050014ec000000000004000868000000000001fffac7000000fffffaffe602000000fffffaffebc8000000fffffd0001bd000000000006001d8100000000000800217f0000000000040006d4000000fffffefff1da000000fffff9ffe556000000fffffcfff290000000fffffe00006a000000000003000d51000000000001000773000000000000ffff2a000000000000000077000000fffffdffee14000000fffffcffecd5000000fffffaffec03000000fffffdfff7df000000000001001306000000000009002394000000000008001cea000000000002fffcf7000000fffffcffee4a000000fffffaffec2b000000fffffe0003bf000000000003001792000000000007001b0c0000000000020009c2000000fffffffff7a9000000fffffdfff7fd000000fffffcffecee000000fffffdfff919;
+  frozen_gu_rows[23]=3072'hfffffffffe57000000fffffffffeb1000000000000ffff560000000000000000890000000000000001b2000000000000000209000000000000ffffdb000000fffffffffe09000000fffffffffd6d000000fffffffffef700000000000000025f0000000000010003c9000000000001000277000000000000ffff08000000fffffffffda9000000fffffffffd9a000000ffffffffff7400000000000000012f0000000000000000db00000000000000002d000000000000ffffe0000000000000ffff31000000fffffffffd97000000fffffffffdb2000000fffffffffe8800000000000000009b00000000000000038f0000000000010003cf00000000000000016b000000fffffffffe4b000000fffffffffdaf000000fffffffffef60000000000000001ec0000000000000003340000000000000001b3000000000000ffffe6000000000000fffeda000000fffffffffe68000000fffffffffe4e000000000000ffff8900000000000000000500000000000000017b00000000000000026c;
+  frozen_gu_rows[24]=3072'h0000000001b10000000000010006020000000000010001fe000000000000fffceb000000fffffefff949000000fffffefffae900000000000000032b00000000000200081c000000000002000916000000000000000013000000fffffffffb1f000000fffffefff98b000000fffffffffcf00000000000000001ac0000000000010002bd000000000000000120000000000000ffff20000000000000ffffb0000000fffffffffaf8000000fffffffffa7a000000fffffefffaf9000000ffffffffff6000000000000100061d0000000000020009e10000000000020006ed000000000000fffddf000000fffffffffafa000000fffffefffaff0000000000000002ae0000000000010006e40000000000020005db000000000000000149000000fffffffffd43000000fffffffffd88000000fffffffffb23000000fffffffffe02000000ffffffffff1000000000000000026f00000000000100053b000000000001000399000000000000ffff98000000fffffefff908000000fffffefff9fc;
+  frozen_gu_rows[25]=3072'hfffffefff83a000000fffffefff8d3000000fffffffffe810000000000010008eb000000000002000bb8000000000002000564000000fffffffffc51000000fffffefff812000000fffffefff9e7000000fffffffffef50000000000000004730000000000000001d500000000000000008f000000ffffffffffd4000000fffffffffc3f000000fffffefff8f1000000fffffefff88c000000fffffefffcba0000000000000003c6000000000002000bea000000000003000a850000000000010001f7000000fffffffffaae000000fffffefff903000000fffffffffef400000000000100067e0000000000020009c600000000000100033d000000000000fffede000000fffffffffcc3000000fffffffffae9000000fffffffffbe5000000fffffffffe460000000000000000f30000000000000004b50000000000020006e200000000000000014d000000fffffffffa76000000fffffefff7bf000000fffffefffb7d0000000000000005a0000000000002000ac40000000000020007f1;
+  frozen_gu_rows[26]=3072'h0000050012bc000000000004000f4f000000000000fffba3000000fffffefff651000000fffffcfff263000000fffffefffbf00000000000000004f50000000000020005740000000000000000a7000000000000fffe0a000000000000fffe33000000fffffdfff3b6000000fffffdfff481000000fffffdfff73d000000ffffff00008e000000000002001156000000000005001335000000000004000ab1000000fffffffff837000000fffffdfff4eb000000fffffdfff7f10000000000000006d2000000000003001030000000000003000a04000000000000000031000000fffffffff9a0000000fffffefffa0e000000fffffdfff521000000fffffffffd01000000ffffffffff1f00000000000100071f000000000002000d380000000000020004b9000000000000fffcff000000fffffcffef0e000000fffffcfff67c000000fffffe0000ed0000000000030012fc000000000004001172000000000002000276000000fffffefff736000000fffffdfff01a000000fffffdfffa39;
+  frozen_gu_rows[27]=3072'hfffffcfff28c000000fffffdfff7e4000000ffffff0000ec0000000000010007400000000000010002ae000000000000ffff8c000000000000ffff6c000000fffffefff753000000fffffdfff45f000000fffffdfff47e000000fffffefffc5b000000000001000b1a000000000005001432000000000004000f49000000000001ffff14000000fffffdfff689000000fffffdfff60c000000ffffff0001d6000000000002000d81000000000004000e8c000000000001000327000000fffffffffbc7000000fffffefffa2d000000fffffdfff742000000fffffefffa89000000fffffffffdd3000000000000000271000000000001000a1c000000000003000994000000000000ffffe4000000fffffdfff47f000000fffffcfff335000000fffffefffb67000000000002000d1c000000000004001253000000000003000980000000fffffffff9f8000000fffffdfff2ac000000fffffdfff590000000fffffefffd3200000000000100065100000000000100035100000000000000008e;
+  frozen_gu_rows[28]=3072'h00000200045900000000000100002f000000ffffffffffdf000000fffffffff59c000000fffffcfff1a6000000fffffcffeb85000000fffffdfff76d000000ffffff0003a3000000000006001d02000000000007001c48000000000004000693000000fffffdfff584000000fffffbffece4000000fffffcfffccd000000000001000cc7000000000006001a5d000000000003000a5e000000000000fffc7e000000fffffdfff770000000fffffefff2f4000000fffffcfff7d6000000fffffefff8b400000000000000046d000000000001000a1f000000000004001294000000000002000510000000fffffffff3be000000fffffbffedc9000000fffffbfff01c000000000000000f470000000000050019dc0000000000070018ea000000000000fffc2a000000fffffdffef6d000000fffffaffed8c000000fffffcfff6ff000000000000000a7a000000000002000741000000000001000556000000fffffffffb91000000000000fffe59000000fffffcffefa4000000fffffbffef1e;
+  frozen_gu_rows[29]=3072'hfffffcfff2fe000000fffffcffef43000000fffffcfff2af000000fffffefffd9b000000000003001588000000000007001abc00000000000500115d000000fffffffffaa2000000fffffcfff1f6000000fffffbfff59a000000000000000689000000000004001624000000000005000f9f0000000000010002d4000000fffffefff875000000fffffefff71c000000fffffcfff45c000000fffffefff978000000fffffffffea60000000000010004fb0000000000030011c300000000000300098f000000000000fffca1000000fffffbffed8e000000fffffbffefb3000000fffffd0000450000000000040015c1000000000006001ac9000000000003000685000000fffffefff4f4000000fffffbffeb5b000000fffffcfff3df000000fffffe00001e0000000000020009ce0000000000010004f0000000000000ffff50000000000000ffffbc000000fffffefff2f3000000fffffcfff06b000000fffffbfff0a9000000fffffdfff9c0000000000000000dbb000000000006001c02;
+  frozen_gu_rows[30]=3072'h0000000001250000000000010005ab0000000000010003e30000000000000000d7000000fffffffffd7e000000fffffffffd73000000ffffff0000120000000000000002420000000000010004780000000000000000dc000000000000ffffc3000000fffffffffe3f000000fffffffffe64000000fffffffffe53000000000000fffede0000000000000000b90000000000000001d4000000000001000371000000000000fffff2000000000000fffe1d000000fffffffffc48000000fffffffffecf000000000000000291000000000001000461000000000001000376000000000000fffe9a000000fffffffffda7000000fffffffffc7a000000ffffffffffbb0000000000000001190000000000000000e8000000000000000050000000000000ffff6f000000000000ffffad000000fffffffffccb000000fffffffffd91000000fffffffffde60000000000000000bb00000000000000046000000000000100045900000000000000024c000000fffffffffd80000000fffffffffd8c;
+  frozen_gu_rows[31]=3072'hfffffffffd3b000000fffffffffbab000000fffffffffde90000000000000002ac00000000000100072500000000000100037800000000000000004c000000fffffffffd7f000000fffffffffd06000000fffffffffce2000000fffffffffe5400000000000000002f0000000000000002070000000000010005760000000000010001dd000000000000fffdfd000000fffffefffa2e000000fffffefffbef000000ffffff0001d50000000000010006c700000000000100074d00000000000000005b000000fffffffffc64000000fffffefffa21000000fffffffffd26000000ffffff0000f90000000000000002a5000000000000000108000000000000ffff82000000000000fffffd000000fffffffffbc2000000fffffffffb71000000fffffffffbd9000000fffffffffee80000000000000005320000000000020007e30000000000010005b6000000000000fffe1f000000fffffffffbac000000fffffffffb700000000000000000e500000000000100054700000000000100049a;
+  frozen_gu_rows[32]=3072'hfffffffffc08000000fffffefff9ff000000fffffefffa3b000000fffffffffdc3000000000000000465000000000002000a270000000000020008270000000000010000d8000000fffffffffb30000000fffffefffa3a000000ffffffffffe300000000000100065c00000000000200087b0000000000010002f6000000000000fffe4b000000fffffffffcdc000000fffffffffb59000000fffffffffd76000000fffffffffed50000000000000001bf00000000000000049800000000000100059800000000000000005b000000fffffffffabe000000fffffefffa4b000000fffffefffbc800000000000000060400000000000200091f0000000000020006d7000000000000fffe41000000fffffefff95c000000fffffefffa76000000fffffffffd260000000000000003820000000000010002100000000000000000ab000000ffffffffffd4000000000000fffe00000000fffffefffa79000000fffffefff991000000fffffffffd05000000ffffff0000490000000000010008e6;
+  frozen_gu_rows[33]=3072'hffffffffffe9000000000002000b2d000000000003000ae800000000000200059b000000fffffffffbe7000000fffffefff91f000000fffffefffc82000000000000000402000000000002000aa300000000000200052a000000000000fffffd000000fffffffffbf2000000fffffffffb9d000000fffffefffb1e000000fffffffffd88000000ffffff0000800000000000000003430000000000010007e900000000000100028c000000000000fffd32000000fffffefff75a000000fffffefff97f000000ffffff000252000000000002000a6a000000000002000ae3000000000001000076000000fffffffffa70000000fffffefff6c7000000fffffefffbd1000000ffffff00013b0000000000010004600000000000000001d6000000000000ffff8100000000000000003b000000fffffffff951000000fffffefff971000000fffffefff9e0000000fffffffffe6d00000000000000074b000000000003000c25000000000002000919000000000000fffd17000000fffffefff949;
+  frozen_gu_rows[34]=3072'h000001ffffca000000fffffdfff564000000fffffdfff6df000000ffffff000313000000000002000c84000000000004000fd0000000000001000293000000fffffffffc95000000fffffefff862000000fffffefff914000000fffffefffb13000000fffffffffd350000000000000004a5000000000002000856000000000003000afc000000000000fffd6f000000fffffefff624000000fffffcfff34b000000fffffefffcd1000000000001000d6000000000000400115600000000000300097e000000fffffffff9c6000000fffffdfff3e0000000fffffcfff491000000fffffffffed80000000000000006380000000000010002740000000000000000bb000000fffffffffe8a000000fffffffffb31000000fffffdfff4a2000000fffffdfff445000000fffffdfff9dd0000000000000005af0000000000030013840000000000050010d6000000000002000462000000fffffefff6d1000000fffffdfff36b000000fffffefffb3900000000000100098f000000000003000f09;
+  frozen_gu_rows[35]=3072'h000001000894000000000003001228000000000002000611000000000000fffecc000000fffffefff96e000000fffffefff86c000000fffffdfff959000000fffffffffbeb00000000000000024e00000000000100064b000000000003000c8e000000000001000251000000fffffffff918000000fffffcfff1da000000fffffdfff75e0000000000000008e90000000000040011c5000000000004000f94000000000000fffd02000000fffffefff5d4000000fffffcfff232000000fffffefffb6d0000000000000004de0000000000020005960000000000000001e3000000000000fffdd0000000000000fffeb3000000fffffdfff488000000fffffdfff532000000fffffdfff76f000000ffffffffff45000000000002000ffa0000000000050012f5000000000004000b3c000000fffffffff8b9000000fffffdfff4c0000000fffffdfff5f6000000000000000535000000000003000e9600000000000300092f0000000000000000bc000000fffffffff987000000fffffefffa6f;
+  frozen_gu_rows[36]=3072'hfffffffff8f5000000fffffdfff439000000fffffdfff2cf000000fffffdfffb01000000fffffffffd14000000000001000876000000000004001257000000000004000bb8000000fffffffff99f000000fffffbffeb18000000fffffafff11b000000fffffdfffedb000000000004001a640000000000060019d900000000000400097b000000fffffdfff336000000fffffbffea8f000000fffffbfff3b5000000fffffefffd94000000000002000daf00000000000100026e000000000000000105000000fffffffffefa000000fffffefff4a8000000fffffbffee16000000fffffbffed95000000fffffdfffc38000000000001000dd800000000000700202800000000000600164a000000000002000098000000fffffcffeea7000000fffffbffee1a000000fffffefffeed000000000003001078000000000005001681000000000002000453000000000000fffb2f000000fffffdfff4f0000000fffffdfff309000000fffffcfff5b1000000fffffffffc42000000ffffff00041d;
+  frozen_gu_rows[37]=3072'hfffffffffa520000000000000003c6000000000002000b3f0000000000040010d90000000000010000b9000000fffffefff225000000fffffaffed3d000000fffffdfff6da000000000001001107000000000006001870000000000005001277000000fffffffff94d000000fffffcfff054000000fffffbffef67000000fffffefffb560000000000000008bd00000000000200043700000000000000013f000000fffffffffdc9000000fffffffffba6000000fffffcffefd5000000fffffcffefe8000000fffffcfff5c8000000ffffff0002920000000000040019e30000000000070018d1000000000004000ad4000000fffffdfff37a000000fffffcfff059000000fffffcfff6bc000000000002000a6b00000000000500159d000000000004000847000000000000fffe7f000000fffffefff5e6000000fffffdfff79f000000fffffcfff417000000fffffffffb94000000ffffff00012e000000000001000836000000000003001110000000000002000343000000fffffffff90f;
+  frozen_gu_rows[38]=3072'h0000030009f8000000ffffffffedcb000000fffff9ffe8bc000000fffffaffe971000000ffffff001036000000000006001faf00000000000a00228300000000000200001c000000fffffdffeb70000000fffff8ffe610000000fffffbffef13000000ffffff000c40000000000002000a23000000000002000835000000fffffefffaf1000000000000fffe27000000fffffbffec3c000000fffffaffe757000000fffffaffefa2000000fffffdfff945000000000004001f7d0000000000080026650000000000090019d8000000fffffffff6a8000000fffffcffeaed000000fffff9ffec320000000000000002ff000000000005001fb500000000000600154d0000000000020006ef000000fffffdfff295000000fffffefff510000000fffffaffed1a000000fffffdfff501000000fffffeffff2300000000000100031b000000000003001b70000000000004000d61000000000002fffca8000000fffffaffe464000000fffffaffe78f000000fffffcfffd650000000000060017df;
+  frozen_gu_rows[39]=3072'hfffffffffe9100000000000100067f0000000000010006cd00000000000100033f000000fffffffffd5a000000fffffffffa8c000000fffffefffc33000000ffffffffff3000000000000000037f0000000000000000e7000000000000ffffee000000000000ffff4d000000000000fffd4e000000fffffffffb9e000000fffffffffb2e000000fffffffffe3600000000000000024b00000000000100086e00000000000200065a000000000001000108000000fffffffffbfd000000fffffffffb1a000000ffffffffff160000000000000003c900000000000100067c0000000000010001ad000000000000fffed6000000fffffffffcea000000fffffffffcb8000000fffffffffd89000000fffffffffee7000000000000000120000000000000000315000000000001000502000000000000ffffeb000000fffffffffc6a000000fffffefffa78000000fffffffffcde0000000000000003bd000000000002000703000000000002000599000000000000fffdee000000fffffffffb2a;
+  frozen_gu_rows[40]=3072'h000000fffe08000000fffffefff8a1000000fffffdfff5d1000000fffffefffd430000000000000002630000000000010004ab000000000000000102000000000000fffef6000000fffffffffe4f000000fffffefff820000000fffffefff7e6000000fffffefff7e0000000ffffff0000f8000000000002000ba7000000000004000ee90000000000020006fc000000fffffffffb06000000fffffefff826000000fffffefff93000000000000000041d000000000002000a3100000000000200070a0000000000000000dd000000fffffffffbb4000000fffffefffb19000000fffffefff923000000fffffffffd28000000fffffffffde800000000000000041300000000000100096a00000000000200041d000000fffffffffd54000000fffffefff3fe000000fffffdfff8a8000000ffffff0000a9000000000002000cde000000000003000c390000000000020001f1000000fffffefff9b3000000fffffefff4c8000000fffffefffa5c000000ffffffffffcf000000000001000593;
+  frozen_gu_rows[41]=3072'hfffffffffff80000000000010006f40000000000000001f2000000000000ffffa8000000ffffffffff21000000fffffffff91c000000fffffdfff6f8000000fffffdfff677000000fffffffffdf40000000000000007ec0000000000040010da000000000003000b8a000000000001fffefd000000fffffefff6fa000000fffffdfff6d5000000ffffff00011a000000000002000919000000000003000b6b00000000000100022c000000fffffffffd1e000000fffffefffa5b000000fffffefff940000000fffffefffc38000000fffffffffda30000000000000002c7000000000001000763000000000002000859000000000000fffed8000000fffffefff6d2000000fffffdfff5a2000000fffffefffb3b000000000001000a4f000000000004000d9e0000000000030007bc000000fffffffffae3000000fffffefff5e0000000fffffdfff670000000fffffffffd100000000000000005380000000000010001a7000000000000000014000000fffffffffee0000000fffffffffc7f;
+  frozen_gu_rows[42]=3072'hffffffffff87000000fffffffff7d2000000fffffcfff3f7000000fffffcfff04a000000fffffdfff7cd000000ffffff0002f9000000000005001938000000000005001759000000000003000514000000fffffefff63e000000fffffcffef8d000000fffffdfffb1600000000000100090b0000000000050014720000000000030007b7000000000000fffde7000000fffffefff84b000000fffffdfff4d7000000fffffdfff74a000000fffffefffc3d000000000000000167000000000001000646000000000003000fdc00000000000100046b000000fffffffff518000000fffffbffeecb000000fffffcfff30a000000000000000aa100000000000500135d000000000006001470000000000001fffc20000000fffffdfff16c000000fffffbffef85000000fffffdfff61c00000000000000067a0000000000020004f9000000000001000307000000000000fffb06000000000000fffca8000000fffffdfff2dd000000fffffcffef88000000fffffcfff6de000000fffffefffc9f;
+  frozen_gu_rows[43]=3072'hfffffcfff36e000000fffffffffe7c00000000000200104300000000000600192d000000000004000dab000000000000fffa31000000fffffcfff21e000000fffffdfff4a7000000000000000477000000000003000f8f000000000004000ec80000000000010001d0000000fffffffffa79000000fffffdfff72c000000fffffdfff5cc000000fffffefffae2000000fffffffffd1d0000000000010004f2000000000002000d3e0000000000030009a6000000000000fffb78000000fffffdffefd7000000fffffcfff19b000000fffffefffddc0000000000030011eb0000000000050014610000000000030006b3000000fffffefff62b000000fffffcfff00e000000fffffcfff394000000fffffffffe630000000000020008480000000000010001cc000000000000ffff0f000000000000fffdfd000000fffffffff850000000fffffcfff161000000fffffcfff1a6000000fffffefffb5400000000000100095300000000000500181400000000000500115e000000000002000161;
+  frozen_gu_rows[44]=3072'h000008001da7000000000003fffe40000000fffffcfff0c8000000fffffbffe9db000000fffffdffffe000000000000200116c00000000000800193f00000000000300067c000000fffffffffab1000000fffffdfff60c000000fffffcffef3c000000fffffdfff8c4000000fffffdfffae30000000000000003df000000000001000c6e0000000000050014970000000000010001c7000000fffffdffed94000000fffffaffe860000000fffffbfff1fc0000000000030013bd000000000007001e9c000000000008001361000000000000fff72a000000fffffbffebde000000fffffaffead7000000fffffdfff6d0000000000001000b31000000000002000668000000000001000047000000fffffffffbd5000000fffffffffa11000000fffffbffeca7000000fffffbffe9a4000000fffffbfff317000000ffffff00005000000000000500209d000000000008001f56000000000006000bf7000000fffffefff148000000fffffbffec35000000fffffbfff663000000000002000a4c;
+  frozen_gu_rows[45]=3072'hfffffcfff4d8000000000001000ae0000000000005001651000000000005000cf1000000000001ffff81000000fffffefff5c1000000fffffdfff357000000fffffcfff3b9000000fffffefffb91000000ffffffffff3000000000000100073900000000000400126300000000000300071d000000fffffffff63d000000fffffbffe8ce000000fffffbfff0b3000000ffffff000533000000000006001af50000000000080019360000000000030000bd000000fffffdffefe3000000fffffaffe93f000000fffffcfff351000000ffffff0002e6000000000003000b39000000000001000310000000000000fffcd5000000000000fffc39000000fffffdfff0f4000000fffffbffed32000000fffffbffef58000000fffffefffd510000000000020013c300000000000800212d0000000000070012cb000000000001fffa2d000000fffffcffeda0000000fffffbffefe3000000ffffff0003b100000000000400165900000000000600167d00000000000200037d000000fffffffff766;
+  frozen_gu_rows[46]=3072'h00000000012d000000000000fffe8a000000fffffffffce5000000fffffffffb0f000000fffffffffda3000000fffffffffe8b00000000000000020c00000000000000048e0000000000010004ef000000000000ffffd0000000fffffffff965000000fffffefff928000000fffffffffca100000000000100075d0000000000020007d50000000000020004bb000000fffffffffc76000000fffffffff9f7000000fffffefffabd000000fffffffffd760000000000000003d3000000000000fffff5000000000000000124000000000000fffec7000000000000fffd5d000000fffffefffa62000000fffffefff931000000fffffffffd01000000000000000149000000000002000ae8000000000002000784000000000001000256000000fffffffffa72000000fffffefffa9f000000fffffffffec20000000000010004750000000000020008bb0000000000010001e0000000000000ffff88000000fffffffffc0b000000fffffffffc02000000fffffefffc2b000000fffffffffe3c;
+  frozen_gu_rows[47]=3072'hfffffefffc0f000000fffffffffe9b0000000000000000ec0000000000000003e20000000000020006f00000000000010001b1000000fffffffffa44000000fffffefff73e000000fffffefffae00000000000000004b6000000000002000a2d000000000003000849000000000000fffe25000000fffffffff8ad000000fffffefff834000000fffffffffc1400000000000000028a00000000000100031f0000000000000000ef000000000000fffef4000000000000fffdf8000000fffffefff9f8000000fffffefff887000000fffffefffa86000000ffffffffffd800000000000100096c000000000003000b9700000000000200055d000000000000fffc19000000fffffefff89c000000fffffefffb1e0000000000000002e20000000000020009390000000000020006420000000000000000cb000000fffffffffc9e000000fffffffffaf6000000fffffefffa86000000fffffffffd2e000000ffffffffff0300000000000000028c0000000000010007450000000000010003e5;
+  frozen_gu_rows[48]=3072'h000000ffff89000000fffffffffccb000000fffffffffc02000000fffffffffba1000000fffffffffe65000000ffffff00004d0000000000000002b90000000000010005a9000000000001000208000000fffffffffc84000000fffffefff917000000fffffefffa9a00000000000000022300000000000200082700000000000200083a000000000001ffff82000000fffffffffaa8000000fffffefff91a000000fffffffffc5600000000000000014c0000000000010002ff00000000000000018a000000000000fffe2f000000000000fffefd000000fffffffffaef000000fffffefffa39000000fffffefffb8c000000fffffffffe6100000000000100067d0000000000020008ff00000000000200062b000000000000fffd74000000fffffffffa59000000fffffefffb3f0000000000000001d20000000000010006ca0000000000020005ff00000000000000014c000000fffffffffc99000000fffffffffc83000000fffffffffb1e000000fffffffffdfc000000fffffffffef5;
+  frozen_gu_rows[49]=3072'hfffffffffd49000000fffffffffede0000000000000001ff0000000000010006450000000000010004ea00000000000000000a000000fffffefff76e000000fffffefff83f000000fffffffffcd600000000000100084f000000000002000aad0000000000020003ff000000fffffffffc75000000fffffefff79a000000fffffefffa73000000fffffffffdab0000000000010003f000000000000000014c000000000000000003000000ffffffffff6f000000fffffffffbb0000000fffffefffa03000000fffffefff84d000000fffffffffc75000000000000000269000000000003000be0000000000002000a2a00000000000100010d000000fffffffffa64000000fffffefff8e8000000ffffffffff4f0000000000010005530000000000020009b90000000000010002c6000000000000fffe74000000fffffffffc40000000fffffffffa56000000fffffffffc8b000000fffffffffd850000000000000001020000000000010003400000000000020006a1000000000000000126;
+  frozen_gu_rows[50]=3072'h000002000ba000000000000100009d000000fffffffff79c000000fffffcfff125000000fffffdfff8690000000000000006160000000000040012e3000000000004000c85000000000001fffb73000000fffffdfff4c3000000fffffdfff171000000fffffefffc3f000000000000000261000000000002000663000000000000ffff28000000000000fffe9d000000fffffffffd69000000fffffefff3cf000000fffffdfff5f1000000fffffdfff5af000000ffffff000070000000000002000cf00000000000050013ac000000000003000865000000000000fff801000000fffffdfff505000000fffffdfff7470000000000010006b7000000000003000d8b0000000000040009eb000000000000000001000000fffffffffae8000000fffffefff856000000fffffefff70b000000fffffffffc0b000000fffffffffe310000000000010003e5000000000002000abc000000000003000691000000fffffffffb03000000fffffdfff158000000fffffdfff578000000ffffff00020f;
+  frozen_gu_rows[51]=3072'hfffffdfff465000000fffffeffff900000000000030010900000000000040011830000000000030001f3000000fffffefff7d7000000fffffdfff0a2000000fffffdfff7ec000000ffffffffff030000000000020007710000000000000001b3000000000000ffff2b000000ffffffffff60000000fffffefff5f5000000fffffdfff558000000fffffcfff467000000fffffefffc9100000000000000089f0000000000050014a5000000000004000f20000000000001fffcf4000000fffffefff509000000fffffdfff45a000000ffffff0001ff000000000002000b3c000000000004000ef50000000000010002a0000000fffffffffbcb000000fffffefffa04000000fffffefff5c7000000fffffefffb48000000fffffffffc420000000000000003270000000000010007c00000000000030009d1000000000000000042000000fffffefff3bc000000fffffcfff362000000fffffefffa4d000000000002000ea10000000000040011d0000000000004000b37000000fffffffffae9;
+  frozen_gu_rows[52]=3072'h000006001110000000000000fff607000000fffffcffed09000000fffffbffed45000000fffffefffa0f0000000000010007db0000000000030003c500000000000000021d000000fffffffffe30000000fffffffff8c8000000fffffcffedb5000000fffffbffedf7000000fffffcfff3b7000000000000000418000000000006001be6000000000008001961000000000004000855000000fffffeffeff9000000fffffbffee46000000fffffdfff810000000000002000e0f0000000000060016a7000000000005000a64000000000000ffff0d000000fffffefff69f000000fffffdfff3bf000000fffffcfff23c000000fffffefffd24000000fffffffffe0100000000000200094c00000000000400124900000000000300040a000000fffffefff5f3000000fffffbffe807000000fffffcfff520000000ffffff00098c000000000006001d6e00000000000600186d000000000002ffff5c000000fffffdfff133000000fffffaffed9b000000fffffdfff7fa000000ffffff000453;
+  frozen_gu_rows[53]=3072'hfffffdfff848000000ffffff0002ed0000000000030008e50000000000010001fd000000000000fffd92000000fffffffffd97000000fffffdffeff8000000fffffcfff182000000fffffbfff2a2000000fffffefffeba0000000000020012a1000000000008001bf5000000000005001075000000000000fff6d7000000fffffcffefc2000000fffffcfff1140000000000000007490000000000030013a10000000000060010dc00000000000100017a000000fffffffff8d8000000fffffefff6b0000000fffffdfff0be000000fffffefffb06000000fffffefffd390000000000010006b8000000000003000de8000000000004000a8e000000000000fffc8c000000fffffcffeb44000000fffffbffef22000000fffffdfffcd00000000000040018e50000000000060019950000000000040009b0000000fffffefff5c4000000fffffcffeda6000000fffffcfff3cf000000fffffffffcd4000000000002000cf00000000000010003110000000000000001bd000000fffffffffe8a;
+  frozen_gu_rows[54]=3072'h000001fff91d000000ffffff00021c000000fffffdffee41000000fffffcffea48000000fffff9ffea43000000fffffdfff3b10000000000000010b10000000000090020de0000000000090024e8000000000003fffceb000000fffffdffef4c000000fffff9ffe6bf000000fffffeffff1b00000000000300161a000000000009001aaa000000000004000a9e000000000000fff4cd000000fffffdfff874000000fffffaffea53000000fffffdfff69c000000fffffdfff963000000000001000446000000000002000dd2000000000006001099000000000002000772000000fffffbffe7b5000000fffffaffe982000000fffffaffef500000000000040019480000000000080022d4000000000008001699000000000000fffb62000000fffffbffe45d000000fffff9ffee8c000000fffffcfff405000000000003000edd0000000000020007d8000000000002000363000000fffffffffcf8000000fffffffff31d000000fffffbffef34000000fffffaffe39e000000fffffcfff425;
+  frozen_gu_rows[55]=3072'hfffffffffb3e000000fffffffffced0000000000000000370000000000010006c10000000000020007570000000000010003ae000000fffffffffc6b000000fffffffffb26000000fffffffffc9c00000000000000029800000000000100066e00000000000100036f000000000000000026000000fffffffffd68000000fffffffffd36000000fffffffffbe7000000fffffffffe55000000ffffffffffd20000000000000002160000000000010004a00000000000010001b9000000000000fffe3f000000fffffefff9f7000000fffffffffbe0000000ffffff0000ef00000000000100073100000000000100073e0000000000010000d8000000fffffffffc8e000000fffffefffaae000000fffffffffd840000000000000000380000000000010003110000000000000000cf000000000000ffffbe000000000000ffff9a000000fffffffffc10000000fffffffffba9000000fffffffffb63000000ffffffffff0d00000000000000043900000000000200083d0000000000010005a5;
+  frozen_gu_rows[56]=3072'h000004000fac00000000000300097e000000000001fffdc5000000fffffefff811000000fffffefff7c8000000ffffff000170000000000001000988000000000003000a2f000000000001fffffd000000000000fffd54000000fffffffffab2000000fffffefff92c000000fffffefffb8b000000fffffffffe3c00000000000000022d00000000000100062d0000000000020007b1000000000000fffeb3000000fffffefff751000000fffffdfff5cf000000fffffffffd06000000000001000a71000000000003000d8600000000000200078c000000fffffffffa14000000fffffefff769000000fffffdfff810000000fffffffffde70000000000000005310000000000010001d90000000000000001f4000000fffffffffec0000000fffffffffc0b000000fffffefff768000000fffffefff655000000fffffefffbb10000000000000002b1000000000003001026000000000003000cb800000000000200035f000000fffffffff85f000000fffffefff779000000fffffefffe6d;
+  frozen_gu_rows[57]=3072'hfffffefff65d000000fffffefffc60000000000001000702000000000003000d4a000000000002000450000000000000fffecf000000fffffffffa4e000000fffffefff969000000fffffefff969000000fffffffffd05000000ffffff0000e5000000000001000531000000000002000956000000000001000146000000fffffffffa00000000fffffdfff4b1000000fffffefff9dc0000000000000005f6000000000003000f10000000000003000cde000000000001fffdf4000000fffffefff78e000000fffffdfff5c2000000fffffefffc7a0000000000000002bd000000000002000522000000000000000111000000000000fffec4000000000000fffe6f000000fffffefff708000000fffffefff713000000fffffdfff83a000000ffffff000001000000000002000bd7000000000004000fd80000000000030008fc000000000000fffb1a000000fffffefff744000000fffffdfff9d3000000000000000582000000000002000bcb00000000000300090400000000000000010e;
+  frozen_gu_rows[58]=3072'h000005000be5000000000001000116000000fffffefff714000000fffffefff6db000000fffffcfff3b5000000fffffffffa9c000000ffffffffff5400000000000100040d000000000003000ef2000000000003000601000000000000fffc45000000fffffcffed6f000000fffffcfff18f000000fffffe00013e0000000000040015130000000000060017ed0000000000030004e1000000fffffffff5e5000000fffffbffecf4000000fffffdfff667000000fffffe00004c000000000002000983000000000001000552000000000000ffff67000000000000000055000000fffffefff333000000fffffdfff24f000000fffffcfff1b9000000fffffefffa32000000000001000d9700000000000600196a0000000000060014a7000000000001fffdd5000000fffffdfff359000000fffffcfff1d6000000ffffff0002ad0000000000020010d60000000000050013520000000000020006f9000000fffffffffa0b000000fffffefffa47000000fffffdfff261000000fffffefffb12;
+  frozen_gu_rows[59]=3072'hfffffdfff60a000000fffffdfff826000000fffffffffc04000000000000000335000000000002000a2d000000000003000c35000000000001ffff21000000fffffefff435000000fffffbfff091000000fffffdfff9cb000000000001000e390000000000060016b5000000000005000ec8000000000000fffa30000000fffffdfff1f5000000fffffcfff19e000000fffffefffcba00000000000000071d00000000000200052300000000000000010d000000000000ffff3e000000fffffffffb25000000fffffdfff189000000fffffcfff22c000000fffffdfff733000000ffffff0003a500000000000400155b0000000000060016d9000000000003000880000000fffffefff5c3000000fffffcfff21a000000fffffdfff9c7000000000001000b86000000000004001338000000000003000a2f000000000000ffff65000000fffffefff91a000000fffffefff66e000000fffffdfff5d1000000fffffefffd36000000ffffff0000200000000000010008e4000000000003000e86;
+  frozen_gu_rows[60]=3072'h0000020005ec0000000000040015070000000000030006f8000000fffffffff536000000fffffaffe881000000fffffaffee30000000ffffff000b17000000000007001c63000000000008001fcb000000000002000044000000fffffdffeeed000000fffff9ffe967000000fffffcfff54a000000ffffff0005da0000000000030009950000000000010003f1000000000000fffcf0000000000000fffee9000000fffffcffee63000000fffffcffecaa000000fffffbffee69000000fffffefffdce00000000000300156500000000000900229200000000000700183d000000fffffffff88c000000fffffcffee6b000000fffffaffee7b00000000000000096200000000000400181f00000000000600147f00000000000100047e000000fffffefff66a000000fffffdfff75b000000fffffcffeefc000000fffffefff908000000fffffefffcb800000000000100088600000000000300124e000000000005000c98000000000000fffe94000000fffffbffe79d000000fffffaffeaf3;
+  frozen_gu_rows[61]=3072'hfffffcffeb44000000fffffaffecdd000000fffffdfffc020000000000040017c9000000000007001f41000000000005000e60000000fffffefff62d000000fffffbffeadb000000fffffbffefbd000000fffffefffd39000000000002000bdd0000000000020004e300000000000000017d000000ffffffffff8b000000fffffefff5fe000000fffffbffed2d000000fffffbffec1f000000fffffcfff745000000000000000a11000000000006001fc6000000000007001c0d00000000000300053d000000fffffdfff1d1000000fffffbffed5e000000fffffdfffd3500000000000200114f000000000005001a0f0000000000030008a3000000000000fffcfb000000fffffdfff75d000000fffffdfff26c000000fffffdfff50d000000fffffffffb65000000000000000288000000000002000c8d00000000000400125a000000000002000379000000fffffdfff13b000000fffffaffe9fd000000fffffcfff3f7000000000001000f01000000000006001cb600000000000600152d;
+  frozen_gu_rows[62]=3072'h00000200095e0000000000020007a7000000000000fffdd1000000fffffffffb29000000fffffefff932000000fffffffffdf800000000000000027b0000000000010002ba000000000000000054000000000000ffff05000000000000ffff19000000fffffefff9db000000fffffefffa40000000fffffefffb9f0000000000000000470000000000010008ab00000000000200099b000000000002000559000000fffffffffc1c000000fffffefffa76000000fffffefffbf9000000000000000369000000000001000818000000000001000502000000000000000018000000fffffffffcd0000000fffffffffd07000000fffffffffa91000000fffffffffe81000000ffffffffff9000000000000000038f00000000000100069c00000000000100025c000000000000fffe80000000fffffefff787000000fffffefffb3e000000ffffff00007600000000000200097e0000000000020008b900000000000100013b000000fffffffffb9b000000fffffefff80d000000fffffefffd1d;
+  frozen_gu_rows[63]=3072'hfffffefff7ee000000fffffefffb23000000ffffff00008e00000000000100045900000000000000019c000000000000ffffbb000000000000ffffa7000000fffffffffacb000000fffffefff906000000fffffefff918000000fffffffffdd00000000000000006a9000000000003000c1e00000000000200092c000000000000ffff73000000fffffefffa52000000fffffefffa07000000ffffff00011a00000000000100081a0000000000020008ba0000000000010001e4000000fffffffffd78000000fffffffffc81000000fffffefffac1000000fffffffffcb9000000fffffffffeb20000000000000001770000000000010006110000000000020005bf000000000000ffffef000000fffffefff919000000fffffefff853000000fffffefffd3e0000000000010007de000000000002000aff0000000000020005b3000000fffffffffc62000000fffffefff801000000fffffefff9bd000000fffffffffe510000000000000003ca0000000000010001fe000000000000000055;
+  // END_FROZEN_PYTHON_GOLD
+  // Literal vectors independently recomputed with Python arbitrary integers:
+  // acc44916 ->175; acc-576 ->-2; acc-58 ->0; acc-26638336 ->-104056;
+  // acc1247232 ->4872; acc-161 ->-1. These detect oracle width/sign mistakes
+  // at time0 before any RTL transaction, without adapting gold to the DUT.
+  check(oracle(1,0,0,0,0)===64'sd175,"independent GU scalar oracle known vector");
+  check(oracle(1,1,1,15,127)===-64'sd2,"independent GU last-column oracle known vector");
+  check(oracle(1,0,1,10,125)===64'sd0,"independent GU right-shift negative oracle vector");
+  for(integer cohort=0;cohort<2;cohort=cohort+1)begin
+   for(integer row=0;row<16;row=row+1)begin
+    for(integer matrix=0;matrix<2;matrix=matrix+1)
+     for(integer col=0;col<128;col=col+1)begin
+      gold_gu[cohort][matrix][row][col]=oracle(1,cohort,matrix,row,col);
+      gold_groups_evaluated=gold_groups_evaluated+128;
+     end
+
+   end
+  end
+  $display("INTEGRATION_GOLD frozen_Python_scalar_groups=%0d lane_products=%0d",gold_groups_evaluated,gold_groups_evaluated*32);
+  session_reset();load_metadata_and_epoch();
+  check($size(dut.u_compute.u_cache.gen_row[0].memory)==128&&$bits(dut.u_compute.u_cache.gen_row[0].memory[0])==280,"elaborated cache128x280");
+  check($bits(dut.u_compute.u_mlp.u_shared_compute.u_branch0.u_kernel.gen_row[0].gen_pair[0].u_lane.guard0_mem[0])==37,"elaborated true37bit guard storage");
+  check($size(dut.u_meta_bank.u_gate_bank0.g_width[0].u_width_local.mem)==2048,"elaborated bounded metadata count2048");
+  // No accepted owner: a real global metadata fatal revokes epoch, not a DONE.
+  old_clear=clear_pulses;bad_inactive_load();
+  check(dut.job_reset_required&&!dut.job_completion_valid&&clear_pulses==old_clear,"idle metadata fatal cannot fabricate owner/DONE/job_clear");
+  write_csr(12'h320,1,2);expect_csr(12'h370,32'h1007);
+  recover_meta_fault(0,0,0);
+  epoch_number=10;meta_generation=8;load_metadata_and_epoch();
+  // Successful unACKed DONE is immutable even when a new metadata load fails.
+  configure_job(1,1,60,0);finish_success(0);
+  read_csr(12'h348,saved_input);read_csr(12'h34c,saved_output);read_csr(12'h364,saved_records);
+  bad_inactive_load();
+  expect_csr(12'h338,60);expect_csr(12'h350,0);
+  check(dut.job_reset_required&&dut.job_completion_valid,"held successful DONE receives late metadata fatal severity");
+  write_csr(12'h2a0,60,2);
+  expect_csr(12'h338,60);expect_csr(12'h350,0);
+  recover_meta_fault(1,60,0);
+  epoch_number=11;meta_generation=9;load_metadata_and_epoch();
+  // New fatal while a real GU owner is computing: snapshot identity, then
+  // let actual shared kernel/frontend/metadata/tensor transport drain.
+  configure_job(1,0,61,5);
+  while(job_compute_starts==0)@(negedge core_clk);
+  bad_inactive_load();wait_done();
+  expect_csr(12'h338,61);expect_csr(12'h350,32'h2120);
+  read_csr(12'h348,saved_input);read_csr(12'h34c,saved_output);read_csr(12'h364,saved_records);
+  check(dut.job_reset_required&&job_compute_starts==1,"active metadata fatal belongs to accepted GU");
+  write_csr(12'h2a0,61,2);recover_meta_fault(1,61,32'h2120);
+  epoch_number=12;meta_generation=10;load_metadata_and_epoch();
+  configure_job(1,0,62,0);finish_success(0);ack_job();
+  check(!integration_error&&read_left==0&&weight_left==0&&write_left==0&&!b_pending,"metadata recovery new epoch real GU retry complete");
+  $display("GU_METADATA_FAULT realproduction idle_noDONE/heldDONE_immutable/accepted_GU_owner activebank_bytes generation epoch ACK_refusal actual_drain hardclear retry");
+  $display("HARDWARE_AGENT_SIM_PASS");$finish;
+ end
+endmodule

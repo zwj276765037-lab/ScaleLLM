@@ -1,0 +1,28 @@
+{
+  "created": "2026-10-24T17:55:39.302598+00:00",
+  "scope": "same_v7_DCP_exact_two_driver_query_and_qualification_patch",
+  "origin_record": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/gu_only/dcp_qualification/AT007_origin.json",
+  "origin_record_sha256": "7446943359fa1dfa82c305bb8cd97b4ba91aad2e51b268284be6ad0cbd7d1ff6",
+  "current_input_manifest_sha256": "b03f1da1e352cecf634233f46122749c3ca011108ca77daa90eade6853f37d71",
+  "changes": {
+    "vivado/scripts/run_mlp_gu_board.py": {
+      "parent_sha256": "f4f6c439ba0a85d608ace290031431e535220570ecee705b77cb83c95fffd595",
+      "current_sha256": "a8aebb72c151af25c6f62031d09699e915b45ea674f2b1a79338a4089d756385"
+    }
+  },
+  "patches": {
+    "vivado/scripts/build_mlp_gu_board.tcl": {
+      "path": "build_mlp_gu_board.tcl.patch",
+      "sha256": "75498ea27e1e2eea643e266fcbfe6e73b50127ba7f344931477a82b5207f78f5"
+    },
+    "vivado/scripts/run_mlp_gu_board.py": {
+      "path": "run_mlp_gu_board.py.patch",
+      "sha256": "0f1e6aabb17f85ce41e6daecb5e4fd77138fd9df4a617c2ffdcbc3809cd2689e"
+    }
+  },
+  "reason": "Actual rebuilt lane boundary names differ from RTL ports; verify real 96 x 2 channels x 2 entries x 37-bit guard data FDREs using observed structural-netlist names; add bounded two-SMC post-opt exception evidence",
+  "structural_name_evidence": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_results/runs/R007/attempts/AT010_guard_storage_cpu/guard_storage_netlist.json",
+  "structural_name_evidence_sha256": "a107a8888e620731fc978dba788f02d9e1fa3e6242a67adcde477bff72edd0d6",
+  "post_opt_probe_sha256": "dd47a28d8d1bd384177ecb4d92afdfc927740ffeb92aa6d8ee283ae2b0927600",
+  "unchanged": "all RTL, schema, source membership, IP, ROM, effective constraints, production shape, original analysis reports and DCP"
+}

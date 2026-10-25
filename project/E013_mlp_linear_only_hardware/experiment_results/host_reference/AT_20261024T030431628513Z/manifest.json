@@ -1,0 +1,102 @@
+{
+  "started_utc": "2026-10-24T03:04:31.628698+00:00",
+  "root": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix",
+  "command": [
+    "/usr/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "project/hardware/tests",
+    "-p",
+    "test_scalellm_mlp_linear.py",
+    "-v"
+  ],
+  "cwd": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix",
+  "environment": {
+    "PYTHONPATH": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "python_executable": "/usr/bin/python3",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "cpus": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "resource_limits": {
+    "cpu_count_max": 8,
+    "rss_bytes_max": 103079215104,
+    "system_available_bytes_min": 68719476736
+  },
+  "mem_available_before": 482252996608,
+  "sources_sha256": {
+    "project/hardware/host/scalellm_mlp_linear.py": "227e457e4d0464115241d2de6a8521496413b0a071344d776ab9c3a861a3c716",
+    "project/hardware/tests/test_scalellm_mlp_linear.py": "cd0b6e269214d736f8fcfb0ecc481f91dc4f4e3babcc768f2e324a8a796c2bb1",
+    "project/hardware/model/fixbit_v2.py": "fb4b34397edc9d14ed3ef4f0b46d60a61b545a52a7a47d15c2eec8ba7b6db271",
+    "project/hardware/model/mlp_fixed.py": "fedb2b1cc7ba31921624a0ce134163344aa6b085cef03c08ebd9a0a46c02620e",
+    "project/hardware/host/scalellm_hostops.py": "ceb67ec279fa767eb360166256798e88c7b413c1b060b5af5956c12c7da04328",
+    "project/hardware/host/scalellm_memory.py": "eda8e96b1af8a7cdbc4042630b06e1d260f52792ff1e2adddfb18726f2b7e9a9",
+    "project/hardware/host/scalellm_runtime.py": "6e9bee43155515f67bc260c7ee8ec45781cf18662bd446c05253704df2ffbf56",
+    "project/hardware/data/mlp_silu_q16.mem": "8263e8981b637b00143c6dfd6674f2397a73c85c6ed8934f0ee839f76db6ea67",
+    "project/hardware/source/mlp_linear/design.md": "1ff576e309bd7b4d3aa33a6b293b988cc8886a7cf7b0253ba88840c91bf7dd4c",
+    "project/hardware/source/mlp_linear/abi.json": "6fc3662574ef951c30883bb2415292fe4d49de812bcb83947a91691080eb7633",
+    "PRO_plan/ScaleLLM_MLP_Linear_Only_Dual_DDR_Design.md": "c3e80544bdebfba336e53ff74c112751afdac96f63cec5e15cecb858b574e6d9"
+  },
+  "rng": {
+    "generator": "numpy.random.default_rng/PCG64",
+    "seeds": [
+      6001,
+      6002,
+      6003,
+      6010,
+      6011,
+      6020,
+      6021,
+      6030
+    ]
+  },
+  "reference": "Independent old fixbit_v2/mlp_fixed Python integer math and direct scalar byte indices; frozen 8192-entry SiLU ROM plus implicit top endpoint",
+  "applicability": "CPU boundary/codec, synthetic cohort16; no real model 32-layer, RTL, EDA, GPU, or board result",
+  "runner_sha256": "0f093d25324a9a1bd0a4ed925b6e6da9ee05ed3fff32801947e3d11d3096ca21",
+  "numpy": "1.26.4",
+  "input_arrays_sha256": {
+    "h32_s24_seed6001": "34802b1193443056490c25bf57480b2d90b2705119c6f7d649299c55caa1d7ff",
+    "h32_s32_seed6002": "0b2f8411216865ebd98e7f29ab587dda77f5f95cd17c8422513280f640ed6a8d",
+    "fp32_seed6003": "b9d7772b253972e817635b1563b5450290b603a4523909bf7365b233b0797518",
+    "quant_s27_seed6010": "3f74148eacb40f23381de80e912730c3da80985cdba38fca9156397f2c7eabb6",
+    "quant_s35_seed6011": "1d9a726920513f5e77bf2daefbd82783e688aa91c3e45dbfc1c0ed68bfec4efb",
+    "silu_gate_seed6020": "1e8b568b62adf28dba570eb657fec0d4e6d1b5759584f1a42da3c6a9867c0d1d",
+    "silu_up_seed6021": "286d3df5fe2edb06a79ca41648d3d71c788d50d7412b3ed2323e587a92d03ef7",
+    "prepare_gu_seed6030": "fb5c7a0d4b71318d13df1d7404ca9f86203b16cf8ba3d79a3c700fd329b1d5d5"
+  },
+  "inputs_sha256": {
+    "tb_rec576_beats.hex": "bbb02270f7fc3d9a80d42d1d8b4846f24c5426a758953e0129069ed8e317d653",
+    "random_inputs.npz": "83ca8c2d4eea13f22fc2fffaf49d9dabb9d98688e6b3fecdb71417d3e372b546",
+    "tb_q_rows.hex": "1ad10d4a6f016bbadee2b3601220a9ed3489d623b1afe06ce90d08699394cdb7",
+    "tb_rec576.bin": "c69c8c8357e89387b7c8202da4ced8ae7eefb630056e9e69351d010eb383c72c",
+    "tb_meta_rows.hex": "165b77a59287443234c09b599c17df675b40a0304c72534f1369f3070bf4e70e"
+  },
+  "deterministic_inputs": "All nonrandom fixtures and exact extrema/ties are specified in the frozen test source.",
+  "exit_code": 0,
+  "pid": 1651089,
+  "ended_utc": "2026-10-24T03:04:38.585817+00:00",
+  "elapsed_seconds": 6.046213936002459,
+  "stop_reason": null,
+  "max_sampled_child_rss_bytes": 72396800,
+  "lowest_system_available_bytes": 481801236480,
+  "child_ru_maxrss_kib": 78396,
+  "log_sha256": "506d4f7af647e9c216121bcb6384a451bb070f5a0b8bac049dd25be3e9bfba86",
+  "source_identity_unchanged": true
+}

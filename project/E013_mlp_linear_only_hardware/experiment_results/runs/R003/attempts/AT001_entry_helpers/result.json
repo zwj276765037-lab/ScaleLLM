@@ -1,0 +1,99 @@
+{
+  "verdict": "PASS",
+  "scope": "CPU entry/identity helpers only, no Vivado/project/physical claim",
+  "checks": 18,
+  "results": [
+    {
+      "test": "actual_new_root_shape",
+      "pass_": true
+    },
+    {
+      "test": "reject rtl/integration/hap_attention_mlp_production_core_linear.sv INTERMEDIATE_COLUMNS=14336",
+      "pass_": true,
+      "diagnostic": "production default mismatch production.INTERMEDIATE_COLUMNS"
+    },
+    {
+      "test": "reject rtl/integration/hap_attention_mlp_production_core_linear.sv HIDDEN_COLUMNS=4096",
+      "pass_": true,
+      "diagnostic": "production default mismatch production.HIDDEN_COLUMNS"
+    },
+    {
+      "test": "reject rtl/integration/hap_attention_mlp_production_core_linear.sv ENFORCE_PRODUCTION_SHAPE=1",
+      "pass_": true,
+      "diagnostic": "production default mismatch production.ENFORCE_PRODUCTION_SHAPE"
+    },
+    {
+      "test": "reject rtl/integration/hap_attention_mlp_resource_top_linear.sv INTERMEDIATE_COLUMNS=14336",
+      "pass_": true,
+      "diagnostic": "production default mismatch resource.INTERMEDIATE_COLUMNS"
+    },
+    {
+      "test": "reject rtl/integration/hap_attention_mlp_resource_top_linear.sv HIDDEN_COLUMNS=4096",
+      "pass_": true,
+      "diagnostic": "production default mismatch resource.HIDDEN_COLUMNS"
+    },
+    {
+      "test": "reject rtl/integration/hap_attention_mlp_resource_top_linear.sv ENFORCE_PRODUCTION_SHAPE=1",
+      "pass_": true,
+      "diagnostic": "production default mismatch resource.ENFORCE_PRODUCTION_SHAPE"
+    },
+    {
+      "test": "reject rtl/mlp/hap_mlp_linear_compute16_s54.sv INTERMEDIATE_COLUMNS=14336",
+      "pass_": true,
+      "diagnostic": "production default mismatch compute.INTERMEDIATE_COLUMNS"
+    },
+    {
+      "test": "reject rtl/mlp/hap_mlp_linear_compute16_s54.sv HIDDEN_COLUMNS=4096",
+      "pass_": true,
+      "diagnostic": "production default mismatch compute.HIDDEN_COLUMNS"
+    },
+    {
+      "test": "reject rtl/mlp/hap_mlp_linear_compute16_s54.sv ENFORCE_PRODUCTION_SHAPE=1",
+      "pass_": true,
+      "diagnostic": "production default mismatch compute.ENFORCE_PRODUCTION_SHAPE"
+    },
+    {
+      "test": "reject rtl/mlp/hap_mlp_linear_compute16_s54.sv HIDDEN_GROUPS = 128",
+      "pass_": true,
+      "diagnostic": "production input K mismatch: HIDDEN_GROUPS"
+    },
+    {
+      "test": "reject rtl/mlp/hap_mlp_linear_compute16_s54.sv DOWN_GROUPS = 448",
+      "pass_": true,
+      "diagnostic": "production input K mismatch: DOWN_GROUPS"
+    },
+    {
+      "test": "reject rtl/integration/hap_attention_mlp_board_core_linear.sv .ENFORCE_PRODUCTION_SHAPE(1)",
+      "pass_": true,
+      "diagnostic": "board production shape mismatch: ENFORCE_PRODUCTION_SHAPE"
+    },
+    {
+      "test": "reject rtl/integration/hap_attention_mlp_board_core_linear.sv .INTERMEDIATE_COLUMNS(14336)",
+      "pass_": true,
+      "diagnostic": "board production shape mismatch: INTERMEDIATE_COLUMNS"
+    },
+    {
+      "test": "reject rtl/integration/hap_attention_mlp_production_core_linear.sv .DOWN_RECORDS(((HIDDEN_COLUMNS+15)/16)*448)",
+      "pass_": true,
+      "diagnostic": "metadata count propagation mismatch: u_meta_sched"
+    },
+    {
+      "test": "reject rtl/integration/hap_attention_mlp_production_core_linear.sv .GU_OUTPUT_RECORDS(2*((INTERMEDIATE_COLUMNS+15)/16))",
+      "pass_": true,
+      "diagnostic": "output count propagation mismatch: u_tensor"
+    },
+    {
+      "test": "XPR run-status allowed, source-top mutation rejected",
+      "pass_": true,
+      "scope": "bounded XML helper, not real project"
+    },
+    {
+      "test": "session child discoverable after root native0 exit",
+      "pass_": true,
+      "sid": 1697087,
+      "child": 1697088,
+      "ppid": 1
+    }
+  ],
+  "native_returncode": 0
+}

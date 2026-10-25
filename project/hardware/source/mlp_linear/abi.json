@@ -1,0 +1,1617 @@
+{
+  "schema_kind": "scalellm_mlp_linear_contract",
+  "schema_version": 1,
+  "contract_revision": 2,
+  "status": "frozen_for_implementation",
+  "date": "2026-10-24",
+  "owner": "A021",
+  "mission": "M006",
+  "scope": "SM025",
+  "source_design": "PRO_plan/ScaleLLM_MLP_Linear_Only_Dual_DDR_Design.md",
+  "source_design_sha256": "c3e80544bdebfba336e53ff74c112751afdac96f63cec5e15cecb858b574e6d9",
+  "baseline_commit": "0c0d2cdba00ef8e91cc96e678ca4e0b68c4cda60",
+  "ids": {
+    "numeric_format": 1211647493,
+    "memory_layout": 1295003698,
+    "mlp_control_abi": 393216,
+    "linear_abi": 1296826369,
+    "buffer_layout": 1,
+    "weight_layout": 1463043637
+  },
+  "shape": {
+    "rows": 16,
+    "hidden": 4096,
+    "intermediate": 14336,
+    "group": 32,
+    "layers": 32,
+    "cohorts": 2,
+    "max_cache_groups": 448
+  },
+  "clocks": {
+    "core_hz": 100000000,
+    "ddr0_ui_hz": 200000000,
+    "ddr1_ui_hz": 200000000,
+    "core_reset": "active_low",
+    "job_clear": "core_sync_active_high_one_cycle_only_when_drained",
+    "hard_clear": "existing_controlled_maintenance_barrier"
+  },
+  "opcodes": [
+    {
+      "name": "GATE_UP",
+      "value": 1,
+      "input_groups": 128,
+      "input_bytes": 73728,
+      "input_beats": 2304,
+      "output_records": 1792,
+      "output_record_bytes": 768,
+      "output_bytes": 1376256,
+      "output_beats": 43008,
+      "weight_records": 229376,
+      "compute_passes": 305920,
+      "gate_meta_records": 229376,
+      "down_meta_records": 0,
+      "input_offset": 0,
+      "output_offset": 1048576
+    },
+    {
+      "name": "DOWN",
+      "value": 2,
+      "input_groups": 448,
+      "input_bytes": 258048,
+      "input_beats": 8064,
+      "output_records": 256,
+      "output_record_bytes": 1024,
+      "output_bytes": 262144,
+      "output_beats": 8192,
+      "weight_records": 114688,
+      "compute_passes": 153216,
+      "gate_meta_records": 0,
+      "down_meta_records": 114688,
+      "input_offset": 3145728,
+      "output_offset": 4194304
+    }
+  ],
+  "tensor": {
+    "byte_order": "little",
+    "signed_encoding": "twos_complement",
+    "a8_record_bytes": 576,
+    "a8_data_bytes": 512,
+    "metadata_offset": 512,
+    "metadata_bytes": 48,
+    "padding_offset": 560,
+    "padding_bytes": 16,
+    "meta_fields": [
+      {
+        "name": "zero_point",
+        "lsb": 0,
+        "bits": 8
+      },
+      {
+        "name": "code",
+        "lsb": 8,
+        "bits": 8
+      },
+      {
+        "name": "shift",
+        "lsb": 16,
+        "bits": 6
+      },
+      {
+        "name": "reserved_zero",
+        "lsb": 22,
+        "bits": 2
+      }
+    ],
+    "canonical_zero": "code==0 requires shift==0, zero_point==0 and all 32 row values==0",
+    "nonzero_code_range": [
+      1,
+      255
+    ],
+    "gu_order": "record=2*tile16+matrix; tile16=3*block48+record_index",
+    "gu_tensor_last": "tile16==895 && matrix==1",
+    "down_tensor_last": "tile16==255"
+  },
+  "memory": {
+    "physical_channel": 1,
+    "local_limit_exclusive": 2147483648,
+    "host_aperture_base": 2147483648,
+    "tensor_base": 268435456,
+    "slot_stride": 8388608,
+    "slot_count": 6,
+    "admission": "exact_canonical_base_by_opcode_and_buffer_id",
+    "cohort_slot_rule": "buffer_id//3==cohort_id",
+    "weight_bases": [
+      0,
+      29360128,
+      58720256,
+      73400320
+    ],
+    "address_check_bits": 33
+  },
+  "descriptor": {
+    "bits": 544,
+    "packing": "field0_lsb_first_32bit_words",
+    "fields": [
+      {
+        "name": "command_id",
+        "width_bits": 32,
+        "lsb": 0,
+        "csr": 280
+      },
+      {
+        "name": "request_id",
+        "width_bits": 32,
+        "lsb": 32,
+        "csr": 640
+      },
+      {
+        "name": "cohort_buffer",
+        "width_bits": 32,
+        "lsb": 64,
+        "csr": 644
+      },
+      {
+        "name": "layer_id",
+        "width_bits": 32,
+        "lsb": 96,
+        "csr": 284
+      },
+      {
+        "name": "opcode",
+        "width_bits": 32,
+        "lsb": 128,
+        "csr": 780
+      },
+      {
+        "name": "numeric_format_id",
+        "width_bits": 32,
+        "lsb": 160,
+        "csr": 288
+      },
+      {
+        "name": "input_base",
+        "width_bits": 32,
+        "lsb": 192,
+        "csr": 292
+      },
+      {
+        "name": "output_base",
+        "width_bits": 32,
+        "lsb": 224,
+        "csr": 296
+      },
+      {
+        "name": "input_bytes",
+        "width_bits": 32,
+        "lsb": 256,
+        "csr": 784
+      },
+      {
+        "name": "output_bytes",
+        "width_bits": 32,
+        "lsb": 288,
+        "csr": 788
+      },
+      {
+        "name": "buffer_generation",
+        "width_bits": 32,
+        "lsb": 320,
+        "csr": 792
+      },
+      {
+        "name": "expected_meta_generation",
+        "width_bits": 32,
+        "lsb": 352,
+        "csr": 320
+      },
+      {
+        "name": "expected_weight_epoch",
+        "width_bits": 32,
+        "lsb": 384,
+        "csr": 796
+      },
+      {
+        "name": "gate_half0_base",
+        "width_bits": 32,
+        "lsb": 416,
+        "csr": 300
+      },
+      {
+        "name": "gate_half1_base",
+        "width_bits": 32,
+        "lsb": 448,
+        "csr": 304
+      },
+      {
+        "name": "down_half0_base",
+        "width_bits": 32,
+        "lsb": 480,
+        "csr": 308
+      },
+      {
+        "name": "down_half1_base",
+        "width_bits": 32,
+        "lsb": 512,
+        "csr": 312
+      }
+    ],
+    "immutable_from": "START validate snapshot",
+    "command_id_zero_allowed": true,
+    "request_id_zero_allowed": true,
+    "buffer_generation_zero_allowed": false,
+    "epoch_zero_allowed": false
+  },
+  "channels": {
+    "cache_begin": {
+      "handshake": "valid_ready_hold_payload_until_accepted",
+      "fields": {
+        "opcode": 2
+      }
+    },
+    "cache_write": {
+      "handshake": "valid_ready_hold_payload_until_accepted",
+      "fields": {
+        "group": 9,
+        "u8x16x32": 4096,
+        "meta_u24x16": 384
+      }
+    },
+    "cache_seal": {
+      "handshake": "valid_ready_hold_payload_until_accepted",
+      "fields": {}
+    },
+    "cache_read_request": {
+      "handshake": "valid_ready_hold_payload_until_accepted",
+      "fields": {
+        "group": 9
+      }
+    },
+    "cache_read_response": {
+      "handshake": "valid_ready_hold_payload_until_accepted",
+      "fields": {
+        "group": 9,
+        "u8x16x32": 4096,
+        "meta_u24x16": 384
+      }
+    },
+    "gu_output": {
+      "handshake": "valid_ready_hold_payload_until_accepted",
+      "fields": {
+        "s24x16x16": 6144,
+        "tile16": 10,
+        "matrix": 1,
+        "last": 1
+      }
+    },
+    "down_output": {
+      "handshake": "valid_ready_hold_payload_until_accepted",
+      "fields": {
+        "s32x16x16": 8192,
+        "tile16": 8,
+        "last": 1
+      }
+    },
+    "tensor_load_command": {
+      "handshake": "valid_ready_hold_payload_until_accepted",
+      "fields": {
+        "opcode": 2,
+        "base": 32,
+        "bytes": 32
+      }
+    },
+    "tensor_store_arm": {
+      "handshake": "valid_ready_hold_payload_until_accepted",
+      "fields": {
+        "opcode": 2,
+        "base": 32,
+        "bytes": 32
+      }
+    },
+    "compute_command": {
+      "handshake": "valid_ready_hold_payload_until_accepted",
+      "fields": {
+        "opcode": 2,
+        "gate_half0_base": 32,
+        "gate_half1_base": 32,
+        "down_half0_base": 32,
+        "down_half1_base": 32
+      }
+    },
+    "csr_submit": {
+      "handshake": "valid_ready_hold_payload_until_accepted",
+      "fields": {
+        "descriptor": 544
+      }
+    },
+    "csr_submit_result": {
+      "handshake": "valid_ready_hold_payload_until_accepted",
+      "fields": {
+        "accepted": 1,
+        "error_code": 32
+      }
+    },
+    "cache_read_arbitration": "single physical read port; opcode selects GU or DOWN adapter; no concurrent clients"
+  },
+  "modules": {
+    "cache": "hap_mlp_linear_cache16",
+    "parser": "hap_mlp_linear_rec576_parser",
+    "compute": "hap_mlp_linear_compute16_s54",
+    "gu_scheduler": "hap_mlp_linear_gate_up_scheduler16_s24",
+    "dma": "hap_mlp_linear_tensor_dma",
+    "job_control": "hap_mlp_linear_job_control",
+    "resource_top_contains": [
+      "cache",
+      "compute"
+    ],
+    "production_core_contains": [
+      "job_control",
+      "dma",
+      "CSR",
+      "metadata_scheduler",
+      "metadata_resident"
+    ],
+    "common_status": {
+      "error": 1,
+      "error_code": 32,
+      "quiescent": 1
+    },
+    "cache_rules": {
+      "begin": "ready iff !owned && quiescent && !error; invalid opcode is consumed and errors",
+      "write": "accept only owned/unsealed; accepted group must equal write_count<expected; error forbids RAM write",
+      "seal": "ready iff owned && !sealed && !error && !wr_valid; accepted early seal errors",
+      "read": "allowed only sealed; accepted range error produces sticky error and no RAM access",
+      "read_clear": "job_clear only after no pending requests/responses; never reset payload"
+    },
+    "parser_rules": {
+      "record_commit": "emit only fully checked record; hold payload until accepted",
+      "fault_mode": "on format error discard remaining fixed-size read stream while ready, then report drained",
+      "last": "input last is DMA tensor-last, never raw AXI RLAST"
+    },
+    "dma_rules": {
+      "axi_data_bits": 256,
+      "max_burst_beats": 16,
+      "boundary_bytes": 4096,
+      "read_before_write": true,
+      "writer_armed_has_no_axi_side_effect": true,
+      "separate_gu_down_record_inputs": true,
+      "done": "final expected payload plus all B responses retired",
+      "bresp_confirmed_bytes": true
+    }
+  },
+  "phases": {
+    "IDLE": 0,
+    "VALIDATE": 1,
+    "LOAD": 2,
+    "ARM_OUTPUT": 3,
+    "COMPUTE": 4,
+    "DRAIN": 5,
+    "COMPLETE": 6,
+    "ABORT_DRAIN": 7,
+    "FAULT": 8
+  },
+  "job_status_fields": [
+    {
+      "name": "busy",
+      "lsb": 0,
+      "bits": 1
+    },
+    {
+      "name": "completion_valid",
+      "lsb": 1,
+      "bits": 1
+    },
+    {
+      "name": "job_error",
+      "lsb": 2,
+      "bits": 1
+    },
+    {
+      "name": "quiescent",
+      "lsb": 3,
+      "bits": 1
+    },
+    {
+      "name": "reset_required",
+      "lsb": 4,
+      "bits": 1
+    },
+    {
+      "name": "phase",
+      "lsb": 8,
+      "bits": 8
+    }
+  ],
+  "actions": {
+    "start": 1,
+    "abort": 4,
+    "required_strobe": 15,
+    "invalid": "zero, composite, reserved bits return SLVERR with no side effects"
+  },
+  "registers": [
+    {
+      "offset": 256,
+      "offset_hex": "0x100",
+      "name": "FULL_FORMAT_ID",
+      "access": "RO",
+      "reset": 1211647493,
+      "width_bits": 32
+    },
+    {
+      "offset": 260,
+      "offset_hex": "0x104",
+      "name": "MLP_ABI_VERSION",
+      "access": "RO",
+      "reset": 393216,
+      "width_bits": 32
+    },
+    {
+      "offset": 264,
+      "offset_hex": "0x108",
+      "name": "OWNER_REQUEST",
+      "access": "LEGACY",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 268,
+      "offset_hex": "0x10c",
+      "name": "OWNER_STATUS",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 272,
+      "offset_hex": "0x110",
+      "name": "LEGACY_MLP_CONTROL",
+      "access": "LEGACY_MAINTENANCE_ONLY",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 276,
+      "offset_hex": "0x114",
+      "name": "LEGACY_MLP_STATUS",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 280,
+      "offset_hex": "0x118",
+      "name": "COMMAND_ID",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 284,
+      "offset_hex": "0x11c",
+      "name": "LAYER_ID",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 288,
+      "offset_hex": "0x120",
+      "name": "NUMERIC_FORMAT_ID",
+      "access": "RW",
+      "reset": 1211647493,
+      "width_bits": 32
+    },
+    {
+      "offset": 292,
+      "offset_hex": "0x124",
+      "name": "INPUT_BASE",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 296,
+      "offset_hex": "0x128",
+      "name": "OUTPUT_BASE",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 300,
+      "offset_hex": "0x12c",
+      "name": "GATE_HALF0_BASE",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 304,
+      "offset_hex": "0x130",
+      "name": "GATE_HALF1_BASE",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 308,
+      "offset_hex": "0x134",
+      "name": "DOWN_HALF0_BASE",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 312,
+      "offset_hex": "0x138",
+      "name": "DOWN_HALF1_BASE",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 316,
+      "offset_hex": "0x13c",
+      "name": "LEGACY_ACTIVATION_BANK",
+      "access": "ZERO_ONLY",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 320,
+      "offset_hex": "0x140",
+      "name": "EXPECTED_META_GENERATION",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 324,
+      "offset_hex": "0x144",
+      "name": "ACTIVE_META_GENERATION",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 328,
+      "offset_hex": "0x148",
+      "name": "LEGACY_ERROR_CODE",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 332,
+      "offset_hex": "0x14c",
+      "name": "META_STATUS",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 336,
+      "offset_hex": "0x150",
+      "name": "META_COMMIT_BANK",
+      "access": "LEGACY",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 340,
+      "offset_hex": "0x154",
+      "name": "META_ACTION",
+      "access": "LEGACY",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 344,
+      "offset_hex": "0x158",
+      "name": "META_COMMIT_GENERATION",
+      "access": "LEGACY",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 348,
+      "offset_hex": "0x15c",
+      "name": "META_GATE_COUNT_BANK0",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 352,
+      "offset_hex": "0x160",
+      "name": "META_GATE_COUNT_BANK1",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 356,
+      "offset_hex": "0x164",
+      "name": "META_DOWN_COUNT_BANK0",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 360,
+      "offset_hex": "0x168",
+      "name": "META_DOWN_COUNT_BANK1",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 364,
+      "offset_hex": "0x16c",
+      "name": "META_GATE_BASE",
+      "access": "LEGACY",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 368,
+      "offset_hex": "0x170",
+      "name": "META_DOWN_BASE",
+      "access": "LEGACY",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 372,
+      "offset_hex": "0x174",
+      "name": "LEGACY_TENSOR_ACTION",
+      "access": "REJECT_WRITE_ZERO_READ",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 376,
+      "offset_hex": "0x178",
+      "name": "LEGACY_DMA_STATUS",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 380,
+      "offset_hex": "0x17c",
+      "name": "INPUT_BEAT_COUNT",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 580,
+      "offset_hex": "0x244",
+      "name": "INPUT_GROUP_COUNT",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 584,
+      "offset_hex": "0x248",
+      "name": "OUTPUT_BEAT_COUNT",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 588,
+      "offset_hex": "0x24c",
+      "name": "OUTPUT_RECORD_COUNT",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 592,
+      "offset_hex": "0x250",
+      "name": "META_DMA_GATE_COUNT",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 596,
+      "offset_hex": "0x254",
+      "name": "META_DMA_DOWN_COUNT",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 600,
+      "offset_hex": "0x258",
+      "name": "META_DMA_BYTES_LOW",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 604,
+      "offset_hex": "0x25c",
+      "name": "META_DMA_BYTES_HIGH",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 608,
+      "offset_hex": "0x260",
+      "name": "PAIRED_STATUS",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 612,
+      "offset_hex": "0x264",
+      "name": "PAIRED_ATTN_BURSTS",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 616,
+      "offset_hex": "0x268",
+      "name": "PAIRED_MLP_BURSTS",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 620,
+      "offset_hex": "0x26c",
+      "name": "PAIRED_BOTH_CYCLES",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 624,
+      "offset_hex": "0x270",
+      "name": "PAIRED_HOL0",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 628,
+      "offset_hex": "0x274",
+      "name": "PAIRED_HOL1",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 632,
+      "offset_hex": "0x278",
+      "name": "PAIRED_HWM0",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 636,
+      "offset_hex": "0x27c",
+      "name": "PAIRED_HWM1",
+      "access": "LEGACY_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 640,
+      "offset_hex": "0x280",
+      "name": "REQUEST_ID",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 644,
+      "offset_hex": "0x284",
+      "name": "COHORT_BUFFER",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 648,
+      "offset_hex": "0x288",
+      "name": "LEGACY_DONE_REQUEST",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 652,
+      "offset_hex": "0x28c",
+      "name": "LEGACY_DONE_COMMAND",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 656,
+      "offset_hex": "0x290",
+      "name": "LEGACY_DONE_COHORT_BUFFER",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 660,
+      "offset_hex": "0x294",
+      "name": "LEGACY_DONE_LAYER",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 664,
+      "offset_hex": "0x298",
+      "name": "LEGACY_DONE_STATUS",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 668,
+      "offset_hex": "0x29c",
+      "name": "LEGACY_DONE_FLAGS",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 672,
+      "offset_hex": "0x2a0",
+      "name": "COMPLETION_ACK",
+      "access": "WO_ID_ACK",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 676,
+      "offset_hex": "0x2a4",
+      "name": "LEGACY_COMMAND_CYCLES",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 680,
+      "offset_hex": "0x2a8",
+      "name": "LEGACY_ABORT_STATUS",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 684,
+      "offset_hex": "0x2ac",
+      "name": "DOWN_SATURATION_COUNT",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 688,
+      "offset_hex": "0x2b0",
+      "name": "TOTAL_SHIFT_FORMAT_COUNT",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 692,
+      "offset_hex": "0x2b4",
+      "name": "NUMERIC_STATUS",
+      "access": "COMPAT_RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 696,
+      "offset_hex": "0x2b8",
+      "name": "MEMORY_LAYOUT_ID",
+      "access": "RO",
+      "reset": 1295003698,
+      "width_bits": 32
+    },
+    {
+      "offset": 768,
+      "offset_hex": "0x300",
+      "name": "MLP_LINEAR_ABI_ID",
+      "access": "RO",
+      "reset": 1296826369,
+      "width_bits": 32
+    },
+    {
+      "offset": 772,
+      "offset_hex": "0x304",
+      "name": "MLP_CAPABILITIES",
+      "access": "RO",
+      "reset": 31,
+      "width_bits": 32
+    },
+    {
+      "offset": 776,
+      "offset_hex": "0x308",
+      "name": "MLP_BUFFER_LAYOUT_VERSION",
+      "access": "RO",
+      "reset": 1,
+      "width_bits": 32
+    },
+    {
+      "offset": 780,
+      "offset_hex": "0x30c",
+      "name": "MLP_OPCODE",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 784,
+      "offset_hex": "0x310",
+      "name": "MLP_INPUT_BYTES",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 788,
+      "offset_hex": "0x314",
+      "name": "MLP_OUTPUT_BYTES",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 792,
+      "offset_hex": "0x318",
+      "name": "MLP_BUFFER_GENERATION",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 796,
+      "offset_hex": "0x31c",
+      "name": "MLP_EXPECTED_WEIGHT_EPOCH",
+      "access": "RW",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 800,
+      "offset_hex": "0x320",
+      "name": "MLP_JOB_ACTION",
+      "access": "WO_ACTION",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 804,
+      "offset_hex": "0x324",
+      "name": "MLP_JOB_STATUS",
+      "access": "RO",
+      "reset": 8,
+      "width_bits": 32
+    },
+    {
+      "offset": 808,
+      "offset_hex": "0x328",
+      "name": "DONE_OPCODE",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 812,
+      "offset_hex": "0x32c",
+      "name": "DONE_BUFFER_GENERATION",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 816,
+      "offset_hex": "0x330",
+      "name": "DONE_WEIGHT_EPOCH",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 820,
+      "offset_hex": "0x334",
+      "name": "DONE_META_GENERATION",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 824,
+      "offset_hex": "0x338",
+      "name": "DONE_COMMAND_ID",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 828,
+      "offset_hex": "0x33c",
+      "name": "DONE_REQUEST_ID",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 832,
+      "offset_hex": "0x340",
+      "name": "DONE_COHORT_BUFFER",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 836,
+      "offset_hex": "0x344",
+      "name": "DONE_LAYER",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 840,
+      "offset_hex": "0x348",
+      "name": "DONE_INPUT_BYTES",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 844,
+      "offset_hex": "0x34c",
+      "name": "DONE_OUTPUT_BYTES",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 848,
+      "offset_hex": "0x350",
+      "name": "DONE_ERROR_CODE",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 852,
+      "offset_hex": "0x354",
+      "name": "JOB_COMPUTE_CYCLES",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 856,
+      "offset_hex": "0x358",
+      "name": "JOB_LOAD_CYCLES",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 860,
+      "offset_hex": "0x35c",
+      "name": "JOB_STORE_DRAIN_CYCLES",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 864,
+      "offset_hex": "0x360",
+      "name": "JOB_STALL_CYCLES",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 868,
+      "offset_hex": "0x364",
+      "name": "JOB_RECORD_COUNT",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 872,
+      "offset_hex": "0x368",
+      "name": "WEIGHT_EPOCH_ACTIVE",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 876,
+      "offset_hex": "0x36c",
+      "name": "WEIGHT_EPOCH_COMMIT",
+      "access": "WO_EPOCH",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 880,
+      "offset_hex": "0x370",
+      "name": "ADMISSION_ERROR",
+      "access": "RO",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 884,
+      "offset_hex": "0x374",
+      "name": "ADMISSION_ERROR_CLEAR",
+      "access": "WO_ONE",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 888,
+      "offset_hex": "0x378",
+      "name": "RESERVED_378",
+      "access": "RESERVED",
+      "reset": 0,
+      "width_bits": 32
+    },
+    {
+      "offset": 892,
+      "offset_hex": "0x37c",
+      "name": "RESERVED_37C",
+      "access": "RESERVED",
+      "reset": 0,
+      "width_bits": 32
+    }
+  ],
+  "register_policy": {
+    "rw_partial_strobes": "merge bytes; zero strobe OKAY no-op",
+    "ro_writes": "SLVERR for full/partial/zero strobes; no state change",
+    "reserved_378_37f": "aligned read returns 0 OKAY; all writes SLVERR",
+    "unaligned": "SLVERR",
+    "unknown": "SLVERR read-zero",
+    "legacy_telemetry_range": {
+      "first": 384,
+      "last": 576,
+      "behavior": "defined in design.md; removed nonlinear counters return 0"
+    }
+  },
+  "epoch": {
+    "bind": [
+      "epoch_id",
+      "layer_id",
+      "active_metadata_bank",
+      "active_metadata_generation",
+      "gate_half0_base",
+      "gate_half1_base",
+      "down_half0_base",
+      "down_half1_base"
+    ],
+    "commit_preconditions": [
+      "no active job or validation",
+      "no unacked completion",
+      "all_mlp_paths_quiescent",
+      "no fault/maintenance/owner switch",
+      "valid active metadata",
+      "no loading bank or pending metadata commit",
+      "epoch_id!=0",
+      "layer<32",
+      "canonical weight bases"
+    ],
+    "invalidation": [
+      "hard_clear",
+      "core_reset",
+      "active metadata bank or generation changed"
+    ],
+    "preserved_by": [
+      "job_clear",
+      "ACK"
+    ],
+    "same_active_id_commit": "reject EPOCH_BINDING; all run-wide ID nonreuse remains Host responsibility"
+  },
+  "admission": {
+    "diagnostic": "first uncleared START/epoch-commit rejection only; later rejection does not overwrite",
+    "diagnostic_clear": {
+      "address": 884,
+      "data": 1,
+      "strobe": 15
+    },
+    "rejection_has_completion": false,
+    "checks_before_any_dma": true,
+    "axi_b_response_after_validation": true,
+    "host_sequence": [
+      "hold exclusive MLP control lock",
+      "read versions and clear/check prior ADMISSION_ERROR==0",
+      "write all descriptor fields",
+      "write START",
+      "ordered read ADMISSION_ERROR; nonzero => rejected, never wait for completion",
+      "if zero, wait on JOB_STATUS; inspect matching DONE when completion_valid; reset_required => fail immediately",
+      "release control lock after submission confirmation"
+    ],
+    "simultaneous_error_priority": [
+      "hard_reset",
+      "fatal_AXI_or_reader",
+      "internal_protocol_or_numeric",
+      "input_record_error",
+      "watchdog",
+      "explicit_abort",
+      "success"
+    ],
+    "hard_clear_preserves_diagnostic": true
+  },
+  "errors": [
+    {
+      "name": "NONE",
+      "code": 0,
+      "category": "success",
+      "recovery": "none",
+      "reset_required": false
+    },
+    {
+      "name": "BAD_ACTION",
+      "code": 4097,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "BAD_STROBE",
+      "code": 4098,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "LEGACY_START",
+      "code": 4099,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "BUSY",
+      "code": 4100,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "COMPLETION_PENDING",
+      "code": 4101,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "MODE_OR_MAINTENANCE",
+      "code": 4102,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "RESET_REQUIRED",
+      "code": 4103,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "BAD_OPCODE",
+      "code": 4112,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "BAD_FORMAT",
+      "code": 4113,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "BAD_IDENTITY",
+      "code": 4114,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "BAD_LENGTH",
+      "code": 4115,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "BAD_ADDRESS",
+      "code": 4116,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "META_NOT_READY",
+      "code": 4128,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "META_GENERATION",
+      "code": 4129,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "EPOCH_NOT_VALID",
+      "code": 4130,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "EPOCH_BINDING",
+      "code": 4131,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "EPOCH_COMMIT_STATE",
+      "code": 4132,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "EPOCH_ZERO",
+      "code": 4133,
+      "category": "admission",
+      "recovery": "no_transaction",
+      "reset_required": false
+    },
+    {
+      "name": "INPUT_PADDING",
+      "code": 8193,
+      "category": "input",
+      "recovery": "read_discard_drain",
+      "reset_required": false
+    },
+    {
+      "name": "INPUT_RESERVED",
+      "code": 8194,
+      "category": "input",
+      "recovery": "read_discard_drain",
+      "reset_required": false
+    },
+    {
+      "name": "INPUT_CANONICAL_ZERO",
+      "code": 8195,
+      "category": "input",
+      "recovery": "read_discard_drain",
+      "reset_required": false
+    },
+    {
+      "name": "INPUT_LENGTH_OR_LAST",
+      "code": 8196,
+      "category": "input",
+      "recovery": "read_discard_drain_or_fatal_if_transport_framing_lost",
+      "reset_required": false
+    },
+    {
+      "name": "CACHE_WRITE_ORDER",
+      "code": 8208,
+      "category": "protocol",
+      "recovery": "freeze",
+      "reset_required": true
+    },
+    {
+      "name": "CACHE_SEAL_COUNT",
+      "code": 8209,
+      "category": "protocol",
+      "recovery": "freeze",
+      "reset_required": true
+    },
+    {
+      "name": "CACHE_READ_ORDER",
+      "code": 8210,
+      "category": "protocol",
+      "recovery": "freeze",
+      "reset_required": true
+    },
+    {
+      "name": "META_CONSUMPTION",
+      "code": 8224,
+      "category": "protocol",
+      "recovery": "freeze",
+      "reset_required": true
+    },
+    {
+      "name": "COMPUTE_TAG_OR_COUNT",
+      "code": 8240,
+      "category": "protocol",
+      "recovery": "freeze",
+      "reset_required": true
+    },
+    {
+      "name": "OUTPUT_ORDER_OR_LAST",
+      "code": 8256,
+      "category": "protocol",
+      "recovery": "freeze",
+      "reset_required": true
+    },
+    {
+      "name": "NUMERIC_FORMAT",
+      "code": 8272,
+      "category": "numeric",
+      "recovery": "freeze",
+      "reset_required": true
+    },
+    {
+      "name": "NUMERIC_OVERFLOW",
+      "code": 8273,
+      "category": "numeric",
+      "recovery": "freeze",
+      "reset_required": true
+    },
+    {
+      "name": "TENSOR_RRESP",
+      "code": 8449,
+      "category": "axi",
+      "recovery": "fatal_preserve",
+      "reset_required": true
+    },
+    {
+      "name": "TENSOR_RLAST",
+      "code": 8450,
+      "category": "axi",
+      "recovery": "fatal_preserve",
+      "reset_required": true
+    },
+    {
+      "name": "TENSOR_BRESP",
+      "code": 8451,
+      "category": "axi",
+      "recovery": "fatal_preserve",
+      "reset_required": true
+    },
+    {
+      "name": "WEIGHT_READER",
+      "code": 8464,
+      "category": "axi",
+      "recovery": "fatal_preserve",
+      "reset_required": true
+    },
+    {
+      "name": "METADATA_BANK_OR_DMA",
+      "code": 8480,
+      "category": "axi",
+      "recovery": "fatal_preserve",
+      "reset_required": true
+    },
+    {
+      "name": "WATCHDOG",
+      "code": 8704,
+      "category": "timeout",
+      "recovery": "controlled_maintenance_or_fatal",
+      "reset_required": true
+    },
+    {
+      "name": "ABORTED",
+      "code": 8705,
+      "category": "abort",
+      "recovery": "finish_accepted_job_then_maintenance",
+      "reset_required": false
+    },
+    {
+      "name": "MAINTENANCE_ABORTED",
+      "code": 8706,
+      "category": "abort",
+      "recovery": "finish_accepted_job_then_maintenance",
+      "reset_required": false
+    }
+  ],
+  "completion": {
+    "success_requires_all_paths_drained": true,
+    "stable_until_id_ack": true,
+    "ack_requires": [
+      "full strobe",
+      "completion valid",
+      "matching command_id",
+      "busy==0",
+      "quiescent==1",
+      "reset_required==0",
+      "not maintenance"
+    ],
+    "input_bytes": "576 * full legal records committed to cache",
+    "output_bytes": "sum bytes in OKAY B-confirmed bursts; not proof of valid partial tensor",
+    "record_count": "complete GU/DOWN records accepted by output writer before terminal snapshot",
+    "fatal_snapshot": "latch first error, identity and counters once when entering FAULT; completion_valid may be 1 while busy/quiescent reflect outstanding hardware; ACK prohibited by reset_required",
+    "recoverable_input_error": "drain/discard entire accepted input DMA, no compute/output start, then failure completion; ACK followed by job_clear",
+    "abort": "finish the already accepted healthy job, discard success interpretation, use existing controlled maintenance barrier, invalidate epoch/resident metadata, publish ABORTED completion after quiescence; errors dominate",
+    "hard_clear": {
+      "precondition": "trusted existing maintenance barrier has established safe reset boundary; never clear accepted external AXI transactions unsafely",
+      "preserve": [
+        "unacked completion_valid",
+        "DONE identity",
+        "DONE first error",
+        "DONE frozen counters",
+        "ADMISSION_ERROR"
+      ],
+      "clear": [
+        "active job local protocol after safe boundary",
+        "live fault",
+        "live reset_required",
+        "epoch binding"
+      ],
+      "active_without_done": "snapshot active identity/counters as MAINTENANCE_ABORTED before clearing live state",
+      "postcondition": "if DONE valid then COMPLETE with busy=0 and quiescent=1; job_error remains true for nonzero DONE_ERROR; matching ID ACK is permitted after live recovery",
+      "core_reset": "clears DONE, admission and epoch; Host must retain diagnostics before reset"
+    }
+  },
+  "counters": {
+    "width": 32,
+    "overflow": "saturate at 0xffffffff; never wrap",
+    "snapshot": "first terminal success/recoverable failure/fatal entry",
+    "load_cycles": "cycles in LOAD excluding validation",
+    "compute_cycles": "compute command fire through compute_done inclusive; includes output-backpressure",
+    "store_drain_cycles": "writer arm acceptance through final store_done/all-path drain inclusive; overlaps compute",
+    "stall_cycles": "one per core cycle with any active valid&&!ready on load/cache/compute/metadata/output endpoints; count union, no additive interpretation",
+    "default_command_timeout_cycles": 10000000,
+    "timeout_scope": "START acceptance until terminal; param 0 allowed for bounded testbench only"
+  },
+  "artifact_compatibility": {
+    "weight_layout_id": 1463043637,
+    "legacy_schema2": {
+      "required_mlp_abi": 327680,
+      "action": "strict schema2 validation and immutable normalization to weight layout ID; never compare export mlp_abi with runtime ABI v6",
+      "bytes_hash_unchanged": true
+    },
+    "schema3": {
+      "replace_field": "mlp_abi",
+      "new_field": "mlp_weight_layout_id",
+      "new_field_value": 1463043637,
+      "all_other_fields": "same strict schema2 fields and nested validation",
+      "runtime_abi_not_stored_as_weight_layout": true
+    },
+    "runtime_evidence_fields": [
+      "mlp_control_abi",
+      "mlp_linear_abi_id",
+      "mlp_buffer_layout_version",
+      "mlp_weight_layout_id",
+      "artifact_schema_version",
+      "artifact_manifest_sha256"
+    ],
+    "unknown_versions": "reject"
+  },
+  "revision_history": [
+    {
+      "revision": 1,
+      "change": "initial W0 ABI/interface freeze"
+    },
+    {
+      "revision": 2,
+      "change": "controlled hard_clear preserves unacked DONE and admission diagnostic; safe recovery clears live reset_required only"
+    }
+  ]
+}

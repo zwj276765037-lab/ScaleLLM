@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "scope": "read-only Windows host preflight; no hardware operations",
+  "runtime_id": "/root/board_host_prepare",
+  "probe": "tools",
+  "started_utc": "2026-10-25T00:59:13.159882+00:00",
+  "ended_utc": "2026-10-25T00:59:15.617289+00:00",
+  "host_alias": "hap-dell",
+  "transport": "ssh argv + PowerShell UTF-16LE EncodedCommand; in-memory Deflate UTF-8 probe",
+  "script": "probe_tools.ps1",
+  "script_sha256": "25a96f835a99e41f90049ecbe0c811ff3148fd3f74eb5dc7a7f9022e2488eb23",
+  "argv_without_encoded_script": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=15",
+    "hap-dell",
+    "powershell.exe",
+    "-NoLogo",
+    "-NoProfile",
+    "-NonInteractive",
+    "-EncodedCommand",
+    "<UTF16LE_BASE64_OF_SAVED_SCRIPT>"
+  ],
+  "exit_code": 0,
+  "timeout": false,
+  "timeout_seconds": 180,
+  "json_parse_error": null,
+  "stdout_sha256": "14368a785137c8c82cf34203c01f4c1088cb4cc34768078c7e9fc48ecacfe461",
+  "stderr_sha256": "6d342056d32bc499d15f29856d4d520f4ef852c54c64dfe43f52989a46119f03"
+}

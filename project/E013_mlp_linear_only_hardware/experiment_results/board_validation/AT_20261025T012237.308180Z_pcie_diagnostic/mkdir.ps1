@@ -1,0 +1,1 @@
+$ErrorActionPreference='Stop';New-Item -ItemType Directory -Path 'C:/Users/dell/ScaleLLM_board_validation/M006_GU_66a305348d30_20261025/pcie_diagnostic_20261025T012237.308180Z' -ErrorAction Stop|Out-Null

@@ -1,0 +1,34 @@
+{
+  "verdict": "PASS",
+  "scope": "CPU scripted transport fixtures; output and DONE injected; no RTL/DUT/board evidence",
+  "checks": [
+    {
+      "check": "scripted_1_cohort_ordering",
+      "verdict": "PASS",
+      "starts": 1,
+      "acks": 1
+    },
+    {
+      "check": "scripted_2_cohort_ordering",
+      "verdict": "PASS",
+      "starts": 2,
+      "acks": 2
+    },
+    {
+      "check": "scripted_mismatch_no_ACK_no_second_START",
+      "verdict": "PASS",
+      "first_difference": {
+        "matrix": "gate",
+        "row": 0,
+        "column": 0,
+        "byte_offset": 0,
+        "expected_s24": 1,
+        "actual_s24": 0
+      }
+    },
+    {
+      "check": "diagnostic_only_layer_and_size_hash_rejection",
+      "verdict": "PASS"
+    }
+  ]
+}

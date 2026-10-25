@@ -1,0 +1,178 @@
+{
+  "schema_kind": "scalellm_gu_production_shape_diagnostic_v1",
+  "schema_version": 1,
+  "diagnostic_only": true,
+  "case": "structured",
+  "diagnostic_layer": 0,
+  "model_catalog": false,
+  "shape": {
+    "rows": 16,
+    "groups": 128,
+    "k": 4096,
+    "n": 14336
+  },
+  "active_groups": [
+    0,
+    1,
+    126,
+    127
+  ],
+  "files": {
+    "mlp_gate_up_c0": {
+      "path": "mlp_gate_up_c0.bin",
+      "size": 29360128,
+      "sha256": "0843d28bd15904b74c566a9f9ebc2b548109fff3698d829b9aa848cd7af878a4"
+    },
+    "mlp_gate_up_c1": {
+      "path": "mlp_gate_up_c1.bin",
+      "size": 29360128,
+      "sha256": "3e81a6a41c67e391202a19b380eec3fa03133f8f01eaac2432d64ec1b139c093"
+    },
+    "mlp_gate_meta": {
+      "path": "mlp_gate_meta.bin",
+      "size": 7340032,
+      "sha256": "1212290fe1cf515d79c1ebd3e5b922ea36615d3d8a543d40352ae213eed2ee4d"
+    },
+    "input_rec576": {
+      "path": "input_rec576.bin",
+      "size": 73728,
+      "sha256": "5cd2923cad5f48f0930f511f51a897f5293c8ceaae2e0d468756b168714eea2f"
+    },
+    "gold_gu_s24": {
+      "path": "gold_gu_s24.bin",
+      "size": 1376256,
+      "sha256": "23e993b366a9e90580237ab63474f2813bf0f6009aced7f701ba2bc6893b20bc"
+    }
+  },
+  "bit_sha256": "66a305348d3099ca48043324d2ef50e3a39bea84b818f6107f0ff9cdd08acc47",
+  "arithmetic": {
+    "guard_min": -67917312000,
+    "guard_max": 59427648000,
+    "guard_outside_s36_count": 64,
+    "peak_absolute_partial_s44": 67917312000,
+    "nonzero_total_shift_counts": {
+      "20": 458688,
+      "24": 64,
+      "25": 458624,
+      "44": 458624
+    }
+  },
+  "gold_statistics": {
+    "values": 458752,
+    "nonzero": 458752,
+    "negative": 189095,
+    "positive": 269657,
+    "min": -8388608,
+    "max": 8388607,
+    "saturation_endpoint_count": 64,
+    "per_matrix_nonzero": [
+      229376,
+      229376
+    ],
+    "per_row_nonzero": [
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672
+    ],
+    "tail_block_columns": [
+      14304,
+      14335
+    ],
+    "tail_block_nonzero": 1024,
+    "tail_column_14335": [
+      [
+        -15500,
+        36679,
+        -168297,
+        155516,
+        49072,
+        42349,
+        -36657,
+        100193,
+        -145349,
+        65079,
+        -33594,
+        -235309,
+        103534,
+        -34489,
+        133423,
+        -237050
+      ],
+      [
+        26118,
+        78854,
+        76036,
+        -365123,
+        46716,
+        198696,
+        91386,
+        -121985,
+        -71540,
+        -14749,
+        262567,
+        5464,
+        -542068,
+        214351,
+        171855,
+        225327
+      ]
+    ],
+    "row_markers_0_7_8_15_column_14335": [
+      [
+        -15500,
+        100193,
+        -145349,
+        -237050
+      ],
+      [
+        26118,
+        -121985,
+        -71540,
+        225327
+      ]
+    ]
+  },
+  "source_identity": [
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/generate.py",
+      "sha256": "5d3b7f682289c33ceb8e5ea23fa5860c0a6a37e9aac6dfc04a97e86035d39161"
+    },
+    {
+      "path": "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/diagnostic.py",
+      "sha256": "9506a4c9e5f89e10aae81d4417e7dfcaa28c198f888c2af50c4b386f92b02096"
+    },
+    {
+      "path": "project/hardware/source/mlp_linear/abi_gu_only.json",
+      "sha256": "318cf64064354aed52943fd21909aa8b67f11ca8fb565a37c65441d522d4938a"
+    },
+    {
+      "path": "project/software/model/export_scalellm_llama31_artifacts.py",
+      "sha256": "689ddf269ff951e437cc3232c5b544b461e4a0b2ff737e21f69e2f93b8f2a300"
+    },
+    {
+      "path": "project/hardware/model/mlp_fixed.py",
+      "sha256": "fedb2b1cc7ba31921624a0ce134163344aa6b085cef03c08ebd9a0a46c02620e"
+    },
+    {
+      "path": "project/hardware/host/scalellm_mlp_linear.py",
+      "sha256": "227e457e4d0464115241d2de6a8521496413b0a071344d776ab9c3a861a3c716"
+    }
+  ],
+  "created_utc": "2026-10-25T01:19:35.454620+00:00",
+  "generation_seconds": 2.562239790102467,
+  "board_execution": "NOT_RUN",
+  "gold_origin": "independent exact sparse integer source; no DUT reads"
+}

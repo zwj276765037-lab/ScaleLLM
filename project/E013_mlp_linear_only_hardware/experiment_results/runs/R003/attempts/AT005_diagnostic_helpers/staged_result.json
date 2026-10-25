@@ -1,0 +1,100 @@
+{
+  "scope": "isolated CPU provenance helper tests, synthetic fixtures only; no EDA",
+  "driver": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/diagnostic_cleanup/staged_run_mlp_linear_board.py",
+  "driver_sha256": "a874925c09a99aae6fc004ba732120064993dce05ae0e9e666c588f5b721f9d8",
+  "test_source_sha256": "583f6cd2e78258c9bccb52492ed7b81e8634ee94b0bfde49092b20f1a5a65838",
+  "checks": [
+    {
+      "case": "valid",
+      "accepted": true,
+      "expected_accepted": true,
+      "pass_check": true,
+      "reason": "accepted"
+    },
+    {
+      "case": "rtl_change",
+      "accepted": false,
+      "expected_accepted": false,
+      "pass_check": true,
+      "reason": "inheritance changes differ from exact diagnostic/driver allowlist"
+    },
+    {
+      "case": "membership_change",
+      "accepted": false,
+      "expected_accepted": false,
+      "pass_check": true,
+      "reason": "dependency membership changed"
+    },
+    {
+      "case": "shape_change",
+      "accepted": false,
+      "expected_accepted": false,
+      "pass_check": true,
+      "reason": "source graph, production shape, root, or baseline changed"
+    },
+    {
+      "case": "constraint_semantics",
+      "accepted": false,
+      "expected_accepted": false,
+      "pass_check": true,
+      "reason": "constraint change is not exactly deletion of one literal diagnostic: vivado/constraints/ddr_timing_recovery.xdc"
+    },
+    {
+      "case": "parent_snapshot",
+      "accepted": false,
+      "expected_accepted": false,
+      "pass_check": true,
+      "reason": "parent constraint snapshot changed: vivado/constraints/ddr_timing_recovery.xdc"
+    },
+    {
+      "case": "parent_manifest",
+      "accepted": false,
+      "expected_accepted": false,
+      "pass_check": true,
+      "reason": "parent frozen manifest bytes changed"
+    },
+    {
+      "case": "parent_faulted_result",
+      "accepted": false,
+      "expected_accepted": false,
+      "pass_check": true,
+      "reason": "parent synthesis did not qualify natively"
+    },
+    {
+      "case": "owned_survivor",
+      "accepted": false,
+      "expected_accepted": false,
+      "pass_check": true,
+      "reason": "parent synthesis left owned processes"
+    },
+    {
+      "case": "foreign_dcp_identity",
+      "accepted": false,
+      "expected_accepted": false,
+      "pass_check": true,
+      "reason": "inheritance parent/current artifact identity mismatch"
+    },
+    {
+      "case": "driver_patch_changed",
+      "accepted": false,
+      "expected_accepted": false,
+      "pass_check": true,
+      "reason": "runner change patch evidence changed"
+    },
+    {
+      "case": "record_identity",
+      "accepted": false,
+      "expected_accepted": false,
+      "pass_check": true,
+      "reason": "inheritance parent/current artifact identity mismatch"
+    },
+    {
+      "case": "outside_scope",
+      "accepted": false,
+      "expected_accepted": false,
+      "pass_check": true,
+      "reason": "inheritance record outside diagnostic cleanup evidence"
+    }
+  ],
+  "verdict": "PASS"
+}

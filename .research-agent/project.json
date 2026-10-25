@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "name": "ScaleLLM",
+  "name": "ScaleLLM_MLP_fix",
   "created_at": "2026-10-14T11:24:45.698066+00:00",
   "records": {
     "mission": {
@@ -48,6 +48,16 @@
         "id": "M005",
         "title": "multistage_rounding_precision",
         "path": "mission/M005_multistage_rounding_precision/contract.md",
+        "mission": null,
+        "small_mission": null,
+        "role": null,
+        "experiment": null,
+        "experiment_kind": null
+      },
+      "M006": {
+        "id": "M006",
+        "title": "mlp_linear_only_hardware",
+        "path": "mission/M006_mlp_linear_only_hardware/contract.md",
         "mission": null,
         "small_mission": null,
         "role": null,
@@ -295,6 +305,36 @@
         "role": null,
         "experiment": null,
         "experiment_kind": null
+      },
+      "SM025": {
+        "id": "SM025",
+        "title": "mlp_linear_interface_and_project_setup",
+        "path": "mission/M006_mlp_linear_only_hardware/tasks/SM025.md",
+        "mission": "M006",
+        "small_mission": null,
+        "role": null,
+        "experiment": null,
+        "experiment_kind": null
+      },
+      "SM026": {
+        "id": "SM026",
+        "title": "mlp_linear_rtl_and_integration",
+        "path": "mission/M006_mlp_linear_only_hardware/tasks/SM026.md",
+        "mission": "M006",
+        "small_mission": null,
+        "role": null,
+        "experiment": null,
+        "experiment_kind": null
+      },
+      "SM027": {
+        "id": "SM027",
+        "title": "mlp_linear_verification_and_build",
+        "path": "mission/M006_mlp_linear_only_hardware/tasks/SM027.md",
+        "mission": "M006",
+        "small_mission": null,
+        "role": null,
+        "experiment": null,
+        "experiment_kind": null
       }
     },
     "experiment": {
@@ -417,6 +457,16 @@
         "role": null,
         "experiment": null,
         "experiment_kind": "software"
+      },
+      "E013": {
+        "id": "E013",
+        "title": "mlp_linear_only_hardware",
+        "path": "project/E013_mlp_linear_only_hardware",
+        "mission": "M006",
+        "small_mission": "SM026",
+        "role": null,
+        "experiment": null,
+        "experiment_kind": "hardware"
       }
     },
     "agent": {
@@ -619,6 +669,36 @@
         "role": "engineering",
         "experiment": null,
         "experiment_kind": null
+      },
+      "A021": {
+        "id": "A021",
+        "title": "mlp_linear_architecture",
+        "path": "agent/A021",
+        "mission": null,
+        "small_mission": "SM025",
+        "role": "controller",
+        "experiment": null,
+        "experiment_kind": null
+      },
+      "A022": {
+        "id": "A022",
+        "title": "mlp_linear_engineering",
+        "path": "agent/A022",
+        "mission": null,
+        "small_mission": "SM026",
+        "role": "engineering",
+        "experiment": "E013",
+        "experiment_kind": null
+      },
+      "A023": {
+        "id": "A023",
+        "title": "mlp_linear_host_reference",
+        "path": "agent/A023",
+        "mission": null,
+        "small_mission": "SM026",
+        "role": "engineering",
+        "experiment": "E013",
+        "experiment_kind": null
       }
     },
     "question": {
@@ -683,5 +763,6 @@
         "experiment_kind": null
       }
     }
-  }
+  },
+  "origin_project_name": "ScaleLLM"
 }

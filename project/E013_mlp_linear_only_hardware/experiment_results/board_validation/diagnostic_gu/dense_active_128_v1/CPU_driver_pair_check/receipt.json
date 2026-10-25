@@ -1,0 +1,246 @@
+{
+  "execution_state": "completed",
+  "verdict": "PASS",
+  "stage": "completed",
+  "scope": "GU dense128 periodic diagnostic; no real-model or worst-case switching claim",
+  "bundle": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_results/board_validation/diagnostic_gu/dense_active_128_v1",
+  "started_utc": "2026-10-25T01:40:06.769493+00:00",
+  "cohorts_requested": 2,
+  "epoch": 7,
+  "command_base": 10,
+  "request_id": 91,
+  "timeout_s": 10.0,
+  "chunk_bytes": 1048576,
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "cohorts": [
+    {
+      "verdict": "PASS",
+      "compared_bytes": 1376256,
+      "compared_s24_values": 458752,
+      "mismatched_values": 0,
+      "mismatched_bytes": 0,
+      "first_mismatched_byte": null,
+      "coordinates": [],
+      "gold_sha256": "8d67b8ddd9df84a1e5d72d77b466e1946f4e05d2839302f9680ec6cf8892f48d",
+      "output_sha256": "8d67b8ddd9df84a1e5d72d77b466e1946f4e05d2839302f9680ec6cf8892f48d",
+      "descriptor": {
+        "fields": {
+          "command_id": 10,
+          "request_id": 91,
+          "cohort_id": 0,
+          "layer_id": 0,
+          "buffer_id": 0,
+          "buffer_generation": 1,
+          "metadata_generation": 1,
+          "epoch_id": 7,
+          "opcode": 1,
+          "down_half0_base": 0,
+          "down_half1_base": 0
+        },
+        "words_u32": [
+          10,
+          91,
+          0,
+          0,
+          1,
+          1211647493,
+          268435456,
+          269484032,
+          73728,
+          1376256,
+          1,
+          1,
+          7,
+          0,
+          29360128,
+          0,
+          0
+        ],
+        "packed_hex": "0a0000005b0000000000000000000000010000000546384800000010000010100020010000001500010000000100000007000000000000000000c0010000000000000000"
+      },
+      "gu_seconds_including_io": 0.030158750945702195,
+      "acked": true
+    },
+    {
+      "verdict": "PASS",
+      "compared_bytes": 1376256,
+      "compared_s24_values": 458752,
+      "mismatched_values": 0,
+      "mismatched_bytes": 0,
+      "first_mismatched_byte": null,
+      "coordinates": [],
+      "gold_sha256": "8d67b8ddd9df84a1e5d72d77b466e1946f4e05d2839302f9680ec6cf8892f48d",
+      "output_sha256": "8d67b8ddd9df84a1e5d72d77b466e1946f4e05d2839302f9680ec6cf8892f48d",
+      "descriptor": {
+        "fields": {
+          "command_id": 11,
+          "request_id": 91,
+          "cohort_id": 1,
+          "layer_id": 0,
+          "buffer_id": 3,
+          "buffer_generation": 1,
+          "metadata_generation": 1,
+          "epoch_id": 7,
+          "opcode": 1,
+          "down_half0_base": 0,
+          "down_half1_base": 0
+        },
+        "words_u32": [
+          11,
+          91,
+          196609,
+          0,
+          1,
+          1211647493,
+          293601280,
+          294649856,
+          73728,
+          1376256,
+          1,
+          1,
+          7,
+          0,
+          29360128,
+          0,
+          0
+        ],
+        "packed_hex": "0b0000005b0000000100030000000000010000000546384800008011000090110020010000001500010000000100000007000000000000000000c0010000000000000000"
+      },
+      "gu_seconds_including_io": 0.022277669981122017,
+      "acked": true
+    }
+  ],
+  "transport_class": "__main__.Fixture",
+  "code_identity": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/dense_active_128/run_dense_gu.py",
+      "sha256": "ec5c48c2b8119252228b3c7188407a391c2d79e3189b1769b9445cf82daa7265"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/dense_active_128/dense.py",
+      "sha256": "53cc1dacdcd167042cfe9f59567320597255b31992f6a51b0ff176c7c0bda29e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/diagnostic_gu/dense_active_128/verify_dense.py",
+      "sha256": "45da41c41bb182bdaf1d0fbde7b1007f8c25f2492d07841d439eb7c8bfe3a197"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/host/scalellm_mlp_gu_only_backend.py",
+      "sha256": "7a613a819ebde6abe65dda26853566304dab94e808d4f7bf05c9e266ad2d0fa0"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/host/scalellm_mlp_gu_only_runtime.py",
+      "sha256": "536bad6c0a669ab1d1bd886f836ddf5abe56b013060fbccaad490577219f4c21"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/host/scalellm_mlp_linear.py",
+      "sha256": "227e457e4d0464115241d2de6a8521496413b0a071344d776ab9c3a861a3c716"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/source/mlp_linear/abi_gu_only.json",
+      "sha256": "318cf64064354aed52943fd21909aa8b67f11ca8fb565a37c65441d522d4938a"
+    }
+  ],
+  "metadata_generation": 1,
+  "layer_released": true,
+  "retained_layer_lease": null,
+  "gold_statistics": {
+    "values": 458752,
+    "nonzero": 458752,
+    "positive": 229376,
+    "negative": 229376,
+    "min": -3935,
+    "max": 3942,
+    "saturation_count": 0,
+    "tail32_nonzero": 1024,
+    "tail_column_14335": [
+      [
+        -2581,
+        3809,
+        -2561,
+        2594,
+        -3853,
+        2569,
+        -2578,
+        3843,
+        -2551,
+        2586,
+        -3818,
+        2550,
+        -2592,
+        3790,
+        -2566,
+        2591
+      ],
+      [
+        2587,
+        -2567,
+        3884,
+        -2611,
+        2569,
+        -3876,
+        2575,
+        -2560,
+        3891,
+        -2572,
+        2562,
+        -3879,
+        2580,
+        -2540,
+        3896,
+        -2619
+      ]
+    ],
+    "per_row_nonzero": [
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672,
+      28672
+    ],
+    "per_matrix_half": [
+      {
+        "matrix": 0,
+        "logical_half": 0,
+        "nonzero": 114688,
+        "positive": 57344,
+        "negative": 57344
+      },
+      {
+        "matrix": 0,
+        "logical_half": 1,
+        "nonzero": 114688,
+        "positive": 57344,
+        "negative": 57344
+      },
+      {
+        "matrix": 1,
+        "logical_half": 0,
+        "nonzero": 114688,
+        "positive": 57344,
+        "negative": 57344
+      },
+      {
+        "matrix": 1,
+        "logical_half": 1,
+        "nonzero": 114688,
+        "positive": 57344,
+        "negative": 57344
+      }
+    ]
+  },
+  "ended_utc": "2026-10-25T01:40:07.790199+00:00",
+  "elapsed_seconds": 1.0207667200593278
+}

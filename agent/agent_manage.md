@@ -32,4 +32,7 @@ This index records identity and links only. Execution, conclusions and user deci
 | A018 | m003_sol61_verification | engineering | SM017 | [mission](../agent/A018/mission.md) | [config](../agent/A018/config.md) | [status](../agent/A018/status.md) | [result](../agent/A018/result.md) |
 | A019 | rounding_optimization_runner | engineering | SM021 | [mission](../agent/A019/mission.md) | [config](../agent/A019/config.md) | [status](../agent/A019/status.md) | [result](../agent/A019/result.md) |
 | A020 | response_quality_generation | engineering | SM024 | [mission](../agent/A020/mission.md) | [config](../agent/A020/config.md) | [status](../agent/A020/status.md) | [result](../agent/A020/result.md) |
+| A021 | mlp_linear_architecture | controller | SM025 | [mission](../agent/A021/mission.md) | [config](../agent/A021/config.md) | [status](../agent/A021/status.md) | [result](../agent/A021/result.md) |
+| A022 | mlp_linear_engineering | engineering | SM026 | [mission](../agent/A022/mission.md) | [config](../agent/A022/config.md) | [status](../agent/A022/status.md) | [result](../agent/A022/result.md) |
+| A023 | mlp_linear_host_reference | engineering | SM026 | [mission](../agent/A023/mission.md) | [config](../agent/A023/config.md) | [status](../agent/A023/status.md) | [result](../agent/A023/result.md) |
 <!-- research-agent:identity-index:end -->

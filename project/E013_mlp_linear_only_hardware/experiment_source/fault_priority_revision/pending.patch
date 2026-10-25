@@ -1,0 +1,138 @@
+--- a/project/hardware/rtl/integration/hap_mlp_linear_job_control.sv
++++ b/project/hardware/rtl/integration/hap_mlp_linear_job_control.sv
+@@ -33,7 +33,7 @@
+  reg [31:0] epoch_r,epoch_meta;reg epoch_bank,epoch_bound;
+  reg [31:0] epoch_layer;reg [127:0] epoch_bases;
+  reg begun,load_started,store_started,compute_started,store_seen;
+- reg abort_pending;reg [31:0] live_error,total_cycles;
++ reg abort_pending,active_owned;reg [31:0] live_error,total_cycles;
+  wire [31:0] opcode=active_descriptor[128+:32];
+  wire [31:0] expected_records=opcode==1?GU_OUTPUT_RECORDS:DOWN_OUTPUT_RECORDS;
+  wire [31:0] candidate_opcode=candidate_descriptor[128+:32];
+@@ -53,6 +53,12 @@
+  assign cache_seal_valid=phase==ARM&&!cache_sealed;
+  assign store_valid=phase==ARM&&cache_sealed&&!store_started;
+  assign compute_valid=phase==COMPUTE&&!compute_started&&store_armed;
++ wire fatal_now=paths_error&&paths_reset_required;
++ wire abort_fire=abort_valid&&active_owned&&busy&&abort_id==active_descriptor[0+:32]&&!reset_required&&!fatal_now;
++ wire timeout_now=active_owned&&phase>=LOAD&&phase<=DRAIN&&COMMAND_TIMEOUT_CYCLES>0&&total_cycles>=COMMAND_TIMEOUT_CYCLES-1;
++ // Frozen first error wins. New simultaneous sources use the contract order.
++ wire [31:0] selected_error=live_error!=0?live_error:paths_error?paths_error_code:
++   timeout_now?32'h2200:abort_fire?32'h2201:maintenance_pending?32'h2202:abort_pending?32'h2201:0;
+  function [31:0] inc(input [31:0] x);inc=x == 32'hffffffff ? x : x+1;endfunction
+  reg [31:0] admission;
+  always @*begin
+@@ -82,17 +88,16 @@
+  phase<=IDLE;epoch_r<=0;epoch_meta<=0;epoch_bank<=0;epoch_layer<=0;epoch_bases<=0;epoch_bound<=0;
+  active_descriptor<=0;candidate_descriptor<=0;done_descriptor<=0;done_error<=0;done_input_bytes<=0;done_output_bytes<=0;done_records<=0;
+  submit_result_valid<=0;submit_error<=0;epoch_result_valid<=0;epoch_error<=0;ack_result_valid<=0;ack_error<=0;abort_result_valid<=0;abort_error<=0;
+- job_clear<=0;completion_valid<=0;reset_required<=0;begun<=0;load_started<=0;store_started<=0;compute_started<=0;store_seen<=0;abort_pending<=0;live_error<=0;
++ job_clear<=0;completion_valid<=0;reset_required<=0;active_owned<=0;begun<=0;load_started<=0;store_started<=0;compute_started<=0;store_seen<=0;abort_pending<=0;live_error<=0;
+  load_cycles<=0;compute_cycles<=0;store_cycles<=0;stall_cycles<=0;total_cycles<=0;
+  end else begin
+  job_clear<=0;if(submit_result_valid&&submit_result_ready)submit_result_valid<=0;epoch_result_valid<=0;ack_result_valid<=0;abort_result_valid<=0;
+  if(epoch_bound&&(meta_generation!=epoch_meta||meta_active_bank!=epoch_bank))epoch_bound<=0;
+  if(hard_clear)begin
+- epoch_bound<=0;reset_required<=0;phase<=(completion_valid||busy)?COMPLETE:IDLE;job_clear<=1;
+- if(busy&&!completion_valid)snapshot(32'h2202);
++ epoch_bound<=0;reset_required<=0;phase<=(completion_valid||active_owned)?COMPLETE:IDLE;job_clear<=1;active_owned<=0;
++ if(active_owned&&!completion_valid)snapshot(selected_error!=0?selected_error:32'h2202);
+  begun<=0;load_started<=0;store_started<=0;compute_started<=0;store_seen<=0;abort_pending<=0;live_error<=0;
+  end else begin
+- if(paths_error&&paths_reset_required&&phase<=VALIDATE)begin reset_required<=1;phase<=FAULT;end
+  if(epoch_valid)begin
+  epoch_result_valid<=1;epoch_error<=0;
+  if(epoch_id==0)epoch_error<=32'h1025;
+@@ -102,28 +107,29 @@
+  end
+  if(ack_valid)begin
+  ack_result_valid<=1;ack_error<=1;
+- if(completion_valid&&ack_id==done_descriptor[0+:32]&&!reset_required&&paths_quiescent&&!busy&&!maintenance_pending)begin
+- ack_error<=0;completion_valid<=0;phase<=IDLE;job_clear<=1;
++ if(completion_valid&&ack_id==done_descriptor[0+:32]&&!reset_required&&paths_quiescent&&!busy&&!maintenance_pending&&!fatal_now)begin
++ ack_error<=0;completion_valid<=0;phase<=IDLE;job_clear<=1;active_owned<=0;
+  end
+  end
+  if(abort_valid)begin
+  abort_result_valid<=1;abort_error<=1;
+- if(busy&&abort_id==active_descriptor[0+:32]&&!reset_required)begin abort_error<=0;abort_pending<=1;if(live_error==0)live_error<=32'h2201;end
++ if(abort_fire)begin abort_error<=0;abort_pending<=1;end
+  end
+  if(submit_valid&&submit_ready)begin
+- if(phase!=IDLE||completion_valid||reset_required)begin submit_result_valid<=1;submit_error<=reset_required?32'h1007:completion_valid?32'h1005:32'h1004;end
++ if(phase!=IDLE||completion_valid||reset_required||fatal_now)begin submit_result_valid<=1;submit_error<=(reset_required||fatal_now)?32'h1007:completion_valid?32'h1005:32'h1004;end
+  else begin candidate_descriptor<=submit_descriptor;phase<=VALIDATE;end
+  end
+  if(phase==VALIDATE)begin
+  submit_result_valid<=1;submit_error<=admission;
+  if(admission!=0)phase<=IDLE;
+  else begin
+- phase<=LOAD;active_descriptor<=candidate_descriptor;job_clear<=1;begun<=0;load_started<=0;store_started<=0;compute_started<=0;store_seen<=0;abort_pending<=0;live_error<=0;
++ phase<=LOAD;active_owned<=1;active_descriptor<=candidate_descriptor;job_clear<=1;begun<=0;load_started<=0;store_started<=0;compute_started<=0;store_seen<=0;abort_pending<=0;live_error<=0;
+  load_cycles<=0;compute_cycles<=0;store_cycles<=0;stall_cycles<=0;total_cycles<=0;
+  end
+  end
+  if(phase>=LOAD&&phase<=DRAIN)begin
+- if(maintenance_pending&&!abort_pending)begin abort_pending<=1;if(live_error==0)live_error<=32'h2202;end
++ if(maintenance_pending&&!abort_pending)abort_pending<=1;
++ if(live_error==0&&selected_error!=0)live_error<=selected_error;
+  total_cycles<=inc(total_cycles);if(stall)stall_cycles<=inc(stall_cycles);
+  if(phase==LOAD)load_cycles<=inc(load_cycles);
+  if((compute_started||(compute_valid&&compute_ready))&&phase<=COMPUTE)compute_cycles<=inc(compute_cycles);
+@@ -132,26 +138,28 @@
+  if(cache_begin_valid&&cache_begin_ready)begun<=1;
+  if(load_valid&&load_ready)load_started<=1;
+  if(phase==LOAD&&load_done)begin
+- if(paths_error)begin live_error<=paths_error_code;phase<=DRAIN;end
++ if(paths_error)phase<=DRAIN;
+  else phase<=ARM;
+  end
+  if(store_valid&&store_ready)store_started<=1;
+  if(phase==ARM&&store_started&&store_armed)phase<=COMPUTE;
+  if(compute_valid&&compute_ready)compute_started<=1;
+  if(phase==COMPUTE&&compute_done)phase<=DRAIN;
+- if(phase==DRAIN&&paths_quiescent&&((store_seen||store_done)||live_error!=0))begin
+- if(live_error!=0||abort_pending)snapshot(live_error!=0?live_error:32'h2201);
++ if(phase==DRAIN&&paths_quiescent&&((store_seen||store_done)||selected_error!=0))begin
++ if(selected_error!=0)snapshot(selected_error);
+  else if(input_bytes!=active_descriptor[256+:32]||output_bytes!=active_descriptor[288+:32]||record_count!=expected_records)begin snapshot(32'h2030);reset_required<=1;end
+  else snapshot(0);
+  phase<=COMPLETE;
+  end
+- if(paths_error&&paths_reset_required)begin
+- if(!completion_valid)snapshot(live_error!=0?live_error:paths_error_code);
++ if(timeout_now)begin
++ if(!completion_valid)snapshot(selected_error);reset_required<=1;phase<=FAULT;
++ end
++ end
++ // Severity can rise while idle or while an unACKed DONE is held. It never
++ // fabricates a task owner or rewrites an existing completion snapshot.
++ if(fatal_now)begin
+  reset_required<=1;phase<=FAULT;
+- end else if(paths_error&&live_error==0)live_error<=paths_error_code;
+- if(!paths_error&&COMMAND_TIMEOUT_CYCLES>0&&total_cycles>=COMMAND_TIMEOUT_CYCLES-1)begin
+- if(!completion_valid)snapshot(32'h2200);reset_required<=1;phase<=FAULT;
+- end
++ if(active_owned&&!completion_valid)snapshot(selected_error);
+  end
+  end
+  end
+--- a/project/hardware/rtl/integration/hap_attention_mlp_production_core_linear.sv
++++ b/project/hardware/rtl/integration/hap_attention_mlp_production_core_linear.sv
+@@ -367,12 +367,12 @@
+  // early_pause reaches both command-admission boundaries immediately; the
+  // engine internals still allow already-accepted fixed commands to drain.
+  assign mlp_command_opcode=active_descriptor[128+:2];
+- assign job_paths_quiescent=mlp_compute_quiescent&&mlp_cache_quiescent&&tensor_quiescent&&metadata_drained&&resident_quiescent&&!meta_dma_busy;
+- assign job_paths_error=mlp_error||scheduler_error||meta_error||meta_dma_error||tensor_error||owner_protocol_error;
++ assign job_paths_quiescent=!paired_error&&!data_conflict_error&&mlp_compute_quiescent&&mlp_cache_quiescent&&tensor_quiescent&&metadata_drained&&resident_quiescent&&!meta_dma_busy;
++ assign job_paths_error=paired_error||data_conflict_error||mlp_error||scheduler_error||meta_error||meta_dma_error||tensor_error||owner_protocol_error;
+  assign job_paths_error_code=(tensor_error_code>=32'h2100&&tensor_error)?tensor_error_code:
+-   meta_error||meta_dma_error?32'h2120:mlp_cache_error_code!=0?mlp_cache_error_code:
++   paired_error?32'h2110:data_conflict_error?32'h2030:meta_error||meta_dma_error?32'h2120:mlp_cache_error_code!=0?mlp_cache_error_code:
+    scheduler_error?32'h2020:mlp_numeric_status[2]?32'h2050:|mlp_numeric_status[1:0]?32'h2051:mlp_error?32'h2030:tensor_error?tensor_error_code:32'h2030;
+- assign job_paths_fatal=mlp_error||scheduler_error||meta_error||meta_dma_error||owner_protocol_error||(tensor_error&&tensor_error_code>=32'h2010);
++ assign job_paths_fatal=paired_error||data_conflict_error||mlp_error||scheduler_error||meta_error||meta_dma_error||owner_protocol_error||(tensor_error&&tensor_error_code>=32'h2010);
+  assign mlp_sink_discard=job_reset_required;
+  assign mlp_gu_ready=mlp_sink_discard?1'b1:tensor_gu_ready;
+  assign mlp_out_ready=mlp_sink_discard?1'b1:tensor_down_ready;

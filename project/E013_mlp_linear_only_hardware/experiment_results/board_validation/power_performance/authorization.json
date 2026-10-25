@@ -1,0 +1,25 @@
+{
+  "recorded_utc": "2026-10-25T01:31:40.200539+00:00",
+  "user_instruction": "我需要你测量功耗、计算速度",
+  "scope": [
+    "Actual board telemetry capability and idle/load sampling",
+    "Repeated production-shape GU timing from hardware counters",
+    "Separated host/RPC/DMA end-to-end timing",
+    "Correctness checked resident-weight benchmark if supported by existing ABI"
+  ],
+  "hardware_owner": "/root/board_host_prepare",
+  "measurement_contract_and_review_owner": "/root/board_contract_review",
+  "bit_sha256": "66a305348d3099ca48043324d2ef50e3a39bea84b818f6107f0ff9cdd08acc47",
+  "no_automatic_actions": [
+    "regulator voltage/current-limit/OPERATION writes",
+    "EEPROM or clear-fault commands",
+    "driver installation",
+    "bitstream/RTL changes",
+    "host reboot"
+  ],
+  "retained_signoff_open": [
+    "Max-DPO",
+    "external reset"
+  ],
+  "safety": "Read telemetry without changing regulator settings; preserve errors and stop device writes on fault."
+}

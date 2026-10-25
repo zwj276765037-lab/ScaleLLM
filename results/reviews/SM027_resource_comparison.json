@@ -1,0 +1,637 @@
+{
+  "observed_utc": "2026-10-24T08:09:03.907809+00:00",
+  "scope": "Historical M003 versus M006 whole-board Synthesized report comparison; no route or timing pass implied; net design delta, not isolated operator causal ablation",
+  "old_report": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/project/hardware/vivado/reports/m003_E011_R002_AT003_fresh_synth/utilization_hierarchical_post_synth.rpt",
+    "sha256": "794d2f454c8c6ee91d2261a7398249cfe0f2dd24ebb8685b6bdc2570728c162e",
+    "bytes": 1865479
+  },
+  "new_report": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_linear_AT004_synth/utilization_hierarchical.rpt",
+    "sha256": "69ba7cd5b8cc9f13b7131fb0e5b90872332ea4d32064eb324f19f070be125286",
+    "bytes": 1830730
+  },
+  "source_archive": {
+    "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E011_m003_joint_routability_implementation/experiment_results/runs/R002/attempts/AT003_fresh_selected_synthesis/evidence/jobs/fresh_synth/source_archive.json",
+    "sha256": "4c412000ae471dd77f57ddf508b0b5a2ded9b0dde4660ce0932562dcf16b1e07",
+    "bytes": 137492
+  },
+  "comparison_identity": {
+    "tool": "Vivado 2025.2 Build 6299465",
+    "device": "xcvu9p-flga2104-2L-e",
+    "design": "scalellm_vcu118_f05_bd_wrapper",
+    "stage": "Synthesized",
+    "old_archived_rtl_equal_to_preserved_baseline_count": 95,
+    "old_archived_rtl_checked": 95,
+    "production_shape": "old full_command defaults and serial ENFORCE=1: 14336 intermediate / 4096 hidden / 128 GU groups / 448 Down groups; new board explicit defaults match"
+  },
+  "resources": {
+    "LUT": {
+      "old": 828874,
+      "new": 766078,
+      "reduction": 62796,
+      "reduction_percent": 7.576061017718013
+    },
+    "FF": {
+      "old": 1029350,
+      "new": 954137,
+      "reduction": 75213,
+      "reduction_percent": 7.30684412493321
+    },
+    "BRAM36_equivalent": {
+      "old": 945,
+      "new": 835,
+      "reduction": 110,
+      "reduction_percent": 11.640211640211641
+    },
+    "URAM": {
+      "old": 752,
+      "new": 752,
+      "reduction": 0,
+      "reduction_percent": 0.0
+    },
+    "DSP": {
+      "old": 5451,
+      "new": 5375,
+      "reduction": 76,
+      "reduction_percent": 1.3942395890662265
+    }
+  },
+  "rtl_baseline_checks": [
+    {
+      "path": "project/hardware/rtl/attention/hap_a8w8_array_16x16_s42_col3.sv",
+      "old_archived_sha256": "31c01ac6247b3933b57d0dc37d7c33f14bcdaa7eb7110d0be0d9eb8eeae4af51",
+      "preserved_baseline_sha256": "31c01ac6247b3933b57d0dc37d7c33f14bcdaa7eb7110d0be0d9eb8eeae4af51",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_a8w8_col_shard_center12_s42.sv",
+      "old_archived_sha256": "2a05deb5c346fe48205462e2150935f6444ec70ccc10b02788c8a0aa9471d4cb",
+      "preserved_baseline_sha256": "2a05deb5c346fe48205462e2150935f6444ec70ccc10b02788c8a0aa9471d4cb",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_a8w8_col_shard_left2_s42.sv",
+      "old_archived_sha256": "cefcfc60b09c05c9e907969e84aa79cd8501c8940d86732b156e7a23155f6ed8",
+      "preserved_baseline_sha256": "cefcfc60b09c05c9e907969e84aa79cd8501c8940d86732b156e7a23155f6ed8",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_a8w8_col_shard_right2_s42.sv",
+      "old_archived_sha256": "a31370e3fff12e0b2936b88fb81afd40fe920bdeea1905278f755dee5d2d1e4f",
+      "preserved_baseline_sha256": "a31370e3fff12e0b2936b88fb81afd40fe920bdeea1905278f755dee5d2d1e4f",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_a8w8_col_shard_s42.sv",
+      "old_archived_sha256": "42e1d2bbbdde6461a301dffd8621a222f4153fd26a3ff04bcceb9bbac79c549b",
+      "preserved_baseline_sha256": "42e1d2bbbdde6461a301dffd8621a222f4153fd26a3ff04bcceb9bbac79c549b",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_a8w8_group32_lane_s42.sv",
+      "old_archived_sha256": "328bafbeab3f504c2dd6840e745827b22590857ef1a0934924f15d2959161a2b",
+      "preserved_baseline_sha256": "328bafbeab3f504c2dd6840e745827b22590857ef1a0934924f15d2959161a2b",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_activation_cache_8row.sv",
+      "old_archived_sha256": "834fa52acae54f7a1985dee2ace242bc221f86dab4c5b2860b482eeb131aa8cf",
+      "preserved_baseline_sha256": "834fa52acae54f7a1985dee2ace242bc221f86dab4c5b2860b482eeb131aa8cf",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_attention_axil_control.sv",
+      "old_archived_sha256": "f4fcf7e49cc8abb24f63d1ba4dd00eb53bc61646ed9d515be60f055c53423fc5",
+      "preserved_baseline_sha256": "f4fcf7e49cc8abb24f63d1ba4dd00eb53bc61646ed9d515be60f055c53423fc5",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_attention_board_cohort16_core.sv",
+      "old_archived_sha256": "672d37c9a5d02161affec0b8c4fd753d598cd7621ee3e544e4ccd55fd2cdaf57",
+      "preserved_baseline_sha256": "672d37c9a5d02161affec0b8c4fd753d598cd7621ee3e544e4ccd55fd2cdaf57",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_attention_board_core.sv",
+      "old_archived_sha256": "fe7f9610edcb73adbbbd7f29059d811e3fe4c7fd5659e82876f6b893e977d502",
+      "preserved_baseline_sha256": "fe7f9610edcb73adbbbd7f29059d811e3fe4c7fd5659e82876f6b893e977d502",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_attention_cohort16_axil_control.sv",
+      "old_archived_sha256": "9f40db38b5aa4a78213fe0858719d2716ecee0ed3b8bb6156498afda9f2abcd1",
+      "preserved_baseline_sha256": "9f40db38b5aa4a78213fe0858719d2716ecee0ed3b8bb6156498afda9f2abcd1",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_attention_cohort16_local_stores.sv",
+      "old_archived_sha256": "bd7f6110dffc6b6aa302bca25f500e20fe51b818101b8c009fb28a10455a9c13",
+      "preserved_baseline_sha256": "bd7f6110dffc6b6aa302bca25f500e20fe51b818101b8c009fb28a10455a9c13",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_attention_compute_cohort16_top.sv",
+      "old_archived_sha256": "47efde7fa22651a52d1f88c10cbf99f8471b411d8e54a9ddc8c56b80d2738235",
+      "preserved_baseline_sha256": "47efde7fa22651a52d1f88c10cbf99f8471b411d8e54a9ddc8c56b80d2738235",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_attention_compute_top.sv",
+      "old_archived_sha256": "a01752eb0d9a660a6bfaff73864f2c18de255b4ffff7b297ecc98898b759a8a9",
+      "preserved_baseline_sha256": "a01752eb0d9a660a6bfaff73864f2c18de255b4ffff7b297ecc98898b759a8a9",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_attention_frontend_8row.sv",
+      "old_archived_sha256": "1070958b7fdc55124ca510988b2484902ceac4b0b10d96dadef7da643954b88a",
+      "preserved_baseline_sha256": "1070958b7fdc55124ca510988b2484902ceac4b0b10d96dadef7da643954b88a",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_attention_head_group16.sv",
+      "old_archived_sha256": "c107b88729c8e09054b938ebbc7f665436913e6c84c6c2d846684b8ebcef94ea",
+      "preserved_baseline_sha256": "c107b88729c8e09054b938ebbc7f665436913e6c84c6c2d846684b8ebcef94ea",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_attention_row_head128.sv",
+      "old_archived_sha256": "420f08aa6f1815076710278ba0e187592a358d246e76c5237a8f0d19d7c9e45c",
+      "preserved_baseline_sha256": "420f08aa6f1815076710278ba0e187592a358d246e76c5237a8f0d19d7c9e45c",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_axi256_dma.sv",
+      "old_archived_sha256": "e8af193a8578de15d8a57b0569bc0e6d494a01422ae0516a52b4faaf47dcb2f1",
+      "preserved_baseline_sha256": "e8af193a8578de15d8a57b0569bc0e6d494a01422ae0516a52b4faaf47dcb2f1",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_axi512_weight_reader.sv",
+      "old_archived_sha256": "8c2890aa8f4bd43a18283669402c9c5915f07e5f900b736ed6bb53ffea8ce0d9",
+      "preserved_baseline_sha256": "8c2890aa8f4bd43a18283669402c9c5915f07e5f900b736ed6bb53ffea8ce0d9",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_ddr512_halfgroup_async.sv",
+      "old_archived_sha256": "b5087a8d7e67305a2d7327739d9e01e0af4e33d658faf662eb5c8d100f00c53b",
+      "preserved_baseline_sha256": "b5087a8d7e67305a2d7327739d9e01e0af4e33d658faf662eb5c8d100f00c53b",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_dual_ddr_weight_frontend.sv",
+      "old_archived_sha256": "268c376abfff1f45329cebc75d728e47a7b60eb7efec01e8164c79355d787c23",
+      "preserved_baseline_sha256": "268c376abfff1f45329cebc75d728e47a7b60eb7efec01e8164c79355d787c23",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_dual_ddr_weight_group_assembler.sv",
+      "old_archived_sha256": "c0e4bf86aea8521849334a38d291bf330e54bb556e92e90e1737a4ef84b1ad9c",
+      "preserved_baseline_sha256": "c0e4bf86aea8521849334a38d291bf330e54bb556e92e90e1737a4ef84b1ad9c",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_fixbit_v2_pkg.sv",
+      "old_archived_sha256": "55701f021f43ef159422f34bb84ded31cf00775256862d4b6541ba6fb8289710",
+      "preserved_baseline_sha256": "55701f021f43ef159422f34bb84ded31cf00775256862d4b6541ba6fb8289710",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_hadamard32_norm_stream.sv",
+      "old_archived_sha256": "ca86c5cc83cdd58aa45f59173e667be2454cfd9023b5243f42fb19dc96f11350",
+      "preserved_baseline_sha256": "ca86c5cc83cdd58aa45f59173e667be2454cfd9023b5243f42fb19dc96f11350",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_kv12_cache.sv",
+      "old_archived_sha256": "6ba65157d6939e7ea9b89f3790f571eb3c40665c1c0d982039b0a89104fbba77",
+      "preserved_baseline_sha256": "6ba65157d6939e7ea9b89f3790f571eb3c40665c1c0d982039b0a89104fbba77",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_kv12_quantizer.sv",
+      "old_archived_sha256": "e446820f6e3e5db387a15e3cb475b029d3d48914e08ab76b0d1075ee95179e36",
+      "preserved_baseline_sha256": "e446820f6e3e5db387a15e3cb475b029d3d48914e08ab76b0d1075ee95179e36",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_kv12_quantizer4.sv",
+      "old_archived_sha256": "3e3fcea95d9169fdadfb81c615dc631ccf25d0a8db999cc1bb0ab169890daf98",
+      "preserved_baseline_sha256": "3e3fcea95d9169fdadfb81c615dc631ccf25d0a8db999cc1bb0ab169890daf98",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_linear_tile_accum_dual_s42.sv",
+      "old_archived_sha256": "498837de12135c2f91a5d30aa2b4c5c4ade8705c9451ca9a98aa5795d3660d91",
+      "preserved_baseline_sha256": "498837de12135c2f91a5d30aa2b4c5c4ade8705c9451ca9a98aa5795d3660d91",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_linear_tile_accum_shard_s42.sv",
+      "old_archived_sha256": "9386edda29248bdcb67b054a798ac734c5c013cc282be19b91774b39add019bb",
+      "preserved_baseline_sha256": "9386edda29248bdcb67b054a798ac734c5c013cc282be19b91774b39add019bb",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_projection_core16x16_w8_reuse.sv",
+      "old_archived_sha256": "9d0b6fe5e1239f1e89d023106d3546d369afcef78ef77db1441519de4680fe06",
+      "preserved_baseline_sha256": "9d0b6fe5e1239f1e89d023106d3546d369afcef78ef77db1441519de4680fe06",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_projection_core8x16.sv",
+      "old_archived_sha256": "74208a5a2295a4a2237b83017e9f5f1c0bced20fdde89dc29bf8a96fe62e66fc",
+      "preserved_baseline_sha256": "74208a5a2295a4a2237b83017e9f5f1c0bced20fdde89dc29bf8a96fe62e66fc",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_pv_tile16_s43.sv",
+      "old_archived_sha256": "c957d38c5ae8a5cf88224ed88911edadeeb901a155b6ed325a84a1ac26e38afb",
+      "preserved_baseline_sha256": "c957d38c5ae8a5cf88224ed88911edadeeb901a155b6ed325a84a1ac26e38afb",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_q24k12_group_dot_s40.sv",
+      "old_archived_sha256": "543532f5f24dd7ce8db8ab5378d45d441837d8af78302b92907a4c1bd406b56e",
+      "preserved_baseline_sha256": "543532f5f24dd7ce8db8ab5378d45d441837d8af78302b92907a4c1bd406b56e",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_qk_score_row_128.sv",
+      "old_archived_sha256": "81258895e395c31b22177aad04fea494b143e135c97a3e81e37ec11204ef0bcf",
+      "preserved_baseline_sha256": "81258895e395c31b22177aad04fea494b143e135c97a3e81e37ec11204ef0bcf",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_robust_a8_quantizer.sv",
+      "old_archived_sha256": "0d280566b8a461ede6093a99cdfb4a432b6433015ec83e3b6b36ed3aa6e1f195",
+      "preserved_baseline_sha256": "0d280566b8a461ede6093a99cdfb4a432b6433015ec83e3b6b36ed3aa6e1f195",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_rope_pair_s24.sv",
+      "old_archived_sha256": "bddc2198340fee7462c27007913dc79e8b691e227966951eda2704e7f4a11683",
+      "preserved_baseline_sha256": "bddc2198340fee7462c27007913dc79e8b691e227966951eda2704e7f4a11683",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_score_accum4_s20.sv",
+      "old_archived_sha256": "3018b868a1ee15ed66be8e78c966b6ddf8ac21e1fa622de6758159824bb7c64a",
+      "preserved_baseline_sha256": "3018b868a1ee15ed66be8e78c966b6ddf8ac21e1fa622de6758159824bb7c64a",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_score_group_scale_s35.sv",
+      "old_archived_sha256": "054f44f32453e52e91e951f168b82cd8290270860736a8a1faaea3887117b4f8",
+      "preserved_baseline_sha256": "054f44f32453e52e91e951f168b82cd8290270860736a8a1faaea3887117b4f8",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_softmax_exp_u17.sv",
+      "old_archived_sha256": "10d2767d1ee90401c88612f6170629029624cbbeafb0b126b562bf899c71855c",
+      "preserved_baseline_sha256": "10d2767d1ee90401c88612f6170629029624cbbeafb0b126b562bf899c71855c",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_softmax_prob_u16.sv",
+      "old_archived_sha256": "de633d5b3b594c7fa1720d8d30f6b3eca535229500320a4b8acf6beb827cc880",
+      "preserved_baseline_sha256": "de633d5b3b594c7fa1720d8d30f6b3eca535229500320a4b8acf6beb827cc880",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_softmax_recip_u17.sv",
+      "old_archived_sha256": "89d39d95754880b8271d2045d3aabff3f7d95056e5b330a4df4a07f6ab28a3dd",
+      "preserved_baseline_sha256": "89d39d95754880b8271d2045d3aabff3f7d95056e5b330a4df4a07f6ab28a3dd",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_softmax_row_128.sv",
+      "old_archived_sha256": "54985a99ca840f54711b57730d83335ea3ecaebc5d7d4adb684abbf7db74fa11",
+      "preserved_baseline_sha256": "54985a99ca840f54711b57730d83335ea3ecaebc5d7d4adb684abbf7db74fa11",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_tensor24_buffers.sv",
+      "old_archived_sha256": "fd83206f4bdf0750bac85af685da026bedd173800956ecdf3ca9de48a88f5890",
+      "preserved_baseline_sha256": "fd83206f4bdf0750bac85af685da026bedd173800956ecdf3ca9de48a88f5890",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_tensor24_cohort16_buffers.sv",
+      "old_archived_sha256": "063d705e6703127476bed192b28b9fdb392a0bf5b7432b0dd0717e8f0aa92890",
+      "preserved_baseline_sha256": "063d705e6703127476bed192b28b9fdb392a0bf5b7432b0dd0717e8f0aa92890",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_u16_div_u8_seq.sv",
+      "old_archived_sha256": "08b912c2261f1bd637dd940087789b373da9f0eb64eeead3b8432b63ad01fd05",
+      "preserved_baseline_sha256": "08b912c2261f1bd637dd940087789b373da9f0eb64eeead3b8432b63ad01fd05",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_unsigned_div_seq.sv",
+      "old_archived_sha256": "ec0b29d9d627d4dde2aa7727a8c7a08d0d0af066ce5cbb694f3f45410e68873b",
+      "preserved_baseline_sha256": "ec0b29d9d627d4dde2aa7727a8c7a08d0d0af066ce5cbb694f3f45410e68873b",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/hap_weight_meta_resident.sv",
+      "old_archived_sha256": "55f3e8ef6e16933bbfea9c6e76fb47f5f1015d5a1bf5de69323d319cc44501f3",
+      "preserved_baseline_sha256": "55f3e8ef6e16933bbfea9c6e76fb47f5f1015d5a1bf5de69323d319cc44501f3",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/attention/vcu118_pcie_refclk_ibuf.v",
+      "old_archived_sha256": "c482c3d10df53837c8fd3faaee2006671fbb990c21aabf7121567e7256e050c3",
+      "preserved_baseline_sha256": "c482c3d10df53837c8fd3faaee2006671fbb990c21aabf7121567e7256e050c3",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/board/hap_v5_dual_async_ready_gate_xpm.sv",
+      "old_archived_sha256": "5f9e48fe2ad75a2e46a41390ec7493081fdcc84e6e5368c3a413bdfaf20e955c",
+      "preserved_baseline_sha256": "5f9e48fe2ad75a2e46a41390ec7493081fdcc84e6e5368c3a413bdfaf20e955c",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/board/hap_v5_reset_gate_xpm.sv",
+      "old_archived_sha256": "74d171626195b2fbd49779ec19e762c4258ed766237175687faa037c6755e42d",
+      "preserved_baseline_sha256": "74d171626195b2fbd49779ec19e762c4258ed766237175687faa037c6755e42d",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_attention_mlp_axil_router.sv",
+      "old_archived_sha256": "9ba259521c16782a397b21ee7878919c347200942a2fbe21b084f800c2d20878",
+      "preserved_baseline_sha256": "9ba259521c16782a397b21ee7878919c347200942a2fbe21b084f800c2d20878",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_attention_mlp_board_core.sv",
+      "old_archived_sha256": "4e8b2227999f88611ba77747b67722fb34a1e926ec01f5f26620bdfe6918d1b6",
+      "preserved_baseline_sha256": "4e8b2227999f88611ba77747b67722fb34a1e926ec01f5f26620bdfe6918d1b6",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_attention_mlp_production_core.sv",
+      "old_archived_sha256": "1e5d2ba60335e0c3f9c0b97ee6aa867a53ecad89ea3da0a483732ed889eeead3",
+      "preserved_baseline_sha256": "1e5d2ba60335e0c3f9c0b97ee6aa867a53ecad89ea3da0a483732ed889eeead3",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_attention_mlp_resource_top.sv",
+      "old_archived_sha256": "863f636d0ed759415a584e96f77644f9a6456769c24c5054fd76cd082cebff3c",
+      "preserved_baseline_sha256": "863f636d0ed759415a584e96f77644f9a6456769c24c5054fd76cd082cebff3c",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_axi256_3to1_arbiter.sv",
+      "old_archived_sha256": "ad475b1c07615838a09f58aec9ff614e02496e71cd022929e4e4b864e7f18f3f",
+      "preserved_baseline_sha256": "ad475b1c07615838a09f58aec9ff614e02496e71cd022929e4e4b864e7f18f3f",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_axi256_dedicated_data_router.sv",
+      "old_archived_sha256": "8c50e17c0f5456d074f42eeeaf9f2e1963b35efe00d703f3a02f1a6887f98c6c",
+      "preserved_baseline_sha256": "8c50e17c0f5456d074f42eeeaf9f2e1963b35efe00d703f3a02f1a6887f98c6c",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_axi512_dual_engine_dedicated_read.sv",
+      "old_archived_sha256": "526c2d2cb6c084b51a629ed44a09dcc0f0fa46d23595895270a6d9b0a4f59d5b",
+      "preserved_baseline_sha256": "526c2d2cb6c084b51a629ed44a09dcc0f0fa46d23595895270a6d9b0a4f59d5b",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_axi512_paired_2client_read_wrr.sv",
+      "old_archived_sha256": "2d85b53416bb54403fb5b1e2acf49e72e37b8ca244294a736fdd4cf3a3b16551",
+      "preserved_baseline_sha256": "2d85b53416bb54403fb5b1e2acf49e72e37b8ca244294a736fdd4cf3a3b16551",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_mlp_axil_control.sv",
+      "old_archived_sha256": "833ff5f9fec2779359ac5561897e2c06e7bd66af16b2b94438feb5d97b2ae399",
+      "preserved_baseline_sha256": "833ff5f9fec2779359ac5561897e2c06e7bd66af16b2b94438feb5d97b2ae399",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_mlp_meta_dma_loader.sv",
+      "old_archived_sha256": "3e9c219199156efef25972cfb8a520142ede39d185164dc600d608ba54b5f054",
+      "preserved_baseline_sha256": "3e9c219199156efef25972cfb8a520142ede39d185164dc600d608ba54b5f054",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_mlp_metadata_scheduler.sv",
+      "old_archived_sha256": "91a1015fc8ae3d0c08baccb7dd14512796eeeb8fc525bf3e49e02092ffa27636",
+      "preserved_baseline_sha256": "91a1015fc8ae3d0c08baccb7dd14512796eeeb8fc525bf3e49e02092ffa27636",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_mlp_tensor_dma_bridge.sv",
+      "old_archived_sha256": "dacbde500974fe89e9a9e6bce4b09925a335ea734f0279d04ec1bfd4645ad5f9",
+      "preserved_baseline_sha256": "dacbde500974fe89e9a9e6bce4b09925a335ea734f0279d04ec1bfd4645ad5f9",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_v4_ddr_mode_controller.sv",
+      "old_archived_sha256": "7010f648921d9a143e0c8c27b7f6b019537b1f256eb09405628a3c5acc0e20b8",
+      "preserved_baseline_sha256": "7010f648921d9a143e0c8c27b7f6b019537b1f256eb09405628a3c5acc0e20b8",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_a8w4_group32_lane2_s36.sv",
+      "old_archived_sha256": "77110b1cfd6221e1a111f70e7e543b182d5823ed99e4400ecd2e9bbc1b926e85",
+      "preserved_baseline_sha256": "77110b1cfd6221e1a111f70e7e543b182d5823ed99e4400ecd2e9bbc1b926e85",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_a8w4_group32_lane2_s37.sv",
+      "old_archived_sha256": "d49fbfb9a24a2a2da08f74f53a799c7112e3f927ac2e59e2852b008197cb779f",
+      "preserved_baseline_sha256": "d49fbfb9a24a2a2da08f74f53a799c7112e3f927ac2e59e2852b008197cb779f",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_a8w4_group32_pack2_s17.sv",
+      "old_archived_sha256": "25dfc4968c8cebabbe5e0ba54ec0a2e331784b63a26f6426f57561e6e69f8a07",
+      "preserved_baseline_sha256": "25dfc4968c8cebabbe5e0ba54ec0a2e331784b63a26f6426f57561e6e69f8a07",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_a8w4_pack2_dsp.sv",
+      "old_archived_sha256": "66c256b441831789c898158e7b54304c0c0f307582cc6a05a0d65cc520e71fdc",
+      "preserved_baseline_sha256": "66c256b441831789c898158e7b54304c0c0f307582cc6a05a0d65cc520e71fdc",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_a8w4_scalecode_recover2_lut.sv",
+      "old_archived_sha256": "18a2bad1a3b7df345abfaf3428a8a5bec245d9580dc3b336e6153736a23a9f6a",
+      "preserved_baseline_sha256": "18a2bad1a3b7df345abfaf3428a8a5bec245d9580dc3b336e6153736a23a9f6a",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_a8w4_slice8x12_group_s37.sv",
+      "old_archived_sha256": "602722ec2e3e39e1333679d61ad405690d9ad710eedd4a116203bc07a248d923",
+      "preserved_baseline_sha256": "602722ec2e3e39e1333679d61ad405690d9ad710eedd4a116203bc07a248d923",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_axi512_w4_weight_reader.sv",
+      "old_archived_sha256": "82cf3ce3404bc4d8bac457e82b8e9f8256951a225586023f74c2c1c28632fb69",
+      "preserved_baseline_sha256": "82cf3ce3404bc4d8bac457e82b8e9f8256951a225586023f74c2c1c28632fb69",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_ddr512_w4_halfgroup_async.sv",
+      "old_archived_sha256": "dfefee0beacc8364c65333bf54f1f5593a1b59c7c26510229556766bd1d399fa",
+      "preserved_baseline_sha256": "dfefee0beacc8364c65333bf54f1f5593a1b59c7c26510229556766bd1d399fa",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_down_activation_cache16.sv",
+      "old_archived_sha256": "2ae41129dd4c8dab4ca166c0ac0f052f0d9618199d879ab88e0b2533bcfe569f",
+      "preserved_baseline_sha256": "2ae41129dd4c8dab4ca166c0ac0f052f0d9618199d879ab88e0b2533bcfe569f",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_down_group_major_accum_s46.sv",
+      "old_archived_sha256": "94d5a049d154a90593e96c8e2f96dc0e801bb0a4d276a9a923aa5ce9c328fa26",
+      "preserved_baseline_sha256": "94d5a049d154a90593e96c8e2f96dc0e801bb0a4d276a9a923aa5ce9c328fa26",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_down_group_major_accum_s54.sv",
+      "old_archived_sha256": "3ad2864a146a22340ecbf1289e8669890492ce839c889195dc59a80dcd2407b2",
+      "preserved_baseline_sha256": "3ad2864a146a22340ecbf1289e8669890492ce839c889195dc59a80dcd2407b2",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_down_v5_scheduler16_s54.sv",
+      "old_archived_sha256": "3aaf1f43f969de6b25ff6a4c6dc13580af76646919cc05d6431905ae25174801",
+      "preserved_baseline_sha256": "3aaf1f43f969de6b25ff6a4c6dc13580af76646919cc05d6431905ae25174801",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_full_command16_v5_s54.sv",
+      "old_archived_sha256": "d6cade95ca971c10332f4c2353bec101498c582e235b4b4263246196e748a8b1",
+      "preserved_baseline_sha256": "d6cade95ca971c10332f4c2353bec101498c582e235b4b4263246196e748a8b1",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_gate_up_gather_pingpong12.sv",
+      "old_archived_sha256": "f1bb66caa61fe90f3c01aac93ab6cb5692d075ccc2b9b46a75f0ad2d2108f6a3",
+      "preserved_baseline_sha256": "f1bb66caa61fe90f3c01aac93ab6cb5692d075ccc2b9b46a75f0ad2d2108f6a3",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_gate_up_v5_scheduler16_q4.sv",
+      "old_archived_sha256": "7672f2841f68ed52bd56c2f7ab6b33629e32e6f569817cf73a1b0644c5e99cc8",
+      "preserved_baseline_sha256": "7672f2841f68ed52bd56c2f7ab6b33629e32e6f569817cf73a1b0644c5e99cc8",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_hadamard32_s24_fold4.sv",
+      "old_archived_sha256": "88e7e6f5afdbf1b6276dcc924b22bf6acb36eb620d7277f735ba387ae9a47d7d",
+      "preserved_baseline_sha256": "88e7e6f5afdbf1b6276dcc924b22bf6acb36eb620d7277f735ba387ae9a47d7d",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_hadamard32_s32_norm_stream.sv",
+      "old_archived_sha256": "7836b33547083dcfb75c3b4fb4af636675a442627f0359a69312386ddbfe0985",
+      "preserved_baseline_sha256": "7836b33547083dcfb75c3b4fb4af636675a442627f0359a69312386ddbfe0985",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_input_frontend16_compact_cache.sv",
+      "old_archived_sha256": "3d4bc5682923264f9585aab5655a157c8394570f4a343eaf94d0170954c3959c",
+      "preserved_baseline_sha256": "3d4bc5682923264f9585aab5655a157c8394570f4a343eaf94d0170954c3959c",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_product_frontend16_q4.sv",
+      "old_archived_sha256": "962d5b94e45ea34fb34bf2bf517564d82454620767e6f2465021bc9e36bc4ee5",
+      "preserved_baseline_sha256": "962d5b94e45ea34fb34bf2bf517564d82454620767e6f2465021bc9e36bc4ee5",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_projection_repack12_to16_s24_history2.sv",
+      "old_archived_sha256": "4056e00b7e29b85a3053a60ced559b67814147863002f9ce7a43bde1f5ae64dd",
+      "preserved_baseline_sha256": "4056e00b7e29b85a3053a60ced559b67814147863002f9ce7a43bde1f5ae64dd",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_projection_repack12_to16_s32_history2.sv",
+      "old_archived_sha256": "45e0560bfd5ee0198692f47a9a5b0ecc6671bf48774114a11ac4eccb33fe4ef8",
+      "preserved_baseline_sha256": "45e0560bfd5ee0198692f47a9a5b0ecc6671bf48774114a11ac4eccb33fe4ef8",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_robust_a8_quantizer_s35.sv",
+      "old_archived_sha256": "acde224e24a8f89d222a98b7c0c08bbff61839db2cebb31895dc8a876065a6ac",
+      "preserved_baseline_sha256": "acde224e24a8f89d222a98b7c0c08bbff61839db2cebb31895dc8a876065a6ac",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_serial_ddr_command16_v5_s54.sv",
+      "old_archived_sha256": "28d80270cf9aec35eb5bdd8bafc7da265600424b07dfe06b52d0d7436353490a",
+      "preserved_baseline_sha256": "28d80270cf9aec35eb5bdd8bafc7da265600424b07dfe06b52d0d7436353490a",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_shared_dual_slice16x12_s44_s46.sv",
+      "old_archived_sha256": "e33e86dd6a39f0132db1995977c952011b1798315494b9521343ed6290551d74",
+      "preserved_baseline_sha256": "e33e86dd6a39f0132db1995977c952011b1798315494b9521343ed6290551d74",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_shared_dual_slice16x12_s44_s54.sv",
+      "old_archived_sha256": "5829f33fb3314906a2026eccca46e599bd16409a66e1a912c04dfa2187a66157",
+      "preserved_baseline_sha256": "5829f33fb3314906a2026eccca46e599bd16409a66e1a912c04dfa2187a66157",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_silu_mul.sv",
+      "old_archived_sha256": "028d5cc6971322b6e77b00b0514793e4b3ee6ba36d62d85d53b4cd7571933c97",
+      "preserved_baseline_sha256": "028d5cc6971322b6e77b00b0514793e4b3ee6ba36d62d85d53b4cd7571933c97",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_swiglu_product_frontend16_q4.sv",
+      "old_archived_sha256": "fc4d95056ddf59c21d64b1f57943310f6fa327fc835424875998763abf39fcba",
+      "preserved_baseline_sha256": "fc4d95056ddf59c21d64b1f57943310f6fa327fc835424875998763abf39fcba",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_tile_accum_s37.sv",
+      "old_archived_sha256": "3f29399609b73578fd96768ccf2383d61e3282c96f99781f5eac3a743db4b458",
+      "preserved_baseline_sha256": "3f29399609b73578fd96768ccf2383d61e3282c96f99781f5eac3a743db4b458",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_w4_dual_channel_join.sv",
+      "old_archived_sha256": "7a2970c491abe4cb1a226a8bde20ed33a34e7223eab19cdbc1073c223917a709",
+      "preserved_baseline_sha256": "7a2970c491abe4cb1a226a8bde20ed33a34e7223eab19cdbc1073c223917a709",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_w4_dual_ddr_frontend.sv",
+      "old_archived_sha256": "ea7e9ecc9e1c49932be9a8f4a56ffa3f5a8fe0a96383846deba92dc03d7ff0c2",
+      "preserved_baseline_sha256": "ea7e9ecc9e1c49932be9a8f4a56ffa3f5a8fe0a96383846deba92dc03d7ff0c2",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_w4_repack48_to12.sv",
+      "old_archived_sha256": "7b72ab2c79a2b3e906a7d45ffd13041dd2b16dafb5c7c834c8976d74c19a3003",
+      "preserved_baseline_sha256": "7b72ab2c79a2b3e906a7d45ffd13041dd2b16dafb5c7c834c8976d74c19a3003",
+      "equal": true
+    },
+    {
+      "path": "project/hardware/rtl/mlp/hap_mlp_weight_meta_resident_ab.sv",
+      "old_archived_sha256": "4b557a1a588b94ba1b2135d1960f8b1b9d07ce4bc62ba4339000a6123f3c200b",
+      "preserved_baseline_sha256": "4b557a1a588b94ba1b2135d1960f8b1b9d07ce4bc62ba4339000a6123f3c200b",
+      "equal": true
+    }
+  ],
+  "limitations": [
+    "Native synthesis reports remain valid observations; historical wrapper failure status is not rewritten.",
+    "Architecture review notes 183 LUT/12 FF Attention mapping difference despite preserved RTL; retained shared kernel LUT mapping increases 3241.",
+    "Board core external IP aggregate resources are unchanged; physical utilization may change after optimization/placement."
+  ]
+}

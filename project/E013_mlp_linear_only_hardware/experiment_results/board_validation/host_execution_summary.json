@@ -1,0 +1,235 @@
+{
+  "schema": 1,
+  "execution_state": "completed",
+  "verdict": "LIMITED_BOARD_FUNCTION_PASS",
+  "overall_exit_code": 0,
+  "completed_utc": "2026-10-25T01:29:04.431764+00:00",
+  "runtime_id": "/root/board_host_prepare",
+  "desired_model": "gpt-6.1-sol",
+  "desired_effort": "xhigh",
+  "actual_model": null,
+  "actual_effort": null,
+  "bit": {
+    "filename": "ScaleLLM_MLP_GU_only_ENGINEERING_VALIDATION.bit",
+    "bytes": 80159259,
+    "sha256": "66a305348d3099ca48043324d2ef50e3a39bea84b818f6107f0ff9cdd08acc47",
+    "volatile_sram_program_exit": 0,
+    "configuration_probe_exit": 0
+  },
+  "program_attempt": "AT_20261025T011600.863121Z_program",
+  "initial_csr_failure": "AT_20261025T012136.428143Z_csr",
+  "pcie_scan_attempt": "AT_20261025T012321.542161Z_pcie_scan",
+  "pcie_restart_attempt": "AT_20261025T012357.782981Z_pcie_restart",
+  "recovered_csr_attempt": "AT_20261025T012429.910764Z_csr_after_restart",
+  "scratch_attempt": "AT_20261025T012513.161146Z_dual_ddr_scratch",
+  "scratch_result": {
+    "checks": [
+      {
+        "both_channels_match": true,
+        "bytes": 4096,
+        "read_sha256": {
+          "0": "f49a31f5e7b0144392583636d3347d90557feeb0523fca90fd9c2d8e068f924b",
+          "1": "515be3d0023cc5f16e0a5dd88f0aff3424512ca4f6d6e06272d7604a818c4b6c"
+        },
+        "written_channel": 0
+      },
+      {
+        "both_channels_match": true,
+        "bytes": 4096,
+        "read_sha256": {
+          "0": "f49a31f5e7b0144392583636d3347d90557feeb0523fca90fd9c2d8e068f924b",
+          "1": "cff0beb21422278faf524cf258e4a63257cf2d830bbd2dfcbef541d203b412ba"
+        },
+        "written_channel": 1
+      }
+    ],
+    "error": null,
+    "host_addresses": [
+      2147418112,
+      4294901760
+    ],
+    "local_address": 2147418112,
+    "restoration": {
+      "0": {
+        "match": true,
+        "sha256": "0d5914321bb74e1b7cc5839592034c4b33782ebbc1a618972b27bb83450dbe45",
+        "written": 4096
+      },
+      "1": {
+        "match": true,
+        "sha256": "515be3d0023cc5f16e0a5dd88f0aff3424512ca4f6d6e06272d7604a818c4b6c",
+        "written": 4096
+      }
+    },
+    "scope": "dual DDR reserved local page; restore original data",
+    "size": 4096,
+    "verdict": "PASS"
+  },
+  "gu_cases": [
+    {
+      "case": "structured_nonzero",
+      "attempt": "AT_20261025T012608.431477Z_gu_structured_2cohorts",
+      "verdict": "PASS",
+      "epoch": 1,
+      "request_id": 1,
+      "cohorts": [
+        {
+          "compared_bytes": 1376256,
+          "compared_s24_values": 458752,
+          "mismatched_values": 0,
+          "mismatched_bytes": 0,
+          "output_sha256": "23e993b366a9e90580237ab63474f2813bf0f6009aced7f701ba2bc6893b20bc",
+          "gold_sha256": "23e993b366a9e90580237ab63474f2813bf0f6009aced7f701ba2bc6893b20bc",
+          "acked": true
+        },
+        {
+          "compared_bytes": 1376256,
+          "compared_s24_values": 458752,
+          "mismatched_values": 0,
+          "mismatched_bytes": 0,
+          "output_sha256": "23e993b366a9e90580237ab63474f2813bf0f6009aced7f701ba2bc6893b20bc",
+          "gold_sha256": "23e993b366a9e90580237ab63474f2813bf0f6009aced7f701ba2bc6893b20bc",
+          "acked": true
+        }
+      ],
+      "layer_released": true,
+      "retained_layer_lease": null,
+      "process_exit": 0
+    },
+    {
+      "case": "s37_cancellation",
+      "attempt": "AT_20261025T012650.455542Z_gu_s37_2cohorts",
+      "verdict": "PASS",
+      "epoch": 2,
+      "request_id": 2,
+      "cohorts": [
+        {
+          "compared_bytes": 1376256,
+          "compared_s24_values": 458752,
+          "mismatched_values": 0,
+          "mismatched_bytes": 0,
+          "output_sha256": "dcc2ffa2238305741006f99055f897ed4bf4423daed79e554614e71d7144c631",
+          "gold_sha256": "dcc2ffa2238305741006f99055f897ed4bf4423daed79e554614e71d7144c631",
+          "acked": true
+        },
+        {
+          "compared_bytes": 1376256,
+          "compared_s24_values": 458752,
+          "mismatched_values": 0,
+          "mismatched_bytes": 0,
+          "output_sha256": "dcc2ffa2238305741006f99055f897ed4bf4423daed79e554614e71d7144c631",
+          "gold_sha256": "dcc2ffa2238305741006f99055f897ed4bf4423daed79e554614e71d7144c631",
+          "acked": true
+        }
+      ],
+      "layer_released": true,
+      "retained_layer_lease": null,
+      "process_exit": 0
+    }
+  ],
+  "compared_output_bytes": 5505024,
+  "compared_s24_values": 1835008,
+  "final_attempt": "AT_20261025T012753.641597Z_final_idle",
+  "final_csr_snapshots": [
+    {
+      "0x000": 1211646211,
+      "0x004": 131072,
+      "0x100": 1211647493,
+      "0x104": 458752,
+      "0x10c": 123,
+      "0x14c": 6,
+      "0x178": 0,
+      "0x260": 35,
+      "0x2a8": 0,
+      "0x2b8": 1295003698,
+      "0x300": 1296826370,
+      "0x304": 29,
+      "0x308": 1,
+      "0x324": 8,
+      "0x350": 0,
+      "0x370": 0
+    },
+    {
+      "0x000": 1211646211,
+      "0x004": 131072,
+      "0x100": 1211647493,
+      "0x104": 458752,
+      "0x10c": 123,
+      "0x14c": 6,
+      "0x178": 0,
+      "0x260": 35,
+      "0x2a8": 0,
+      "0x2b8": 1295003698,
+      "0x300": 1296826370,
+      "0x304": 29,
+      "0x308": 1,
+      "0x324": 8,
+      "0x350": 0,
+      "0x370": 0
+    },
+    {
+      "0x000": 1211646211,
+      "0x004": 131072,
+      "0x100": 1211647493,
+      "0x104": 458752,
+      "0x10c": 123,
+      "0x14c": 6,
+      "0x178": 0,
+      "0x260": 35,
+      "0x2a8": 0,
+      "0x2b8": 1295003698,
+      "0x300": 1296826370,
+      "0x304": 29,
+      "0x308": 1,
+      "0x324": 8,
+      "0x350": 0,
+      "0x370": 0
+    }
+  ],
+  "final_remote_cleanup": {
+    "utc": "2026-10-25T01:27:53.7328516Z",
+    "board_tool_processes": [],
+    "listener33121": [],
+    "pnp": [
+      {
+        "Status": "OK",
+        "FriendlyName": "Xilinx DMA",
+        "InstanceId": "PCI\\VEN_10EE&DEV_9018&SUBSYS_000710EE&REV_00\\4&3533FCBB&0&0008",
+        "Problem": 0
+      }
+    ]
+  },
+  "transport_identity": {
+    "evidence": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_results/board_validation/AT_20261025T012512.469472Z_transport_v2_validation",
+    "sha256": "ff64ca61a9bb1345d55fd805e4c43f67c13538de1f58db60580453e1a369fa91",
+    "compile_exit": 0,
+    "path": "C:/Users/dell/ScaleLLM_board_validation/M006_GU_66a305348d30_20261025/pcie_diagnostic_20261025T012237.308180Z/scalellm_windows_xdma.py",
+    "python": "D:/software/Anaconda3/python.exe"
+  },
+  "actual_local_source_sha256": {
+    "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/program_and_probe.ps1": "68c0308b15ceee000f913ce6aec1bdf023d890b1408e2e52af389407bf352c71",
+    "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/hw_common.tcl": "1f0b53e8e6cce2ef73b326ef621415435936547e0b8411a86e2b7d1b201dda09",
+    "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/program_sram.tcl": "19cd5662bd33d6ab11d8c3bbb92738492cc992a83cf18d046529e507f5dcab90",
+    "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/probe_jtag.tcl": "76944c55408a38999f756f0f21212854b782f453eb06c6b32feb1b53a83088d0",
+    "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/scalellm_windows_xdma.py": "ff64ca61a9bb1345d55fd805e4c43f67c13538de1f58db60580453e1a369fa91",
+    "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/validate_csr_and_scratch.py": "dbec4f945ee0141d4826a12bebe4f42109e3a75d2890da4cce9f703fcc509e40",
+    "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/recover_pcie.ps1": "a149f8d1f8df58964be1dedd2187e9352d5d0750f39e7a81f54d7d53700a0322",
+    "project/E013_mlp_linear_only_hardware/experiment_source/gu_only/board_validation/test_windows_xdma.py": "813a1b503cd3818c025c7bfb4a9fa7798ade680ab04e0c83ada0562132cba690"
+  },
+  "limits": {
+    "host_cpus": 8,
+    "host_address_space_bytes": 8589934592,
+    "windows_request_timeout_ms": 5000,
+    "cancel_drain_wait_ms": 1000,
+    "rpc_response_timeout_s": 8.0
+  },
+  "unvalidated": [
+    "Max-DPO signoff",
+    "external-reset signoff",
+    "complete32-layer model/Host Down/Attention concurrency",
+    "model PPL/ACC",
+    "hardware throughput/latency benchmark",
+    "fault-induced driver cancellation on actual device"
+  ],
+  "board_end_state": "bit remains configured; no reset/reprogram after tests; all four commands ACKed and both epochs released; no board-tool/RPC process or33121 listener"
+}

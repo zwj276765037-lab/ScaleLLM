@@ -1,0 +1,84 @@
+
+****** Vivado v2022.2 (64-bit)
+  **** SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source {C:\Users\dell\ScaleLLM_board_validation\M006_GU_66a305348d30_20261025\probe_jtag.tcl}
+# source [file join [file dirname [info script]] hw_common.tcl]
+## proc exact_object {objects expected kind} {
+##     set matches {}
+##     foreach obj $objects { if {"$obj" eq $expected} { lappend matches $obj } }
+##     if {[llength $matches] != 1} { error "Expected one exact $kind '$expected'; available: $objects" }
+##     return [lindex $matches 0]
+## }
+## proc device_part {device} {
+##     if {[lsearch -exact [list_property $device] PART] >= 0} { return [get_property PART $device] }
+##     return [get_property NAME $device]
+## }
+## proc require_unique_vu9p {devices expected} {
+##     set vu9p {}
+##     foreach device $devices {
+##         if {[string match -nocase *xcvu9p* [device_part $device]]} { lappend vu9p $device }
+##     }
+##     if {[llength $vu9p] != 1} { error "Expected one xcvu9p on selected target, found: $vu9p" }
+##     return [exact_object $vu9p $expected device]
+## }
+## proc verify_engineering_bit {filename} {
+##     set bit [file normalize $filename]
+##     if {![file isfile $bit]} { error "Bitstream is not a regular file: $bit" }
+##     if {[file tail $bit] ne "ScaleLLM_MLP_GU_only_ENGINEERING_VALIDATION.bit"} { error "Unexpected bitstream filename" }
+##     if {[file size $bit] != 80159259} { error "Bitstream byte count mismatch" }
+##     set expected 66a305348d3099ca48043324d2ef50e3a39bea84b818f6107f0ff9cdd08acc47
+##     if {$::tcl_platform(platform) eq "windows"} {
+##         set output [exec certutil.exe -hashfile $bit SHA256]
+##     } else {
+##         set output [exec sha256sum -- $bit]
+##     }
+##     if {![regexp -nocase "\\m${expected}\\M" $output]} { error "Bitstream SHA256 mismatch: $output" }
+##     return $bit
+## }
+## proc hw_cleanup {} {
+##     catch {close_hw_target}
+##     catch {disconnect_hw_server}
+##     catch {close_hw_manager}
+## }
+# if {$argc < 1 || $argc > 2} { error "Usage: SERVER_URL ?EXACT_TARGET_NAME?" }
+# set server [lindex $argv 0]
+open_hw_manager: Time (s): cpu = 00:00:04 ; elapsed = 00:00:15 . Memory (MB): peak = 410.805 ; gain = 108.086
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:33121
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:0
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+
+******** Xilinx cs_server v2022.2.0
+  ****** Build date   : Oct 05 2022-07:25:37
+    **** Build number : 2022.2.1664925937
+      ** Copyright 2017-2026 Xilinx, Inc. All Rights Reserved.
+
+
+
+BOARD_PREFLIGHT_TARGET localhost:33121/xilinx_tcf/Digilent/210308B76D50
+BOARD_PREFLIGHT_PROBE_COMPLETE
+# set code [catch {
+#     open_hw_manager
+#     connect_hw_server -url $server
+#     set targets [get_hw_targets]
+#     foreach target $targets { puts "BOARD_PREFLIGHT_TARGET [list $target]" }
+#     if {$argc == 2} {
+#         set selected [exact_object $targets [lindex $argv 1] target]
+#         current_hw_target $selected
+#         open_hw_target
+#         foreach device [get_hw_devices] {
+#             puts "BOARD_PREFLIGHT_DEVICE [list $device] PART [list [device_part $device]]"
+#             report_property $device
+#         }
+#     }
+#     puts "BOARD_PREFLIGHT_PROBE_COMPLETE"
+# } problem options]
+# hw_cleanup
+INFO: [Labtoolstcl 44-464] Closing hw_target localhost:33121/xilinx_tcf/Digilent/210308B76D50
+INFO: [Labtoolstcl 44-468] Target hw_target localhost:33121/xilinx_tcf/Digilent/210308B76D50 is already closed
+# if {$code} { return -options $options $problem }
+INFO: [Common 17-206] Exiting Vivado at Sun Oct 25 09:03:27 2026...

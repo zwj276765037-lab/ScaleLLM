@@ -1,0 +1,29 @@
+{
+  "created": "2026-10-24T17:37:21.251853+00:00",
+  "scope": "same_v7_DCP_exact_two_driver_query_and_qualification_patch",
+  "origin_record": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/gu_only/dcp_qualification/AT007_origin.json",
+  "origin_record_sha256": "7446943359fa1dfa82c305bb8cd97b4ba91aad2e51b268284be6ad0cbd7d1ff6",
+  "current_input_manifest_sha256": "c83faf747b20a1a3e68555693caee533da0a538b3d23829bfacb20059f035a26",
+  "changes": {
+    "vivado/scripts/build_mlp_gu_board.tcl": {
+      "parent_sha256": "8604d64de1c1f2574024dda61e0f302479b487796b3e68afd276cd2680bade53",
+      "current_sha256": "eec096ba45c9f6348a2266da37821c9440ddb39aa36247c29a5a0fdc243685c5"
+    },
+    "vivado/scripts/run_mlp_gu_board.py": {
+      "parent_sha256": "f4f6c439ba0a85d608ace290031431e535220570ecee705b77cb83c95fffd595",
+      "current_sha256": "806d27d4ab4d70ad5e3a755aa2c79dc5622aec8da63334d12b772649c8ea6817"
+    }
+  },
+  "patches": {
+    "vivado/scripts/build_mlp_gu_board.tcl": {
+      "path": "build_mlp_gu_board.tcl.patch",
+      "sha256": "cb835213325cf06265b1526353e75f48677672e65e9c034684c15f8ca2e6d03d"
+    },
+    "vivado/scripts/run_mlp_gu_board.py": {
+      "path": "run_mlp_gu_board.py.patch",
+      "sha256": "cff9946ccf855f0a4fc4678bb18447b79a66a610aa30fd609cc3a1788413a76c"
+    }
+  },
+  "reason": "Native hierarchical guard pin query returned zero for 96 lanes; preserve original FAIL and require actual full index sets on same DCP",
+  "unchanged": "all RTL, schema, source membership, IP, ROM, effective constraints, production shape, original analysis reports and DCP"
+}

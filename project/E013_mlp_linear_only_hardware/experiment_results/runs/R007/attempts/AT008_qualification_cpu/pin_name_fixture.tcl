@@ -1,0 +1,85 @@
+set pattern {^guard([01])_s37\[([0-9]+)\]$}
+set tests {
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[0]} 0 0
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[0]} 1 0
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[1]} 0 1
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[1]} 1 1
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[2]} 0 2
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[2]} 1 2
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[3]} 0 3
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[3]} 1 3
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[4]} 0 4
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[4]} 1 4
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[5]} 0 5
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[5]} 1 5
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[6]} 0 6
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[6]} 1 6
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[7]} 0 7
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[7]} 1 7
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[8]} 0 8
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[8]} 1 8
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[9]} 0 9
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[9]} 1 9
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[10]} 0 10
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[10]} 1 10
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[11]} 0 11
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[11]} 1 11
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[12]} 0 12
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[12]} 1 12
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[13]} 0 13
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[13]} 1 13
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[14]} 0 14
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[14]} 1 14
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[15]} 0 15
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[15]} 1 15
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[16]} 0 16
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[16]} 1 16
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[17]} 0 17
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[17]} 1 17
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[18]} 0 18
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[18]} 1 18
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[19]} 0 19
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[19]} 1 19
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[20]} 0 20
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[20]} 1 20
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[21]} 0 21
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[21]} 1 21
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[22]} 0 22
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[22]} 1 22
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[23]} 0 23
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[23]} 1 23
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[24]} 0 24
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[24]} 1 24
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[25]} 0 25
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[25]} 1 25
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[26]} 0 26
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[26]} 1 26
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[27]} 0 27
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[27]} 1 27
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[28]} 0 28
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[28]} 1 28
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[29]} 0 29
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[29]} 1 29
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[30]} 0 30
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[30]} 1 30
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[31]} 0 31
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[31]} 1 31
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[32]} 0 32
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[32]} 1 32
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[33]} 0 33
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[33]} 1 33
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[34]} 0 34
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[34]} 1 34
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[35]} 0 35
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[35]} 1 35
+{root/gen_row[7].gen_pair[5].u_lane/guard0_s37[36]} 0 36
+{root/gen_row[7].gen_pair[5].u_lane/guard1_s37[36]} 1 36
+}
+set count 0
+foreach {name expected_ch expected_bit} $tests {
+set local [string range $name [expr {[string last / $name]+1}] end]
+if {![regexp $pattern $local -> c b] || $c!=$expected_ch || $b!=$expected_bit} {error "bad guard fixture $name"}
+incr count
+}
+foreach name {guard0_s37_extra[0] guard2_s37[0] xguard0_s37[0] guard0_s37[0]/D} {if {[regexp $pattern $name]} {error "bad alias accepted"}}
+puts "PIN_NAME_FIXTURES_PASS $count"

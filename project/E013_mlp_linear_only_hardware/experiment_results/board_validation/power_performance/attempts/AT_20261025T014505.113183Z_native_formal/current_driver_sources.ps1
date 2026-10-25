@@ -1,0 +1,7 @@
+$ErrorActionPreference='Stop';[Console]::OutputEncoding=New-Object Text.UTF8Encoding($false)
+$root='C:\pcie_demo\hap_tools\xdma_driver_win_9018_src'
+$files=@(Get-ChildItem -LiteralPath $root -File -Recurse | Where-Object {$_.Extension -in @('.c','.h','.cpp','.inf','.vcxproj','.sln','.txt','.md')} | Select-Object -First 200)
+$sources=@($files | Where-Object {$_.Extension -in @('.c','.h','.cpp')} | ForEach-Object {[ordered]@{path=$_.FullName;size=$_.Length;sha256=(Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLower();content=[IO.File]::ReadAllText($_.FullName)}})
+$sys=Join-Path $root 'build\x64\XDMA_Driver\Win10_Release\XDMA_Driver\XDMA.sys'
+$instance='PCI\VEN_10EE&DEV_9018&SUBSYS_000710EE&REV_00\4&3533FCBB&0&0008'
+[ordered]@{utc=[DateTime]::UtcNow.ToString('o');root=$root;exists=(Test-Path -LiteralPath $root);files=@($files|Select-Object FullName,Length);sources=$sources;built_sys=if(Test-Path -LiteralPath $sys){[ordered]@{path=$sys;size=(Get-Item -LiteralPath $sys).Length;sha256=(Get-FileHash -LiteralPath $sys -Algorithm SHA256).Hash.ToLower()}}else{$null};powerdata=@(Get-PnpDeviceProperty -InstanceId $instance -KeyName 'DEVPKEY_Device_PowerData' -ErrorAction SilentlyContinue |Select-Object KeyName,Type,Data);service=(Get-ItemProperty -LiteralPath 'HKLM:\SYSTEM\CurrentControlSet\Services\XDMA' |Select-Object ImagePath,Start,Type,DisplayName)}|ConvertTo-Json -Depth 9

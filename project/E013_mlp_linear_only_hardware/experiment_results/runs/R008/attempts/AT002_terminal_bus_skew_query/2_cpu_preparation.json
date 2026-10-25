@@ -1,0 +1,29 @@
+{
+  "observed": "2026-10-24T23:29:44.928564+00:00",
+  "status": "CPU_STATIC_PREPARED_NATIVE_NOT_RUN",
+  "script_sha256": "48cfa2da72d790760165f55f56124b99e61a924da51af79c4ba3ae41a66fbdf5",
+  "targets_source": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_results/runs/R008/attempts/AT001_impl/route_bus_skew_warning_observation.json",
+  "targets_source_sha256": "87b35cedfce0c4f218765497247d763ff6fde23867fe5ff72352dd1ce17afd40",
+  "cpu_command": [
+    "tclsh"
+  ],
+  "cpu_stdin": "if {[catch {set f [open {/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/gu_only/terminal_bus_skew/inspect_gu_bus_skew.tcl} r];set s [read $f];close $f;if {![info complete $s]} {error incomplete};set ::HAP_BUS_QUERY_DEFINITIONS_ONLY 1;source {/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/gu_only/terminal_bus_skew/inspect_gu_bus_skew.tcl};if {[llength $guq_targets]!=10 || [llength [lsort -unique $guq_targets]]!=10 || [llength $guq_scopes]!=4 || [llength $guq_reset_scopes]!=2 || [llength $guq_dsp_targets]!=2} {error targets};foreach name $guq_dsp_targets {set rx [guq_literal_regex $name];if {![regexp -- $rx $name] || [regexp -- $rx ${name}_replica]} {error bad_regex}};foreach p {guq_reset_identity guq_dsp_identity guq_smc_exception_identity guq_fanout guq_trace} {if {![llength [info procs $p]]} {error missing_proc}};puts CPU_TCL_COMPLETENESS_TARGET_SET_AND_LITERAL_REGEX_PASS} cpu_error]} {puts stderr $cpu_error;exit 1}\n",
+  "returncode": 0,
+  "stdout": "CPU_TCL_COMPLETENESS_TARGET_SET_AND_LITERAL_REGEX_PASS\n",
+  "stderr": "",
+  "manual_sha256": {
+    "get_pins": "6513b141862f6f0be3860822c7b24264436357eb213baa821b764b4a4598954e",
+    "get_nets": "b89934abaf117b90658c85947c2fa90c9ce2de2a3fffa8296cd7d390d3dd6882",
+    "get_cells": "674c80b287afd6db07ce59962b11d1c7749d3ca766139d2f465f13463d1cea87",
+    "report_bus_skew": "0dea4d8cb085112d383f72866d290499ce206472991a8b991c0a9c59425870c8",
+    "report_exceptions": "70d6b8fef39bd1366c33ba9e599b15a269a7e05176ed7021d4433976d84f6801"
+  },
+  "limits": "10 exact bus-skew D targets /4 handshake scopes (<=512 primitive/scope); 2 exact reset XPM scopes/8 stages (<=128/scope); 2 representative physical DSPs only; 2 exact SMC request FIFO memories (<=512/scope); cones<=64 pins/depth8; fanout<=128 emitted loads; skew32paths/constraint; timing1path/target; no global valid/ignored_objects dump, no waiver/mutation",
+  "reset_probe_source": {
+    "rtl": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/rtl/board/hap_v5_reset_gate_xpm.sv",
+    "rtl_sha256": "74d171626195b2fbd49779ec19e762c4258ed766237175687faa037c6755e42d",
+    "vendor_xpm": "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv",
+    "vendor_xpm_sha256": "27592359d8363d7e6575298f9d0faa7c9f9258ea77f19c9a38946fbaf3783f09",
+    "lines": "xpm_cdc_async_rst 1227 onward; RTL parameters active-low/4/INIT1; native structures NOT_RUN"
+  }
+}

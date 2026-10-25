@@ -1,0 +1,64 @@
+{
+  "created_utc": "2026-10-24T14:00:25.042118+00:00",
+  "scope": "read_only_plan_not_a_new_hardware_result",
+  "check": "six_actual_generated_bd_edges_and_logical_reader_clock_domains",
+  "result": "PASS",
+  "generated_bd_edges": {
+    "core_M_AXI_DATA": [
+      "core/M_AXI_DATA",
+      "d0_smc/S00_AXI"
+    ],
+    "core_M_AXI_MLP_DATA": [
+      "core/M_AXI_MLP_DATA",
+      "d1_smc/S00_AXI"
+    ],
+    "core_M_AXI_WEIGHT_C0": [
+      "core/M_AXI_WEIGHT_C0",
+      "d0_smc/S01_AXI"
+    ],
+    "core_M_AXI_WEIGHT_C1": [
+      "core/M_AXI_WEIGHT_C1",
+      "d1_smc/S02_AXI"
+    ],
+    "d0_mig_slice_M_AXI": [
+      "d0_mig_slice/M_AXI",
+      "ddr4_0/C0_DDR4_S_AXI"
+    ],
+    "d1_mig_slice_M_AXI": [
+      "d1_mig_slice/M_AXI",
+      "ddr4_1/C0_DDR4_S_AXI"
+    ]
+  },
+  "meaning": {
+    "Attention": "both logical weight readers and tensor data terminate on physical DDR0",
+    "MLP": "both logical weight readers plus tensor/metadata data terminate on physical DDR1",
+    "legacy_names": "gate_ddr0/gate_ddr1 identify logical halves, not physical memory selection"
+  },
+  "files": [
+    {
+      "path": "project/hardware/vivado/project/m006_linear_AT003_constructor/scalellm_vcu118_f05.srcs/sources_1/bd/scalellm_vcu118_f05_bd/scalellm_vcu118_f05_bd.bd",
+      "sha256": "0826629e50d99ea496a2831bd290903a61458be49f0dadd70380be3178c03471"
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_attention_mlp_resource_top_linear.sv",
+      "sha256": "c67c571b8e0b1fd9cb7f7f45065117353437b3885e94cf4ddb0c131ce36f723e"
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_attention_mlp_production_core_linear.sv",
+      "sha256": "9f01889b274f6b2d2fd715d3760d4663617af5ef6246bfb8596d63a69d05b0f4"
+    },
+    {
+      "path": "project/hardware/vivado/scripts/create_mlp_linear_board.tcl",
+      "sha256": "30bfae14cf41ba3bcea0c61f5b7c95eb6d18d603e43c1a04e5fb0895c110e15a"
+    },
+    {
+      "path": "project/hardware/rtl/integration/hap_axi512_dual_engine_dedicated_read.sv",
+      "sha256": "526c2d2cb6c084b51a629ed44a09dcc0f0fa46d23595895270a6d9b0a4f59d5b"
+    }
+  ],
+  "limits": [
+    "CPU parsing and source trace only; no new Vivado execution",
+    "Board electrical operation and concurrent Attention/GU execution are not established by this check",
+    "Current R005 remains the sole EDA process; no frozen production source modified"
+  ]
+}

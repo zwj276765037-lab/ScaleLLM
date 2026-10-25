@@ -1,7 +1,7 @@
 
 
 <!-- research-agent:navigation:begin -->
-生成时间（UTC）：2026-10-20T08:57:35.240611+00:00。来源修订：`cfb9c0cd3fc1`。
+生成时间（UTC）：2026-10-25T01:29:20.089604+00:00。来源修订：`7fd112f32442`。
 
 # E012 / R007 运行结果
 
@@ -19,7 +19,7 @@ CPU17059例及GPU511向量/30Linear/256PV资格PASS；源码与位宽边界保�
 
 80组NPZ独立hidden复算与18个固定CPU FP64head见证通过；Python PNG生成并目视检查。FP64head见证是选定位置数值核查，非全部位置bitwise证明。
 
-[合同](optimization_contract.json) · [完整报告](attempts/AT002_cpu_postprocess/analysis/report.md) · [对比PNG](attempts/AT002_cpu_postprocess/analysis/rounding_comparison.png) · [原始结果](attempts/AT001_rne_equalwidth_dev36/result.json) · [真实GPU退出](attempts/AT001_rne_equalwidth_dev36/external_lifecycle_receipt_v2.json) · [CPU后处理收据](attempts/AT002_cpu_postprocess/execution_receipt.json) · [固定head见证](attempts/AT002_cpu_postprocess/head_witness/independent_head_witness.json)
+[合同](optimization_contract.json) · [完整报告](attempts/AT002_cpu_postprocess/analysis/report.md) · [对比PNG](attempts/AT002_cpu_postprocess/analysis/rounding_comparison.png) · 原始结果（原文引用：`attempts/AT001_rne_equalwidth_dev36/result.json`；待核实） · [真实GPU退出](attempts/AT001_rne_equalwidth_dev36/external_lifecycle_receipt_v2.json) · [CPU后处理收据](attempts/AT002_cpu_postprocess/execution_receipt.json) · [固定head见证](attempts/AT002_cpu_postprocess/head_witness/independent_head_witness.json)
 
 适
 
@@ -29,7 +29,7 @@ CPU17059例及GPU511向量/30Linear/256PV资格PASS；源码与位宽边界保�
 
 | 尝试 | 收据中的阶段状态 | 适用范围 | 原始结果 / 证据 |
 | --- | --- | --- | --- |
-| [AT001_rne_equalwidth_dev36](attempts/AT001_rne_equalwidth_dev36) | 未登记；查看原记录 | 未登记 | [执行收据](attempts/AT001_rne_equalwidth_dev36/result.json) · [manifest.json](attempts/AT001_rne_equalwidth_dev36/manifest.json) |
+| [AT001_rne_equalwidth_dev36](attempts/AT001_rne_equalwidth_dev36) | 未登记；查看原记录 | 未登记 | [manifest.json](attempts/AT001_rne_equalwidth_dev36/manifest.json) |
 | [AT002_cpu_postprocess](attempts/AT002_cpu_postprocess) | 未登记；查看原记录 | 未登记 | [manifest.json](attempts/AT002_cpu_postprocess/manifest.json) |
 
 ## 本批问题与交付文件

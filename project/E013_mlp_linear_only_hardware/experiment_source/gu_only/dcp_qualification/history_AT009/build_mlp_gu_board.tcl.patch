@@ -1,0 +1,101 @@
+--- parent/vivado/scripts/build_mlp_gu_board.tcl
++++ current/vivado/scripts/build_mlp_gu_board.tcl
+@@ -62,7 +62,7 @@
+  set debug_placeholder {};set unresolved {}
+  if {$blackbox_query_available} {
+   foreach cell $blackboxes {
+-   if {$stage eq "synth" && $cell eq "dbg_hub" && [get_property REF_NAME $cell] eq "dbg_hub_CV"} {lappend debug_placeholder $cell} else {lappend unresolved $cell}
++   if {$stage in {synth qualify} && $cell eq "dbg_hub" && [get_property REF_NAME $cell] eq "dbg_hub_CV"} {lappend debug_placeholder $cell} else {lappend unresolved $cell}
+   }
+  }
+  puts $out "pre_opt_debug_placeholder=$debug_placeholder unresolved_user_blackboxes=$unresolved"
+@@ -261,13 +261,32 @@
+  set urams [get_cells -quiet -hierarchical -filter "NAME =~ $base/u_meta_bank/* && REF_NAME =~ URAM288*"]
+  set lanes [get_cells -quiet -hierarchical -filter "NAME =~ $compute/u_shared_compute/* && REF_NAME =~ *hap_a8w4_gu_group32_lane2_s37*"]
+  set lane_width_mismatches 0;set guard0_total 0;set guard1_total 0
++ set expected_indices {};for {set bit 0} {$bit<37} {incr bit} {lappend expected_indices $bit}
++ set dump [open [file join $report_dir lane_pin_objects.txt] w];set lane_number 0
+  foreach lane $lanes {
+-  set pins0 [get_pins -quiet -of_objects $lane -filter {DIRECTION == OUT && REF_PIN_NAME =~ guard0_s37*}]
+-  set pins1 [get_pins -quiet -of_objects $lane -filter {DIRECTION == OUT && REF_PIN_NAME =~ guard1_s37*}]
+-  incr guard0_total [llength $pins0];incr guard1_total [llength $pins1]
+-  if {[llength $pins0]!=37 || [llength $pins1]!=37} {incr lane_width_mismatches}
+-  puts $out "lane=$lane guard0_bits=[llength $pins0] guard1_bits=[llength $pins1]"
+- }
++  set indices0 {};set indices1 {};set pin_count0 0;set pin_count1 0
++  # REF_PIN_NAME is not assumed to describe rebuilt hierarchical ports.
++  # Read actual native pin NAME objects and require the complete [0:36] set.
++  set native_pins [get_pins -quiet -of_objects $lane]
++  foreach pin $native_pins {
++   set name [get_property NAME $pin];set direction [get_property DIRECTION $pin]
++   set local_name [string range $name [expr {[string last / $name]+1}] end]
++   if {$lane_number==0} {
++    set ref_name unavailable
++    if {[lsearch -exact [list_property $pin] REF_PIN_NAME]>=0} {set ref_name [get_property REF_PIN_NAME $pin]}
++    puts $dump "pin=$name direction=$direction ref_pin_name=$ref_name"
++   }
++   if {[regexp {^guard([01])_s37\[([0-9]+)\]$} $local_name -> channel bit] && $direction eq "OUT"} {
++    if {$channel==0} {incr pin_count0;lappend indices0 $bit} else {incr pin_count1;lappend indices1 $bit}
++   }
++  }
++  incr guard0_total $pin_count0;incr guard1_total $pin_count1
++  set indices0 [lsort -integer -unique $indices0];set indices1 [lsort -integer -unique $indices1]
++  if {$pin_count0!=37 || $pin_count1!=37 || $indices0 ne $expected_indices || $indices1 ne $expected_indices} {incr lane_width_mismatches}
++  puts $out "lane=$lane guard0_bits=$pin_count0 guard1_bits=$pin_count1 guard0_indices=$indices0 guard1_indices=$indices1"
++  incr lane_number
++ }
++ close $dump
+  puts $out "scope=actual_synthesized_hierarchy_not_text_search"
+  puts $out "forbidden_down_cells=[llength $banned] mlp_dsp=[llength $dsps] gu_metadata_uram=[llength $urams] lane_instances=[llength $lanes]"
+  puts $out "all_lane_width_mismatches=$lane_width_mismatches guard0_total_bits=$guard0_total guard1_total_bits=$guard1_total"
+@@ -322,7 +341,7 @@
+ open_project [file join $project_dir scalellm_vcu118_f05.xpr]
+ config_ip_cache -disable_cache
+ set stage $::env(HAP_STAGE)
+-if {$stage ni {synth impl}} {error "Unknown M006 stage $stage"}
++if {$stage ni {synth qualify impl}} {error "Unknown M006 stage $stage"}
+ set quality [dict create stage $stage process.status RUNNING overall.status PENDING_REVIEW quality_is_native_exit_code false]
+ set stage_failed [catch {
+ if {$stage eq "synth"} {
+@@ -358,6 +377,10 @@
+  exec sha256sum --check --status [file join $report_dir attention_rom_inputs.sha256]
+  open_run synth_1
+  write_checkpoint -force [file join $report_dir synthesized.dcp]
++ m006_pre_opt_debug_targets $report_dir
++} elseif {$stage eq "qualify"} {
++ if {![info exists ::env(HAP_SYNTH_DCP)] || ![info exists ::env(HAP_PARENT_QUALITY)]} {error "Qualification provenance missing"}
++ open_checkpoint $::env(HAP_SYNTH_DCP)
+  m006_pre_opt_debug_targets $report_dir
+ } elseif {$stage eq "impl"} {
+  if {![info exists ::env(HAP_SYNTH_DCP)]} {error "HAP_SYNTH_DCP required"}
+@@ -381,6 +404,18 @@
+ 
+ # Preserve report provenance and continue collecting independent diagnostics if
+ # one quality report fails. The native failure is re-raised after JSON is saved.
++if {$stage eq "qualify"} {
++ set f [open $::env(HAP_PARENT_QUALITY) r];set inherited_json [read $f];close $f
++ m006_q inherited_quality.assessment $inherited_json
++ m006_q inherited_quality.status FAIL
++ m006_q inherited_quality.scope same_immutable_synthesized_DCP_same_analysis_context_reports_reused_without_recomputation
++ m006_q inherited_quality.applicable_sections {timing unconstrained drc cdc clock_interaction utilization}
++ m006_q inherited_quality.superseded_identity_sections {netlist clocks gu_structure}
++ m006_q inherited_quality.report $::env(HAP_PARENT_QUALITY)
++ m006_q inherited_quality.sha256 [lindex [exec sha256sum -- $::env(HAP_PARENT_QUALITY)] 0]
++ m006_constraint_identity $report_dir
++ m006_reset_cdc_identity $report_dir qualification
++} else {
+ foreach {label command filename} {
+  utilization {report_utilization -hierarchical} utilization_hierarchical.rpt
+  timing {report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose} timing_summary.rpt
+@@ -393,8 +428,9 @@
+ }
+ m006_q cdc.status PENDING_REVIEW
+ m006_q cdc.reason native_topology_and_waiver_review_required_no_automatic_pass
+-set probes {netlist m006_netlist_identity clocks m006_clock_identity}
+-lappend probes timing_metrics m006_timing_metrics drc_metrics m006_drc_metrics gu_structure m006_gu_structure
++}
++set probes {netlist m006_netlist_identity clocks m006_clock_identity gu_structure m006_gu_structure}
++if {$stage ne "qualify"} {lappend probes timing_metrics m006_timing_metrics drc_metrics m006_drc_metrics}
+ foreach {label command} $probes {
+  if {[catch {$command $report_dir} detail]} {
+   m006_q $label.status PENDING_REVIEW;m006_q $label.collection_error $detail

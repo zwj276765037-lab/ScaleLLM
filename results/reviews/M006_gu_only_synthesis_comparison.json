@@ -1,0 +1,84 @@
+{
+  "recorded_utc": "2026-10-24T17:24:29.431071+00:00",
+  "scope": "whole-board, Synthesized, same tool/device/top; not placement or route acceptance",
+  "baseline": {
+    "path": "project/hardware/vivado/reports/m006_linear_AT004_synth/utilization_hierarchical.rpt",
+    "sha256": "69ba7cd5b8cc9f13b7131fb0e5b90872332ea4d32064eb324f19f070be125286",
+    "resources": {
+      "LUT": 766078,
+      "FF": 954137,
+      "RAMB36": 827,
+      "RAMB18": 16,
+      "BRAM36_equivalent": 835.0,
+      "URAM": 752,
+      "DSP": 5375
+    }
+  },
+  "new": {
+    "path": "project/hardware/vivado/reports/m006_gu_AT007_synth/utilization_hierarchical.rpt",
+    "sha256": "90a3e5fa11f861d59af2d521e9f263ee7b22f5f7cbe2e00ba0d969678e5bf69e",
+    "resources": {
+      "LUT": 679997,
+      "FF": 892475,
+      "RAMB36": 635,
+      "RAMB18": 16,
+      "BRAM36_equivalent": 643.0,
+      "URAM": 528,
+      "DSP": 5374
+    }
+  },
+  "delta": {
+    "LUT": {
+      "absolute": -86081,
+      "percent": -11.236584264265518
+    },
+    "FF": {
+      "absolute": -61662,
+      "percent": -6.462593946152387
+    },
+    "RAMB36": {
+      "absolute": -192,
+      "percent": -23.216444981862153
+    },
+    "RAMB18": {
+      "absolute": 0,
+      "percent": 0.0
+    },
+    "BRAM36_equivalent": {
+      "absolute": -192.0,
+      "percent": -22.994011976047904
+    },
+    "URAM": {
+      "absolute": -224,
+      "percent": -29.78723404255319
+    },
+    "DSP": {
+      "absolute": -1,
+      "percent": -0.018604651162790697
+    }
+  },
+  "native_attempt_terminal": "AT007 native1, stopnull, no input drift, zero owned survivors; failed guard-width pin query",
+  "structure_clock_review": "netlist/clocks PASS; Down0, MLP3072DSP, metadata448URAM,96lanes verified; both guard pin selectors return0, qualification repair pending",
+  "physical": "R008/AT001_impl actually running, no placement/route outcome",
+  "independent_review": {
+    "owner": "A021",
+    "result": "BOARD_SYNTH_RESOURCE_OBSERVED / AT007_FAIL_PRESERVED / DCP_QUALIFICATION_PENDING",
+    "path": "project/hardware/source/mlp_linear/results.md",
+    "section": "第十六次",
+    "pre_opt_findings": "no_clock530 and internal554 identical per-name to v6; six CDC10 exact paths identical, not waived; DRC zero error/critical, warnings15767; final physical review pending"
+  },
+  "subsequent_qualification": {
+    "attempt": "R007/AT011_dcp_qualification",
+    "native_returncode": 0,
+    "stop_reason": null,
+    "changed_inputs": [],
+    "owned_survivors": [],
+    "netlist": "PASS",
+    "clocks": "PASS",
+    "GU_structure": "PASS; all96lanes each148FF complete0..36, 14208 total; Down0,3072DSP,448URAM",
+    "receipt_sha256": "228a95690c179ef57c0dfb2bd91a7c20b466c2c1b27b865a2f28812ac2b3b712",
+    "original_failures_preserved": true,
+    "physical_acceptance": "PENDING; new physical actually running",
+    "independent_review": "A021 SYNTH_STRUCTURE_QUALIFICATION_LIMITED_PASS; results.md:560"
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "observed": "2026-10-25T00:19:36.830489+00:00",
+  "native": {
+    "verdict": "NATIVE_STAGE_COMPLETED",
+    "returncode": 0,
+    "stop": null,
+    "changed_inputs": [],
+    "owned_count": 40,
+    "survivors": [],
+    "peak_tree_rss_bytes": 29398495232,
+    "elapsed_seconds": 19161.042446
+  },
+  "native_quality_original": {
+    "overall": {
+      "status": "FAIL",
+      "reason": "native_completion_is_not_route_timing_DRC_CDC_acceptance"
+    },
+    "xpm_exception": {
+      "d0_smc": {
+        "coverage": {
+          "native_status": "COMPLETE",
+          "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT001_impl/post_opt_d0_smc_doutb_coverage_exceptions.rpt",
+          "sha256": "7578279d4472b8a19bd7d08f371143ab4cb3e99d6a1e2dc08e9bf5120485aedc"
+        },
+        "valid": {
+          "native_status": "FAIL",
+          "native_error": "ERROR: [Vivado 12-2785] The two '-write_valid_exceptions' and '-to' options cannot be specified together.\n"
+        },
+        "ignored": {
+          "native_status": "FAIL",
+          "native_error": "ERROR: [Vivado 12-2785] The two '-ignored_objects' and '-to' options cannot be specified together.\n"
+        },
+        "registers": 1,
+        "D_endpoints": 1,
+        "missing_clock": 0
+      },
+      "d1_smc": {
+        "coverage": {
+          "native_status": "COMPLETE",
+          "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT001_impl/post_opt_d1_smc_doutb_coverage_exceptions.rpt",
+          "sha256": "8a506577334b1cf67d3475edcb246a02ced6fdc54b8a44f906be089a2b2a9779"
+        },
+        "valid": {
+          "native_status": "FAIL",
+          "native_error": "ERROR: [Vivado 12-2785] The two '-write_valid_exceptions' and '-to' options cannot be specified together.\n"
+        },
+        "ignored": {
+          "native_status": "FAIL",
+          "native_error": "ERROR: [Vivado 12-2785] The two '-ignored_objects' and '-to' options cannot be specified together.\n"
+        },
+        "registers": 1,
+        "D_endpoints": 1,
+        "missing_clock": 0
+      },
+      "status": "PENDING_REVIEW",
+      "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT001_impl/post_opt_xpm_endpoint_identity.txt"
+    },
+    "unconstrained": {
+      "native_status": "COMPLETE",
+      "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT001_impl/check_timing.rpt",
+      "sha256": "9eeafca2bb681e5c13660f4805f093ddc2bd5ae0fc1f524f3116e05d292bf9d9",
+      "status": "FAIL",
+      "no_clock": 0,
+      "unconstrained_internal_endpoints": 0,
+      "no_input_delay": 1,
+      "no_output_delay": 2
+    }
+  },
+  "engineering_scope": {
+    "route_legality": "PASS",
+    "constrained_setup_hold_pulse": "PASS",
+    "netlist_clocks_guard": "PASS",
+    "cdc": "PENDING_REVIEW_6_CDC10_2_CDC11_5688_CDC15",
+    "drc": "NO_ERROR_OR_CRITICAL_15762_WARNINGS_REVIEW_PENDING",
+    "full_physical_acceptance": "NOT_CLOSED_CONFIRMED_USER_CLOCKGROUP_OVERRIDES_COMMAND_MAX_DPO"
+  },
+  "timing": {
+    "wns_ns": 0.002,
+    "tns_ns": 0.0,
+    "setup_failing_endpoints": 0,
+    "setup_total_endpoints": 2848130,
+    "whs_ns": 0.01,
+    "ths_ns": 0.0,
+    "hold_failing_endpoints": 0,
+    "hold_total_endpoints": 2846686,
+    "wpws_ns": 0.0,
+    "tpws_ns": 0.0,
+    "pulse_failing_endpoints": 0,
+    "pulse_total_endpoints": 949552
+  },
+  "supplement": {
+    "attempt": "R008/AT002_terminal_bus_skew_query",
+    "state": "RUNNING",
+    "scope": "same_routed_DCP_10_bus_skew_D_4_XPM_handshakes_2_reset_chains_2_DSP_representatives_2_scoped_SMC_exception_sets",
+    "no_synthesis_or_physical_rerun": true
+  },
+  "constraint_gap": {
+    "confirmed": true,
+    "scope": "four_command_XPM_handshake_data_paths",
+    "finite_endpoint_counts": [
+      34,
+      34,
+      35,
+      35
+    ],
+    "existing_ten_paths": "Slack inf / Asynchronous Clock Groups",
+    "native_skew_independent": "all_four_MET",
+    "next": "same_routed_checkpoint_copy_zero_difference_replay_then_minimum_user_group_complement_replacement_and_affected_qualification",
+    "do_not": [
+      "reset_path_over_clockgroup",
+      "overwrite_original_DCP_or_history",
+      "resynthesize_or_reroute_without_actual_need"
+    ]
+  }
+}

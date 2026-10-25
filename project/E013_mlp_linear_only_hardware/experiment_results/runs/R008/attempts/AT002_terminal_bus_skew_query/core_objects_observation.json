@@ -1,0 +1,496 @@
+{
+  "observed": "2026-10-25T00:14:15.817072+00:00",
+  "scope": "closed_core_native_object_files_before_optional_SMC_reports_terminal",
+  "status": "PENDING_INDEPENDENT_REVIEW_NOT_WAIVER",
+  "parent_identity_sha256": "a2bd1f0f409d4647ce625070fa7d940bce19137fe1b73ba22dc771e34768a8b3",
+  "source_hashes_sha256": "8c436ebf28bb638cbc5c39c7620a219e6f99e91b58901ad913371497ea61235f",
+  "routed_dcp_sha256": "cc34f49bef612472367f7d273596d09dede15128d3b72a2708507e4c6d6c7cc4",
+  "skew": [
+    {
+      "file": "scope1_bus_skew.rpt",
+      "corner": "Slow",
+      "requirement_ns": 10.0,
+      "actual_ns": 1.072,
+      "slack_ns": 8.928,
+      "violated_output_paths": 0,
+      "output_path_bound": 32
+    },
+    {
+      "file": "scope2_bus_skew.rpt",
+      "corner": "Slow",
+      "requirement_ns": 10.0,
+      "actual_ns": 0.652,
+      "slack_ns": 9.348,
+      "violated_output_paths": 0,
+      "output_path_bound": 32
+    },
+    {
+      "file": "scope3_bus_skew.rpt",
+      "corner": "Slow",
+      "requirement_ns": 10.0,
+      "actual_ns": 1.364,
+      "slack_ns": 8.636,
+      "violated_output_paths": 0,
+      "output_path_bound": 32
+    },
+    {
+      "file": "scope4_bus_skew.rpt",
+      "corner": "Slow",
+      "requirement_ns": 10.0,
+      "actual_ns": 1.084,
+      "slack_ns": 8.916,
+      "violated_output_paths": 0,
+      "output_path_bound": 32
+    }
+  ],
+  "target_timing": [
+    {
+      "file": "target_00_timing.rpt",
+      "Slack": "inf",
+      "Source": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_weight_frontend/u_command1_cdc/src_hsdata_ff_reg[16]/C",
+      "Destination": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_weight_frontend/u_command1_cdc/dest_hsdata_ff_reg[14]/D",
+      "Data Path Delay": "0.247ns  (logic 0.079ns (31.979%)  route 0.168ns (68.021%))",
+      "Timing Exception": "Asynchronous Clock Groups"
+    },
+    {
+      "file": "target_01_timing.rpt",
+      "Slack": "inf",
+      "Source": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_weight_frontend/u_command1_cdc/src_hsdata_ff_reg[16]/C",
+      "Destination": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_weight_frontend/u_command1_cdc/dest_hsdata_ff_reg[16]/D",
+      "Data Path Delay": "0.293ns  (logic 0.079ns (26.959%)  route 0.214ns (73.041%))",
+      "Timing Exception": "Asynchronous Clock Groups"
+    },
+    {
+      "file": "target_02_timing.rpt",
+      "Slack": "inf",
+      "Source": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_weight_frontend/u_command0_cdc/src_hsdata_ff_reg[16]/C",
+      "Destination": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_weight_frontend/u_command0_cdc/dest_hsdata_ff_reg[14]/D",
+      "Data Path Delay": "0.361ns  (logic 0.080ns (22.166%)  route 0.281ns (77.834%))",
+      "Timing Exception": "Asynchronous Clock Groups"
+    },
+    {
+      "file": "target_03_timing.rpt",
+      "Slack": "inf",
+      "Source": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_weight_frontend/u_command0_cdc/src_hsdata_ff_reg[16]/C",
+      "Destination": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_weight_frontend/u_command0_cdc/dest_hsdata_ff_reg[16]/D",
+      "Data Path Delay": "0.374ns  (logic 0.080ns (21.395%)  route 0.294ns (78.605%))",
+      "Timing Exception": "Asynchronous Clock Groups"
+    },
+    {
+      "file": "target_04_timing.rpt",
+      "Slack": "inf",
+      "Source": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend/u_command1_cdc/src_hsdata_ff_reg[17]/C",
+      "Destination": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend/u_command1_cdc/dest_hsdata_ff_reg[17]/D",
+      "Data Path Delay": "0.772ns  (logic 0.080ns (10.358%)  route 0.692ns (89.641%))",
+      "Timing Exception": "Asynchronous Clock Groups"
+    },
+    {
+      "file": "target_05_timing.rpt",
+      "Slack": "inf",
+      "Source": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend/u_command1_cdc/src_hsdata_ff_reg[17]/C",
+      "Destination": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend/u_command1_cdc/dest_hsdata_ff_reg[15]/D",
+      "Data Path Delay": "0.762ns  (logic 0.080ns (10.493%)  route 0.682ns (89.507%))",
+      "Timing Exception": "Asynchronous Clock Groups"
+    },
+    {
+      "file": "target_06_timing.rpt",
+      "Slack": "inf",
+      "Source": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend/u_command1_cdc/src_hsdata_ff_reg[17]/C",
+      "Destination": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend/u_command1_cdc/dest_hsdata_ff_reg[16]/D",
+      "Data Path Delay": "0.773ns  (logic 0.080ns (10.345%)  route 0.693ns (89.655%))",
+      "Timing Exception": "Asynchronous Clock Groups"
+    },
+    {
+      "file": "target_07_timing.rpt",
+      "Slack": "inf",
+      "Source": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend/u_command0_cdc/src_hsdata_ff_reg[17]/C",
+      "Destination": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend/u_command0_cdc/dest_hsdata_ff_reg[17]/D",
+      "Data Path Delay": "0.851ns  (logic 0.079ns (9.285%)  route 0.772ns (90.715%))",
+      "Timing Exception": "Asynchronous Clock Groups"
+    },
+    {
+      "file": "target_08_timing.rpt",
+      "Slack": "inf",
+      "Source": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend/u_command0_cdc/src_hsdata_ff_reg[17]/C",
+      "Destination": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend/u_command0_cdc/dest_hsdata_ff_reg[15]/D",
+      "Data Path Delay": "0.911ns  (logic 0.079ns (8.673%)  route 0.832ns (91.327%))",
+      "Timing Exception": "Asynchronous Clock Groups"
+    },
+    {
+      "file": "target_09_timing.rpt",
+      "Slack": "inf",
+      "Source": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend/u_command0_cdc/src_hsdata_ff_reg[17]/C",
+      "Destination": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend/u_command0_cdc/dest_hsdata_ff_reg[16]/D",
+      "Data Path Delay": "0.772ns  (logic 0.079ns (10.235%)  route 0.693ns (89.765%))",
+      "Timing Exception": "Asynchronous Clock Groups"
+    }
+  ],
+  "dsp": {
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/s1_dsp_product_s25_r0": {
+      "ref": "DSP48E2",
+      "PREG": "0",
+      "OPMODEREG": "0",
+      "mode_drivers": {
+        "ALUMODE[3]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "ALUMODE[2]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "ALUMODE[1]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "ALUMODE[0]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "OPMODE[8]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "OPMODE[7]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "OPMODE[6]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "OPMODE[5]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/s0_valid_r_reg/Q"
+        ],
+        "OPMODE[4]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/s0_valid_r_reg/Q"
+        ],
+        "OPMODE[3]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "OPMODE[2]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/s0_valid_r_reg/Q"
+        ],
+        "OPMODE[1]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "OPMODE[0]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/s0_valid_r_reg/Q"
+        ]
+      }
+    },
+    "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/s1_dsp_product_s25_r0": {
+      "ref": "DSP48E2",
+      "PREG": "0",
+      "OPMODEREG": "0",
+      "mode_drivers": {
+        "ALUMODE[3]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "ALUMODE[2]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "ALUMODE[1]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "ALUMODE[0]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "OPMODE[8]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "OPMODE[7]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "OPMODE[6]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "OPMODE[5]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/s0_valid_r_reg/Q"
+        ],
+        "OPMODE[4]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/s0_valid_r_reg/Q"
+        ],
+        "OPMODE[3]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "OPMODE[2]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/s0_valid_r_reg/Q"
+        ],
+        "OPMODE[1]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/GND/G"
+        ],
+        "OPMODE[0]": [
+          "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch1/u_kernel/gen_row[0].gen_pair[0].u_lane/u_dot/gen_leaf[0].u_leaf/s0_valid_r_reg/Q"
+        ]
+      }
+    }
+  },
+  "reset_stages": [
+    {
+      "name": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]",
+      "ref": "FDCE",
+      "async_reg": "1",
+      "init": "1'b1",
+      "expected_previous": ""
+    },
+    {
+      "name": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]",
+      "ref": "FDCE",
+      "async_reg": "1",
+      "init": "1'b1",
+      "expected_previous": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]"
+    },
+    {
+      "name": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]",
+      "ref": "FDCE",
+      "async_reg": "1",
+      "init": "1'b1",
+      "expected_previous": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]"
+    },
+    {
+      "name": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]",
+      "ref": "FDCE",
+      "async_reg": "1",
+      "init": "1'b1",
+      "expected_previous": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]"
+    },
+    {
+      "name": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]",
+      "ref": "FDCE",
+      "async_reg": "1",
+      "init": "1'b1",
+      "expected_previous": ""
+    },
+    {
+      "name": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]",
+      "ref": "FDCE",
+      "async_reg": "1",
+      "init": "1'b1",
+      "expected_previous": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]"
+    },
+    {
+      "name": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]",
+      "ref": "FDCE",
+      "async_reg": "1",
+      "init": "1'b1",
+      "expected_previous": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]"
+    },
+    {
+      "name": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]",
+      "ref": "FDCE",
+      "async_reg": "1",
+      "init": "1'b1",
+      "expected_previous": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]"
+    }
+  ],
+  "reset_D_connectivity": [
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]",
+      "drivers": [
+        "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/VCC/P"
+      ]
+    },
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]",
+      "drivers": [
+        "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]/Q"
+      ]
+    },
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]",
+      "drivers": [
+        "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]/Q"
+      ]
+    },
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]",
+      "drivers": [
+        "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]/Q"
+      ]
+    },
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]",
+      "drivers": [
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/VCC/P"
+      ]
+    },
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]",
+      "drivers": [
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]/Q"
+      ]
+    },
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]",
+      "drivers": [
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]/Q"
+      ]
+    },
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]",
+      "drivers": [
+        "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]/Q"
+      ]
+    }
+  ],
+  "reset_clocks": [
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]",
+      "clocks": [
+        "mmcm_clkout0"
+      ]
+    },
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]",
+      "clocks": [
+        "mmcm_clkout0"
+      ]
+    },
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]",
+      "clocks": [
+        "mmcm_clkout0"
+      ]
+    },
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]",
+      "clocks": [
+        "mmcm_clkout0"
+      ]
+    },
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]",
+      "clocks": [
+        "mmcm_clkout0_1"
+      ]
+    },
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[1]",
+      "clocks": [
+        "mmcm_clkout0_1"
+      ]
+    },
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[2]",
+      "clocks": [
+        "mmcm_clkout0_1"
+      ]
+    },
+    {
+      "stage": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]",
+      "clocks": [
+        "mmcm_clkout0_1"
+      ]
+    }
+  ],
+  "reset_fanout": [
+    {
+      "label": "reset:CLR:scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]",
+      "driver": "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+      "count": 73,
+      "emitted_bound": 128
+    },
+    {
+      "label": "reset_output:scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc",
+      "driver": "scalellm_vcu118_f05_bd_i/d0_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/Q",
+      "count": 1,
+      "emitted_bound": 128
+    },
+    {
+      "label": "reset:CLR:scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[0]",
+      "driver": "scalellm_vcu118_f05_bd_i/xdma_0/inst/pcie4_ip_i/inst/user_reset_reg/Q",
+      "count": 73,
+      "emitted_bound": 128
+    },
+    {
+      "label": "reset_output:scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc",
+      "driver": "scalellm_vcu118_f05_bd_i/d1_gate/inst/u_base_reset_cdc/arststages_ff_reg[3]/Q",
+      "count": 1,
+      "emitted_bound": 128
+    }
+  ],
+  "artifacts": {
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/scope1_bus_skew.rpt": {
+      "bytes": 234526,
+      "sha256": "cf9200d4fc6913b7c60a8cb60f9871cd3c3b3546a03ccf3d63f541f232b4464a"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/scope2_bus_skew.rpt": {
+      "bytes": 234551,
+      "sha256": "3c77385a59714149655136c4a284df1e89eb7cf5fd759d3acd1992dc244f878a"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/scope3_bus_skew.rpt": {
+      "bytes": 229381,
+      "sha256": "d362b041ca9d6628b4b8fa42c2748c1fb16edede90575140275a2d595c6c02aa"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/scope4_bus_skew.rpt": {
+      "bytes": 229414,
+      "sha256": "8d48ad052702688a453fb43abe16a3112d42b675d59b563f677fae1c6843d3ff"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/scope1_exception_coverage.rpt": {
+      "bytes": 3641,
+      "sha256": "423b48ebfb8b80e1bd10114c05cb9c4f3983c7aaee737c82fa6fb6e5d5ba85aa"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/scope2_exception_coverage.rpt": {
+      "bytes": 3641,
+      "sha256": "4f4dc24c07cdd5dd53db679bfbe09c6aafa3c36cf486519e0eb0316ad3a925fc"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/scope3_exception_coverage.rpt": {
+      "bytes": 3521,
+      "sha256": "d4e930e5b6412f090c473ba244e3ba66c58a4645f75c6ae454c5c0939258b5e6"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/scope4_exception_coverage.rpt": {
+      "bytes": 3521,
+      "sha256": "93e47470da805214ed30d83fc2149e086944de696ed9226b89211689158a315f"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/target_00_timing.rpt": {
+      "bytes": 4736,
+      "sha256": "03ca9646142cb3ea569bd5eed90980cdcabae323ab7d71ab95bd81fd02fb4c15"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/target_01_timing.rpt": {
+      "bytes": 4736,
+      "sha256": "c91c3923c81c7634973cfd5a4a72ed30e55b2f249555bde558529e1bd62527a4"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/target_02_timing.rpt": {
+      "bytes": 4737,
+      "sha256": "bddbc224500b0d5a1c450e1ca1a218dc12e1f5bc3f48e492c70925ab84139484"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/target_03_timing.rpt": {
+      "bytes": 4737,
+      "sha256": "982272926f60c521c7a2bce7a4674903fcb3f199a71977ca6fd0b48f98a7b0d9"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/target_04_timing.rpt": {
+      "bytes": 4661,
+      "sha256": "4ad8e1c5caffa20aba91ba6cc6c164d69b1837de93f0d6e8060ca6858e5b828b"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/target_05_timing.rpt": {
+      "bytes": 4661,
+      "sha256": "8972d71a72d869d9a1bf7913ad2dfc1eb3473d6e87ba5ab774d333caf98e7986"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/target_06_timing.rpt": {
+      "bytes": 4661,
+      "sha256": "c033b4e8d22e91e104af09c0a6a341a479afb3818499917833f027b2dca68515"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/target_07_timing.rpt": {
+      "bytes": 4659,
+      "sha256": "48d881b18e53381ea0fab052f9c1782df4828f60358ba8d7d4ba49984375358d"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/target_08_timing.rpt": {
+      "bytes": 4659,
+      "sha256": "5437397e4576ec5f1c5fd1244401e45a5ad69887a4d7f321810b39055e84b0ea"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/target_09_timing.rpt": {
+      "bytes": 4660,
+      "sha256": "39e25998949280194eee3d1b61028198b7a48fe286410d95d22f69104b38c1ae"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/native_bus_skew_objects.txt": {
+      "bytes": 210109,
+      "sha256": "cca169e19de53b4e3d199296ea8aeded1c06a3ae275582eb44ef7326405b96ac"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/native_xdma_reset_objects.txt": {
+      "bytes": 99991,
+      "sha256": "9e31b7bb57b866555a34c4c098219e6619d937fe89766b4092ccf9ddc47a4761"
+    },
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT002_terminal_bus_skew_query/native_objects/native_representative_dsp_objects.txt": {
+      "bytes": 65970,
+      "sha256": "d6f089513f90ba124b0b516b418619f500b26ccf912205004908ebde885d4b79"
+    }
+  },
+  "native_log_prefix": {
+    "bytes": 15502,
+    "sha256": "118e677f6c01159631c1e05c55174fe5edea4a1fcd9b2f1bf059c1e4cfe0df5e"
+  }
+}

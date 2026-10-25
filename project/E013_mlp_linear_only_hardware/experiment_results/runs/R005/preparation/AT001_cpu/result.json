@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-10-24T09:58:01.616917+00:00",
+  "scope": "CPU_only_entry_gate_and_source_completeness_not_native_SLR_evidence",
+  "commands": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "py_compile",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/slr_probe/test_slr_probe.py",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/slr_probe/check_cpu.py",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/slr_probe/run_slr_probe.py"
+      ],
+      "returncode": 0,
+      "log": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_results/runs/R005/preparation/AT001_cpu/check_0.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/slr_probe",
+        "-p",
+        "test_slr_probe.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "log": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_results/runs/R005/preparation/AT001_cpu/check_1.log",
+      "sha256": "8c8c71da9f2e910a55820fc60926ef0d88f4f86be680447632fa50d5afc6d1de"
+    },
+    {
+      "command": [
+        "tclsh",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/slr_probe/check_syntax.tcl",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/slr_probe/inspect_slr.tcl"
+      ],
+      "returncode": 0,
+      "log": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_results/runs/R005/preparation/AT001_cpu/check_2.log",
+      "sha256": "b88e0afa690567e674b851863dfd4e21d6c49a9b21dd80ff08373795794fbda7"
+    }
+  ],
+  "static": {
+    "no_design_mutations": true,
+    "max_path_query": 100,
+    "query_buckets": 4,
+    "max_returned_path_samples": 400,
+    "path_samples_are_population": false,
+    "native_execution": "NOT_EXECUTED"
+  },
+  "input_sha256": {
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/slr_probe/check_cpu.py": "376ab8a9d31ce8260f4baaaf8c332a421aec7645beb246f3e9e6fa535c93d486",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/slr_probe/check_syntax.tcl": "045234e4c9f2cd1a1a29b13f4988be95e0826d34d7b938196c9c5708ac3b6ae9",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/slr_probe/inspect_slr.tcl": "ca27fedd639a45de5ace4cd1804f348a381f414ae947b67ca91e993fb10390cb",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/slr_probe/run_slr_probe.py": "c772b992d9815bab8518666243bc1ee846d9d5af71dd34aefba910757780357c",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/E013_mlp_linear_only_hardware/experiment_source/slr_probe/test_slr_probe.py": "3e5f2cebda46ebea0367ed2bc954fef0424190cc00e17459203f3d5b26fba4b2"
+  },
+  "inputs_stable": true,
+  "verdict": "PASS"
+}

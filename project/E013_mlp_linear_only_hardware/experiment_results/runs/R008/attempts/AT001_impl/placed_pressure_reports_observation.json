@@ -1,0 +1,148 @@
+{
+  "observed": "2026-10-24T20:53:21.700569+00:00",
+  "stage": "Fully Placed, before standalone phys_opt_design",
+  "input_manifest_sha256": "b03f1da1e352cecf634233f46122749c3ca011108ca77daa90eade6853f37d71",
+  "dcp_sha256": "cc92d8dcbc90d23b358627ccc7e2ea201b864cfb3092cbc58ddb1850459fa0cb",
+  "placed_checkpoint_observation_sha256": "fc568f1d4a3cd2840cf435418e7631c65d6401a05d98a41ab64289ac61656ff5",
+  "slr_observation_sha256": "db57eb76e8e1f2997ce86f7a2cf8d3c4e40e97eef993856bafad81fe2f083dbc",
+  "native_log_prefix_bytes": 153291,
+  "native_log_prefix_sha256": "1d554b04ff46b81489a6daf9a15ef9227ad7cc5c4cdf422e631355ec78a3ddc0",
+  "reports": {
+    "placed_attention_utilization_slr.rpt": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT001_impl/placed_attention_utilization_slr.rpt",
+      "bytes": 7030,
+      "sha256": "8c82b17f8bc4440d974b4f9d897d39c5e12c2783567d293639094a2e88f1e6c1"
+    },
+    "placed_branch0_utilization_slr.rpt": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT001_impl/placed_branch0_utilization_slr.rpt",
+      "bytes": 6972,
+      "sha256": "559d7e51049d64c54a9a7fe97626cfab20772492e6652fbbdbc6d3637e07a937"
+    },
+    "placed_branch1_utilization_slr.rpt": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT001_impl/placed_branch1_utilization_slr.rpt",
+      "bytes": 6972,
+      "sha256": "2235b2faaa0877782ed846a86899f32f6b8dcd02de9ad7f8a358d8444e98a06d"
+    },
+    "placed_congestion.rpt": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT001_impl/placed_congestion.rpt",
+      "bytes": 10924,
+      "sha256": "bebeeed40825246d811f1cab255637ce00c7680d6c06f6815b5611436afb6bbf"
+    },
+    "placed_metadata_utilization_slr.rpt": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT001_impl/placed_metadata_utilization_slr.rpt",
+      "bytes": 6755,
+      "sha256": "c6d6dea99fd54aaeecef87ea922129e11c33408c2a11d77946d91e24e5f61fe4"
+    },
+    "placed_utilization_slr.rpt": {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT001_impl/placed_utilization_slr.rpt",
+      "bytes": 6842,
+      "sha256": "8374b4c72c4a1071b6bb514cd7df55b09892927e543b5a4ac92adda5da011274"
+    }
+  },
+  "congestion_windows": [
+    {
+      "direction": "North",
+      "type": "Global",
+      "level": 5,
+      "window": "(CLEL_R_X32Y382,CLEM_X47Y413)",
+      "native_cells": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[7].gen_pair[2].u_lane/u_dot(15%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[1].gen_pair[2].u_lane/u_dot(14%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(12%)"
+    },
+    {
+      "direction": "South",
+      "type": "Global",
+      "level": 5,
+      "window": "(CLEL_R_X31Y391,CLEM_X46Y422)",
+      "native_cells": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[7].gen_pair[2].u_lane/u_dot(26%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_gate_scheduler/u_gather(9%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend(8%)"
+    },
+    {
+      "direction": "South",
+      "type": "Global",
+      "level": 6,
+      "window": "(CLEL_R_X30Y738,DSP_X59Y800)",
+      "native_cells": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store(43%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_right2/u_shard(9%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[3].u_quantizer(7%)"
+    },
+    {
+      "direction": "East",
+      "type": "Global",
+      "level": 5,
+      "window": "(CLEL_R_X36Y376,DSP_X51Y405)",
+      "native_cells": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[1].gen_pair[2].u_lane/u_dot(22%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(17%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend(7%)"
+    },
+    {
+      "direction": "North",
+      "type": "Long",
+      "level": 5,
+      "window": "(CLEL_R_X31Y381,CLEM_X46Y412)",
+      "native_cells": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[7].gen_pair[2].u_lane/u_dot(15%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend(12%)"
+    },
+    {
+      "direction": "North",
+      "type": "Long",
+      "level": 6,
+      "window": "(CLEL_R_X8Y774,BRAM_X38Y835)",
+      "native_cells": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store(31%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_right2/u_shard(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[1].u_quantizer(9%)"
+    },
+    {
+      "direction": "South",
+      "type": "Long",
+      "level": 5,
+      "window": "(CLEL_R_X24Y780,CLEM_X39Y811)",
+      "native_cells": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store(41%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_right2/u_shard(10%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_center12/u_region3_cols12_13(8%)"
+    },
+    {
+      "direction": "South",
+      "type": "Long",
+      "level": 6,
+      "window": "(CLEL_R_X30Y735,DSP_X59Y795)",
+      "native_cells": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_postprocess_store(43%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/g_projection_rtl.u_projection/u_array/u_right2/u_shard(10%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_attention/u_compute/u_kv_quantizer4/g_worker[3].u_quantizer(7%)"
+    },
+    {
+      "direction": "East",
+      "type": "Long",
+      "level": 5,
+      "window": "(CLEL_R_X35Y375,CLEM_X50Y406)",
+      "native_cells": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(19%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[1].gen_pair[2].u_lane/u_dot(19%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend(8%)"
+    },
+    {
+      "direction": "West",
+      "type": "Long",
+      "level": 5,
+      "window": "(CLEL_R_X24Y376,CLEM_X39Y407)",
+      "native_cells": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[7].gen_pair[2].u_lane/u_dot(18%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[3].gen_pair[5].u_lane/u_dot(16%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend(10%)"
+    },
+    {
+      "direction": "North",
+      "type": "Short",
+      "level": 5,
+      "window": "(CLEL_R_X35Y383,CLEM_X50Y414)",
+      "native_cells": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[1].gen_pair[2].u_lane/u_dot(20%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(12%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[7].gen_pair[2].u_lane/u_dot(11%)"
+    },
+    {
+      "direction": "South",
+      "type": "Short",
+      "level": 5,
+      "window": "(CLEL_R_X35Y382,CLEM_X50Y413)",
+      "native_cells": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[1].gen_pair[2].u_lane/u_dot(21%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[7].gen_pair[2].u_lane/u_dot(10%)"
+    },
+    {
+      "direction": "East",
+      "type": "Short",
+      "level": 5,
+      "window": "(CLEL_R_X36Y376,DSP_X51Y405)",
+      "native_cells": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[1].gen_pair[2].u_lane/u_dot(22%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(17%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_w4_frontend(7%)"
+    },
+    {
+      "direction": "West",
+      "type": "Short",
+      "level": 5,
+      "window": "(CLEL_R_X35Y382,CLEM_X50Y413)",
+      "native_cells": "scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[1].gen_pair[2].u_lane/u_dot(21%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_paired_weight(13%),scalellm_vcu118_f05_bd_i/core/inst/u_core/u_compute/u_mlp/u_shared_compute/u_branch0/u_kernel/gen_row[7].gen_pair[2].u_lane/u_dot(10%)"
+    }
+  ],
+  "interpretation_limits": [
+    "Old v6 -packthru vs new default: do not subtract CLB or Total LUT blindly",
+    "Placed vs post-physopt phases differ",
+    "Native listed cell-window percentages are not congestion causal shares",
+    "Physopt and route not yet complete"
+  ]
+}

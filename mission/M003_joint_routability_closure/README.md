@@ -1,7 +1,7 @@
 
 
 <!-- research-agent:navigation:begin -->
-生成时间（UTC）：2026-10-20T08:57:35.240611+00:00。来源修订：`cfb9c0cd3fc1`。
+生成时间（UTC）：2026-10-25T01:29:20.089604+00:00。来源修订：`7fd112f32442`。
 
 # M003 · joint_routability_closure
 
@@ -22,7 +22,7 @@
 ## 关联实验
 
 - [E009 · m003_failed_net_attribution](../../project/E009_m003_failed_net_attribution/README.md) — completed
-- [E011 · m003_joint_routability_implementation](../../project/E011_m003_joint_routability_implementation/README.md) — running
+- [E011 · m003_joint_routability_implementation](../../project/E011_m003_joint_routability_implementation/README.md) — completed
 - 前置：[M002 · ddr_separation_and_timing_recovery](../M002_ddr_separation_and_timing_recovery/README.md)
 
 ## 任务总结原文摘录

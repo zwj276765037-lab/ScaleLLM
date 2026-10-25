@@ -1,0 +1,52 @@
+# Bounded native evidence for the two vendor Constraints18-401 objects.
+# No constraints are added/removed; no exception is waived or inferred valid.
+proc m006_xpm_fifo_exception_evidence {report_dir} {
+ set out [open [file join $report_dir post_opt_xpm_endpoint_identity.txt] w]
+ set prefix scalellm_vcu118_f05_bd_i
+ set suffix {inst/s00_nodes/s00_w_node/inst/inst_mi_handler/gen_normal_area.gen_fifo_req.inst_fifo_req/gen_xpm_memory_fifo.inst_fifo}
+ foreach smc {d0_smc d1_smc} {
+  set scope "$prefix/$smc/$suffix/gen_mem_rep\[0\].inst_xpm_memory/xpm_memory_base_inst"
+  # The broad pattern contains no generated [] characters. Validate every
+  # returned native object against the full literal scope before using it.
+  set pattern "$prefix/$smc/$suffix/*doutb*reg*"
+  set cells [get_cells -quiet -hierarchical -filter [format {NAME =~ "%s"} $pattern]]
+  if {[llength $cells]>512} {error "Unexpected XPM scope expansion: $smc"}
+  foreach cell $cells {
+   set name [get_property NAME $cell]
+   if {[string first "$scope/" $name]!=0} {error "XPM endpoint outside exact memory scope: $name"}
+   puts $out "$smc.object=$name ref=[get_property REF_NAME $cell] primitive=[get_property IS_PRIMITIVE $cell]"
+  }
+  set regs {};if {[llength $cells]} {set regs [filter $cells {IS_PRIMITIVE == 1 && REF_NAME =~ FD*}]}
+  puts $out "$smc.live_doutb_registers=[llength $regs]"
+  set data_pins {};if {[llength $regs]} {set data_pins [get_pins -quiet -of_objects $regs -filter {REF_PIN_NAME == D}]}
+  puts $out "$smc.live_D_endpoints=[llength $data_pins]"
+  set missing_clock 0
+  foreach reg $regs {
+   set clock_pin [get_pins -quiet -of_objects $reg -filter {REF_PIN_NAME == C}]
+   set clocks [get_clocks -quiet -of_objects $clock_pin]
+   if {[llength $clock_pin]!=1 || [llength $clocks]!=1} {incr missing_clock}
+   puts $out "$smc.register=$reg clock_pin=$clock_pin clocks=$clocks"
+  }
+  puts $out "$smc.missing_register_clock=$missing_clock"
+  set bad_name "$scope/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg\[0\]_i_1"
+  set bad {};if {[llength $cells]} {set bad [filter $cells [format {NAME == "%s"} $bad_name]]}
+  puts $out "$smc.original_invalid_object_count=[llength $bad]"
+  foreach cell $bad {puts $out "$smc.original_invalid_object=$cell ref=[get_property REF_NAME $cell]"}
+  if {[llength $regs]} {
+   foreach {tag flags} {coverage {-coverage} valid {-write_valid_exceptions} ignored {-ignored_objects}} {
+    set path [file join $report_dir post_opt_${smc}_doutb_${tag}_exceptions.rpt]
+    m006_report xpm_exception.$smc.$tag [concat [list report_exceptions -to $regs] $flags [list -file $path]] $path
+   }
+  } else {
+   m006_q xpm_exception.$smc.exception_coverage NOT_COLLECTED_NO_LIVE_REGISTER
+  }
+  m006_q xpm_exception.$smc.registers [llength $regs]
+  m006_q xpm_exception.$smc.D_endpoints [llength $data_pins]
+  m006_q xpm_exception.$smc.missing_clock $missing_clock
+ }
+ puts $out {scope=exact_two_SMC_request_FIFO_memories; original_name_absence_is_not_proof_of_exception_coverage}
+ puts $out {coverage_assessment=requires_review_of_native_valid_and_ignored_exception_reports; no_automatic_waiver}
+ close $out
+ m006_q xpm_exception.status PENDING_REVIEW
+ m006_q xpm_exception.report [file join $report_dir post_opt_xpm_endpoint_identity.txt]
+}

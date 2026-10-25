@@ -1,0 +1,97 @@
+{
+  "verdict": "FAIL",
+  "ended": "2026-10-24T03:16:50.680472+00:00",
+  "steps": [
+    {
+      "phase": "xvlog_version",
+      "argv": [
+        "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/xvlog",
+        "-version"
+      ],
+      "started": "2026-10-24T03:16:31.200162+00:00",
+      "ended": "2026-10-24T03:16:33.152782+00:00",
+      "native_returncode": 0,
+      "peak_tree_rss_bytes": 79929344,
+      "stop_reason": null
+    },
+    {
+      "phase": "xelab_version",
+      "argv": [
+        "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/xelab",
+        "-version"
+      ],
+      "started": "2026-10-24T03:16:33.153159+00:00",
+      "ended": "2026-10-24T03:16:35.095924+00:00",
+      "native_returncode": 0,
+      "peak_tree_rss_bytes": 80101376,
+      "stop_reason": null
+    },
+    {
+      "phase": "xsim_version",
+      "argv": [
+        "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/xsim",
+        "-version"
+      ],
+      "started": "2026-10-24T03:16:35.096527+00:00",
+      "ended": "2026-10-24T03:16:37.048214+00:00",
+      "native_returncode": 0,
+      "peak_tree_rss_bytes": 74887168,
+      "stop_reason": null
+    },
+    {
+      "phase": "xvlog",
+      "argv": [
+        "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/xvlog",
+        "-sv",
+        "-L",
+        "xpm",
+        "-L",
+        "unisims_ver",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/rtl/mlp/hap_mlp_linear_rec576_parser.sv",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/rtl/integration/hap_mlp_linear_axi256_dma.sv",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/rtl/integration/hap_mlp_linear_tensor_dma.sv",
+        "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/tb/hap_mlp_linear_tensor_dma_tb.sv",
+        "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/verilog/src/glbl.v"
+      ],
+      "started": "2026-10-24T03:16:37.048860+00:00",
+      "ended": "2026-10-24T03:16:39.008096+00:00",
+      "native_returncode": 0,
+      "peak_tree_rss_bytes": 80265216,
+      "stop_reason": null
+    },
+    {
+      "phase": "xelab",
+      "argv": [
+        "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/xelab",
+        "-mt",
+        "8",
+        "-L",
+        "xpm",
+        "-L",
+        "unisims_ver",
+        "hap_mlp_linear_tensor_dma_tb",
+        "glbl",
+        "-s",
+        "hap_mlp_linear_tensor_dma_tb_sim"
+      ],
+      "started": "2026-10-24T03:16:39.008796+00:00",
+      "ended": "2026-10-24T03:16:43.552228+00:00",
+      "native_returncode": 0,
+      "peak_tree_rss_bytes": 209989632,
+      "stop_reason": null
+    },
+    {
+      "phase": "xsim",
+      "argv": [
+        "/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/xsim",
+        "hap_mlp_linear_tensor_dma_tb_sim",
+        "-runall"
+      ],
+      "started": "2026-10-24T03:16:43.552690+00:00",
+      "ended": "2026-10-24T03:16:50.679144+00:00",
+      "native_returncode": 0,
+      "peak_tree_rss_bytes": 807284736,
+      "stop_reason": null
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 
 
 <!-- research-agent:navigation:begin -->
-生成时间（UTC）：2026-10-20T08:57:35.240611+00:00。来源修订：`cfb9c0cd3fc1`。
+生成时间（UTC）：2026-10-25T01:29:20.089604+00:00。来源修订：`7fd112f32442`。
 
 # M001 · clean_project_migration
 
@@ -39,14 +39,14 @@
 全部281个复制源文件的SHA256与初始快照一致；数值算子、RTL、XDC、生产manifest和阈值未改。硬件普通参考引用接到新 `software/0_Software`，其 `v5_fullchain.py` 与旧文件字节一致。
 新工程磁盘占用约7.2 MiB，旧工程约60 GiB；体积不是算法压缩结果，而是排除了生成物和大型数据。
 
-用户随后明确取消此前绑定，要求只在ScaleLLM分区创建四个独立新对话。已使用thread/start新建，核验无fork来源、无父会话、无项目/代理绑定，每个仅一轮就绪确认，普通分区列表可见。此前误建和fork入口已解除关联并归档，原有四个历史对话保留。主控/研究gpt-6-astra/xhigh，工程gpt-6.1-sol/xhigh，问答gpt-6.1-sol/默认强度。自动通信停用，C001属于原入口历史证据。见 [当前对话入口](../../agent/work_chats.md) 与 [新建回执](../../.research-agent/fresh_section_chats.json)。
+用户随后明确取消此前绑定，要求只在ScaleLLM分区创建四个独立新对话。已使用thread/start新建，核验无fork来源、无父会话、无项目/代理绑定，每个仅一轮就绪确认，普通分区列表可见。此前误建和fork入口已解除关联并归档，原有四个历史对话保留。主控/研究gpt-6-astra/xhigh，工程gpt-6.1-sol/xhigh，问答gpt-6.1-sol/默认强度。自动通信停用，C001属于原入口历史证据。见 [当前对话入口](../../agent/work_chats.md) 与 新建回执（原文引用：`../../.research-agent/fresh_section_chats.json`；待核实）。
 
 ## 整合验证、限制和未完成项
 
 - [软件来源清单](../../project/software/file_mapping.json) 与 [静态报告](../../project/software/static_check.json)。
 - [硬件来源清单](../../project/hardware/migration/source_dest_sha256.json) 与 [静态报告](../../project/hardware/migration/static_checks.json)。
 - [硬件外部依赖](../../project/hardware/migration/external_dependencies.json) 明确原始输入、工具链、报告和未移植bitgen脚本。
-- [当前新建回执](../../.research-agent/fresh_section_chats.json) 保存真实独立对话
+- 当前新建回执（原文引用：`../../.research-agent/fresh_section_chats.json`；待核实） 保存真实独立对话
 
 （摘录截断；完整记录见链接。）
 

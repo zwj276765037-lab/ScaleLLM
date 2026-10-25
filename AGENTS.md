@@ -1,5 +1,33 @@
 # ScaleLLM：共享工作约定
 
+## 2026-10-25 最新授权：准备 XDMA 驱动修复并续测
+
+持续测量遇 Windows bugcheck 0x133，WER 关联 XDMA ISR；重复用户中断仅为有依据的机制候选，根因尚未闭合。用户明确答复“继续准备修复，完成后续测量”。允许在独立工作副本准备最小 user IRQ policy 修复、远程只读工具核查、普通编译、离线验证和原驱动恢复材料；不覆盖安装源或冻结证据。工程唯一 Dell owner 仍为 `/root/board_host_prepare`，Astra `/root/board_contract_review` 集中审核，最多 Root+2、无后代。此授权尚不包含替换/加载系统驱动、签名信任或启动策略改变、主机重启；完成具体候选与恢复方案后再向用户确认安装。原功耗测量结果只含有效空闲和探索性速度，正式 measured N=0，负载功耗与持续吞吐尚未建立。
+
+## 2026-10-25 最新授权：Dell 实际上板验证
+
+用户在确认远程上板条件后要求“你能操控dell进行吗”，本轮按上下文实际执行：指定 AT003 工程 bit 的易失 SRAM 配置、PCIe 重发现、Windows XDMA 接口适配、只读 v7 CSR/状态、有限双 DDR scratch DMA，再在各依赖通过后执行完整生产形状 GU 诊断与独立整数 gold 比较。该当前授权取代下方旧“不下载/上板”的阶段范围限制；不改写原 manifest/冻结证据，不把板测当作 Max-DPO/外部 reset 全签核。无需逐项再问用户批准普通适配/验证。
+
+Dell 唯一设备操作 owner 为 `/root/board_host_prepare`；`/root/board_gu_vectors` 独占新增诊断数据/参考/runner，不访问板卡；Root 维护任务授权与汇总。最多 Root+2，无后代；不争用 A022 重 EDA，不自动重启主机、安装驱动或写 Flash。ABI不符、DDR/core未就绪、timeout/短IO/数据不符保留现场并停止依赖步骤。详细范围见 [上板计划](mission/M006_mlp_linear_only_hardware/board_validation_plan_2026-10-25.md)。
+
+
+## 2026-10-25 最新优先级
+
+用户明确“不能先生成bitstream吗”：先从R008已合法布线/同步时序通过的routed DCP生成工程验证版.bit，标注Max-DPO与外部reset签核未闭合；仍不下载/上板/GPU。A022唯一EDA，必要时按用户优先级收束AT002剩余只读辅助查询并保全partial/归属清理，随后独立生成文件，再继续约束修正。详见M006 contract最新补充。
+
+## 2026-10-24 新副本当前任务：M006
+
+- **最新授权：用户在GU-only新版方案交付后明确“可以开始进行”。** 按 `PRO_plan/ScaleLLM_MLP_Gate_Up_Only_Dual_DDR_Design.md` 执行G0–G5：FPGA移除Down、仅保留MLP Gate/Up，Down在Host按原整数数学实现。替代此前“仅规划/不启动新实现”限制；历史v6图/ABI/失败证据保留。A022唯一RTL/EDA owner，A021集中合同/阶段验收，Host工程按Root明确所有权并行。GU硬件物理验证不等待完整Host32层链；单重EDA和当前R005冻结输入保护继续有效。
+
+- 当前唯一工程根是 `/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix`。用户已要求创建子智能体完成新项目工程搭建，首要目标是完成硬件工程；当前合同为 `mission/M006_mlp_linear_only_hardware/contract.md`。
+- 采用 `PRO_plan/ScaleLLM_MLP_Linear_Only_Dual_DDR_Design.md` v1.0：MLP 的 H32、量化/编码、SwiGLU 移至 Host，FPGA 保留 GU/DOWN 线性任务，Attention 与物理双 DDR 分工保持。
+- 允许在此副本连续实现、编译、仿真、修复并搭建新的 Vivado 工程；后续综合/物理阶段按 M006 功能依赖和实际资源资格执行。阶段内普通修复不重复请求确认。
+- 下方 M001–M005、旧 A 编号、旧根路径及 running 文字均为克隆时的历史记录，不授权恢复旧进程/旧聊天，不限制 M006 已明确的新接口。旧源码/证据不覆盖。
+- 当前 Root 负责共享记录，A021 负责架构合同，A022 负责硬件实现与集成；当前最多 Root 加两个活跃子智能体，不创建后代。重 EDA 同时仅一个 owner；不操作其他项目进程。
+- 工程模型沿用项目 role 覆盖 `gpt-6.1-sol / xhigh`，架构与验收 `gpt-6-astra / xhigh`。用户后续明确配置优先。
+
+## 克隆保留的历史工作约定
+
 三个工作角色：项目主控、工程实验、研究探索。启动时声明本轮角色，读取 research-agent 技能及相应参考文件；用户当前指令优先。
 
 ## 当前整理边界

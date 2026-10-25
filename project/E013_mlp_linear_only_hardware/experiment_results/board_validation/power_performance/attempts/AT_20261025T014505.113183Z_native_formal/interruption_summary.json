@@ -1,0 +1,55 @@
+{
+  "execution_state": "interrupted",
+  "measurement_verdict": "INTERRUPTED",
+  "formal_requirement": {
+    "warmup_commands": 2,
+    "minimum_measured_successful_commands": 20
+  },
+  "observed": {
+    "warmup_successful_commands": 2,
+    "measured_successful_commands_persisted": 0,
+    "last_phase": "load_begin",
+    "last_phase_utc": "2026-10-25T01:45:19.428938Z",
+    "native_terminal_receipt": false,
+    "sampler_successful_sweeps": 85,
+    "load_progress_verified": false,
+    "post_failure_lease_released_verified": false
+  },
+  "failure": {
+    "windows_bugcheck": "0x133",
+    "parameter1": 1,
+    "wer_bucket": "0x133_ISR_XDMA!unknown_function",
+    "last_boot_utc": "2026-10-25T01:47:48.5000000Z",
+    "interpretation": "Windows DPC watchdog interruption associated by WER with XDMA ISR; exact cause unproven",
+    "reboot_initiated_by_agent": false
+  },
+  "invalid_metrics": [
+    "formal_N20_speed_distribution",
+    "verified_load_power",
+    "load_minus_idle_power",
+    "compute_duty_for_load",
+    "energy_per_job"
+  ],
+  "current_readonly_observation": {
+    "utc": "2026-10-25T02:00:25.433496Z",
+    "pnp_9018": "OK Problem0 (01:54:41Z OS-only snapshot)",
+    "control_identifiers_verified": true,
+    "user_interrupt_enable": 1,
+    "channel_interrupt_enable": 3,
+    "user_channel_request_pending_all_zero": true,
+    "msi_enable": 1,
+    "register_writes": 0,
+    "control_handles_closed": true,
+    "application_abi_and_idle_after_reboot": "NOT_VERIFIED"
+  },
+  "evidence": {
+    "native_raw": "native_recovered/",
+    "telemetry": "orchestration_recovered/telemetry.json",
+    "system_events": "direct_recovery.stdout.txt",
+    "wer_and_dump_metadata": "dump_metadata.stdout.txt",
+    "current_control": "control_irq_readonly_v2.json",
+    "driver_identity": "driver_source_identity.json",
+    "power_idle_audit": "power_idle_source_audit.json"
+  },
+  "preservation": "All original native/telemetry files retained. Stale running receipt and retained_lease=null are not a successful terminal cleanup proof. No dump copied, new job, IRQ mask write, driver installation, or agent reboot performed after recovery."
+}

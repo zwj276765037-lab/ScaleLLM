@@ -1,0 +1,483 @@
+{
+  "recorded_utc": "2026-10-24T15:12:20.600955+00:00",
+  "user_instruction": "可以开始进行",
+  "source_plan": "PRO_plan/ScaleLLM_MLP_Gate_Up_Only_Dual_DDR_Design.md",
+  "scope": "G0-G5 GU-only hardware-first implementation and exact Host Down; user-prioritized preliminary bitstream generation authorized; no programming, board or GPU",
+  "status": "authorized_in_progress",
+  "owners": {
+    "root": "shared mission and coordination",
+    "A021": "architecture and independent schema; stage review",
+    "A022": "RTL/TB/build/E013, sole EDA",
+    "A023": "new host/scalellm_mlp_gu_only*.py except generated *_abi.py; tests/test_scalellm_mlp_gu_only*.py; E013/experiment_results/host_gu_only; agent/A023; A022 explicitly transferred new tb/hap_mlp_gu_axil_control_tb.sv and vivado/manifests/mlp_gu_only/csr.list after backend delivery; no EDA"
+  },
+  "max_active_agents_including_root": 3,
+  "constraints": [
+    "preserve v6 ABI and frozen R005 sources",
+    "one heavy EDA process",
+    "G5 depends on G4R, not full Host G4H",
+    "ordinary fixes and affected tests continue without per-step approval"
+  ],
+  "actual_engineering_start_utc": "2026-10-24T15:11:32Z",
+  "current_active_workers": [
+    "A022",
+    "A021"
+  ],
+  "architecture_contract": {
+    "path": "project/hardware/source/mlp_linear/abi_gu_only.json",
+    "sha256": "318cf64064354aed52943fd21909aa8b67f11ca8fb565a37c65441d522d4938a",
+    "status": "AUTHORIZED_FOR_IMPLEMENTATION",
+    "A021": "AT002 closed-object review and minimal constraint closure contract design.md section12 complete; idle until native supplement/qualification increment"
+  },
+  "first_new_native_evidence": {
+    "attempt": "R006/AT001_kernel_syntax",
+    "result": "xvlog native 0; syntax only",
+    "reported_modules": 7
+  },
+  "prior_diagnostic_scope_change": {
+    "decided_utc": "2026-10-24T15:21:44.817128+00:00",
+    "actor": "Root",
+    "user_authorization_basis": "可以开始进行 (approved GU-only implementation)",
+    "reason": "SCOPE_SUPERSEDED_BY_AUTHORIZED_GU_ONLY_IMPLEMENTATION",
+    "scope": "R005 optional unfinished new windows and explicit path buckets; preserve collected evidence",
+    "owner": "A022",
+    "stop_status": "confirmed_scope_cancelled_partial",
+    "not_a_wallclock_or_silence_timeout": true,
+    "user_did_not_issue_separate_kill_instruction": true,
+    "required_cleanup": [
+      "preserve raw collected/partial evidence and input hashes",
+      "capture native exit and scope-cancelled status",
+      "verify zero owned survivors",
+      "release EDA lock"
+    ],
+    "after_cleanup": "continue new GU-only bounded RTL simulation; do not restart old diagnostic",
+    "receipt": "project/E013_mlp_linear_only_hardware/experiment_results/runs/R005/attempts/AT001_physopt_slr/scope_cancellation_receipt.json",
+    "native_returncode": -15,
+    "input_count": 116,
+    "root_verified_artifact_count": 30,
+    "zero_owned_survivors": true,
+    "lock_released": true
+  },
+  "latest_verified_evidence": {
+    "as_of_utc": "2026-10-24T23:32:24.146653+00:00",
+    "lane": "R006/AT004_lane_equivalence native PASS;512 vectors+48 pending clear replays;two columns only",
+    "host": "host_gu_only/AT_20261024T153221518972Z native0;26 CPU tests;synthetic and mock scope",
+    "new_gu_only_synthesis_and_physical": "AT011 synth qualification PASS; R008/AT001_impl native0 completed; route legal PASS; formal setup/hold/pulse PASS; final GU structure/clocks PASS; overall quality FAIL retained for external reset IO delays and optional query errors; CDC/constraint bounded supplement in progress",
+    "dual_compute": "R006/AT012_compute native PASS;4096 outputs;N128 fullK128 both GU projections;row/column scale variation",
+    "job": "R006/AT013_job_control native PASS;full opcode/reserved rejection and fault/ACK ownership",
+    "production_graph": "AT026 full production shape elaboration PASS; not full-size numerical simulation",
+    "tensor": "R006/AT016_tensor_dma native PASS;production1792 GU records",
+    "metadata": "R006/AT018_metadata native PASS;bounded32 records/fault drain/active-bank retention",
+    "host_backend": "host_gu_only/AT_20261024T154353319434Z native PASS;16 additional fake transport+XdmaSession tests;42 combined CPU tests across unchanged26+new16",
+    "csr_tb": "R006/AT023_csr native PASS;4155checks/594writes",
+    "production_integration": "R006/AT019_production_integration native PASS;222035 checks/112509cycles;boundedN128 fullK128 real hierarchy",
+    "remaining_g4r": [],
+    "metadata_global_fault": "R006/AT024_metadata_fault native PASS;real idle/heldDONE/active owner + recovery",
+    "production_shape": "R006/AT026_production_shape PASS with enforce1;AT025 FAIL preserved",
+    "g4r_review": "A021 LIMITED_PASS under bounded real integration+full-length module+production shape contract",
+    "preliminary_bitstream": "R008/AT003 native0, 80159259 bytes, delivered to user; Max-DPO/external-reset signoff open; not programmed"
+  },
+  "new_constructor": {
+    "attempt": "R007/AT006_constructor",
+    "started_utc": "2026-10-24T16:21:53.818803Z",
+    "pid": 2283139,
+    "status": "NATIVE_STAGE_COMPLETED",
+    "input_count": 102,
+    "freeze_sha256": "87a98e40d56c3a767085d2865c52f582ea681e754092fc80967265732b008ae4",
+    "project": "project/hardware/vivado/project/m006_gu_AT006_constructor",
+    "native_returncode": 0,
+    "stop_reason": null,
+    "changed_inputs": [],
+    "owned_survivors": [],
+    "generated_file_count": 1323,
+    "artifact_count": 10,
+    "receipt_sha256": "5181319015f3c28662bf843c21f7b9be0c40bf87d608cd9caf84de707eeee52c"
+  },
+  "new_synthesis": {
+    "attempt": "R007/AT007_synth",
+    "status": "native1; synthesized netlist and reports completed; GU guard pin-query qualification failed, same-DCP ordinary repair ongoing",
+    "started_utc": "2026-10-24T16:29:36.403855Z",
+    "pid": 2294216,
+    "input_count": 102,
+    "input_manifest_sha256": "87a98e40d56c3a767085d2865c52f582ea681e754092fc80967265732b008ae4",
+    "core_only_result": {
+      "design": "scalellm_vcu118_f05_bd_core_0",
+      "state": "Synthesized",
+      "LUT": 593717,
+      "FF": 756043,
+      "BRAM36_equivalent": 542,
+      "URAM": 528,
+      "DSP": 5368,
+      "report": "project/hardware/vivado/project/m006_gu_AT006_constructor/scalellm_vcu118_f05.runs/scalellm_vcu118_f05_bd_core_0_synth_1/scalellm_vcu118_f05_bd_core_0_utilization_synth.rpt",
+      "not_whole_board_or_physical": true
+    },
+    "whole_board_resources": {
+      "LUT": 679997,
+      "FF": 892475,
+      "RAMB36": 635,
+      "RAMB18": 16,
+      "BRAM36_equivalent": 643.0,
+      "URAM": 528,
+      "DSP": 5374
+    },
+    "comparison": "results/reviews/M006_gu_only_synthesis_comparison.json",
+    "native_returncode": 1,
+    "stop_reason": null,
+    "changed_inputs": [],
+    "owned_survivors": [],
+    "peak_tree_rss_bytes": 53790097408,
+    "synthesized_dcp_sha256": "783eb0faf3baf062ec72f27572a2be9a119be967e070165be79aa1486314d398"
+  },
+  "new_qualification": {
+    "attempt": "R007/AT009_dcp_qualification",
+    "status": "AT009 native FAIL preserved; actual rebuilt hierarchy renames boundary pins; register-based native qualification being prepared",
+    "started_utc": "2026-10-24T17:39:22.525210Z",
+    "pid": 2362144,
+    "new_input_manifest_sha256": "c83faf747b20a1a3e68555693caee533da0a538b3d23829bfacb20059f035a26",
+    "dcp_sha256": "783eb0faf3baf062ec72f27572a2be9a119be967e070165be79aa1486314d398",
+    "report_reuse": "AT007 seven original analyses, byte-identical; no resynthesis",
+    "ordinary_fix_scope": "two entry files, guard pin name query; assert all 96 lanes two full 0..36 bit sets",
+    "native_returncode": 1,
+    "stop_reason": null,
+    "changed_inputs": [],
+    "owned_survivors": [],
+    "peak_tree_rss_bytes": 20195635200
+  },
+  "guard_storage_precheck": {
+    "attempt": "R007/AT010_guard_storage_cpu",
+    "source": "actual Vivado generated core funcsim Verilog bound to AT007 generated inventory",
+    "verilog_sha256": "5ef7b4ef385d99cb6a2e6b544b48f2654016c232b7bb29ee8516c25ef8e52fe0",
+    "lanes": 96,
+    "per_lane_groups": 2,
+    "entries_per_group": 2,
+    "bits_per_entry": 37,
+    "actual_FDRE_count": 14208,
+    "scope": "CPU parsing of actual structural export; native object qualification still pending"
+  },
+  "guard_storage_native_qualification": {
+    "attempt": "R007/AT011_dcp_qualification",
+    "status": "NATIVE_STAGE_COMPLETED; netlist/clocks/guard structure PASS; full physical quality not accepted",
+    "started_utc": "2026-10-24T17:57:29.205324Z",
+    "pid": 2374590,
+    "input_count": 102,
+    "input_manifest_sha256": "b03f1da1e352cecf634233f46122749c3ca011108ca77daa90eade6853f37d71",
+    "dcp_sha256": "783eb0faf3baf062ec72f27572a2be9a119be967e070165be79aa1486314d398",
+    "scope": "native check of exact actual 14208 guard FDRE names, all 96 lanes; seven AT007 analysis reports reused; includes bounded post-opt probe for subsequent impl",
+    "native_returncode": 0,
+    "stop_reason": null,
+    "changed_inputs": [],
+    "owned_survivors": [],
+    "ended_utc": "2026-10-24T18:07:00.240051Z",
+    "peak_tree_rss_bytes": 20444897280,
+    "receipt": "project/hardware/vivado/reports/m006_gu_AT011_dcp_qualification/m006_gu_synth_identity.json",
+    "receipt_sha256": "228a95690c179ef57c0dfb2bd91a7c20b466c2c1b27b865a2f28812ac2b3b712",
+    "independent_review": "A021 LIMITED_PASS, 30 artifacts + sameDCP and native14208FF full set independently verified; see results.md qualification increment"
+  },
+  "new_physical": {
+    "attempt": "R008/AT001_impl",
+    "status": "route_design Phase5.1 Rip-up And Reroute Global Iteration0",
+    "started_utc": "2026-10-24T18:07:59.711525Z",
+    "pid": 2380935,
+    "dcp_sha256": "783eb0faf3baf062ec72f27572a2be9a119be967e070165be79aa1486314d398",
+    "synth_qualification_receipt_sha256": "228a95690c179ef57c0dfb2bd91a7c20b466c2c1b27b865a2f28812ac2b3b712",
+    "input_manifest_sha256": "b03f1da1e352cecf634233f46122749c3ca011108ca77daa90eade6853f37d71",
+    "cpu_affinity_count": 32,
+    "max_threads": 8,
+    "tree_rss_limit_GiB": 192,
+    "reports": "project/hardware/vivado/reports/m006_gu_AT001_impl",
+    "opt_design_native": "completed successfully, elapsed00:34:49,0error/0critical",
+    "post_opt_debug": "0blackbox; original530 no_clock and554 internal targets all retained and clocked",
+    "post_opt_reset": "24stages match prior identity, CDC not waived",
+    "post_opt_xpm": "both exact scopes one FDRE/D and clock; coverage report10ns MaxDelayDatapathOnly/Endpoints1 each; four valid/ignored reports absent, remainder pending",
+    "post_opt_review": "A021 no observed blocker to placement; limited coverage only",
+    "optimized_dcp_sha256": "cbf990a2606c6e68cce092bb43f214d7a6b1e9fa7185131651f45acf63d6bb68",
+    "optimized_observation": "project/E013_mlp_linear_only_hardware/experiment_results/runs/R008/attempts/AT001_impl/optimized_checkpoint_observation.json",
+    "placed_dcp_sha256": "cc92d8dcbc90d23b358627ccc7e2ea201b864cfb3092cbc58ddb1850459fa0cb",
+    "placed_observation": {
+      "stage": "Fully Placed; not comparable by subtraction to old Physopt",
+      "report": "project/hardware/vivado/reports/m006_gu_AT001_impl/placed_utilization_slr.rpt",
+      "sha256": "8374b4c72c4a1071b6bb514cd7df55b09892927e543b5a4ac92adda5da011274",
+      "CLB_sites": [
+        41254,
+        48413,
+        47851
+      ],
+      "CLB_capacity_per_SLR": 49260,
+      "CLB_percent": [
+        83.75,
+        98.28,
+        97.14
+      ],
+      "LUT": [
+        179085,
+        243557,
+        234256
+      ],
+      "URAM": [
+        168,
+        168,
+        192
+      ],
+      "DSP": [
+        1571,
+        1840,
+        1963
+      ],
+      "control_sets": [
+        7568,
+        9519,
+        4326
+      ],
+      "SLL_1_0": 6554,
+      "SLL_2_1": 5144,
+      "placement_estimated_WNS_ns": 0.501,
+      "native_congestion_warning": "Place46-14 highly congested; routing may be difficult",
+      "routability_verdict": "PENDING actual route"
+    },
+    "placed_scope_mapping": {
+      "GU_branch1": "almost entirely SLR0; touches37626/3/0 CLB sites",
+      "GU_branch0": "mainly SLR1; touches706/34565/0 CLB sites",
+      "Attention": "mainly SLR2; touches0/4267/44815 CLB sites",
+      "GU_metadata_URAM": [
+        168,
+        168,
+        112
+      ],
+      "scope_site_counts_are_not_additive": true
+    },
+    "placed_congestion": {
+      "highest_window_level": 6,
+      "highest_window_modules": "Attention postprocess_store/right2 shard/KV quantizer",
+      "GU_representative_windows_level": 5,
+      "scope": "window report observations, not causal share or route proof",
+      "report": "project/hardware/vivado/reports/m006_gu_AT001_impl/placed_congestion.rpt"
+    },
+    "placed_independent_review": "A021 current-stage attribution verified; no route acceptance, no cross-stage improvement subtraction",
+    "physopt_native": "5m01 success; no setup violation, netlist not modified",
+    "physopt_estimated_WNS_ns": 0.465,
+    "physopt_report": "project/hardware/vivado/reports/m006_gu_AT001_impl/physopt_utilization_slr.rpt",
+    "physopt_report_sha256": "8e177bb8ef1162d7b7a5a08301061f049f64fdb78e0a3b416a6fa10e7654ea48",
+    "same_physopt_site_comparison": {
+      "old": [
+        45040,
+        49193,
+        46155
+      ],
+      "new": [
+        41254,
+        48413,
+        47851
+      ],
+      "delta": [
+        -3786,
+        -780,
+        1696
+      ],
+      "total_delta": -2870,
+      "total_percent_delta": -2.044334273584637,
+      "old_basis": "R005 native slice_sites.tsv independent primitive/site occupancy matches old -packthru CLB row",
+      "LUT_comparison_requires_exclusion_of_old_exclusive_route_through_LUT": true,
+      "route_acceptance": "PENDING"
+    },
+    "physopt_dcp_sha256": "5c8922a05f8ec15ad30fbc2453d2cc163b3c56b20ac52a99b67900f60b70be72",
+    "physopt_pressure_observation": "project/E013_mlp_linear_only_hardware/experiment_results/runs/R008/attempts/AT001_impl/physopt_pressure_reports_observation.json",
+    "same_physopt_logic_memory_LUT": {
+      "old": 740911,
+      "new": 656898,
+      "delta": -84013,
+      "percent_delta": -11.33914869667207
+    },
+    "same_physopt_SLL": {
+      "old": 13817,
+      "new": 11698,
+      "delta": -2119,
+      "percent_delta": -15.336180068032135
+    },
+    "congestion_comparison_boundary": "new query after physopt retains Fully Placed/Placer Final Level; old min_level3 and new default output cannot be compared by count of rows; not routed congestion",
+    "initial_route_congestion": {
+      "Route35_448_global_short": {
+        "level": 5,
+        "window": "32x32"
+      },
+      "Route35_581_timing": {
+        "level": 7,
+        "window": "128x128"
+      },
+      "categories_are_not_interchangeable": true,
+      "not_final_route_status": true,
+      "same_category_old_comparison": {
+        "old_GlobalShort": 7,
+        "new_GlobalShort": 5,
+        "old_Timing": 7,
+        "new_Timing": 7,
+        "old_log": "project/hardware/vivado/reports/m006_linear_AT001_impl/vivado.log:1723,1725",
+        "new_log": "project/hardware/vivado/reports/m006_gu_AT001_impl/vivado.log:1474,1476",
+        "interpretation": "limited initial routing estimate improved for Global/Short; no final routability acceptance"
+      }
+    },
+    "route_bus_skew": {
+      "observation": "project/E013_mlp_linear_only_hardware/experiment_results/runs/R008/attempts/AT001_impl/route_bus_skew_warning_observation.json",
+      "groups": 4,
+      "paths": 10,
+      "status": "PENDING; exact bit identity preserved, not waived",
+      "static_field_identity": "Attention group_count=81920 bits14/16, GU group_count=229376 bits15/16/17; each two halves; reset0 then accepted-command1, same-trajectory redundant bits; actual optimization/constraint coverage pending native final-DCP review"
+    },
+    "route_iteration_observation": {
+      "stage": "Phase 14.1 Physical Synthesis Initialization in Router",
+      "iteration0_overlap_final_observation": 0,
+      "iteration1_overlap_counts": [
+        1049,
+        241,
+        95,
+        59
+      ],
+      "latest_intermediate_timing": {
+        "WNS_ns": -0.325,
+        "TNS_ns": -3.377,
+        "WHS_ns": 0.006,
+        "THS_ns": 0
+      },
+      "source": "project/hardware/vivado/reports/m006_gu_AT001_impl/vivado.log",
+      "observed_utc": "2026-10-24T23:00:37.236159+00:00",
+      "final": false,
+      "comparison_scope": "router iteration observations; not final route/timing acceptance",
+      "all_five_global_iterations_overlap_zero": true,
+      "router_phase8_summary": {
+        "failed_nets": 0,
+        "unrouted_nets": 0,
+        "partially_routed_nets": 0,
+        "node_overlaps": 0
+      },
+      "phase9_routed_net_verification": "completed successfully",
+      "final_timing_summary": "PENDING"
+    },
+    "route_native_result": {
+      "execution": "route_design completed successfully",
+      "elapsed": "02:02:23",
+      "errors": 0,
+      "critical_warnings": 0,
+      "warnings": 243,
+      "routable_nets": 1687352,
+      "fully_routed_nets": 1687352,
+      "routing_errors": 0,
+      "routed_dcp_sha256": "cc34f49bef612472367f7d273596d09dede15128d3b72a2708507e4c6d6c7cc4",
+      "routed_dcp_bytes": 665825940,
+      "observation": "project/E013_mlp_linear_only_hardware/experiment_results/runs/R008/attempts/AT001_impl/routed_checkpoint_observation.json",
+      "independent_review": "A021 ROUTE_LEGALITY_PASS; DCP/prefix/102 inputs verified",
+      "phase14_timing": {
+        "WNS_ns": 0.002,
+        "TNS_ns": 0,
+        "WHS_ns": 0.01,
+        "THS_ns": 0
+      },
+      "formal_timing_CDC_DRC_quality": "PENDING",
+      "recorded_utc": "2026-10-24T23:14:28.795882+00:00"
+    },
+    "implementation_terminal": {
+      "ended": "2026-10-24T23:27:20.753971+00:00",
+      "native_returncode": 0,
+      "stop_reason": null,
+      "peak_tree_rss_bytes": 29398495232,
+      "changed_inputs": [],
+      "execution_state": "completed",
+      "verdict": "NATIVE_STAGE_COMPLETED",
+      "quality_original_status": "FAIL",
+      "receipt": "project/E013_mlp_linear_only_hardware/experiment_results/runs/R008/attempts/AT001_impl/result.json"
+    },
+    "formal_timing": {
+      "sha256": "02e46e2962f3a7d3c1f002cd5de74e31d3d2391078d7a4f40fbbf1bd5cb3e0ff",
+      "wns_ns": 0.002,
+      "tns_ns": 0.0,
+      "setup_failing_endpoints": 0,
+      "setup_total_endpoints": 2848130,
+      "whs_ns": 0.01,
+      "ths_ns": 0.0,
+      "hold_failing_endpoints": 0,
+      "hold_total_endpoints": 2846686,
+      "pulse_failing_endpoints": 0,
+      "WPWS_ns": 0
+    },
+    "final_structure": {
+      "forbidden_down": 0,
+      "mlp_dsp": 3072,
+      "gu_metadata_uram": 448,
+      "lanes": 96,
+      "lane_width_mismatches": 0,
+      "guard0_storage_FF": 7104,
+      "guard1_storage_FF": 7104,
+      "unmatched_guard_FF": 0,
+      "status": "PASS",
+      "report": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/project/hardware/vivado/reports/m006_gu_AT001_impl/gu_structure_identity.txt"
+    },
+    "final_pending": {
+      "CDC": "6 CDC10 + 2 CDC11 Critical; exact native chain/cone supplement pending",
+      "IO_constraints": "no_clock0/internal unconstrained0, input1/output2 reset delay missing, no waiver",
+      "optional_XPM_reports": "four Vivado12-2785 command-option incompatibilities; original FAIL retained; bounded legal query supplement",
+      "DRC": "0 Error/Critical; 15762 Warning, DSP PREG conditional risk excluded in all3072 mapped pre-route definitions, representative routed pin confirmation pending",
+      "bus_skew": "10 fixed group_count paths; native merged driver/coverage supplement pending"
+    }
+  },
+  "terminal_supplement": {
+    "attempt": "R008/AT002_terminal_bus_skew_query",
+    "status": "scope_cancelled_partial_for_user_bitstream_priority",
+    "started_utc": "2026-10-24T23:30:01.828390Z",
+    "purpose": "10 bus-skew D paths, two reset chains/8 stages, two routed representative DSPs, two SMC bounded legal exception queries",
+    "parent_dcp_sha256": "cc34f49bef612472367f7d273596d09dede15128d3b72a2708507e4c6d6c7cc4",
+    "no_repeat_implementation": true,
+    "parent_result_sha256": "8827fb6251a0655ed1e4a757c1225045eaf9ba370e200062716b058f5592317e"
+  },
+  "constraint_closure_followup": {
+    "recorded_utc": "2026-10-25T00:17:14.063836+00:00",
+    "authorization_basis": "existing GU-only hardware implementation and ordinary fix/verification authorization",
+    "finding": "actual command hsdata paths show Asynchronous Clock Groups and infinite slack; intended 10ns Max Delay Datapath Only is overridden, while independent bus skew passes",
+    "assessment": "route legality and synchronous internal STA remain valid; absolute CDC payload delay coverage not closed",
+    "owner_design": "A021",
+    "owner_implementation": "A022",
+    "next": "define smallest exact-object constraint correction and affected qualification on independent copy of saved routed DCP; reroute only if actual new path violations demand it",
+    "invariants": [
+      "do not mutate active AT002 inputs or historical102",
+      "retain core10ns DDR5ns clocks and reset semantics",
+      "do not invent external reset IO requirements",
+      "no blanket clock-group deletion without replacement asynchronous isolation",
+      "preserve original result/quality FAIL"
+    ],
+    "contract": "project/hardware/source/mlp_linear/design.md section12",
+    "contract_state": "AUTHORIZED; correction qualification NOT_RUN",
+    "target_counts": [
+      34,
+      34,
+      35,
+      35
+    ],
+    "target_total": 138,
+    "implementation_status": "A022 CPU preparation in parallel with original AT002; one EDA at a time",
+    "as_of_utc": "2026-10-25T00:25:48.926803+00:00"
+  },
+  "bitstream_priority": {
+    "recorded_utc": "2026-10-25T00:30:21.493855+00:00",
+    "user_instruction": "不能先生成bitstream吗",
+    "status": "PRELIMINARY_BITSTREAM_GENERATED_SIGNOFF_OPEN",
+    "scope": "generate preliminary engineering bitstream now from preserved R008 routed DCP; no programming/board/GPU",
+    "parent_dcp_sha256": "cc34f49bef612472367f7d273596d09dede15128d3b72a2708507e4c6d6c7cc4",
+    "unclosed_constraints_must_be_labeled": true,
+    "single_EDA": "if AT002 still active preserve partial and close owned query for new user priority before bitstream",
+    "do_not_downgrade_DRC": true,
+    "after_delivery": "continue previously authorized constraint closure",
+    "attempt": "R008/AT003_preliminary_bitstream",
+    "started_utc": "2026-10-25T00:32:18.120194+00:00",
+    "pid": 2623704,
+    "AT002_scope_cancellation": "USER_PRIORITIZED_PRELIMINARY_BITSTREAM; owned_survivors[]; preserved partial",
+    "launch": "project/E013_mlp_linear_only_hardware/experiment_results/runs/R008/attempts/AT003_preliminary_bitstream/launch.json",
+    "completed_utc": "2026-10-25T00:45:47Z",
+    "native_returncode": 0,
+    "stop_reason": null,
+    "changed_inputs": [],
+    "owned_survivors": [],
+    "peak_tree_rss_bytes": 25301385216,
+    "file": "project/hardware/vivado/reports/m006_gu_AT003_preliminary_bitstream/native_output/ScaleLLM_MLP_GU_only_ENGINEERING_VALIDATION.bit",
+    "bytes": 80159259,
+    "sha256": "66a305348d3099ca48043324d2ef50e3a39bea84b818f6107f0ff9cdd08acc47",
+    "delivery_receipt": "project/E013_mlp_linear_only_hardware/experiment_results/runs/R008/attempts/AT003_preliminary_bitstream/delivery_receipt.json",
+    "delivery_receipt_sha256": "b5e4c427d278214d773aed8dcb854ac3b70d4f3be432043c19cbca85899b9443",
+    "root_independently_verified_file_size_and_hash": true
+  }
+}
