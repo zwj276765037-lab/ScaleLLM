@@ -1,0 +1,89 @@
+{
+  "schema": "scalellm_offline_numerical_audit_v1",
+  "verdict": "PASS",
+  "started_utc": "2026-10-25T07:59:57.599222+00:00",
+  "run_summary_sha256": "0c2b6beea9d4e34d56af29a4ade0ab423fe856c7a9b2ba16138640e92d8b8c42",
+  "auditor_sha256": "1b1f15b82de00760a66c106cfdb81aa0fd4268db4e21122d4256a62dc594790a",
+  "reference_sources": [
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/deploy/vendor/runtime/numeric_reference/reference.py",
+      "sha256": "2d3406e0425c469b19e2a7bbe4bcd0b3099a6b7c2aeae9955057e70042db7d61"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/deploy/vendor/runtime/numeric_reference/core.py",
+      "sha256": "3ee27f1da8f4cbb66e19c14520ce2ac3343150df1057a4eb4126f6118dba705a"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/deploy/vendor/hardware/model/fixbit_v2.py",
+      "sha256": "fb4b34397edc9d14ed3ef4f0b46d60a61b545a52a7a47d15c2eec8ba7b6db271"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/deploy/vendor/hardware/model/mlp_fixed.py",
+      "sha256": "fedb2b1cc7ba31921624a0ce134163344aa6b085cef03c08ebd9a0a46c02620e"
+    },
+    {
+      "path": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/deploy/vendor/hardware/data/softmax_exp_u17.mem",
+      "sha256": "3af91ffa7ead647b42b8440c9a098d84b0abb81ffdc09c96550c724bf7248967"
+    }
+  ],
+  "device_opened": false,
+  "baseline_required": false,
+  "summary_modified": false,
+  "host_fp32_policy": "Strict bytewise; use the original CPU/NumPy/BLAS environment for full LM-head audit",
+  "audit_environment": {
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "numpy": "1.26.4",
+    "blas": "{'Compilers': {'c': {'name': 'gcc', 'linker': 'ld.bfd', 'version': '10.2.1', 'commands': 'cc', 'args': '-fno-strict-aliasing', 'linker args': '-Wl,--strip-debug, -fno-strict-aliasing'}, 'cython': {'name': 'cython', 'linker': 'cython', 'version': '3.0.8', 'commands': 'cython'}, 'c++': {'name': 'gcc', 'linker': 'ld.bfd', 'version': '10.2.1', 'commands': 'c++', 'linker args': '-Wl,--strip-debug'}}, 'Machine Information': {'host': {'cpu': 'x86_64', 'family': 'x86_64', 'endian': 'little', 'system': 'linux'}, 'build': {'cpu': 'x86_64', 'family': 'x86_64', 'endian': 'little', 'system': 'linux'}}, 'Build Dependencies': {'blas': {'name': 'openblas64', 'found': True, 'version': '0.3.23.dev', 'detection method': 'pkgconfig', 'include directory': '/usr/local/include', 'lib directory': '/usr/local/lib', 'openblas configuration': 'USE_64BITINT=1 DYNAMIC_ARCH=1 DYNAMIC_OLDER= NO_CBLAS= NO_LAPACK= NO_LAPACKE= NO_AFFINITY=1 USE_OPENMP= HASWELL MAX_THREADS=2', 'pc file directory': '/usr/local/lib/pkgconfig'}, 'lapack': {'name': 'dep140551260102944', 'found': True, 'version': '1.26.4', 'detection method': 'internal', 'include directory': 'unknown', 'lib directory': 'unknown', 'openblas configuration': 'unknown', 'pc file directory': 'unknown'}}, 'Python Information': {'path': '/opt/python/cp312-cp312/bin/python', 'version': '3.12'}, 'SIMD Extensions': {'baseline': ['SSE', 'SSE2', 'SSE3'], 'found': ['SSSE3', 'SSE41', 'POPCNT', 'SSE42', 'AVX', 'F16C', 'FMA3', 'AVX2', 'AVX512F', 'AVX512CD', 'AVX512_SKX', 'AVX512_CLX'], 'not found': ['AVX512_KNL', 'AVX512_KNM', 'AVX512_CNL', 'AVX512_ICL']}}"
+  },
+  "protocol_scope": "Numerical audit only; CSR/physical completion acceptance is separate",
+  "executed_sources": {
+    "deploy/optimized/__init__.py": "d87ac910d655f6cea4c9036932712d19d0c51d68b8c0254a48a7f377b8703040",
+    "deploy/optimized/backends.py": "9d707a635e2a3e6f174838f140e03af760b057e3c71f99d4912441d770fbd7fc",
+    "deploy/optimized/baseline_index.json": "c1094e951297092cfaf745ba9776578df3ca6bf15bcdc6bc89e09c682e170be3",
+    "deploy/optimized/down.py": "940e0cd4a1a1328620a2a4158ffc66505267fea1323641f4851c65dc710d2a44",
+    "deploy/optimized/layout.py": "2a02083caafeb3c3475283be7819e649ad902fe85ee84623b587be16b07f638b",
+    "deploy/optimized/run.py": "061ff46fb6605ceb3ab6a48110e4a19c667bf965796a5c40b6106aa308749241",
+    "deploy/optimized/session.py": "30ae39deee2dbd051c175850fdcd9aadf7b2fb31c1cc07aea93c04956419a252",
+    "deploy/optimized/store.py": "ea83c534a92192ddcf59ce92783215ce325988e18242c8da823a8863705b0aa4",
+    "deploy/optimized/verification.py": "bc38172f7b719222e274bfe1afa100651a698f5cbdefbf8b4098a2e564b60bf0"
+  },
+  "model_identity": {
+    "bit_sha256": "66a305348d3099ca48043324d2ef50e3a39bea84b818f6107f0ff9cdd08acc47",
+    "checkpoint_sha256": "8a09c60f3256779c16925f8209c9399ba4a1ee0406caf65bd2637ffd99287d6d",
+    "artifact_manifest_sha256": "45ed3c211c4939e83d5f2efc39731970692317dfa540520ca8c16e525a99e8f6",
+    "host_assets_manifest_sha256": "0f5bde5a611d41b9d80d5a87037c38d09a28d659354dff75b167e44803be9b20"
+  },
+  "verified": {
+    "attention_outputs": 2,
+    "gu_outputs": 2,
+    "down_outputs": 2,
+    "host_boundaries": 6,
+    "logits": 0
+  },
+  "records": [
+    {
+      "step": 0,
+      "layer": 0,
+      "cohort": 0,
+      "attention_sha256": "b3670e08f8827a4a986baf27895941afb0bb29d688461874507b549049c628c2",
+      "gu_sha256": "ac621e47d2a7a8e4a24c97ba771b049750b1503cab618c813137d2e7a0e046a9",
+      "down_sha256": "53dd8346a30e92f0e654d23d3d340340d4597eee60f3496f233f3109d55a792d"
+    },
+    {
+      "step": 0,
+      "layer": 0,
+      "cohort": 1,
+      "attention_sha256": "6a3c82787a07e76a9c0e3d2ff5bd9cd082785462b0360c53d3d95f7cab44fecc",
+      "gu_sha256": "46dfa7c08d4ec7e8338ab1e7c11dec114fb18b0f0d8f0205b57c944c5d3c9308",
+      "down_sha256": "c0b3de91b8784432067e8f020055bde282d5cdd5432933ab6b37cdceb2446f8b"
+    }
+  ],
+  "scope": "PILOT_NUMERICAL_PASS_1_LAYERS",
+  "generated_ids": [
+    [],
+    []
+  ],
+  "seconds": 34.909074684022926,
+  "finished_utc": "2026-10-25T08:00:32.510795+00:00"
+}

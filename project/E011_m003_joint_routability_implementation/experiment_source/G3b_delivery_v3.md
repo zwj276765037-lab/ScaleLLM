@@ -1,9 +1,0 @@
-# SM015/SM016固定交付v3
-
-继G3b_delivery_v2，三RTL、算法、容量/池/预算/策略未变；7项已独立接受native仍适用。当前41源入口manifest `62d55ff983e6d8062d448e2ac0e5c690d092b4eead0d8512e56a255c3dbfa96c`。19源初版89b956、41源v2 cb7256及全部原字节分别保全，均未执行新综合。
-
-v3补齐实际逐phase CDC探针生成与身份：读取新综合详细CDC、当phase实际详细CDC和真实core OOC runme.log warnings；生成不可覆盖的probe_targets_<phase>.tcl/json；各source与preserved_probe SHA逐项绑定并去重加入stage_inputs。三个旧严格probe函数仅在M003读取对应phase文件，legacy读取原文件不变。native hook拒绝fixture/错误phase/来源变更后才调用原reset/CDC/debug/clock/resource判据；preplace包另绑最终stage_inputs与初始source_archive。
-
-实际Tcl安全标识、原synth targets与当phase actual sources/targets/clock pairs、warning寄存器、缺失/损坏report、禁止覆盖、跨phase无重复manifest六项新增检查均通过。最终同版联合回归288 tests exit0，42项资格/入口/probe检查在内；全部被归档来源SHA在运行期间不变。原始收据见AT003/evidence/joint_python_regression_native_probes_v3。144冻结输入再次实核137相同，仅3选定RTL与4公共入口改变，无其他变化；v3 diff已保存。
-
-同版回归映射、七项native适用边界和未验证事项沿用v2并在同名JSON明确。无M003新综合网表或物理成功结论，native API/命名/映射在SM017实核；普通修复保全新AT继续，结构/预算/池变化回Root。请A007对该当前实际固定版本给G3b独立结论；无阻断后直接新R create/synth，G4实际preplace独立通过后连续固定完整实现。

@@ -1,0 +1,650 @@
+{
+  "schema": "scalellm_deployment_validation_v1",
+  "verdict": "PASS",
+  "validated_utc": "2026-10-25T06:30:56.674873+00:00",
+  "python": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM_MLP_fix/results/deployment_validation/venv/bin/python",
+  "checks": {
+    "deployment_unittest": {
+      "exit": 0,
+      "tests": 7,
+      "stdout": "unittest_final_v2.stdout.txt",
+      "stderr": "unittest_final_v2.stderr.txt"
+    },
+    "full_model_cpu_preflight": {
+      "exit": 0,
+      "device_opened": false,
+      "report": "preflight_models.stdout.json"
+    },
+    "observed_driver_base_to_candidate": {
+      "exit": 0,
+      "report": "driver_prepare_validation.json"
+    },
+    "root_independent_release_tests": "Parent reports13PASS; parent owns unpack/package validation",
+    "actual_final_csr_replay": {
+      "exit": 0,
+      "hardware_access": false,
+      "report": "actual_csr_replay.json"
+    }
+  },
+  "scope": [
+    "133 vendored files verified before import",
+    "initial clean IDLE accepted, final must SHARED",
+    "bounded exact BF16 conversion fixture",
+    "102-source new build freeze/check without invoking fake Vivado",
+    "moved path with spaces CPU preflight",
+    "strict patch context and unknown-source refusal",
+    "actual32-layer/Host model artifacts SHA and tokenizer prompts"
+  ],
+  "not_tested": [
+    "second-machine FPGA execution",
+    "new full portable model export",
+    "fresh Vivado compilation",
+    "official Windows driver archive content equivalence"
+  ],
+  "files": {
+    "deploy/build_hardware.py": {
+      "bytes": 4575,
+      "sha256": "3c69fe6bc3e7df6a5fcb829f7dda2e90dc5be6673968bfdfbaaad46f0d95b4d8"
+    },
+    "deploy/config.example.json": {
+      "bytes": 556,
+      "sha256": "47e5a10ff4dce1021f1c0d1d0c36c10d179ce55f055056ca277d8e674d6e5d28"
+    },
+    "deploy/dependency_sources.json": {
+      "bytes": 1125,
+      "sha256": "78d7ea1dbc9ca4aa1a6cf67b5e07c777b6bc63ffe5ecfd415f1abd21752110fa"
+    },
+    "deploy/device_health.py": {
+      "bytes": 4389,
+      "sha256": "c09ac8e9d8cea1259c9ea7a2dc127a8a30ea531380fe610f9da7b3f8857b29f8"
+    },
+    "deploy/driver/README.md": {
+      "bytes": 6811,
+      "sha256": "67a51642f983638b4db832e2473b0d331c98aba57ae9ca756ded7f44f5775931"
+    },
+    "deploy/driver/observed_base_hashes.json": {
+      "bytes": 6264,
+      "sha256": "37480db8a51ad1a9bd0050e05459bc6c1051f9b528e5feea37428ce2feb8a018"
+    },
+    "deploy/driver/prepare_source.py": {
+      "bytes": 4500,
+      "sha256": "b2e43acb57a8711934d3650391ed06892c6b6d8a0d5f0b0e38d05aeec4e69e61"
+    },
+    "deploy/driver/user_irq_polling.patch": {
+      "bytes": 9913,
+      "sha256": "78a668d207007247cd3c98b32c2c64b75937f248553950183beee260e70be526"
+    },
+    "deploy/export_model.py": {
+      "bytes": 5057,
+      "sha256": "1a43e8bcb3963a6703c3d888427f70c1232bfc37f6ae2ce22d4dc3efd2d58903"
+    },
+    "deploy/hardware_release_manifest.json": {
+      "bytes": 12454,
+      "sha256": "4b712df7b33db8be6dc175e206de0be79fca558ffc5e151fc55a669f42cd36ec"
+    },
+    "deploy/jtag/hw_common.tcl": {
+      "bytes": 1711,
+      "sha256": "1f0b53e8e6cce2ef73b326ef621415435936547e0b8411a86e2b7d1b201dda09"
+    },
+    "deploy/jtag/probe_jtag.tcl": {
+      "bytes": 968,
+      "sha256": "76944c55408a38999f756f0f21212854b782f453eb06c6b32feb1b53a83088d0"
+    },
+    "deploy/jtag/program_sram.tcl": {
+      "bytes": 1070,
+      "sha256": "19cd5662bd33d6ab11d8c3bbb92738492cc992a83cf18d046529e507f5dcab90"
+    },
+    "deploy/python_wheel_provenance.json": {
+      "bytes": 6712,
+      "sha256": "2e83c8378bbdd76321d6434ba8a30a6b07df4ae38ee4d20f9bd5fe40de7c4183"
+    },
+    "deploy/requirements-windows-py312.lock": {
+      "bytes": 1787,
+      "sha256": "9f93bde5fbd3d7c9eee3af6aeb4150bd176b333c3074a66038b35d33dea278d2"
+    },
+    "deploy/requirements.txt": {
+      "bytes": 119,
+      "sha256": "ad13840905bfea5fc8666d626dc1220505c9a9cafb09b1f8726ae700bd19208b"
+    },
+    "deploy/scalellm.py": {
+      "bytes": 8805,
+      "sha256": "e454dbccf51a94154b7182f3f08ec140a7be6a4e8e9a424f7aab393a9c408759"
+    },
+    "deploy/vendor/hardware/data/mlp_silu_q16.mem": {
+      "bytes": 57344,
+      "sha256": "8263e8981b637b00143c6dfd6674f2397a73c85c6ed8934f0ee839f76db6ea67"
+    },
+    "deploy/vendor/hardware/data/softmax_exp_u17.mem": {
+      "bytes": 1542,
+      "sha256": "3af91ffa7ead647b42b8440c9a098d84b0abb81ffdc09c96550c724bf7248967"
+    },
+    "deploy/vendor/hardware/host/__init__.py": {
+      "bytes": 71,
+      "sha256": "3aead315920e196b64ae37a7bb8c1f4119b8789ef689141e84e607c962d14d8b"
+    },
+    "deploy/vendor/hardware/host/scalellm_artifacts.py": {
+      "bytes": 17761,
+      "sha256": "441664b737fa127dd2371637eb43268021f0a1ce7495c935a42e0c0648a93b40"
+    },
+    "deploy/vendor/hardware/host/scalellm_hardware.py": {
+      "bytes": 27169,
+      "sha256": "9851cb8a038a1e1b6239cff0fc9b5fcf41667bea487cfc3931caf271a1055d69"
+    },
+    "deploy/vendor/hardware/host/scalellm_hostops.py": {
+      "bytes": 19571,
+      "sha256": "ceb67ec279fa767eb360166256798e88c7b413c1b060b5af5956c12c7da04328"
+    },
+    "deploy/vendor/hardware/host/scalellm_memory.py": {
+      "bytes": 10953,
+      "sha256": "eda8e96b1af8a7cdbc4042630b06e1d260f52792ff1e2adddfb18726f2b7e9a9"
+    },
+    "deploy/vendor/hardware/host/scalellm_mlp_gu_only.py": {
+      "bytes": 12907,
+      "sha256": "cc608e352dd8caf656c49cbae8f4a96a58329a1dfb364fb308b18930a593336b"
+    },
+    "deploy/vendor/hardware/host/scalellm_mlp_gu_only_abi.py": {
+      "bytes": 9091,
+      "sha256": "2cfcf74e58a56806017c51b954e008f1cfecbca74edd17208d4b44e98954cbfe"
+    },
+    "deploy/vendor/hardware/host/scalellm_mlp_gu_only_artifacts.py": {
+      "bytes": 5314,
+      "sha256": "dad156e017fc19639c83b2f37b1a4952b868b54255a4f2b61164b36dcbab1e50"
+    },
+    "deploy/vendor/hardware/host/scalellm_mlp_gu_only_backend.py": {
+      "bytes": 16522,
+      "sha256": "7a613a819ebde6abe65dda26853566304dab94e808d4f7bf05c9e266ad2d0fa0"
+    },
+    "deploy/vendor/hardware/host/scalellm_mlp_gu_only_runtime.py": {
+      "bytes": 10763,
+      "sha256": "536bad6c0a669ab1d1bd886f836ddf5abe56b013060fbccaad490577219f4c21"
+    },
+    "deploy/vendor/hardware/host/scalellm_mlp_linear.py": {
+      "bytes": 12236,
+      "sha256": "227e457e4d0464115241d2de6a8521496413b0a071344d776ab9c3a861a3c716"
+    },
+    "deploy/vendor/hardware/host/scalellm_runtime.py": {
+      "bytes": 24383,
+      "sha256": "6e9bee43155515f67bc260c7ee8ec45781cf18662bd446c05253704df2ffbf56"
+    },
+    "deploy/vendor/hardware/model/export_scalellm_llama31_artifacts.py": {
+      "bytes": 28656,
+      "sha256": "a6e487d0c33ca6647c1b7f7b2aced2eb21129b752496a3178dbffc94e09f12fe"
+    },
+    "deploy/vendor/hardware/model/fixbit_v2.py": {
+      "bytes": 24347,
+      "sha256": "fb4b34397edc9d14ed3ef4f0b46d60a61b545a52a7a47d15c2eec8ba7b6db271"
+    },
+    "deploy/vendor/hardware/model/mlp_fixed.py": {
+      "bytes": 17346,
+      "sha256": "fedb2b1cc7ba31921624a0ce134163344aa6b085cef03c08ebd9a0a46c02620e"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_a8w8_array_16x16_s42_col3.sv": {
+      "bytes": 16370,
+      "sha256": "31c01ac6247b3933b57d0dc37d7c33f14bcdaa7eb7110d0be0d9eb8eeae4af51"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_a8w8_col_shard_center12_s42.sv": {
+      "bytes": 11789,
+      "sha256": "2a05deb5c346fe48205462e2150935f6444ec70ccc10b02788c8a0aa9471d4cb"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_a8w8_col_shard_left2_s42.sv": {
+      "bytes": 2223,
+      "sha256": "cefcfc60b09c05c9e907969e84aa79cd8501c8940d86732b156e7a23155f6ed8"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_a8w8_col_shard_right2_s42.sv": {
+      "bytes": 2225,
+      "sha256": "a31370e3fff12e0b2936b88fb81afd40fe920bdeea1905278f755dee5d2d1e4f"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_a8w8_col_shard_s42.sv": {
+      "bytes": 13889,
+      "sha256": "42e1d2bbbdde6461a301dffd8621a222f4153fd26a3ff04bcceb9bbac79c549b"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_a8w8_group32_lane_s42.sv": {
+      "bytes": 12088,
+      "sha256": "328bafbeab3f504c2dd6840e745827b22590857ef1a0934924f15d2959161a2b"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_activation_cache_8row.sv": {
+      "bytes": 13240,
+      "sha256": "834fa52acae54f7a1985dee2ace242bc221f86dab4c5b2860b482eeb131aa8cf"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_attention_board_cohort16_core.sv": {
+      "bytes": 40661,
+      "sha256": "672d37c9a5d02161affec0b8c4fd753d598cd7621ee3e544e4ccd55fd2cdaf57"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_attention_cohort16_axil_control.sv": {
+      "bytes": 15812,
+      "sha256": "9f40db38b5aa4a78213fe0858719d2716ecee0ed3b8bb6156498afda9f2abcd1"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_attention_cohort16_local_stores.sv": {
+      "bytes": 12609,
+      "sha256": "bd7f6110dffc6b6aa302bca25f500e20fe51b818101b8c009fb28a10455a9c13"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_attention_compute_cohort16_top.sv": {
+      "bytes": 40008,
+      "sha256": "47efde7fa22651a52d1f88c10cbf99f8471b411d8e54a9ddc8c56b80d2738235"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_attention_frontend_8row.sv": {
+      "bytes": 11133,
+      "sha256": "1070958b7fdc55124ca510988b2484902ceac4b0b10d96dadef7da643954b88a"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_attention_head_group16.sv": {
+      "bytes": 6908,
+      "sha256": "c107b88729c8e09054b938ebbc7f665436913e6c84c6c2d846684b8ebcef94ea"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_attention_row_head128.sv": {
+      "bytes": 9062,
+      "sha256": "420f08aa6f1815076710278ba0e187592a358d246e76c5237a8f0d19d7c9e45c"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_axi256_dma.sv": {
+      "bytes": 8173,
+      "sha256": "e8af193a8578de15d8a57b0569bc0e6d494a01422ae0516a52b4faaf47dcb2f1"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_axi512_weight_reader.sv": {
+      "bytes": 8446,
+      "sha256": "8c2890aa8f4bd43a18283669402c9c5915f07e5f900b736ed6bb53ffea8ce0d9"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_ddr512_halfgroup_async.sv": {
+      "bytes": 6347,
+      "sha256": "b5087a8d7e67305a2d7327739d9e01e0af4e33d658faf662eb5c8d100f00c53b"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_dual_ddr_weight_frontend.sv": {
+      "bytes": 14056,
+      "sha256": "268c376abfff1f45329cebc75d728e47a7b60eb7efec01e8164c79355d787c23"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_dual_ddr_weight_group_assembler.sv": {
+      "bytes": 2542,
+      "sha256": "c0e4bf86aea8521849334a38d291bf330e54bb556e92e90e1737a4ef84b1ad9c"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_fixbit_v2_pkg.sv": {
+      "bytes": 362,
+      "sha256": "55701f021f43ef159422f34bb84ded31cf00775256862d4b6541ba6fb8289710"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_hadamard32_norm_stream.sv": {
+      "bytes": 9657,
+      "sha256": "ca86c5cc83cdd58aa45f59173e667be2454cfd9023b5243f42fb19dc96f11350"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_kv12_cache.sv": {
+      "bytes": 5684,
+      "sha256": "6ba65157d6939e7ea9b89f3790f571eb3c40665c1c0d982039b0a89104fbba77"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_kv12_quantizer.sv": {
+      "bytes": 10609,
+      "sha256": "e446820f6e3e5db387a15e3cb475b029d3d48914e08ab76b0d1075ee95179e36"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_kv12_quantizer4.sv": {
+      "bytes": 4435,
+      "sha256": "3e3fcea95d9169fdadfb81c615dc631ccf25d0a8db999cc1bb0ab169890daf98"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_linear_tile_accum_dual_s42.sv": {
+      "bytes": 35402,
+      "sha256": "498837de12135c2f91a5d30aa2b4c5c4ade8705c9451ca9a98aa5795d3660d91"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_linear_tile_accum_shard_s42.sv": {
+      "bytes": 12102,
+      "sha256": "9386edda29248bdcb67b054a798ac734c5c013cc282be19b91774b39add019bb"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_projection_core16x16_w8_reuse.sv": {
+      "bytes": 26424,
+      "sha256": "9d0b6fe5e1239f1e89d023106d3546d369afcef78ef77db1441519de4680fe06"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_pv_tile16_s43.sv": {
+      "bytes": 9175,
+      "sha256": "c957d38c5ae8a5cf88224ed88911edadeeb901a155b6ed325a84a1ac26e38afb"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_q24k12_group_dot_s40.sv": {
+      "bytes": 9163,
+      "sha256": "543532f5f24dd7ce8db8ab5378d45d441837d8af78302b92907a4c1bd406b56e"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_qk_score_row_128.sv": {
+      "bytes": 10825,
+      "sha256": "81258895e395c31b22177aad04fea494b143e135c97a3e81e37ec11204ef0bcf"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_robust_a8_quantizer.sv": {
+      "bytes": 18974,
+      "sha256": "0d280566b8a461ede6093a99cdfb4a432b6433015ec83e3b6b36ed3aa6e1f195"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_rope_pair_s24.sv": {
+      "bytes": 7742,
+      "sha256": "bddc2198340fee7462c27007913dc79e8b691e227966951eda2704e7f4a11683"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_score_accum4_s20.sv": {
+      "bytes": 4179,
+      "sha256": "3018b868a1ee15ed66be8e78c966b6ddf8ac21e1fa622de6758159824bb7c64a"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_score_group_scale_s35.sv": {
+      "bytes": 6200,
+      "sha256": "054f44f32453e52e91e951f168b82cd8290270860736a8a1faaea3887117b4f8"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_softmax_exp_u17.sv": {
+      "bytes": 5545,
+      "sha256": "10d2767d1ee90401c88612f6170629029624cbbeafb0b126b562bf899c71855c"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_softmax_prob_u16.sv": {
+      "bytes": 3727,
+      "sha256": "de633d5b3b594c7fa1720d8d30f6b3eca535229500320a4b8acf6beb827cc880"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_softmax_recip_u17.sv": {
+      "bytes": 2894,
+      "sha256": "89d39d95754880b8271d2045d3aabff3f7d95056e5b330a4df4a07f6ab28a3dd"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_softmax_row_128.sv": {
+      "bytes": 11981,
+      "sha256": "54985a99ca840f54711b57730d83335ea3ecaebc5d7d4adb684abbf7db74fa11"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_tensor24_buffers.sv": {
+      "bytes": 13330,
+      "sha256": "fd83206f4bdf0750bac85af685da026bedd173800956ecdf3ca9de48a88f5890"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_tensor24_cohort16_buffers.sv": {
+      "bytes": 8503,
+      "sha256": "063d705e6703127476bed192b28b9fdb392a0bf5b7432b0dd0717e8f0aa92890"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_u16_div_u8_seq.sv": {
+      "bytes": 2316,
+      "sha256": "08b912c2261f1bd637dd940087789b373da9f0eb64eeead3b8432b63ad01fd05"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_unsigned_div_seq.sv": {
+      "bytes": 2651,
+      "sha256": "ec0b29d9d627d4dde2aa7727a8c7a08d0d0af066ce5cbb694f3f45410e68873b"
+    },
+    "deploy/vendor/hardware/rtl/attention/hap_weight_meta_resident.sv": {
+      "bytes": 7299,
+      "sha256": "55f3e8ef6e16933bbfea9c6e76fb47f5f1015d5a1bf5de69323d319cc44501f3"
+    },
+    "deploy/vendor/hardware/rtl/attention/vcu118_pcie_refclk_ibuf.v": {
+      "bytes": 789,
+      "sha256": "c482c3d10df53837c8fd3faaee2006671fbb990c21aabf7121567e7256e050c3"
+    },
+    "deploy/vendor/hardware/rtl/board/hap_v5_dual_async_ready_gate_xpm.sv": {
+      "bytes": 1206,
+      "sha256": "5f9e48fe2ad75a2e46a41390ec7493081fdcc84e6e5368c3a413bdfaf20e955c"
+    },
+    "deploy/vendor/hardware/rtl/board/hap_v5_reset_gate_xpm.sv": {
+      "bytes": 1178,
+      "sha256": "74d171626195b2fbd49779ec19e762c4258ed766237175687faa037c6755e42d"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_attention_mlp_axil_router.sv": {
+      "bytes": 7336,
+      "sha256": "9ba259521c16782a397b21ee7878919c347200942a2fbe21b084f800c2d20878"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_attention_mlp_board_core_gu_only.sv": {
+      "bytes": 16403,
+      "sha256": "ecaf60a4a484dbb9358fd0d578a485db98d6a8f406c5e494a0d3d0f9ef5116f8"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_attention_mlp_production_core_gu_only.sv": {
+      "bytes": 36271,
+      "sha256": "2d173c0a94dd4cb5a0a7368b72c9c32cca1b3b0ce5071cb879278be17004f1b5"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_attention_mlp_resource_top_gu_only.sv": {
+      "bytes": 13099,
+      "sha256": "fa07ed51a21660f9ab2601d553a4143e6ce8eaeef8cf76e3dc288c035ef9a1b4"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_axi256_3to1_arbiter.sv": {
+      "bytes": 5751,
+      "sha256": "ad475b1c07615838a09f58aec9ff614e02496e71cd022929e4e4b864e7f18f3f"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_axi256_dedicated_data_router.sv": {
+      "bytes": 6570,
+      "sha256": "8c50e17c0f5456d074f42eeeaf9f2e1963b35efe00d703f3a02f1a6887f98c6c"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_axi512_dual_engine_dedicated_read.sv": {
+      "bytes": 29820,
+      "sha256": "526c2d2cb6c084b51a629ed44a09dcc0f0fa46d23595895270a6d9b0a4f59d5b"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_axi512_paired_2client_read_wrr.sv": {
+      "bytes": 46003,
+      "sha256": "2d85b53416bb54403fb5b1e2acf49e72e37b8ca244294a736fdd4cf3a3b16551"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_mlp_axil_control.sv": {
+      "bytes": 29485,
+      "sha256": "833ff5f9fec2779359ac5561897e2c06e7bd66af16b2b94438feb5d97b2ae399"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_mlp_gu_axil_control.sv": {
+      "bytes": 18206,
+      "sha256": "b44ddc7f0d4b558be00e53001962c6f9fab7d4ec4a2b5fa294448fc4557f75e7"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_mlp_gu_job_control.sv": {
+      "bytes": 10813,
+      "sha256": "f4b3d042929d795838acde592d2f4e0bb689d6c6cc6b8c1329525f7bd437cc02"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_mlp_gu_meta_dma_loader.sv": {
+      "bytes": 5416,
+      "sha256": "6678af179a3519c0bae52ec0f88c23f14ef28d690d35fd23388b9cd340f07ea4"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_mlp_gu_metadata_scheduler.sv": {
+      "bytes": 4160,
+      "sha256": "2fd52ade7384f8bdf635e9cd7facdd814b4171e8e7665f47cf68ec66c7e85ac4"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_mlp_gu_tensor_dma.sv": {
+      "bytes": 8975,
+      "sha256": "47e7e6e06ccff8b93247ce5b6f1b621560e9cc7fb78243b4c0fccede536fb363"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_mlp_linear_axi256_dma.sv": {
+      "bytes": 9283,
+      "sha256": "ce379a1959364de5bb7b127505ed93d77829e4d8ed3e9195589d625ec559d2a9"
+    },
+    "deploy/vendor/hardware/rtl/integration/hap_v4_ddr_mode_controller.sv": {
+      "bytes": 4363,
+      "sha256": "7010f648921d9a143e0c8c27b7f6b019537b1f256eb09405628a3c5acc0e20b8"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_a8w4_group32_pack2_s17.sv": {
+      "bytes": 10056,
+      "sha256": "25dfc4968c8cebabbe5e0ba54ec0a2e331784b63a26f6426f57561e6e69f8a07"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_a8w4_gu_group32_lane2_s37.sv": {
+      "bytes": 18917,
+      "sha256": "7ff52df62c1ad0c3910d61335fecd1a5dec2f422a31fd1bb825b76cd38f5a899"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_a8w4_gu_slice8x12_group_s37.sv": {
+      "bytes": 11232,
+      "sha256": "98f6d526fc349d0a6c5441b20f6aa05bc0178c16756231e12f94859c87862f8b"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_a8w4_pack2_dsp.sv": {
+      "bytes": 4495,
+      "sha256": "66c256b441831789c898158e7b54304c0c0f307582cc6a05a0d65cc520e71fdc"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_a8w4_scalecode_recover2_lut.sv": {
+      "bytes": 3225,
+      "sha256": "18a2bad1a3b7df345abfaf3428a8a5bec245d9580dc3b336e6153736a23a9f6a"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_axi512_w4_weight_reader.sv": {
+      "bytes": 10344,
+      "sha256": "82cf3ce3404bc4d8bac457e82b8e9f8256951a225586023f74c2c1c28632fb69"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_ddr512_w4_halfgroup_async.sv": {
+      "bytes": 5361,
+      "sha256": "dfefee0beacc8364c65333bf54f1f5593a1b59c7c26510229556766bd1d399fa"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_mlp_gate_up_gather_pingpong12.sv": {
+      "bytes": 28198,
+      "sha256": "f1bb66caa61fe90f3c01aac93ab6cb5692d075ccc2b9b46a75f0ad2d2108f6a3"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_mlp_gu_cache16.sv": {
+      "bytes": 3510,
+      "sha256": "519c632f4dd99b29125be05bcef993c393e8bd890ee05bd6beb5a4f8eca0b4c0"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_mlp_gu_compute16_s44.sv": {
+      "bytes": 20442,
+      "sha256": "2d013fdb929d4084d4df529114103cd8509ffb7f1d337d5f22cdf17331588591"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_mlp_gu_dual_slice16x12_s44.sv": {
+      "bytes": 109492,
+      "sha256": "14b8b63b000ff9b8afb03763c12b04846b1c3d0ad7dbd34d282d126fedd24c93"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_mlp_gu_rec576_parser.sv": {
+      "bytes": 3110,
+      "sha256": "1e2461d5585a6125a6beb3feabeac3469f71c8d1a41e2a265257ba53478dc4b3"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_mlp_gu_weight_meta_resident_ab.sv": {
+      "bytes": 14567,
+      "sha256": "1573156561e58bc2e69898bc5c16b8fd00c8205b6603cfced8407c567504fa8f"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_mlp_linear_gate_up_scheduler16_s24.sv": {
+      "bytes": 25780,
+      "sha256": "cddead1e7c28980999bdab64fc1ed29f55eabbb0aa8828c0282127ab80ce9faf"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_mlp_projection_repack12_to16_s24_history2.sv": {
+      "bytes": 12744,
+      "sha256": "4056e00b7e29b85a3053a60ced559b67814147863002f9ce7a43bde1f5ae64dd"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_mlp_tile_accum_s37.sv": {
+      "bytes": 13337,
+      "sha256": "3f29399609b73578fd96768ccf2383d61e3282c96f99781f5eac3a743db4b458"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_mlp_w4_dual_channel_join.sv": {
+      "bytes": 2389,
+      "sha256": "7a2970c491abe4cb1a226a8bde20ed33a34e7223eab19cdbc1073c223917a709"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_mlp_w4_dual_ddr_frontend.sv": {
+      "bytes": 22049,
+      "sha256": "ea7e9ecc9e1c49932be9a8f4a56ffa3f5a8fe0a96383846deba92dc03d7ff0c2"
+    },
+    "deploy/vendor/hardware/rtl/mlp/hap_mlp_w4_repack48_to12.sv": {
+      "bytes": 22262,
+      "sha256": "7b72ab2c79a2b3e906a7d45ffd13041dd2b16dafb5c7c834c8976d74c19a3003"
+    },
+    "deploy/vendor/hardware/source/mlp_gu_only/debug_endpoint_reference.json": {
+      "bytes": 132898,
+      "sha256": "f324c7b55db083ea41b4161719b6e71fadcfc527c5eeb639b38e9bf71c56031e"
+    },
+    "deploy/vendor/hardware/source/mlp_linear/abi_gu_only.json": {
+      "bytes": 50107,
+      "sha256": "318cf64064354aed52943fd21909aa8b67f11ca8fb565a37c65441d522d4938a"
+    },
+    "deploy/vendor/hardware/vivado/constraints/attention_mlp_vcu118_board_v5.xdc": {
+      "bytes": 607,
+      "sha256": "173199c8841e6084e2e236efbe69d0bd77809ae174caba4480b46f287b785600"
+    },
+    "deploy/vendor/hardware/vivado/constraints/board_clock_domains.xdc": {
+      "bytes": 531,
+      "sha256": "7cda6ba313ed4a450ccccd7533399261d00c05f315e346f67a5954b6c3a3e87f"
+    },
+    "deploy/vendor/hardware/vivado/constraints/ddr_timing_recovery.xdc": {
+      "bytes": 549,
+      "sha256": "16d9fc7418ba2a3562ec82eb4c6de085994ca75adf5084d5276f7797e09522e4"
+    },
+    "deploy/vendor/hardware/vivado/constraints/mlp_linear_physical.xdc": {
+      "bytes": 224,
+      "sha256": "05d09a454165985c2cad54738bfd092a523ba590cd0ce014df05899809f2f441"
+    },
+    "deploy/vendor/hardware/vivado/constraints/vcu118_ddr4_explicit_pins.xdc": {
+      "bytes": 44590,
+      "sha256": "691f1931da1cee3813d1a259ba318f82e1215d7bdfaa5012b13a3b79caec304d"
+    },
+    "deploy/vendor/hardware/vivado/manifests/attention_board_cohort16_sources.list": {
+      "bytes": 1901,
+      "sha256": "c061c432c85608d8f386b7c92ed491b77a68c7ab8fac1684aceca288db904ca7"
+    },
+    "deploy/vendor/hardware/vivado/manifests/mlp_gu_only/board.list": {
+      "bytes": 166,
+      "sha256": "d05818bb9f5ef84f08aec5966b69dd6151aaff0e50993ca9f91e7396090a61d6"
+    },
+    "deploy/vendor/hardware/vivado/manifests/mlp_gu_only/compute.list": {
+      "bytes": 721,
+      "sha256": "05a8b915ff6bc89bcfa8d4c70c9f277a160a5b1db4f07d9ee20fd427d38e8a80"
+    },
+    "deploy/vendor/hardware/vivado/manifests/mlp_gu_only/production.list": {
+      "bytes": 910,
+      "sha256": "6578039cc447929da9746ed638f786c70b8b8bb02fe68825ff62eebc7403b9f9"
+    },
+    "deploy/vendor/hardware/vivado/scripts/build_mlp_gu_board.tcl": {
+      "bytes": 31088,
+      "sha256": "5d828142f5834873b28f3a621fc829caa9492778eeea0572e646d6264a9d58fd"
+    },
+    "deploy/vendor/hardware/vivado/scripts/create_mlp_gu_board.tcl": {
+      "bytes": 41772,
+      "sha256": "079ffb0e705c1e176b2474f93a020bf1900867f854ebe99d33240854cdaeaeeb"
+    },
+    "deploy/vendor/hardware/vivado/scripts/generate_mlp_gu_csr.py": {
+      "bytes": 12386,
+      "sha256": "f9c87f0a32ba7809dd14f7ab73503ca3331a652e5448532604289b11b6ce070c"
+    },
+    "deploy/vendor/hardware/vivado/scripts/m006_gu_entry.py": {
+      "bytes": 9156,
+      "sha256": "1b1887ba1c3bcc457c530dce47e42a64b21078dbff806e2400e837e730202dbe"
+    },
+    "deploy/vendor/hardware/vivado/scripts/m006_system_python.tcl": {
+      "bytes": 272,
+      "sha256": "a0895d17f6476a204adfc1c6926cf3111c9bae978058205b3b8a5d1db01d6008"
+    },
+    "deploy/vendor/hardware/vivado/scripts/run_mlp_gu_board.py": {
+      "bytes": 21736,
+      "sha256": "a8aebb72c151af25c6f62031d09699e915b45ea674f2b1a79338a4089d756385"
+    },
+    "deploy/vendor/hardware/vivado/scripts/run_mlp_gu_sim.py": {
+      "bytes": 6587,
+      "sha256": "fb76c20ae7f45354e63f0fcedbec644e7eb5374a093e5eb0b63b66279434c863"
+    },
+    "deploy/vendor/hardware/vivado/scripts/run_mlp_gu_syntax.py": {
+      "bytes": 4729,
+      "sha256": "b406cce67e9c17c8231a9e7ff6f7523d8378928a65d7009a6c44072bedf30f0e"
+    },
+    "deploy/vendor/hardware/vivado/scripts/run_mlp_linear_board.py": {
+      "bytes": 21602,
+      "sha256": "43819703f5fa9660660e575212c8a7cd6a623b067a41c9fa147aaaffac51a73c"
+    },
+    "deploy/vendor/mission/M006_mlp_linear_only_hardware/attention_baseline.json": {
+      "bytes": 5743,
+      "sha256": "74e9d9a01392c9515451aa56a5f95782634695dcf7fbadd82905588029a5cb9b"
+    },
+    "deploy/vendor/runtime/attention_backend.py": {
+      "bytes": 14160,
+      "sha256": "ba93d1a0733c6dadd91c50526418392d0c73abfaaeb0eac23fcbc697b64635e3"
+    },
+    "deploy/vendor/runtime/evidence.py": {
+      "bytes": 1791,
+      "sha256": "5c8ec28c727238f2bea6dc10f5c3bf0dc625e5aaa608e99267cc59d8a27ce142"
+    },
+    "deploy/vendor/runtime/gu_backend.py": {
+      "bytes": 3114,
+      "sha256": "4f50b070d8c5f8a4e0cb8d896a58e8de59b07c61e8d86bf6cfeaae7a5925f599"
+    },
+    "deploy/vendor/runtime/host_math.py": {
+      "bytes": 6709,
+      "sha256": "00d270fb23e7af2cb11d1d75a644bbe1edc742566e096f9300efb447db5b1283"
+    },
+    "deploy/vendor/runtime/native_trace_wrapper_boundary.py": {
+      "bytes": 8160,
+      "sha256": "fb7e2c413fce117c60d93147136d3571a30ef2d1f0f2167bba9313bf6006ab65"
+    },
+    "deploy/vendor/runtime/numeric_reference/core.py": {
+      "bytes": 10647,
+      "sha256": "3ee27f1da8f4cbb66e19c14520ce2ac3343150df1057a4eb4126f6118dba705a"
+    },
+    "deploy/vendor/runtime/numeric_reference/reference.py": {
+      "bytes": 14696,
+      "sha256": "2d3406e0425c469b19e2a7bbe4bcd0b3099a6b7c2aeae9955057e70042db7d61"
+    },
+    "deploy/vendor/runtime/resource_guard.py": {
+      "bytes": 2161,
+      "sha256": "82f0f9ad0c6a12931399ae9ba3fd1529f0415b73b3de46826113ccedd19d050f"
+    },
+    "deploy/vendor/runtime/run_inference.py": {
+      "bytes": 17573,
+      "sha256": "e1f627149909238b5a75d3145ff143a9d813c5adebcfa53f46e0b1e4c803c074"
+    },
+    "deploy/vendor/runtime/scalellm_windows_xdma.py": {
+      "bytes": 18234,
+      "sha256": "ff64ca61a9bb1345d55fd805e4c43f67c13538de1f58db60580453e1a369fa91"
+    },
+    "deploy/vendor_manifest.json": {
+      "bytes": 39062,
+      "sha256": "88c078a7d90400252b2c7f9fb61cbcfc1678bdec9a018c999a46e3cdec335ecd"
+    },
+    "deploy/write_bitstream.tcl": {
+      "bytes": 741,
+      "sha256": "edd1ca681c11a5d00b059dc425ef6d735389abbe58a11343120561198f8a78bf"
+    },
+    "docs/BUILD_HARDWARE.md": {
+      "bytes": 4498,
+      "sha256": "60767470a32f620b3123663ea26f7a5698c4162b6cacad304623e514374798e8"
+    },
+    "docs/DEPLOYMENT.md": {
+      "bytes": 9567,
+      "sha256": "53093f6d6bedd547ed267320880701ae4cf3be6bc02b0180abea56e799ef6443"
+    },
+    "tests/test_deployment.py": {
+      "bytes": 5721,
+      "sha256": "e8417cbc3cd68f2be7fbaab3c28f6926fdc06a67bc578d3a192552d1f5ec1c4b"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "scope": "FPGA compute counters only; no Host, PCIe, output verification or evidence-writing time",
+  "summary_sha256": "2309ea2b75f4fda67df1f53f31406fbaf75722f5eef9a23eddf0078eb4600af5",
+  "frequency_hz": 100000000,
+  "generated_tokens": 4,
+  "attention_commands": 128,
+  "gu_commands": 128,
+  "total_cycles": {
+    "attention_compute_cycles": 107629882,
+    "gu_compute_cycles": 94089137,
+    "gu_load_cycles": 1065331,
+    "gu_store_cycles": 94101302,
+    "gu_stall_cycles": 92911523
+  },
+  "attention_mean_ms": 8.408584531250002,
+  "gu_compute_mean_ms": 7.350713828125,
+  "measured_attention_sum_seconds": 1.07629882,
+  "measured_gu_compute_sum_seconds": 0.94089137,
+  "serial_compute_work_seconds_per_new_token": 0.5042975475,
+  "serial_compute_equivalent_tokens_per_second": 1.9829563022017274,
+  "two_cohort_zero_host_layer_pipeline": {
+    "status": "CONDITIONAL_ESTIMATE_NOT_MEASURED_THROUGHPUT",
+    "formula": "sum over layer pairs: A0 + max(A1, GU0) + GU1",
+    "seconds": 1.54676484,
+    "aggregate_tokens_per_second": 2.586042749717533,
+    "gu_load_store_proxy_tokens_per_second": 2.5770660322273704
+  },
+  "independent_ready_stream_service_upper": {
+    "status": "IDEAL_UPPER_BOUND_NOT_MEASURED_THROUGHPUT",
+    "formula": "generated_tokens / max(sum_attention_compute, sum_gu_compute)",
+    "aggregate_tokens_per_second": 3.716440012449331
+  },
+  "limits": [
+    "Attention compute excludes board-level metadata/RoPE/input/output DMA.",
+    "Compute counters include internal memory-supply waits and backpressure.",
+    "GU store and stall overlap compute; never add all four GU counters.",
+    "This bit lacks a shared compute timestamp/overlap counter; actual overlap union is not recoverable.",
+    "Each command processes one 16-row prefix of one request; each full 32-layer forward yields one new token.",
+    "The 16 rows cannot be counted as 16 independent new tokens.",
+    "Persistent KV incremental decode and multi-request row packing are not implemented by this fixed bit."
+  ],
+  "commands_csv_sha256": "6624c88489b3476d93ddf3832eb396a69c8636f07bdd755e3885476482854f13"
+}

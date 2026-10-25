@@ -1,0 +1,66 @@
+{
+  "verdict": "FULL_RUN_FAILED",
+  "event": "GU watchdog while next-layer metadata load overlapped cohort1",
+  "utc": "2026-10-25T07:40:54.259537+00:00",
+  "run_summary_sha256": "a3a7a38704fad2483c725f8743fc0b4512807acfc6e4879af6e53f9b4c731579",
+  "counts": {
+    "attention_commands": 2,
+    "epoch_releases": 0,
+    "gu_commands": 1,
+    "host_down_tasks": 0
+  },
+  "first_error_type": "RuntimeContractError",
+  "first_error_message": "GU hardware reset_required; preserve DONE before external recovery",
+  "owner_at_failure": {
+    "attention_pending": null,
+    "failed": "RuntimeContractError('GU hardware reset_required; preserve DONE before external recovery')",
+    "fpga_lease": [
+      0,
+      719180032,
+      132
+    ],
+    "gu_pending": {
+      "buffer_generation": 719180038,
+      "buffer_id": 3,
+      "cohort_id": 1,
+      "command_id": 719180037,
+      "down_half0_base": 0,
+      "down_half1_base": 0,
+      "epoch_id": 719180032,
+      "layer_id": 0,
+      "metadata_generation": 132,
+      "opcode": 1,
+      "request_id": 719180031
+    },
+    "host_leases": [
+      [
+        0,
+        0
+      ]
+    ]
+  },
+  "snapshot": {
+    "attention": {
+      "0x4c": 0,
+      "0x78": 719180031,
+      "0x7c": 719180034,
+      "0x80": 196609,
+      "0x84": 0,
+      "0x88": 3,
+      "0xc": 24
+    },
+    "gu": {
+      "0x14c": 18,
+      "0x178": 3,
+      "0x324": 2071,
+      "0x338": 719180037,
+      "0x33c": 719180031,
+      "0x350": 8704,
+      "0x368": 719180032,
+      "0x370": 0
+    }
+  },
+  "handles_closed": true,
+  "automatic_reset_or_retry": false,
+  "scope": "Fault retained; no throughput result or full-run numerical PASS; software repair and explicit recovery boundary required"
+}

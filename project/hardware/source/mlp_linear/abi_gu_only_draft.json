@@ -1,0 +1,327 @@
+{
+  "schema_kind": "mlp_gu_only_control_contract_draft",
+  "schema_version": 1,
+  "contract_revision": "gu-only-draft-2",
+  "status": "SUPERSEDED_BY_AUTHORIZED_CONTRACT",
+  "date": "2026-10-24",
+  "owner": "A021",
+  "base_contract": {
+    "path": "abi.json",
+    "sha256": "6fc3662574ef951c30883bb2415292fe4d49de812bcb83947a91691080eb7633",
+    "unchanged": true
+  },
+  "production_use": "Historical increment only. Consume complete frozen abi_gu_only.json for implementation.",
+  "model_semantics": "Keep all 32 Down projections on Host with existing format05 integer arithmetic and original validated weight bytes; remove only FPGA Down implementation.",
+  "ids": {
+    "numeric_format": 1211647493,
+    "memory_layout": 1295003698,
+    "mlp_control_abi": 458752,
+    "linear_abi": 1296826370,
+    "buffer_layout": 1,
+    "weight_layout": 1463043637
+  },
+  "capabilities": {
+    "register": 772,
+    "value": 29,
+    "bits": {
+      "0": "GATE_UP",
+      "1": "DOWN_UNSUPPORTED_ZERO",
+      "2": "COHORT16",
+      "3": "A8_REC576",
+      "4": "GU_INTERLEAVED"
+    },
+    "reserved_bits_zero": true
+  },
+  "shape": {
+    "rows": 16,
+    "hidden": 4096,
+    "intermediate": 14336,
+    "group": 32,
+    "layers": 32,
+    "cohorts": 2,
+    "max_cache_groups": 128,
+    "physical_branches": 2,
+    "branch_rows": 8,
+    "branch_columns": 12,
+    "packed_multiplier_dsps": 3072,
+    "enforce_production_shape": true
+  },
+  "physical_memory": {
+    "attention_channel": 0,
+    "mlp_gate_up_channel": 1,
+    "logical_half0_and_half1_share_engine_physical_channel": true,
+    "routing_fabric_partition_guaranteed": false,
+    "tensor_memory": {
+      "physical_channel": 1,
+      "local_limit_exclusive": 2147483648,
+      "host_aperture_base": 2147483648,
+      "tensor_base": 268435456,
+      "slot_stride": 8388608,
+      "slot_count": 6,
+      "admission": "exact_canonical_base_by_opcode_and_buffer_id",
+      "cohort_slot_rule": "buffer_id//3==cohort_id",
+      "weight_bases": [
+        0,
+        29360128
+      ],
+      "address_check_bits": 33,
+      "unused_old_down_slot_offsets": [
+        3145728,
+        4194304
+      ]
+    },
+    "active_weight_bases": [
+      0,
+      29360128
+    ],
+    "down_weights_fpga_staged": false
+  },
+  "supported_opcodes": [
+    {
+      "name": "GATE_UP",
+      "value": 1,
+      "input_groups": 128,
+      "input_bytes": 73728,
+      "input_beats": 2304,
+      "output_records": 1792,
+      "output_record_bytes": 768,
+      "output_bytes": 1376256,
+      "output_beats": 43008,
+      "weight_records": 229376,
+      "compute_passes": 305920,
+      "gate_meta_records": 229376,
+      "down_meta_records": 0,
+      "input_offset": 0,
+      "output_offset": 1048576
+    }
+  ],
+  "rejected_opcodes": {
+    "all_except": 1,
+    "error_name": "BAD_OPCODE",
+    "error_code": 4112,
+    "action": "admission rejection: no DMA, compute, metadata fetch, cache owner or completion; preserve active/DONE and first ADMISSION_ERROR",
+    "validate_full_opcode_bits": 32,
+    "higher_priority_rejections": "Preserve fault/maintenance/busy/unacked-DONE priority before opcode validation; BAD_OPCODE applies when healthy admission reaches opcode validation."
+  },
+  "descriptor": {
+    "bits": 544,
+    "packing": "field0_lsb_first_32bit_words",
+    "field_layout_unchanged": true,
+    "reserved_zero_words": [
+      "down_half0_base",
+      "down_half1_base"
+    ],
+    "nonzero_reserved_descriptor_error": "BAD_ADDRESS",
+    "gu_fields_unchanged": true
+  },
+  "csr_overrides": [
+    {
+      "offset": 260,
+      "name": "MLP_ABI_VERSION",
+      "access": "RO",
+      "value": 458752
+    },
+    {
+      "offset": 768,
+      "name": "MLP_LINEAR_ABI_ID",
+      "access": "RO",
+      "value": 1296826370
+    },
+    {
+      "offset": 772,
+      "name": "MLP_CAPABILITIES",
+      "access": "RO",
+      "value": 29
+    },
+    {
+      "offset": 308,
+      "name": "DOWN_HALF0_BASE",
+      "access": "RW_ZERO_ONLY",
+      "value": 0
+    },
+    {
+      "offset": 312,
+      "name": "DOWN_HALF1_BASE",
+      "access": "RW_ZERO_ONLY",
+      "value": 0
+    },
+    {
+      "offset": 368,
+      "name": "META_DOWN_BASE",
+      "access": "RW_ZERO_ONLY",
+      "value": 0
+    },
+    {
+      "offset": 356,
+      "name": "META_DOWN_COUNT_BANK0",
+      "access": "RO",
+      "value": 0
+    },
+    {
+      "offset": 360,
+      "name": "META_DOWN_COUNT_BANK1",
+      "access": "RO",
+      "value": 0
+    },
+    {
+      "offset": 596,
+      "name": "META_DMA_DOWN_COUNT",
+      "access": "RO",
+      "value": 0
+    },
+    {
+      "offset": 684,
+      "name": "DOWN_SATURATION_COUNT",
+      "access": "RO",
+      "value": 0
+    }
+  ],
+  "zero_only_policy": "Apply WSTRB merge; any effective nonzero value returns SLVERR without side effects. Reads always zero. Other action/RO policies inherit base.",
+  "metadata": {
+    "physical_banks": [
+      "gate_bank0",
+      "gate_bank1"
+    ],
+    "records_per_bank": 229376,
+    "record_bytes_on_ddr": 32,
+    "load_bytes": 7340032,
+    "down_records": 0,
+    "expected_uram_blocks": 448,
+    "expected_count_after_commit": 229376,
+    "old_dual_metadata_load_not_supported": true,
+    "commit": "valid GU count and bank/generation checks only; preserve inactive-bank load and commit/drain guards; no Down completion wait",
+    "effective_record_bytes": 28,
+    "effective_load_bytes": 6422528,
+    "padding_check": {
+      "host": "strict original artifact validation; bytes28..31 must be zero",
+      "hardware": "GU-only loader must validate beat[255:224]==0, not truncate silently",
+      "first_error": 8480,
+      "effect": "Apply metadata_fault_policy; do not confuse no-active-job no-DONE rule with failure completion owed to an accepted GU owner."
+    }
+  },
+  "epoch": {
+    "bind": [
+      "epoch_id",
+      "layer_id",
+      "active_metadata_bank",
+      "active_metadata_generation",
+      "gate_half0_base",
+      "gate_half1_base"
+    ],
+    "invalidation": [
+      "hard_clear",
+      "core_reset",
+      "active metadata bank or generation changed"
+    ],
+    "preserved_by": [
+      "job_clear",
+      "ACK"
+    ],
+    "preconditions": "inherit base for GU-only physical paths and valid GU metadata; Down base words must be zero",
+    "fpga_weight_lease_release": "both cohort GU completions successful, identity-matched ACK, physical paths drained and GU output copied to Host-owned buffers",
+    "host_down_lease": "independent immutable layer-specific Down artifact handle and GU/activation buffers remain owned until CPU Down/residual consumers finish"
+  },
+  "clear_fault_completion": "Inherit base first-error, fatal upgrade, transport drain, immutable unacked DONE, admission preservation, ACK/epoch and Attention isolation rules; remove nonexistent Down predicates only.",
+  "host_down": {
+    "preprocess": "frozen SiLU ROM + exact multiply + wide H32 + checked S35 minmax A8/ScaleCode, once",
+    "groups": 448,
+    "input_rows": 16,
+    "output_columns": 4096,
+    "integer_dot": "sum32((q_u8-zp_u8)*w_s4), checked S17",
+    "raw": "dot_s17*activation_code_u8*weight_code_u8, checked S33",
+    "shift": "sum two u6 shifts in u7; nonzero in [12,44]; signed arithmetic right shift or left shift to F24; checked S45",
+    "accumulate": "sum group0..447 in exact int64/Python integer; enforce S54 bounds, no intermediate saturation",
+    "finalize": "half-away-from-zero right shift by 8 then saturate S32/F16; same 16x4096 boundary as current FPGA DOWN",
+    "zero_path": "zero code contributes zero; retain canonical and metadata/padding validation",
+    "forbidden_substitutions": [
+      "FP32/TF32 matmul as exact reference",
+      "requantizing original weights",
+      "dropping Down projection",
+      "rounding each partial sum",
+      "changing group or column order"
+    ],
+    "macs_per_cohort": 939524096,
+    "performance_status": "NOT_MEASURED",
+    "scalar_oracle_scope": "bounded output columns with all448groups and boundary cases; do not run full0.94G MAC scalar Python for every regression",
+    "full_shape_validation": "optimized blocked int64 vs independent efficient integer reference on production outputs and real artifacts; both checked against bounded scalar oracle",
+    "mac_count_scope": "Down dot only, per16row cohort perlayer; excludes preprocessing, decoding, scale recovery and movement"
+  },
+  "artifacts": {
+    "weight_layout_id": 1463043637,
+    "numeric_format_id": 1211647493,
+    "original_down_artifact_bytes_required": true,
+    "runtime_abi_separate_from_weight_identity": true,
+    "base_strict_validation_preserved": true
+  },
+  "known_removed_scope_current_synth": {
+    "source": "m006_linear_AT004_synth/utilization_hierarchical.rpt",
+    "scope": "nonoverlapping Down scheduler, 2 S54 accumulators, 2 Down output queues, 2 Down metadata banks",
+    "lut": 60468,
+    "ff": 47398,
+    "ramb36": 192,
+    "uram": 224,
+    "dsp": 1,
+    "new_net_savings_claim": false
+  },
+  "cache": {
+    "old_groups": 448,
+    "new_groups": 128,
+    "bits_per_row_record": 280,
+    "old_logical_bits": 2007040,
+    "new_logical_bits": 573440,
+    "ramb36_savings_guaranteed": false,
+    "read_contract": "full 16-row group response; reject group>=128; no silent timing/throughput change",
+    "count_must_represent": 128,
+    "range_check": "Validate full 9bit group <128 before narrowing RAM address to7bits; group128 must not alias0."
+  },
+  "kernel_specialization": {
+    "first_step": "remove Down-only instances and interfaces, constant GU mode, preserve validated GU math",
+    "second_step": "dedicated GU guard37 path and queues, remove Down tag/tile/S45-only storage; independent equivalence against base GU required",
+    "dsp_reduction_expected_from_removed_down_matrix_alone": false,
+    "warning": "DOWN_MODE_ENABLE=0 in the current lane still declares45bit guard memory and mode/tag paths; prove actual GU37bit specialization",
+    "guard_alignment": "Sign-extend S33 before left shift; arithmetic right shift; preserve S37 overflow and format counters; no per-group rounding."
+  },
+  "validation_required": [
+    "GU bitwise equivalence including tails/shift/zero/backpressure",
+    "new ABI/caps and DOWN/no-side-effect rejection",
+    "GU-only metadata exact count/epoch/clear/fatal recovery",
+    "independent scalar Host Down vs optimized implementation, all 448 groups and overflow/rounding edges",
+    "production-shape selected hierarchy has no Down accumulator/queue/scheduler/metadata banks/repack",
+    "same-phase whole-board resource and SLR/routing/timing/DRC/CDC evidence",
+    "real-artifact full-layer and 32-layer Host scheduling/residual integration",
+    "full32bit opcode high-bit rejection with original priority",
+    "cache group128 no alias; counter can represent128",
+    "GU weightmetadata 4byte padding hardware rejection/drain",
+    "reserved Down CSR partial/zero WSTRB effective merge rules"
+  ],
+  "implementation_status": "NOT_STARTED_BY_THIS_DRAFT",
+  "standalone_design": "../../../../PRO_plan/ScaleLLM_MLP_Gate_Up_Only_Dual_DDR_Design.md",
+  "design_version": "GU-only v1.0-draft.2",
+  "implementation_gates": {
+    "physical_depends_on": [
+      "G0 newsource/ABI identity",
+      "G2 staticDownremoval",
+      "G3 GU37bit equivalence",
+      "G4R realhardware GU integration/fault coverage"
+    ],
+    "physical_not_blocked_by": [
+      "G4H complete32layer Host application",
+      "optimized CPU Down throughput"
+    ],
+    "evidence_separation": "A staticDownremoval/GU specialization first; B GU control locality only after new bounded resource/connectivity evidence; no repeated blind full implementation"
+  },
+  "superseded_by": "abi_gu_only.json",
+  "metadata_fault_policy": {
+    "error_name": "METADATA_BANK_OR_DMA",
+    "error_code": 8480,
+    "classification": "existing_global_MLP_fatal_fail_closed",
+    "target_loading_bank": "invalidate target bank and prevent commit/activation; stop metadata record commits and drain accepted AXI",
+    "active_bank": "inactive-load fault does not directly rewrite active bank bytes, generation or selection",
+    "epoch": "invalidate current epoch qualification immediately on metadata fatal; no new admission or commit until controlled recovery",
+    "no_accepted_job": "do not manufacture DONE from CSR or stale descriptor",
+    "accepted_active_gu": "preserve first error or latch0x2120; create the real owner failure DONE once under original fatal rules; reset_required=1; retain/drain accepted transactions",
+    "existing_unacked_done": "preserve valid, identity, first error and all frozen counters; only upgrade reset_required; same-edge fatal rejects ACK",
+    "recovery": "existing trusted transport barrier before hard_clear; revoke resident validity and epoch; Host reload/commit valid GU bank and publish a fresh epoch; framing/global_freeze may require core reset",
+    "attention": "retain existing shared maintenance/fault protocol; ordinary GU ACK never clears Attention"
+  }
+}

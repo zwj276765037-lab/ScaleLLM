@@ -1,0 +1,248 @@
+--- a/libxdma/device.c
++++ b/libxdma/device.c
+@@ -65,6 +65,7 @@
+ #include <wdmguid.h> // required for WMILIB_CONTEXT
+ 
+ #include "device.h"
++#include "user_irq_policy.h"
+ #include "interrupt.h"
+ #include "dma_engine.h"
+ #include "xdma_public.h"
+@@ -105,6 +106,31 @@
+ 
+ // ====================== static functions ========================================================
+ 
++// Freeze the per-device policy before any WDF interrupt can be enabled.
++static NTSTATUS InitializeUserIrqPolicy(IN PXDMA_DEVICE xdma) {
++    xdma->userIrqAllowedMask = 0xFFFFFFFFUL;
++#if XDMA_GU_POLLING_9018
++    BUS_INTERFACE_STANDARD pciBus;
++    PCI_COMMON_HEADER pciHeader;
++    NTSTATUS status = WdfFdoQueryForInterface(xdma->wdfDevice,
++        &GUID_BUS_INTERFACE_STANDARD, (PINTERFACE)&pciBus,
++        sizeof(BUS_INTERFACE_STANDARD), 1, NULL);
++    if (!NT_SUCCESS(status)) {
++        return status;
++    }
++    ULONG bytesRead = pciBus.GetBusData(pciBus.Context, PCI_WHICHSPACE_CONFIG,
++        &pciHeader, 0, PCI_COMMON_HDR_LENGTH);
++    pciBus.InterfaceDereference(pciBus.Context);
++    if (bytesRead != (ULONG)PCI_COMMON_HDR_LENGTH) {
++        return STATUS_INVALID_DEVICE_REQUEST;
++    }
++    if (pciHeader.VendorID == 0x10EE && pciHeader.DeviceID == 0x9018) {
++        xdma->userIrqAllowedMask = XDMA_GU_USER_IRQ_ALLOWED_9018;
++    }
++#endif
++    return STATUS_SUCCESS;
++}
++
+ // Get the XDMA IP core version
+ static XDMA_IP_VERSION GetVersion(IN OUT PXDMA_DEVICE xdma) {
+     XDMA_IP_VERSION version = xdma->configRegs->identifier & 0x000000ffUL;
+@@ -139,7 +165,8 @@
+         }
+     }
+ 
+-    // interrupts - nothing to do
++    // Default policy; InitializeUserIrqPolicy finalizes it before SetupInterrupts.
++    xdma->userIrqAllowedMask = 0xFFFFFFFFUL;
+ 
+     // user events
+     for (int i = 0; i < XDMA_MAX_USER_IRQ; i++) {
+@@ -249,6 +276,12 @@
+ 
+     xdma->wdfDevice = wdfDevice;
+ 
++    status = InitializeUserIrqPolicy(xdma);
++    if (!NT_SUCCESS(status)) {
++        TraceError(DBG_INIT, "InitializeUserIrqPolicy failed: %!STATUS!", status);
++        return status;
++    }
++
+     // map PCIe BARs to host memory
+     status = MapBARs(xdma, ResourcesTranslated);
+     if (!NT_SUCCESS(status)) {
+--- a/libxdma/device.h
++++ b/libxdma/device.h
+@@ -113,6 +113,8 @@
+     XDMA_EVENT userEvents[XDMA_MAX_USER_IRQ];
+ 
+     // available user and channel interrupts
++    // Fixed before interrupt creation; never derived from transient hardware enable.
++    ULONG userIrqAllowedMask;
+     ULONG userMax;
+     ULONG h2cChannelMax;
+     ULONG c2hChannelMax;
+--- a/libxdma/interrupt.c
++++ b/libxdma/interrupt.c
+@@ -380,7 +380,8 @@
+     EXPECT(irq != NULL);
+     EXPECT(irq->regs != NULL);
+     irq->regs->channelIntEnableW1S = 0xFFFFFFFFUL;
+-    irq->regs->userIntEnableW1S = 0xFFFFFFFFUL;
++    irq->regs->userIntEnableW1C = ~irq->xdma->userIrqAllowedMask;
++    irq->regs->userIntEnableW1S = irq->xdma->userIrqAllowedMask;
+     TraceVerbose(DBG_IRQ, "enabled ALL interrupts");
+     return STATUS_SUCCESS;
+ }
+@@ -420,7 +421,7 @@
+ 
+     // read user interrupts that are pending in the controller - flushes previous write
+     // user interrupt(s) requested?
+-    userIrq = irq->regs->userIntRequest;
++    userIrq = irq->regs->userIntRequest & irq->xdma->userIrqAllowedMask;
+     TraceVerbose(DBG_IRQ, "user EN=0x%08X RQ=0x%08X PE=0x%08X",
+                  irq->regs->userIntEnable, irq->regs->userIntRequest, irq->regs->userIntPending);
+     if (userIrq) {
+@@ -462,7 +463,7 @@
+     TraceVerbose(DBG_IRQ, "userIrqPending=0x%08X", irq->userIrqPending);
+     for (UINT i = 0; i < XDMA_MAX_USER_IRQ; ++i) {
+         XDMA_EVENT* userEvent = &irq->xdma->userEvents[i];
+-        if (irq->userIrqPending & BIT_N(i)) {
++        if (irq->userIrqPending & irq->xdma->userIrqAllowedMask & BIT_N(i)) {
+             if (userEvent->work != NULL) {
+                 userEvent->work(i, userEvent->userData);
+             }
+@@ -479,7 +480,7 @@
+     // This reference driver puts the responsibility on the user-space application to remove the 
+     // user event interrupt source condition.
+ 
+-    irq->regs->userIntEnableW1S = irq->userIrqPending;
++    irq->regs->userIntEnableW1S = irq->userIrqPending & irq->xdma->userIrqAllowedMask;
+     irq->userIrqPending = 0x0;
+     WdfInterruptReleaseLock(interrupt);
+     TraceVerbose(DBG_IRQ, "channel EN=0x%08X RQ=0x%08X PE=0x%08X",
+@@ -539,7 +540,8 @@
+     PIRQ_CONTEXT irq = GetIrqContext(Interrupt);
+     EXPECT(irq != NULL);
+     EXPECT(irq->regs != NULL);
+-    irq->regs->userIntEnableW1S = BIT_N(irq->eventId); // message id and event id are same
++    irq->regs->userIntEnableW1C = BIT_N(irq->eventId) & ~irq->xdma->userIrqAllowedMask;
++    irq->regs->userIntEnableW1S = BIT_N(irq->eventId) & irq->xdma->userIrqAllowedMask; // fixed policy
+     TraceInfo(DBG_IRQ, "event_%u enabled interrupt", irq->eventId);
+     return STATUS_SUCCESS;
+ }
+@@ -559,6 +561,9 @@
+     IRQ_CONTEXT* irq = GetIrqContext(Interrupt);
+     EXPECT(irq != NULL);
+     EXPECT(irq->regs != NULL);
++    if (!(BIT_N(irq->eventId) & irq->xdma->userIrqAllowedMask)) {
++        return FALSE;
++    }
+     // disable user event interrupt
+     irq->regs->userIntEnableW1C = BIT_N(MessageID); // message id and event id are same
+     return WdfInterruptQueueDpcForIsr(Interrupt); // schedule deferred work;
+@@ -574,14 +579,14 @@
+     EXPECT(userEvent != NULL);
+ 
+     // message id and event id are same
+-    if (userEvent->work != NULL) {
++    if ((BIT_N(irq->eventId) & irq->xdma->userIrqAllowedMask) && userEvent->work != NULL) {
+         TraceInfo(DBG_IRQ, "event_%d executing work handler", irq->eventId);
+         userEvent->work(irq->eventId, userEvent->userData);
+     }
+ 
+     // reenable interrupt
+     WdfInterruptAcquireLock(interrupt);
+-    irq->regs->userIntEnableW1S = BIT_N(irq->eventId);
++    irq->regs->userIntEnableW1S = BIT_N(irq->eventId) & irq->xdma->userIrqAllowedMask;
+     WdfInterruptReleaseLock(interrupt);
+ }
+ 
+@@ -691,7 +696,10 @@
+         TraceError(DBG_INIT, "Invalid index! %u", eventId);
+         return STATUS_INVALID_PARAMETER;
+     }
+-    xdma->interruptRegs->userIntEnableW1S = BIT_N(eventId);
++    if (!(BIT_N(eventId) & xdma->userIrqAllowedMask)) {
++        return STATUS_NOT_SUPPORTED;
++    }
++    xdma->interruptRegs->userIntEnableW1S = BIT_N(eventId) & xdma->userIrqAllowedMask;
+     return STATUS_SUCCESS;
+ }
+ 
+--- a/libxdma/libxdma.vcxproj
++++ b/libxdma/libxdma.vcxproj
+@@ -273,6 +273,14 @@
+     <ClInclude Include="trace.h" />
+     <ClInclude Include="xdma.h" />
+   </ItemGroup>
++  <PropertyGroup>
++    <ScaleLlmGuPolling9018 Condition="'$(ScaleLlmGuPolling9018)' == ''">0</ScaleLlmGuPolling9018>
++  </PropertyGroup>
++  <ItemDefinitionGroup>
++    <ClCompile>
++      <PreprocessorDefinitions>XDMA_GU_POLLING_9018=$(ScaleLlmGuPolling9018);%(PreprocessorDefinitions)</PreprocessorDefinitions>
++    </ClCompile>
++  </ItemDefinitionGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+--- a/libxdma/user_irq_policy.h
++++ b/libxdma/user_irq_policy.h
+@@ -0,0 +1,9 @@
++/* Dedicated GU polling policy: source-only candidate, disabled by default. */
++#pragma once
++#ifndef XDMA_GU_POLLING_9018
++#define XDMA_GU_POLLING_9018 0
++#endif
++#if XDMA_GU_POLLING_9018 != 0 && XDMA_GU_POLLING_9018 != 1
++#error XDMA_GU_POLLING_9018 must be 0 or 1
++#endif
++#define XDMA_GU_USER_IRQ_ALLOWED_9018 (0xFFFFFFFEUL)
+--- a/sys/XDMA.inx
++++ b/sys/XDMA.inx
+@@ -62,7 +62,7 @@
+ ClassGuid                 = {a3a4c1ce-5a80-452c-9b51-a98edd3378d1}
+ DriverPackageDisplayName  = %XDMA.DRVDESC%
+ DriverPackageType         = PlugAndPlay
+-DriverVer                 = 11/22/2011,1.2
++DriverVer                 = 10/25/2026,11.38.8.506
+ Provider                  = %Companyname%
+ Signature                 = "$WINDOWS NT$"
+ 
+@@ -98,43 +98,7 @@
+ [Xilinx.NT$ARCH$]
+ ; DisplayName           Section			DeviceId
+ ; -----------           -------			--------
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_9011
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_9012
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_9014
+ %XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_9018
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_9021
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_9022
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_9024
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_9028
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_9031
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_9032
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_9034
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_9038
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_903f
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_8011
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_8012
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_8014
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_8018
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_8021
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_8022
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_8024
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_8028
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_8031
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_8032
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_8034
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_8038
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_7011
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_7012
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_7014
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_7018
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_7021
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_7022
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_7024
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_7028
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_7031
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_7032
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_7034
+-%XDMA.DRVDESC%=			XDMA_Inst,		PCI\VEN_10ee&DEV_7038
+ 
+ [XDMA_Inst.NT]
+ CopyFiles   =	XDMA.CopyFiles

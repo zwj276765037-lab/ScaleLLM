@@ -1,9 +1,0 @@
-# R006 AT002 真实启动独立审核
-
-R006 AT002于02:51:03.903489Z实际启动，使用已集中审核的1425包及原scope/新获取补充；12归档运行源码逐项等于准备manifest。实际执行绑定指向本次AT002、R005真实收尾和用户决定，未预填候选选择。A007独立读取四个/proc身份：supervisor1377029/start931801943、leader1377042/start931802107、loader1377061/start931802111、Vivado1377136/start931802122；命令与工程事实一致，CPU0–7/nice5。/proc/locks仅见本EDA锁由1377029持有；A007未取得锁。
-
-AT001失败时未创建原生attempt、未启动EDA；真实错误为重复nice后无法将nice10恢复为5。目前AT001目录仅为后补管理记录，没有started.json，不能将登记视为原生运行。AT002直接调用同一已审launcher，普通调用修复符合已有授权，原失败证据保留。冻结生产144文件不变性复用刚完成的独立R005收尾重哈希并匹配实际启动声明；DCP身份来自工程绑定，A007未读取DCP。
-
-R006正常运行不受墙钟或静默强停，192GiB树RSS、48GiB内存30秒及30GiB磁盘保护保持。当前仅启动审核通过，原生索引、C02 cut/timing及物理收益待实际证据。准备审核与C01已闭合审核直接复用，不引入新门。逐项身份及进程观察见[机器记录](start_review.json)。
-
-execution：启动审核完成/原生运行中。verdict：真实启动和包身份supported，候选仍unassessed。applicability：本次R006 AT002。review：启动事实接受，不等于索引资格或implementation验收。

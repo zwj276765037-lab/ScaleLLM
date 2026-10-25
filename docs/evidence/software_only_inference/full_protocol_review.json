@@ -1,0 +1,42 @@
+{
+  "verdict": "PROTOCOL_PASS_WITH_LIMITS",
+  "summary_sha256": "2309ea2b75f4fda67df1f53f31406fbaf75722f5eef9a23eddf0078eb4600af5",
+  "source_manifest_files": 159,
+  "runtime_sources": 11,
+  "frozen_vendor_files": 133,
+  "native_exit": 0,
+  "deferred_no_baseline_runtime": true,
+  "resident_records": 129,
+  "resident_bytes_each_direction": 1660952576,
+  "resident_load_seconds": 10.6425627000026,
+  "commands": {
+    "attention": 128,
+    "gu": 128
+  },
+  "unique_commands": 256,
+  "epoch_releases": 64,
+  "metadata_full_count_byte_checks": 64,
+  "metadata_overlap": {
+    "post_ack_loads": 62,
+    "load_with_any_down": 61,
+    "load_with_both_down": 18,
+    "first_wait_before_next_A_while_Down1": 31
+  },
+  "both_busy_sequential_snapshots": 64,
+  "gu_phase_in_busy_snapshots": {
+    "2": 21,
+    "4": 43
+  },
+  "attention_counter_sum": 107629882,
+  "gu_compute_counter_sum": 94089137,
+  "copy_identity_before_ack_or_clear": true,
+  "same_bit_driver_boot": true,
+  "final_idle_empty_leases_closed_handles": true,
+  "numerical_verdict_source": "full_numerical_audit.json (separate Root audit; not recomputed here)",
+  "limitations": [
+    "Metadata completion timestamp is overwritten by stage recheck; no precise DMA duration/hidden percentage.",
+    "Sequential two-CSR busy reads establish task overlap, not simultaneous compute union.",
+    "Deferred online outputs are not numerically checked before ACK; original summary remains pending.",
+    "No power sampled in this optimized run."
+  ]
+}

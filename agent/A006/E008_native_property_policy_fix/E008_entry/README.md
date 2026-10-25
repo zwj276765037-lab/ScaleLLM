@@ -1,7 +1,0 @@
-# E008 native placement-policy schema compatibility
-
-The consumed 3cae entry and AT001 raw failure stay immutable. AT001 naturally failed before candidate Pblock creation or placement because actual Vivado2025.2 schemas do not publish RLOC_ORIGIN, including all9514 resource objects and the first hierarchy ancestor.
-
-This ordinary repair keeps the same C01 selection, RTL, clocks, source DCP, physical directives, hard-Pblock policy, coverage, buffered logs and global gates. Only RLOC_ORIGIN may be absent from an exact object's actual native schema. The snapshot records UNSUPPORTED_IN_ACTUAL_NATIVE_SCHEMA and requires an actual successful empty scalar native read; exceptions and nonempty values fail. All other required placement properties remain mandatory. Supported values, complete ancestors, RLOC/MACRO_NAME and native macro-partner conflict checks remain. Before/after snapshots include schema support state and actual native values and must be identical.
-
-The before snapshot may reuse the immediately preceding per-object native resource census; it never infers support from a shared REF. Ancestors and after snapshots obtain fresh schemas.26 focused finite native-command cases execute the actual resource/policy/constrain procedures. Unaffected accepted physical/index/logging checks are reused explicitly. This package has not yet run native qualification or implementation. Actual prior terminal and selected-source binding remain prerequisites; no extra user approval is required for this ordinary repair.

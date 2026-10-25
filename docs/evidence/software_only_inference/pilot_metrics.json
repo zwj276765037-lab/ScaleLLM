@@ -1,0 +1,105 @@
+{
+  "scope": "One-layer pilot; no generated-token throughput measurement",
+  "run_summary_sha256": "0c2b6beea9d4e34d56af29a4ade0ab423fe856c7a9b2ba16138640e92d8b8c42",
+  "transfer_metrics_sha256": "e7d751617f4742f42bd9b50084b998ca75b84bd8f79725c3c422771218323869",
+  "schedule_timeline_sha256": "6a8f0362edac54a6676cf709130068bb5e2b8416e7b1f9e4a6f21d2440b8d458",
+  "execution_state": "completed",
+  "verdict": "PASS",
+  "counts": {
+    "attention_commands": 2,
+    "epoch_releases": 1,
+    "gu_commands": 2,
+    "host_down_tasks": 2
+  },
+  "generated_tokens": 0,
+  "generated_ids": [
+    [],
+    []
+  ],
+  "startup_seconds": 73.25080660000094,
+  "inference_seconds": 3.5837489000005007,
+  "aggregate_tokens_per_second": null,
+  "tokens_per_second_including_startup": null,
+  "offline_audit_seconds": 0.020876600003248313,
+  "inference_includes": [
+    "CPU norm, residual, Down, LM head and tokenization feedback",
+    "FPGA Attention and GU",
+    "required PCIe transfers",
+    "source checks, output copies, hashes and evidence writes"
+  ],
+  "transfer_totals": {
+    "final_readonly/csr_read": {
+      "bytes": 100,
+      "calls": 25,
+      "seconds": 0.00031909999597701244
+    },
+    "inference/c2h": {
+      "bytes": 61865984,
+      "calls": 6,
+      "seconds": 0.07658660000379314
+    },
+    "inference/csr_read": {
+      "bytes": 1412,
+      "calls": 353,
+      "seconds": 0.005647099980706116
+    },
+    "inference/csr_write": {
+      "bytes": 316,
+      "calls": 79,
+      "seconds": 0.0014724999782629311
+    },
+    "inference/h2c": {
+      "bytes": 59260928,
+      "calls": 6,
+      "seconds": 0.06364549999852898
+    },
+    "startup/c2h": {
+      "bytes": 1660952576,
+      "calls": 129,
+      "seconds": 2.0766406999973697
+    },
+    "startup/csr_read": {
+      "bytes": 176,
+      "calls": 44,
+      "seconds": 0.0007348999861278571
+    },
+    "startup/h2c": {
+      "bytes": 1660952576,
+      "calls": 129,
+      "seconds": 1.7932621000109066
+    }
+  },
+  "transfer_accounting": {
+    "verdict": "PASS",
+    "input_readback": "none",
+    "inference_h2c_bytes": 59260928,
+    "inference_c2h_bytes": 61865984
+  },
+  "host_down": {
+    "tasks": 2,
+    "sum_task_seconds_not_wall_time": 2.1542156000032264,
+    "computed_rows": 32,
+    "reused_rows": 0
+  },
+  "both_busy_sequential_snapshot_pairs": 1,
+  "overlap_caveat": "Two sequential CSR reads provide busy evidence, not a common timestamp or a cycle-count measurement; independent CSR review required",
+  "resources": {
+    "available_memory_floor_bytes": 2147483648,
+    "available_memory_lowest_bytes": 8108314624,
+    "blas_threads": 1,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "peak_rss_bytes": 555294720,
+    "rss_limit_bytes": 6442450944,
+    "samples": 212
+  },
+  "power": "Not measured during this run; no extrapolation from earlier low-duty validation power"
+}

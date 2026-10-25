@@ -1,9 +1,0 @@
-# 静态内容完整性闭环来源
-
-M004/SM020/E010，工程A011；父主控授权最小运行时修复，A010独立审核并维护消费者。实现写入仅为exp/gsm8k_weight_integrity.py、run_gsm8k_worker.py、run_eval_worker.py可选observer及专用测试；不改原量化算法、提示、生成或评分。R001/R002冻结包只读。新源版本记录在weight_integrity_v1_cpu/AT004及GPU smoke的AT001_launcher。
-
-新contract为checkpoint_static_content_v1；原native_cache_call_parity_v2保持。checkpoint完整文件身份→原始参数键逐tensor→CPU加载全部参数及独立重构静态RoPE→GPU复制全内容精确；QDQ以原同GPU/完整形状构造器独立重建有效nonpersistent缓冲，显式覆盖全局_H_CACHE，不要求CPU/GPU浮点QDQ逐位相同。setup、完整验证、每次生成前后及阶段结束检查全静态内容和tensor/storage身份。未知动态RoPE不忽略，六冻结config的default/llama3类型已有只读资格记录。
-
-新plan：source/gsm8k_gpu_integrity_v3_20261018/plan.json。GPU0唯一UUID78b42905-e40c-4ab9-30cf-b8e6f7e8c0f6，CPU16,17、两线程、原独占flock；host reserve80GiB/GPU free24GiB加载门；正常无墙钟/静默强停。训练smoke为同Llama3.1的BF16和a8w4_fp32，各4题；不启动matrix/formal。协议详见weight_integrity_v1_gpu_smoke/protocol.md。
-
-CPU专用22正负例、最终联合82项通过且8源稳定；A010消费者89项稳定通过及源码审无阻断。encode_prompt、resolve_generation、generate_one、verify_generation、configure_reproducibility对R002 frozen AST全部相同；loader仅新增默认None的观察接口。

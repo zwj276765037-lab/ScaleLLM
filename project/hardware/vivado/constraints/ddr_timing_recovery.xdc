@@ -6,4 +6,3 @@
 # The previous reset-name multicycles and guessed placement had no protocol or
 # current-device evidence. A future physical change requires fresh path evidence
 # and a separately reviewed constraint; loading this file proves no timing gain.
-puts {INFO: [M002] Clock contract: core100 / DDR UI200; no added timing exceptions or placement.}

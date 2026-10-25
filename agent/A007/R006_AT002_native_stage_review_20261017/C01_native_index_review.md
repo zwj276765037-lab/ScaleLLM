@@ -1,9 +1,0 @@
-# R006 AT002 C01 原生端口索引资格独立审核
-
-接受03:44:45.516188Z闭合的C01原生索引子阶段：完整未过滤端口全集269个、完整alias组269个、2170次原生命令均code0。每端口直接邻接查询269次，每个完整alias组真实互反查询269次，A007重新逐组比对全部正反关系相等；断开、多组和未知方向均0。原生bus/secondary等以真实全集、支持的metadata及全部互反结果为准，没有按名称推断或采样代替。
-
-A007重哈希全部9项非DCP引用，闭合marker与工程facts相同，源身份精确等于本次1425归档collector/validator，输入路径/身份对应实际启动bindings。重新执行实际归档validator的完整native ledger语义检查。为遵守不读取DCP边界，使用require_closed=False避开其DCP内容哈希分支；所有非DCP闭合marker、source、artifact和input-path绑定另行显式复核，DCP内容身份仍明确归于工程原生闭合记录。
-
-该结果仅支持本图C01端口索引原生资格，不证明完整candidate cut、方向时序、迁移收益、性能或监督终态。TOP_PORT_INDEX_JOIN对每个候选完整网组的实际投影将在完整cut闭合时核查，不把索引网扩入候选范围。实际C02结果到达优先处理，当前运行保持。
-
-[逐项事实与完整native计数](C01_native_index_review.json)

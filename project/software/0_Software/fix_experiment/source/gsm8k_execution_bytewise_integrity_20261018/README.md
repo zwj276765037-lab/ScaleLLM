@@ -1,7 +1,0 @@
-# GPU0完整性校验性能修复候选配置
-
-当前ACC按用户指令停止，本目录仅保存修复后的候选配置，没有启动新R、smoke矩阵、pilot或formal。用户后续明确恢复后，应从全新R和本版来源冻结开始，完整重新做30组smoke→pilot→formal；禁止沿用R003行或旧资格。
-
-plan.protocol.integrity_implementation_id=immutable_cpu_chunks_memcmp_full_content_v1。checkpoint_static_content_v1与native_cache_call_parity_v2保持。源数据、5-shot提示、BF16/eager/nativeKV、生成预算及strict EM不变。加载直接SHA/原生QDQ重建保持；所有重复阶段保留完整names/metadata/storage及每字节精确比较，完整相等后才派生原SHA/root。多占用约整模型大小CPU不可变基线和16MiB pinned buffer，capture后host至少余80GiB。
-
-性能证据位于project/E010_gsm8k_six_model_completion/experiment_results/performance_repair/production_integration_20261018/。当前有限共享训练诊断不能提供独占资格、正式ACC或完整矩阵ETA。GPU0上的yqh任务不得控制，GPU1和M003不在本轮范围。

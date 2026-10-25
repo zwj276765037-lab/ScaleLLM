@@ -1,7 +1,0 @@
-# R006 普通缓冲日志重试入口
-
-与原1425相同candidate_directed_cut_v1、NATIVE_PORT_REVERSE_INDEX_V1、scope/acquisition及完整原生资格。唯一采集代码修复为六处冗余ALIAS细trace转全缓冲独立sidecar；正常/错误路径最终close，保留原生错误与全部真实事件，top-port原生BEGIN/END和完整参数/结果及阶段/owner进度保持。当前AT002源码、进程与全部证据不变。
-
-新尝试启动必须先有当前R006 AT002真实终态、全部输入/PID/start/唯一锁收尾。若当前仍运行，专用controlled_stop_R006.py仅在用户新许可及精确1377029/start931801943绑定后可通过pidfd通知原supervisor；本准备不是许可。运行launcher不得在外层再加nice。
-
-日志修复不证明新原生资格或性能改善；原资源保护及正常无墙钟/静默强停保持。无设计/算法/时钟/ABI/物理验收变化。

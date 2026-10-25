@@ -1,0 +1,134 @@
+{
+  "schema": "scalellm_xdma_observed_base_v1",
+  "official_archive_identity": "UNVERIFIED",
+  "upstream_route": "https://adaptivesupport.amd.com/s/article/65444?language=en_US",
+  "observed_label": "2019 Xilinx Windows reference source; adjacent binary matched installed original",
+  "source_file_count": 20,
+  "known_preexisting_adaptations": [
+    "sys/XDMA.inx DMA POLL_MODE=1 (not proven official default); helper explicitly normalizes 0 to 1 in a new copy",
+    "Standard GUID 74c7e4a9-6d5d-4a70-bc0d-20691dff9e9d and DEV9018 already present; no custom GUID required"
+  ],
+  "reproducibility_limit": "Exact public downloadable archive/commit corresponding to this observed base was not established. A different download must be source-reviewed; this checker will not silently apply to an unknown base.",
+  "files": {
+    "exe/desciptor_bypass/descriptor_bypass.c": {
+      "sha256": "202071d3f92bede892d17dc8aa293bdeaa7966007cadea24782bd58fc3a696ca",
+      "lf_sha256": "202071d3f92bede892d17dc8aa293bdeaa7966007cadea24782bd58fc3a696ca",
+      "bytes": 5497
+    },
+    "exe/performance/performance.c": {
+      "sha256": "0eae1ac6cde1b6fac3f08971a15da3772700e7f5cf28e5d1aae8f5aa7a1b8cdd",
+      "lf_sha256": "0eae1ac6cde1b6fac3f08971a15da3772700e7f5cf28e5d1aae8f5aa7a1b8cdd",
+      "bytes": 9037
+    },
+    "exe/simple_dma/simple_dma.c": {
+      "sha256": "5b356abc2e3b8ceba3365a3b4ca1ab9b54cf115af6b0886c8f75cee407bdc68a",
+      "lf_sha256": "5b356abc2e3b8ceba3365a3b4ca1ab9b54cf115af6b0886c8f75cee407bdc68a",
+      "bytes": 5532
+    },
+    "exe/xdma_rw/xdma_rw.c": {
+      "sha256": "d30232dd20b072df6de924c74880e147b1687fe51b9ce814551b20922d670878",
+      "lf_sha256": "d30232dd20b072df6de924c74880e147b1687fe51b9ce814551b20922d670878",
+      "bytes": 13278
+    },
+    "inc/xdma_public.h": {
+      "sha256": "916417b2da2d59921e14de319d7ac5b601be56f2d2318bf9e6ef01f46f5ec662",
+      "lf_sha256": "916417b2da2d59921e14de319d7ac5b601be56f2d2318bf9e6ef01f46f5ec662",
+      "bytes": 3260
+    },
+    "libxdma/device.c": {
+      "sha256": "e775200a0a43d075375611ed8249febfcfe44e09d594f7de455e512f1f98ea0a",
+      "lf_sha256": "e775200a0a43d075375611ed8249febfcfe44e09d594f7de455e512f1f98ea0a",
+      "bytes": 12384
+    },
+    "libxdma/device.h": {
+      "sha256": "29359661ac8f8440fa9d96ffcaa534a180fed15329e8b1f88e1c6dba00b9a56e",
+      "lf_sha256": "29359661ac8f8440fa9d96ffcaa534a180fed15329e8b1f88e1c6dba00b9a56e",
+      "bytes": 4599
+    },
+    "libxdma/dma_engine.c": {
+      "sha256": "7cb4f1af9e608824a547cb9d13c523a9079f3b1f7adf6580b8b8aee184288f95",
+      "lf_sha256": "7cb4f1af9e608824a547cb9d13c523a9079f3b1f7adf6580b8b8aee184288f95",
+      "bytes": 53891
+    },
+    "libxdma/dma_engine.h": {
+      "sha256": "06d69d43c0f8107289f71fa5e64fa0cd701ac8b6b39e308172d110dfa94244c8",
+      "lf_sha256": "06d69d43c0f8107289f71fa5e64fa0cd701ac8b6b39e308172d110dfa94244c8",
+      "bytes": 10106
+    },
+    "libxdma/interrupt.c": {
+      "sha256": "6d82c3a9aed908f269918827f5bc55053a1ed6d169f555ebacd440325bd0852f",
+      "lf_sha256": "6d82c3a9aed908f269918827f5bc55053a1ed6d169f555ebacd440325bd0852f",
+      "bytes": 27667
+    },
+    "libxdma/interrupt.h": {
+      "sha256": "bee14fbe1625d356473eaf2d12bf22c142f82531664c642d43425fdd2ed22ad3",
+      "lf_sha256": "bee14fbe1625d356473eaf2d12bf22c142f82531664c642d43425fdd2ed22ad3",
+      "bytes": 3822
+    },
+    "libxdma/pcie_common.h": {
+      "sha256": "6bfca1de061ad406ddc3552fdd0a798c09b915b1c39650298b894ef9aba5acd1",
+      "lf_sha256": "6bfca1de061ad406ddc3552fdd0a798c09b915b1c39650298b894ef9aba5acd1",
+      "bytes": 7920
+    },
+    "libxdma/reg.h": {
+      "sha256": "eed34fc06e71a348cd35f11e60dcea3e0bcaf7c25f702ad23cbd02b07e954c80",
+      "lf_sha256": "eed34fc06e71a348cd35f11e60dcea3e0bcaf7c25f702ad23cbd02b07e954c80",
+      "bytes": 9278
+    },
+    "libxdma/trace.h": {
+      "sha256": "ef83c5d0a4c4de731a4f0bb72bf25665cb68cf979c1927145bec799d999e02f5",
+      "lf_sha256": "ef83c5d0a4c4de731a4f0bb72bf25665cb68cf979c1927145bec799d999e02f5",
+      "bytes": 3411
+    },
+    "libxdma/xdma.h": {
+      "sha256": "383cdfd346e2255eaff60bd1516d7098a8604dd118b1f6ee77945c8726435491",
+      "lf_sha256": "383cdfd346e2255eaff60bd1516d7098a8604dd118b1f6ee77945c8726435491",
+      "bytes": 6938
+    },
+    "sys/driver.c": {
+      "sha256": "b55b41922a0d2a68ea853a71e2e3414deb7a111d47f84f9921e39b264e8c5529",
+      "lf_sha256": "b55b41922a0d2a68ea853a71e2e3414deb7a111d47f84f9921e39b264e8c5529",
+      "bytes": 15747
+    },
+    "sys/driver.h": {
+      "sha256": "620ffb4caf90262a1906cdedf2acf595d8b7eed864648a56cf9849fac7b6f3d3",
+      "lf_sha256": "620ffb4caf90262a1906cdedf2acf595d8b7eed864648a56cf9849fac7b6f3d3",
+      "bytes": 2971
+    },
+    "sys/file_io.c": {
+      "sha256": "1e0f2f0071183f7d312efc045dbecd1caba0579c0f552147fe1de72b16ad9411",
+      "lf_sha256": "1e0f2f0071183f7d312efc045dbecd1caba0579c0f552147fe1de72b16ad9411",
+      "bytes": 36386
+    },
+    "sys/file_io.h": {
+      "sha256": "3607c56082c6529f04fa3378d9735d2507aca853508d27e8c1cb63632857fec2",
+      "lf_sha256": "3607c56082c6529f04fa3378d9735d2507aca853508d27e8c1cb63632857fec2",
+      "bytes": 4452
+    },
+    "sys/trace.h": {
+      "sha256": "a7123a9f41d93ba0e3daa6c12243068e756fcd3ccd84cceb80aa186af660e198",
+      "lf_sha256": "a7123a9f41d93ba0e3daa6c12243068e756fcd3ccd84cceb80aa186af660e198",
+      "bytes": 3569
+    },
+    "libxdma/libxdma.vcxproj": {
+      "sha256": "3f1abd3ccf780041cfe933555709dfd9c058a38a4a2ffbf76943bc77f989a177",
+      "lf_sha256": "3f1abd3ccf780041cfe933555709dfd9c058a38a4a2ffbf76943bc77f989a177",
+      "bytes": 13811
+    },
+    "sys/XDMA_Driver.vcxproj": {
+      "sha256": "deb727209e422d1b3cb1f231a478eee28b899a0efeb08af9427e981870c418ee",
+      "lf_sha256": "deb727209e422d1b3cb1f231a478eee28b899a0efeb08af9427e981870c418ee",
+      "bytes": 22616
+    },
+    "sys/XDMA.inx": {
+      "sha256": "ff62e62067023780310d7ed49eb3d6436eb5498c46768d529498cf4e90b7a98f",
+      "lf_sha256": "ff62e62067023780310d7ed49eb3d6436eb5498c46768d529498cf4e90b7a98f",
+      "bytes": 8021
+    },
+    "XDMA.sln": {
+      "sha256": "a8071c3f9849f6103924746e5cac13e6dc0f8c779d0315b7e72ecdc17387d149",
+      "lf_sha256": "a8071c3f9849f6103924746e5cac13e6dc0f8c779d0315b7e72ecdc17387d149",
+      "bytes": 20820
+    }
+  }
+}
