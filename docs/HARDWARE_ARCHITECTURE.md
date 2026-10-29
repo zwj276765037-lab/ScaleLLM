@@ -22,7 +22,15 @@ The CPU performs post-product H32/A8 and Down, residuals, normalization,
 embedding and the language-model head.
 
 Attention retains the shared sixteen-row projection array, implemented as two
-eight-row waves. Q/K/V and output projection share that array. Q/K use a host
+eight-row waves. Q/K/V and output projection share that array and its online
+**Hadamard H32 → A8 quantization** frontend. The normalized input passes through
+H32/A8 before Q/K/V projection; the attention context passes through H32/A8
+again before output projection. Both transformations run on the FPGA.
+The shared frontend instantiates
+[`hap_hadamard32_norm_stream`](../project/hardware/rtl/attention/hap_hadamard32_norm_stream.sv)
+followed by the A8 quantizers in
+[`hap_attention_frontend_8row`](../project/hardware/rtl/attention/hap_attention_frontend_8row.sv).
+Q/K use a host
 RoPE table for each request's absolute position. Current quantized K/V append
 to persistent DDR0 storage. After successful write responses and the matching
 write barrier, active slots reload their own complete visible KV prefix into
@@ -59,7 +67,7 @@ flowchart LR
     H[CPU: normalize and stage 16 requests] --> X[XDMA control and tensor transfers]
     X --> D0[DDR0: Attention weights, tensors, persistent KV]
     X --> D1[DDR1: GU weights and MLP tensors]
-    D0 <--> A[80 MHz Attention engine and KV scratch]
+    D0 <--> A[80 MHz Attention: online H32/A8, projections and KV scratch]
     D1 <--> M[80 MHz H32 → A8 → GU recovery → SiLU × Up]
     A --> R[CPU: residual and next normalization]
     M --> P[CPU: post H32 → A8 → Down]

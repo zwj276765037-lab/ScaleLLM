@@ -8,7 +8,7 @@ The measured workload contains sixteen ordinary text prompts and generates **32 
 
 | FPGA, 80 MHz core | CPU host |
 | --- | --- |
-| Attention projections, RoPE, per-request KV, attention and output projection | Embedding, normalization and residual additions |
+| Attention: online Hadamard H32 → A8 → Q/K/V projections; RoPE, per-request KV and attention; online H32 → A8 → output projection | Embedding, normalization and residual additions |
 | MLP online Hadamard H32 → A8 quantization → Gate/Up with scale recovery → SiLU(gate) × Up | Post-product H32/A8, **Down matrix multiplication**, final normalization and LM head |
 
 Each request has its own KV position and epoch. A round processes one new position for each active request through all 32 layers. Requests share the accelerator; their generated tokens are committed at the round boundary. Down is performed on the CPU. There is no GPU dependency. See [architecture and numeric boundaries](docs/HARDWARE_ARCHITECTURE.md).

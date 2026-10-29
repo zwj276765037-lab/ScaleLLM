@@ -50,7 +50,7 @@ position with the original Llama scaling and packing.
 | Operation | Execution |
 | --- | --- |
 | Tokenizer/chat template, embedding, RMSNorm, residual | CPU |
-| Attention online H32/A8, quantized Attention, persistent KV | FPGA |
+| Attention online H32/A8 before Q/K/V and output projections, quantized Attention, persistent KV | FPGA |
 | MLP online H32/A8, quantized Gate/Up, scale recovery, SiLU × Up | FPGA |
 | Post-product H32/A8 and integer Down | CPU |
 | Final norm and streaming FP32 LM head | CPU |
