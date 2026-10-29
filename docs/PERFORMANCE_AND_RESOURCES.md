@@ -151,7 +151,7 @@ of the idle windows is **not resolved** by these sensors: three READ_POUT rails
 alone contribute ±3 W sum / ±6 W difference quantization uncertainty. These
 numbers do not include the other four rails' sensor and calibration errors.
 
-![Average seven-rail power over the complete inference window](evidence/power_chat16/full_inference_power.svg)
+![One-minute average seven-rail power over time](evidence/power_chat16/full_inference_power.svg)
 
 See the [complete power dataset](evidence/power_chat16/README.md),
 [derived results](evidence/power_chat16/summary.json),

@@ -3,6 +3,7 @@
 import argparse
 import csv
 import json
+import math
 from pathlib import Path
 import textwrap
 import matplotlib
@@ -18,30 +19,62 @@ def save(fig, path):
 
 def power_figure(directory):
     summary = json.loads((directory / 'summary.json').read_text())
-    mean = summary['windows']['model']['time_weighted_mean_w']
-    fig, ax = plt.subplots(figsize=(8, 6.2), facecolor='white')
-    fig.subplots_adjust(left=.14, right=.96, top=.79, bottom=.27)
-    ax.bar([0], [mean], width=.52, color='#2161a6')
-    ax.text(0, mean + .35, f'{mean:.2f} W', ha='center', va='bottom',
-            fontsize=22, fontweight='bold', color='#164c7e')
-    ax.set(xticks=[0], xticklabels=['Full inference run'],
-           ylabel='Average measured power (W)', xlim=(-.85, .85),
-           ylim=(0, max(15, mean * 1.3)))
-    ax.tick_params(labelsize=12)
+    window = summary['windows']['model']
+    mean = window['time_weighted_mean_w']
+    duration = window['window_seconds']
+    with (directory / 'power_sweeps.csv').open() as stream:
+        rows = list(csv.DictReader(stream))
+    times = [float(row['time_s']) for row in rows]
+    watts = [float(row['power_w']) for row in rows]
+
+    # Integrate every observation, including spikes, using the report's linear
+    # interpolation. Clip the final bin to the actual end of inference.
+    centers, averages, total_energy = [], [], 0.0
+    for start in range(0, math.ceil(duration), 60):
+        end = min(start + 60, duration)
+        energy, covered = 0.0, 0.0
+        for t0, t1, p0, p1 in zip(times, times[1:], watts, watts[1:]):
+            if t1 - t0 > summary['gap_exclusion_threshold_seconds']:
+                continue
+            a, b = max(start, t0), min(end, t1)
+            if b <= a:
+                continue
+            slope = (p1 - p0) / (t1 - t0)
+            pa, pb = p0 + slope * (a - t0), p0 + slope * (b - t0)
+            energy += (pa + pb) * (b - a) / 2
+            covered += b - a
+        if not math.isclose(covered, end - start, rel_tol=1e-10):
+            raise ValueError('A plotted minute lacks complete power coverage')
+        centers.append((start + end) / 120)
+        averages.append(energy / covered)
+        total_energy += energy
+    if not math.isclose(total_energy, window['integrated_joules'], rel_tol=1e-10):
+        raise ValueError('Minute averages differ from the published energy integral')
+
+    fig, ax = plt.subplots(figsize=(10, 5.5), facecolor='white')
+    fig.subplots_adjust(left=.10, right=.97, top=.80, bottom=.24)
+    ax.plot(centers, averages, color='#2161a6', linewidth=2,
+            marker='o', markersize=2.5, label='1-minute average')
+    ax.axhline(mean, color='#c26b23', linewidth=1.5, linestyle='--',
+               label=f'Full-run mean: {mean:.2f} W')
+    ax.set(xlabel='Time since inference start (minutes)',
+           ylabel='Average measured power (W)', xlim=(0, duration / 60),
+           ylim=(math.floor(min(averages)), math.ceil(max(averages))))
+    ax.tick_params(labelsize=10)
     ax.grid(axis='y', alpha=.18)
+    ax.legend(loc='upper right', frameon=False, fontsize=10)
     ax.set_axisbelow(True)
-    fig.suptitle('Average FPGA-Related Rail Power', fontsize=20,
-                 fontweight='bold', y=.96)
-    fig.text(.55, .87, 'VCU118 | 80 MHz | 16 requests x 32 generated tokens',
+    fig.suptitle('Average Power During Inference', fontsize=19,
+                 fontweight='bold', y=.97)
+    fig.text(.535, .89, 'VCU118 | 80 MHz | 16 requests x 32 generated tokens',
              ha='center', fontsize=11, color='#475569')
-    fig.text(.14, .125,
-             'Time-weighted mean over the complete inference window.\n'
-             'Sum of seven FPGA-related regulator outputs; includes host/transfer gaps.',
-             fontsize=9.5, linespacing=1.5, color='#475569')
-    fig.text(.14, .045,
-             'Not continuous full-load or whole-board input power.\n'
+    fig.text(.10, .075,
+             'Time-weighted means in 60-second bins; the final bin covers the remaining time.\n'
+             'Seven FPGA-related regulator outputs, including host/transfer gaps; not whole-board input power.',
+             fontsize=8.5, linespacing=1.5, color='#475569')
+    fig.text(.10, .025,
              'Coarse READ_POUT quantization contribution: +/-3 W; other errors are not fully characterized.',
-             fontsize=8, linespacing=1.5, color='#64748b')
+             fontsize=8, color='#64748b')
     save(fig, directory / 'full_inference_power')
 
 
