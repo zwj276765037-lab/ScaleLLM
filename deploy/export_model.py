@@ -13,9 +13,9 @@ HERE=Path(__file__).resolve().parent
 
 
 def load():
-    from scalellm import vendor_check
-    vendor_check()
-    path=HERE/'vendor/hardware/model/export_scalellm_llama31_artifacts.py'
+    from scalellm import vendor_check, bootstrap
+    vendor_check();bootstrap()
+    path=HERE.parent/'project/hardware/model/export_scalellm_llama31_artifacts.py'
     spec=importlib.util.spec_from_file_location('strict_exporter',path);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module);return module
 
 
@@ -53,6 +53,8 @@ def host_assets(checkpoint,out,expected,block_rows=256):
         path=directory/(name+'.f32')
         stream_fp32_matrix(checkpoint,tensor,path,128256,4096,block_rows)
         record(name,path,shape=[128256,4096],dtype='<f4',source_tensor=tensor,source_dtype='BF16',conversion='exact BF16 bits<<16 viewedFP32')
+    generation=json.loads((checkpoint.model_dir/'generation_config.json').read_text(encoding='utf-8'))
+    if generation.get('eos_token_id')!=checkpoint.config['eos_token_id']:raise ValueError('Generation EOS IDs must match original model config')
     for name in ('config','tokenizer','tokenizer_config','special_tokens_map','generation_config'):
         path=directory/(name+'.json');shutil.copyfile(checkpoint.model_dir/path.name,path);record(name,path,source_file=path.name)
     path=directory/'chat_template.jinja';path.write_text(checkpoint.tokenizer_config['chat_template'],encoding='utf-8');record('chat_template',path,source_file='tokenizer_config.json')
@@ -64,8 +66,15 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=('identity','export'));p.add_argument('--model-dir',type=Path,required=True);p.add_argument('--output',type=Path);p.add_argument('--expected-checkpoint-sha256');p.add_argument('--resume',action='store_true');a=p.parse_args()
     exporter=load();checkpoint=exporter.LlamaCheckpoint(a.model_dir);identity,data=checkpoint.source_identity()
     if a.action=='identity':print(json.dumps({'checkpoint_sha256':identity,'source_identity':data},indent=2));return
-    if not a.output or identity!=a.expected_checkpoint_sha256:raise ValueError('Explicit output and independently recorded expected strict identity required')
-    argv=[sys.executable,str(HERE/'vendor/hardware/model/export_scalellm_llama31_artifacts.py'),'--model-dir',str(a.model_dir.resolve()),'--output-dir',str(a.output.resolve()),'--expected-checkpoint-sha256',identity]
+    from final.common import CHECKPOINT_SHA
+    if not a.output or identity!=a.expected_checkpoint_sha256 or identity!=CHECKPOINT_SHA:raise ValueError('Explicit output and the documented verified checkpoint identity are required for this release')
+    generation=json.loads((checkpoint.model_dir/'generation_config.json').read_text(encoding='utf-8'))
+    if generation.get('eos_token_id')!=checkpoint.config['eos_token_id']:raise ValueError('Generation EOS IDs must match original model config')
+    a.output=a.output.resolve()
+    if a.output==checkpoint.model_dir or a.output.is_relative_to(checkpoint.model_dir):raise ValueError('Export output must be outside the source model directory')
+    if (a.output/'host_assets').exists():raise FileExistsError('Host assets already exist; use a new output directory')
+    if a.output.exists() and not a.resume:raise FileExistsError('Export output must be new, or explicitly use --resume')
+    argv=[sys.executable,str(HERE.parent/'project/hardware/model/export_scalellm_llama31_artifacts.py'),'--model-dir',str(a.model_dir.resolve()),'--output-dir',str(a.output.resolve()),'--expected-checkpoint-sha256',identity]
     if a.resume:argv+=['--resume']
     subprocess.run(argv,check=True)
     assets=a.output/'host_assets'

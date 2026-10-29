@@ -1,0 +1,14 @@
+{
+  "schema": "scalellm_final_decode16_abi_v1",
+  "ids": {"magic": 1397109046, "abi": 65536, "capabilities": 63, "core_hz": 80000000, "attention_format": 1211646211, "mlp_format": 1211647493, "attention_layout": 1397113089, "mlp_layout": 1397113090},
+  "registers": {"MAGIC": 0, "ABI": 4, "CAPABILITIES": 8, "CORE_HZ": 12, "ATTENTION_LAYOUT": 16, "MLP_LAYOUT": 20, "ATTENTION_FORMAT": 24, "MLP_FORMAT": 28, "ACTION": 32, "STATUS": 36, "ACK_ID": 40, "ADMISSION_ERROR": 44, "DONE_ERROR": 48, "DONE_INPUT_BYTES": 52, "DONE_OUTPUT_BYTES": 56, "DONE_CYCLES": 60, "ABORT_ID": 64, "DESCRIPTOR": 1024, "COMPLETION_DESCRIPTOR": 1280},
+  "capability_bits": {"independent_16_slots": 0, "incremental_persistent_kv": 1, "online_mlp_s32": 2, "write_response_barrier": 3, "request_epoch": 4, "core_80mhz": 5},
+  "actions": {"START": 1, "ACK": 2, "ABORT": 4},
+  "status_bits": {"BUSY": 0, "COMPLETION": 1, "RESET_REQUIRED": 2},
+  "errors": {"NONE": 0, "BAD_ACTION": 4097, "BAD_STROBE": 4098, "BUSY": 4099, "COMPLETION_PENDING": 4100, "STALE_ACK": 4101, "STALE_ABORT": 4102, "BAD_MAGIC_ABI": 4112, "BAD_OPCODE": 4113, "BAD_FORMAT_LAYOUT": 4114, "BAD_IDENTITY": 4115, "BAD_LENGTH": 4116, "BAD_ADDRESS": 4117, "BAD_RESERVED": 4118, "BAD_ROW": 4119, "DMA": 8193, "METADATA": 8194, "ARITHMETIC": 8195, "KV_PROTOCOL": 8196, "TENSOR_PROTOCOL": 8197, "ABORTED": 8208, "RESET_REQUIRED": 8209},
+  "descriptor_words": {"magic": 0, "abi": 1, "command_id": 2, "batch_tag": 3, "opcode": 4, "layer": 5, "active_mask": 6, "buffer_generation": 7, "input_base": 8, "output_base": 9, "input_bytes": 10, "output_bytes": 11, "weight_half0": 12, "weight_half1": 13, "metadata_base": 14, "rope_base": 15, "weight_generation": 16, "flags": 17, "numeric_format": 18, "buffer_layout": 19},
+  "descriptor_bytes": 256,
+  "row_word_base": 32,
+  "row_word_stride": 2,
+  "opcodes": {"ATTENTION": 1, "MLP": 2}
+}

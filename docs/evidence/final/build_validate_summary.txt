@@ -1,0 +1,10 @@
+scope=Vivado BD construction and validate_bd_design only
+ip_output_generation=not_run
+synthesis_implementation=not_run
+bd=<BUILD_WORKSPACE>/validate/project/scalellm_final_decode16.srcs/sources_1/bd/scalellm_final_decode16_bd/scalellm_final_decode16_bd.bd
+mlp_data_width=256
+mlp_data_target=DDR1 local 0x00000000 range 0x80000000
+mlp_data_link=left /core/M_AXI_MLP_DATA right /d1_smc/S00_AXI net /core_M_AXI_MLP_DATA
+attention_data_link=left /core/M_AXI_DATA right /d0_smc/S00_AXI net /core_M_AXI_DATA
+core_hz=80000000
+ddr_ui_hz=200000000

@@ -1,0 +1,32 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
+| Date         : Wed Oct 28 15:24:13 2026
+| Host         : <BUILD_HOST> running 64-bit Ubuntu 24.04.4 LTS
+| Command      : report_utilization -hierarchical -file <ORIGINAL_REPORT_DIR>/utilization.rpt
+| Design       : scalellm_final_decode16_bd_wrapper
+| Device       : xcvu9p-flga2104-2L-e
+| Speed File   : -2L
+| Design State : Synthesized
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+------------+------------+---------+------+--------+--------+--------+------+------------+
+|                                                                       Instance                                                                       |                                                 Module                                                 | Total LUTs | Logic LUTs | LUTRAMs | SRLs |   FFs  | RAMB36 | RAMB18 | URAM | DSP Blocks |
++------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+------------+------------+---------+------+--------+--------+--------+------+------------+
+| scalellm_final_decode16_bd_wrapper                                                                                                                   |                                                                                                  (top) |     730715 |     694364 |   27944 | 8407 | 971057 |    695 |     28 |  304 |       5389 |
+|   (scalellm_final_decode16_bd_wrapper)                                                                                                               |                                                                                                  (top) |          0 |          0 |       0 |    0 |      0 |      0 |      0 |    0 |          0 |
+|   scalellm_final_decode16_bd_i                                                                                                                       |                                                                             scalellm_final_decode16_bd |     730715 |     694364 |   27944 | 8407 | 971057 |    695 |     28 |  304 |       5389 |
+|     xdma_0                                                                                                                                           |                                                                    scalellm_final_decode16_bd_xdma_0_0 |      26376 |      24291 |    2068 |   17 |  27988 |     50 |      0 |    0 |          0 |
+|       inst                                                                                                                                           |                                                           scalellm_final_decode16_bd_xdma_0_0_core_top |      26376 |      24291 |    2068 |   17 |  27988 |     50 |      0 |    0 |          0 |
+|         (inst)                                                                                                                                       |                                                           scalellm_final_decode16_bd_xdma_0_0_core_top |       1123 |       1123 |       0 |    0 |      2 |      0 |      0 |    0 |          0 |
+|         pcie4_ip_i                                                                                                                                   |                                                           scalellm_final_decode16_bd_xdma_0_0_pcie4_ip |       4069 |       4054 |       0 |   15 |   9600 |     22 |      0 |    0 |          0 |
+[Remaining hierarchy rows omitted; exact whole-report SHA is in resources_timing_manifest.json.]

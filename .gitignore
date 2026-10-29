@@ -16,6 +16,7 @@ project/software/**/outputs/
 *.log
 *.dcp
 *.bit
+!bitstream/ScaleLLM_Final_Decode16_80MHz.bit
 *.ltx
 *.edf
 *.edn
@@ -61,3 +62,10 @@ project/hardware/vivado/runtime/
 /runs/
 /outputs/
 /results/deployment_validation/venv/
+
+# Per-machine settings and generated final-design builds.
+/release-check/
+/.venv/
+/hardware_agent/
+/deploy/final/*.local.json
+/deploy/final/*.local.ps1

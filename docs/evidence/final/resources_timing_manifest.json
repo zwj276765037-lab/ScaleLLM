@@ -1,0 +1,79 @@
+{
+  "schema": "scalellm_final_physical_reports_v1",
+  "published_bit_sha256": "96df1a5c1bf4174921bc02ccd88df4066dece3d62b491acb3106bb90ac0ffc85",
+  "final_routed_dcp_sha256": "3b6e401051cef12ba14ff4ebe9e9b3ef142fcdddfa851b0053c97cf718e608c3",
+  "synthesis": {
+    "lut": 730715,
+    "ff": 971057,
+    "ramb36": 695,
+    "ramb18": 28,
+    "bram36_equivalent": 709,
+    "uram": 304,
+    "dsp": 5389,
+    "state": "Synthesized"
+  },
+  "placement": {
+    "lut": 701775,
+    "ff": 954554,
+    "bram36_equivalent": 709,
+    "uram": 304,
+    "dsp": 5389,
+    "slr_lut": [
+      212319,
+      286402,
+      203054
+    ],
+    "slr_ff": [
+      295784,
+      406738,
+      252032
+    ],
+    "slr_clb": [
+      46587,
+      49199,
+      43410
+    ],
+    "state": "Fully Placed"
+  },
+  "final_routed_utilization": "NOT_REPORTED: placement counts precede subsequent route and hold repair; do not relabel them as routed utilization.",
+  "final_timing": {
+    "wns_ns": 0.017,
+    "whs_ns": 0.002,
+    "wpws_ns": 0.0,
+    "setup_failing": 0,
+    "hold_failing": 0,
+    "pulse_failing": 0
+  },
+  "reports": {
+    "resources_synth_excerpt.rpt": {
+      "original_sha256": "11950ddc93a4863972ab01442f03a9873ff953b769b659f4d22f0c4ea82e691c",
+      "published_sha256": "82cb21faed23c3ebdf187ccac2730c776a65ed9b0394f2a3bee5094fb32fc90d",
+      "source_stage": "reader_001/source_snapshot/project/hardware/vivado/reports/final_decode16_011_synth/utilization.rpt",
+      "transformation": "Original output path and host redacted. Synthesized hierarchy report excerpted to header and top rows."
+    },
+    "resources_placed_slr.rpt": {
+      "original_sha256": "956b958110b2eff3ed6a40a5f0b3a13ce941d3d62c7c24eb6d8291baec01a83d",
+      "published_sha256": "8c7217c859ed0813cedcfc1e6d49855b953127d64deb84b3f147fe39d2f1c138",
+      "source_stage": "reader_001/source_snapshot/project/hardware/vivado/reports/final_decode16_011_impl/post_place/utilization_slr.rpt",
+      "transformation": "Original output path and host redacted."
+    },
+    "timing_final.rpt": {
+      "original_sha256": "313f3bb053afdee6f4751a71c70e585190026b27ed2653964f18bbf3b15aa729",
+      "published_sha256": "cc806c5b8cda01602afb10b545cf56eff4f4dd5ac418a35bbf7dae7d18faaa24",
+      "source_stage": "hold_repair_002/reports/short_timing_summary.rpt",
+      "transformation": "Original output path and host redacted."
+    },
+    "timing_route_status.rpt": {
+      "original_sha256": "0aa015a0da18d178867fc5056b481c81707d18770a6ca11b8572fc27e716faa7",
+      "published_sha256": "0aa015a0da18d178867fc5056b481c81707d18770a6ca11b8572fc27e716faa7",
+      "source_stage": "hold_repair_002/reports/short_route_status.rpt",
+      "transformation": "Workspace/host redacted."
+    },
+    "timing_drc_counts.tsv": {
+      "original_sha256": "c2472f90091c3cd5cffae376197295433a2a54b51d13518479f85d05f9e353db",
+      "published_sha256": "c2472f90091c3cd5cffae376197295433a2a54b51d13518479f85d05f9e353db",
+      "source_stage": "candidate_bit_001/reports/drc_counts.tsv",
+      "transformation": "Workspace/host redacted."
+    }
+  }
+}

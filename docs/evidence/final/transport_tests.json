@@ -1,0 +1,34 @@
+{
+  "schema": "scalellm_final_transport_tests_v1",
+  "elapsed_seconds": 20.825,
+  "tests": [
+    {
+      "case": "hap_axi512_weight_credit",
+      "status": "PASS",
+      "input_sha256": {
+        "tb/hap_axi512_weight_credit.list": "4fbc0474c1a7e0ad5b23956dcf2f9fc8fcb79e5162e17403ce47d4a53f1766da",
+        "tb/hap_axi512_weight_credit_tb.sv": "f3055121ccd64de6c26dd1d76e84fcf416afcfee51496a3dd1b27e82d755d7c7",
+        "vivado/glbl.v": "6270251cf35e1fce3119fc79f8fb968912f7983027e43cf030409ba68f048936",
+        "rtl/attention/hap_axi512_weight_reader.sv": "28dfb5a5586a64178f66728170c81c673c54ad2dfe66999cf53122d4ddd319ca"
+      },
+      "coverage": [
+        "CREDIT_COVERAGE depth=32 max_window=2 checks=6 triple=33 wraps=21 AR_stall_with_sticky_status=18",
+        "CREDIT_COVERAGE depth=128 max_window=8 checks=6 triple=26 wraps=6 AR_stall_with_sticky_status=32"
+      ]
+    },
+    {
+      "case": "hap_attention_shared_read_credit",
+      "status": "PASS",
+      "input_sha256": {
+        "tb/hap_attention_shared_read_credit.list": "a8d8de75cbc80b67d4433023e5ab21c59abd2307c722935525ff2b1e3f3225d2",
+        "tb/hap_attention_shared_read_credit_tb.sv": "2fb629179584fb451acf381781510ad3a93e53112cc3972659d1e22524d02273",
+        "vivado/glbl.v": "6270251cf35e1fce3119fc79f8fb968912f7983027e43cf030409ba68f048936",
+        "rtl/attention/hap_axi512_weight_reader.sv": "28dfb5a5586a64178f66728170c81c673c54ad2dfe66999cf53122d4ddd319ca",
+        "rtl/attention/hap_ddr512_halfgroup_async.sv": "b5087a8d7e67305a2d7327739d9e01e0af4e33d658faf662eb5c8d100f00c53b"
+      },
+      "coverage": [
+        "COVERAGE shared_ordered_R groups=64 bursts=16 beats=256 KV_wait_cycles=117 R_stalls=0 max_outstanding=8"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "schema": "scalellm_final_controller_release_review_v1",
+  "date": "2026-10-29",
+  "bitstream_sha256": "96df1a5c1bf4174921bc02ccd88df4066dece3d62b491acb3106bb90ac0ffc85",
+  "checks": {
+    "root_runtime_deployment_performance_packaging_cpu": {
+      "test_methods": 54,
+      "status": "PASS",
+      "python": "3.12.3",
+      "numpy": "1.26.4",
+      "tokenizers": "0.20.3",
+      "Jinja2": "3.1.6",
+      "includes_original_3200_command_record": "PASS"
+    },
+    "hardware_build_control_cpu": {
+      "test_methods": 11,
+      "cases": 27,
+      "status": "PASS",
+      "evidence": "physical_closure_cpu_tests.json"
+    },
+    "hardware_dependency_hashes": {
+      "status": "PASS",
+      "frozen_files": 93,
+      "portable_build_files": 13,
+      "manifest_sha256": "10795824a738727afadaf55941d7c51dc4e36ff3e1819df2ab0ab9b23160f3c9"
+    },
+    "runtime_dependency_hashes": {
+      "status": "PASS",
+      "files": 37,
+      "manifest_sha256": "b1d8e955e2020007e8aaa8e9e40701b43187f56defa0abbad06749818901a020"
+    },
+    "candidate_archive_in_directory_with_spaces": {
+      "status": "PASS",
+      "scope": "Candidate before final power export. Extracted integrity verification, real portable CLI preflight, hardware dependency check and 54 CPU tests passed. Final archive verification is performed separately before publication."
+    },
+    "public_text_paths_credentials_links": {
+      "status": "PASS",
+      "scope": "All selected source/documentation files and decompressed power telemetry; no private paths or credential patterns. All relative Markdown links resolved."
+    },
+    "full_inference_power": {
+      "status": "VALID_OBSERVED_WINDOWS_WITH_SAMPLER_FINALIZATION_FAILURE",
+      "original_wrapper_state": "FAIL",
+      "original_error": "Sampler stop timeout",
+      "model_native_exit": 0,
+      "sampler_native_exit": null,
+      "evidence": "power_controller_review.json",
+      "scope": "All three windows covered; original failure preserved. No independent full-model numerical oracle."
+    },
+    "power_tools": {
+      "status": "PASS_WITH_RECORDED_SCOPE",
+      "cpu_test_methods": 11,
+      "official_runtime_short_read": "3 sweeps, native exit 0",
+      "streamed_finalization_cpu": "3000 synthetic sweeps, no accumulated sample history, 877-character final summary",
+      "evidence": "power_tool_validation.json",
+      "evidence_sha256": "c3919a05737ef3e492e1dd98c0b24ab5b60cbc45f5dc7f37efca3e6d5b6b4330"
+    }
+  },
+  "runtime_post_review_cleanup": {
+    "files": [
+      "deploy/vendor/runtime/host_math.py",
+      "deploy/vendor/runtime/scalellm_windows_xdma.py"
+    ],
+    "change": "Removed extra blank lines at EOF only; byte sequences equal after stripping trailing whitespace. No code or numerical change.",
+    "prior_runtime_manifest_sha256": "43b3e0bfa383d4f2de22558559a8b0424f74a730f8befc31bd610bad032e84ce",
+    "current_runtime_manifest_sha256": "b1d8e955e2020007e8aaa8e9e40701b43187f56defa0abbad06749818901a020",
+    "affected_validation": "54 CPU test methods rerun: PASS"
+  },
+  "validation_scope": {
+    "original_board_artifact": "Completed 16 requests x 32 generated tokens; fixed released bit identity.",
+    "portable_project": "Fresh native Vivado BD validation, IP generation, wrapper and compile-order checks; two reader XSim tests.",
+    "not_repeated": [
+      "fresh_full_RTL_elaboration",
+      "fresh_synthesis_place_route_bit_generation",
+      "complete_model_reexport",
+      "portable_wrapper_full_board_run",
+      "second_host_deployment",
+      "independent_whole_model_numerical_oracle"
+    ],
+    "physical_rebuild_note": "Original closure used a historical incremental checkpoint. Its identity and route/hold recipe are documented; source-based rebuild is not asserted byte-identical or guaranteed to converge without timing work."
+  }
+}

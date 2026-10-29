@@ -1,58 +1,128 @@
-# GU-only 硬件源码与构建
+# Build the current Decode16 hardware
 
-## 已发布设计身份
+Use `deploy/final/build_hardware.py` for the current sixteen-request, 80 MHz
+design. It builds from RTL and Vivado-generated IP in a new output directory.
+It does not consume old implementation checkpoints or IP caches.
+`deploy/build_hardware.py` forwards to this current entry. The historical
+prefill hardware and its builder remain in the `prefill` branch.
 
-发布 bit 对应 R008/AT001 的 102 项输入，其 SHA 存于 `deploy/hardware_release_manifest.json`，原样副本位于 `deploy/vendor/hardware/`。本次逐项复核当前源码、父 manifest 和父 source_snapshot：102 项全部一致。`ddr_timing_recovery.xdc` 虽相对 Git 为 modified，但与该 bit 父输入 SHA 相同，不是把后续约束结果混入旧 bit。
+## Prerequisites
 
-顶层为 `hap_attention_mlp_resource_top_gu_only` 系列：Attention 与双 DDR 保留；FPGA 只执行 MLP Gate/Up，Down 在 Host。GU ABI7、caps `0x1d`；Attention ABI2。不能替换成旧 v5 整板 checker 或旧 Linear/Down 顶层。
+Use Linux, Python 3.10 or newer, `jq`, GNU `sha256sum`, Vivado 2025.2 with the
+UltraScale+ device support and an appropriate synthesis license, and the
+official VCU118 board files for `xilinx.com:vcu118:part0:2.0`. Supply the directory
+containing `board.xml`, `part0_pins.xml` and `preset.xml`. Vendor tools, IP models,
+board files and licenses are external dependencies; they are not redistributed.
+The installed IP catalog supplies XDMA, DDR4, clock wizard, SmartConnect,
+AXI register slices, reset and utility IP. XPM primitives come from Vivado.
 
-- FPGA：`xcvu9p-flga2104-2L-e`（VCU118）。
-- 核心 100 MHz，DDR UI 200 MHz。
-- **实际构建设计工具：Vivado 2025.2。** 已测 SRAM 下载工具为 Vivado 2022.2。
-- 已发布 bit：80159259 B；SHA `66a305348d3099ca48043324d2ef50e3a39bea84b818f6107f0ff9cdd08acc47`。
-- 已合法布线并通过所述板上数值验证；Max-DPO 与外部 reset 的完整物理签核仍开放，不等同产品级全签核。
-
-## 新建构建树
-
-需要 Linux x86_64、Python 3.10+、Vivado 2025.2 及适用许可证和官方 VCU118 board files（同一个目录内含 `board.xml`、`part0_pins.xml`、`preset.xml`）。AMD 工具、IP 和 board store 由使用者自行安装并接受其条款。
-
-```bash
-python3 deploy/build_hardware.py prepare \
-  --work '/data/builds/ScaleLLM GU build' \
-  --vivado '/opt/AMD/2025.2/Vivado/bin/vivado' \
-  --board-files '/opt/board-store/boards/Xilinx/vcu118/2.4' --dry-run
-# 核对后移除 --dry-run：只物化新源码树并 freeze/check，不运行 Vivado。
-```
-
-`prepare` 校验 102 个发布输入，然后复制到新目录；只修改副本中的 Vivado 可执行文件路径和三个 board XML 路径，再生成新 freeze。原发布副本不变。board XML SHA 和两项适配 SHA 保存在 `portable_build.json`。用户选择不同 board files 或工具补丁会形成新输入身份，不承诺重建 bit 逐字节相同。
-
-## 连续构建入口
+From the repository root, set explicit local paths and prepare a new workspace:
 
 ```bash
-python3 deploy/build_hardware.py stage --work '/data/builds/ScaleLLM GU build' \
-  --stage create --attempt AT001_constructor --dry-run
-python3 deploy/build_hardware.py stage --work '/data/builds/ScaleLLM GU build' \
-  --stage synth --attempt AT002_synth \
-  --project '/data/builds/ScaleLLM GU build/project/hardware/vivado/project/m006_gu_AT001_constructor' --dry-run
-python3 deploy/build_hardware.py stage --work '/data/builds/ScaleLLM GU build' \
-  --stage impl --attempt AT003_impl \
-  --project '/data/builds/ScaleLLM GU build/project/hardware/vivado/project/m006_gu_AT001_constructor' \
-  --synth-dcp '/path/from/successful/synthesis.dcp' --dry-run
+python3 deploy/final/build_hardware.py check
+python3 deploy/final/build_hardware.py prepare \
+  --work /absolute/path/to/new-build \
+  --vivado /absolute/path/to/Vivado/2025.2/bin/vivado \
+  --board-files /absolute/path/to/boards/Xilinx/vcu118/2.0
+python3 deploy/final/build_hardware.py stage \
+  --work /absolute/path/to/new-build --stage validate
 ```
 
-每次先核计划，移除 `--dry-run` 才运行原 `run_mlp_gu_board.py` 和 `create_mlp_gu_board.tcl` / `build_mlp_gu_board.tcl`。实际 DCP 路径从本次成功原生日志取，不把历史 DCP 伪装为新综合结果。若原生 netlist/clock/DRC 检查失败，先审错误，不能绕过资格检查继续 impl。
-
-实现通过后可独立生成工程验证 bit（`--output` 是**不存在的新目录**）：
+`check` verifies the frozen RTL/ROM/ABI/XDC and portable build-file hashes.
+`prepare` copies those inputs into the independent workspace and records the
+external board-file hashes. `validate` constructs and validates the block
+design, checking clock and address-map settings, then stops before IP output
+generation. It can be followed by a separate `create` in the same workspace.
 
 ```bash
-python3 deploy/build_hardware.py bitstream --vivado '/opt/AMD/2025.2/Vivado/bin/vivado' \
-  --routed-dcp '/path/to/accepted_routed.dcp' --output '/data/builds/new_bit_output' --dry-run
+python3 deploy/final/build_hardware.py stage --work /absolute/path/to/new-build --stage create
+python3 deploy/final/build_hardware.py stage --work /absolute/path/to/new-build --stage elaborate
 ```
 
-原 runner 使用 Linux flock 单重 EDA、8 个 Vivado线程/OOC4，限制选取的 CPU 集合最多32；包含 64 GiB MemAvailable/磁盘余量检查及进程树保护。历史物理构建使用高内存主机，工程曾按 192 GiB 树预算运行。不要将 8 GiB Host 推理预算误用于 Vivado。新机器先评估内存和工具许可，重型阶段不与其他 EDA 争用；本次发布整理未重新执行 EDA。
+`create` generates all IP output products and the top wrapper. `elaborate`
+performs native RTL elaboration. Neither command is a timing result.
 
-## 再生文件与历史记录
+## Full build
 
-新 constructor 从 RTL、XDC、manifest、官方 board/IP 重新生成 BD/XCI；不读取旧 constructor `.gen`、`.cache`、`.ip_user_files` 或 `generated_phy_snapshot` 来构建。本次只清除了可再生缓存，保留了 `.srcs/.xpr/constructor_identity/.runs` 与 reports/DCP/bit。旧缓存的生成文件全量字节复核不再可执行，不能据此宣称历史 generated inventory 仍齐全。
+Full synthesis and implementation can take hours and require substantially more
+memory than construction. Choose resource and wall-time limits suitable for
+your machine before starting them. The following examples allow 3 hours for
+synthesis, 8 hours for implementation, and 192 GiB tree RSS; they were not run
+as part of the portable release check.
 
-独立新目录的 `prepare` 与 freeze/check、带空格路径均有 CPU 测试；这只证明源闭包与路径准备，不能证明新机器综合、时序或实现成功。完整报告和资源见 [性能与资源](PERFORMANCE_AND_RESOURCES.md)。
+```bash
+python3 deploy/final/build_hardware.py stage --work /absolute/path/to/new-build \
+  --stage synth --timeout 10800 --rss-gib 192
+python3 deploy/final/build_hardware.py stage --work /absolute/path/to/new-build \
+  --stage impl --timeout 28800 --rss-gib 192
+python3 deploy/final/build_hardware.py stage --work /absolute/path/to/new-build \
+  --stage bitstream --timeout 2400 --rss-gib 192
+```
+
+Every stage uses one native run at a time and at most four threads on CPUs
+`0,1,2,3`. Use `--cpus` for another set of at most four available CPUs, and
+`--threads` to reduce the thread count. At least 64 GiB system RAM must remain
+available; a guard terminates the owned process group on wall-time, RSS or
+available-memory limits. Construction and elaboration are capped at 30 minutes
+and 32 GiB. Each attempted stage directory is preserved and cannot be overwritten.
+Logs, exit status, runtime, peak tree RSS and report hashes remain in that stage.
+
+Synthesis writes its stitched checkpoint before reports. Implementation saves
+checkpoints immediately after optimization, placement, physical optimization
+and routing, before later reports. Implementation uses the native default
+strategy, enables physical optimization and clears the incremental checkpoint.
+The published bitstream additionally used incremental placement/routing and
+native hold repair; its physical run is recorded as historical artifact evidence.
+A fresh run can produce different placement, timing and bitstream bytes.
+
+Bit generation requires the new workspace's routed checkpoint, complete routing,
+zero routing errors, nonnegative global setup/hold/pulse margins, no failing
+endpoints, and no Error/Critical Warning DRC findings. A timing failure retains
+the checkpoint and reports, stops the stage, and does not produce a publishable
+bitstream. The successful physical closure commands, their observed effects and explicit
+portable `hold-sll` / `hold` stages are documented in
+[PHYSICAL_CLOSURE.md](PHYSICAL_CLOSURE.md). This includes the original incremental
+flow and its unavailable historical reference. No byte-identical or timing-identical
+rebuild is promised.
+
+## Verification status
+
+The exact released artifact is
+[`ScaleLLM_Final_Decode16_80MHz.bit`](../bitstream/ScaleLLM_Final_Decode16_80MHz.bit),
+identified by [`final_decode16_manifest.json`](../bitstream/final_decode16_manifest.json).
+The portable source identity is
+[`hardware_source_manifest.json`](../deploy/final/hardware_source_manifest.json).
+Fresh portable validation and complete project creation both passed under
+Vivado 2025.2: validation took 335.707 seconds with 3,210,412,032 bytes peak tree
+RSS; creation took 432.649 seconds with 3,467,943,936 bytes peak tree RSS.
+Creation checked all generated IP outputs, the top wrapper, native compile
+order and generated XCI settings. Inputs remained unchanged. Results and redacted
+native logs are in [`build_validation.json`](evidence/final/build_validation.json).
+Full RTL elaboration, synthesis, implementation and bit generation with this new
+portable entry have not been run.
+
+The included transport testbenches exercise reservation accounting, stalled
+AR/output stability, response errors and legal ordered shared-channel schedules.
+They are focused protocol checks and do not replace full model or board validation.
+
+Run the focused checks from the repository root:
+
+```bash
+python3 -m unittest discover -s project/hardware/tests -p test_release_build.py -v
+python3 project/hardware/tests/run_transport.py \
+  --vivado /absolute/path/to/Vivado/2025.2/bin/vivado \
+  --work /absolute/path/to/new-transport-test
+```
+
+The actual publication guard is CPU-tested against passing timing, negative
+setup/hold/pulse margins, nonzero failing endpoints, incomplete/error routing,
+critical DRC findings and malformed reports. The two transport testbenches passed
+fresh XSim runs; coverage and input hashes are in
+[`transport_tests.json`](evidence/final/transport_tests.json).
+
+The explicit optional repair stages and `--source-dcp` bitstream selection were
+added after the measured fresh create run. The constructor itself retains the
+same tested hash. These later commands passed 27 CPU fixture/wiring cases across
+11 test methods; they have not been executed through Vivado. Exact old driver
+hashes and this later scope are separated in the build-validation manifest.
+See [PHYSICAL_CLOSURE.md](PHYSICAL_CLOSURE.md) before selecting a repair method.

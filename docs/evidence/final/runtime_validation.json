@@ -1,0 +1,92 @@
+{
+  "schema": "scalellm_final_runtime_validation_v1",
+  "created_utc": "2026-10-29T02:24:20.202149+00:00",
+  "scope": "CPU and mock validation only; no FPGA device opened",
+  "python": "3.12.3",
+  "dependencies": {
+    "numpy": "1.26.4",
+    "tokenizers": "0.20.3",
+    "Jinja2": "3.1.6"
+  },
+  "runtime_source_manifest_sha256": "43b3e0bfa383d4f2de22558559a8b0424f74a730f8befc31bd610bad032e84ce",
+  "checks": {
+    "portable_deployment_unittests": {
+      "count": 11,
+      "result": "PASS"
+    },
+    "final_runtime_layout_rope_unittests": {
+      "count": 23,
+      "result": "PASS"
+    },
+    "moved_directory_with_spaces": "PASS",
+    "source_tamper_rejection": "PASS",
+    "program_dry_run_actual_released_bit_sha256": "96df1a5c1bf4174921bc02ccd88df4066dece3d62b491acb3106bb90ac0ffc85",
+    "readonly_actual_weight_manifest": {
+      "bytes": 60155,
+      "sha256": "45ed3c211c4939e83d5f2efc39731970692317dfa540520ca8c16e525a99e8f6",
+      "header": "PASS",
+      "layers": 32,
+      "hardware_records": 288,
+      "sizes_and_relative_paths": "PASS",
+      "payload_hashes": "NOT_RUN; payload files unavailable locally"
+    },
+    "lm_head_extraction": {
+      "ast_identical": true,
+      "cases": [
+        {
+          "rows": 1,
+          "hidden": 3,
+          "vocabulary": 7,
+          "chunk_rows": 2,
+          "top_k": 1,
+          "all_returned_values": "EXACT_EQUAL"
+        },
+        {
+          "rows": 4,
+          "hidden": 8,
+          "vocabulary": 31,
+          "chunk_rows": 7,
+          "top_k": 3,
+          "all_returned_values": "EXACT_EQUAL"
+        },
+        {
+          "rows": 16,
+          "hidden": 32,
+          "vocabulary": 129,
+          "chunk_rows": 32,
+          "top_k": 5,
+          "all_returned_values": "EXACT_EQUAL"
+        },
+        {
+          "rows": 3,
+          "hidden": 4,
+          "vocabulary": 9,
+          "chunk_rows": 4,
+          "top_k": 1,
+          "all_returned_values": "EXACT_EQUAL"
+        }
+      ]
+    },
+    "unchanged_host_source_sha256": {
+      "scalellm_final_runtime.py": "ed8f739ae97fde25ee928befb9f43bb57dc7a1dd0c329416ffc1709b9d7a3265",
+      "scalellm_final_layout.py": "4e6408b2c55e4c5f866e8be179ea9e9b6300bcc0c60da8f43cfea0960b4ef0fa",
+      "scalellm_final_abi.py": "e86f64dc06d345c9422710f3db3485aa608a8b8b96d4db387963591a39c28739",
+      "scalellm_decode16.py": "0563f676a4d03ac931e95910d7705d5991ca118f451f0716b3a7410f3048ef98",
+      "scalellm_mlp_linear.py": "227e457e4d0464115241d2de6a8521496413b0a071344d776ab9c3a861a3c716",
+      "scalellm_mlp_gu_only.py": "cc608e352dd8caf656c49cbae8f4a96a58329a1dfb364fb308b18930a593336b",
+      "scalellm_artifacts.py": "441664b737fa127dd2371637eb43268021f0a1ce7495c935a42e0c0648a93b40",
+      "scalellm_mlp_gu_only_artifacts.py": "dad156e017fc19639c83b2f37b1a4952b868b54255a4f2b61164b36dcbab1e50",
+      "scalellm_hostops.py": "ceb67ec279fa767eb360166256798e88c7b413c1b060b5af5956c12c7da04328",
+      "scalellm_memory.py": "eda8e96b1af8a7cdbc4042630b06e1d260f52792ff1e2adddfb18726f2b7e9a9",
+      "scalellm_hardware.py": "9851cb8a038a1e1b6239cff0fc9b5fcf41667bea487cfc3931caf271a1055d69",
+      "scalellm_runtime.py": "6e9bee43155515f67bc260c7ee8ec45781cf18662bd446c05253704df2ffbf56",
+      "scalellm_mlp_gu_only_abi.py": "2cfcf74e58a56806017c51b954e008f1cfecbca74edd17208d4b44e98954cbfe"
+    }
+  },
+  "not_run": [
+    "complete_model_reexport",
+    "complete_exported_asset_hash_verification",
+    "portable_entry_physical_board_run",
+    "independent_whole_model_value_oracle"
+  ]
+}

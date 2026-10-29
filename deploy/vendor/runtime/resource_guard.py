@@ -6,7 +6,7 @@ import os
 
 class ResourceGuard:
     def __init__(self,rss_limit=6<<30,available_floor=2<<30):
-        if os.name!='nt':raise RuntimeError('Actual execution requires Dell Windows')
+        if os.name!='nt':raise RuntimeError('Actual execution requires Windows')
         self.rss_limit=rss_limit;self.available_floor=available_floor
         self.peak_rss=0;self.lowest_available=None;self.samples=0
         self.k=ctypes.WinDLL('kernel32',use_last_error=True);self.p=ctypes.WinDLL('psapi',use_last_error=True)

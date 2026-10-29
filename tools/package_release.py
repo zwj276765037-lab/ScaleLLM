@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
-"""Build and verify a portable, explicitly selected ScaleLLM release.
-
-No git history, research-management directories, model weights, credentials,
-or generated Vivado projects are traversed by the package selector.
-"""
+"""Seal, verify, and package the explicitly selected Decode16 release."""
 from __future__ import annotations
-
 import argparse
-from datetime import datetime, timezone
 import gzip
 import hashlib
 import json
@@ -17,179 +11,190 @@ import shutil
 import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
-BIT_NAME = "ScaleLLM_MLP_GU_only_ENGINEERING_VALIDATION.bit"
-BIT_SOURCE = "project/hardware/vivado/reports/m006_gu_AT003_preliminary_bitstream/native_output/" + BIT_NAME
-BIT_SHA256 = "66a305348d3099ca48043324d2ef50e3a39bea84b818f6107f0ff9cdd08acc47"
-BIT_SIZE = 80159259
-DISALLOWED_SUFFIXES = {".pem", ".key", ".pfx", ".p12", ".cer", ".crt", ".sys", ".cat",
-                       ".safetensors", ".npy", ".npz", ".pt", ".pth", ".f32", ".dcp"}
-DISALLOWED_PARTS = {".git", "__pycache__", ".pytest_cache", ".Xil", ".cache", "node_modules"}
-SECRET_PATTERNS = [re.compile(rb"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
-                   re.compile(rb"\bgh[pousr]_[A-Za-z0-9]{30,}\b"),
-                   re.compile(rb"\bhf_[A-Za-z0-9]{30,}\b")]
+PROJECT = 'ScaleLLM_Final_Decode16_80MHz'
+BIT_NAME = PROJECT + '.bit'
+BIT_SHA256 = '96df1a5c1bf4174921bc02ccd88df4066dece3d62b491acb3106bb90ac0ffc85'
+BIT_SIZE = 80159263
+MANIFEST = 'RELEASE_MANIFEST.json'
+SKIP_PARTS = {'.git', '__pycache__', '.pytest_cache', '.Xil', '.venv'}
+LOCAL_ROOTS = {'build', 'dist', 'runs', 'outputs', 'models', 'artifacts', 'release-check'}
+FORBIDDEN_SUFFIXES = {'.pem', '.key', '.pfx', '.p12', '.cer', '.crt', '.sys', '.cat',
+                      '.safetensors', '.npy', '.npz', '.pt', '.pth', '.f32', '.dcp', '.exe', '.dll'}
+SOURCE_MANIFESTS = {'deploy/vendor_manifest.json': ('files',),
+                    'deploy/final/hardware_source_manifest.json': ('files', 'portable_build_files')}
+SECRET_PATTERNS = [re.compile(rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----'),
+                   re.compile(rb'\bgh[pousr]_[A-Za-z0-9]{30,}\b'),
+                   re.compile(rb'\bhf_[A-Za-z0-9]{30,}\b')]
 
 
 def sha256(path: Path) -> str:
     h = hashlib.sha256()
-    with path.open("rb") as f:
-        for chunk in iter(lambda: f.read(4 * 1024 * 1024), b""):
+    with path.open('rb') as f:
+        for chunk in iter(lambda: f.read(4 * 1024 * 1024), b''):
             h.update(chunk)
     return h.hexdigest()
 
 
 def safe_relative(value: str) -> str:
     p = PurePosixPath(value)
-    if p.is_absolute() or ".." in p.parts or "\\" in value or not value or value == ".":
-        raise ValueError(f"Unsafe release path: {value}")
-    return p.as_posix()
+    if (not value or value == '.' or p.is_absolute() or '..' in p.parts
+            or '\\' in value or ':' in value or p.as_posix() != value):
+        raise ValueError(f'Unsafe release path: {value}')
+    return value
 
 
-def selected_files(config: dict) -> dict[str, Path]:
-    chosen: dict[str, Path] = {}
+def check_file(root: Path, name: str) -> Path:
+    name = safe_relative(name)
+    path = root / name
+    if (any(p.is_symlink() for p in [path, *path.parents] if p != root.parent)
+            or not path.resolve().is_relative_to(root.resolve())):
+        raise ValueError(f'Unsafe installed file: {name}')
+    if not path.is_file():
+        raise ValueError(f'Missing release file: {name}')
+    rel = PurePosixPath(name)
+    if (set(rel.parts) & SKIP_PARTS or rel.parts[0] in LOCAL_ROOTS
+            or path.suffix.lower() in FORBIDDEN_SUFFIXES or path.name.startswith('.env')
+            or (path.suffix == '.bit' and name != 'bitstream/' + BIT_NAME)):
+        raise ValueError(f'Excluded data type selected: {name}')
+    return path
 
-    def add(source: Path, target: str) -> None:
-        target = safe_relative(target)
-        if source.is_symlink() or not source.is_file() or not source.resolve().is_relative_to(ROOT):
-            raise ValueError(f"Missing, symlinked, or external source: {source}")
-        if any(part in DISALLOWED_PARTS for part in source.parts) or source.suffix.lower() in DISALLOWED_SUFFIXES:
-            raise ValueError(f"Excluded data type selected: {source}")
-        if source.name.startswith(".env"):
-            raise ValueError(f"Environment file selected: {source}")
-        if target in chosen and chosen[target] != source:
-            raise ValueError(f"Duplicate release target: {target}")
-        chosen[target] = source
 
-    for entry in config["files"]:
-        source_name = safe_relative(entry["source"])
-        add(ROOT / source_name, entry.get("target", source_name))
-    for entry in config.get("trees", []):
-        source_name = safe_relative(entry["source"])
-        base = ROOT / source_name
-        if not base.is_dir() or base.is_symlink():
-            raise ValueError(f"Missing release source tree: {base}")
-        suffixes = set(entry["suffixes"])
-        for source in sorted(base.rglob("*")):
-            rel = source.relative_to(base)
-            if any(part in DISALLOWED_PARTS for part in rel.parts):
-                continue
-            if source.is_file() and source.suffix in suffixes:
-                add(source, str(PurePosixPath(entry.get("target", source_name)) / rel.as_posix()))
-    for target, source_name in config.get("overrides", {}).items():
-        target = safe_relative(target)
-        if target not in chosen:
-            raise ValueError(f"Override is not an existing selected path: {target}")
-        del chosen[target]
-        add(ROOT / safe_relative(source_name), target)
-    # The public build/runtime must carry every frozen input, even when a new
-    # extension is added to the vendor snapshot.
-    vendor_manifest = chosen.get("deploy/vendor_manifest.json")
-    if vendor_manifest is None:
-        raise ValueError("Release must include the deployment vendor manifest")
-    for relative, entry in json.loads(vendor_manifest.read_text())["files"].items():
-        target = "deploy/" + safe_relative(relative)
-        source = chosen.get(target)
-        if source is None:
-            raise ValueError(f"Required deployment dependency omitted: {target}")
-        if source.stat().st_size != entry["bytes"] or sha256(source) != entry["sha256"]:
-            raise ValueError(f"Frozen deployment dependency mismatch: {target}")
-    if chosen.get("bitstream/" + BIT_NAME) != ROOT / BIT_SOURCE:
-        raise ValueError("Release must include the exact board-tested bitstream")
-    bit = ROOT / BIT_SOURCE
+def check_sources(root: Path, names: set[str]) -> None:
+    for manifest_name, sections in SOURCE_MANIFESTS.items():
+        if manifest_name not in names:
+            raise ValueError(f'Required source manifest omitted: {manifest_name}')
+        manifest = json.loads((root / manifest_name).read_text())
+        for section in sections:
+            for name, entry in manifest[section].items():
+                name = safe_relative(name)
+                if name not in names:
+                    raise ValueError(f'Required dependency omitted: {name}')
+                path = check_file(root, name)
+                digest = entry if isinstance(entry, str) else entry['sha256']
+                if sha256(path) != digest or (isinstance(entry, dict) and 'bytes' in entry
+                                              and path.stat().st_size != entry['bytes']):
+                    raise ValueError(f'Frozen dependency mismatch: {name}')
+    name = 'bitstream/' + BIT_NAME
+    if name not in names:
+        raise ValueError('Board-tested bitstream omitted')
+    bit = root / name
     if bit.stat().st_size != BIT_SIZE or sha256(bit) != BIT_SHA256:
-        raise ValueError("Board-tested bitstream identity mismatch")
-    return chosen
+        raise ValueError('Released bitstream differs from the board-tested identity')
+
+
+def selected_files(config: dict, root: Path | None = None) -> dict[str, Path]:
+    root = ROOT if root is None else root
+    selected = {}
+    for name in config['files']:
+        if name == MANIFEST or name in selected:
+            raise ValueError(f'Duplicate or self-referential selection: {name}')
+        selected[name] = check_file(root, name)
+    check_sources(root, set(selected))
+    return selected
+
+
+def seal(root: Path, config: dict) -> dict:
+    selected = selected_files(config, root)
+    files = []
+    for name, path in sorted(selected.items()):
+        if path.suffix.lower() not in {'.bit', '.png', '.pdf'}:
+            if any(pattern.search(path.read_bytes()) for pattern in SECRET_PATTERNS):
+                raise ValueError(f'Potential credential detected in {name}')
+        files.append({'path': name, 'bytes': path.stat().st_size, 'sha256': sha256(path)})
+    manifest = {'schema': 'scalellm_final_release_v1', 'project': PROJECT,
+                'release_date': '2026-10-29', 'bitstream_sha256': BIT_SHA256, 'files': files}
+    (root / MANIFEST).write_text(json.dumps(manifest, indent=2) + '\n')
+    return verify(root)
 
 
 def verify(directory: Path) -> dict:
-    manifest = json.loads((directory / "RELEASE_MANIFEST.json").read_text())
-    if manifest["project"] != "ScaleLLM_VCU118_GU_only":
-        raise ValueError("Not a ScaleLLM release")
+    directory = directory.resolve()
+    manifest = json.loads((directory / MANIFEST).read_text())
+    if manifest.get('project') != PROJECT:
+        raise ValueError('Not a ScaleLLM Decode16 release')
     expected = set()
-    for entry in manifest["files"]:
-        name = safe_relative(entry["path"])
-        if name in expected:
-            raise ValueError(f"Duplicate manifest entry: {name}")
+    for entry in manifest['files']:
+        name = safe_relative(entry['path'])
+        if name in expected or name == MANIFEST:
+            raise ValueError(f'Duplicate manifest entry: {name}')
         expected.add(name)
-        path = directory / name
-        if path.is_symlink() or not path.resolve().is_relative_to(directory.resolve()):
-            raise ValueError(f"Unsafe installed file: {name}")
-        if not path.is_file() or path.stat().st_size != entry["bytes"] or sha256(path) != entry["sha256"]:
-            raise ValueError(f"Release verification failed: {name}")
-    actual = {p.relative_to(directory).as_posix() for p in directory.rglob("*") if p.is_file()
-              and not any(x in DISALLOWED_PARTS for x in p.relative_to(directory).parts)}
-    extra = actual - expected - {"RELEASE_MANIFEST.json"}
+        path = check_file(directory, name)
+        if path.stat().st_size != entry['bytes'] or sha256(path) != entry['sha256']:
+            raise ValueError(f'Release verification failed: {name}')
+    actual = set()
+    # Prune local build/model directories: verification never traverses weights.
+    import os
+    for parent, directories, filenames in os.walk(directory, followlinks=False):
+        relative = Path(parent).relative_to(directory)
+        directories[:] = [d for d in directories if d not in SKIP_PARTS
+                           and not (relative == Path('.') and d in LOCAL_ROOTS)]
+        for dirname in directories:
+            if (Path(parent) / dirname).is_symlink():
+                raise ValueError(f'Unsafe installed file: {relative / dirname}')
+        actual.update((relative / name).as_posix() for name in filenames if name not in SKIP_PARTS)
+    extra = actual - expected - {MANIFEST}
     if extra:
-        raise ValueError(f"Unlisted files in release: {sorted(extra)[:10]}")
-    bit = directory / "bitstream" / BIT_NAME
-    if bit.stat().st_size != BIT_SIZE or sha256(bit) != BIT_SHA256:
-        raise ValueError("Released bitstream differs from the board-tested identity")
-    return {"status": "PASS", "file_count": len(expected), "bytes": sum(p["bytes"] for p in manifest["files"]),
-            "bitstream_sha256": BIT_SHA256}
+        raise ValueError(f'Unlisted files in release: {sorted(extra)[:10]}')
+    check_sources(directory, expected)
+    return {'status': 'PASS', 'file_count': len(expected),
+            'bytes': sum(p['bytes'] for p in manifest['files']), 'bitstream_sha256': BIT_SHA256}
+
+
+def build(root: Path, output: Path) -> dict:
+    verified = verify(root)
+    output = output.resolve()
+    if output == root or output in root.parents or output.exists():
+        raise ValueError('Output must be a new directory outside source inputs')
+    manifest = json.loads((root / MANIFEST).read_text())
+    names = [e['path'] for e in manifest['files']] + [MANIFEST]
+    if any((root / name).is_relative_to(output) for name in names):
+        raise ValueError('Output overlaps source inputs')
+    output.mkdir(parents=True)
+    for name in names:
+        target = output / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(root / name, target)
+        target.chmod(0o644)
+    verify(output)
+    archive = output.with_suffix('.tar.gz')
+    if archive.exists():
+        raise ValueError(f'Archive already exists: {archive}')
+    with archive.open('wb') as raw, gzip.GzipFile(filename='', fileobj=raw, mode='wb', mtime=0) as gz:
+        with tarfile.open(fileobj=gz, mode='w') as tar:
+            for name in sorted(names):
+                path = output / name
+                info = tar.gettarinfo(str(path), arcname=output.name + '/' + name)
+                info.uid = info.gid = 0
+                info.uname = info.gname = ''
+                info.mtime = 0
+                info.mode = 0o644
+                with path.open('rb') as f:
+                    tar.addfile(info, f)
+    digest = sha256(archive)
+    archive.with_suffix('.gz.sha256').write_text(f'{digest}  {archive.name}\n')
+    return {**verified, 'archive': str(archive), 'archive_sha256': digest,
+            'archive_bytes': archive.stat().st_size}
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--config", type=Path, default=ROOT / "deploy/release_files.json")
-    ap.add_argument("--output", type=Path, default=ROOT / "dist/ScaleLLM_VCU118")
-    ap.add_argument("--verify", type=Path, help="Only verify an extracted package")
-    ap.add_argument("--replace", action="store_true", help="Replace a previously generated release directory")
-    args = ap.parse_args()
-    if args.verify:
-        print(json.dumps(verify(args.verify.resolve()), indent=2))
-        return 0
-    config = json.loads(args.config.read_text())
-    selected = selected_files(config)
-    output = args.output.resolve()
-    if output == ROOT or output in ROOT.parents:
-        raise ValueError("Output cannot be the source workspace or an ancestor")
-    if any(source.is_relative_to(output) for source in selected.values()):
-        raise ValueError("Output overlaps release input sources")
-    if output.exists():
-        if not args.replace:
-            raise ValueError("Output exists; --replace is required for a previous release")
-        old = json.loads((output / "RELEASE_MANIFEST.json").read_text())
-        if old.get("project") != "ScaleLLM_VCU118_GU_only":
-            raise ValueError("Refusing to replace a directory not created by this tool")
-        shutil.rmtree(output)
-    output.mkdir(parents=True)
-    files = []
-    for name, source in sorted(selected.items()):
-        if source.suffix not in {".bit", ".png", ".pdf"}:
-            content = source.read_bytes()
-            if any(pattern.search(content) for pattern in SECRET_PATTERNS):
-                raise ValueError(f"Potential credential detected in {source.relative_to(ROOT)}")
-        dest = output / name
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(source, dest)
-        dest.chmod(0o644)
-        files.append({"path": name, "bytes": dest.stat().st_size, "sha256": sha256(dest),
-                      "source": str(source.relative_to(ROOT))})
-    manifest = {"schema": 1, "project": "ScaleLLM_VCU118_GU_only", "release_date": "2026-10-25",
-                "status": "ENGINEERING_VALIDATION_WITH_DOCUMENTED_LIMITS", "files": files,
-                "excluded": ["model weights and exports", "machine credentials/signatures", "AMD tools",
-                             "generated Vivado caches", "local Git and research-management history"],
-                "bitstream_sha256": BIT_SHA256}
-    (output / "RELEASE_MANIFEST.json").write_text(json.dumps(manifest, indent=2) + "\n")
-    validation = verify(output)
-    archive = output.with_suffix(".tar.gz")
-    with archive.open("wb") as raw, gzip.GzipFile(filename="", fileobj=raw, mode="wb", mtime=0) as gz:
-        with tarfile.open(fileobj=gz, mode="w") as tar:
-            for path in sorted(p for p in output.rglob("*") if p.is_file()):
-                info = tar.gettarinfo(str(path), arcname=str(Path(output.name) / path.relative_to(output)))
-                info.uid = info.gid = 0
-                info.uname = info.gname = ""
-                info.mtime = 0
-                info.mode = 0o644
-                with path.open("rb") as f:
-                    tar.addfile(info, f)
-    digest = sha256(archive)
-    archive.with_suffix(archive.suffix + ".sha256").write_text(f"{digest}  {archive.name}\n")
-    receipt = {"created_utc": datetime.now(timezone.utc).isoformat(), "archive": archive.name,
-               "archive_sha256": digest, "archive_bytes": archive.stat().st_size, **validation}
-    archive.with_suffix(".receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
-    print(json.dumps(receipt, indent=2))
+    parser = argparse.ArgumentParser(description=__doc__)
+    commands = parser.add_subparsers(dest='command', required=True)
+    sealing = commands.add_parser('seal', help='Maintainer: refresh the checked-in integrity manifest')
+    sealing.add_argument('--config', type=Path, default=ROOT / 'deploy/release_files.json')
+    verification = commands.add_parser('verify', help='Verify a clone or an extracted release')
+    verification.add_argument('directory', type=Path, nargs='?', default=ROOT)
+    packaging = commands.add_parser('build', help='Create a verified directory and deterministic archive')
+    packaging.add_argument('--output', type=Path, default=ROOT / 'dist' / PROJECT)
+    args = parser.parse_args()
+    if args.command == 'seal':
+        result = seal(ROOT, json.loads(args.config.read_text()))
+    elif args.command == 'verify':
+        result = verify(args.directory)
+    else:
+        result = build(ROOT, args.output)
+    print(json.dumps(result, indent=2))
     return 0
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     raise SystemExit(main())

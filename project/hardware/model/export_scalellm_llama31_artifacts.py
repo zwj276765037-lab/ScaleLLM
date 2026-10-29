@@ -133,10 +133,8 @@ class SafeTensorNumpy:
 class LlamaCheckpoint:
     def __init__(self, model_dir: Path) -> None:
         self.model_dir = model_dir.resolve(strict=True)
-        if not self.model_dir.is_dir() or self.model_dir.name != MODEL_DIRECTORY:
-            raise ValueError(
-                f"checkpoint directory must be {MODEL_DIRECTORY}: {self.model_dir}"
-            )
+        if not self.model_dir.is_dir():
+            raise ValueError(f"checkpoint path must be a directory: {self.model_dir}")
         self.config_path = self.model_dir / "config.json"
         self.index_path = self.model_dir / "model.safetensors.index.json"
         self.tokenizer_paths = tuple(

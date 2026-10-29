@@ -1,0 +1,980 @@
+{
+  "schema": "scalellm_power_tool_validation_v1",
+  "measurement_scope": "seven regulator-output rails, not whole-board input or complete isolated-chip power",
+  "full_model_measurement": {
+    "dataset": "docs/evidence/power_chat16",
+    "original_stage_state": "FAIL",
+    "original_error": "Sampler stop timeout",
+    "model_native_exit": 0,
+    "sampler_native_exit": null,
+    "observed_windows_valid": true,
+    "sweeps": 2947,
+    "all_three_windows_coverage_fraction": 1.0,
+    "model_rounds": 50,
+    "commands": 3200,
+    "generated_tokens": 512,
+    "all_512_generated_ids_match_previous_actual": true,
+    "numerical_verification": "NOT_RUN; repeatability is not independent gold",
+    "executable_sha256": "ca0cebc63364312c56c3949655b40352758177b243b56eadc1c7bfff30f08e68",
+    "executable_variant": "historically rebuilt legacy runtime; not the official executable",
+    "sampler_shutdown": "Post-window finalization exceeded its bounded stop timeout; owner cleaned only the matching sampler PID/birth. No native sampler success is inferred."
+  },
+  "official_runtime_preparation": {
+    "native_exit": 0,
+    "gui_started": false,
+    "device_opened": false,
+    "version": "2.32.27",
+    "source": "User-owned official vendor installation; no vendor files distributed",
+    "official_executable_sha256": "d5749e5ebb80b4ad7c81c73cc9863467bb988915922a9337da75bb304fc23f31",
+    "explicit_dependency_manifest": "tools/power/powertool_runtime_manifest.json",
+    "verified_original_dlls": 8,
+    "embedded_xml": [
+      {
+        "sha256": "972ac4466029cd40184838f7e030a7151f835d4d42e56568b6e4b32d1baf4546",
+        "name": "004328.xml",
+        "bytes": 130393
+      },
+      {
+        "sha256": "186e585ec3d435bd4f072f9c74be047c49902420f98a1ffbc90b59105831b678",
+        "name": "MAX20751.xml",
+        "bytes": 9942
+      }
+    ]
+  },
+  "official_runtime_short_read": {
+    "state": "COMPLETE",
+    "native_exit": 0,
+    "started_utc": "2026-10-29T03:15:34.1893971Z",
+    "finished_utc": "2026-10-29T03:15:39.9661524Z",
+    "wall_seconds": 5.7787482,
+    "sweeps": 3,
+    "rails_per_sweep": 7,
+    "gui_started": false,
+    "fpga_commands_or_programming": false,
+    "survivors": [],
+    "lease_released": true,
+    "peak_child_rss_bytes": 80113664,
+    "summary": {
+      "sample_count": 3,
+      "first_sample_timestamp": "2026-10-29T11:15:36.8134535+08:00",
+      "last_sample_timestamp": "2026-10-29T11:15:39.2512591+08:00",
+      "elapsed_s": 3.275289,
+      "monitored_power_mean_w": 11.314463883638382,
+      "monitored_power_min_w": 11.265459060668945,
+      "monitored_power_max_w": 11.360060587525368,
+      "quantization_half_step_bound_w": 3,
+      "scope_note": "Sum of seven direct J39 regulator telemetry values; this is not whole-board12V input power. Quantization number covers coarse READ_POUT channels only."
+    },
+    "samples": [
+      {
+        "index": 0,
+        "sweep_started_utc": "2026-10-29T03:15:36.8134535Z",
+        "sweep_started_ticks": 3508658532432,
+        "timestamp": "2026-10-29T11:15:36.8134535+08:00",
+        "rails": [
+          {
+            "read_started_utc": "2026-10-29T03:15:36.8144499Z",
+            "read_started_ticks": 3508658546001,
+            "read_finished_utc": "2026-10-29T03:15:36.8782675Z",
+            "read_finished_ticks": 3508659181271,
+            "address": "0x70",
+            "name": "VCCINT_FPGA",
+            "regulator": "MAX20751",
+            "nominal_voltage_v": 0.85,
+            "voltage_v": null,
+            "current_a": 6.5,
+            "power_w": 6,
+            "power_source": "READ_POUT",
+            "voltage_source": "UNAVAILABLE_DIRECT_FEEDBACK_ONLY",
+            "measurement_state": "active_quantized",
+            "quantization": {
+              "power_step_w": 2,
+              "power_half_step_bound_w": 1,
+              "current_step_a": 0.5
+            },
+            "raw": {
+              "vout_mode": 32,
+              "read_vout": "79 00",
+              "read_iout": "0D F8",
+              "read_pout": "03 08"
+            },
+            "parser": {
+              "read_vout": 121,
+              "read_iout": 6.5,
+              "feedback_voltage_v": 0.236328125,
+              "coarse_read_pout_div_read_iout_voltage_v": 0.9230769230769231,
+              "inferred_feedback_divider_ratio": 0.25602213541666663
+            },
+            "gate_notes": [
+              "READ_POUT Linear11 step is 2.000000 W; reported power has an approximate +/-1.000000 W half-step quantization bound.",
+              "READ_VOUT is the regulator feedback-node value; no unverified board divider is applied."
+            ],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:36.8862409Z",
+            "read_started_ticks": 3508659268025,
+            "read_finished_utc": "2026-10-29T03:15:36.9221171Z",
+            "read_finished_ticks": 3508659623128,
+            "address": "0x11",
+            "name": "VCC1V8_FPGA",
+            "regulator": "MAX15301",
+            "nominal_voltage_v": 1.8,
+            "voltage_v": 1.79931640625,
+            "current_a": 1.271484375,
+            "power_w": 2.2878026962280273,
+            "power_source": "VOUT_X_IOUT",
+            "voltage_source": "READ_VOUT",
+            "measurement_state": "active",
+            "quantization": {
+              "power_step_w": null,
+              "power_half_step_bound_w": null,
+              "current_step_a": null
+            },
+            "raw": {
+              "vout_mode": 20,
+              "read_vout": "CA 1C",
+              "read_iout": "8B BA",
+              "read_pout": null
+            },
+            "parser": {
+              "read_vout": 1.79931640625,
+              "read_iout": 1.271484375,
+              "feedback_voltage_v": null,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:36.9231192Z",
+            "read_started_ticks": 3508659633924,
+            "read_finished_utc": "2026-10-29T03:15:36.9490310Z",
+            "read_finished_ticks": 3508659887053,
+            "address": "0x12",
+            "name": "VADJ_1V8_FPGA",
+            "regulator": "MAX15301",
+            "nominal_voltage_v": 1.8,
+            "voltage_v": 1.799560546875,
+            "current_a": -0.02197265625,
+            "power_w": -0.03954112529754639,
+            "power_source": "VOUT_X_IOUT",
+            "voltage_source": "READ_VOUT",
+            "measurement_state": "active",
+            "quantization": {
+              "power_step_w": null,
+              "power_half_step_bound_w": null,
+              "current_step_a": null
+            },
+            "raw": {
+              "vout_mode": 20,
+              "read_vout": "CB 1C",
+              "read_iout": "30 8D",
+              "read_pout": null
+            },
+            "parser": {
+              "read_vout": 1.799560546875,
+              "read_iout": -0.02197265625,
+              "feedback_voltage_v": null,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:36.9490310Z",
+            "read_started_ticks": 3508659892032,
+            "read_finished_utc": "2026-10-29T03:15:36.9749442Z",
+            "read_finished_ticks": 3508660146520,
+            "address": "0x15",
+            "name": "VCCINTIO_BRAM_FPGA",
+            "regulator": "MAX15301",
+            "nominal_voltage_v": 0.85,
+            "voltage_v": 0.849853515625,
+            "current_a": 0.46044921875,
+            "power_w": 0.39131438732147217,
+            "power_source": "VOUT_X_IOUT",
+            "voltage_source": "READ_VOUT",
+            "measurement_state": "active",
+            "quantization": {
+              "power_step_w": null,
+              "power_half_step_bound_w": null,
+              "current_step_a": null
+            },
+            "raw": {
+              "vout_mode": 20,
+              "read_vout": "99 0D",
+              "read_iout": "AF AB",
+              "read_pout": null
+            },
+            "parser": {
+              "read_vout": 0.849853515625,
+              "read_iout": 0.46044921875,
+              "feedback_voltage_v": null,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:36.9749442Z",
+            "read_started_ticks": 3508660151197,
+            "read_finished_utc": "2026-10-29T03:15:37.0028510Z",
+            "read_finished_ticks": 3508660426545,
+            "address": "0x14",
+            "name": "VCC1V2_FPGA",
+            "regulator": "MAX15301",
+            "nominal_voltage_v": 1.2,
+            "voltage_v": 1.2001953125,
+            "current_a": 0.521484375,
+            "power_w": 0.6258831024169922,
+            "power_source": "VOUT_X_IOUT",
+            "voltage_source": "READ_VOUT",
+            "measurement_state": "active",
+            "quantization": {
+              "power_step_w": null,
+              "power_half_step_bound_w": null,
+              "current_step_a": null
+            },
+            "raw": {
+              "vout_mode": 20,
+              "read_vout": "34 13",
+              "read_iout": "16 B2",
+              "read_pout": null
+            },
+            "parser": {
+              "read_vout": 1.2001953125,
+              "read_iout": 0.521484375,
+              "feedback_voltage_v": null,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:37.0028510Z",
+            "read_started_ticks": 3508660431283,
+            "read_finished_utc": "2026-10-29T03:15:37.0377341Z",
+            "read_finished_ticks": 3508660773643,
+            "address": "0x72",
+            "name": "MGTAVCC_FPGA",
+            "regulator": "MAX20751",
+            "nominal_voltage_v": 0.9,
+            "voltage_v": null,
+            "current_a": 0.5,
+            "power_w": 0,
+            "power_source": "READ_POUT",
+            "voltage_source": "UNAVAILABLE_DIRECT_FEEDBACK_ONLY",
+            "measurement_state": "active_below_power_resolution",
+            "quantization": {
+              "power_step_w": 2,
+              "power_half_step_bound_w": 1,
+              "current_step_a": 0.5
+            },
+            "raw": {
+              "vout_mode": 32,
+              "read_vout": "83 00",
+              "read_iout": "01 F8",
+              "read_pout": "00 08"
+            },
+            "parser": {
+              "read_vout": 131,
+              "read_iout": 0.5,
+              "feedback_voltage_v": 0.255859375,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [
+              "READ_POUT Linear11 step is 2.000000 W; reported power has an approximate +/-1.000000 W half-step quantization bound.",
+              "READ_VOUT is the regulator feedback-node value; no unverified board divider is applied."
+            ],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:37.0377341Z",
+            "read_started_ticks": 3508660778279,
+            "read_finished_utc": "2026-10-29T03:15:37.0795942Z",
+            "read_finished_ticks": 3508661195188,
+            "address": "0x73",
+            "name": "MGTAVTT_FPGA",
+            "regulator": "MAX20751",
+            "nominal_voltage_v": 1.2,
+            "voltage_v": null,
+            "current_a": 1.5,
+            "power_w": 2,
+            "power_source": "READ_POUT",
+            "voltage_source": "UNAVAILABLE_DIRECT_FEEDBACK_ONLY",
+            "measurement_state": "active_quantized",
+            "quantization": {
+              "power_step_w": 2,
+              "power_half_step_bound_w": 1,
+              "current_step_a": 0.5
+            },
+            "raw": {
+              "vout_mode": 32,
+              "read_vout": "BF 00",
+              "read_iout": "03 F8",
+              "read_pout": "01 08"
+            },
+            "parser": {
+              "read_vout": 191,
+              "read_iout": 1.5,
+              "feedback_voltage_v": 0.373046875,
+              "coarse_read_pout_div_read_iout_voltage_v": 1.3333333333333333,
+              "inferred_feedback_divider_ratio": 0.27978515625
+            },
+            "gate_notes": [
+              "READ_POUT Linear11 step is 2.000000 W; reported power has an approximate +/-1.000000 W half-step quantization bound.",
+              "READ_VOUT is the regulator feedback-node value; no unverified board divider is applied."
+            ],
+            "gate_pass": true
+          }
+        ],
+        "monitored_power_w": 11.265459060668945,
+        "monitored_power_quantization_half_step_bound_w": 3,
+        "sweep_ended_utc": "2026-10-29T03:15:37.0795942Z",
+        "sweep_ended_ticks": 3508661220176
+      },
+      {
+        "index": 1,
+        "sweep_started_utc": "2026-10-29T03:15:38.1007976Z",
+        "sweep_started_ticks": 3508671413424,
+        "timestamp": "2026-10-29T11:15:38.1017937+08:00",
+        "rails": [
+          {
+            "read_started_utc": "2026-10-29T03:15:38.1017937Z",
+            "read_started_ticks": 3508671418544,
+            "read_finished_utc": "2026-10-29T03:15:38.1267070Z",
+            "read_finished_ticks": 3508671664733,
+            "address": "0x70",
+            "name": "VCCINT_FPGA",
+            "regulator": "MAX20751",
+            "nominal_voltage_v": 0.85,
+            "voltage_v": null,
+            "current_a": 6.5,
+            "power_w": 6,
+            "power_source": "READ_POUT",
+            "voltage_source": "UNAVAILABLE_DIRECT_FEEDBACK_ONLY",
+            "measurement_state": "active_quantized",
+            "quantization": {
+              "power_step_w": 2,
+              "power_half_step_bound_w": 1,
+              "current_step_a": 0.5
+            },
+            "raw": {
+              "vout_mode": 32,
+              "read_vout": "79 00",
+              "read_iout": "0D F8",
+              "read_pout": "03 08"
+            },
+            "parser": {
+              "read_vout": 121,
+              "read_iout": 6.5,
+              "feedback_voltage_v": 0.236328125,
+              "coarse_read_pout_div_read_iout_voltage_v": 0.9230769230769231,
+              "inferred_feedback_divider_ratio": 0.25602213541666663
+            },
+            "gate_notes": [
+              "READ_POUT Linear11 step is 2.000000 W; reported power has an approximate +/-1.000000 W half-step quantization bound.",
+              "READ_VOUT is the regulator feedback-node value; no unverified board divider is applied."
+            ],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:38.1267070Z",
+            "read_started_ticks": 3508671668882,
+            "read_finished_utc": "2026-10-29T03:15:38.1476409Z",
+            "read_finished_ticks": 3508671873280,
+            "address": "0x11",
+            "name": "VCC1V8_FPGA",
+            "regulator": "MAX15301",
+            "nominal_voltage_v": 1.8,
+            "voltage_v": 1.79931640625,
+            "current_a": 1.298828125,
+            "power_w": 2.337002754211426,
+            "power_source": "VOUT_X_IOUT",
+            "voltage_source": "READ_VOUT",
+            "measurement_state": "active",
+            "quantization": {
+              "power_step_w": null,
+              "power_half_step_bound_w": null,
+              "current_step_a": null
+            },
+            "raw": {
+              "vout_mode": 20,
+              "read_vout": "CA 1C",
+              "read_iout": "99 BA",
+              "read_pout": null
+            },
+            "parser": {
+              "read_vout": 1.79931640625,
+              "read_iout": 1.298828125,
+              "feedback_voltage_v": null,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:38.1476409Z",
+            "read_started_ticks": 3508671879233,
+            "read_finished_utc": "2026-10-29T03:15:38.1635835Z",
+            "read_finished_ticks": 3508672032691,
+            "address": "0x12",
+            "name": "VADJ_1V8_FPGA",
+            "regulator": "MAX15301",
+            "nominal_voltage_v": 1.8,
+            "voltage_v": 1.800048828125,
+            "current_a": -0.03021240234375,
+            "power_w": -0.05438379943370819,
+            "power_source": "VOUT_X_IOUT",
+            "voltage_source": "READ_VOUT",
+            "measurement_state": "active",
+            "quantization": {
+              "power_step_w": null,
+              "power_half_step_bound_w": null,
+              "current_step_a": null
+            },
+            "raw": {
+              "vout_mode": 20,
+              "read_vout": "CD 1C",
+              "read_iout": "22 8C",
+              "read_pout": null
+            },
+            "parser": {
+              "read_vout": 1.800048828125,
+              "read_iout": -0.03021240234375,
+              "feedback_voltage_v": null,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:38.1635835Z",
+            "read_started_ticks": 3508672037666,
+            "read_finished_utc": "2026-10-29T03:15:38.1795333Z",
+            "read_finished_ticks": 3508672192548,
+            "address": "0x15",
+            "name": "VCCINTIO_BRAM_FPGA",
+            "regulator": "MAX15301",
+            "nominal_voltage_v": 0.85,
+            "voltage_v": 0.849853515625,
+            "current_a": 0.50390625,
+            "power_w": 0.42824649810791016,
+            "power_source": "VOUT_X_IOUT",
+            "voltage_source": "READ_VOUT",
+            "measurement_state": "active",
+            "quantization": {
+              "power_step_w": null,
+              "power_half_step_bound_w": null,
+              "current_step_a": null
+            },
+            "raw": {
+              "vout_mode": 20,
+              "read_vout": "99 0D",
+              "read_iout": "04 B2",
+              "read_pout": null
+            },
+            "parser": {
+              "read_vout": 0.849853515625,
+              "read_iout": 0.50390625,
+              "feedback_voltage_v": null,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:38.1795333Z",
+            "read_started_ticks": 3508672197862,
+            "read_finished_utc": "2026-10-29T03:15:38.1974736Z",
+            "read_finished_ticks": 3508672372179,
+            "address": "0x14",
+            "name": "VCC1V2_FPGA",
+            "regulator": "MAX15301",
+            "nominal_voltage_v": 1.2,
+            "voltage_v": 1.199951171875,
+            "current_a": 0.505859375,
+            "power_w": 0.6070065498352051,
+            "power_source": "VOUT_X_IOUT",
+            "voltage_source": "READ_VOUT",
+            "measurement_state": "active",
+            "quantization": {
+              "power_step_w": null,
+              "power_half_step_bound_w": null,
+              "current_step_a": null
+            },
+            "raw": {
+              "vout_mode": 20,
+              "read_vout": "33 13",
+              "read_iout": "06 B2",
+              "read_pout": null
+            },
+            "parser": {
+              "read_vout": 1.199951171875,
+              "read_iout": 0.505859375,
+              "feedback_voltage_v": null,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:38.1974736Z",
+            "read_started_ticks": 3508672377334,
+            "read_finished_utc": "2026-10-29T03:15:38.2213932Z",
+            "read_finished_ticks": 3508672615228,
+            "address": "0x72",
+            "name": "MGTAVCC_FPGA",
+            "regulator": "MAX20751",
+            "nominal_voltage_v": 0.9,
+            "voltage_v": null,
+            "current_a": 0.5,
+            "power_w": 0,
+            "power_source": "READ_POUT",
+            "voltage_source": "UNAVAILABLE_DIRECT_FEEDBACK_ONLY",
+            "measurement_state": "active_below_power_resolution",
+            "quantization": {
+              "power_step_w": 2,
+              "power_half_step_bound_w": 1,
+              "current_step_a": 0.5
+            },
+            "raw": {
+              "vout_mode": 32,
+              "read_vout": "83 00",
+              "read_iout": "01 F8",
+              "read_pout": "00 08"
+            },
+            "parser": {
+              "read_vout": 131,
+              "read_iout": 0.5,
+              "feedback_voltage_v": 0.255859375,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [
+              "READ_POUT Linear11 step is 2.000000 W; reported power has an approximate +/-1.000000 W half-step quantization bound.",
+              "READ_VOUT is the regulator feedback-node value; no unverified board divider is applied."
+            ],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:38.2213932Z",
+            "read_started_ticks": 3508672619309,
+            "read_finished_utc": "2026-10-29T03:15:38.2453132Z",
+            "read_finished_ticks": 3508672855412,
+            "address": "0x73",
+            "name": "MGTAVTT_FPGA",
+            "regulator": "MAX20751",
+            "nominal_voltage_v": 1.2,
+            "voltage_v": null,
+            "current_a": 1.5,
+            "power_w": 2,
+            "power_source": "READ_POUT",
+            "voltage_source": "UNAVAILABLE_DIRECT_FEEDBACK_ONLY",
+            "measurement_state": "active_quantized",
+            "quantization": {
+              "power_step_w": 2,
+              "power_half_step_bound_w": 1,
+              "current_step_a": 0.5
+            },
+            "raw": {
+              "vout_mode": 32,
+              "read_vout": "BF 00",
+              "read_iout": "03 F8",
+              "read_pout": "01 08"
+            },
+            "parser": {
+              "read_vout": 191,
+              "read_iout": 1.5,
+              "feedback_voltage_v": 0.373046875,
+              "coarse_read_pout_div_read_iout_voltage_v": 1.3333333333333333,
+              "inferred_feedback_divider_ratio": 0.27978515625
+            },
+            "gate_notes": [
+              "READ_POUT Linear11 step is 2.000000 W; reported power has an approximate +/-1.000000 W half-step quantization bound.",
+              "READ_VOUT is the regulator feedback-node value; no unverified board divider is applied."
+            ],
+            "gate_pass": true
+          }
+        ],
+        "monitored_power_w": 11.317872002720833,
+        "monitored_power_quantization_half_step_bound_w": 3,
+        "sweep_ended_utc": "2026-10-29T03:15:38.2463099Z",
+        "sweep_ended_ticks": 3508672859474
+      },
+      {
+        "index": 2,
+        "sweep_started_utc": "2026-10-29T03:15:39.2512591Z",
+        "sweep_started_ticks": 3508682913958,
+        "timestamp": "2026-10-29T11:15:39.2512591+08:00",
+        "rails": [
+          {
+            "read_started_utc": "2026-10-29T03:15:39.2522590Z",
+            "read_started_ticks": 3508682920113,
+            "read_finished_utc": "2026-10-29T03:15:39.2911218Z",
+            "read_finished_ticks": 3508683311683,
+            "address": "0x70",
+            "name": "VCCINT_FPGA",
+            "regulator": "MAX20751",
+            "nominal_voltage_v": 0.85,
+            "voltage_v": null,
+            "current_a": 6.5,
+            "power_w": 6,
+            "power_source": "READ_POUT",
+            "voltage_source": "UNAVAILABLE_DIRECT_FEEDBACK_ONLY",
+            "measurement_state": "active_quantized",
+            "quantization": {
+              "power_step_w": 2,
+              "power_half_step_bound_w": 1,
+              "current_step_a": 0.5
+            },
+            "raw": {
+              "vout_mode": 32,
+              "read_vout": "79 00",
+              "read_iout": "0D F8",
+              "read_pout": "03 08"
+            },
+            "parser": {
+              "read_vout": 121,
+              "read_iout": 6.5,
+              "feedback_voltage_v": 0.236328125,
+              "coarse_read_pout_div_read_iout_voltage_v": 0.9230769230769231,
+              "inferred_feedback_divider_ratio": 0.25602213541666663
+            },
+            "gate_notes": [
+              "READ_POUT Linear11 step is 2.000000 W; reported power has an approximate +/-1.000000 W half-step quantization bound.",
+              "READ_VOUT is the regulator feedback-node value; no unverified board divider is applied."
+            ],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:39.2921185Z",
+            "read_started_ticks": 3508683317699,
+            "read_finished_utc": "2026-10-29T03:15:39.3120550Z",
+            "read_finished_ticks": 3508683525165,
+            "address": "0x11",
+            "name": "VCC1V8_FPGA",
+            "regulator": "MAX15301",
+            "nominal_voltage_v": 1.8,
+            "voltage_v": 1.7998046875,
+            "current_a": 1.306640625,
+            "power_w": 2.3516979217529297,
+            "power_source": "VOUT_X_IOUT",
+            "voltage_source": "READ_VOUT",
+            "measurement_state": "active",
+            "quantization": {
+              "power_step_w": null,
+              "power_half_step_bound_w": null,
+              "current_step_a": null
+            },
+            "raw": {
+              "vout_mode": 20,
+              "read_vout": "CC 1C",
+              "read_iout": "9D BA",
+              "read_pout": null
+            },
+            "parser": {
+              "read_vout": 1.7998046875,
+              "read_iout": 1.306640625,
+              "feedback_voltage_v": null,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:39.3130484Z",
+            "read_started_ticks": 3508683531202,
+            "read_finished_utc": "2026-10-29T03:15:39.3329818Z",
+            "read_finished_ticks": 3508683726191,
+            "address": "0x12",
+            "name": "VADJ_1V8_FPGA",
+            "regulator": "MAX15301",
+            "nominal_voltage_v": 1.8,
+            "voltage_v": 1.800048828125,
+            "current_a": -0.01190185546875,
+            "power_w": -0.02142392098903656,
+            "power_source": "VOUT_X_IOUT",
+            "voltage_source": "READ_VOUT",
+            "measurement_state": "active",
+            "quantization": {
+              "power_step_w": null,
+              "power_half_step_bound_w": null,
+              "current_step_a": null
+            },
+            "raw": {
+              "vout_mode": 20,
+              "read_vout": "CD 1C",
+              "read_iout": "F4 84",
+              "read_pout": null
+            },
+            "parser": {
+              "read_vout": 1.800048828125,
+              "read_iout": -0.01190185546875,
+              "feedback_voltage_v": null,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:39.3329818Z",
+            "read_started_ticks": 3508683731570,
+            "read_finished_utc": "2026-10-29T03:15:39.3499284Z",
+            "read_finished_ticks": 3508683904527,
+            "address": "0x15",
+            "name": "VCCINTIO_BRAM_FPGA",
+            "regulator": "MAX15301",
+            "nominal_voltage_v": 0.85,
+            "voltage_v": 0.85009765625,
+            "current_a": 0.4833984375,
+            "power_w": 0.4109358787536621,
+            "power_source": "VOUT_X_IOUT",
+            "voltage_source": "READ_VOUT",
+            "measurement_state": "active",
+            "quantization": {
+              "power_step_w": null,
+              "power_half_step_bound_w": null,
+              "current_step_a": null
+            },
+            "raw": {
+              "vout_mode": 20,
+              "read_vout": "9A 0D",
+              "read_iout": "DE AB",
+              "read_pout": null
+            },
+            "parser": {
+              "read_vout": 0.85009765625,
+              "read_iout": 0.4833984375,
+              "feedback_voltage_v": null,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:39.3509251Z",
+            "read_started_ticks": 3508683909544,
+            "read_finished_utc": "2026-10-29T03:15:39.3678684Z",
+            "read_finished_ticks": 3508684084475,
+            "address": "0x14",
+            "name": "VCC1V2_FPGA",
+            "regulator": "MAX15301",
+            "nominal_voltage_v": 1.2,
+            "voltage_v": 1.2001953125,
+            "current_a": 0.515625,
+            "power_w": 0.6188507080078125,
+            "power_source": "VOUT_X_IOUT",
+            "voltage_source": "READ_VOUT",
+            "measurement_state": "active",
+            "quantization": {
+              "power_step_w": null,
+              "power_half_step_bound_w": null,
+              "current_step_a": null
+            },
+            "raw": {
+              "vout_mode": 20,
+              "read_vout": "34 13",
+              "read_iout": "10 B2",
+              "read_pout": null
+            },
+            "parser": {
+              "read_vout": 1.2001953125,
+              "read_iout": 0.515625,
+              "feedback_voltage_v": null,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:39.3688651Z",
+            "read_started_ticks": 3508684089303,
+            "read_finished_utc": "2026-10-29T03:15:39.3937817Z",
+            "read_finished_ticks": 3508684335207,
+            "address": "0x72",
+            "name": "MGTAVCC_FPGA",
+            "regulator": "MAX20751",
+            "nominal_voltage_v": 0.9,
+            "voltage_v": null,
+            "current_a": 0.5,
+            "power_w": 0,
+            "power_source": "READ_POUT",
+            "voltage_source": "UNAVAILABLE_DIRECT_FEEDBACK_ONLY",
+            "measurement_state": "active_below_power_resolution",
+            "quantization": {
+              "power_step_w": 2,
+              "power_half_step_bound_w": 1,
+              "current_step_a": 0.5
+            },
+            "raw": {
+              "vout_mode": 32,
+              "read_vout": "83 00",
+              "read_iout": "01 F8",
+              "read_pout": "00 08"
+            },
+            "parser": {
+              "read_vout": 131,
+              "read_iout": 0.5,
+              "feedback_voltage_v": 0.255859375,
+              "coarse_read_pout_div_read_iout_voltage_v": null,
+              "inferred_feedback_divider_ratio": null
+            },
+            "gate_notes": [
+              "READ_POUT Linear11 step is 2.000000 W; reported power has an approximate +/-1.000000 W half-step quantization bound.",
+              "READ_VOUT is the regulator feedback-node value; no unverified board divider is applied."
+            ],
+            "gate_pass": true
+          },
+          {
+            "read_started_utc": "2026-10-29T03:15:39.3937817Z",
+            "read_started_ticks": 3508684339360,
+            "read_finished_utc": "2026-10-29T03:15:39.4186983Z",
+            "read_finished_ticks": 3508684587298,
+            "address": "0x73",
+            "name": "MGTAVTT_FPGA",
+            "regulator": "MAX20751",
+            "nominal_voltage_v": 1.2,
+            "voltage_v": null,
+            "current_a": 1.5,
+            "power_w": 2,
+            "power_source": "READ_POUT",
+            "voltage_source": "UNAVAILABLE_DIRECT_FEEDBACK_ONLY",
+            "measurement_state": "active_quantized",
+            "quantization": {
+              "power_step_w": 2,
+              "power_half_step_bound_w": 1,
+              "current_step_a": 0.5
+            },
+            "raw": {
+              "vout_mode": 32,
+              "read_vout": "BF 00",
+              "read_iout": "03 F8",
+              "read_pout": "01 08"
+            },
+            "parser": {
+              "read_vout": 191,
+              "read_iout": 1.5,
+              "feedback_voltage_v": 0.373046875,
+              "coarse_read_pout_div_read_iout_voltage_v": 1.3333333333333333,
+              "inferred_feedback_divider_ratio": 0.27978515625
+            },
+            "gate_notes": [
+              "READ_POUT Linear11 step is 2.000000 W; reported power has an approximate +/-1.000000 W half-step quantization bound.",
+              "READ_VOUT is the regulator feedback-node value; no unverified board divider is applied."
+            ],
+            "gate_pass": true
+          }
+        ],
+        "monitored_power_w": 11.360060587525368,
+        "monitored_power_quantization_half_step_bound_w": 3,
+        "sweep_ended_utc": "2026-10-29T03:15:39.4186983Z",
+        "sweep_ended_ticks": 3508684590754
+      }
+    ],
+    "scope": "Short read-only functionality probe of the official executable, not a full workload power rerun"
+  },
+  "windows_cpu_checks": {
+    "native_exit": 0,
+    "parsers": [
+      "measure_full_run.ps1",
+      "sample_power.ps1",
+      "prepare_powertool.ps1",
+      "stock_probe.ps1"
+    ],
+    "launcher_checks": [
+      "Windows CRT argument quoting",
+      "spaces in plan-only config/requests/output/Python paths",
+      "no board I/O or output directory in PlanOnly",
+      "failure cleanup retains reused PID with different birth"
+    ],
+    "streaming_finalization": {
+      "native_exit": 0,
+      "synthetic_sweeps": 3000,
+      "raw_jsonl_lines": 3000,
+      "retained_complete_samples": 0,
+      "final_summary_characters": 877,
+      "partial_failure_retained": true,
+      "hardware_access": false
+    }
+  },
+  "python_cpu_checks": {
+    "native_exit": 0,
+    "tests": 11,
+    "command": "python3 -m unittest discover -s tools/power -p \"test_*.py\" -v",
+    "coverage": [
+      "analytic integration/gaps/boundaries",
+      "ABI/native status/command and cycle validation",
+      "finite sensor values and seven-rail sums",
+      "exact finalization-timeout exception rejection",
+      "deterministic gzip and nested output parents",
+      "complete public gzip dataset reproduces all artifacts",
+      "actual public CLI dry-run from a repository path containing spaces"
+    ]
+  },
+  "portable_launcher": {
+    "path": "tools/power/measure_full_run.ps1",
+    "board_tested": false,
+    "validation": "CPU parsing/quoting/PlanOnly/failure cleanup and real CLI dry-run only",
+    "sampler_streaming_shutdown": "CPU-tested 3000-sweep recorder; no second full hardware inference run",
+    "official_sampler": "Three-sweep read-only probe passed using the public sampler and official runtime"
+  },
+  "uncertainty": {
+    "coarse_read_pout_channels": 3,
+    "sum_contribution_w": 3,
+    "difference_contribution_w": 6,
+    "full_seven_rail_error_bound": "NOT_EVALUATED; four VOUT*IOUT channels and additional sensor errors remain uncalibrated"
+  },
+  "files": {
+    "tools/power/analyze_model_power.py": {
+      "bytes": 20253,
+      "sha256": "e0cd2a66e873186d044a29bcb53aa310c49c844ab4d26b9ce511950c179d3b8f"
+    },
+    "tools/power/measure_full_run.ps1": {
+      "bytes": 13443,
+      "sha256": "99da30bcafd21a12683fe317a34984f64011e71251f95cababc8dd6451f93b64"
+    },
+    "tools/power/powertool_runtime_manifest.json": {
+      "bytes": 1980,
+      "sha256": "bbde958a32dd7737d6e5b3268600e28995a2165501cf202c88ee157f36bc4b36"
+    },
+    "tools/power/prepare_powertool.ps1": {
+      "bytes": 4301,
+      "sha256": "2fe6327769c298f8f900799686a3c732fa1e58c957f64db8c384b9404ac7d5b5"
+    },
+    "tools/power/sample_power.ps1": {
+      "bytes": 20639,
+      "sha256": "9fe47ad295f3ade840093e3dd853eec6a0b4a82be98537dba5c8ec7f67a012ec"
+    },
+    "tools/power/test_analyze_model_power.py": {
+      "bytes": 8839,
+      "sha256": "9750e2b7fe0a1e719f1f64f1f4399b3c8c2a94fc89555b96d97282dc69e3981b"
+    },
+    "tools/power/test_cli_power.py": {
+      "bytes": 1456,
+      "sha256": "ca52743dafe99509c150bcf6d9df22aa9af537a2d196a5a929134d0a21382778"
+    },
+    "tools/power/test_launcher_cpu.ps1": {
+      "bytes": 3390,
+      "sha256": "4124e26368109c2c272dd3574cf207c6743290f22a8e1a9625ef6a304385b577"
+    },
+    "tools/power/test_streaming_cpu.ps1": {
+      "bytes": 2206,
+      "sha256": "5ce662f07715c26d8a157586bc7795885463caed2f24cdca5845429861eedff0"
+    }
+  }
+}

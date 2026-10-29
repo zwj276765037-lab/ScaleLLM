@@ -1,0 +1,67 @@
+{
+  "status": "VALID_OBSERVED_WINDOWS_WITH_SAMPLER_FINALIZATION_FAILURE",
+  "original_stage_state": "FAIL",
+  "original_error": "Sampler stop timeout",
+  "sampler_native_exit": null,
+  "complete_sweeps": 2947,
+  "raw_rail_conversions_checked": 20629,
+  "median_interval_seconds": 1.1682002499999697,
+  "max_interval_seconds": 1.3732237500003066,
+  "gaps_excluded": 0,
+  "windows": {
+    "idle_before": {
+      "window_seconds": 10.2065417,
+      "covered_seconds": 10.206541699999999,
+      "coverage_fraction": 0.9999999999999998,
+      "integrated_joules": 115.71518243691824,
+      "time_weighted_mean_w": 11.337354594545795
+    },
+    "model": {
+      "window_seconds": 3443.1375079,
+      "covered_seconds": 3443.1375079,
+      "coverage_fraction": 1.0,
+      "integrated_joules": 39130.65288757192,
+      "time_weighted_mean_w": 11.364824320199181
+    },
+    "idle_after": {
+      "window_seconds": 10.055372499999976,
+      "covered_seconds": 10.055372499999976,
+      "coverage_fraction": 1.0,
+      "integrated_joules": 113.7468000954577,
+      "time_weighted_mean_w": 11.312042402751164
+    }
+  },
+  "fpga_cycles": 4658034704,
+  "fpga_seconds": 58.2254338,
+  "counter_duty": 0.016910574633283295,
+  "repeated_generated_ids": "512/512 equal to previous actual; repeatability only",
+  "cleanup": "No owned survivors, lease released, runtime handles closed and final status zero; sampler final exit not successful",
+  "original_input_hashes": {
+    "receipt.json": "f52c15b83c64a3313f06a145f2a381c66d52e0772c5b9c96e7c971ba60be4c4f",
+    "telemetry.jsonl": "49a6ef0a7b691d04dc34a3ce3245f245987a6e5279e822cc8edc18030fa71c9c",
+    "device/run.json": "bdb73ba49c35d4a81e47d87a5f3f9c1ee4dfffe6262036465ae155dcf823886a"
+  },
+  "raw_conversion_method": "Little-endian words; signed Linear11 current/READ_POUT; unsigned Linear16 VOUT with signed VOUT_MODE exponent; VOUT*IOUT for four MAX15301 rails.",
+  "integration_method": "Independent affine antiderivative clipped to QPC windows, math.fsum accumulation, no extrapolation or long-gap filling.",
+  "public_input_hashes": {
+    "telemetry.jsonl.gz": "9914138f21d158bbd9ee76454c2f5258455913a8fb6938848c64638cd29c9eb3",
+    "summary.json": "3259693483692255ae3a2b1cb96970fd5a7574da5b9a4ff1e28de542e762a51d",
+    "receipt.json": "b95e031ec00e41c0e29cd97e10e407b6de4b5d7a9f6a74929c3035f230466fc2",
+    "device/run.json": "b35f490c5ed25d5c8d1238971930cb9866838aad7367029bfa589e742e6d862d"
+  },
+  "public_reanalysis": "PASS: all exported analysis files byte-identical on recomputation with explicit finalization-timeout qualification",
+  "full_fpga_protocol_audit": "PASS: full original run checked for 3200 command IDs/layers/opcodes, masks, per-slot epochs/positions/generated prefixes and all 50 round totals",
+  "finalization_evidence": {
+    "batch_json_valid": true,
+    "batch_pass": true,
+    "batch_samples": 2947,
+    "stream_samples": 2947,
+    "all_samples_exact_equal": true,
+    "batch_bytes": 61184586,
+    "batch_sha256": "6a7142c2aedafb02444775aa7d75da80d4693a76996222f593568dc6a5f7d0e3",
+    "stdout_bytes": 28412160,
+    "native_exit": null,
+    "original_wrapper_fail_preserved": true,
+    "interpretation": "The sampler had completed and saved its full evidence JSON before its redundant stdout copy was interrupted by the owner stop timeout. Unknown native exit remains unknown."
+  }
+}

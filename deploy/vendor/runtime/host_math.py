@@ -24,7 +24,7 @@ def file_sha(path):
 
 class HostAssets:
     def __init__(self,path,verify=True):
-        self.path=Path(path).resolve();self.manifest=json.loads(self.path.read_text())
+        self.path=Path(path).resolve();self.manifest=json.loads(self.path.read_text(encoding='utf-8'))
         m=self.manifest
         if m.get('schema')!='scalellm_llama31_host_assets_v1' or m['state']!='COMPLETE' or m['checkpoint_sha256']!=CHECKPOINT_SHA or m['layer_count']!=32 or m['hidden_size']!=4096 or m['vocab_size']!=128256:
             raise ValueError('Host assets identity/shape mismatch')
@@ -39,11 +39,13 @@ class HostAssets:
         self.weights=LlamaNormWeights(np.asarray(mmap('input_norm',(32,HIDDEN))).copy(),
                                      np.asarray(mmap('post_norm',(32,HIDDEN))).copy(),
                                      np.asarray(mmap('final_norm',(HIDDEN,))).copy(),epsilon=1e-5)
-        self.config=json.loads(self.file('config').read_text())
+        self.config=json.loads(self.file('config').read_text(encoding='utf-8'))
         if self.config.get('rms_norm_eps')!=1e-5 or self.config.get('hidden_size')!=HIDDEN or self.config.get('num_hidden_layers')!=32 or self.config.get('vocab_size')!=VOCAB:
             raise ValueError('Original Host model config mismatch')
-        self.tokenizer_config=json.loads(self.file('tokenizer_config').read_text())
-        self.generation_config=json.loads(self.file('generation_config').read_text())
+        self.tokenizer_config=json.loads(self.file('tokenizer_config').read_text(encoding='utf-8'))
+        self.generation_config=json.loads(self.file('generation_config').read_text(encoding='utf-8'))
+        if self.generation_config.get('eos_token_id')!=self.config.get('eos_token_id'):
+            raise ValueError('Original model/generation EOS metadata disagree')
     def file(self,name):return self.path.parent/self.manifest['files'][name]['path']
     def embed(self,ids):
         original=np.asarray(ids)
@@ -54,52 +56,3 @@ class HostAssets:
         if not np.all(np.isfinite(values)):raise ValueError('Nonfinite source embedding')
         return values
     def final_normalized(self,hidden):return rms_norm(hidden,self.weights.final_norm,1e-5)
-
-
-def actual_requests(assets,prompts=('Hi','Hello'),max_new_tokens=2):
-    if type(max_new_tokens) is not int or not 1<=max_new_tokens<16:
-        raise ValueError('Generation limit must be an integer in1..15')
-    if len(prompts)!=2 or not all(isinstance(text,str) and text for text in prompts):
-        raise ValueError('Two nonempty real prompts are required')
-    from tokenizers import Tokenizer
-    from jinja2.sandbox import ImmutableSandboxedEnvironment
-    tokenizer=Tokenizer.from_file(str(assets.file('tokenizer')))
-    environment=ImmutableSandboxedEnvironment(trim_blocks=True,lstrip_blocks=True)
-    def fail(message):raise ValueError(message)
-    environment.globals['raise_exception']=fail
-    config=assets.tokenizer_config
-    def content(x):return x.get('content') if isinstance(x,dict) else x
-    template=environment.from_string(config['chat_template'])
-    padding=tokenizer.token_to_id('<|finetune_right_pad_id|>');bos=tokenizer.token_to_id('<|begin_of_text|>')
-    if padding is None or bos is None:raise ValueError('Original tokenizer lacks required explicit special tokens')
-    stops=set()
-    for metadata in (assets.config,assets.generation_config):
-        value=metadata.get('eos_token_id',[]);stops.update(value if isinstance(value,list) else [value])
-    stops.add(tokenizer.token_to_id(content(config['eos_token'])))
-    if None in stops or not all(type(x) is int and 0<=x<VOCAB for x in stops):raise ValueError('Invalid original EOS metadata')
-    requests=[]
-    for index,text in enumerate(prompts):
-        rendered=template.render(messages=[{'role':'user','content':text}],bos_token=content(config['bos_token']),eos_token=content(config['eos_token']),add_generation_prompt=True)
-        ids=tokenizer.encode(rendered,add_special_tokens=False).ids
-        if ids.count(bos)!=1 or not 1<=len(ids)<=16-max_new_tokens:raise ValueError('Prompt BOS/context limit mismatch')
-        requests.append({'external_request_id':'request_'+str(index),'prompt_text':text,'rendered_chat':rendered,
-                         'initial_token_ids':ids,'max_new_tokens':max_new_tokens,'padding_token_id':padding,
-                         'eos_token_ids':sorted(stops),'generated_ids':[],'decoded_generated_text':'','stop_reason':None})
-    return tokenizer,requests
-
-
-def stream_logits(final_normalized,last_valid_row,weights,chunk_rows=2048):
-    """Same FP32 block product as existing streaming_lm_head, retaining all logits."""
-    hidden=np.asarray(final_normalized,dtype=np.float32)
-    if hidden.ndim!=2 or hidden.shape[1]<1 or type(last_valid_row) is not int or not 0<=last_valid_row<len(hidden) or getattr(weights,'ndim',None)!=2 or weights.shape[0]<1 or weights.shape[1]!=hidden.shape[1] or type(chunk_rows) is not int or not 1<=chunk_rows<=4096:
-        raise ValueError('LM-head row/shape/chunk mismatch')
-    if not np.all(np.isfinite(hidden)):raise ValueError('Nonfinite final-normalized hidden')
-    values=np.ascontiguousarray(hidden[last_valid_row:last_valid_row+1],dtype=np.float32)
-    logits=np.empty(weights.shape[0],dtype='<f4')
-    for start in range(0,len(logits),chunk_rows):
-        stop=min(start+chunk_rows,len(logits));block=np.asarray(weights[start:stop],dtype=np.float32)
-        if not np.all(np.isfinite(block)):raise ValueError('Nonfinite original LM-head weights')
-        logits[start:stop]=np.asarray(values@block.T,dtype=np.float32)[0]
-    if not np.all(np.isfinite(logits)):raise ValueError('Nonfinite LM-head logits')
-    # np.argmax returns the first maximum: deterministic lower-token-ID tie.
-    return logits,int(np.argmax(logits))

@@ -1,0 +1,152 @@
+{
+  "schema": "scalellm_final_physical_closure_recipe_v1",
+  "historical_reference_dcp_sha256": "194edcab5b22c7126594846637b1c78acedc25a7765371f553398ee0d8b67490",
+  "historical_reference_required_for_exact_incremental_replay": true,
+  "reference_required_for_fresh_build_or_portable_hold_repair": false,
+  "run_strategy": "Vivado Implementation Defaults",
+  "requested_directives": {
+    "OPT_DESIGN": "Default",
+    "PLACE_DESIGN": "Default",
+    "PHYS_OPT_DESIGN": "Default",
+    "ROUTE_DESIGN": "Default"
+  },
+  "native_incremental_directive": "RuntimeOptimized, reported by the native incremental checkpoint command comparison; later place/route log messages also print Default.",
+  "historical_parameter_report": {
+    "original_sha256": "2730b35b392d44e919c55833df5db4473c94f7cf47f3a1473d8976f9a1e15fff",
+    "published_file": "physical_run_parameters.tsv",
+    "published_sha256": "57ad54a2d1856f2429aa63336be97adeb2e8ee273bf6effa28bdae706f12c997"
+  },
+  "steps": [
+    {
+      "process": "COMPLETE",
+      "returncode": 0,
+      "stop_reason": null,
+      "wall_seconds": 9648.480967293028,
+      "timing": {
+        "wns": 0.017,
+        "tns": 0.0,
+        "setup_failing": 0,
+        "whs": -0.121,
+        "ths": -0.266,
+        "hold_failing": 4,
+        "wpws": 0.0,
+        "tpws": 0.0,
+        "pulse_failing": 0
+      },
+      "route": {
+        "routable nets": 1712168,
+        "fully routed nets": 1712168,
+        "nets with routing errors": 0,
+        "complete": true
+      },
+      "route_action": null,
+      "id": "route_recovery_002",
+      "method": "route_design",
+      "checkpoint": {
+        "sha256": "1341b09f19009f2df8efef922ead34445643c11a8f436850f61b2034b8361f9e",
+        "bytes": 697498852,
+        "native_route_success": true
+      },
+      "input_checkpoint_sha256": "2ef123f16de402e46561a4013a4febe11cb04cc80a16151d6a12b051f60bc823"
+    },
+    {
+      "process": "COMPLETE",
+      "returncode": 0,
+      "stop_reason": null,
+      "wall_seconds": 3277.736206883099,
+      "timing": {
+        "wns": 0.017,
+        "tns": 0.0,
+        "setup_failing": 0,
+        "whs": -0.025,
+        "ths": -0.025,
+        "hold_failing": 1,
+        "wpws": 0.0,
+        "tpws": 0.0,
+        "pulse_failing": 0
+      },
+      "route": {
+        "routable nets": 1712168,
+        "fully routed nets": 1712168,
+        "nets with routing errors": 0,
+        "complete": true
+      },
+      "route_action": {
+        "decision": "SKIPPED_ALREADY_FULLY_ROUTED",
+        "ROUTED_FULLY": "1",
+        "ERRORS_IN_ROUTES": "0"
+      },
+      "id": "hold_repair_001",
+      "method": "phys_opt_design -sll_reg_hold_fix",
+      "checkpoint": {
+        "sha256": "fcb392772acece7992a2e62e628aaf159af55bddc290104d0ab7150991175341",
+        "bytes": 699625987,
+        "native_route_success": true
+      },
+      "input_checkpoint_sha256": "1341b09f19009f2df8efef922ead34445643c11a8f436850f61b2034b8361f9e"
+    },
+    {
+      "process": "COMPLETE",
+      "returncode": 0,
+      "stop_reason": null,
+      "wall_seconds": 2704.657786846976,
+      "timing": {
+        "wns": 0.017,
+        "tns": 0.0,
+        "setup_failing": 0,
+        "whs": 0.002,
+        "ths": 0.0,
+        "hold_failing": 0,
+        "wpws": 0.0,
+        "tpws": 0.0,
+        "pulse_failing": 0
+      },
+      "route": {
+        "routable nets": 1712169,
+        "fully routed nets": 1712169,
+        "nets with routing errors": 0,
+        "complete": true
+      },
+      "route_action": {
+        "decision": "SKIPPED_ALREADY_FULLY_ROUTED",
+        "ROUTED_FULLY": "1",
+        "ERRORS_IN_ROUTES": "0"
+      },
+      "id": "hold_repair_002",
+      "method": "phys_opt_design -hold_fix",
+      "checkpoint": {
+        "sha256": "3b6e401051cef12ba14ff4ebe9e9b3ef142fcdddfa851b0053c97cf718e608c3",
+        "bytes": 701754238,
+        "native_route_success": true
+      },
+      "input_checkpoint_sha256": "fcb392772acece7992a2e62e628aaf159af55bddc290104d0ab7150991175341"
+    }
+  ],
+  "original_sources": {
+    "final_reader_route_recovery.tcl": "76ea9c0cbf37fa12e148be68312021755a5654c35c9a4b315ab382abf1702ba9",
+    "route_recovery_002_result.json": "b0aaf965deb8cc52703e95f1f56cbafa01516a8efe4b989828c0aeff4c494dd6",
+    "final_reader_hold_repair.tcl": "c225f69e8ef084d5d02a617fd6811aa4a3a01f362c063adb5ecc25f028702b64",
+    "hold_repair_001_result.json": "2a42ece901e7fc3f4a85db22cf3327f9228cf551d8af689ffee241e4c0ec9ff2",
+    "hold_repair_002_result.json": "e1d78b47890c84fd267ee7351c7c20d01b1fac6c34f394019f1f6d3c8ad1e345",
+    "original_native_run_result.json": "4349721ba426794ef78c90220c3b5bd32ba85aa755f3d359628cc50a9aaf645a"
+  },
+  "native_log_excerpts": {
+    "physical_incremental_excerpt.txt": {
+      "original_log_sha256": "90127921d378c68614958cc510e591472902eec1c83794a7ef70ae080ae30788",
+      "published_sha256": "978f529a175ed36fb64aa73784eeb3c080be013ce63ed297ae44528b58170ae9",
+      "transformation": "Selected original log lines with original one-based line numbers; private reference path redacted."
+    },
+    "physical_hold_sll_excerpt.txt": {
+      "original_log_sha256": "2a4d4080f76dbe4f38458c8eab7f864a38dcefbbba7402e89e1dff8a30de2c12",
+      "published_sha256": "3085e74b9b832c67abc7db4934ce7f2b462b8933648d038abd40bb6ac3a9b343",
+      "transformation": "Selected original log lines with original one-based line numbers; private reference path redacted."
+    },
+    "physical_hold_fix_excerpt.txt": {
+      "original_log_sha256": "b0e1f23888b26cb863909f84612744dd75a7b3c834d8c90849e1d2849f743e9a",
+      "published_sha256": "e9a6b6f04e2b1a58e49fde73217a1096b0e02a16d4a8b68bfba06cb32c9f3d35",
+      "transformation": "Selected original log lines with original one-based line numbers; private reference path redacted."
+    }
+  },
+  "source_physopt_checkpoint_sha256": "2ef123f16de402e46561a4013a4febe11cb04cc80a16151d6a12b051f60bc823",
+  "published_bit_sha256": "96df1a5c1bf4174921bc02ccd88df4066dece3d62b491acb3106bb90ac0ffc85"
+}

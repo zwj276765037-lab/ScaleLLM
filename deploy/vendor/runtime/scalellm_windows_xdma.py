@@ -1,20 +1,10 @@
-"""Windows XDMA overlapped transport and an SSH stdio bridge.
-
-Windows side supports the installed Python 3.6 and uses only the standard
-library. Linux-side backend and gold run in the existing modern interpreter.
-No operation is retried. stdout in --rpc mode contains JSON protocol only.
-"""
-import argparse
-import base64
+"""Local Windows XDMA overlapped transport. No operation is retried."""
 import ctypes as C
 import datetime
 import hashlib
 import json
 import os
-import queue
 import struct
-import subprocess
-import sys
 import threading
 import time
 import uuid
@@ -203,126 +193,3 @@ class WindowsXdmaSession:
         address=host_address(channel,local_offset,size)
         if chunk_bytes<=0:raise ValueError('Chunk must be positive')
         with self.lock:return b''.join(self._io('c2h_0',address+start,min(chunk_bytes,size-start)) for start in range(0,size,chunk_bytes))
-
-
-class SshWindowsSession:
-    def __init__(self):
-        self.process=None;self.lock=threading.RLock();self.responses=queue.Queue();self.sequence=0;self.poisoned=False
-        self.log_path=os.environ.get('SCALELLM_WINDOWS_XDMA_LOG')
-
-    def __enter__(self):
-        if self.process:raise RuntimeError('RPC already open')
-        script=os.environ['SCALELLM_WINDOWS_BRIDGE_PATH']
-        ps="& 'D:/software/Anaconda3/python.exe' -u '"+script.replace("'","''")+"' --rpc"
-        encoded=base64.b64encode(ps.encode('utf-16le')).decode()
-        argv=['ssh','-o','BatchMode=yes','-o','ConnectTimeout=15','hap-dell','powershell.exe','-NoLogo','-NoProfile','-NonInteractive','-EncodedCommand',encoded]
-        self.process=subprocess.Popen(argv,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,bufsize=0)
-        self.stderr=[]
-        def reader():
-            try:
-                for line in self.process.stdout:self.responses.put(line)
-            finally:self.responses.put(None)
-        def errors():
-            for line in self.process.stderr:self.stderr.append(line.decode('utf-8',errors='replace'))
-        threading.Thread(target=reader,daemon=True).start();threading.Thread(target=errors,daemon=True).start()
-        self._request('open')
-        return self
-
-    def _request(self,method,**args):
-        if not self.process:raise RuntimeError('RPC is not open')
-        if self.poisoned and method!='close':raise RuntimeError('Windows RPC transport poisoned; no further I/O permitted')
-        with self.lock:
-            self.sequence+=1;ident=self.sequence
-            event={'id':ident,'method':method,'args':{k:(hashlib.sha256(base64.b64decode(v)).hexdigest() if k=='data' else v) for k,v in args.items()}}
-            log_event(self.log_path,dict(event,event='request'))
-            message=(json.dumps(dict(id=ident,method=method,**args))+'\n').encode()
-            sent=0
-            while sent<len(message):
-                count=self.process.stdin.write(message[sent:])
-                if not count:raise IOError('Windows RPC stdin made no progress; no request retry issued')
-                sent+=count
-            self.process.stdin.flush()
-            try:line=self.responses.get(timeout=8.0)
-            except queue.Empty:self.poisoned=True;self.close(force=True);raise TimeoutError('Windows RPC did not return within8s; no retry issued')
-            if line is None:self.poisoned=True;raise IOError('Windows RPC ended: '+''.join(self.stderr)[-2000:])
-            result=json.loads(line.decode('utf-8'))
-            if result.get('id')!=ident:raise IOError('RPC response identity mismatch')
-            log_event(self.log_path,{'event':'response','id':ident,'method':method,'ok':result.get('ok'),'error':result.get('error'),'value':result.get('value') if method in ('read32','open','write32') else None})
-            if not result.get('ok'):
-                self.poisoned=True
-                raise IOError('Windows '+result.get('error','unknown error'))
-            return result.get('value')
-
-    def read32(self,offset):return self._request('read32',offset=offset)
-    def write32(self,offset,value):return self._request('write32',offset=offset,value=value)
-    def h2c_write_local(self,channel,data,local_offset,chunk_bytes):
-        view=memoryview(data).cast('B');host_address(channel,local_offset,len(view));total=0
-        if chunk_bytes<=0:raise ValueError('Chunk must be positive')
-        for start in range(0,len(view),min(chunk_bytes,1<<20)):
-            block=bytes(view[start:start+min(chunk_bytes,1<<20)])
-            count=self._request('h2c',channel=channel,offset=local_offset+start,data=base64.b64encode(block).decode(),size=len(block))
-            if count!=len(block):raise IOError('Short remote H2C')
-            total+=count
-        return total
-    def c2h_read_local(self,channel,size,local_offset,chunk_bytes):
-        host_address(channel,local_offset,size);parts=[]
-        if chunk_bytes<=0:raise ValueError('Chunk must be positive')
-        for start in range(0,size,min(chunk_bytes,1<<20)):
-            n=min(chunk_bytes,1<<20,size-start)
-            block=base64.b64decode(self._request('c2h',channel=channel,offset=local_offset+start,size=n),validate=True)
-            if len(block)!=n:raise IOError('Short remote C2H')
-            parts.append(block)
-        return b''.join(parts)
-    def close(self,force=False):
-        if not self.process:return
-        process=self.process
-        try:
-            if process.poll() is None and not force:
-                try:self._request('close')
-                except Exception:pass
-            if process.stdin:process.stdin.close()
-            try:process.wait(timeout=2)
-            except subprocess.TimeoutExpired:process.terminate();process.wait(timeout=2)
-        finally:
-            for pipe in (process.stdout,process.stderr):
-                if pipe:pipe.close()
-            self.process=None
-            log_event(self.log_path,{'operation':'rpc_close','exit_code':process.returncode,'stderr':''.join(self.stderr)[-4000:]})
-    def __exit__(self,*args):self.close()
-
-
-def create_session():
-    return WindowsXdmaSession() if os.name=='nt' else SshWindowsSession()
-
-
-def rpc_main():
-    session=None
-    try:
-        for line in sys.stdin:
-            request=json.loads(line);method=request['method'];ident=request['id']
-            try:
-                if method=='open':
-                    if session is not None:raise RuntimeError('Session already open')
-                    session=WindowsXdmaSession();session.__enter__();value={'paths':session.paths,'python':sys.version,'timeout_ms':session.timeout_ms}
-                elif method=='close':
-                    if session:session.close();session=None
-                    value=True
-                elif method=='read32':value=session.read32(request['offset'])
-                elif method=='write32':session.write32(request['offset'],request['value']);value=None
-                elif method=='h2c':
-                    data=base64.b64decode(request['data'],validate=True)
-                    if len(data)!=request['size']:raise ValueError('RPC payload size mismatch')
-                    value=session.h2c_write_local(request['channel'],data,request['offset'],1<<20)
-                elif method=='c2h':value=base64.b64encode(session.c2h_read_local(request['channel'],request['size'],request['offset'],1<<20)).decode()
-                else:raise ValueError('Unknown RPC method')
-                response={'id':ident,'ok':True,'value':value}
-            except Exception as error:response={'id':ident,'ok':False,'error':type(error).__name__+': '+str(error)}
-            sys.stdout.write(json.dumps(response)+'\n');sys.stdout.flush()
-            if method=='close':break
-    finally:
-        if session:session.close()
-
-
-if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--rpc',action='store_true');args=parser.parse_args()
-    if args.rpc:rpc_main()

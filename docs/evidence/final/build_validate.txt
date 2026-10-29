@@ -1,0 +1,205 @@
+
+****** Vivado v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Thu Oct 29 10:08:15 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+Sourcing tcl script '<VIVADO_INSTALL>/Vivado/scripts/Vivado_init.tcl'
+vivado-mcp server ready on port 10000
+source <BUILD_WORKSPACE>/source/project/hardware/vivado/scripts/release_create_board.tcl -notrace
+CONSTRUCTOR_INPUT_MANIFEST_SHA256 9f5317a94b0c507cf29d3092341439714cfa213dfeb0d9cf9f837bc596c56b73
+create_project: Time (s): cpu = 00:00:20 ; elapsed = 00:00:15 . Memory (MB): peak = 1945.898 ; gain = 378.855 ; free physical = 117115 ; free virtual = 491072
+FINAL_EXPLICIT_INCLUDE_HEADER <BUILD_WORKSPACE>/source/project/hardware/rtl/integration/hap_scalellm_final_abi.svh FILE_TYPE=Verilog Header
+update_compile_order: Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 1946.180 ; gain = 0.281 ; free physical = 117195 ; free virtual = 491098
+Wrote  : <<BUILD_WORKSPACE>/validate/project/scalellm_final_decode16.srcs/sources_1/bd/scalellm_final_decode16_bd/scalellm_final_decode16_bd.bd> 
+create_bd_cell: Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2306.195 ; gain = 134.086 ; free physical = 116943 ; free virtual = 490866
+INFO: [IP_Flow 19-5107] Inferred bus interface 'pcie_refclk_p' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'pcie_refclk_p' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'pcie_refclk_n' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'pcie_refclk_n' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'sys_clk_gt' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'sys_clk_gt' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'sys_clk' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'sys_clk' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-4728] Bus Interface 'pcie_refclk_p': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'pcie_refclk_n': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'sys_clk_gt': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'sys_clk': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-7067] Note that bus interface 'pcie_refclk_p' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+WARNING: [IP_Flow 19-5661] Bus Interface 'pcie_refclk_p' does not have any bus interfaces associated with it.
+INFO: [IP_Flow 19-7067] Note that bus interface 'pcie_refclk_n' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+WARNING: [IP_Flow 19-5661] Bus Interface 'pcie_refclk_n' does not have any bus interfaces associated with it.
+INFO: [IP_Flow 19-7067] Note that bus interface 'sys_clk_gt' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+INFO: [IP_Flow 19-7067] Note that bus interface 'sys_clk' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+create_bd_cell: Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 2318.688 ; gain = 0.281 ; free physical = 116895 ; free virtual = 490818
+INFO: [Device 21-403] Loading part xcvu9p-flga2104-2L-e
+create_bd_cell: Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 3366.281 ; gain = 1047.594 ; free physical = 115846 ; free virtual = 489769
+INFO: [xilinx.com:ip:microblaze:11.0-9] /microblaze_I: Setting C_BASE_VECTORS to 0x00000000.
+INFO: [xilinx.com:ip:microblaze:11.0-9] /microblaze_I: Setting C_BASE_VECTORS to 0x00000000.
+INFO: [xilinx.com:ip:microblaze:11.0-9] /microblaze_I: Setting C_BASE_VECTORS to 0x00000000.
+INFO: [BoardInterface 100-3] current_bd_design scalellm_final_decode16_bd
+INFO: [BoardInterface 100-12] set_property CONFIG.C0_DDR4_BOARD_INTERFACE ddr4_sdram_c1 [get_bd_cells -quiet /ddr4_0]
+INFO: [BoardInterface 100-108] create_bd_intf_port -mode Master -vlnv xilinx.com:interface:ddr4_rtl:1.0 ddr4_sdram_c1
+INFO: [BoardInterface 100-109] connect_bd_intf_net /ddr4_sdram_c1 /ddr4_0/C0_DDR4
+INFO: [BoardInterface 100-3] current_bd_design scalellm_final_decode16_bd
+INFO: [BoardInterface 100-12] set_property CONFIG.C0_CLOCK_BOARD_INTERFACE default_250mhz_clk1 [get_bd_cells -quiet /ddr4_0]
+INFO: [BoardInterface 100-108] create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 default_250mhz_clk1
+INFO: [BoardInterface 100-104] set_property CONFIG.FREQ_HZ 100000000 /default_250mhz_clk1
+INFO: [BoardInterface 100-109] connect_bd_intf_net /default_250mhz_clk1 /ddr4_0/C0_SYS_CLK
+INFO: [BoardInterface 100-112] set_property CONFIG.FREQ_HZ 250000000 /default_250mhz_clk1
+INFO: [xilinx.com:ip:microblaze:11.0-9] /microblaze_I: Setting C_BASE_VECTORS to 0x00000000.
+INFO: [xilinx.com:ip:microblaze:11.0-9] /microblaze_I: Setting C_BASE_VECTORS to 0x00000000.
+BD_CLOCK_METADATA default_250mhz_clk1 250000000
+BD_CLOCK_METADATA ddr4_0 200000000
+INFO: [xilinx.com:ip:microblaze:11.0-9] /microblaze_I: Setting C_BASE_VECTORS to 0x00000000.
+INFO: [xilinx.com:ip:microblaze:11.0-9] /microblaze_I: Setting C_BASE_VECTORS to 0x00000000.
+INFO: [xilinx.com:ip:microblaze:11.0-9] /microblaze_I: Setting C_BASE_VECTORS to 0x00000000.
+INFO: [BoardInterface 100-3] current_bd_design scalellm_final_decode16_bd
+INFO: [BoardInterface 100-12] set_property CONFIG.C0_DDR4_BOARD_INTERFACE ddr4_sdram_c2 [get_bd_cells -quiet /ddr4_1]
+INFO: [BoardInterface 100-108] create_bd_intf_port -mode Master -vlnv xilinx.com:interface:ddr4_rtl:1.0 ddr4_sdram_c2
+INFO: [BoardInterface 100-109] connect_bd_intf_net /ddr4_sdram_c2 /ddr4_1/C0_DDR4
+INFO: [BoardInterface 100-3] current_bd_design scalellm_final_decode16_bd
+INFO: [BoardInterface 100-12] set_property CONFIG.C0_CLOCK_BOARD_INTERFACE default_250mhz_clk2 [get_bd_cells -quiet /ddr4_1]
+INFO: [BoardInterface 100-108] create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 default_250mhz_clk2
+INFO: [BoardInterface 100-104] set_property CONFIG.FREQ_HZ 100000000 /default_250mhz_clk2
+INFO: [BoardInterface 100-109] connect_bd_intf_net /default_250mhz_clk2 /ddr4_1/C0_SYS_CLK
+INFO: [BoardInterface 100-112] set_property CONFIG.FREQ_HZ 250000000 /default_250mhz_clk2
+INFO: [xilinx.com:ip:microblaze:11.0-9] /microblaze_I: Setting C_BASE_VECTORS to 0x00000000.
+INFO: [xilinx.com:ip:microblaze:11.0-9] /microblaze_I: Setting C_BASE_VECTORS to 0x00000000.
+BD_CLOCK_METADATA default_250mhz_clk2 250000000
+BD_CLOCK_METADATA ddr4_1 200000000
+INFO: [BD 5-1043] It is recommended to use inline hdl version xilinx.com:inline_hdl:ilvector_logic:1.0 for the IP type xilinx.com:ip:util_vector_logic:2.0 for improved performance and reduced disk space. IPs with VLNV xilinx.com:ip:util_vector_logic:2.0 will not be supported from release 2025.2. More information on inline hdl IP is available in UG994 
+INFO: [BD 5-1043] It is recommended to use inline hdl version xilinx.com:inline_hdl:ilvector_logic:1.0 for the IP type xilinx.com:ip:util_vector_logic:2.0 for improved performance and reduced disk space. IPs with VLNV xilinx.com:ip:util_vector_logic:2.0 will not be supported from release 2025.2. More information on inline hdl IP is available in UG994 
+INFO: [BD 5-1043] It is recommended to use inline hdl version xilinx.com:inline_hdl:ilvector_logic:1.0 for the IP type xilinx.com:ip:util_vector_logic:2.0 for improved performance and reduced disk space. IPs with VLNV xilinx.com:ip:util_vector_logic:2.0 will not be supported from release 2025.2. More information on inline hdl IP is available in UG994 
+INFO: [BD 5-1043] It is recommended to use inline hdl version xilinx.com:inline_hdl:ilvector_logic:1.0 for the IP type xilinx.com:ip:util_vector_logic:2.0 for improved performance and reduced disk space. IPs with VLNV xilinx.com:ip:util_vector_logic:2.0 will not be supported from release 2025.2. More information on inline hdl IP is available in UG994 
+INFO: [IP_Flow 19-5107] Inferred bus interface 'core_clk' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'core_clk' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'core_rst_n' of definition 'xilinx.com:signal:reset:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'core_rst_n' of definition 'xilinx.com:signal:reset:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXIL' of definition 'xilinx.com:interface:aximm:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXIL' of definition 'xilinx.com:interface:aximm:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_DATA' of definition 'xilinx.com:interface:aximm:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_DATA' of definition 'xilinx.com:interface:aximm:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_MLP_DATA' of definition 'xilinx.com:interface:aximm:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_MLP_DATA' of definition 'xilinx.com:interface:aximm:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ddr0_clk' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ddr0_clk' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ddr0_rst_n' of definition 'xilinx.com:signal:reset:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ddr0_rst_n' of definition 'xilinx.com:signal:reset:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_WEIGHT_C0' of definition 'xilinx.com:interface:aximm:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_WEIGHT_C0' of definition 'xilinx.com:interface:aximm:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ddr1_clk' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ddr1_clk' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ddr1_rst_n' of definition 'xilinx.com:signal:reset:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'ddr1_rst_n' of definition 'xilinx.com:signal:reset:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_WEIGHT_C1' of definition 'xilinx.com:interface:aximm:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXI_WEIGHT_C1' of definition 'xilinx.com:interface:aximm:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'irq' of definition 'xilinx.com:signal:interrupt:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'irq' of definition 'xilinx.com:signal:interrupt:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-4728] Bus Interface 'core_clk': Added interface parameter 'ASSOCIATED_RESET' with value 'core_rst_n'.
+INFO: [IP_Flow 19-4728] Bus Interface 'ddr0_clk': Added interface parameter 'ASSOCIATED_RESET' with value 'ddr0_rst_n'.
+INFO: [IP_Flow 19-4728] Bus Interface 'ddr1_clk': Added interface parameter 'ASSOCIATED_RESET' with value 'ddr1_rst_n'.
+INFO: [IP_Flow 19-4728] Bus Interface 'core_clk': Added interface parameter 'FREQ_HZ' with value '80000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'core_clk': Added interface parameter 'ASSOCIATED_BUSIF' with value 'S_AXIL'.
+INFO: [IP_Flow 19-4728] Bus Interface 'core_rst_n': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_DATA': Added interface parameter 'PROTOCOL' with value 'AXI4'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_DATA': Added interface parameter 'DATA_WIDTH' with value '256'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_DATA': Added interface parameter 'ADDR_WIDTH' with value '32'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_DATA': Added interface parameter 'READ_WRITE_MODE' with value 'READ_WRITE'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_DATA': Added interface parameter 'MAX_BURST_LENGTH' with value '256'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_DATA': Added interface parameter 'SUPPORTS_NARROW_BURST' with value '0'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_MLP_DATA': Added interface parameter 'PROTOCOL' with value 'AXI4'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_MLP_DATA': Added interface parameter 'DATA_WIDTH' with value '256'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_MLP_DATA': Added interface parameter 'ADDR_WIDTH' with value '32'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_MLP_DATA': Added interface parameter 'READ_WRITE_MODE' with value 'READ_WRITE'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_MLP_DATA': Added interface parameter 'MAX_BURST_LENGTH' with value '256'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_MLP_DATA': Added interface parameter 'SUPPORTS_NARROW_BURST' with value '0'.
+INFO: [IP_Flow 19-4728] Bus Interface 'ddr0_clk': Added interface parameter 'FREQ_HZ' with value '200000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'ddr0_clk': Added interface parameter 'ASSOCIATED_BUSIF' with value 'M_AXI_WEIGHT_C0'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_WEIGHT_C0': Added interface parameter 'PROTOCOL' with value 'AXI4'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_WEIGHT_C0': Added interface parameter 'DATA_WIDTH' with value '512'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_WEIGHT_C0': Added interface parameter 'ADDR_WIDTH' with value '32'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_WEIGHT_C0': Added interface parameter 'READ_WRITE_MODE' with value 'READ_ONLY'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_WEIGHT_C0': Added interface parameter 'MAX_BURST_LENGTH' with value '16'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_WEIGHT_C0': Added interface parameter 'SUPPORTS_NARROW_BURST' with value '0'.
+INFO: [IP_Flow 19-4728] Bus Interface 'ddr1_clk': Added interface parameter 'FREQ_HZ' with value '200000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'ddr1_clk': Added interface parameter 'ASSOCIATED_BUSIF' with value 'M_AXI_WEIGHT_C1'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_WEIGHT_C1': Added interface parameter 'PROTOCOL' with value 'AXI4'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_WEIGHT_C1': Added interface parameter 'DATA_WIDTH' with value '512'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_WEIGHT_C1': Added interface parameter 'ADDR_WIDTH' with value '32'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_WEIGHT_C1': Added interface parameter 'READ_WRITE_MODE' with value 'READ_ONLY'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_WEIGHT_C1': Added interface parameter 'MAX_BURST_LENGTH' with value '16'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXI_WEIGHT_C1': Added interface parameter 'SUPPORTS_NARROW_BURST' with value '0'.
+INFO: [IP_Flow 19-4728] Bus Interface 'irq': Added interface parameter 'SENSITIVITY' with value 'LEVEL_HIGH'.
+INFO: [IP_Flow 19-7067] Note that bus interface 'core_clk' has a fixed FREQ_HZ of '80000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+INFO: [IP_Flow 19-7067] Note that bus interface 'ddr0_clk' has a fixed FREQ_HZ of '200000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+INFO: [IP_Flow 19-7067] Note that bus interface 'ddr1_clk' has a fixed FREQ_HZ of '200000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aresetn' of definition 'xilinx.com:signal:reset:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'base_aresetn' of definition 'xilinx.com:signal:reset:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'clk' of definition 'xilinx.com:signal:clock:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-4728] Bus Interface 'aresetn': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'base_aresetn': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'clk': Added interface parameter 'ASSOCIATED_RESET' with value 'aresetn'.
+WARNING: [IP_Flow 19-5661] Bus Interface 'clk' does not have any bus interfaces associated with it.
+WARNING: [IP_Flow 19-11770] Clock interface 'clk' has no FREQ_HZ parameter.
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aresetn' of definition 'xilinx.com:signal:reset:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'base_aresetn' of definition 'xilinx.com:signal:reset:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'clk' of definition 'xilinx.com:signal:clock:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-4728] Bus Interface 'aresetn': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'base_aresetn': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'clk': Added interface parameter 'ASSOCIATED_RESET' with value 'aresetn'.
+WARNING: [IP_Flow 19-5661] Bus Interface 'clk' does not have any bus interfaces associated with it.
+WARNING: [IP_Flow 19-11770] Clock interface 'clk' has no FREQ_HZ parameter.
+INFO: [BoardInterface 100-3] current_bd_design scalellm_final_decode16_bd
+INFO: [BoardInterface 100-12] set_property CONFIG.PCIE_BOARD_INTERFACE pci_express_x8 [get_bd_cells -quiet /xdma_0]
+INFO: [BoardInterface 100-108] create_bd_intf_port -mode Master -vlnv xilinx.com:interface:pcie_7x_mgt_rtl:1.0 pci_express_x8
+INFO: [BoardInterface 100-109] connect_bd_intf_net /pci_express_x8 /xdma_0/pcie_mgt
+INFO: [BD 5-1043] It is recommended to use inline hdl version xilinx.com:inline_hdl:ilconstant:1.0 for the IP type xilinx.com:ip:xlconstant:1.1 for improved performance and reduced disk space. IPs with VLNV xilinx.com:ip:xlconstant:1.1 will not be supported from release 2025.2. More information on inline hdl IP is available in UG994 
+Slave segment '/ddr4_0/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK' is being assigned into address space '/xdma_0/M_AXI' at <0x0000_0000 [ 2G ]>.
+Slave segment '/ddr4_1/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK' is being assigned into address space '/xdma_0/M_AXI' at <0x8000_0000 [ 2G ]>.
+Slave segment '/ddr4_0/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK' is being assigned into address space '/core/M_AXI_DATA' at <0x0000_0000 [ 2G ]>.
+Slave segment '/ddr4_1/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK' is being assigned into address space '/core/M_AXI_MLP_DATA' at <0x0000_0000 [ 2G ]>.
+Slave segment '/ddr4_0/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK' is being assigned into address space '/core/M_AXI_WEIGHT_C0' at <0x0000_0000 [ 2G ]>.
+Slave segment '/ddr4_1/C0_DDR4_MEMORY_MAP/C0_DDR4_ADDRESS_BLOCK' is being assigned into address space '/core/M_AXI_WEIGHT_C1' at <0x0000_0000 [ 2G ]>.
+Slave segment '/core/S_AXIL/reg0' is being assigned into address space '/xdma_0/M_AXI_LITE' at <0x0000_0000 [ 4K ]>.
+CRITICAL WARNING: [BD 41-1354] Master segment '/core/M_AXI_DATA/SEG_ddr4_0_C0_DDR4_ADDRESS_BLOCK' at address <0x0000_0000 [ 2G ]> overlaps with master segment '/core/M_AXI_MLP_DATA/SEG_ddr4_1_C0_DDR4_ADDRESS_BLOCK' at address <0x0000_0000 [ 2G ]> in the same network.
+CRITICAL WARNING: [BD 41-1354] Master segment '/core/M_AXI_MLP_DATA/SEG_ddr4_1_C0_DDR4_ADDRESS_BLOCK' at address <0x0000_0000 [ 2G ]> overlaps with master segment '/core/M_AXI_WEIGHT_C0/SEG_ddr4_0_C0_DDR4_ADDRESS_BLOCK' at address <0x0000_0000 [ 2G ]> in the same network.
+CRITICAL WARNING: [BD 41-1354] Master segment '/core/M_AXI_WEIGHT_C0/SEG_ddr4_0_C0_DDR4_ADDRESS_BLOCK' at address <0x0000_0000 [ 2G ]> overlaps with master segment '/core/M_AXI_WEIGHT_C1/SEG_ddr4_1_C0_DDR4_ADDRESS_BLOCK' at address <0x0000_0000 [ 2G ]> in the same network.
+CRITICAL WARNING: [BD 41-1354] Master segment '/core/M_AXI_WEIGHT_C1/SEG_ddr4_1_C0_DDR4_ADDRESS_BLOCK' at address <0x0000_0000 [ 2G ]> overlaps with master segment '/xdma_0/M_AXI/SEG_ddr4_0_C0_DDR4_ADDRESS_BLOCK' at address <0x0000_0000 [ 2G ]> in the same network.
+WARNING: [BD 41-3281] Instance '/xdma_0' is connected on both sides by SmartConnects and cannot automatically configure itself to match the endpoints. Please manually configure its AXI interfaces as required for the design.
+WARNING: [BD 41-3281] Instance '/core' is connected on both sides by SmartConnects and cannot automatically configure itself to match the endpoints. Please manually configure its AXI interfaces as required for the design.
+WARNING: [SMARTCONNECT-2] Port M00_AXI of /d0_smc is connected to an infrastructure IP (/d0_mig_slice).  It is recommended to attach AXI SmartConnect directly to endpoint IPs to avoid mismatches or other issues during validation.  If mismatches occur, manually assign values for AXI Interface properties of /d0_mig_slice.
+WARNING: [SMARTCONNECT-2] Port M00_AXI of /d1_smc is connected to an infrastructure IP (/d1_mig_slice).  It is recommended to attach AXI SmartConnect directly to endpoint IPs to avoid mismatches or other issues during validation.  If mismatches occur, manually assign values for AXI Interface properties of /d1_mig_slice.
+INFO: [BD 5-943] Reserving offset range <0x0000_0000 [ 2G ]> from slave interface '/host_split/S00_AXI' to master interface '/d0_smc/M00_AXI'. This will be used by smartconnect on path for routing.
+INFO: [BD 5-943] Reserving offset range <0x8000_0000 [ 2G ]> from slave interface '/host_split/S00_AXI' to master interface '/d1_smc/M00_AXI'. This will be used by smartconnect on path for routing.
+INFO: [xilinx.com:ip:smartconnect:1.0-1] scalellm_final_decode16_bd_host_split_0: SmartConnect scalellm_final_decode16_bd_host_split_0 is in High-performance Mode.
+INFO: [BD 5-943] Reserving offset range <0x0000_0000 [ 4K ]> from slave interface '/ctrl_smc/S00_AXI' to master interface '/ctrl_smc/M00_AXI'. This will be used by smartconnect on path for routing.
+INFO: [xilinx.com:ip:smartconnect:1.0-1] scalellm_final_decode16_bd_ctrl_smc_0: SmartConnect scalellm_final_decode16_bd_ctrl_smc_0 is in Low-Area Mode.
+INFO: [BD 5-943] Reserving offset range <0x0000_0000 [ 2G ]> from slave interface '/d0_smc/S00_AXI' to master interface '/d0_smc/M00_AXI'. This will be used by smartconnect on path for routing.
+INFO: [BD 5-943] Reserving offset range <0x0000_0000 [ 2G ]> from slave interface '/d0_smc/S01_AXI' to master interface '/d0_smc/M00_AXI'. This will be used by smartconnect on path for routing.
+INFO: [BD 5-943] Reserving offset range <0x0000_0000 [ 2G ]> from slave interface '/d0_smc/S02_AXI' to master interface '/d0_smc/M00_AXI'. This will be used by smartconnect on path for routing.
+INFO: [xilinx.com:ip:smartconnect:1.0-1] scalellm_final_decode16_bd_d0_smc_0: SmartConnect scalellm_final_decode16_bd_d0_smc_0 is in High-performance Mode.
+INFO: [BD 5-943] Reserving offset range <0x0000_0000 [ 2G ]> from slave interface '/d1_smc/S00_AXI' to master interface '/d1_smc/M00_AXI'. This will be used by smartconnect on path for routing.
+INFO: [BD 5-943] Reserving offset range <0x8000_0000 [ 2G ]> from slave interface '/d1_smc/S01_AXI' to master interface '/d1_smc/M00_AXI'. This will be used by smartconnect on path for routing.
+INFO: [BD 5-943] Reserving offset range <0x0000_0000 [ 2G ]> from slave interface '/d1_smc/S02_AXI' to master interface '/d1_smc/M00_AXI'. This will be used by smartconnect on path for routing.
+INFO: [xilinx.com:ip:smartconnect:1.0-1] scalellm_final_decode16_bd_d1_smc_0: SmartConnect scalellm_final_decode16_bd_d1_smc_0 is in High-performance Mode.
+INFO: [xilinx.com:ip:clk_wiz:6.0-1] /clk_core clk_wiz propagate
+INFO: [xilinx.com:ip:util_vector_logic:2.0-10] /ddr0_and IP set output pin Res type to "rst" when Input pin Op1 type is "undef" and Input pin Op2 type is "rst".
+INFO: [xilinx.com:ip:util_vector_logic:2.0-10] /ddr1_and IP set output pin Res type to "rst" when Input pin Op1 type is "undef" and Input pin Op2 type is "rst".
+validate_bd_design: Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 3617.789 ; gain = 155.781 ; free physical = 115637 ; free virtual = 489569
+BD_CLOCK_METADATA core 80000000
+BD_CLOCK_METADATA ddr0 200000000
+BD_CLOCK_METADATA ddr1 200000000
+BD_CLOCK_METADATA ddr4_0 200000000
+BD_CLOCK_METADATA ddr4_1 200000000
+WARNING: [filemgmt 56-443] The ECC Algorithm string is empty. Setting the Memory Map to default ECC value to ECC_NONE.
+WARNING: [filemgmt 56-443] The ECC Algorithm string is empty. Setting the Memory Map to default ECC value to ECC_NONE.
+WARNING: [filemgmt 56-443] The ECC Algorithm string is empty. Setting the Memory Map to default ECC value to ECC_NONE.
+WARNING: [filemgmt 56-443] The ECC Algorithm string is empty. Setting the Memory Map to default ECC value to ECC_NONE.
+Wrote  : <<BUILD_WORKSPACE>/validate/project/scalellm_final_decode16.srcs/sources_1/bd/scalellm_final_decode16_bd/scalellm_final_decode16_bd.bd> 
+BD_CLOCK_METADATA mlp_data_cdc 80000000
+M002_BD_VALIDATION_PASS
+INFO: [Common 17-206] Exiting Vivado at Thu Oct 29 10:13:48 2026...

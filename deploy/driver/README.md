@@ -59,7 +59,7 @@ signtool.exe verify /v /pa /c 'E:\build\candidate-package\XDMA.cat' 'E:\build\ca
 pnputil /add-driver 'E:\build\candidate-package\XDMA.inf' /install
 ```
 
-记录 native exit；若需重启/返回3010或出现错误，停止，不自动重启或强制继续。核新的 published INF 内容 SHA、SYS SHA、版本、唯一实例/PnP，然后先 `preflight --device`，再 layer0 pilot，最后 full。控制面 user-enable/request/pending 应为0，MSI模式1；当前 DMA POLL_MODE1 下打开 DMA 节点后 channel-enable 为0合法，不能误要求它始终为3。
+记录 native exit；若需重启/返回3010或出现错误，停止，不自动重启或强制继续。核新的 published INF 内容 SHA、SYS SHA、版本及唯一实例/PnP，然后按 [最终版部署说明](../../docs/DEPLOYMENT.md) 执行 `preflight --models --device` 和 `run`。当前入口检查 Decode16 最终 ABI、80 MHz、格式/布局及 idle/error 状态；旧的 layer0 pilot/full 与旧应用 CSR 流程不适用。当前 DMA POLL_MODE1 下打开 DMA 节点后 channel-enable 为0合法，不能误要求它始终为3。驱动的 user IRQ0 屏蔽策略仍须由已审核驱动构建保证；应用的 ABI 检查不能证明内核驱动实现。
 
 ## 回退
 

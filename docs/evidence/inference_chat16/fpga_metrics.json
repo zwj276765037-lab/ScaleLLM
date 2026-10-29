@@ -1,0 +1,101 @@
+{
+  "schema": "scalellm_final_fpga_performance_v1",
+  "core_hz": 80000000,
+  "requests": 16,
+  "commands": 3200,
+  "rounds": 50,
+  "generated_tokens": 512,
+  "total_cycles": 4657857236,
+  "fpga_command_seconds": 58.22321545,
+  "attention_seconds": 28.9239739875,
+  "mlp_seconds": 29.2992414625,
+  "full16_rounds": 47,
+  "pure_decode": {
+    "rounds": 31,
+    "generated_tokens": 472,
+    "fpga_command_seconds": 38.26224145
+  },
+  "representative_rounds": [
+    {
+      "round": 1,
+      "active_mask": 65535,
+      "active_slots": 16,
+      "kv_length_min": 1,
+      "kv_length_max": 1,
+      "phase": "prompt_or_mixed",
+      "emitted_tokens": 0,
+      "cycles": 78237837,
+      "fpga_seconds": 0.9779729625,
+      "attention_seconds": 0.3901202875,
+      "mlp_seconds": 0.587852675
+    },
+    {
+      "round": 16,
+      "active_mask": 65535,
+      "active_slots": 16,
+      "kv_length_min": 16,
+      "kv_length_max": 16,
+      "phase": "prompt_or_mixed",
+      "emitted_tokens": 2,
+      "cycles": 88006203,
+      "fpga_seconds": 1.1000775375,
+      "attention_seconds": 0.5133489125,
+      "mlp_seconds": 0.586728625
+    },
+    {
+      "round": 20,
+      "active_mask": 65535,
+      "active_slots": 16,
+      "kv_length_min": 20,
+      "kv_length_max": 20,
+      "phase": "decode",
+      "emitted_tokens": 16,
+      "cycles": 90649713,
+      "fpga_seconds": 1.1331214125,
+      "attention_seconds": 0.5463676375,
+      "mlp_seconds": 0.586753775
+    },
+    {
+      "round": 32,
+      "active_mask": 65535,
+      "active_slots": 16,
+      "kv_length_min": 32,
+      "kv_length_max": 32,
+      "phase": "decode",
+      "emitted_tokens": 16,
+      "cycles": 98613507,
+      "fpga_seconds": 1.2326688375,
+      "attention_seconds": 0.6459424875,
+      "mlp_seconds": 0.58672635
+    },
+    {
+      "round": 47,
+      "active_mask": 65535,
+      "active_slots": 16,
+      "kv_length_min": 47,
+      "kv_length_max": 47,
+      "phase": "decode",
+      "emitted_tokens": 16,
+      "cycles": 108526635,
+      "fpga_seconds": 1.3565829375,
+      "attention_seconds": 0.76982745,
+      "mlp_seconds": 0.5867554875
+    },
+    {
+      "round": 50,
+      "active_mask": 2113,
+      "active_slots": 3,
+      "kv_length_min": 50,
+      "kv_length_max": 50,
+      "phase": "decode",
+      "emitted_tokens": 3,
+      "cycles": 79049662,
+      "fpga_seconds": 0.988120775,
+      "attention_seconds": 0.4232554375,
+      "mlp_seconds": 0.5648653375
+    }
+  ],
+  "scope": "Sum of hardware command cycles / 80 MHz, including onboard memory/control work. Excludes Host Down, normalization, LM head, and command-external transfers/waits. This is not full-model end-to-end throughput.",
+  "numerical_verification": "NOT_RUN",
+  "source_sha256": "5f3dd85adc361d7cc6460e76ad218b22b200d1e2ec278777606f006aadcbcf70"
+}
