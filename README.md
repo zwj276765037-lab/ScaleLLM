@@ -37,11 +37,12 @@ The placed design uses **701,775 LUTs, 954,554 FFs, 709 BRAM36-equivalent tiles,
 ## Recorded power and inference outputs
 
 These Python/Matplotlib figures are generated directly from the published measurements.
-The power figure shows all complete sweeps, cumulative energy, and the seven
-individual rail means. Its time axis measures the full inference window,
-including host/transfer gaps. FPGA speed remains the counter-derived quantity above.
+The power figure shows the **time-weighted average over the complete inference
+window: 11.36 W**, summing seven FPGA-related regulator outputs and including
+host/transfer gaps. This is not continuous full-load power or whole-board input
+power. FPGA speed remains the counter-derived quantity above.
 
-![Full-inference power: measured curve, cumulative energy, and seven rail means](docs/evidence/power_chat16/full_inference_power.png)
+![Average measured power over the full inference run: 11.36 W](docs/evidence/power_chat16/full_inference_power.png)
 
 [Power figure as SVG](docs/evidence/power_chat16/full_inference_power.svg) ·
 [Raw power data and analysis](docs/evidence/power_chat16/README.md)

@@ -3,7 +3,6 @@
 import argparse
 import csv
 import json
-import math
 from pathlib import Path
 import textwrap
 import matplotlib
@@ -18,84 +17,31 @@ def save(fig, path):
 
 
 def power_figure(directory):
-    with (directory / 'power_sweeps.csv').open() as stream:
-        rows = list(csv.DictReader(stream))
     summary = json.loads((directory / 'summary.json').read_text())
-    window = summary['windows']['model']
-    seconds = [float(row['time_s']) for row in rows]
-    watts = [float(row['power_w']) for row in rows]
-    duration = window['window_seconds']
-    mean = window['time_weighted_mean_w']
-
-    # Integrate the same observed, clipped intervals used by the numeric report.
-    energy_times, energy_values = [0.0], [0.0]
-    energy = 0.0
-    for t0, t1, p0, p1 in zip(seconds, seconds[1:], watts, watts[1:]):
-        if t1 - t0 > summary['gap_exclusion_threshold_seconds']:
-            continue
-        a, b = max(0.0, t0), min(duration, t1)
-        if b <= a:
-            continue
-        slope = (p1 - p0) / (t1 - t0)
-        pa, pb = p0 + slope * (a - t0), p0 + slope * (b - t0)
-        energy += (pa + pb) * (b - a) / 2
-        energy_times.append(b / 60)
-        energy_values.append(energy / 1000)
-    if not math.isclose(energy, window['integrated_joules'], rel_tol=1e-10):
-        raise ValueError('Plotted energy differs from the published integral')
-
-    fig = plt.figure(figsize=(13, 9.2), facecolor='white')
-    grid = fig.add_gridspec(2, 2, height_ratios=[1.35, 1],
-                          left=.075, right=.97, top=.83, bottom=.16,
-                          hspace=.52, wspace=.72)
-    ax = fig.add_subplot(grid[0, :])
-    ax.plot([t / 60 for t in seconds], watts, linewidth=.7, color='#164c7e',
-            label='All 2,947 complete sweeps' if len(rows) == 2947 else 'Complete sweeps')
-    ax.axhline(mean, color='#c26b23', linewidth=1.6,
-               label=f'Time-weighted mean: {mean:.2f} W')
-    for boundary in (0, duration / 60):
-        ax.axvline(boundary, color='#888888', linestyle='--', linewidth=1)
-    ax.set(xlabel='Minutes since model launch', ylabel='Seven-rail sum (W)',
-           title='Measured power throughout the inference window')
-    ax.grid(axis='y', alpha=.2)
-    ax.legend(loc='upper right', fontsize=9)
-
-    ax = fig.add_subplot(grid[1, 0])
-    ax.plot(energy_times, energy_values, color='#008b88', linewidth=2)
-    ax.fill_between(energy_times, energy_values, color='#008b88', alpha=.08)
-    ax.set(xlabel='Minutes since model launch', ylabel='Accumulated energy (kJ)',
-           title='Energy integrated over the model window', xlim=(0, duration / 60),
-           ylim=(0, window['integrated_joules'] / 1000 * 1.12))
-    ax.grid(alpha=.15)
-
-    ax = fig.add_subplot(grid[1, 1])
-    rails = summary['rail_sources']
-    values = [window['per_rail'][rail['address']]['time_weighted_mean_w'] for rail in rails]
-    colors = ['#164c7e' if rail['power_source'] == 'READ_POUT' else '#008b88' for rail in rails]
-    ax.barh(range(len(rails)), values, color=colors, height=.64)
-    ax.set_yticks(range(len(rails)), [rail['name'].removesuffix('_FPGA') for rail in rails])
-    ax.invert_yaxis()
-    ax.axvline(0, color='#888888', linewidth=.7)
-    for index, value in enumerate(values):
-        ax.text(max(value, 0) + .13, index, f'{value:.3f}', va='center', fontsize=9)
-    ax.set(xlabel='Time-weighted rail mean (W)', title='Seven measured regulator outputs',
-           xlim=(-.25, max(values) * 1.23))
-    ax.tick_params(axis='y', labelsize=9)
-    ax.grid(axis='x', alpha=.15)
+    mean = summary['windows']['model']['time_weighted_mean_w']
+    fig, ax = plt.subplots(figsize=(8, 6.2), facecolor='white')
+    fig.subplots_adjust(left=.14, right=.96, top=.79, bottom=.27)
+    ax.bar([0], [mean], width=.52, color='#2161a6')
+    ax.text(0, mean + .35, f'{mean:.2f} W', ha='center', va='bottom',
+            fontsize=22, fontweight='bold', color='#164c7e')
+    ax.set(xticks=[0], xticklabels=['Full inference run'],
+           ylabel='Average measured power (W)', xlim=(-.85, .85),
+           ylim=(0, max(15, mean * 1.3)))
+    ax.tick_params(labelsize=12)
+    ax.grid(axis='y', alpha=.18)
     ax.set_axisbelow(True)
-
-    fig.suptitle('ScaleLLM | Full-inference power measurement', fontsize=19, fontweight='bold', y=.975)
-    fig.text(.5, .928, 'VCU118 at 80 MHz  |  16 requests x 32 generated tokens  |  512 tokens total',
+    fig.suptitle('Average FPGA-Related Rail Power', fontsize=20,
+                 fontweight='bold', y=.96)
+    fig.text(.55, .87, 'VCU118 | 80 MHz | 16 requests x 32 generated tokens',
              ha='center', fontsize=11, color='#475569')
-    fig.text(.5, .882, f'{mean:.2f} W average     |     {energy / 1000:.2f} kJ energy     |     '
-             f'{window["coverage_fraction"]:.0%} window coverage     |     {len(rows):,} sweeps',
-             ha='center', fontsize=12, color='#164c7e', fontweight='bold')
-    fig.text(.075, .035,
-             'Scope: seven FPGA-related regulator outputs, including host/transfer idle gaps; excludes board input and host power.\n'
-             'Three READ_POUT channels contribute +/-3 W sum quantization uncertainty; other errors are not fully characterized.\n'
-             'Near-zero negative/zero readings are retained. ~1.17 s sweeps cannot resolve individual kernel peaks.\n'
-             'Original sampler final-console timeout is preserved; all observed windows have complete streaming data.',
-             fontsize=8.5, linespacing=1.4, color='#475569')
+    fig.text(.14, .125,
+             'Time-weighted mean over the complete inference window.\n'
+             'Sum of seven FPGA-related regulator outputs; includes host/transfer gaps.',
+             fontsize=9.5, linespacing=1.5, color='#475569')
+    fig.text(.14, .045,
+             'Not continuous full-load or whole-board input power.\n'
+             'Coarse READ_POUT quantization contribution: +/-3 W; other errors are not fully characterized.',
+             fontsize=8, linespacing=1.5, color='#64748b')
     save(fig, directory / 'full_inference_power')
 
 
