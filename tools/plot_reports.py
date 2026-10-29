@@ -3,7 +3,9 @@
 import argparse
 import csv
 import json
+import math
 from pathlib import Path
+import textwrap
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -15,10 +17,133 @@ def save(fig, path):
     plt.close(fig)
 
 
+def power_figure(directory):
+    with (directory / 'power_sweeps.csv').open() as stream:
+        rows = list(csv.DictReader(stream))
+    summary = json.loads((directory / 'summary.json').read_text())
+    window = summary['windows']['model']
+    seconds = [float(row['time_s']) for row in rows]
+    watts = [float(row['power_w']) for row in rows]
+    duration = window['window_seconds']
+    mean = window['time_weighted_mean_w']
+
+    # Integrate the same observed, clipped intervals used by the numeric report.
+    energy_times, energy_values = [0.0], [0.0]
+    energy = 0.0
+    for t0, t1, p0, p1 in zip(seconds, seconds[1:], watts, watts[1:]):
+        if t1 - t0 > summary['gap_exclusion_threshold_seconds']:
+            continue
+        a, b = max(0.0, t0), min(duration, t1)
+        if b <= a:
+            continue
+        slope = (p1 - p0) / (t1 - t0)
+        pa, pb = p0 + slope * (a - t0), p0 + slope * (b - t0)
+        energy += (pa + pb) * (b - a) / 2
+        energy_times.append(b / 60)
+        energy_values.append(energy / 1000)
+    if not math.isclose(energy, window['integrated_joules'], rel_tol=1e-10):
+        raise ValueError('Plotted energy differs from the published integral')
+
+    fig = plt.figure(figsize=(13, 9.2), facecolor='white')
+    grid = fig.add_gridspec(2, 2, height_ratios=[1.35, 1],
+                          left=.075, right=.97, top=.83, bottom=.16,
+                          hspace=.52, wspace=.72)
+    ax = fig.add_subplot(grid[0, :])
+    ax.plot([t / 60 for t in seconds], watts, linewidth=.7, color='#164c7e',
+            label='All 2,947 complete sweeps' if len(rows) == 2947 else 'Complete sweeps')
+    ax.axhline(mean, color='#c26b23', linewidth=1.6,
+               label=f'Time-weighted mean: {mean:.2f} W')
+    for boundary in (0, duration / 60):
+        ax.axvline(boundary, color='#888888', linestyle='--', linewidth=1)
+    ax.set(xlabel='Minutes since model launch', ylabel='Seven-rail sum (W)',
+           title='Measured power throughout the inference window')
+    ax.grid(axis='y', alpha=.2)
+    ax.legend(loc='upper right', fontsize=9)
+
+    ax = fig.add_subplot(grid[1, 0])
+    ax.plot(energy_times, energy_values, color='#008b88', linewidth=2)
+    ax.fill_between(energy_times, energy_values, color='#008b88', alpha=.08)
+    ax.set(xlabel='Minutes since model launch', ylabel='Accumulated energy (kJ)',
+           title='Energy integrated over the model window', xlim=(0, duration / 60),
+           ylim=(0, window['integrated_joules'] / 1000 * 1.12))
+    ax.grid(alpha=.15)
+
+    ax = fig.add_subplot(grid[1, 1])
+    rails = summary['rail_sources']
+    values = [window['per_rail'][rail['address']]['time_weighted_mean_w'] for rail in rails]
+    colors = ['#164c7e' if rail['power_source'] == 'READ_POUT' else '#008b88' for rail in rails]
+    ax.barh(range(len(rails)), values, color=colors, height=.64)
+    ax.set_yticks(range(len(rails)), [rail['name'].removesuffix('_FPGA') for rail in rails])
+    ax.invert_yaxis()
+    ax.axvline(0, color='#888888', linewidth=.7)
+    for index, value in enumerate(values):
+        ax.text(max(value, 0) + .13, index, f'{value:.3f}', va='center', fontsize=9)
+    ax.set(xlabel='Time-weighted rail mean (W)', title='Seven measured regulator outputs',
+           xlim=(-.25, max(values) * 1.23))
+    ax.tick_params(axis='y', labelsize=9)
+    ax.grid(axis='x', alpha=.15)
+    ax.set_axisbelow(True)
+
+    fig.suptitle('ScaleLLM | Full-inference power measurement', fontsize=19, fontweight='bold', y=.975)
+    fig.text(.5, .928, 'VCU118 at 80 MHz  |  16 requests x 32 generated tokens  |  512 tokens total',
+             ha='center', fontsize=11, color='#475569')
+    fig.text(.5, .882, f'{mean:.2f} W average     |     {energy / 1000:.2f} kJ energy     |     '
+             f'{window["coverage_fraction"]:.0%} window coverage     |     {len(rows):,} sweeps',
+             ha='center', fontsize=12, color='#164c7e', fontweight='bold')
+    fig.text(.075, .035,
+             'Scope: seven FPGA-related regulator outputs, including host/transfer idle gaps; excludes board input and host power.\n'
+             'Three READ_POUT channels contribute +/-3 W sum quantization uncertainty; other errors are not fully characterized.\n'
+             'Near-zero negative/zero readings are retained. ~1.17 s sweeps cannot resolve individual kernel peaks.\n'
+             'Original sampler final-console timeout is preserved; all observed windows have complete streaming data.',
+             fontsize=8.5, linespacing=1.4, color='#475569')
+    save(fig, directory / 'full_inference_power')
+
+
+def wrap_recorded_text(value, width):
+    return '\n'.join(textwrap.fill(line, width=width, break_long_words=False,
+                                  break_on_hyphens=False) if line else ''
+                     for line in value.split('\n'))
+
+
+def output_figures(directory):
+    records = json.loads((directory / 'outputs.json').read_text())
+    if [record['slot'] for record in records] != list(range(16)):
+        raise ValueError('Expected all 16 recorded request slots in order')
+    for offset in range(0, 16, 4):
+        fig, axes = plt.subplots(2, 2, figsize=(14, 9.2), facecolor='white')
+        fig.subplots_adjust(left=.035, right=.965, top=.87, bottom=.07,
+                            hspace=.09, wspace=.04)
+        for ax, record in zip(axes.flat, records[offset:offset + 4]):
+            ax.set_facecolor('#f3f6fa')
+            for spine in ax.spines.values():
+                spine.set_visible(True)
+                spine.set_color('#dce4ee')
+            ax.set(xticks=[], yticks=[], xlim=(0, 1), ylim=(0, 1))
+            ax.text(.045, .93, f'Request slot {record["slot"]:02d}', va='top',
+                    fontsize=13, fontweight='bold', color='#164c7e')
+            ax.text(.955, .93, f'{record["new_tokens"]} new tokens', ha='right', va='top',
+                    fontsize=10, color='#008b88')
+            ax.text(.045, .82, 'PROMPT', fontsize=9, fontweight='bold', color='#64748b')
+            ax.text(.045, .77, wrap_recorded_text(record['prompt'], 66),
+                    va='top', fontsize=11.5, linespacing=1.3)
+            ax.text(.045, .60, 'RECORDED OUTPUT', fontsize=9, fontweight='bold', color='#64748b')
+            ax.text(.045, .55, wrap_recorded_text(record['generated_text'], 66),
+                    va='top', fontsize=11.5, linespacing=1.25, parse_math=False)
+            ax.text(.045, .035, f'Stop: {record["stop_reason"]}', fontsize=8.5, color='#64748b')
+        fig.suptitle(f'ScaleLLM | Actual inference outputs — slots {offset:02d}–{offset + 3:02d}',
+                     fontsize=19, fontweight='bold', y=.965)
+        fig.text(.5, .915, 'Llama-3.1-8B-Instruct  |  16 independent incremental-KV requests  |  FPGA + CPU',
+                 ha='center', fontsize=11, color='#475569')
+        fig.text(.035, .025, 'Exact recorded text, wrapped for display. Each request was capped at 32 new tokens; incomplete endings are preserved.',
+                 fontsize=10, color='#475569')
+        save(fig, directory / f'generated_outputs_{offset:02d}_{offset + 3:02d}')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--inference', type=Path)
     parser.add_argument('--power', type=Path)
+    parser.add_argument('--outputs', type=Path, help='Directory containing the 16 recorded outputs.json entries')
     args = parser.parse_args()
     plt.rcParams.update({'font.size': 10, 'axes.spines.top': False,
                          'axes.spines.right': False, 'svg.hashsalt': 'scalellm-final'})
@@ -40,28 +165,9 @@ def main():
         fig.text(.12, -.02, 'Counters include onboard memory/control; CPU Down and host gaps are excluded.', fontsize=9)
         save(fig, args.inference / 'fpga_round_time')
     if args.power:
-        with (args.power / 'power_sweeps.csv').open() as f:
-            rows = list(csv.DictReader(f))
-        summary = json.loads((args.power / 'summary.json').read_text())
-        x = [float(r['time_s']) / 60 for r in rows]
-        y = [float(r['power_w']) for r in rows]
-        duration = summary['windows']['model']['window_seconds'] / 60
-        mean = summary['windows']['model']['time_weighted_mean_w']
-        fig, ax = plt.subplots(figsize=(10, 4.6))
-        ax.plot(x, y, linewidth=.65, color='#164c7e', label='Seven-rail sequential sweep sum')
-        ax.axhline(mean, color='#c26b23', linewidth=1.4, label=f'Model-window mean: {mean:.3f} W')
-        ax.axvline(0, color='#888888', linestyle='--', linewidth=1)
-        ax.axvline(duration, color='#888888', linestyle='--', linewidth=1)
-        ax.set(xlabel='Minutes since model launch (energy integration axis)',
-               ylabel='Selected regulator output power, W',
-               title='Continuous 16-request x 32-token inference power')
-        ax.grid(axis='y', alpha=.2)
-        ax.legend(loc='best', fontsize=8)
-        fig.subplots_adjust(bottom=.28)
-        fig.text(.125, .02, 'Seven measured rails; excludes board input and host power.\n'
-                             'Three coarse READ_POUT channels contribute +/-3 W quantization uncertainty; other errors are not fully characterized.\n'
-                             'Approximately one-second sweeps cannot resolve individual kernel peaks.', fontsize=8.5)
-        save(fig, args.power / 'full_inference_power')
+        power_figure(args.power)
+    if args.outputs:
+        output_figures(args.outputs)
 
 
 if __name__ == '__main__':

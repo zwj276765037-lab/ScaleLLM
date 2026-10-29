@@ -34,6 +34,40 @@ preserves that failure and explains sensor resolution and the host-idle gaps.
 
 The placed design uses **701,775 LUTs, 954,554 FFs, 709 BRAM36-equivalent tiles, 304 URAMs and 5,389 DSPs**. Final routed timing reports **WNS +0.017 ns, WHS +0.002 ns**, with no failing setup, hold or pulse-width endpoints. Resource counts are from placement; final routed utilization was not separately reported.
 
+## Recorded power and inference outputs
+
+These Python/Matplotlib figures are generated directly from the published measurements.
+The power figure shows all complete sweeps, cumulative energy, and the seven
+individual rail means. Its time axis measures the full inference window,
+including host/transfer gaps. FPGA speed remains the counter-derived quantity above.
+
+![Full-inference power: measured curve, cumulative energy, and seven rail means](docs/evidence/power_chat16/full_inference_power.png)
+
+[Power figure as SVG](docs/evidence/power_chat16/full_inference_power.svg) ·
+[Raw power data and analysis](docs/evidence/power_chat16/README.md)
+
+All **16 actual prompts and generated outputs** are displayed below. Each request
+generated 32 new tokens and stopped at `length_limit`; unfinished sentences and
+original Markdown markers are preserved. These are recorded outputs, not edited
+example answers. The full-model numerical oracle comparison remains `NOT_RUN`.
+
+![Actual prompts and recorded outputs for request slots 0–3](docs/evidence/inference_chat16/generated_outputs_00_03.png)
+
+![Actual prompts and recorded outputs for request slots 4–7](docs/evidence/inference_chat16/generated_outputs_04_07.png)
+
+![Actual prompts and recorded outputs for request slots 8–11](docs/evidence/inference_chat16/generated_outputs_08_11.png)
+
+![Actual prompts and recorded outputs for request slots 12–15](docs/evidence/inference_chat16/generated_outputs_12_15.png)
+
+[Copyable text for all 16 requests](docs/evidence/inference_chat16/outputs.txt) ·
+[Exact generated token IDs](docs/evidence/inference_chat16/outputs.json)
+
+Recreate all five figures as PNG and SVG with Python and Matplotlib:
+
+```bash
+python3 tools/plot_reports.py --power docs/evidence/power_chat16 --outputs docs/evidence/inference_chat16
+```
+
 ## Run the supplied bitstream
 
 Clone this repository and verify the files:

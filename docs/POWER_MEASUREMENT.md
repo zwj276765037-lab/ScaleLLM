@@ -175,8 +175,13 @@ in a separate plotting environment if needed; inference and numerical analysis
 do not depend on it.
 
 ```bash
-python3 tools/plot_reports.py --inference docs/evidence/inference_chat16 --power docs/evidence/power_chat16
+python3 tools/plot_reports.py --inference docs/evidence/inference_chat16 --power docs/evidence/power_chat16 --outputs docs/evidence/inference_chat16
 ```
 
 The FPGA plot uses only cycle-derived seconds. The power plot's elapsed minutes
 are an energy-measurement axis, not a claim about FPGA computation speed.
+It displays every complete power sweep, the model-window energy integral, and
+the seven time-weighted rail means. The plotted integral is checked against the
+published numerical result. Negative and zero rail readings are retained.
+Four additional PNG/SVG pages show all sixteen actual prompts and outputs,
+read directly from `outputs.json` with the original 32-token endings preserved.

@@ -104,6 +104,12 @@ alone do not establish time alignment, instrument coverage or full-run energy.
 
 ## Published validation boundary
 
+The [README result gallery](../README.md#recorded-power-and-inference-outputs)
+displays all sixteen prompts and actual outputs. Python renders four pages from
+[outputs.json](evidence/inference_chat16/outputs.json), with four requests per
+page and no completion or rewriting of truncated text. The
+[plain-text record](evidence/inference_chat16/outputs.txt) is available for copying.
+
 The original board run produced 512 readable English tokens from sixteen
 independent requests, 50 complete rounds and 3,200 hardware commands. Every
 request reached the 32-token limit; none ended with EOS. Earlier independent
