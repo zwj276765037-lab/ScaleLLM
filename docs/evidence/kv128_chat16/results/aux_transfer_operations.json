@@ -1,0 +1,47 @@
+{
+  "schema": "scalellm_kv128_aux_transfer_operations_v1",
+  "started_utc": "2026-11-01T05:07:46.224012+00:00",
+  "budget_marker": "0_Source/operator_timing_kv32/kv128_compare/board/provenance/aux_branch_start.json",
+  "operations": [
+    {
+      "name": "remote_inventory",
+      "state": "COMPLETE",
+      "elapsed_s": 0.6052270529326051,
+      "exit_code": 0,
+      "remaining_s": 49.768250086,
+      "stdout_tail": "{\"status\":\"COMPLETE\",\"files\":7,\"manifest\":\"D:\\\\ScaleLLM_final_model\\\\operator_kv128_20261101_001\\\\aux_001\\\\remote_inventory.json\"}\r\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "auxiliary_scp",
+      "state": "COMPLETE",
+      "elapsed_s": 0.396543299080804,
+      "exit_code": 0,
+      "remaining_s": 49.371674173,
+      "stdout_tail": "",
+      "stderr_tail": ""
+    },
+    {
+      "name": "auxiliary_transfer_verify",
+      "state": "COMPLETE",
+      "elapsed_s": 0.05155935091897845,
+      "exit_code": 0,
+      "remaining_s": 49.319954461,
+      "stdout_tail": "{\"schema\": \"scalellm_kv128_transfer_verification_v1\", \"status\": \"PASS\", \"remote_inventory_sha256\": \"08a39eb2bb31cbf9b3c98fbbb4a5d55b2680d8d3989e38eeedae419349974bb7\", \"file_count\": 7, \"verified_bytes\": 3511}\n",
+      "stderr_tail": ""
+    },
+    {
+      "name": "full_branch_budget_receipt",
+      "state": "FAIL",
+      "elapsed_s": 0.05075009819120169,
+      "exit_code": 1,
+      "remaining_s": 49.26910805,
+      "stdout_tail": "{\"status\": \"FAIL\", \"elapsed_s\": 550.725743848, \"limit_s\": 600}\n",
+      "stderr_tail": ""
+    }
+  ],
+  "state": "FAIL",
+  "error": "RuntimeError('full_branch_budget_receipt exited 1')",
+  "finished_utc": "2026-11-01T05:07:47.328431+00:00",
+  "remaining_s": 49.269056584
+}
