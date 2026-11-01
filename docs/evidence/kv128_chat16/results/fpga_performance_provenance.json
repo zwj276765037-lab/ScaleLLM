@@ -1,0 +1,18 @@
+{
+  "schema": "scalellm_fpga_showcase_source_v1",
+  "evidence_kind": "BOARD_COMMAND_COUNTERS",
+  "core_hz": 80000000,
+  "commands_sha256": "30d9b4079fa39e439c47dd9843cc8c5541fa95088e75f573e9742894fe80388d",
+  "model_run_archive_path": "board/native/run_002/device/run.json",
+  "model_run_sha256": "64b14f85ed42cd9377dfd29c1f55c9b6278938b771a200bd3cc5f8003fb6fc7b",
+  "csv_sha256": "5eddd83fe265d73fd241525077a27a76c35ee6bd761c65b0f39f062f63e2b824",
+  "rows": 128,
+  "decode16_rows": 110,
+  "formula": "FPGA time = sum(DONE_CYCLES)/80e6; decode throughput = actual 16 emitted tokens / FPGA time",
+  "exclusions": [
+    "CPU Down and LM head",
+    "other host processing",
+    "transfers/waits outside hardware commands"
+  ],
+  "not_end_to_end_model_throughput": true
+}
