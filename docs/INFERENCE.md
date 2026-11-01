@@ -104,11 +104,18 @@ alone do not establish time alignment, instrument coverage or full-run energy.
 
 ## Published validation boundary
 
-The [README result gallery](../README.md#recorded-power-and-inference-outputs)
-displays all sixteen prompts and actual outputs. Python renders four pages from
-[outputs.json](evidence/inference_chat16/outputs.json), with four requests per
-page and no completion or rewriting of truncated text. The
-[plain-text record](evidence/inference_chat16/outputs.txt) is available for copying.
+The [README result gallery](../README.md#16-requests--their-recorded-outputs)
+displays all sixteen prompts and captured outputs from the newer fixed-KV128
+measurement: 1,784 generated tokens, with all 16 requests retained through
+position 127. See [all recorded responses](evidence/kv128_chat16/REQUESTS_AND_OUTPUTS.md)
+and [measurement methods](evidence/kv128_chat16/README.md) for that run's separate
+fixed-length capture setup. This does not change the portable runtime behavior
+specified above.
+
+The earlier 32-token-per-request run is retained in
+[outputs.json](evidence/inference_chat16/outputs.json) and the
+[plain-text record](evidence/inference_chat16/outputs.txt). Its requests retire
+at their individual length limits, unlike the fixed-active-count KV128 plot.
 
 The original board run produced 512 readable English tokens from sixteen
 independent requests, 50 complete rounds and 3,200 hardware commands. Every

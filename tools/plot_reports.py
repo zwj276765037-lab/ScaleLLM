@@ -129,19 +129,57 @@ def main():
     if args.inference:
         with (args.inference / 'fpga_rounds.csv').open() as f:
             rows = list(csv.DictReader(f))
-        fig, ax = plt.subplots(figsize=(9, 4.3))
         x = [int(r['round']) for r in rows]
+        active = [int(r['active_slots']) for r in rows]
+        retired = [i for i, count in enumerate(active) if count < 16]
+        fig, (ax, counts) = plt.subplots(
+            2, 1, figsize=(10.8, 6.8), sharex=True,
+            gridspec_kw={'height_ratios': [3.5, 1], 'hspace': .13})
+        fig.subplots_adjust(left=.09, right=.97, top=.81, bottom=.20)
+        fig.suptitle('Earlier 32-token run: requests finish at different rounds',
+                     x=.09, ha='left', y=.97, fontsize=17, fontweight='bold')
+        fig.text(.09, .895,
+                 'VCU118 / 80 MHz / all 32 layers per round / includes prompt processing',
+                 fontsize=10, color='#475569')
         for key, label, color in [('fpga_seconds', 'Total FPGA command time', '#164c7e'),
                                   ('attention_seconds', 'Attention', '#008b88'),
-                                  ('mlp_seconds', 'MLP H32/A8 + Gate/Up + SiLU x Up', '#c26b23')]:
-            ax.plot(x, [float(r[key]) for r in rows], label=label, color=color, linewidth=2)
-        ax.axvspan(47.5, 50.5, color='#eeeeee', label='14 / 7 / 3 active requests')
-        ax.set(xlabel='Round (KV length increases by one for active requests)',
-               ylabel='FPGA command time, seconds', xlim=(1, 50), ylim=(0, 1.55),
-               title='80 MHz VCU118 — all 32 layers per round')
-        ax.grid(axis='y', alpha=.2)
-        ax.legend(loc='upper left', fontsize=8)
-        fig.text(.12, -.02, 'Counters include onboard memory/control; CPU Down and host gaps are excluded.', fontsize=9)
+                                  ('mlp_seconds', 'MLP: H32/A8 + Gate/Up + SiLU x Up', '#c26b23')]:
+            values = [float(r[key]) for r in rows]
+            # Dashed segments retain every original point while exposing the
+            # changed active-count condition; no interpolation replaces data.
+            full = [v if n == 16 else math.nan for v, n in zip(values, active)]
+            ax.plot(x, full, label=label, color=color, linewidth=2.2)
+            if retired:
+                start = max(0, retired[0] - 1)
+                ax.plot(x[start:], values[start:], color=color, linewidth=2,
+                        linestyle='--', marker='o', markersize=4)
+        if retired:
+            boundary = x[retired[0]] - .5
+            for panel in (ax, counts):
+                panel.axvspan(boundary, x[-1] + .5, color='#fff0db', zorder=0)
+                panel.axvline(boundary, color='#c69045', linestyle=':', linewidth=1)
+            tail = ' / '.join(str(active[i]) for i in retired)
+            ax.text(.98, .96, f'Requests finishing: {tail} active\n'
+                    'Dashed tail has less work per round', transform=ax.transAxes,
+                    ha='right', va='top', fontsize=9, color='#8a581d')
+        ax.set(ylabel='FPGA command time (s)', xlim=(x[0], x[-1] + .6),
+               ylim=(0, max(float(r['fpga_seconds']) for r in rows) * 1.18))
+        ax.grid(axis='y', alpha=.18)
+        ax.legend(loc='upper left', frameon=False, fontsize=9)
+        counts.step(x, active, where='mid', color='#475569', linewidth=1.8)
+        changes = [i for i in range(len(rows)) if i == 0 or active[i] != active[i - 1]]
+        counts.scatter([x[i] for i in changes], [active[i] for i in changes],
+                       color='#475569', s=23, zorder=3)
+        for i in changes:
+            counts.annotate(str(active[i]), (x[i], active[i]), xytext=(0, 5),
+                            textcoords='offset points', ha='center', fontsize=9)
+        counts.set(xlabel='Execution round (KV length grows for each remaining request)',
+                   ylabel='Active\nrequests', yticks=[0, 8, 16], ylim=(0, 20))
+        counts.grid(axis='y', alpha=.15)
+        fig.text(.09, .075,
+                 'The tail falls because requests reach their 32-token limit; it is not a fixed-16-request KV sweep.\n'
+                 'Time = sum(DONE_CYCLES) / 80 MHz. CPU Down and command-external host/transfer gaps are excluded.',
+                 fontsize=9, linespacing=1.6, color='#475569')
         save(fig, args.inference / 'fpga_round_time')
     if args.power:
         power_figure(args.power)

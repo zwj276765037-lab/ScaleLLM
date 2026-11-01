@@ -5,7 +5,53 @@ This report concerns the released **Decode16, 80 MHz** image, SHA-256
 The model is Llama-3.1-8B-Instruct, checkpoint identity
 `8a09c60f3256779c16925f8209c9399ba4a1ee0406caf65bd2637ffd99287d6d`.
 
-## FPGA command speed
+## FPGA command speed — current fixed-16-request run
+
+The latest board measurement keeps **16 active requests through KV=128** using
+the same released bitstream. It records 128 steps, 8,192 commands and 1,784
+generated tokens. The plot selects the **110 steps at KV=19–128 that each emit
+16 tokens**. Earlier steps include prompt processing and mixed prompt/decode.
+Each KV length is one observation from this continuous run, not a repeated-run mean.
+
+Each step executes 32 Attention and 32 MLP commands. Reported time is
+`sum(DONE_CYCLES) / 80,000,000`; aggregate throughput is `16 / FPGA time`.
+Counters include command-internal memory/control work, computation and drain.
+**CPU Down, normalization/residuals, LM head and command-external transfers/waits
+are excluded.** MLP here is the FPGA H32/A8 + Gate/Up + scale restoration +
+SiLU×Up path. These are FPGA execution metrics, not full-model wall-clock rates.
+
+![Current fixed-16-request FPGA execution time and throughput through KV128](evidence/kv128_chat16/showcase/fpga_performance.svg)
+
+| KV length | Active requests | Attention, 32 layers | MLP frontend, 32 layers | Total FPGA time | Tokens / FPGA second |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 20 | 16 | 0.546444 s | 0.586748 s | 1.133192 s | **14.119** |
+| 32 | 16 | 0.645800 s | 0.586758 s | 1.232558 s | **12.981** |
+| 48 | 16 | 0.778308 s | 0.586757 s | 1.365065 s | **11.721** |
+| 64 | 16 | 0.910592 s | 0.586770 s | 1.497361 s | **10.685** |
+| 80 | 16 | 1.042869 s | 0.586743 s | 1.629611 s | **9.818** |
+| 96 | 16 | 1.175346 s | 0.586740 s | 1.762085 s | **9.080** |
+| 112 | 16 | 1.307725 s | 0.586760 s | 1.894485 s | **8.446** |
+| 128 | 16 | 1.440162 s | 0.586734 s | 2.026896 s | **7.894** |
+
+Between KV32 and KV128, Attention grows from 0.645800 s to 1.440162 s while
+MLP stays near 0.58675 s. No requests retire in this plotted interval; there is
+no end-of-run batch reduction in this comparison. The counter data locates the
+growth in the Attention command, without attributing exact fractions to KV
+reads, QK, Softmax or PV.
+
+[All 128 steps](evidence/kv128_chat16/results/fpga_performance_rounds.csv) ·
+[8,192 raw command counters](evidence/kv128_chat16/results/commands.csv) ·
+[Source hashes and formulas](evidence/kv128_chat16/results/fpga_performance_provenance.json) ·
+[Measurement methods and complete dataset](evidence/kv128_chat16/README.md)
+
+## Earlier 16×32-token run — changing active request count
+
+This separate historical run stops each request after 32 generated tokens.
+The final three rounds have **14, 7 and 3 active requests**, so their falling
+latency is not comparable to the fixed-16-request KV sweep above.
+
+<details>
+<summary>Earlier run: original counters, request-retirement figure and reproduction</summary>
 
 The original completed generation has sixteen independent requests, 16–19 input
 tokens per request and a budget of 32 generated tokens each. It completed all
@@ -46,14 +92,21 @@ operators and makes no extrapolation to unmeasured parallel scheduling.
 | 20 | 16 | Decode | 0.546368 s | 0.586754 s | **1.133121 s** |
 | 32 | 16 | Decode | 0.645942 s | 0.586726 s | **1.232669 s** |
 | 47 | 16 | Decode | 0.769827 s | 0.586755 s | **1.356583 s** |
-| 50 | 3 | Decode, remaining requests | 0.423255 s | 0.564865 s | 0.988121 s |
+| 48 | 14 | Decode, requests retiring | 0.723830 s | 0.586749 s | 1.310579 s |
+| 49 | 7 | Decode, requests retiring | 0.536944 s | 0.569267 s | 1.106212 s |
+| 50 | 3 | Decode, requests retiring | 0.423255 s | 0.564865 s | 0.988121 s |
 
 At KV length 32, average per-layer command time is **20.186 ms Attention +
 18.335 ms MLP**. Within the FPGA-assigned operations this corresponds to
 `16 / 1.232669 = 12.98` active-request positions per FPGA second. It is a
 hardware-operator processing rate, not an end-to-end LLM generation rate.
 
-![Measured FPGA command time by round](evidence/inference_chat16/fpga_round_time.svg)
+The last three points use smaller active batches. Their lower command times
+must not be interpreted as improved fixed-16-request performance at longer KV.
+The figure retains all original observations and displays the active count
+separately; the dashed tail marks the changed workload.
+
+![Earlier 32-token run: command times and declining active request count](evidence/inference_chat16/fpga_round_time.svg)
 
 Recompute directly from the published, unchanged runtime record:
 
@@ -70,6 +123,8 @@ positions, per-round counter sums and committed generated tokens. See
 [artifact provenance](evidence/inference_chat16/provenance.json).
 The input `run.json` SHA-256 is
 `5f3dd85adc361d7cc6460e76ad218b22b200d1e2ec278777606f006aadcbcf70`.
+
+</details>
 
 ## Hardware resources and timing
 
