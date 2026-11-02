@@ -1,24 +1,34 @@
-# Power evidence: current VCCINT telemetry and historical seven-rail integration
+# Power evidence: repeated seven-rail telemetry and historical records
 
-The latest [fixed-active16 KV128 run](evidence/kv128_chat16/README.md) records
-VCCINT conditional telemetry during the real inference needed to build KV128.
-The older seven-rail experiment covers the complete 16-request × 32-token
-wall-clock workload, including ten-second idle windows before and after it.
-Both use the VCU118 J39 PMBus connection independently of XDMA, but their
-electrical scope, time windows and statistical summaries differ.
+The latest measurement is the **2026-11-02 KV128, active16 seven-rail retest**, using the unchanged released Decode16/80 MHz image. Idle, repeated Attention, repeated MLP and a complete 32-layer decode step were each measured three times. The complete step includes CPU operators, LM head and token commit. The electrical boundary is seven specified **regulator outputs**, not whole-board input power.
 
-| Evidence | Electrical and time scope | Available result |
-| --- | --- | --- |
-| Current KV32/KV128 observation windows | VCCINT only; sequential V/I read pairs contained in command BUSY windows | Conditional sample distributions; no strict active mean or energy |
-| Historical 16×32 continuous recording | Seven selected regulator outputs over the full model wall-clock window | 11.3648 W time-weighted telemetry sum and 39,130.65 J integrated telemetry |
-| Whole-board supply input | All actual board supply inputs | Not measured |
+| Latest workload, n=3 | Seven-rail mean ± sample SD / W | Supported time scope |
+| --- | ---: | --- |
+| Idle | 11.112454 ± 0.011856 | Complete windows, 100% common coverage |
+| Attention replay, five captured layers | 11.339012 ± 0.018545 | Covered intervals only, 97.0574–98.5315%; full-window mean null |
+| MLP frontend replay, layer 0 | 12.076557 ± 0.035709 | Covered intervals only, 97.4958–97.9212%; full-window mean null |
+| Complete KV128 decode step | **11.182172 ± 0.040880** | Complete windows, 100% common coverage |
 
-Neither **5.525 W** from the current conditional samples nor the historical
-**11.3648 W** is a whole-board input-power measurement. The historical integral
-includes initialization, CPU work, transfers and host gaps; it is not an
-FPGA-command-only energy integral.
+Repeat SD is repeat dispersion, not sensor accuracy. The complete steps last approximately 65.4–65.7 s, of which the FPGA DONE counters sum to approximately 2.027 s. Consequently **11.18 W is a complete-step seven-rail telemetry mean**, not a mean restricted to hardware execution.
 
-## Current command-window observations
+## Latest retest method and limitations
+
+The 60 s pilot fixed a 140 ms target sweep period and 420 ms gap threshold. There are 10,116 sweeps, 70,812 rail points and 171,993 register transactions with zero read errors. Every supported VOUT/IOUT/POUT transaction preserves raw bytes and QPC start/end. The actual sweep median/P95/max is 142.0070/176.1067/540.9238 ms; additional reads do not establish independent ADC samples.
+
+MAX20751's observed mode 0x20 uses VID voltage, with 0.5 A IOUT and 2 W POUT steps. At VCCINT=0.85 V, V×I resolves 0.425 W code steps and this run observes 15 levels. MGTAVCC and MGTAVTT remain constant-coded at V×I 0.45 and 1.80 W, with POUT 0 and 2 W. Neither constant nor zero codes establish exact physical power. MAX15301 mode 0x14 uses VOUT/4096; READ_POUT is not in its documented command set, so the four unsupported POUT codes/timestamps stay null. Negative VADJ codes are retained, with their physical cause unresolved.
+
+MAX20751 lists IOUT updates of 512 µs and VOUT/POUT updates of 3 ms, but internal averaging/age bounds are unknown. MAX15301 update/average windows are unknown. Voltages and currents are read sequentially. Means use per-rail interpolation and the common supported time intersection, without extrapolating or bridging intervals over 420 ms. Only six windows achieve full common coverage; the six replay means are covered-time estimates and gaps need not be random.
+
+Conditional BUSY points are reported independently by opcode/layer. No command has adequate simultaneous *time support* from all seven rail streams to establish a seven-rail BUSY mean. Sensor aperture containment is also unknown. **Strict physical active mean, active energy, J/token and whole-board input power remain null.** A calibrated external synchronized V/I measurement at J15 and every other actual supply input is required for the latter; the [report](evidence/kv128_sevenrail_power/REPORT.md#9-若需精确执行期或整板输入功率) describes the unimplemented external measurement plan.
+
+All 9,129 commands complete with DONE/ACK: 9,055 inside the measured windows and 74 qualification checks outside. Three complete steps match their 16 output tokens and captured targets. The original launcher FAIL is preserved because command 14365 completed before the first host BUSY observation; command 10084 has only one BUSY observation. Their conservative inner windows stay null, and the unobserved sampler native exit remains null. The final measurement classification is **PARTIAL_WITH_LIMITS**, separate from successful file-integrity and offline recomputation checks.
+
+[Latest report and raw-data download](evidence/kv128_sevenrail_power/README.md) · [Per-window/per-rail CSV](evidence/kv128_sevenrail_power/results/main_004_window_rail_v2.csv) · [Official-source audit](evidence/kv128_sevenrail_power/source/references/source_facts.md) · [Independent method acceptance](evidence/kv128_sevenrail_power/source/method_review.md).
+
+## Earlier VCCINT command-window observations (2026-11-01)
+
+This section retains the earlier two-target-step experiment. Its VCCINT-only statistics do not replace the new seven-rail repeated-window results above. The historical 16×32-token seven-rail experiment below remains a third, separate dataset; its 11.3648 W and 39,130.65 J cover the original full model wall-clock window.
+
 
 The same original sixteen prompts were run through position 127 while retaining
 all slots. The sampler observed the position31 and position127 target steps,
@@ -53,13 +63,13 @@ Both raw collectors completed, and independent PID/birth-time observations
 confirmed their processes had exited. Their original launcher receipts still
 say `SAMPLING`, `exit_code=null`; the final status is
 `RAW_COMPLETE_EXIT_CODE_UNKNOWN`. No normal exit code is invented. Strict
-command-period mean power, energy, J/token, a new seven-rail sum and whole-board
-input power remain `NOT_ESTABLISHED`/null.
+command-period mean power, energy, J/token and whole-board
+input power remain `NOT_ESTABLISHED`/null. This earlier experiment did not collect a seven-rail sum; the new limited-scope retest is described above.
 
 See [raw/derived board evidence and downloads](evidence/kv128_chat16/README.md),
 [power summary](evidence/kv128_chat16/results/power_summary.json),
 [KV32 pairs](evidence/kv128_chat16/results/power_kv32.csv) and
-[KV128 pairs](evidence/kv128_chat16/results/power_kv128.csv). The validated current
+[KV128 pairs](evidence/kv128_chat16/results/power_kv128.csv). The validated earlier
 VID/V×I collection came from the run's sealed as-run scripts in that evidence
 package; it is not a claim that the older working-tree sampler below has been
 updated to this method.

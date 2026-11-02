@@ -6,7 +6,7 @@
 
 VCU118 / XCVU9P &nbsp; · &nbsp; Decode16 &nbsp; · &nbsp; 80 MHz &nbsp; · &nbsp; KV up to 128
 
-[Experiment index](docs/EXPERIMENTS.md) &nbsp;·&nbsp; [FPGA performance](#fpga-performance) &nbsp;·&nbsp; [Cycle simulation](#cycle-simulation-results) &nbsp;·&nbsp; [16 requests & outputs](#16-requests--their-recorded-outputs) &nbsp;·&nbsp; [Download evidence](docs/evidence/kv32_kv128_cycle_sim/README.md) &nbsp;·&nbsp; [Run on hardware](docs/DEPLOYMENT.md)
+[Experiment index](docs/EXPERIMENTS.md) &nbsp;·&nbsp; [FPGA performance](#fpga-performance) &nbsp;·&nbsp; [Cycle simulation](#cycle-simulation-results) &nbsp;·&nbsp; [16 requests & outputs](#16-requests--their-recorded-outputs) &nbsp;·&nbsp; [Power retest](#seven-rail-power-retest) &nbsp;·&nbsp; [Download evidence](docs/EXPERIMENTS.md#downloads-provenance-and-limits) &nbsp;·&nbsp; [Run on hardware](docs/DEPLOYMENT.md)
 
 </div>
 
@@ -16,7 +16,9 @@ VCU118 / XCVU9P &nbsp; · &nbsp; Decode16 &nbsp; · &nbsp; 80 MHz &nbsp; · &nbs
 
 Real incremental inference with the released 80 MHz bitstream: all 16 requests reach position 127 using their own valid, committed KV history. The measurements below come from the FPGA's command cycle counters.
 
-**Latest evidence, published 2026-11-02 (Asia/Shanghai):** an independent double-buffer RTL candidate validates **K32 groups and V8 groups** at layer 0, KV128 and 16 active requests. K32 effective weight-bandwidth efficiency is **59.86%**; V32 is **estimated at 72.68% from V8**, not fully simulated. All 640 KV records and the full 8 MiB image match sealed RTL byte for byte. The released bitstream and its board measurements remain unchanged. The earlier **12 complete command replays / 52 validated stages** remain a separate dataset. [New candidate report](docs/evidence/kv_overlap_cycle_sim/REPORT.md) · [Experiment index](docs/EXPERIMENTS.md).
+**Latest board evidence, 2026-11-02 (Asia/Shanghai):** twelve KV128 power windows, three each of idle, repeated Attention, repeated MLP and a full 32-layer decode step. The complete-step seven-regulator-output telemetry mean is **11.18 W (repeat SD 0.04 W)**. Replay windows have partial coverage; strict BUSY power and whole-board input power remain unestablished. The release image is unchanged. [Results and raw evidence](docs/evidence/kv128_sevenrail_power/README.md).
+
+**Recent RTL evidence, published 2026-11-02 (Asia/Shanghai):** an independent double-buffer RTL candidate validates **K32 groups and V8 groups** at layer 0, KV128 and 16 active requests. K32 effective weight-bandwidth efficiency is **59.86%**; V32 is **estimated at 72.68% from V8**, not fully simulated. All 640 KV records and the full 8 MiB image match sealed RTL byte for byte. The released bitstream and its board measurements remain unchanged. The earlier **12 complete command replays / 52 validated stages** remain a separate dataset. [New candidate report](docs/evidence/kv_overlap_cycle_sim/REPORT.md) · [Experiment index](docs/EXPERIMENTS.md).
 
 ## FPGA performance
 
@@ -37,6 +39,23 @@ One decode step emits **16 tokens** and executes **32 Attention + 32 MLP command
 [Performance CSV: all 128 steps](docs/evidence/kv128_chat16/results/fpga_performance_rounds.csv) · [8,192 raw command records](docs/evidence/kv128_chat16/results/commands.csv) · [Vector figure](docs/evidence/kv128_chat16/showcase/fpga_performance.svg)
 
 The complete host–FPGA step takes **71.312 s at KV32** and **97.453 s at KV128**, emitting 16 tokens in each target step: **0.224366** and **0.164182 token/s**, respectively. Across the recorded run, 1,784 generated tokens in the defined 9,843.491879 s model window give **0.181236 token/s**. These wall times include host computation, transfers and capture overhead; they are not the FPGA-time throughput in the table above.
+
+## Seven-rail power retest
+
+The released image was measured with 16 active requests at KV128/position127. A complete step includes all 32 layers, CPU operators, LM head and token commit. These values sum **seven selected regulator outputs**, not all board inputs.
+
+| Workload, n=3 | Mean ± repeat SD / W | Time support |
+| --- | ---: | --- |
+| Idle | 11.112 ± 0.012 | Complete windows |
+| Repeated Attention | 11.339 ± 0.019 | 97.06–98.53% common coverage only |
+| Repeated MLP frontend | 12.077 ± 0.036 | 97.50–97.92% common coverage only |
+| Complete KV128 step | **11.182 ± 0.041** | **Complete windows** |
+
+![Power repeats and common coverage; repeat SD is not sensor accuracy](docs/evidence/kv128_sevenrail_power/results/main_004_v2_summary.png)
+
+The six Attention/MLP full-window means remain null; gaps were not filled or discarded to claim complete coverage. VCCINT V×I has a 0.425 W code step versus READ_POUT's 2 W, but the two MGT rails remain constant-coded. Unknown sensor averaging/lag, sequential reads and current-offset ambiguity prevent a strict physical BUSY mean. The original launcher FAIL caused by an unobserved BUSY transition, and its unknown sampler exit, remain preserved. Overall measurement status is **PARTIAL_WITH_LIMITS**.
+
+[Complete report and seven-rail tables](docs/evidence/kv128_sevenrail_power/REPORT.md) · [CSV, PNG/SVG and raw archive](docs/evidence/kv128_sevenrail_power/DOWNLOADS.md) · [Power methods](docs/POWER_MEASUREMENT.md)
 
 ## Double-buffer RTL validation
 
@@ -90,6 +109,13 @@ All **16 actual requests and their complete captured responses** are shown below
 
 ## Data & reproduction
 
+The new [seven-rail power archive](docs/evidence/kv128_sevenrail_power/DOWNLOADS.md) preserves 229 members, including original register codes/timestamps, command traces, failed receipts and frozen offline analysis. Its 56,091,268 bytes are SHA-verified; numerical recomputation reproduces the final analysis JSON byte for byte:
+
+```bash
+python3 tools/release/verify_power_repeat_asset.py \
+  --download outputs/ScaleLLM_KV128_SevenRail_PMBus_20261102.zip --recompute
+```
+
 The new [double-buffer package](docs/evidence/kv_overlap_cycle_sim/DOWNLOADS.md) contains candidate/baseline raw events, KV images, real captured inputs, source snapshots and a portable verifier. It does not replace the board measurements. Download and recompute it without Vivado or an FPGA:
 
 ```bash
@@ -139,7 +165,7 @@ The CLB-register count includes 954,552 flip-flops and two AND/OR-configured reg
 
 Command protocol, full-step commit history and recorded LM-head/token consistency checks pass; the 12 selected complete simulation outputs match their board captures byte for byte. An independent full-model numerical oracle has not been established. The optional active1 attempt produced no valid command data. Operator-level cycle simulations are a separate experiment, not included in the FPGA counter metrics displayed here.
 
-Current PMBus results are **VCCINT conditional telemetry**, not whole-board input power or a strict command-active mean. The often-repeated 5.525 W value is a decoded sequential V×I observation, with finite register steps and an unknown sensor measurement aperture. The historical seven-rail wall-clock power experiment is preserved with its original scope; see [power methods and corrections](docs/POWER_MEASUREMENT.md).
+Current PMBus evidence includes **seven-rail repeated-window telemetry**, with complete coverage for idle/full-step windows and partial coverage for Attention/MLP replay windows. Earlier VCCINT conditional observations and historical full-trajectory seven-rail integration retain their own scopes. None establishes whole-board input power or a strict physical command-active mean. See [power methods and corrections](docs/POWER_MEASUREMENT.md).
 
 This fixed-length run retains 16 active requests through position 127; no EOS token occurred. The [earlier 16×32-token run](docs/evidence/inference_chat16/outputs.txt) is preserved separately.
 

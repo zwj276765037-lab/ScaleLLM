@@ -50,6 +50,8 @@ Checks passed for command order, descriptors, active masks, position/epoch histo
 
 ## What the power data measures
 
+This section is the original 2026-11-01 VCCINT-only dataset. The [2026-11-02 seven-rail retest](../kv128_sevenrail_power/README.md) adds three repeats per workload and explicitly separates complete-window and covered-time means; neither establishes strict physical active or whole-board input power.
+
 Only the verified **VCCINT regulator output** is measured here through PMBus. Each sample is the product of sequential `READ_VOUT` and `READ_IOUT` transactions. Eligible observations require the entire V/I read-pair envelope to lie inside the same command's conservative BUSY window.
 
 | KV | Command | Eligible V/I pairs | Commands with observations | V×I median | Observed range |
@@ -63,7 +65,7 @@ There are 27,953 raw V/I pairs in the KV32 collection and 30,547 in KV128; 41 an
 
 READ_POUT returned codes spaced by **2 W** (including 6/8/10/12 W). The observed VOUT is 0.85 V; the IOUT code step is 0.5 A, giving a **0.425 W V×I code step**. Decimal arithmetic does not improve the sensor's physical precision. In KV128, 87 of 97 eligible pairs equal 5.525 W; repeated values do not demonstrate constant execution power.
 
-These are **BUSY-contained telemetry observations**, not strict execution-period mean power. Samples are not time-integrated, coverage is unequal, the measurements are sequential rather than randomized repeats, and temperature was not an independently controlled variable. Do not interpret a lower median as evidence that KV128 consumes less power. Whole-board input power, seven-rail totals, strict active mean, active energy and J/token remain **NOT_ESTABLISHED/null**.
+These are **BUSY-contained telemetry observations**, not strict execution-period mean power. Samples are not time-integrated, coverage is unequal, the measurements are sequential rather than randomized repeats, and temperature was not an independently controlled variable. Do not interpret a lower median as evidence that KV128 consumes less power. This dataset contains no seven-rail totals. Whole-board input power, strict active mean, active energy and J/token remain **NOT_ESTABLISHED/null**; the later seven-rail window results have their separate scope.
 
 ![VCCINT conditional observations; IQR describes samples, not measurement accuracy](results/vccint_kv32_kv128_conditional.png)
 

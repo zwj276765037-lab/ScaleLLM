@@ -5,6 +5,12 @@ Board and resource measurements concern the released **Decode16, 80 MHz** image,
 The model is Llama-3.1-8B-Instruct, checkpoint identity
 `8a09c60f3256779c16925f8209c9399ba4a1ee0406caf65bd2637ffd99287d6d`.
 
+## Latest KV128 seven-rail power retest
+
+The 2026-11-02 repeated-window experiment uses the unchanged release image, KV128 and 16 active requests. Three complete 32-layer decode steps, including CPU work and token commit, give a seven-regulator-output telemetry mean of **11.182172 W (sample SD 0.040880 W)** with complete common time coverage. Idle is **11.112454 W (SD 0.011856 W)**. Repeated Attention/MLP are **11.339012 / 12.076557 W** on only **97.0574–98.5315% / 97.4958–97.9212%** common coverage; their full-window means remain null.
+
+These are selected regulator-output telemetry, not whole-board input or strict command-active power. VCCINT V×I code spacing is 0.425 W; the MGT rails remain constant-coded and physical sensor averaging/lag is unknown. The original launcher FAIL and missing BUSY observations are preserved, so the measurement is PARTIAL_WITH_LIMITS. Repeat SD is not measurement accuracy. [Complete results and CSV](evidence/kv128_sevenrail_power/README.md), [methods and limitations](POWER_MEASUREMENT.md).
+
 ## Independent K/V double-buffer cycle validation
 
 The 2026-11-02 experiment changes buffering/scheduling in an isolated RTL copy, retaining quantizer count, numerical/rounding rules and the DDR response budget. At layer 0, active16 and KV128, candidate and sealed-reference runs execute K32 and V8 after the real Q prefix. All 640 appended KV records and the entire 8 MiB image match byte for byte.
@@ -21,7 +27,7 @@ K prefix efficiencies at 2/4/8/16/32 groups are 43.878/51.152/55.780/58.415/59.8
 
 ## FPGA command speed — current fixed-16-request run
 
-The latest board measurement keeps **16 active requests through KV=128** using
+The 2026-11-01 board inference measurement keeps **16 active requests through KV=128** using
 the same released bitstream. It records 128 steps, 8,192 commands and 1,784
 generated tokens. The plot selects the **110 steps at KV=19–128 that each emit
 16 tokens**. Earlier steps include prompt processing and mixed prompt/decode.
@@ -261,8 +267,8 @@ project-generation inputs are included for fresh builds.
 
 This section preserves the **historical 16×32-token, seven-rail full-wall-clock
 measurement**. It is not the newer KV128 command-window telemetry and is not a
-whole-board input or strict command-active power result. The newer experiment
-is summarized separately below.
+whole-board input or strict command-active power result. The latest seven-rail
+retest is summarized above; the earlier VCCINT-only experiment is below.
 
 The earlier release includes a continuous measurement over idle-before, the
 complete 16-request × 32-token run, and idle-after. Its observed quantities are
@@ -324,7 +330,7 @@ correction does not change the published seven-rail power integral. Frozen
 records retain the old field names; see the explicit
 [decoding correction](POWER_MEASUREMENT.md#max20751-voltage-decoding-correction).
 
-## Current VCCINT command-window telemetry
+## Earlier VCCINT command-window telemetry (2026-11-01)
 
 During the necessary fixed-active16 inference, the sampler recorded VCCINT
 READ_VOUT and READ_IOUT sequentially. Only pairs whose complete transaction
@@ -342,13 +348,14 @@ integral or a mean across all commands. **5.525 W is not whole-board power or
 strict execution-period average power.** The read-pair median duration is about
 10.6 ms, and the sensor's own historical aperture/update lag is unknown.
 Correct VID/Linear11 decoding and more displayed decimals do not establish
-physical precision. No strict active energy, J/token, seven-rail KV128 sum or
-whole-board input power was established.
+physical precision. That earlier experiment established no seven-rail sum.
+Strict active energy, J/token and whole-board input power remain unestablished;
+the later limited-scope seven-rail retest is described above.
 
 Both original sampler receipts remain `SAMPLING` with `exit_code=null`.
 Completed raw streams and independent process-absence observations establish
 data completion and cleanup without inventing a normal exit code. See the
-[current power dataset](evidence/kv128_chat16/README.md#what-the-power-data-measures)
+[earlier VCCINT dataset](evidence/kv128_chat16/README.md#what-the-power-data-measures)
 and [measurement boundaries](POWER_MEASUREMENT.md).
 
 ## What has been verified

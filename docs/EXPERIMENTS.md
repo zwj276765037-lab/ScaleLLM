@@ -1,6 +1,6 @@
 # Experiment index and current evidence
 
-Updated 2026-11-02 (Asia/Shanghai). The newest evidence is an independent double-buffer RTL validation acquired on 2026-11-02 UTC. Earlier board and sealed-RTL comparisons retain their 2026-11-01 UTC identities. Publication does not constitute a hardware build.
+Updated 2026-11-02 (Asia/Shanghai). The newest board evidence is the KV128 seven-rail PMBus retest with twelve windows on 2026-11-02; the independent double-buffer RTL validation is a separate experiment from the same date. Earlier board and sealed-RTL comparisons retain their 2026-11-01 UTC identities. Publication does not constitute a hardware build.
 
 Board results and sealed baselines refer to the released VCU118/XCVU9P Decode16 implementation, core 80 MHz, DDR user interface 200 MHz and Vivado 2025.2. The explicitly identified double-buffer candidate changes an independent RTL copy's buffering/scheduling only and has not been synthesized or deployed. Release bitstream SHA-256:
 
@@ -12,10 +12,11 @@ Board results and sealed baselines refer to the released VCU118/XCVU9P Decode16 
 
 | Evidence | Workload and coverage | What it establishes | Entry |
 | --- | --- | --- | --- |
+| Seven-rail repeated power telemetry | KV128, active16; idle/Attention replay/MLP replay/full 32-layer step, n=3 each | Full-step 11.182172 W, repeat SD 0.040880 W; idle/full windows fully covered, A/M only covered-time means; unchanged bitstream, PARTIAL_WITH_LIMITS | [Report and scope](evidence/kv128_sevenrail_power/README.md), [raw archive](evidence/kv128_sevenrail_power/DOWNLOADS.md) |
 | Independent continuous double-buffer candidate | Layer 0, KV128, active16; K32 and V8 groups | 640 KV records and full 8 MiB image byte-exact; K32 efficiency 59.863%; V32 estimated 72.676% from V8; no complete Attention or board-speed claim | [Report and limits](evidence/kv_overlap_cycle_sim/REPORT.md), [raw evidence and CSV](evidence/kv_overlap_cycle_sim/README.md) |
 | Actual board inference | Llama-3.1-8B-Instruct; 16 active requests; 128 executed steps; position 127 completed with committed positions 0–126 | 8,192 completed commands, 1,784 generated tokens, board command counters and host–FPGA wall time | [Board report](evidence/kv128_chat16/README.md), [commands](evidence/kv128_chat16/results/commands.csv), [tokens](evidence/kv128_chat16/results/tokens.json) |
 | KV32/KV128 cycle comparison | Each KV: Attention layers 0/8/16/24/31 and Gate/Up layer 0; 12 complete command results, 52 stages | Real-input replay of frozen RTL; complete output byte agreement; stage time and effective shared-weight efficiency under the documented DDR model | [Simulation index](evidence/kv32_kv128_cycle_sim/README.md), [complete report](evidence/kv32_kv128_cycle_sim/REPORT.md) |
-| VCCINT telemetry during the two target steps | 41 qualifying V/I pairs at KV32, 97 at KV128; pair transaction envelopes contained in command BUSY inner windows | Conditional sequential regulator-output telemetry, with sample and command coverage | [Power interpretation](POWER_MEASUREMENT.md), [raw/derived power index](evidence/kv128_chat16/README.md#what-the-power-data-measures) |
+| Earlier VCCINT telemetry during the two target steps | 41 qualifying V/I pairs at KV32, 97 at KV128; pair transaction envelopes contained in command BUSY inner windows | Conditional sequential regulator-output telemetry, with sample and command coverage | [Power interpretation](POWER_MEASUREMENT.md), [raw/derived power index](evidence/kv128_chat16/README.md#what-the-power-data-measures) |
 | Placed resources and routed timing | Released hardware build, preserved report stage and tool identity | Hardware implementation evidence; unchanged by these experiments | [Resources and performance](PERFORMANCE_AND_RESOURCES.md), [physical closure](PHYSICAL_CLOSURE.md) |
 
 The board run retains 16 active slots until position 127, with fixed generation budgets of 110–113 tokens per request. No EOS occurred in the recorded trajectories. The 128 executed steps include prompt processing; they do not mean 128 newly generated tokens per request. All target-step host Down, LM-head, token and KV commits completed.
@@ -52,6 +53,8 @@ Shared weight payloads are Q/K/V/O/GateUp = 16/4/4/16/56 MiB per layer, counted 
 Historical raw files and archived summaries are retained byte for byte. Current interpretation and documented corrections take precedence over stale descriptive fields inside those originals; in particular, the MAX20751 VID voltage decoding correction is explained in [POWER_MEASUREMENT.md](POWER_MEASUREMENT.md).
 
 ## Downloads, provenance and limits
+
+The [seven-rail power release](https://github.com/zwj276765037-lab/ScaleLLM/releases/tag/evidence-kv128-sevenrail-20261102) contains the unchanged 56,091,268-byte archive (229 members), its SHA-256 and the offline verification receipt. All native power/command logs and original failed receipts are preserved. [Compact tables, six PNG/SVG figure sets and method](evidence/kv128_sevenrail_power/README.md) distinguish complete versus covered-time means. The 256 MiB KV snapshot itself is excluded, with its hash/inspection report retained; the power archive cannot alone recheck that entire binary. The portable [verifier](../tools/release/verify_power_repeat_asset.py) checks all included member hashes and reproduces the final analysis JSON byte for byte.
 
 The [double-buffer release](https://github.com/zwj276765037-lab/ScaleLLM/releases/tag/evidence-kv-overlap-20261102) adds an independently hashed archive of candidate/baseline events, KV images, captured inputs and source snapshots. Its [portable verifier](../tools/release/verify_kv_overlap_asset.py) checks every member and recomputes local comparisons without running RTL. Candidate V32, complete Attention, other layers, physical resources/timing and board/full-model gains remain unmeasured.
 
