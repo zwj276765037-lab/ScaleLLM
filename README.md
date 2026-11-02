@@ -6,7 +6,7 @@
 
 VCU118 / XCVU9P &nbsp; · &nbsp; Decode16 &nbsp; · &nbsp; 80 MHz &nbsp; · &nbsp; KV up to 128
 
-[Experiment index](docs/EXPERIMENTS.md) &nbsp;·&nbsp; [FPGA performance](#fpga-performance) &nbsp;·&nbsp; [Cycle simulation](#cycle-simulation-results) &nbsp;·&nbsp; [16 requests & outputs](#16-requests--their-recorded-outputs) &nbsp;·&nbsp; [Power retest](#seven-rail-power-retest) &nbsp;·&nbsp; [Download evidence](docs/EXPERIMENTS.md#downloads-provenance-and-limits) &nbsp;·&nbsp; [Run on hardware](docs/DEPLOYMENT.md)
+[Latest results](#latest-published-evidence) &nbsp;·&nbsp; [Experiment index](docs/EXPERIMENTS.md) &nbsp;·&nbsp; [FPGA performance](#fpga-performance) &nbsp;·&nbsp; [Cycle simulation](#cycle-simulation-results) &nbsp;·&nbsp; [16 requests & outputs](#16-requests--their-recorded-outputs) &nbsp;·&nbsp; [Power retest](#seven-rail-power-retest) &nbsp;·&nbsp; [Download evidence](docs/EXPERIMENTS.md#downloads-provenance-and-limits) &nbsp;·&nbsp; [Run on hardware](docs/DEPLOYMENT.md)
 
 </div>
 
@@ -14,11 +14,39 @@ VCU118 / XCVU9P &nbsp; · &nbsp; Decode16 &nbsp; · &nbsp; 80 MHz &nbsp; · &nbs
 | :---: | :---: | :---: | :---: |
 | **16** | **128** | **1,784** | **8,192** |
 
-Real incremental inference with the released 80 MHz bitstream: all 16 requests reach position 127 using their own valid, committed KV history. The measurements below come from the FPGA's command cycle counters.
+Real incremental inference with the released 80 MHz bitstream: all 16 requests reach position 127 using their own valid, committed KV history. FPGA performance below uses hardware command cycle counters; power telemetry and RTL simulations have separate measurement boundaries.
 
-**Latest board evidence, 2026-11-02 (Asia/Shanghai):** twelve KV128 power windows, three each of idle, repeated Attention, repeated MLP and a full 32-layer decode step. The complete-step seven-regulator-output telemetry mean is **11.18 W (repeat SD 0.04 W)**. Replay windows have partial coverage; strict BUSY power and whole-board input power remain unestablished. The release image is unchanged. [Results and raw evidence](docs/evidence/kv128_sevenrail_power/README.md).
+## Latest published evidence
 
-**Recent RTL evidence, published 2026-11-02 (Asia/Shanghai):** an independent double-buffer RTL candidate validates **K32 groups and V8 groups** at layer 0, KV128 and 16 active requests. K32 effective weight-bandwidth efficiency is **59.86%**; V32 is **estimated at 72.68% from V8**, not fully simulated. All 640 KV records and the full 8 MiB image match sealed RTL byte for byte. The released bitstream and its board measurements remain unchanged. The earlier **12 complete command replays / 52 validated stages** remain a separate dataset. [New candidate report](docs/evidence/kv_overlap_cycle_sim/REPORT.md) · [Experiment index](docs/EXPERIMENTS.md).
+Updated **2026-11-02 (Asia/Shanghai)**. The released Decode16 / 80 MHz bitstream is unchanged.
+
+| Evidence | Latest result | Scope |
+| --- | --- | --- |
+| [Seven-rail PMBus retest](#seven-rail-power-retest) | **11.18 W**, repeat SD **0.04 W**, for a complete KV128 decode step | Three repeats; 32 layers plus CPU work; sum of seven selected regulator outputs |
+| [Board inference](#fpga-performance) | **2.026896 s / step**, **7.894 token/s** at KV128 | FPGA command time only; 16 tokens per step; host wall time reported separately |
+| [Released-RTL cycle simulation](#cycle-simulation-results) | **12 complete command replays / 52 validated stages** | Real captured inputs; matched KV32/KV128 workloads |
+| [Double-buffer candidate](#double-buffer-rtl-validation) | K32 **59.86%** efficiency; V32 **72.68% estimated** | Independent RTL copy: K32 and V8 simulated; no board speedup measured |
+
+**Power measurement boundary:** 11.18 W is the complete-step seven-regulator-output telemetry mean. Whole-board input power and a strict command-BUSY power mean remain unestablished. The overall power dataset is **PARTIAL_WITH_LIMITS**; Attention/MLP replay means cover only the measured portions of their windows.
+
+[Read the latest power report](docs/evidence/kv128_sevenrail_power/REPORT.md) · [Download raw power evidence (56.1 MB ZIP)](https://github.com/zwj276765037-lab/ScaleLLM/releases/download/evidence-kv128-sevenrail-20261102/ScaleLLM_KV128_SevenRail_PMBus_20261102.zip) · [Release, checksums and validation](https://github.com/zwj276765037-lab/ScaleLLM/releases/tag/evidence-kv128-sevenrail-20261102)
+
+## Seven-rail power retest
+
+The released image was measured with 16 active requests at KV128/position127. A complete step includes all 32 layers, CPU operators, LM head and token commit. These values sum **seven selected regulator outputs**, not all board inputs. Each repeat uses a time-weighted mean over its stated coverage; the table gives the equally weighted mean and sample standard deviation across three repeats. Repeat SD describes reproducibility, not sensor accuracy.
+
+| Workload, n=3 | Mean ± repeat SD / W | Time support |
+| --- | ---: | --- |
+| Idle | 11.112 ± 0.012 | Complete windows |
+| Repeated Attention | 11.339 ± 0.019 | 97.06–98.53% common coverage only |
+| Repeated MLP frontend | 12.077 ± 0.036 | 97.50–97.92% common coverage only |
+| Complete KV128 step | **11.182 ± 0.041** | **Complete windows** |
+
+![Power repeats and common coverage; repeat SD is not sensor accuracy](docs/evidence/kv128_sevenrail_power/results/main_004_v2_summary.png)
+
+The six Attention/MLP full-window means remain null; gaps were not filled or discarded to claim complete coverage. VCCINT V×I has a 0.425 W code step versus READ_POUT's 2 W, but the two MGT rails remain constant-coded. Unknown sensor averaging/lag, sequential reads and current-offset ambiguity prevent a strict physical BUSY mean. The original launcher FAIL caused by an unobserved BUSY transition, and its unknown sampler exit, remain preserved. Overall measurement status is **PARTIAL_WITH_LIMITS**.
+
+[Complete report and seven-rail tables](docs/evidence/kv128_sevenrail_power/REPORT.md) · [CSV, PNG/SVG and raw archive](docs/evidence/kv128_sevenrail_power/DOWNLOADS.md) · [Power methods](docs/POWER_MEASUREMENT.md)
 
 ## FPGA performance
 
@@ -40,23 +68,6 @@ One decode step emits **16 tokens** and executes **32 Attention + 32 MLP command
 
 The complete host–FPGA step takes **71.312 s at KV32** and **97.453 s at KV128**, emitting 16 tokens in each target step: **0.224366** and **0.164182 token/s**, respectively. Across the recorded run, 1,784 generated tokens in the defined 9,843.491879 s model window give **0.181236 token/s**. These wall times include host computation, transfers and capture overhead; they are not the FPGA-time throughput in the table above.
 
-## Seven-rail power retest
-
-The released image was measured with 16 active requests at KV128/position127. A complete step includes all 32 layers, CPU operators, LM head and token commit. These values sum **seven selected regulator outputs**, not all board inputs.
-
-| Workload, n=3 | Mean ± repeat SD / W | Time support |
-| --- | ---: | --- |
-| Idle | 11.112 ± 0.012 | Complete windows |
-| Repeated Attention | 11.339 ± 0.019 | 97.06–98.53% common coverage only |
-| Repeated MLP frontend | 12.077 ± 0.036 | 97.50–97.92% common coverage only |
-| Complete KV128 step | **11.182 ± 0.041** | **Complete windows** |
-
-![Power repeats and common coverage; repeat SD is not sensor accuracy](docs/evidence/kv128_sevenrail_power/results/main_004_v2_summary.png)
-
-The six Attention/MLP full-window means remain null; gaps were not filled or discarded to claim complete coverage. VCCINT V×I has a 0.425 W code step versus READ_POUT's 2 W, but the two MGT rails remain constant-coded. Unknown sensor averaging/lag, sequential reads and current-offset ambiguity prevent a strict physical BUSY mean. The original launcher FAIL caused by an unobserved BUSY transition, and its unknown sampler exit, remain preserved. Overall measurement status is **PARTIAL_WITH_LIMITS**.
-
-[Complete report and seven-rail tables](docs/evidence/kv128_sevenrail_power/REPORT.md) · [CSV, PNG/SVG and raw archive](docs/evidence/kv128_sevenrail_power/DOWNLOADS.md) · [Power methods](docs/POWER_MEASUREMENT.md)
-
 ## Double-buffer RTL validation
 
 An isolated Decode16 RTL copy overlaps the next K/V projection group with the preceding group's RoPE/KV quantization. It retains the projection array, RoPE/quantizer count, arithmetic/rounding rules and shared DDR response budget. **No synthesis, implementation or programming was performed.** These are independent RTL cycle-simulation results, not improvements measured on the released FPGA image.
@@ -66,7 +77,7 @@ An isolated Decode16 RTL copy overlaps the next K/V projection group with the pr
 | K, all 32 groups | 34.533% | **59.863%** | **1.7335×** | Complete K32 local window simulated |
 | V, 32 groups | 38.434% | **72.676%** | **1.8909× estimated** | Extrapolated from eight simulated V groups |
 
-Each full projection shares 4 MiB of weight codes among 16 requests. Timing is actual first-group dispatch through final original KV append acceptance. K32 takes **43,791 cycles / 547.3875 µs**, versus 75,911 sealed cycles. V32 is estimated at **36,070 cycles / 450.875 µs**, versus the prior complete validated sealed replay's 68,206 cycles. Quantization is not accelerated.
+Each full projection shares 4 MiB of weight codes among 16 requests. Timing is actual first-group dispatch through final original KV append acceptance. K32 takes **43,791 cycles / 547.3875 µs**, versus 75,911 sealed cycles. V32 is estimated at **36,070 cycles / 450.875 µs**, versus the prior complete validated sealed replay's 68,206 cycles. Quantization is not accelerated. All 640 KV records and the full 8 MiB KV image from the tested K32/V8 candidate match sealed RTL byte for byte.
 
 ![Continuous double-buffer efficiency; V32 is explicitly estimated](docs/evidence/kv_overlap_cycle_sim/prefix_efficiency.svg)
 
