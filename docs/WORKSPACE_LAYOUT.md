@@ -19,10 +19,19 @@ The repository contains the current 80 MHz Decode16 design and its portable depl
 | `docs/evidence/power_chat16/` | Historical seven-rail telemetry over the full 16×32 wall-clock window; not whole-board or strict command-active power |
 | `docs/evidence/kv128_chat16/` | Fixed-active16 real KV128 history, 1,784 tokens, 8,192 command counters, captured tensors and VCCINT conditional telemetry |
 | `docs/evidence/kv32_kv128_cycle_sim/` | Sealed-RTL command replays, 12 selected commands, 52 valid stage results, matched KV32/KV128 tables and evidence downloads |
+| `docs/evidence/kv_overlap_cycle_sim/` | Independent double-buffer candidate: K32 observed RTL, V8 observed RTL and V32 estimate, source/raw indexes and Release download |
 | `tools/` | Reproducible measurement analysis and release packaging |
 | `tests/` | CPU runtime, deployment and release-integrity tests |
 
 `.gitattributes` preserves file bytes across Linux and Windows checkouts so newline conversion cannot invalidate the recorded identities.
+
+The double-buffer experiment is separate from production RTL. Its Release
+archive preserves isolated candidate sources, testbenches, raw KV records,
+captured inputs, source snapshots and earlier short-fragment attempts; compiled
+simulator caches and model weights are excluded. Public CSV/report paths are
+under `docs/evidence/kv_overlap_cycle_sim/`. Absolute paths in frozen provenance
+are identifiers, not web links. Use `tools/release/verify_kv_overlap_asset.py`
+for offline verification. No candidate source is selected by the released build.
 
 The three inference/power evidence generations have different scopes. The
 original requests stop after 32 new tokens each and retire independently; the

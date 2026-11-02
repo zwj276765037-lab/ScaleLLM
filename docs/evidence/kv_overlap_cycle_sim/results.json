@@ -1,0 +1,323 @@
+{
+  "append_records_per_run": 640,
+  "candidate_board_performance": "NOT_RUN",
+  "candidate_v32": "ESTIMATED_FROM_V8",
+  "channel_peak_bytes_per_s": 12800000000,
+  "comparison_sha256": "b5ce41aea53729ad0b0a0dec1b5aee7dfb5ec385a0dd6b3a2bd08a2eec1e1279",
+  "core_hz": 80000000,
+  "ddr_interface_hz": 200000000,
+  "full_attention": "NOT_RUN",
+  "historical_baseline_v32_cycles": 68206,
+  "kv_image_bytes": 8388608,
+  "kv_image_sha256": "40c81c7f31a3ede0af6927a2036b24f82a7468c6389b0df898281d6b337c2a9b",
+  "limitations": [
+    "V32 is an extrapolation from V8, not measured",
+    "the min/max interval uses observed \u03942..6 extrema, not a statistical confidence interval",
+    "full Attention/QK/PV/O and any modified board image are NOT_RUN",
+    "AXI RAM service model retains shared 64B/200MHz channel budget but omits MIG refresh/bank timing"
+  ],
+  "observed_candidate_groups": {
+    "K": 32,
+    "V": 8
+  },
+  "quantizer_and_ddr_model_unchanged": true,
+  "release_bit_sha256": "96df1a5c1bf4174921bc02ccd88df4066dece3d62b491acb3106bb90ac0ffc85",
+  "schema": "scalellm_kv_overlap_public_v1",
+  "selected_runs": {
+    "baseline": {
+      "path": "0_Source/kv_overlap_validation/runs/fragment_baseline_continuous_001/manifest.json",
+      "sha256": "97ee783666fc74150df935cb1fc27fdee8ab624165155651040dacc3293ea4fb"
+    },
+    "candidate": {
+      "path": "0_Source/kv_overlap_validation/runs/fragment_candidate_continuous_001/manifest.json",
+      "sha256": "144a1264f40c01391df7282ab21dbf140b4d6b5d5154012d2939b756aae21fe5"
+    }
+  },
+  "status": "FRAGMENT_PASS",
+  "summary": {
+    "candidate": {
+      "K": {
+        "accepted_w8_bytes": 4194304,
+        "actual_32_backtest_error_percent": -0.21465597953917473,
+        "actual_32_backtest_error_ps": -1175000,
+        "actual_cycles": 43791,
+        "actual_ps": 547387500,
+        "backtest_error_sign": "actual_minus_prediction",
+        "dma_complete_ps": 547450000,
+        "effective_bandwidth_bytes_per_s": 7662403690.25599,
+        "efficiency": 0.5986252883012492,
+        "estimate_32_from_first_8": {
+          "delta_2_to_6_ps": {
+            "2": 16737500,
+            "3": 16662500,
+            "4": 16750000,
+            "5": 16650000,
+            "6": 16737500
+          },
+          "early_delta_2_3_ps": 16700000.0,
+          "equivalent_fixed_overhead_ps": 12962500,
+          "late_delta_5_6_ps": 16693750.0,
+          "max_delta_ps": 16750000,
+          "median_delta_ps": 16737500,
+          "min_delta_ps": 16650000,
+          "predicted_32_max_ps": 548862500,
+          "predicted_32_min_ps": 546462500,
+          "predicted_32_ps": 548562500,
+          "t4_predict_t8_ps": 146875000.0,
+          "t4_ps": 80075000,
+          "t4_to_t8_error_ps": -12500.0,
+          "t8_ps": 146862500
+        },
+        "estimated_32_efficiency": 0.5973430557137974,
+        "estimated_32_efficiency_max": 0.599638584532333,
+        "estimated_32_efficiency_min": 0.5970165569700973,
+        "full_32_status": "MEASURED",
+        "measured_prefixes": [
+          {
+            "cycles": 3734,
+            "effective_bytes": 262144,
+            "efficiency_percent": 43.877878950187466,
+            "groups": 2,
+            "time_us": 46.675
+          },
+          {
+            "cycles": 6406,
+            "effective_bytes": 524288,
+            "efficiency_percent": 51.15204495785201,
+            "groups": 4,
+            "time_us": 80.075
+          },
+          {
+            "cycles": 11749,
+            "effective_bytes": 1048576,
+            "efficiency_percent": 55.78006638862882,
+            "groups": 8,
+            "time_us": 146.8625
+          },
+          {
+            "cycles": 22438,
+            "effective_bytes": 2097152,
+            "efficiency_percent": 58.41518851947589,
+            "groups": 16,
+            "time_us": 280.475
+          },
+          {
+            "cycles": 43791,
+            "effective_bytes": 4194304,
+            "efficiency_percent": 59.86252883012491,
+            "groups": 32,
+            "time_us": 547.3875
+          }
+        ],
+        "observed_groups": 32
+      },
+      "V": {
+        "accepted_w8_bytes": 1048576,
+        "actual_32_backtest_error_percent": null,
+        "actual_32_backtest_error_ps": null,
+        "actual_cycles": 9790,
+        "actual_ps": 122375000,
+        "backtest_error_sign": null,
+        "dma_complete_ps": 122437500,
+        "effective_bandwidth_bytes_per_s": 8568547497.446373,
+        "efficiency": 0.669417773237998,
+        "estimate_32_from_first_8": {
+          "delta_2_to_6_ps": {
+            "2": 13712500,
+            "3": 13650000,
+            "4": 13687500,
+            "5": 13637500,
+            "6": 13725000
+          },
+          "early_delta_2_3_ps": 13681250.0,
+          "equivalent_fixed_overhead_ps": 12875000,
+          "late_delta_5_6_ps": 13681250.0,
+          "max_delta_ps": 13725000,
+          "median_delta_ps": 13687500,
+          "min_delta_ps": 13637500,
+          "predicted_32_max_ps": 451775000,
+          "predicted_32_min_ps": 449675000,
+          "predicted_32_ps": 450875000,
+          "t4_predict_t8_ps": 122675000.0,
+          "t4_ps": 67950000,
+          "t4_to_t8_error_ps": -300000.0,
+          "t8_ps": 122375000
+        },
+        "estimated_32_efficiency": 0.7267646243415581,
+        "estimated_32_efficiency_max": 0.7287040640462557,
+        "estimated_32_efficiency_min": 0.7253168059321565,
+        "full_32_status": "ESTIMATE_ONLY",
+        "measured_prefixes": [
+          {
+            "cycles": 3247,
+            "effective_bytes": 262144,
+            "efficiency_percent": 50.45888512473052,
+            "groups": 2,
+            "time_us": 40.5875
+          },
+          {
+            "cycles": 5436,
+            "effective_bytes": 524288,
+            "efficiency_percent": 60.27961736571008,
+            "groups": 4,
+            "time_us": 67.95
+          },
+          {
+            "cycles": 9790,
+            "effective_bytes": 1048576,
+            "efficiency_percent": 66.9417773237998,
+            "groups": 8,
+            "time_us": 122.375
+          }
+        ],
+        "observed_groups": 8
+      }
+    },
+    "sealed_baseline": {
+      "K": {
+        "accepted_w8_bytes": 4194304,
+        "actual_32_backtest_error_percent": -0.01580798566742633,
+        "actual_32_backtest_error_ps": -150000,
+        "actual_cycles": 75911,
+        "actual_ps": 948887500,
+        "backtest_error_sign": "actual_minus_prediction",
+        "dma_complete_ps": 948950000,
+        "effective_bandwidth_bytes_per_s": 4420233167.788594,
+        "efficiency": 0.34533071623348394,
+        "estimate_32_from_first_8": {
+          "delta_2_to_6_ps": {
+            "2": 29625000,
+            "3": 29662500,
+            "4": 29662500,
+            "5": 29662500,
+            "6": 29625000
+          },
+          "early_delta_2_3_ps": 29643750.0,
+          "equivalent_fixed_overhead_ps": -162500,
+          "late_delta_5_6_ps": 29643750.0,
+          "max_delta_ps": 29662500,
+          "median_delta_ps": 29662500,
+          "min_delta_ps": 29625000,
+          "predicted_32_max_ps": 949037500,
+          "predicted_32_min_ps": 948137500,
+          "predicted_32_ps": 949037500,
+          "t4_predict_t8_ps": 237112500.0,
+          "t4_ps": 118537500,
+          "t4_to_t8_error_ps": 25000.0,
+          "t8_ps": 237137500
+        },
+        "estimated_32_efficiency": 0.34527613503154514,
+        "estimated_32_efficiency_max": 0.34560388129358877,
+        "estimated_32_efficiency_min": 0.34527613503154514,
+        "full_32_status": "MEASURED",
+        "measured_prefixes": [
+          {
+            "cycles": 4740,
+            "effective_bytes": 262144,
+            "efficiency_percent": 34.565400843881854,
+            "groups": 2,
+            "time_us": 59.25
+          },
+          {
+            "cycles": 9483,
+            "effective_bytes": 524288,
+            "efficiency_percent": 34.554465886322895,
+            "groups": 4,
+            "time_us": 118.5375
+          },
+          {
+            "cycles": 18971,
+            "effective_bytes": 1048576,
+            "efficiency_percent": 34.54535870539244,
+            "groups": 8,
+            "time_us": 237.1375
+          },
+          {
+            "cycles": 37951,
+            "effective_bytes": 2097152,
+            "efficiency_percent": 34.53716634607784,
+            "groups": 16,
+            "time_us": 474.3875
+          },
+          {
+            "cycles": 75911,
+            "effective_bytes": 4194304,
+            "efficiency_percent": 34.5330716233484,
+            "groups": 32,
+            "time_us": 948.8875
+          }
+        ],
+        "observed_groups": 32
+      },
+      "V": {
+        "accepted_w8_bytes": 1048576,
+        "actual_32_backtest_error_percent": null,
+        "actual_32_backtest_error_ps": null,
+        "actual_cycles": 17046,
+        "actual_ps": 213075000,
+        "backtest_error_sign": null,
+        "dma_complete_ps": 213137500,
+        "effective_bandwidth_bytes_per_s": 4921159216.238414,
+        "efficiency": 0.38446556376862606,
+        "estimate_32_from_first_8": {
+          "delta_2_to_6_ps": {
+            "2": 26650000,
+            "3": 26637500,
+            "4": 26625000,
+            "5": 26625000,
+            "6": 26650000
+          },
+          "early_delta_2_3_ps": 26643750.0,
+          "equivalent_fixed_overhead_ps": -25000,
+          "late_delta_5_6_ps": 26637500.0,
+          "max_delta_ps": 26650000,
+          "median_delta_ps": 26637500,
+          "min_delta_ps": 26625000,
+          "predicted_32_max_ps": 852675000,
+          "predicted_32_min_ps": 852075000,
+          "predicted_32_ps": 852375000,
+          "t4_predict_t8_ps": 213100000.0,
+          "t4_ps": 106525000,
+          "t4_to_t8_error_ps": -25000.0,
+          "t8_ps": 213075000
+        },
+        "estimated_32_efficiency": 0.38443173485848364,
+        "estimated_32_efficiency_max": 0.3845670862306722,
+        "estimated_32_efficiency_min": 0.3842964787287067,
+        "full_32_status": "ESTIMATE_ONLY",
+        "measured_prefixes": [
+          {
+            "cycles": 4259,
+            "effective_bytes": 262144,
+            "efficiency_percent": 38.46912420756046,
+            "groups": 2,
+            "time_us": 53.2375
+          },
+          {
+            "cycles": 8522,
+            "effective_bytes": 524288,
+            "efficiency_percent": 38.451067824454356,
+            "groups": 4,
+            "time_us": 106.525
+          },
+          {
+            "cycles": 17046,
+            "effective_bytes": 1048576,
+            "efficiency_percent": 38.44655637686261,
+            "groups": 8,
+            "time_us": 213.075
+          }
+        ],
+        "observed_groups": 8
+      }
+    }
+  },
+  "workload": {
+    "active_requests": 16,
+    "command_id": 8129,
+    "kv_length": 128,
+    "layer": 0,
+    "model": "Llama-3.1-8B-Instruct",
+    "position": 127
+  }
+}

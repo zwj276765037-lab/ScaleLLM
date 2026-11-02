@@ -16,7 +16,7 @@ VCU118 / XCVU9P &nbsp; · &nbsp; Decode16 &nbsp; · &nbsp; 80 MHz &nbsp; · &nbs
 
 Real incremental inference with the released 80 MHz bitstream: all 16 requests reach position 127 using their own valid, committed KV history. The measurements below come from the FPGA's command cycle counters.
 
-**Latest evidence, published 2026-11-02 (Asia/Shanghai):** the board run and the KV32/KV128 cycle comparison are complete. The simulation dataset contains **12 complete command replays and 52 validated stage records**, with byte-exact agreement against the corresponding board captures. Board counters, complete-model wall time, modeled operator timing and power telemetry have separate measurement boundaries; see the [experiment index](docs/EXPERIMENTS.md) for the current results and the preserved historical baselines.
+**Latest evidence, published 2026-11-02 (Asia/Shanghai):** an independent double-buffer RTL candidate validates **K32 groups and V8 groups** at layer 0, KV128 and 16 active requests. K32 effective weight-bandwidth efficiency is **59.86%**; V32 is **estimated at 72.68% from V8**, not fully simulated. All 640 KV records and the full 8 MiB image match sealed RTL byte for byte. The released bitstream and its board measurements remain unchanged. The earlier **12 complete command replays / 52 validated stages** remain a separate dataset. [New candidate report](docs/evidence/kv_overlap_cycle_sim/REPORT.md) · [Experiment index](docs/EXPERIMENTS.md).
 
 ## FPGA performance
 
@@ -37,6 +37,23 @@ One decode step emits **16 tokens** and executes **32 Attention + 32 MLP command
 [Performance CSV: all 128 steps](docs/evidence/kv128_chat16/results/fpga_performance_rounds.csv) · [8,192 raw command records](docs/evidence/kv128_chat16/results/commands.csv) · [Vector figure](docs/evidence/kv128_chat16/showcase/fpga_performance.svg)
 
 The complete host–FPGA step takes **71.312 s at KV32** and **97.453 s at KV128**, emitting 16 tokens in each target step: **0.224366** and **0.164182 token/s**, respectively. Across the recorded run, 1,784 generated tokens in the defined 9,843.491879 s model window give **0.181236 token/s**. These wall times include host computation, transfers and capture overhead; they are not the FPGA-time throughput in the table above.
+
+## Double-buffer RTL validation
+
+An isolated Decode16 RTL copy overlaps the next K/V projection group with the preceding group's RoPE/KV quantization. It retains the projection array, RoPE/quantizer count, arithmetic/rounding rules and shared DDR response budget. **No synthesis, implementation or programming was performed.** These are independent RTL cycle-simulation results, not improvements measured on the released FPGA image.
+
+| Layer-0 KV128 scope | Sealed efficiency | Double-buffer efficiency | Local speedup | Candidate evidence |
+| --- | ---: | ---: | ---: | --- |
+| K, all 32 groups | 34.533% | **59.863%** | **1.7335×** | Complete K32 local window simulated |
+| V, 32 groups | 38.434% | **72.676%** | **1.8909× estimated** | Extrapolated from eight simulated V groups |
+
+Each full projection shares 4 MiB of weight codes among 16 requests. Timing is actual first-group dispatch through final original KV append acceptance. K32 takes **43,791 cycles / 547.3875 µs**, versus 75,911 sealed cycles. V32 is estimated at **36,070 cycles / 450.875 µs**, versus the prior complete validated sealed replay's 68,206 cycles. Quantization is not accelerated.
+
+![Continuous double-buffer efficiency; V32 is explicitly estimated](docs/evidence/kv_overlap_cycle_sim/prefix_efficiency.svg)
+
+K efficiency rises from **43.88% at two groups to 55.78% at eight and 59.86% at 32**, showing startup/tail amortization. K8 predicts actual K32 within **0.215%**. V32's **72.532–72.870%** interval is sensitivity to observed group intervals, not a statistical confidence interval. Full candidate V32, complete Attention, other layers, physical closure and board/full-model gains remain untested.
+
+[Method and correctness](docs/evidence/kv_overlap_cycle_sim/REPORT.md) · [CSV and raw evidence downloads](docs/evidence/kv_overlap_cycle_sim/README.md) · [Evidence release](https://github.com/zwj276765037-lab/ScaleLLM/releases/tag/evidence-kv-overlap-20261102)
 
 ## Cycle-simulation results
 
@@ -73,7 +90,14 @@ All **16 actual requests and their complete captured responses** are shown below
 
 ## Data & reproduction
 
-The latest combined archive contains the board run, real inputs and captured outputs, raw simulation events, timing tables, figures, source identities and offline verification tools. Its **980 files**, **12 complete command outputs** and **8 published simulation CSVs** pass extraction/hash/recomputation checks. Download the unchanged **781,288,611-byte ZIP**, SHA-256 and validation receipt from the [evidence release](https://github.com/zwj276765037-lab/ScaleLLM/releases/tag/evidence-kv32-kv128-20261102). Replaying RTL still requires the existing project assets and Vivado; offline evidence verification does not require the FPGA or Vivado.
+The new [double-buffer package](docs/evidence/kv_overlap_cycle_sim/DOWNLOADS.md) contains candidate/baseline raw events, KV images, real captured inputs, source snapshots and a portable verifier. It does not replace the board measurements. Download and recompute it without Vivado or an FPGA:
+
+```bash
+python3 tools/release/verify_kv_overlap_asset.py \
+  --download outputs/ScaleLLM_KV128_DoubleBuffer_RTL_20261102.zip
+```
+
+The earlier combined archive contains the board run, real inputs and captured outputs, raw simulation events, timing tables, figures, source identities and offline verification tools. Its **980 files**, **12 complete command outputs** and **8 published simulation CSVs** pass extraction/hash/recomputation checks. Download the unchanged **781,288,611-byte ZIP**, SHA-256 and validation receipt from the [evidence release](https://github.com/zwj276765037-lab/ScaleLLM/releases/tag/evidence-kv32-kv128-20261102). Replaying RTL still requires the existing project assets and Vivado; offline evidence verification does not require the FPGA or Vivado.
 
 The earlier board-only package remains available separately. It contains raw command and PMBus traces, target input/output/KV captures, exact token records, original receipts and analysis tools. Its **196 archived files** have been verified; the original **116-file Dell transfer** and **11 derived results** pass independent unpack/recomputation checks.
 
@@ -105,7 +129,7 @@ The FPGA executes Q/K/V and O projection paths, RoPE, KV handling, QK/Softmax/PV
 | URAM | 304 |
 | DSP | 5,389 |
 
-The CLB-register count includes 954,552 flip-flops and two AND/OR-configured registers. Core: 80 MHz. DDR user interfaces: 200 MHz. Tool: Vivado 2025.2. These experiments retained the release RTL and bitstream without synthesis, implementation or reprogramming. [Resource/timing evidence](docs/PERFORMANCE_AND_RESOURCES.md).
+The CLB-register count includes 954,552 flip-flops and two AND/OR-configured registers. Core: 80 MHz. DDR user interfaces: 200 MHz. Tool: Vivado 2025.2. These are released-hardware resources; the independent double-buffer candidate has no synthesis or physical-closure result. The release RTL and bitstream remain unchanged. [Resource/timing evidence](docs/PERFORMANCE_AND_RESOURCES.md).
 
 [Released bitstream](bitstream/ScaleLLM_Final_Decode16_80MHz.bit), SHA-256:
 

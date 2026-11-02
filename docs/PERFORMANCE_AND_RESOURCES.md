@@ -1,9 +1,23 @@
 # FPGA speed, cycle simulations, resources and power evidence
 
-This report concerns the released **Decode16, 80 MHz** image, SHA-256
+Board and resource measurements concern the released **Decode16, 80 MHz** image, SHA-256
 `96df1a5c1bf4174921bc02ccd88df4066dece3d62b491acb3106bb90ac0ffc85`.
 The model is Llama-3.1-8B-Instruct, checkpoint identity
 `8a09c60f3256779c16925f8209c9399ba4a1ee0406caf65bd2637ffd99287d6d`.
+
+## Independent K/V double-buffer cycle validation
+
+The 2026-11-02 experiment changes buffering/scheduling in an isolated RTL copy, retaining quantizer count, numerical/rounding rules and the DDR response budget. At layer 0, active16 and KV128, candidate and sealed-reference runs execute K32 and V8 after the real Q prefix. All 640 appended KV records and the entire 8 MiB image match byte for byte.
+
+| Local scope | Sealed cycles / efficiency | Candidate cycles / efficiency | Evidence |
+| --- | ---: | ---: | --- |
+| K32, 4 MiB shared codes | 75,911 / 34.533% | 43,791 / 59.863% | Both local windows fully simulated; 1.7335× speedup |
+| V8, 1 MiB shared codes | 17,046 / 38.447% | 9,790 / 66.942% | Both eight-group windows simulated |
+| V32, 4 MiB shared codes | 68,206 / 38.434% | 36,070 / 72.676% | Prior complete sealed baseline; candidate estimated from V8; 1.8909× estimated speedup |
+
+Timing spans actual first-group dispatch to final original KV append acceptance, including waits, scale recovery and postprocessing. Final AXI B is five cycles later. Payload is shared by sixteen requests and divided by one channel's 12.8 GB/s peak. V32 uses `T8 + 24 × median(Δ2..6)`; its 72.532–72.870% interval is model sensitivity, not a confidence interval. K8 predicts actual K32 within 94 cycles (0.215%). Quantization is not accelerated.
+
+K prefix efficiencies at 2/4/8/16/32 groups are 43.878/51.152/55.780/58.415/59.863%, demonstrating startup/tail amortization. This is the current independent **candidate** result; it does not replace released-RTL stage results or establish full Attention/model/board gains. Placed resources below remain those of the original image. [Detailed report, CSV and raw downloads](evidence/kv_overlap_cycle_sim/README.md).
 
 ## FPGA command speed — current fixed-16-request run
 
@@ -55,7 +69,7 @@ rates in the table above must not be presented as these end-to-end rates.
 
 ## KV32/KV128 complete-stage cycle simulations
 
-The latest [simulation dataset](evidence/kv32_kv128_cycle_sim/README.md) uses
+The released-RTL [KV32/KV128 dataset](evidence/kv32_kv128_cycle_sim/README.md) uses
 sealed release RTL and actual captured inputs with testbench-only observations.
 It adds no hardware probes and required no synthesis, implementation or new
 bitstream. Each KV length selects Attention layers **0, 8, 16, 24, 31** and

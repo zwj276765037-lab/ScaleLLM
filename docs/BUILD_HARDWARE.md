@@ -13,6 +13,11 @@ programming was performed for those measurements. The simulations replayed
 captured inputs through the sealed RTL with testbench-only observations. Their
 numerical/timing results are separate from the fresh physical-build checks below.
 
+The newer [double-buffer RTL candidate](evidence/kv_overlap_cycle_sim/REPORT.md)
+changes buffering/scheduling in an isolated verification copy. It has K32/V8
+cycle evidence only; it has not been synthesized, implemented or programmed.
+This public builder continues to select released RTL, not that candidate.
+
 ## Prerequisites
 
 Use Linux, Python 3.10 or newer, `jq`, GNU `sha256sum`, Vivado 2025.2 with the

@@ -10,6 +10,15 @@ The release remains the same for the latest fixed-active16 KV128 board run and
 the KV32/KV128 cycle comparison. Those experiments changed host benchmarking
 policy and testbench observation only; they did not add hardware counters,
 change the production RTL or produce a new bitstream.
+The newer [double-buffer experiment](evidence/kv_overlap_cycle_sim/REPORT.md)
+changes an isolated Attention-controller copy, not this deployed design. Two
+group buffers allow the next K/V projection to overlap the preceding group's
+RoPE/KV quantization. Producer/consumer tags are independent; a bank is released
+after its original KV write completes. The projection array, RoPE/quantizer
+count, rounding and DDR service budget remain unchanged. K32/V8 are byte-exact
+at layer 0: K32 efficiency is 59.863%, while V32 is estimated at 72.676% from V8.
+Full Attention, synthesis, physical timing and board validation are untested
+for this candidate; the resource and timing reports below describe released RTL.
 Board identity is supported by release-file hashes, runtime/CSR checks and the
 recorded boot identity; this measurement did not independently read back the
 configuration-memory bitstream bytes.
