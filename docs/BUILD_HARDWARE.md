@@ -6,6 +6,13 @@ It does not consume old implementation checkpoints or IP caches.
 `deploy/build_hardware.py` forwards to this current entry. The historical
 prefill hardware and its builder remain in the `prefill` branch.
 
+The latest [KV128 board run](evidence/kv128_chat16/README.md) and
+[KV32/KV128 cycle simulations](evidence/kv32_kv128_cycle_sim/README.md) used the
+existing release: no production RTL change, synthesis, implementation or
+programming was performed for those measurements. The simulations replayed
+captured inputs through the sealed RTL with testbench-only observations. Their
+numerical/timing results are separate from the fresh physical-build checks below.
+
 ## Prerequisites
 
 Use Linux, Python 3.10 or newer, `jq`, GNU `sha256sum`, Vivado 2025.2 with the
@@ -100,6 +107,14 @@ order and generated XCI settings. Inputs remained unchanged. Results and redacte
 native logs are in [`build_validation.json`](evidence/final/build_validation.json).
 Full RTL elaboration, synthesis, implementation and bit generation with this new
 portable entry have not been run.
+
+The later full-command XSim replays compiled their own simulation closure from
+the same 93 sealed source/dependency entries. Twelve selected complete command
+outputs match their board captures byte for byte; 11 were new replays and one
+KV32 Gate/Up result was reused from the preceding stage. This establishes the
+reported simulation scope, not a newly placed/routed design or completion of
+the portable builder's unrun stages. See the
+[simulation evidence](evidence/kv32_kv128_cycle_sim/README.md).
 
 The included transport testbenches exercise reservation accounting, stalled
 AR/output stability, response errors and legal ordered shared-channel schedules.

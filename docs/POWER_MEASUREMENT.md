@@ -1,11 +1,89 @@
-# Continuous inference power measurement
+# Power evidence: current VCCINT telemetry and historical seven-rail integration
 
-The published experiment records the complete 16-request × 32-token workload,
-with ten seconds of idle before it and ten seconds after it. Power is sampled
-through the VCU118 J39 PMBus connection, independently of the XDMA inference
-connection. The model window includes initialization, host work, transfers and
-all generation rounds. Its wall-clock duration is used to integrate energy;
-FPGA speed still comes only from hardware cycle counters.
+The latest [fixed-active16 KV128 run](evidence/kv128_chat16/README.md) records
+VCCINT conditional telemetry during the real inference needed to build KV128.
+The older seven-rail experiment covers the complete 16-request × 32-token
+wall-clock workload, including ten-second idle windows before and after it.
+Both use the VCU118 J39 PMBus connection independently of XDMA, but their
+electrical scope, time windows and statistical summaries differ.
+
+| Evidence | Electrical and time scope | Available result |
+| --- | --- | --- |
+| Current KV32/KV128 observation windows | VCCINT only; sequential V/I read pairs contained in command BUSY windows | Conditional sample distributions; no strict active mean or energy |
+| Historical 16×32 continuous recording | Seven selected regulator outputs over the full model wall-clock window | 11.3648 W time-weighted telemetry sum and 39,130.65 J integrated telemetry |
+| Whole-board supply input | All actual board supply inputs | Not measured |
+
+Neither **5.525 W** from the current conditional samples nor the historical
+**11.3648 W** is a whole-board input-power measurement. The historical integral
+includes initialization, CPU work, transfers and host gaps; it is not an
+FPGA-command-only energy integral.
+
+## Current command-window observations
+
+The same original sixteen prompts were run through position 127 while retaining
+all slots. The sampler observed the position31 and position127 target steps,
+each with 32 Attention and 32 MLP commands. The current path uses the official
+read-only telemetry interface, recorded VOUT_MODE/READ_VOUT/READ_IOUT words,
+shared host QPC timestamps, and each command's conservative BUSY window.
+
+| KV | Command | Eligible V/I pairs | Commands with pairs | V×I median / W | Range / W |
+| --- | --- | ---: | ---: | ---: | ---: |
+| 32 | Attention | 24 | 24/32 | 5.7375 | 5.525–8.925 |
+| 32 | MLP | 17 | 17/32 | 5.5250 | 5.525–11.050 |
+| 128 | Attention | 87 | 32/32 | 5.5250 | 5.525–8.925 |
+| 128 | MLP | 10 | 10/32 | 5.5250 | 5.525–5.525 |
+
+There are 27,953 and 30,547 raw V/I pairs respectively; 41 and 97 qualify,
+covering 41/64 and 42/64 target commands. The complete envelope of both reads
+must fit inside one command. The values remain sequential, non-simultaneous
+telemetry products, with unequal samples per command and no time integration.
+The median pair duration is about 10.6 ms. The sensor's measurement history,
+update lag and absolute accuracy are not established: an in-BUSY transaction
+does not prove an entirely in-BUSY sensor aperture.
+
+The observed IOUT code spacing is 0.5 A and VOUT is 0.85 V, yielding a 0.425 W
+product-code spacing; READ_POUT codes include 6/8/10/12 W. Code spacing is not
+an instrument accuracy specification, and V×I's extra decimal places do not
+prove better physical precision. The two windows occur sequentially in one
+run, with no randomized repeat or independent temperature control. Neither a
+lower sample median nor repeated 5.525 W values establish a lower true KV128
+active power.
+
+Both raw collectors completed, and independent PID/birth-time observations
+confirmed their processes had exited. Their original launcher receipts still
+say `SAMPLING`, `exit_code=null`; the final status is
+`RAW_COMPLETE_EXIT_CODE_UNKNOWN`. No normal exit code is invented. Strict
+command-period mean power, energy, J/token, a new seven-rail sum and whole-board
+input power remain `NOT_ESTABLISHED`/null.
+
+See [raw/derived board evidence and downloads](evidence/kv128_chat16/README.md),
+[power summary](evidence/kv128_chat16/results/power_summary.json),
+[KV32 pairs](evidence/kv128_chat16/results/power_kv32.csv) and
+[KV128 pairs](evidence/kv128_chat16/results/power_kv128.csv). The validated current
+VID/V×I collection came from the run's sealed as-run scripts in that evidence
+package; it is not a claim that the older working-tree sampler below has been
+updated to this method.
+
+## MAX20751 voltage decoding correction
+
+For the observed `VOUT_MODE=0x20` (VID, VR12.0), the MAX20751 guide gives
+`V = (raw16 - 1) / 200 + 0.25`. Little-endian bytes `79 00` give code 121 and
+**0.85 V**; the other historical MAX20751 codes 131 and 191 give 0.90 and 1.20 V.
+This follows the manufacturer's
+[PMBus guide, §7.4/Table 9 and Eq. 28](https://www.analog.com/media/en/technical-documentation/user-guides/max20751-pmbus-implementation-guide.pdf),
+with the read mode checked before applying that interpretation.
+
+The historical `sample_power.ps1` instead used `raw/512` and called the result
+`feedback_voltage_v`; its feedback-node/divider interpretation was incorrect.
+The old `analyze_model_power.py` and frozen summaries retain that legacy wording.
+Those fields must not be used as current rail-voltage evidence. The old
+seven-rail power sum used READ_POUT for all three MAX20751 rails, so correcting
+this unused voltage interpretation does not change the published 11.3648 W
+integral. Frozen raw records and their original status remain unchanged.
+
+The following electrical table, sampler commands and recomputation instructions
+describe that **historical seven-rail READ_POUT-based workflow**. This publication
+does not change the old scripts' numerical behavior or source identity.
 
 ## Electrical scope
 
@@ -26,8 +104,9 @@ They are read through the regulator addresses, not the separate INA226 addresses
 The sum is **selected FPGA-related regulator output power**, not isolated chip
 total power, whole-board 12 V input power or host-system power. It omits other
 rails/loads and conversion losses. No nominal voltage is multiplied by current
-to fill a missing voltage measurement. MAX20751 READ_VOUT observations refer to
-the feedback node; the sampler uses READ_POUT for those three regulators.
+to fill a missing voltage measurement. The historical power calculation uses
+READ_POUT for the three MAX20751 regulators; their legacy voltage-display
+fields have the decoding error described above.
 
 ## External software and preparation
 
@@ -77,7 +156,13 @@ small final summary. This tests the repair for the reference run's bulk-save
 timeout; it is not a second complete inference measurement. See
 [power-tool validation](evidence/final/power_tool_validation.json).
 
-## Record a new run
+## Historical seven-rail recording entry
+
+These commands invoke the old public seven-rail sampler and orchestration.
+They are not the as-run KV128 conditional-telemetry method, and their legacy
+MAX20751 voltage fields remain unsuitable for voltage interpretation. Use them
+only within that documented scope; do not infer strict command-active coverage
+or current VID/V×I validation from a successful run of this entry.
 
 First complete [deployment](DEPLOYMENT.md), verify the final image and prepare
 requests. Leave the board idle and close other PMBus programs. Obtain your own
@@ -120,7 +205,7 @@ settings, clear faults or scan unlisted addresses. The MAX15301 command formats
 and need for current calibration are documented in the manufacturer's
 [PMBus command guide](https://www.analog.com/media/en/technical-documentation/user-guides/max15301-pmbus-command-set-users-guide.pdf).
 
-## Recompute the published measurement
+## Recompute the historical seven-rail measurement
 
 No hardware or vendor software is needed to analyze the included evidence:
 

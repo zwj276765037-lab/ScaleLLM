@@ -1,0 +1,38 @@
+# KV32 versus KV128: selected-layer cycle evidence
+
+The released VCU118 Decode16 design was replayed in XSim using its sealed RTL and actual captured inputs, with only testbench observations added. The bitstream SHA-256 is `96df1a5c1bf4174921bc02ccd88df4066dece3d62b491acb3106bb90ac0ffc85`. Core and DDR interface clocks are 80 and 200 MHz. There was no new synthesis, implementation, programming, or production-RTL change. All operator timings and efficiencies in this report are **cycle-simulation estimates**, while the linked [board data](../kv128_chat16/README.md) are actual board observations.
+
+The active16 workload used the same model and precision path at position31/KV32 and position127/KV128. A real 128-step greedy run committed KV for positions0–126 before the final position127 command. Its 8,192 board commands and 1,784 actually generated tokens are documented separately. Inputs and hidden states changed along the real trajectory, so this comparison does not isolate KV length while holding every other input constant. The independent complete-model numerical oracle remains unestablished.
+
+## Coverage and matched results
+
+Attention is validated at layers 0, 8, 16, 24, and 31 for both KV lengths. Gate/Up is validated at layer0. That is 12 complete commands and 52 valid rows out of the 384 potential layer/group/KV rows; the other 332 rows remain null. The following sums use *only the same validated layers at both KV lengths*. Durations are sums across the listed layers, not one-layer times or 32-layer extrapolations.
+
+| Stage boundary | Layers | KV32 ΣT (ms) | KV128 ΣT (ms) | KV32 efficiency | KV128 efficiency |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Q + RoPE | 5 | 10.6399375 | 10.6399375 | 61.5943% | 61.5943% |
+| K + RoPE + KV quantization | 5 | 4.7402250 | 4.7401500 | 34.5638% | 34.5643% |
+| V + KV quantization | 5 | 4.2443250 | 4.2439625 | 38.6021% | 38.6054% |
+| O through last scaled linear output | 5 | 8.5599375 | 8.5599375 | 76.5613% | 76.5613% |
+| Gate/Up + SiLU × Up | 1 | 5.0625500 | 5.0625375 | 90.6168% | 90.6170% |
+| Attention core, first KV read offer to last PV context | 5 | 36.3887500 | 134.6927500 | — | — |
+
+Each individual validated Attention core spans 7.277750 ms at KV32 and 26.938550 ms at KV128; their matched-time ratio is 3.701494. The Attention core is a time interval, with no weight-bandwidth or efficiency metric. The [matched aggregate CSV](kv32_kv128_matched_aggregate.csv), [per-layer table](stages_by_layer.csv), and [figure](matched_duration_comparison.svg) provide the underlying values and layer counts.
+
+The Q/K/V/O groups begin at actual matrix dispatch, before a possible weight wait. Their endpoints include the last block's specified RoPE, quantization, or scaled linear handshake. Gate/Up ends after the last SiLU × Up product block, including necessary backpressure. The Attention core starts at the first valid KV read-address offer on the 256-bit, 80 MHz data-AXI0 port and ends at the last PV context acceptance. That port observation is not a measurement of the physical MIG's first read. Q/K/V/O share 16/4/4/16 MiB of effective weight code; Gate/Up shares 56 MiB. These bytes are **not** multiplied by 16 requests. Effective bandwidth is D/T and normalized efficiency is ΣD/(12.8×10⁹×ΣT), using the corresponding physical channel's 12.8 GB/s peak. It is not an observed DDR busy-time fraction or a measurement of all AXI bytes. [Method JSON](method.json) records exact boundaries and model settings.
+
+The full weight-service window starts at the external first weight-address offer and ends at the same group's last postprocessed output. It can include early prefetch and prior dependencies; it is deliberately separate from the dispatch-started group window. For five matched O layers, the service-window sums are 47.2598737 ms (KV32) and 145.5640612 ms (KV128), with normalized efficiencies 13.8672% and 4.5022%. The dispatch-started O group is 8.5599375 ms in both cases, with 76.5613% efficiency. These answers use different boundaries and must not be substituted for each other or added to overlapping service windows. See [service windows](service_windows_by_layer.csv), [preparation/dependencies](preparation_and_dependency.csv), and the [disjoint command partition](command_disjoint_partition.csv).
+
+## Board observations and simulation limits
+
+The actual board run completed 128 steps and 8,192 commands, including host Down, final LM-head, and the last token/position commit. It generated 1,784 tokens over a 9,843.491879 s model window, or 0.1812365 generated token/s across the 16 requests. At position31/KV32 versus position127/KV128, the board's 64 command DONE_CYCLES sums were 98,604,603 versus 162,151,709; complete single-step wall times were 71.312 versus 97.453 s. These are different windows from the simulated Attention core. The [board summary](../kv128_chat16/results/summary.json) and [command cross-check](command_crosscheck.csv) retain board counters, capture identities, and simulated command envelopes separately; no board/simulation ratio rescales the stage results. The older KV32 capture used for some replay counters is not silently replaced with the newer run's position31 counter.
+
+The DDR testbench permits at most one 64-byte physical service per 200 MHz tick per channel. Its 512-bit weight and 256-bit data ports share that budget; AR depth is 16, minimum read latency is one port cycle, and arbitration gives weight priority in three of four slots while remaining work-conserving. It preserves DUT-ready backpressure. It omits actual MIG/SmartConnect timing, DRAM banks/refresh, and host XDMA timing. Each simulated command resets independently; its timestamps cannot be concatenated into one continuous full-model RTL run. The 12 simulated outputs each matched the corresponding captured board output byte for byte, but this does not establish independent model-gold correctness.
+
+QK and Softmax per-key totals derive from observed terminal key indices per row; PV value-input totals derive structurally from validated PV output tiles multiplied by KV length. They are not direct per-key handshake counts. The [machine summary](summary.json), [coverage](coverage.json), and [raw-log index](raw_logs_index.json) preserve this distinction and the original source hashes.
+
+PMBus VCCINT figures in the [board power summary](../kv128_chat16/results/power_summary.json) are conditional observations from sequential V/I reads. Sensor aperture and lag are unknown; strict active mean, energy, joules/token, and board-input power remain null. The active1 auxiliary capture failed before any command was recorded; its zero-command [failure receipt](../kv128_chat16/results/aux_summary.json) is preserved, and no active1 cycle result or paired comparison is claimed. The main active16 board run and its independent 12-command simulation selection remain valid.
+
+## Reproduction and provenance
+
+This directory contains all [eight CSVs](README.md), the figure, a portable [source identity](source_identity.json), [method](method.json), [coverage](coverage.json), and [public summary](summary.json). The [raw-log index](raw_logs_index.json) maps each selected command's event CSV, phase CSV, original logs, simulated output, validation manifest, and analysis summary to an exact member and SHA-256 in the [Release ZIP](DOWNLOADS.md). The ZIP additionally preserves real input/gold bytes, board originals, TB/source snapshots, failed attempts, and a full [offline validation receipt](DOWNLOADS.md). The small [repository manifest](MANIFEST.json) hashes every file in this public directory. No operator-stage figure in this directory is presented as a direct board measurement.

@@ -1,4 +1,4 @@
-# FPGA speed, resources and full-run power
+# FPGA speed, cycle simulations, resources and power evidence
 
 This report concerns the released **Decode16, 80 MHz** image, SHA-256
 `96df1a5c1bf4174921bc02ccd88df4066dece3d62b491acb3106bb90ac0ffc85`.
@@ -43,6 +43,80 @@ reads, QK, Softmax or PV.
 [8,192 raw command counters](evidence/kv128_chat16/results/commands.csv) ·
 [Source hashes and formulas](evidence/kv128_chat16/results/fpga_performance_provenance.json) ·
 [Measurement methods and complete dataset](evidence/kv128_chat16/README.md)
+
+Full-model wall time has a different denominator. At KV32 and KV128 the measured
+complete steps took **71.312 s** and **97.453 s**, emitting sixteen tokens each:
+0.2243662 and 0.1641817 token/s. The full 128-step model timing window was
+9,843.491879 s for 1,784 generated tokens, or **0.1812365 aggregate token/s**.
+That window includes asset loading and runtime instrumentation as specified in
+the [board timing definitions](evidence/kv128_chat16/README.md#measured-speed).
+Capture overhead was not separately established or subtracted. The command-time
+rates in the table above must not be presented as these end-to-end rates.
+
+## KV32/KV128 complete-stage cycle simulations
+
+The latest [simulation dataset](evidence/kv32_kv128_cycle_sim/README.md) uses
+sealed release RTL and actual captured inputs with testbench-only observations.
+It adds no hardware probes and required no synthesis, implementation or new
+bitstream. Each KV length selects Attention layers **0, 8, 16, 24, 31** and
+Gate/Up layer **0**. The twelve complete command outputs match their respective
+board captures byte for byte. Eleven were new replays; the earlier complete
+KV32 Gate/Up trace was reused with the new grouping boundaries.
+
+The coverage table has 384 rows (32 layers × 6 stages × 2 KV lengths):
+**52 valid stage rows and 332 unmeasured rows with empty values**. Both KV
+lengths have all five projection groups plus Attention core at layer 0 only.
+This subset does not imply complete 32-layer RTL simulation, and byte-exact
+replay does not establish an independent full-model numerical oracle.
+
+Each projection group spans actual dispatch through its final required result:
+Q includes RoPE; K includes RoPE and KV quantization; V includes KV quantization;
+O ends at the last linear result; Gate/Up includes SiLU×Up. Initial fetch waits,
+scale recovery, serial block postprocessing and necessary backpressure remain
+inside the span. Each independent command has its own unified simulation time
+axis; it is not stitched into a continuous model trajectory.
+
+| Complete combined stage | Matched layers | KV32 sum of time / ms | KV128 sum of time / ms | KV32 efficiency | KV128 efficiency |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Q + RoPE | 5 | 10.6399375 | 10.6399375 | 61.5943% | 61.5943% |
+| K + RoPE + KV quantization | 5 | 4.7402250 | 4.7401500 | 34.5638% | 34.5643% |
+| V + KV quantization | 5 | 4.2443250 | 4.2439625 | 38.6021% | 38.6054% |
+| O linear projection | 5 | 8.5599375 | 8.5599375 | 76.5613% | 76.5613% |
+| Gate/Up + SiLU×Up | 1 | 5.0625500 | 5.0625375 | 90.6168% | 90.6170% |
+| Attention core | 5 | 36.3887500 | 134.6927500 | — | — |
+
+These times are sums over the stated matched layers, not individual-layer or
+full-model times. Useful weight-code sizes are Q/K/V/O/GateUp =
+16/4/4/16/56 MiB, shared by all sixteen requests. Efficiency is
+`sum(D) / (12.8e9 * sum(T_seconds))`, using the relevant single physical DDR
+channel; weights are not multiplied by the request count. This is effective
+weight throughput over the declared span, not measured bus occupancy.
+
+Attention core starts at the first layer-local KV request offer on the external
+256-bit, 80 MHz data-AXI port and ends at the last accepted PV context tile. It
+includes KV reading and internal waits, and has time only. Across the five
+matched layers its per-layer span grows from 7.27775 to 26.93855 ms, a ratio of
+3.701494. The two real trajectory positions also have different activations,
+scales and KV contents; this is not a controlled change of KV length alone.
+QK/Softmax totals derive from terminal key indices and PV input totals from
+output tiles × KV length, not per-key input-handshake probes.
+
+First weight request through the same group end is retained as a separate full
+service window. For example, layer-0 O is 1.7119875 ms from actual dispatch at
+both KV lengths, but its early-prefetch service window is 9.46209125 ms at KV32
+and 29.12389375 ms at KV128: 13.8523% and 4.5005%, respectively. Those service
+windows can overlap preceding work; they cannot be summed as command time or
+renamed as dispatch-span efficiency.
+
+The AXI service model shares 64 B per 5 ns per physical channel between weight
+and data interfaces. It preserves DUT backpressure but omits detailed MIG,
+SmartConnect, bank/refresh and host-XDMA timing. At KV128 layer 0, the simulated
+Attention command envelope is 34.8240125 ms versus 45.0212375 ms on the board;
+Gate/Up is 9.6662 ms versus 18.3568375 ms. These comparisons use the `(C+1)`
+accept-to-result envelope, while the board speed table uses register count C.
+No ratio is applied to rescale simulated stage results. The evidence retains
+full service windows, preparation/dependency spans and disjoint command
+partitions whose sums equal each complete command.
 
 ## Earlier 16×32-token run — changing active request count
 
@@ -134,10 +208,19 @@ the two DDR controller user interfaces run at **200 MHz**.
 | Resource | Synthesized | Fully placed |
 | --- | ---: | ---: |
 | LUT | 730,715 | **701,775** |
-| Flip-flop | 971,057 | **954,554** |
+| Registers: synthesis hierarchy's `FFs` column | 971,057 | — |
+| CLB registers | — | **954,554** |
+| Register as flip-flop | — | **954,552** |
 | BRAM36 equivalent | 709 | **709** |
 | URAM | 304 | **304** |
 | DSP | 5,389 | **5,389** |
+
+The placed CLB-register total includes 954,552 flip-flops and two registers
+configured as AND/OR; it is not a strict flip-flop count of 954,554. The
+synthesized hierarchy report labels its 971,057 count `FFs`. That report's
+column is retained as reported, without inferring a separate synthesized
+CLB-register/flip-flop breakdown. The legacy resource manifest's `ff` key for
+placement refers to the CLB-register total.
 
 The 709 BRAM36-equivalent tiles comprise 695 RAMB36 + 28 RAMB18.
 Placed LUT distribution is SLR0 212,319 / SLR1 286,402 / SLR2 203,054.
@@ -162,7 +245,12 @@ project-generation inputs are included for fresh builds.
 
 ## Full-inference power
 
-The final release includes a continuous measurement over idle-before, the
+This section preserves the **historical 16×32-token, seven-rail full-wall-clock
+measurement**. It is not the newer KV128 command-window telemetry and is not a
+whole-board input or strict command-active power result. The newer experiment
+is summarized separately below.
+
+The earlier release includes a continuous measurement over idle-before, the
 complete 16-request × 32-token run, and idle-after. Its observed quantities are
 **seven VCU118 regulator output rails associated with the FPGA**. They do not
 include the entire board's 12 V input, the host computer, or every possible
@@ -215,14 +303,50 @@ See the [complete power dataset](evidence/power_chat16/README.md),
 The analysis command and the explicit handling of this recorded finalization
 failure are documented in [Power measurement](POWER_MEASUREMENT.md).
 
+The historical sampler's MAX20751 `feedback_voltage_v` interpretation has since
+been corrected: READ_VOUT uses the observed VID format, not `raw/512`. The
+11.3648 W sum used READ_POUT on those three rails, so this voltage-display
+correction does not change the published seven-rail power integral. Frozen
+records retain the old field names; see the explicit
+[decoding correction](POWER_MEASUREMENT.md#max20751-voltage-decoding-correction).
+
+## Current VCCINT command-window telemetry
+
+During the necessary fixed-active16 inference, the sampler recorded VCCINT
+READ_VOUT and READ_IOUT sequentially. Only pairs whose complete transaction
+envelope lies inside the same command's conservative BUSY window are included:
+
+| KV | Command | Eligible pairs | Commands covered | V×I median / W | Observed range / W |
+| --- | --- | ---: | ---: | ---: | ---: |
+| 32 | Attention | 24 | 24/32 | 5.7375 | 5.525–8.925 |
+| 32 | MLP | 17 | 17/32 | 5.5250 | 5.525–11.050 |
+| 128 | Attention | 87 | 32/32 | 5.5250 | 5.525–8.925 |
+| 128 | MLP | 10 | 10/32 | 5.5250 | 5.525–5.525 |
+
+These are conditional, sample-weighted telemetry distributions, not a time
+integral or a mean across all commands. **5.525 W is not whole-board power or
+strict execution-period average power.** The read-pair median duration is about
+10.6 ms, and the sensor's own historical aperture/update lag is unknown.
+Correct VID/Linear11 decoding and more displayed decimals do not establish
+physical precision. No strict active energy, J/token, seven-rail KV128 sum or
+whole-board input power was established.
+
+Both original sampler receipts remain `SAMPLING` with `exit_code=null`.
+Completed raw streams and independent process-absence observations establish
+data completion and cleanup without inventing a normal exit code. See the
+[current power dataset](evidence/kv128_chat16/README.md#what-the-power-data-measures)
+and [measurement boundaries](POWER_MEASUREMENT.md).
+
 ## What has been verified
 
-The released bitstream completed the real 16-request workload and earlier
-scoped board diagnostics. Its full-model output is observable in the records;
-**an independent whole-model numerical oracle comparison was not run**.
-A repeated run can establish deterministic repeatability, not independent
-numerical accuracy. The example responses are often incomplete because of the
-32-token generation limit.
+The released bitstream completed both the earlier 16×32-token workload and the
+new fixed-active16 trajectory through position 127, plus earlier scoped board
+diagnostics. Twelve selected complete commands also passed byte-exact sealed-RTL
+replay. **An independent whole-model numerical oracle remains unestablished.**
+A repeated run or the same RTL replay does not substitute for that oracle.
+The earlier examples stop at 32 new tokens; the newer fixed-length responses
+contain 110–113 generated tokens per request. The optional active1 attempt
+issued no commands and supplies no single-request performance result.
 
 The portable project entry passed fresh Vivado block-design validation and
 complete IP output/wrapper generation. The two reader protocol testbenches

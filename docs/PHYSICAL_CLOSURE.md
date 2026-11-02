@@ -7,6 +7,13 @@ for a newly built routed design. The final checkpoint is identified by SHA256
 Neither that checkpoint nor the historical incremental reference is required
 by the fresh source build or portable hold-repair stages.
 
+The later [KV128 board measurement](evidence/kv128_chat16/README.md) and
+[KV32/KV128 cycle comparison](evidence/kv32_kv128_cycle_sim/README.md) retained
+this published design. They performed no synthesis, implementation or
+programming. Their complete command-output replays and 52 valid stage results
+do not replace the physical timing evidence below, establish a new routed
+utilization count, or validate a fresh portable physical rebuild.
+
 ## Historical implementation settings
 
 The original run used Vivado 2025.2, `xcvu9p-flga2104-2L-e`, core 80 MHz and

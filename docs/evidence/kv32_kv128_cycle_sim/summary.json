@@ -1,0 +1,330 @@
+{
+  "active_requests": 16,
+  "board_observation": {
+    "commands": 8192,
+    "generated_tokens": 1784,
+    "kv128_position127": {
+      "actual_emitted_tokens": 16,
+      "all_command_core_s": 2.0268963625,
+      "all_done_cycles": 162151709,
+      "attention_command_core_s": 1.4401622125,
+      "attention_commands": 32,
+      "attention_done_cycles": 115212977,
+      "command_count": 64,
+      "common_kv": 128,
+      "fpga_command_time_normalized_tokens_per_s": 7.893842179609713,
+      "measured_step_tokens_per_s": 0.16418170810548022,
+      "mlp_command_core_s": 0.58673415,
+      "mlp_commands": 32,
+      "mlp_done_cycles": 46938732,
+      "position": 127,
+      "round": 128,
+      "step_wall_s": 97.45299999997951
+    },
+    "kv32_position31": {
+      "actual_emitted_tokens": 16,
+      "all_command_core_s": 1.2325575375,
+      "all_done_cycles": 98604603,
+      "attention_command_core_s": 0.6457996875,
+      "attention_commands": 32,
+      "attention_done_cycles": 51663975,
+      "command_count": 64,
+      "common_kv": 32,
+      "fpga_command_time_normalized_tokens_per_s": 12.981138416023033,
+      "measured_step_tokens_per_s": 0.22436616558212177,
+      "mlp_command_core_s": 0.58675785,
+      "mlp_commands": 32,
+      "mlp_done_cycles": 46940628,
+      "position": 31,
+      "round": 32,
+      "step_wall_s": 71.31200000003446
+    },
+    "model_generated_tokens_per_s": 0.1812364983733078,
+    "model_wall_s": 9843.491879463196,
+    "public_board_summary": "../kv128_chat16/results/summary.json",
+    "public_board_summary_sha256": "d91394ebfaa2b7befa6d2859dae611754c579ce8a27af383a70bc62efcb085cb",
+    "status": "PASS",
+    "steps": 128
+  },
+  "evidence_kind": "CYCLE_SIMULATION_ESTIMATE",
+  "figures": {
+    "matched_duration_comparison.png": {
+      "bytes": 165843,
+      "sha256": "0c791e97e73830a9befce96c2bff2e1d0bd1dcae913c202f112dfbb222221780"
+    },
+    "matched_duration_comparison.svg": {
+      "bytes": 87294,
+      "sha256": "62d1693726f52fce90490713de9aca1507b0c446a1def0e881a05b76747f8bf2"
+    }
+  },
+  "full_archive_sha256": "bdd7c7281dace4d26604918da4801bb02e0d8eaf0a0781ab75d7896361b9b38b",
+  "group_aggregate": [
+    {
+      "active_requests": 16,
+      "effective_weight_bytes_per_s": 7884076386.726897,
+      "efficiency": 0.6159434677130389,
+      "group": "Q",
+      "kv_length": 32,
+      "layer_count": 5,
+      "layers": "0;8;16;24;31",
+      "status": "PASS_SUBSET",
+      "sum_duration_s": 0.010639937499999998,
+      "sum_shared_weight_bytes": 83886080
+    },
+    {
+      "active_requests": 16,
+      "effective_weight_bytes_per_s": 4424161300.360215,
+      "efficiency": 0.3456376015906418,
+      "group": "K",
+      "kv_length": 32,
+      "layer_count": 5,
+      "layers": "0;8;16;24;31",
+      "status": "PASS_SUBSET",
+      "sum_duration_s": 0.004740225,
+      "sum_shared_weight_bytes": 20971520
+    },
+    {
+      "active_requests": 16,
+      "effective_weight_bytes_per_s": 4941073079.93615,
+      "efficiency": 0.38602133437001174,
+      "group": "V",
+      "kv_length": 32,
+      "layer_count": 5,
+      "layers": "0;8;16;24;31",
+      "status": "PASS_SUBSET",
+      "sum_duration_s": 0.004244325,
+      "sum_shared_weight_bytes": 20971520
+    },
+    {
+      "active_requests": 16,
+      "effective_weight_bytes_per_s": 9799847253.557634,
+      "efficiency": 0.7656130666841902,
+      "group": "O",
+      "kv_length": 32,
+      "layer_count": 5,
+      "layers": "0;8;16;24;31",
+      "status": "PASS_SUBSET",
+      "sum_duration_s": 0.0085599375,
+      "sum_shared_weight_bytes": 83886080
+    },
+    {
+      "active_requests": 16,
+      "effective_weight_bytes_per_s": 11598948356.065619,
+      "efficiency": 0.9061678403176265,
+      "group": "GateUp",
+      "kv_length": 32,
+      "layer_count": 1,
+      "layers": "0",
+      "status": "PASS_SUBSET",
+      "sum_duration_s": 0.00506255,
+      "sum_shared_weight_bytes": 58720256
+    },
+    {
+      "active_requests": 16,
+      "effective_weight_bytes_per_s": null,
+      "efficiency": null,
+      "group": "AttentionCore",
+      "kv_length": 32,
+      "layer_count": 5,
+      "layers": "0;8;16;24;31",
+      "status": "PASS_SUBSET",
+      "sum_duration_s": 0.03638875,
+      "sum_shared_weight_bytes": null
+    },
+    {
+      "active_requests": 16,
+      "effective_weight_bytes_per_s": 7884076386.726897,
+      "efficiency": 0.6159434677130389,
+      "group": "Q",
+      "kv_length": 128,
+      "layer_count": 5,
+      "layers": "0;8;16;24;31",
+      "status": "PASS_SUBSET",
+      "sum_duration_s": 0.010639937499999998,
+      "sum_shared_weight_bytes": 83886080
+    },
+    {
+      "active_requests": 16,
+      "effective_weight_bytes_per_s": 4424231300.697235,
+      "efficiency": 0.3456430703669715,
+      "group": "K",
+      "kv_length": 128,
+      "layer_count": 5,
+      "layers": "0;8;16;24;31",
+      "status": "PASS_SUBSET",
+      "sum_duration_s": 0.00474015,
+      "sum_shared_weight_bytes": 20971520
+    },
+    {
+      "active_requests": 16,
+      "effective_weight_bytes_per_s": 4941495123.955502,
+      "efficiency": 0.38605430655902356,
+      "group": "V",
+      "kv_length": 128,
+      "layer_count": 5,
+      "layers": "0;8;16;24;31",
+      "status": "PASS_SUBSET",
+      "sum_duration_s": 0.0042439625,
+      "sum_shared_weight_bytes": 20971520
+    },
+    {
+      "active_requests": 16,
+      "effective_weight_bytes_per_s": 9799847253.557634,
+      "efficiency": 0.7656130666841902,
+      "group": "O",
+      "kv_length": 128,
+      "layer_count": 5,
+      "layers": "0;8;16;24;31",
+      "status": "PASS_SUBSET",
+      "sum_duration_s": 0.0085599375,
+      "sum_shared_weight_bytes": 83886080
+    },
+    {
+      "active_requests": 16,
+      "effective_weight_bytes_per_s": 11598976995.232136,
+      "efficiency": 0.9061700777525106,
+      "group": "GateUp",
+      "kv_length": 128,
+      "layer_count": 1,
+      "layers": "0",
+      "status": "PASS_SUBSET",
+      "sum_duration_s": 0.0050625374999999995,
+      "sum_shared_weight_bytes": 58720256
+    },
+    {
+      "active_requests": 16,
+      "effective_weight_bytes_per_s": null,
+      "efficiency": null,
+      "group": "AttentionCore",
+      "kv_length": 128,
+      "layer_count": 5,
+      "layers": "0;8;16;24;31",
+      "status": "PASS_SUBSET",
+      "sum_duration_s": 0.13469275,
+      "sum_shared_weight_bytes": null
+    }
+  ],
+  "kv_lengths": [
+    32,
+    128
+  ],
+  "matched_aggregate": [
+    {
+      "active_requests": 16,
+      "duration_ratio_128_over_32": 1.0,
+      "group": "Q",
+      "kv128_efficiency": 0.6159434677130389,
+      "kv128_sum_duration_s": 0.010639937499999998,
+      "kv32_efficiency": 0.6159434677130389,
+      "kv32_sum_duration_s": 0.010639937499999998,
+      "matched_layer_count": 5,
+      "matched_layers": "0;8;16;24;31",
+      "status": "PASS_MATCHED_SUBSET",
+      "sum_shared_weight_bytes_each_kv": 83886080
+    },
+    {
+      "active_requests": 16,
+      "duration_ratio_128_over_32": 0.9999841779662358,
+      "group": "K",
+      "kv128_efficiency": 0.3456430703669715,
+      "kv128_sum_duration_s": 0.00474015,
+      "kv32_efficiency": 0.3456376015906418,
+      "kv32_sum_duration_s": 0.004740225,
+      "matched_layer_count": 5,
+      "matched_layers": "0;8;16;24;31",
+      "status": "PASS_MATCHED_SUBSET",
+      "sum_shared_weight_bytes_each_kv": 20971520
+    },
+    {
+      "active_requests": 16,
+      "duration_ratio_128_over_32": 0.9999145918373358,
+      "group": "V",
+      "kv128_efficiency": 0.38605430655902356,
+      "kv128_sum_duration_s": 0.0042439625,
+      "kv32_efficiency": 0.38602133437001174,
+      "kv32_sum_duration_s": 0.004244325,
+      "matched_layer_count": 5,
+      "matched_layers": "0;8;16;24;31",
+      "status": "PASS_MATCHED_SUBSET",
+      "sum_shared_weight_bytes_each_kv": 20971520
+    },
+    {
+      "active_requests": 16,
+      "duration_ratio_128_over_32": 1.0,
+      "group": "O",
+      "kv128_efficiency": 0.7656130666841902,
+      "kv128_sum_duration_s": 0.0085599375,
+      "kv32_efficiency": 0.7656130666841902,
+      "kv32_sum_duration_s": 0.0085599375,
+      "matched_layer_count": 5,
+      "matched_layers": "0;8;16;24;31",
+      "status": "PASS_MATCHED_SUBSET",
+      "sum_shared_weight_bytes_each_kv": 83886080
+    },
+    {
+      "active_requests": 16,
+      "duration_ratio_128_over_32": 0.9999975308885838,
+      "group": "GateUp",
+      "kv128_efficiency": 0.9061700777525106,
+      "kv128_sum_duration_s": 0.0050625374999999995,
+      "kv32_efficiency": 0.9061678403176265,
+      "kv32_sum_duration_s": 0.00506255,
+      "matched_layer_count": 1,
+      "matched_layers": "0",
+      "status": "PASS_MATCHED_SUBSET",
+      "sum_shared_weight_bytes_each_kv": 58720256
+    },
+    {
+      "active_requests": 16,
+      "duration_ratio_128_over_32": 3.7014942805125215,
+      "group": "AttentionCore",
+      "kv128_efficiency": null,
+      "kv128_sum_duration_s": 0.13469275,
+      "kv32_efficiency": null,
+      "kv32_sum_duration_s": 0.03638875,
+      "matched_layer_count": 5,
+      "matched_layers": "0;8;16;24;31",
+      "status": "PASS_MATCHED_SUBSET",
+      "sum_shared_weight_bytes_each_kv": null
+    }
+  ],
+  "schema": "scalellm_cycle_public_summary_v1",
+  "selected_command_count": 12,
+  "source_publication_sha256": "751c8d3cd47e18a11cc82de5876639dc9ff6dea313c98a5b273f801cdb5e1086",
+  "status": "PASS_WITH_LIMITATIONS",
+  "tables": {
+    "command_crosscheck.csv": {
+      "bytes": 8066,
+      "sha256": "7641542ead537c85b61694ba2a1478c3ff462301569c56c5f8c45994200b41b4"
+    },
+    "command_disjoint_partition.csv": {
+      "bytes": 12798,
+      "sha256": "fc4dc2b77c75dcec2217618a4235599712053b39e99f4c2bd2796a96469dd767"
+    },
+    "group_aggregate.csv": {
+      "bytes": 1228,
+      "sha256": "84fa944ceb291fa6bd2a77cec59cb7e6cb91668f1ceb023641852ec623dc50a7"
+    },
+    "kv32_kv128_matched_aggregate.csv": {
+      "bytes": 945,
+      "sha256": "7199d47b83045b1af324f64b3d7a0e7ccdd24eca4eef76630f7c310839e2b078"
+    },
+    "kv32_kv128_paired.csv": {
+      "bytes": 9737,
+      "sha256": "13bb142f7d476ee9c10b2bf501589ef49e0f4dc94fbd3a3e6afa6f1dfbdea367"
+    },
+    "preparation_and_dependency.csv": {
+      "bytes": 12241,
+      "sha256": "728cfecdb7e2c7967122b4c977f92c9b1d67d53ce38e3a4c11ec1b56ddcf7c09"
+    },
+    "service_windows_by_layer.csv": {
+      "bytes": 18482,
+      "sha256": "952655638f142ba60261c084eef535f4dda403d3c37a27e3cda602596e1c952c"
+    },
+    "stages_by_layer.csv": {
+      "bytes": 51995,
+      "sha256": "0bfe6b376c336dc16689af8ebdfe4f22c91051b84e67ea2125579e9bb3d9fe19"
+    }
+  },
+  "valid_stage_rows": 52
+}

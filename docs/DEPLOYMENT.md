@@ -11,12 +11,21 @@ normalization, residual additions, post-product H32/A8, integer Down and the
 FP32 LM head. There is no GPU dependency. The runtime retains incremental KV
 for sixteen independent request slots with a 128-position context.
 
-The original final-image board run completed sixteen requests with a limit of
-32 new tokens each. Its 512 generated tokens all stopped at the length limit;
-none reached EOS. Independent whole-model value-by-value verification was
-`NOT_RUN`. The new portable wrapper has CPU and mock checks and has **not** been
-run on a second physical host. See [INFERENCE.md](INFERENCE.md) and the
-[performance report](PERFORMANCE_AND_RESOURCES.md) for the evidence boundaries.
+The latest [board measurement](evidence/kv128_chat16/README.md) retained this
+image and completed 128 steps, 8,192 commands and 1,784 generated tokens with all
+16 requests active through position 127. Its separate fixed-length capture
+wrapper retained the original prompts, greedy predictions and precision while
+disabling EOS retirement and extending each request's length budget. No EOS
+actually occurred. This does not change the public CLI's request limits or EOS
+behavior documented below, and did not require programming the board again.
+
+The earlier 16×32-token run remains a separate baseline: 512 generated tokens,
+50 rounds, with requests retiring at their own length limits. Twelve selected
+KV32/KV128 commands now have complete byte-exact sealed-RTL replays, but an
+independent whole-model numerical oracle remains unestablished. The portable
+wrapper has CPU/mock checks and has **not** been run on a second physical host.
+See [INFERENCE.md](INFERENCE.md) and the
+[performance report](PERFORMANCE_AND_RESOURCES.md) for these distinct scopes.
 
 ## Host prerequisites
 
@@ -129,6 +138,12 @@ against the Host manifest and writes `requests.json`, `requests_text.json` and
 exact token-ID requests from the reported board run; custom text must be prepared
 with your verified model tokenizer.
 
+These are the original 32-new-token request records. The KV128 measurement used
+the same prompt IDs with a separate benchmark length/EOS policy; copying its
+110–113-token budgets into this public CLI is not a documented reproduction
+path. Its captured configuration and execution evidence are published with the
+[fixed-length run](evidence/kv128_chat16/README.md).
+
 ## Program the exact released image
 
 The released bitstream is **80,159,263 bytes**, SHA256:
@@ -186,3 +201,11 @@ An independently started power sampler can be referenced with repeated
 end-of-run file snapshots. It does not start/stop that sampler or infer complete
 measurement coverage from a filename. Finalize the sampler log and use the power
 analysis tooling separately.
+
+The older `tools/power/measure_full_run.ps1`, `sample_power.ps1` and
+`analyze_model_power.py` describe the historical seven-rail READ_POUT-based
+recording/recomputation workflow. Their MAX20751 `feedback_voltage_v` field uses
+an obsolete decoding interpretation and is not current rail-voltage evidence.
+The new VID/V×I observations came from the sealed KV128 as-run scripts and
+published evidence, not an update to those old working-tree tools. See
+[the decoding correction and measurement scopes](POWER_MEASUREMENT.md).

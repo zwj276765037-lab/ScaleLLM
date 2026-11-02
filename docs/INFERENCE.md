@@ -4,6 +4,12 @@
 [DEPLOYMENT.md](DEPLOYMENT.md) to export licensed model assets, prepare text,
 program the exact bitstream and run on a local Windows XDMA host.
 
+The public runtime behavior below is distinct from the latest
+[fixed-active16 KV128 benchmark](evidence/kv128_chat16/README.md). The earlier
+16×32-token baseline used normal per-request retirement; the newer experiment
+retained all sixteen requests through position 127 with an isolated host
+wrapper. Neither experiment changed the released FPGA image or numerical path.
+
 A request record has this shape:
 
 ```json
@@ -34,10 +40,20 @@ complete layer stack and Host LM head succeed.
 Decoding uses the existing deterministic greedy top-1 calculation. Equal logits
 prefer the lower token ID. The model and generation configuration supply the
 original EOS IDs (`128001`, `128008`, `128009` for the verified checkpoint).
-A generated EOS immediately finishes that slot; otherwise it finishes at its
-requested length limit. There is no switch to ignore EOS or to force a minimum
-output length. The model's sampling defaults are not substituted for this
-reported greedy path.
+A generated EOS immediately finishes that slot in the public runtime;
+otherwise it finishes at its requested length limit. The public CLI has no
+switch to ignore EOS or force a minimum output length. The model's sampling
+defaults are not substituted for this greedy path.
+
+The separate KV128 benchmark retained the original prompt token IDs and actual
+greedy argmax values, set each slot's budget to `129 - prompt_length`, and
+disabled EOS retirement for that experiment. Its 128 steps include prompt
+processing and produce 110–113 new tokens per slot, 1,784 in total; the actual
+trajectories contain no EOS. Every slot reached position 128 after position 127
+completed all 32 layers, CPU Down, final LM head and token/position commit.
+This is a fixed-length benchmark, not 128 generated tokens per request or a
+change to the portable CLI policy. The original 32-token request files remain
+the normal deployment examples.
 
 Attention weights and metadata for all 32 layers remain resident in DDR0. GU
 metadata remains resident in DDR1; GU weights are staged into the canonical
@@ -116,6 +132,18 @@ The earlier 32-token-per-request run is retained in
 [outputs.json](evidence/inference_chat16/outputs.json) and the
 [plain-text record](evidence/inference_chat16/outputs.txt). Its requests retire
 at their individual length limits, unlike the fixed-active-count KV128 plot.
+
+The [cycle comparison](evidence/kv32_kv128_cycle_sim/README.md) adds full-output
+sealed-RTL replay checks for twelve selected commands: five Attention layers
+and layer-0 Gate/Up at each of KV32 and KV128. All complete outputs match the
+corresponding board captures byte for byte. The board submission/commit chain,
+recorded LM-head predictions, these command replays and an independent full
+model oracle are separate checks; the last remains `NOT_ESTABLISHED`.
+Capturing twelve tensor outputs does not mean all 8,192 command outputs were
+separately dumped or that the full model was simulated in RTL.
+
+The optional active1 command-replay attempt ended before issuing either
+command. It supplies no single-request output, cycle or efficiency result.
 
 The original board run produced 512 readable English tokens from sixteen
 independent requests, 50 complete rounds and 3,200 hardware commands. Every
