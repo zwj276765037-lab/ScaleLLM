@@ -45,6 +45,8 @@ The original launcher [receipt](native/main_004/receipt.json) stays **FAIL**. Co
 
 ## Files and offline reproduction
 
+The [homepage presentation figure (PNG)](showcase/sevenrail_power_telemetry.png) is the user-supplied 1394 × 936 image, published byte for byte as a separate presentation asset. It is additional to the frozen Release archive and its publication manifest.
+
 This Git directory is a **readable subset**: compact tables, six PNG figures, four compact SVG figures, selected receipts, methods and frozen analysis code. All six full SVGs, raw V/I/P read envelopes, all command/XDMA logs, failed attempts and frozen acquisition scripts are in the unchanged **56,091,268-byte Release archive**. Its 229 members pass manifest/SHA checks. The 256 MiB KV snapshot is explicitly excluded; its hash/inspection records remain, so the power package alone cannot independently recheck that entire binary. Earlier superseded derived outputs are retained locally and omitted from this package.
 
 From the repository root, Python 3.11+:

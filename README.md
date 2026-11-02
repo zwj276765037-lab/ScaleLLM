@@ -42,7 +42,9 @@ The released image was measured with 16 active requests at KV128/position127. A 
 | Repeated MLP frontend | 12.077 ± 0.036 | 97.50–97.92% common coverage only |
 | Complete KV128 step | **11.182 ± 0.041** | **Complete windows** |
 
-![Power repeats and common coverage; repeat SD is not sensor accuracy](docs/evidence/kv128_sevenrail_power/results/main_004_v2_summary.png)
+![Seven-rail power telemetry across three repeats: idle, Attention replay, MLP replay and full decode step; constant MGT readouts are noted below the panels](docs/evidence/kv128_sevenrail_power/showcase/sevenrail_power_telemetry.png)
+
+[Download this figure (PNG)](docs/evidence/kv128_sevenrail_power/showcase/sevenrail_power_telemetry.png) · [Repeat means and coverage chart](docs/evidence/kv128_sevenrail_power/results/main_004_v2_summary.png)
 
 The six Attention/MLP full-window means remain null; gaps were not filled or discarded to claim complete coverage. VCCINT V×I has a 0.425 W code step versus READ_POUT's 2 W, but the two MGT rails remain constant-coded. Unknown sensor averaging/lag, sequential reads and current-offset ambiguity prevent a strict physical BUSY mean. The original launcher FAIL caused by an unobserved BUSY transition, and its unknown sampler exit, remain preserved. Overall measurement status is **PARTIAL_WITH_LIMITS**.
 
