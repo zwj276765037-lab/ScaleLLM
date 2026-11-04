@@ -6,7 +6,7 @@
 
 VCU118 / XCVU9P &nbsp; · &nbsp; Decode16 &nbsp; · &nbsp; 80 MHz &nbsp; · &nbsp; KV up to 128
 
-[Latest results](#latest-published-evidence) &nbsp;·&nbsp; [Experiment index](docs/EXPERIMENTS.md) &nbsp;·&nbsp; [FPGA performance](#fpga-performance) &nbsp;·&nbsp; [Cycle simulation](#cycle-simulation-results) &nbsp;·&nbsp; [16 requests & outputs](#16-requests--their-recorded-outputs) &nbsp;·&nbsp; [Power retest](#seven-rail-power-retest) &nbsp;·&nbsp; [Download evidence](docs/EXPERIMENTS.md#downloads-provenance-and-limits) &nbsp;·&nbsp; [Run on hardware](docs/DEPLOYMENT.md)
+[Latest results](#latest-published-evidence) &nbsp;·&nbsp; [Experiment index](docs/EXPERIMENTS.md) &nbsp;·&nbsp; [FPGA performance](#fpga-performance) &nbsp;·&nbsp; [Hardware resources](#hardware-resources) &nbsp;·&nbsp; [Layout & platform](#post-route-layout-and-experimental-platform) &nbsp;·&nbsp; [16 requests & outputs](#16-requests--their-recorded-outputs) &nbsp;·&nbsp; [Power retest](#seven-rail-power-retest) &nbsp;·&nbsp; [Download evidence](docs/EXPERIMENTS.md#downloads-provenance-and-limits) &nbsp;·&nbsp; [Run on hardware](docs/DEPLOYMENT.md)
 
 </div>
 
@@ -14,18 +14,18 @@ VCU118 / XCVU9P &nbsp; · &nbsp; Decode16 &nbsp; · &nbsp; 80 MHz &nbsp; · &nbs
 | :---: | :---: | :---: | :---: |
 | **16** | **128** | **1,784** | **8,192** |
 
-Real incremental inference with the released 80 MHz bitstream: all 16 requests reach position 127 using their own valid, committed KV history. FPGA performance below uses hardware command cycle counters; power telemetry and RTL simulations have separate measurement boundaries.
+Real incremental inference with the released 80 MHz bitstream: all 16 requests reach position 127 using their own valid, committed KV history. FPGA performance below uses hardware command cycle counters. Hardware resources, routed timing and power telemetry are reported with their respective measurement boundaries.
 
 ## Latest published evidence
 
-Updated **2026-11-02 (Asia/Shanghai)**. The released Decode16 / 80 MHz bitstream is unchanged.
+README updated **2026-11-04 (Asia/Shanghai)**. The released Decode16 / 80 MHz bitstream is unchanged.
 
 | Evidence | Latest result | Scope |
 | --- | --- | --- |
 | [Seven-rail PMBus retest](#seven-rail-power-retest) | **11.18 W**, repeat SD **0.04 W**, for a complete KV128 decode step | Three repeats; 32 layers plus CPU work; sum of seven selected regulator outputs |
 | [Board inference](#fpga-performance) | **2.026896 s / step**, **7.894 token/s** at KV128 | FPGA command time only; 16 tokens per step; host wall time reported separately |
-| [Released-RTL cycle simulation](#cycle-simulation-results) | **12 complete command replays / 52 validated stages** | Real captured inputs; matched KV32/KV128 workloads |
-| [Double-buffer candidate](#double-buffer-rtl-validation) | K32 **59.86%** efficiency; V32 **72.68% estimated** | Independent RTL copy: K32 and V8 simulated; no board speedup measured |
+| [Hardware resources](#hardware-resources) | **59.36% LUT**, **78.79% DSP** | Fully placed Decode16 implementation on XCVU9P |
+| [Layout & experimental platform](#post-route-layout-and-experimental-platform) | **VCU118**, dual DDR4, PCIe Gen3 ×8 | Post-route layout, host connection and PowerTool setup |
 
 **Power measurement boundary:** 11.18 W is the complete-step seven-regulator-output telemetry mean. Whole-board input power and a strict command-BUSY power mean remain unestablished. The overall power dataset is **PARTIAL_WITH_LIMITS**; Attention/MLP replay means cover only the measured portions of their windows.
 
@@ -70,41 +70,62 @@ One decode step emits **16 tokens** and executes **32 Attention + 32 MLP command
 
 The complete host–FPGA step takes **71.312 s at KV32** and **97.453 s at KV128**, emitting 16 tokens in each target step: **0.224366** and **0.164182 token/s**, respectively. Across the recorded run, 1,784 generated tokens in the defined 9,843.491879 s model window give **0.181236 token/s**. These wall times include host computation, transfers and capture overhead; they are not the FPGA-time throughput in the table above.
 
-## Double-buffer RTL validation
+## Hardware resources
 
-An isolated Decode16 RTL copy overlaps the next K/V projection group with the preceding group's RoPE/KV quantization. It retains the projection array, RoPE/quantizer count, arithmetic/rounding rules and shared DDR response budget. **No synthesis, implementation or programming was performed.** These are independent RTL cycle-simulation results, not improvements measured on the released FPGA image.
+The released Decode16 design targets the **VCU118 / XCVU9P**. The compute core
+runs at **80 MHz**, and the two DDR controller user interfaces run at **200 MHz**.
 
-| Layer-0 KV128 scope | Sealed efficiency | Double-buffer efficiency | Local speedup | Candidate evidence |
-| --- | ---: | ---: | ---: | --- |
-| K, all 32 groups | 34.533% | **59.863%** | **1.7335×** | Complete K32 local window simulated |
-| V, 32 groups | 38.434% | **72.676%** | **1.8909× estimated** | Extrapolated from eight simulated V groups |
+| Resource | Used | Available | Utilization |
+| --- | ---: | ---: | ---: |
+| LUT | **701,775** | 1,182,240 | **59.36%** |
+| CLB registers | **954,554** | 2,364,480 | **40.37%** |
+| BRAM36 equivalent | **709** | 2,160 | **32.82%** |
+| URAM | **304** | 960 | **31.67%** |
+| DSP | **5,389** | 6,840 | **78.79%** |
 
-Each full projection shares 4 MiB of weight codes among 16 requests. Timing is actual first-group dispatch through final original KV append acceptance. K32 takes **43,791 cycles / 547.3875 µs**, versus 75,911 sealed cycles. V32 is estimated at **36,070 cycles / 450.875 µs**, versus the prior complete validated sealed replay's 68,206 cycles. Quantization is not accelerated. All 640 KV records and the full 8 MiB KV image from the tested K32/V8 candidate match sealed RTL byte for byte.
+These counts come from the **Fully Placed** utilization report. CLB registers
+include 954,552 flip-flops and two AND/OR-configured registers; BRAM36 equivalent
+is 695 RAMB36 + 28 RAMB18 / 2. Resource counts were not separately reported after
+the subsequent routing and hold-repair steps.
 
-![Continuous double-buffer efficiency; V32 is explicitly estimated](docs/evidence/kv_overlap_cycle_sim/prefix_efficiency.svg)
+| Final routed check | Result |
+| --- | ---: |
+| Setup WNS | **+0.017 ns** |
+| Hold WHS | **+0.002 ns** |
+| Failing setup / hold / pulse-width endpoints | **0 / 0 / 0** |
+| Routing errors | **0** |
 
-K efficiency rises from **43.88% at two groups to 55.78% at eight and 59.86% at 32**, showing startup/tail amortization. K8 predicts actual K32 within **0.215%**. V32's **72.532–72.870%** interval is sensitivity to observed group intervals, not a statistical confidence interval. Full candidate V32, complete Attention, other layers, physical closure and board/full-model gains remain untested.
+[Placed resource report](docs/evidence/final/resources_placed_slr.rpt) ·
+[Final timing report](docs/evidence/final/timing_final.rpt) ·
+[Report identities and measurement stages](docs/evidence/final/resources_timing_manifest.json)
 
-[Method and correctness](docs/evidence/kv_overlap_cycle_sim/REPORT.md) · [CSV and raw evidence downloads](docs/evidence/kv_overlap_cycle_sim/README.md) · [Evidence release](https://github.com/zwj276765037-lab/ScaleLLM/releases/tag/evidence-kv-overlap-20261102)
+## Post-route layout and experimental platform
 
-## Cycle-simulation results
+The upper panel shows the FPGA's post-route physical layout. The photograph
+below identifies the **VCU118 board**, its **PCIe connection to the host**, and
+the **PowerTool** connection used for PMBus telemetry.
 
-The released RTL was replayed with real board inputs at core 80 MHz and DDR interface 200 MHz. No synthesis, implementation, programming or release-RTL change was performed. Each KV setting covers Attention layers **0, 8, 16, 24, 31** and Gate/Up layer **0**; all six reported stages are available together only at layer 0. Eleven new replays were completed, and the complete existing KV32 Gate/Up log was reused.
+<p align="center">
+  <img src="docs/images/experimental_platform.jpg" alt="ScaleLLM post-route physical layout and experimental platform: VCU118 FPGA, PCIe host connection and PowerTool" width="680">
+</p>
 
-**These are cycle-simulation estimates.** Projection groups run from actual dispatch through the last specified postprocessing result. The table sums time over the same verified layers in both KV settings. Shared weight bytes are counted once for all 16 requests, with efficiency `ΣD / (12.8e9 × ΣT_seconds)` for the corresponding single DDR channel.
+| Component | Configuration |
+| --- | --- |
+| FPGA | VCU118, XCVU9P (`xcvu9p-flga2104-2L-e`) |
+| Weight memory | Two DDR4-1600 channels, 2 GiB each; **25.6 GB/s nominal aggregate bandwidth** |
+| Host interface | PCIe Gen3 ×8 with XDMA |
+| Compute / DDR interface clocks | **80 MHz / 200 MHz** |
+| Implementation tool | Vivado 2025.2 |
+| Power monitoring | PowerTool / PMBus, seven selected regulator output rails |
 
-| Complete stage | Matched layers | KV32 ΣT / ms | KV128 ΣT / ms | KV32 efficiency | KV128 efficiency |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Q + RoPE | 5 | 10.6399375 | 10.6399375 | 61.5943% | 61.5943% |
-| K + RoPE + KV quantization | 5 | 4.7402250 | 4.7401500 | 34.5638% | 34.5643% |
-| V + KV quantization | 5 | 4.2443250 | 4.2439625 | 38.6021% | 38.6054% |
-| O linear projection | 5 | 8.5599375 | 8.5599375 | 76.5613% | 76.5613% |
-| Gate/Up + SiLU×Up | 1 | 5.0625500 | 5.0625375 | 90.6168% | 90.6170% |
-| KV read + QK/Softmax/PV | 5 | 36.3887500 | 134.6927500 | — | — |
+The FPGA executes Attention projections, RoPE, KV handling, QK/Softmax/PV,
+and MLP Gate/Up with SiLU×Up. The host executes embedding, normalization and
+residual operations, Down projection and the LM head. The power readings cover
+the selected regulator outputs; whole-board input power is not measured.
 
-The Attention-core span is **7.27775 → 26.93855 ms per verified layer**, a 3.701494× ratio for these two recorded workloads. Preparation and dependencies are separate. First-weight-request service windows are also reported: for example, KV128 layer-0 O has **76.5613% group efficiency** but **4.5005% full-service-window efficiency**, because the latter includes early prefetch and preceding work. Neither metric is a measured DDR handshake utilization, and the simplified DDR model is not rescaled to board command time.
-
-[Full method and results](docs/evidence/kv32_kv128_cycle_sim/REPORT.md) · [Per-layer data and figures](docs/evidence/kv32_kv128_cycle_sim/README.md) · [Complete board + simulation evidence release](https://github.com/zwj276765037-lab/ScaleLLM/releases/tag/evidence-kv32-kv128-20261102)
+[Hardware architecture](docs/HARDWARE_ARCHITECTURE.md) ·
+[Deployment instructions](docs/DEPLOYMENT.md) ·
+[Power measurement method](docs/POWER_MEASUREMENT.md)
 
 ## 16 requests & their recorded outputs
 
@@ -129,25 +150,11 @@ python3 tools/release/verify_power_repeat_asset.py \
   --download outputs/ScaleLLM_KV128_SevenRail_PMBus_20261102.zip --recompute
 ```
 
-The new [double-buffer package](docs/evidence/kv_overlap_cycle_sim/DOWNLOADS.md) contains candidate/baseline raw events, KV images, real captured inputs, source snapshots and a portable verifier. It does not replace the board measurements. Download and recompute it without Vivado or an FPGA:
-
-```bash
-python3 tools/release/verify_kv_overlap_asset.py \
-  --download outputs/ScaleLLM_KV128_DoubleBuffer_RTL_20261102.zip
-```
-
-The earlier combined archive contains the board run, real inputs and captured outputs, raw simulation events, timing tables, figures, source identities and offline verification tools. Its **980 files**, **12 complete command outputs** and **8 published simulation CSVs** pass extraction/hash/recomputation checks. Download the unchanged **781,288,611-byte ZIP**, SHA-256 and validation receipt from the [evidence release](https://github.com/zwj276765037-lab/ScaleLLM/releases/tag/evidence-kv32-kv128-20261102). Replaying RTL still requires the existing project assets and Vivado; offline evidence verification does not require the FPGA or Vivado.
-
 The earlier board-only package remains available separately. It contains raw command and PMBus traces, target input/output/KV captures, exact token records, original receipts and analysis tools. Its **196 archived files** have been verified; the original **116-file Dell transfer** and **11 derived results** pass independent unpack/recomputation checks.
 
 [Download the complete dataset](docs/evidence/kv128_chat16/DOWNLOADS.md) · [Validation receipt](docs/evidence/kv128_chat16/validation.json) · [Measurement methods](docs/evidence/kv128_chat16/README.md) · [VCCINT telemetry](docs/evidence/kv128_chat16/README.md#what-the-power-data-measures)
 
 ```bash
-# Download and verify the complete board + cycle-simulation archive.
-python3 tools/release/verify_cycle_sim_asset.py \
-  --url https://github.com/zwj276765037-lab/ScaleLLM/releases/download/evidence-kv32-kv128-20261102/ScaleLLM_KV128_KV32_Decode16_80MHz_20261101.zip \
-  --output outputs/ScaleLLM_KV128_KV32_Decode16_80MHz_20261101.zip --full
-
 # Verify, unpack and recompute the recorded board measurements offline.
 python3 tools/kv128_board_release.py --output outputs/kv128_board --recompute
 
@@ -156,19 +163,11 @@ python3 tools/plot_kv128_showcase.py
 ```
 
 <details>
-<summary><b>Hardware, numerical scope and release identity</b></summary>
+<summary><b>Numerical scope and release identity</b></summary>
 
 The FPGA executes Q/K/V and O projection paths, RoPE, KV handling, QK/Softmax/PV, and MLP Gate/Up plus SiLU×Up, with online Hadamard/A8 and scale recovery. CPU work includes embedding, normalization/residuals, Down and the LM head. See [architecture](docs/HARDWARE_ARCHITECTURE.md) and [deployment](docs/DEPLOYMENT.md).
 
-| Placed resource | Used |
-| --- | ---: |
-| LUT | 701,775 |
-| CLB registers | 954,554 |
-| BRAM36-equivalent | 709 |
-| URAM | 304 |
-| DSP | 5,389 |
-
-The CLB-register count includes 954,552 flip-flops and two AND/OR-configured registers. Core: 80 MHz. DDR user interfaces: 200 MHz. Tool: Vivado 2025.2. These are released-hardware resources; the independent double-buffer candidate has no synthesis or physical-closure result. The release RTL and bitstream remain unchanged. [Resource/timing evidence](docs/PERFORMANCE_AND_RESOURCES.md).
+Resource counts and routed timing are listed in [Hardware resources](#hardware-resources).
 
 [Released bitstream](bitstream/ScaleLLM_Final_Decode16_80MHz.bit), SHA-256:
 
@@ -176,7 +175,7 @@ The CLB-register count includes 954,552 flip-flops and two AND/OR-configured reg
 96df1a5c1bf4174921bc02ccd88df4066dece3d62b491acb3106bb90ac0ffc85
 ```
 
-Command protocol, full-step commit history and recorded LM-head/token consistency checks pass; the 12 selected complete simulation outputs match their board captures byte for byte. An independent full-model numerical oracle has not been established. The optional active1 attempt produced no valid command data. Operator-level cycle simulations are a separate experiment, not included in the FPGA counter metrics displayed here.
+Command protocol, full-step commit history and recorded LM-head/token consistency checks pass. An independent full-model numerical oracle has not been established. The optional active1 attempt produced no valid command data.
 
 Current PMBus evidence includes **seven-rail repeated-window telemetry**, with complete coverage for idle/full-step windows and partial coverage for Attention/MLP replay windows. Earlier VCCINT conditional observations and historical full-trajectory seven-rail integration retain their own scopes. None establishes whole-board input power or a strict physical command-active mean. See [power methods and corrections](docs/POWER_MEASUREMENT.md).
 
