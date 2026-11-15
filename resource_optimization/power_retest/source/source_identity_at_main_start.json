@@ -1,0 +1,100 @@
+{
+  "schema": "scalellm_dsp_power_test_source_identity_v1",
+  "target_bit_sha256": "5d78519aa10695be564f668d5a41a0e5554e282c31d39f648534a7dc01ab72f7",
+  "reference_bit_sha256": "96df1a5c1bf4174921bc02ccd88df4066dece3d62b491acb3106bb90ac0ffc85",
+  "files": {
+    "board_guardian.ps1": {
+      "bytes": 3557,
+      "sha256": "481e8a1cd607c4f0a33e59e35c3b7d63c51b1e543086df4369d2c25b95272ad0"
+    },
+    "check_ddr.py": {
+      "bytes": 2652,
+      "sha256": "5d2d458c841e37f69e7e5c6286aa1c5acec66f3e53bd990aa2206575f4066cb3"
+    },
+    "command_active_inference.py": {
+      "bytes": 11218,
+      "sha256": "892f551c6cedcbb5b30eb884f0935909684d7d1931d30a6fa8645377323b4ec1"
+    },
+    "kv128_sevenrail_analyze.py": {
+      "bytes": 12793,
+      "sha256": "f70ab04912c4a5836920d93ada818d3d73dff46567b28c42e9dcd487fa200ccb"
+    },
+    "kv128_sevenrail_figures.py": {
+      "bytes": 14823,
+      "sha256": "896dcd0ff9babf9d619d2e154f176c29d74bb9218603a73e9487f391fbb08a60"
+    },
+    "kv128_sevenrail_main.ps1": {
+      "bytes": 14212,
+      "sha256": "2ee2c99e69d0f9d624ef7e62477064648b318ef9911cd4cc3f25149fb5f2ed92"
+    },
+    "kv128_sevenrail_probe.ps1": {
+      "bytes": 8738,
+      "sha256": "7eac58d754a24bb96d9d8ba1484c09d698327e8116e232a6f685cf09ecb70255"
+    },
+    "kv128_sevenrail_sampler.ps1": {
+      "bytes": 18696,
+      "sha256": "cdb5b77fbcf710d3601d7e700d7f8b14c10313041db7fa6e9b68d8b13d20c2d4"
+    },
+    "kv128_sevenrail_smoke.py": {
+      "bytes": 8470,
+      "sha256": "d5da533cad39fbbbb867653577db52460f6104e3a9e118c86177392afc8b5e86"
+    },
+    "kv128_sevenrail_windows.py": {
+      "bytes": 59369,
+      "sha256": "74d1805e5685ce11fd9c51edeb7334b6aaaa0b467d0d3d85789c6f282b7ea001"
+    },
+    "kv128_sevenrail_workload.py": {
+      "bytes": 56065,
+      "sha256": "b83402f4bea138ea4c286908f4d366deec12173c0c000b65274b98124452e5cd"
+    },
+    "ownership.ps1": {
+      "bytes": 432,
+      "sha256": "77ba6b8dd2a89417a26e005d5a21e9a44cf12084fca471b52a7917241250b90a"
+    },
+    "powertool_runtime_manifest.json": {
+      "bytes": 1980,
+      "sha256": "bbde958a32dd7737d6e5b3268600e28995a2165501cf202c88ee157f36bc4b36"
+    },
+    "prepare_dell.py": {
+      "bytes": 3357,
+      "sha256": "f3906a631d20f13be93f4a1aab8343243ecbada33088219501e8a070a77a52a0"
+    },
+    "program_candidate.ps1": {
+      "bytes": 4813,
+      "sha256": "1921e5ce7e5bc7c706ec39a7ace2649a3df30b721d20aa46bf6325c3e3d956b8"
+    },
+    "program_common.tcl": {
+      "bytes": 1584,
+      "sha256": "0b30b9adab73c00a1c2929545aec449cf94d0193aedd574e27832069878f3ddb"
+    },
+    "program_sram.tcl": {
+      "bytes": 1066,
+      "sha256": "1b730f2611d403e423a39e7e7207f6ca7e9c297cf6b02f2d9ae7ba495b674a66"
+    },
+    "read_only_device.py": {
+      "bytes": 1546,
+      "sha256": "ad1afd355c184bd8dbba3c3aa24377e1ca4d6fd1d1a82d42248307ebafebbb0f"
+    },
+    "recover_exact_device.ps1": {
+      "bytes": 2875,
+      "sha256": "bd847ada4e755562d1c871f8b8cd6838a9e26e09a97b04d052b8ce7cbd209622"
+    },
+    "restore_snapshot.py": {
+      "bytes": 5037,
+      "sha256": "e2566facd41482b9fec7895ebb5d2621abe0809c18437ef70981acff4ca5aad1"
+    },
+    "run_phase.ps1": {
+      "bytes": 2971,
+      "sha256": "04443e7471e01a9d365804c69a21c549e09ca512099338a2aa526fae16cb5b05"
+    }
+  },
+  "adaptations": [
+    "Separate new image and sealed reference identities",
+    "Use exact fresh frozen-KV restore CSR state instead of prior DDR continuity",
+    "Remove whole-run wall stops and formal sampler count/time caps",
+    "Retain numeric/completion/ACK checks while allowing unobserved BUSY coverage",
+    "Keep native process handles through WaitForExit",
+    "Use external exclusive stage guardian",
+    "Freeze target cadence from new pilot"
+  ]
+}

@@ -83,7 +83,20 @@ Inference peak RSS was 2,510,462,976 bytes. The stage peak for owned processes w
 
 [Regression audit](results/board/inference/regression.json) · [Operator results](results/board/replay/report.json) · [Closure receipt](results/board/board_stage_closure.json) · [Transfer verification](results/board/transfer_verification.json)
 
-This establishes regression equivalence to the sealed results. An independent complete-model mathematical oracle remains **NOT_ESTABLISHED**. No new power measurement or complete 128-step model run was performed with this bitstream.
+This establishes regression equivalence to the sealed results. An independent complete-model mathematical oracle remains **NOT_ESTABLISHED**. A separate seven-rail power retest is now available below. A complete 128-step model run has not been performed with this bitstream.
+
+## Seven-rail power retest
+
+The November 15 all-DSP retest completed all twelve planned windows and native process cleanup. Its status is **PARTIAL_WITH_LIMITS**: only idle1, idle3 and full3 have complete common telemetry coverage. The other nine full-window means remain null.
+
+| Workload, n=3 | Covered-time mean ± repeat SD / W | Common coverage | Full-window means |
+| --- | ---: | --- | ---: |
+| Idle | **11.091 ± 0.006** | 99.96046–100.00000% | 2/3 |
+| Repeated Attention | **11.343 ± 0.016** | 97.52732–98.32836% | 0/3 |
+| Repeated MLP frontend | **11.826 ± 0.047** | 96.87886–98.36237% | 0/3 |
+| Complete KV128 step | **11.139 ± 0.013** | 99.19497–100.00000% | 1/3 |
+
+These are means over each repeat's actual common covered intervals; the 11.139 W complete-step result is not a three-repeat full-window mean. The new pilot set 150 ms / 450 ms; the historical retest used 140 ms / 420 ms. Sensor-window and whole-board-input limits remain. See the [new report](power_retest/REPORT.md), [independent audit](power_retest/source/independent/main_001_independent.json), [download and recomputation instructions](power_retest/README.md), and [raw evidence Release](https://github.com/zwj276765037-lab/ScaleLLM/releases/tag/resource-optimization-power-20261115).
 
 ## Verify and use the publication
 

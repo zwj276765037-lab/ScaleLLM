@@ -6,7 +6,7 @@
 
 VCU118 / XCVU9P &nbsp; · &nbsp; Decode16 &nbsp; · &nbsp; 80 MHz &nbsp; · &nbsp; All-DSP ScaleCode recovery
 
-[Latest results](#latest-published-evidence) &nbsp;·&nbsp; [Hardware resources](#hardware-resources) &nbsp;·&nbsp; [DSP optimization](#scalecode-dsp-optimization) &nbsp;·&nbsp; [FPGA performance](#fpga-performance) &nbsp;·&nbsp; [Board validation](#board-validation) &nbsp;·&nbsp; [Experimental platform](#experimental-platform) &nbsp;·&nbsp; [16 requests & outputs](#16-requests--their-recorded-outputs) &nbsp;·&nbsp; [Download & verify](#data--reproduction)
+[Latest results](#latest-published-evidence) &nbsp;·&nbsp; [Power retest](#seven-rail-power-retest) &nbsp;·&nbsp; [Hardware resources](#hardware-resources) &nbsp;·&nbsp; [DSP optimization](#scalecode-dsp-optimization) &nbsp;·&nbsp; [FPGA performance](#fpga-performance) &nbsp;·&nbsp; [Board validation](#board-validation) &nbsp;·&nbsp; [Experimental platform](#experimental-platform) &nbsp;·&nbsp; [16 requests & outputs](#16-requests--their-recorded-outputs) &nbsp;·&nbsp; [Download & verify](#data--reproduction)
 
 </div>
 
@@ -24,6 +24,7 @@ README updated **2026-11-15 (Asia/Shanghai)**. Hardware and measurements for thi
 
 | Evidence | Latest result | Scope |
 | --- | --- | --- |
+| [Seven-rail power retest](#seven-rail-power-retest) | **11.139 ± 0.013 W** for the complete-step workload | Three covered-time means; full-window mean established for only 1/3 steps |
 | [Hardware resources](#hardware-resources) | **53.50% LUT**, **84.40% DSP**, **92.05% occupied CLB** | Final routed Decode16 implementation on XCVU9P |
 | [DSP optimization](#scalecode-dsp-optimization) | **12,824 fewer LUTs**, **192 more DSPs** | All-DSP versus wider-only DSP recovery at the same post-physopt stage |
 | [Physical acceptance](resource_optimization/results/physical/final_physical_acceptance.json) | Setup **+0.009 ns**, hold **+0.008 ns** | Zero failing endpoints; complete routing; all 94 bus-skew constraints met |
@@ -31,6 +32,25 @@ README updated **2026-11-15 (Asia/Shanghai)**. Hardware and measurements for thi
 | [Operator replays](resource_optimization/results/board/replay/report.json) | **12/12 full outputs byte-exact** | Selected Gate/Up and Attention commands at KV32 and KV128 |
 
 The final design closes timing at 80 MHz. SLR1 occupied CLBs remain **99.11%**; **Down projection remains on the CPU**. The resource reduction does not establish capacity for moving Down onto the FPGA.
+
+## Seven-rail power retest
+
+The **2026-11-15** retest uses this branch's exact all-DSP image, **16 active requests at KV128**, and three repeats of each workload. All **12 windows** were collected, with **9,137 completed commands**, **159,804 register reads**, zero read errors and native workload/sampler/launcher exit codes of zero.
+
+| Workload, n=3 | Covered-time mean ± repeat SD / W | Common coverage | Full-window means |
+| --- | ---: | --- | ---: |
+| Idle | **11.091 ± 0.006** | 99.96046–100.00000% | 2/3 |
+| Repeated Attention | **11.343 ± 0.016** | 97.52732–98.32836% | 0/3 |
+| Repeated MLP frontend | **11.826 ± 0.047** | 96.87886–98.36237% | 0/3 |
+| Complete KV128 step | **11.139 ± 0.013** | 99.19497–100.00000% | 1/3 |
+
+**Power boundary:** these are time-weighted telemetry means over the seven rails' common covered intervals, then averaged equally across three technical repeats. Only **idle1, idle3 and full3** have complete common coverage; the other nine full-window means remain null. In particular, **11.139 ± 0.013 W is the covered-time result for the complete-step workload**, not a three-repeat full-window mean. The result is **PARTIAL_WITH_LIMITS**. Repeat SD describes repeat dispersion, not instrument accuracy.
+
+![All-DSP seven-rail raw power telemetry across the twelve measured windows](resource_optimization/power_retest/showcase/sevenrail_power_telemetry.png)
+
+[Full report and per-window coverage](resource_optimization/power_retest/REPORT.md) · [Window CSV](resource_optimization/power_retest/results/window_summary.csv) · [Independent audit](resource_optimization/power_retest/source/independent/main_001_independent.json) · [PNG / SVG and reproduction](resource_optimization/power_retest/README.md) · [Raw evidence release](https://github.com/zwj276765037-lab/ScaleLLM/releases/tag/resource-optimization-power-20261115)
+
+The new pilot fixed a **150 ms** sweep target and **450 ms** gap threshold; the historical retest used **140/420 ms**. The complete steps include CPU Down, LM head and token commit, while the electrical readings cover only the seven selected board regulator outputs. Whole-board input power, host power and a strict hardware-BUSY power mean are not established. [Historical comparison and the separate 420 ms sensitivity check](resource_optimization/power_retest/REPORT.md#4-与-main-历史数据的关系) retain these differences.
 
 ## Hardware resources
 
@@ -90,7 +110,7 @@ The following two steps are from **this version's board run**. Each has 16 activ
 
 Across all 3,200 commands, the recorded FPGA counter total is **4,657,997,368 cycles**, or **58.224967 s**. The model window takes **3,312.597651 s**; the complete native process, including startup asset hashes, takes **3,368.984946 s (56 min 8.985 s)**. These wall times include host work and transfers.
 
-Requests retire when they reach 32 generated tokens, so the 50-round run is not a fixed-16-request KV sweep. This image has selected operator replay coverage at KV128; a complete 128-step model run and new power measurements have not been performed.
+Requests retire when they reach 32 generated tokens, so the 50-round run is not a fixed-16-request KV sweep. This image has selected operator replay coverage at KV128 and the three restored full-step power measurements above. A complete 128-step model run has not been performed on this image.
 
 [Raw command counters and round times](resource_optimization/results/board/inference/run.json) · [Board regression audit](resource_optimization/results/board/inference/regression.json) · [Historical KV128 performance](docs/evidence/kv128_chat16/README.md) · [Historical power measurements](docs/evidence/kv128_sevenrail_power/REPORT.md)
 
@@ -131,7 +151,7 @@ The experiment uses the **VCU118 board**, dual DDR4 and a **PCIe connection to t
 | Implementation tool | Vivado 2025.2 |
 | Board programming | Vivado Hardware Manager 2022.2; volatile SRAM |
 
-The FPGA executes Attention projections, RoPE, KV handling, QK/Softmax/PV and MLP Gate/Up with SiLU×Up. The host executes embedding, normalization, residual operations, **Down projection** and the LM head. PowerTool appears in the platform photograph; power measurements linked above retain their historical bitstream identity.
+The FPGA executes Attention projections, RoPE, KV handling, QK/Softmax/PV and MLP Gate/Up with SiLU×Up. The host executes embedding, normalization, residual operations, **Down projection** and the LM head. PowerTool supplies the read-only PMBus telemetry for the new retest. Historical power reports retain their earlier bitstream identity.
 
 [Hardware architecture](docs/HARDWARE_ARCHITECTURE.md) · [This version's source](resource_optimization/hardware/source/) · [Programming and verification](resource_optimization/README.md#verify-and-use-the-publication)
 
@@ -159,6 +179,8 @@ The branch contains the **tested bitstream**, all **106 frozen source inputs**, 
 | [Complete raw evidence ZIP](https://github.com/zwj276765037-lab/ScaleLLM/releases/download/resource-optimization-20261115/ScaleLLM_Resource_optimization_20261115_evidence.zip) | 520 original files plus manifest; full XDMA trace, build logs and board evidence | 23.20 MB |
 | [Final routed DCP](https://github.com/zwj276765037-lab/ScaleLLM/releases/download/resource-optimization-20261115/ScaleLLM_Resource_optimization_Decode16_80MHz_routed.dcp) | Implemented design checkpoint | 668.82 MB |
 | [SHA256SUMS](https://github.com/zwj276765037-lab/ScaleLLM/releases/download/resource-optimization-20261115/SHA256SUMS) | Hashes for the ZIP and DCP | 242 bytes |
+
+The new [power-retest raw evidence](https://github.com/zwj276765037-lab/ScaleLLM/releases/tag/resource-optimization-power-20261115) is published separately with its [coverage report and verification instructions](resource_optimization/power_retest/README.md).
 
 Sizes use decimal MB. [Exact sizes, hashes and download URLs](resource_optimization/downloads.json) · [Release](https://github.com/zwj276765037-lab/ScaleLLM/releases/tag/resource-optimization-20261115)
 
@@ -188,7 +210,7 @@ This version's [bitstream](resource_optimization/hardware/bitstream/ScaleLLM_Fin
 5d78519aa10695be564f668d5a41a0e5554e282c31d39f648534a7dc01ab72f7
 ```
 
-The board evidence establishes regression equivalence to the sealed reference, including complete token outputs, selected operator outputs and the hardware submission/completion/ACK chain. An independent complete-model mathematical oracle remains **NOT_ESTABLISHED**. This version has no new power measurement or complete 128-step model run.
+The board evidence establishes regression equivalence to the sealed reference, including complete token outputs, selected operator outputs and the hardware submission/completion/ACK chain. An independent complete-model mathematical oracle remains **NOT_ESTABLISHED**. The new seven-rail power retest is PARTIAL_WITH_LIMITS, with 3/12 windows fully covered and all other full-window means left null. A complete 128-step model run remains unperformed on this image.
 
 The root `project/hardware`, `bitstream` and `deploy` directories retain the historical **`96df1a5c…`** image and its identity checks. Use **`resource_optimization/`** for the new hardware, programming entry and results. Historical KV128 performance, power reports and layout imagery keep their earlier measurement scope.
 

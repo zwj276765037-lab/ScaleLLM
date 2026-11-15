@@ -1,0 +1,212 @@
+{
+  "schema": "scalellm_resource_power_publication_validation_v1",
+  "status": "PASS",
+  "measurement_status": "PARTIAL_WITH_LIMITS",
+  "validated_utc": "2026-11-15T02:36:39.811071+00:00",
+  "run_id": "kv128_sevenrail_main_20261115T014454Z",
+  "bitstream_sha256": "5d78519aa10695be564f668d5a41a0e5554e282c31d39f648534a7dc01ab72f7",
+  "archive": {
+    "file": "ScaleLLM_Resource_optimization_Power_Retest_20261115.zip",
+    "bytes": 47763267,
+    "sha256": "889957d53fe3241e9e2754202becf6ede4c49c702eb04dab134af1a49120335b",
+    "manifest_sha256": "45518749a89a051d3dec7588e8f2465c0d7b6919119058809f6be6fd6e1d857b",
+    "payload_files_verified": 246,
+    "payload_bytes_verified": 889377108
+  },
+  "script_sha256": {
+    "tools/verify_resource_power.py": "ce0fe23b53c98f37597e2ceb9a785550cbf8e764d5ba8107cc2507ce0ff56512",
+    "analysis/kv128_sevenrail_windows.py": "74d1805e5685ce11fd9c51edeb7334b6aaaa0b467d0d3d85789c6f282b7ea001",
+    "analysis/kv128_sevenrail_analyze.py": "f70ab04912c4a5836920d93ada818d3d73dff46567b28c42e9dcd487fa200ccb",
+    "resource_optimization/power_retest/source/independent/audit_retest.py": "bd09b38ddadab99b3fe4b8545823aef50ed9db73aba7357b68ced4836b5122f1"
+  },
+  "engineering_recomputation": {
+    "status": "PASS",
+    "fresh_execution_from_verified_archive_raw": true,
+    "native_exit_code": 0,
+    "recomputed_json_sha256": "4581d39b78b6ca1538803665d053ee7f5b819d08249e87e5726949cfa081dfaa",
+    "archived_json_sha256": "4581d39b78b6ca1538803665d053ee7f5b819d08249e87e5726949cfa081dfaa",
+    "byte_identical": true
+  },
+  "independent_recomputation": {
+    "status": "PASS",
+    "fresh_execution_from_verified_archive_raw": true,
+    "native_exit_code": 0,
+    "compared_against_fresh_engineering_recomputation": true,
+    "engineering_json_sha256": "4581d39b78b6ca1538803665d053ee7f5b819d08249e87e5726949cfa081dfaa",
+    "independent_json_sha256": "0ba3dad8b7473ea5d5db16012d207a212f96eee15a21b4ec2ca9f657cefcc748",
+    "maximum_absolute_numerical_difference": 3.552713678800501e-14,
+    "absolute_tolerance": 1e-10,
+    "differences": [],
+    "published_reference_manifest_sha256": "1a85fb44cc1435240a51574ea0bb79bd6a372b5bad69af1f3cfef22640574ea0",
+    "path_dependent_audit_metadata_retained": true
+  },
+  "sampling": {
+    "actual_target_period_ms": 150,
+    "primary_gap_ms": 450,
+    "pilot_sweep_start_p95_ms": 118.3493,
+    "separate_sensitivity_gap_ms": 420,
+    "sensitivity_maximum_absolute_covered_mean_difference_w": 0.014377027456788483
+  },
+  "raw_validation": {
+    "sweeps": 9399,
+    "rail_points": 65793,
+    "bus_reads": 159804,
+    "commands": 9137,
+    "read_errors": 0,
+    "remote_inventory_files": 132,
+    "remote_inventory_bytes": 861122432,
+    "remote_inventory_sha256": "61788ae90ffcfe914568d39add8fb360feeedc2b2a0eb4f2bc06b29d03d85d99"
+  },
+  "coverage": {
+    "formal_windows": 12,
+    "repeats_per_kind": 3,
+    "complete_common_coverage_windows": [
+      {
+        "kind": "idle",
+        "repeat": 1
+      },
+      {
+        "kind": "idle",
+        "repeat": 3
+      },
+      {
+        "kind": "full_kv128_step",
+        "repeat": 3
+      }
+    ],
+    "complete_common_coverage_window_count": 3,
+    "covered_only_window_count": 9,
+    "other_full_window_mean_fields_are_null": true,
+    "by_kind": {
+      "idle": [
+        {
+          "repeat": 1,
+          "coverage_fraction": 1.0,
+          "missing_seconds": 0.0,
+          "full_window_mean_w": 11.089656328091069
+        },
+        {
+          "repeat": 2,
+          "coverage_fraction": 0.9996046045838848,
+          "missing_seconds": 0.0476213,
+          "full_window_mean_w": null
+        },
+        {
+          "repeat": 3,
+          "coverage_fraction": 1.0,
+          "missing_seconds": 0.0,
+          "full_window_mean_w": 11.085615866451105
+        }
+      ],
+      "attention_repeat": [
+        {
+          "repeat": 1,
+          "coverage_fraction": 0.9832835578488693,
+          "missing_seconds": 2.01370185,
+          "full_window_mean_w": null
+        },
+        {
+          "repeat": 2,
+          "coverage_fraction": 0.9752731629389669,
+          "missing_seconds": 2.9788677,
+          "full_window_mean_w": null
+        },
+        {
+          "repeat": 3,
+          "coverage_fraction": 0.9773379307379134,
+          "missing_seconds": 2.7206569,
+          "full_window_mean_w": null
+        }
+      ],
+      "mlp_repeat": [
+        {
+          "repeat": 1,
+          "coverage_fraction": 0.9687886354505472,
+          "missing_seconds": 3.74657475,
+          "full_window_mean_w": null
+        },
+        {
+          "repeat": 2,
+          "coverage_fraction": 0.9789404797528968,
+          "missing_seconds": 2.52783215,
+          "full_window_mean_w": null
+        },
+        {
+          "repeat": 3,
+          "coverage_fraction": 0.9836237137423611,
+          "missing_seconds": 1.9653031,
+          "full_window_mean_w": null
+        }
+      ],
+      "full_kv128_step": [
+        {
+          "repeat": 1,
+          "coverage_fraction": 0.9919497227759498,
+          "missing_seconds": 0.52934315,
+          "full_window_mean_w": null
+        },
+        {
+          "repeat": 2,
+          "coverage_fraction": 0.9927881449835142,
+          "missing_seconds": 0.4709532,
+          "full_window_mean_w": null
+        },
+        {
+          "repeat": 3,
+          "coverage_fraction": 1.0,
+          "missing_seconds": 0.0,
+          "full_window_mean_w": 11.131464024287268
+        }
+      ]
+    }
+  },
+  "private_input_boundary": {
+    "public_recomputation_reopened_private_snapshot_bytes": false,
+    "public_recomputation_reopened_original_private_capture_bytes": false,
+    "private_snapshot_member_present": false,
+    "vendor_binary_or_model_weight_member_present": false,
+    "bitstream_member_present": false,
+    "restore_log_pairs_checked": 256,
+    "private_snapshot_aggregate_digest_reestablished_from_bytes": false,
+    "restore_scope": "Write/readback log pairs, addresses, byte lengths and retained frozen identity; aggregate/layer source digest claims use sealed inspection metadata",
+    "numerical_reference_scope": "New input/full-output hashes and host-state hashes versus archived final qualification identity record",
+    "internal_private_byte_audit_retained_in_bundle": true,
+    "independent_full_model_oracle": "NOT_ESTABLISHED",
+    "bundle_declared_exclusions": [
+      "model weights",
+      "vendor binaries",
+      "private full KV snapshot",
+      "bitstream payload",
+      "post-archive downloads and validation sidecars"
+    ]
+  },
+  "measurement_boundary": {
+    "scope": "Seven selected regulator output VOUT times IOUT telemetry on common coverage",
+    "strict_physical_active_mean_w": null,
+    "physical_active_energy_j": null,
+    "whole_board_input_mean_w": null,
+    "sensor_aperture_and_lag": "UNKNOWN",
+    "absolute_accuracy": "NOT_ESTABLISHED",
+    "historical_layers_without_independent_history_oracle": 27,
+    "busy_unobserved_command_ids": [
+      10329,
+      12688,
+      17100
+    ],
+    "busy_inner_unavailable_command_ids": [
+      10329,
+      11048,
+      12688,
+      17100
+    ]
+  },
+  "native_process_exits": {
+    "sampler_native_exit": 0,
+    "workload_native_exit": 0,
+    "launcher_native_exit": 0
+  },
+  "resource_and_cleanup_checks": "PASS",
+  "external_guardian_initial_full_tree_coverage": "NOT_ESTABLISHED_BEFORE_RECORDED_CREATION_TIME_NORMALIZATION",
+  "source_independent_frozen_files_modified": false,
+  "hardware_access_during_recomputation": false
+}
