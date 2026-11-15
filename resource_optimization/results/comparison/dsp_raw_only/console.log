@@ -1,0 +1,332 @@
+
+****** Vivado v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Nov 14 14:02:43 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+Sourcing tcl script '/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/scripts/Vivado_init.tcl'
+vivado-mcp server ready on port 10000
+source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/resume_checkpoint.tcl -notrace
+NATIVE_PHASE=placement_report
+Command: open_checkpoint /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/runs/dsp_raw_only/place/reports/phys_opt_design.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 1569.602 ; gain = 0.000 ; free physical = 92503 ; free virtual = 465207
+INFO: [Device 21-403] Loading part xcvu9p-flga2104-2L-e
+Netlist sorting complete. Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 5253.199 ; gain = 70.477 ; free physical = 85370 ; free virtual = 458105
+INFO: [Netlist 29-17] Analyzing 65590 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 39 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Constraints 18-550] Could not create 'DRIVE' constraint because net 'scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'DRIVE' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'SLEW' constraint because net 'scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'SLEW' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/sys_clk_in' is not directly connected to top level port. 'IBUF_LOW_PWR' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'DRIVE' constraint because net 'scalellm_final_decode16_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'DRIVE' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'SLEW' constraint because net 'scalellm_final_decode16_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'SLEW' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'scalellm_final_decode16_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/sys_clk_in' is not directly connected to top level port. 'IBUF_LOW_PWR' is ignored for synthesis but preserved for implementation.
+Read ShapeDB Complete: Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 7831.738 ; gain = 546.695 ; free physical = 80602 ; free virtual = 453370
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Power 33-23] Power model is not available for xiphy_riu_or
+INFO: [Power 33-23] Power model is not available for genVref.u_hpio_vref
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 22445.426 ; gain = 0.000 ; free physical = 51496 ; free virtual = 424777
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 22445.426 ; gain = 0.000 ; free physical = 51496 ; free virtual = 424777
+Read PlaceDB: Time (s): cpu = 00:00:55 ; elapsed = 00:00:56 . Memory (MB): peak = 22837.793 ; gain = 392.367 ; free physical = 50689 ; free virtual = 423995
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 22837.793 ; gain = 0.000 ; free physical = 50689 ; free virtual = 423995
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:00.24 ; elapsed = 00:00:00.17 . Memory (MB): peak = 22837.793 ; gain = 0.000 ; free physical = 50697 ; free virtual = 424003
+Read Physdb Files: Time (s): cpu = 00:00:57 ; elapsed = 00:00:58 . Memory (MB): peak = 22837.793 ; gain = 392.367 ; free physical = 50696 ; free virtual = 424002
+Restored from archive | CPU: 59.270000 secs | Memory: 1651.811447 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:58 ; elapsed = 00:00:59 . Memory (MB): peak = 22837.793 ; gain = 392.367 ; free physical = 50691 ; free virtual = 423997
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/ip'.
+Netlist sorting complete. Time (s): cpu = 00:00:00.4 ; elapsed = 00:00:00.42 . Memory (MB): peak = 22837.793 ; gain = 0.000 ; free physical = 50598 ; free virtual = 424009
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 9547 instances were transformed.
+  BUFG => BUFGCE: 1 instance 
+  BUFG => BUFGCE (inverted pins: I): 2 instances
+  DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 6 instances
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 2311 instances
+  DSP48E2 => DSP48E2 (inverted pins: OPMODE[5], OPMODE[4], RSTA, RSTB) (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 3072 instances
+  DSP48E2 => DSP48E2 (inverted pins: RSTA, RSTB, RSTM, RSTP) (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 192 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 1 instance 
+  IBUFDS => IBUFDS (DIFFINBUF, IBUFCTRL): 2 instances
+  IOBUFDS => IOBUFDS (DIFFINBUF, IBUFCTRL, INV, OBUFT(x2)): 16 instances
+  IOBUFE3 => IOBUFE3 (IBUFCTRL, INBUF, OBUFT_DCIEN): 144 instances
+  LUT6_2 => LUT6_2 (LUT5, LUT6): 62 instances
+  OBUFDS => OBUFDS_DUAL_BUF (INV, OBUF(x2)): 2 instances
+  RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 2 instances
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 38 instances
+  RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 9 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 453 instances
+  RAM32M16 => RAM32M16 (RAMD32(x14), RAMS32(x2)): 3054 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 50 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 4 instances
+  RAM64M8 => RAM64M8 (RAMD64E(x8)): 110 instances
+  RAM64X1D => RAM64X1D (RAMD64E(x2)): 16 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2025.2 (64-bit) build 6299465
+open_checkpoint: Time (s): cpu = 00:23:39 ; elapsed = 00:07:35 . Memory (MB): peak = 22837.828 ; gain = 21268.227 ; free physical = 50601 ; free virtual = 424014
+LOADED_IDENTITY_PASS TOP=scalellm_final_decode16_bd_wrapper NAME=checkpoint_phys_opt_design PART=xcvu9p-flga2104-2L-e
+report_utilization: Time (s): cpu = 00:00:48 ; elapsed = 00:00:49 . Memory (MB): peak = 22837.828 ; gain = 0.000 ; free physical = 50549 ; free virtual = 424089
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 32 CPUs
+WARNING: [Timing 38-436] There are set_bus_skew constraint(s) in this design. Please run report_bus_skew to ensure that bus skew requirements are met.
+report_timing_summary: Time (s): cpu = 00:26:15 ; elapsed = 00:03:26 . Memory (MB): peak = 25234.801 ; gain = 2396.973 ; free physical = 45613 ; free virtual = 419244
+check_timing: Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 25234.801 ; gain = 0.000 ; free physical = 45533 ; free virtual = 419180
+Command: report_drc -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/checkpoint_001/dsp_raw_only/post_physopt/drc.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 32 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/checkpoint_001/dsp_raw_only/post_physopt/drc.rpt.
+report_drc completed successfully
+report_drc: Time (s): cpu = 00:09:43 ; elapsed = 00:01:59 . Memory (MB): peak = 25792.121 ; gain = 557.320 ; free physical = 44399 ; free virtual = 418109
+report_utilization: Time (s): cpu = 00:02:28 ; elapsed = 00:02:31 . Memory (MB): peak = 25792.121 ; gain = 0.000 ; free physical = 44029 ; free virtual = 418127
+report_utilization: Time (s): cpu = 00:01:25 ; elapsed = 00:01:27 . Memory (MB): peak = 25792.121 ; gain = 0.000 ; free physical = 43978 ; free virtual = 418076
+report_design_analysis: Time (s): cpu = 00:01:04 ; elapsed = 00:01:04 . Memory (MB): peak = 25792.121 ; gain = 0.000 ; free physical = 44001 ; free virtual = 418100
+report_high_fanout_nets: Time (s): cpu = 00:00:46 ; elapsed = 00:00:48 . Memory (MB): peak = 25792.121 ; gain = 0.000 ; free physical = 44001 ; free virtual = 418101
+NATIVE_PHASE=selection_wait
+NATIVE_PHASE=route
+LOADED_IDENTITY_PASS TOP=scalellm_final_decode16_bd_wrapper NAME=checkpoint_phys_opt_design PART=xcvu9p-flga2104-2L-e
+Command: route_design -directive Default
+Attempting to get a license for feature 'Implementation' and/or device 'xcvu9p'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcvu9p'
+
+
+Starting Routing Task
+INFO: [Route 35-270] Using Router directive 'Default'.
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 32 CPUs
+
+Phase 1 Build RT Design
+Checksum: PlaceDB: 2a525b60 ConstDB: 0 ShapeSum: 2f51eb26 RouteDB: cefe180b
+Nodegraph reading from file.  Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 25792.121 ; gain = 0.000 ; free physical = 68131 ; free virtual = 442129
+Post Restoration Checksum: NetGraph: 4211906f | NumContArr: cddf5ea3 | Constraints: 12c3511f | Timing: c2a8fa9d
+Phase 1 Build RT Design | Checksum: 1e55d3ace
+
+Time (s): cpu = 00:17:05 ; elapsed = 00:01:53 . Memory (MB): peak = 25792.121 ; gain = 0.000 ; free physical = 68156 ; free virtual = 442154
+
+Phase 2 Router Initialization
+
+Phase 2.1 Fix Topology Constraints
+Phase 2.1 Fix Topology Constraints | Checksum: 1e55d3ace
+
+Time (s): cpu = 00:17:23 ; elapsed = 00:01:57 . Memory (MB): peak = 25792.121 ; gain = 0.000 ; free physical = 68176 ; free virtual = 442174
+
+Phase 2.2 Pre Route Cleanup
+Phase 2.2 Pre Route Cleanup | Checksum: 1e55d3ace
+
+Time (s): cpu = 00:17:37 ; elapsed = 00:01:58 . Memory (MB): peak = 25792.121 ; gain = 0.000 ; free physical = 68177 ; free virtual = 442175
+INFO: [Route 35-445] Local routing congestion detected. At least 31 CLBs have high pin utilization, which can impact runtime and timing closure. Top ten contiguous CLBs with high pin utilization are:
+	(265 366) -> (265 370)	[CLEM_X37Y546 -> CLEM_X37Y542]
+	(262 366) -> (262 369)	[CLEL_R_X36Y546 -> CLEL_R_X36Y543]
+	(120 475) -> (120 476)	[CLEM_X15Y441 -> CLEM_X15Y440]
+
+Phase 2.3 Global Clock Net Routing
+ Number of Nodes with overlaps = 0
+Phase 2.3 Global Clock Net Routing | Checksum: 2170aa58d
+
+Time (s): cpu = 00:19:27 ; elapsed = 00:02:43 . Memory (MB): peak = 27008.574 ; gain = 1216.453 ; free physical = 66962 ; free virtual = 440960
+
+Phase 2.4 Update Timing
+Phase 2.4 Update Timing | Checksum: 212c452e3
+
+Time (s): cpu = 00:37:06 ; elapsed = 00:07:17 . Memory (MB): peak = 27008.574 ; gain = 1216.453 ; free physical = 66930 ; free virtual = 440930
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.553  | TNS=0.000  | WHS=-0.517 | THS=-1069.521|
+
+
+Phase 2.5 Update Timing for Bus Skew
+
+Phase 2.5.1 Update Timing
+Phase 2.5.1 Update Timing | Checksum: 2fab01179
+
+Time (s): cpu = 01:14:48 ; elapsed = 00:11:33 . Memory (MB): peak = 27836.848 ; gain = 2044.727 ; free physical = 65999 ; free virtual = 439999
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.553  | TNS=0.000  | WHS=-0.564 | THS=-1751.589|
+
+WARNING: [Route 35-462] Failed to populate 2 paths in bus skew group (internal name : grp_84). These paths are:
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command1_cdc/dest_hsdata_ff_reg[16]/D
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command1_cdc/dest_hsdata_ff_reg[14]/D
+
+WARNING: [Route 35-462] Failed to populate 2 paths in bus skew group (internal name : grp_85). These paths are:
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command0_cdc/dest_hsdata_ff_reg[16]/D
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command0_cdc/dest_hsdata_ff_reg[14]/D
+
+WARNING: [Route 35-462] Failed to populate 2 paths in bus skew group (internal name : grp_86). These paths are:
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command1_cdc/dest_hsdata_ff_reg[15]/D
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command1_cdc/dest_hsdata_ff_reg[17]/D
+
+WARNING: [Route 35-462] Failed to populate 3 paths in bus skew group (internal name : grp_87). These paths are:
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command0_cdc/dest_hsdata_ff_reg[17]/D
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command0_cdc/dest_hsdata_ff_reg[16]/D
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command0_cdc/dest_hsdata_ff_reg[15]/D
+
+Phase 2.5 Update Timing for Bus Skew | Checksum: 259b7d03a
+
+Time (s): cpu = 01:14:55 ; elapsed = 00:11:35 . Memory (MB): peak = 27836.848 ; gain = 2044.727 ; free physical = 66020 ; free virtual = 440020
+
+Phase 2.6 Soft Constraint Pins - Fast Budgeting
+Phase 2.6 Soft Constraint Pins - Fast Budgeting | Checksum: 259b7d03a
+
+Time (s): cpu = 01:15:45 ; elapsed = 00:11:44 . Memory (MB): peak = 27836.848 ; gain = 2044.727 ; free physical = 66021 ; free virtual = 440021
+INFO: [Route 35-445] Local routing congestion detected. At least 31 CLBs have high pin utilization, which can impact runtime and timing closure. Top ten contiguous CLBs with high pin utilization are:
+	(265 366) -> (265 370)	[CLEM_X37Y546 -> CLEM_X37Y542]
+	(262 366) -> (262 369)	[CLEL_R_X36Y546 -> CLEL_R_X36Y543]
+	(120 475) -> (120 476)	[CLEM_X15Y441 -> CLEM_X15Y440]
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 2.91296e-05 %
+  Global Horizontal Routing Utilization  = 0.00013436 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 1637414
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 1476549
+  Number of Partially Routed Nets     = 160865
+  Number of Node Overlaps             = 0
+
+Phase 2 Router Initialization | Checksum: 1ed7f479f
+
+Time (s): cpu = 01:16:59 ; elapsed = 00:12:02 . Memory (MB): peak = 27836.848 ; gain = 2044.727 ; free physical = 66035 ; free virtual = 440035
+
+Phase 3 Global Routing
+Phase 3 Global Routing | Checksum: 1ed7f479f
+
+Time (s): cpu = 01:17:03 ; elapsed = 00:12:03 . Memory (MB): peak = 27836.848 ; gain = 2044.727 ; free physical = 66038 ; free virtual = 440038
+
+Phase 4 Initial Routing
+
+Phase 4.1 Initial Net Routing Pass
+Phase 4.1 Initial Net Routing Pass | Checksum: 114b0936a
+
+Time (s): cpu = 01:29:41 ; elapsed = 00:14:46 . Memory (MB): peak = 27836.848 ; gain = 2044.727 ; free physical = 66022 ; free virtual = 440023
+Phase 4 Initial Routing | Checksum: 124692b1e
+
+Time (s): cpu = 01:31:00 ; elapsed = 00:14:54 . Memory (MB): peak = 27836.848 ; gain = 2044.727 ; free physical = 66002 ; free virtual = 440002
+
+INFO: [Route 35-449] Initial Estimated Congestion
+ ________________________________________________________________________
+|           | Global Congestion | Long Congestion   | Short Congestion  |
+|           |___________________|___________________|___________________|
+| Direction | Size   | % Tiles  | Size   | % Tiles  | Size   | % Tiles  |
+|___________|________|__________|________|__________|________|__________|
+|      NORTH|   32x32|      5.20| 128x128|     13.69|   32x32|      3.72|
+|___________|________|__________|________|__________|________|__________|
+|      SOUTH|   32x32|      2.55|   32x32|      9.42|   16x16|      1.66|
+|___________|________|__________|________|__________|________|__________|
+|       EAST|   16x16|      1.87|   64x64|      3.86|   32x32|      5.04|
+|___________|________|__________|________|__________|________|__________|
+|       WEST|   32x32|      3.37|   32x32|      5.51|   32x32|      6.81|
+|___________|________|__________|________|__________|________|__________|
+Congestion Report
+GLOBAL Congestion bounded by tiles (Lower Left Tile -> Upper Right Tile):
+NORTH
+	INT_X9Y649->INT_X24Y744 (CLEM_X9Y649->CLEL_R_X24Y744)
+	INT_X32Y564->INT_X47Y579 (BRAM_X32Y560->CLEL_R_X47Y579)
+	INT_X16Y516->INT_X31Y531 (CLEM_X16Y516->CLEL_R_X31Y531)
+	INT_X48Y388->INT_X63Y403 (CLEM_X48Y388->CLEL_R_X63Y403)
+	INT_X48Y372->INT_X63Y387 (CLEM_X48Y372->CLEL_R_X63Y387)
+SOUTH
+	INT_X22Y545->INT_X53Y576 (LAG_LAG_X21Y545->CLEL_R_X53Y576)
+	INT_X18Y547->INT_X49Y578 (CLEM_X18Y547->CLEL_R_X49Y578)
+	INT_X18Y546->INT_X49Y577 (CLEM_X18Y546->CLEL_R_X49Y577)
+	INT_X18Y545->INT_X49Y576 (CLEM_X18Y545->CLEL_R_X49Y576)
+	INT_X18Y544->INT_X49Y575 (CLEM_X18Y544->CLEL_R_X49Y575)
+EAST
+	INT_X22Y488->INT_X41Y511 (CLEM_X22Y488->CLEL_R_X41Y511)
+	INT_X24Y548->INT_X31Y555 (CLEM_X24Y548->CLEL_R_X31Y555)
+	INT_X24Y547->INT_X31Y554 (CLEM_X24Y547->CLEL_R_X31Y554)
+	INT_X24Y507->INT_X31Y514 (CLEM_X24Y507->CLEL_R_X31Y514)
+	INT_X32Y555->INT_X39Y562 (BRAM_X32Y555->DSP_X39Y560)
+WEST
+	INT_X49Y370->INT_X72Y401 (CLEM_X49Y370->CLEL_R_X72Y401)
+	INT_X49Y384->INT_X64Y399 (CLEM_X49Y384->DSP_X64Y395)
+	INT_X49Y383->INT_X64Y398 (CLEM_X49Y383->DSP_X64Y395)
+	INT_X49Y382->INT_X64Y397 (CLEM_X49Y382->DSP_X64Y395)
+	INT_X49Y381->INT_X64Y396 (CLEM_X49Y381->DSP_X64Y395)
+LONG Congestion bounded by tiles (Lower Left Tile -> Upper Right Tile):
+NORTH
+	INT_X1Y630->INT_X64Y821 (CLEM_X1Y630->DSP_X64Y820)
+	INT_X0Y708->INT_X63Y771 (GTY_L_X0Y660->CLEL_R_X63Y771)
+	INT_X0Y644->INT_X63Y707 (GTY_L_X0Y600->CLEL_R_X63Y707)
+	INT_X0Y707->INT_X63Y770 (GTY_L_X0Y660->CLEL_R_X63Y770)
+	INT_X0Y643->INT_X63Y706 (GTY_L_X0Y600->CLEL_R_X63Y706)
+SOUTH
+	INT_X22Y685->INT_X69Y732 (CLEM_X22Y685->DSP_X69Y730)
+	INT_X32Y548->INT_X63Y579 (BRAM_X32Y545->CLEL_R_X63Y579)
+	INT_X32Y547->INT_X63Y578 (BRAM_X32Y545->CLEL_R_X63Y578)
+	INT_X32Y546->INT_X63Y577 (BRAM_X32Y545->CLEL_R_X63Y577)
+	INT_X32Y545->INT_X63Y576 (BRAM_X32Y545->CLEL_R_X63Y576)
+EAST
+	INT_X38Y648->INT_X69Y711 (BRAM_X38Y645->DSP_X69Y710)
+	INT_X34Y665->INT_X65Y696 (CLEM_X34Y665->CLEL_R_X65Y696)
+	INT_X34Y664->INT_X65Y695 (CLEM_X34Y664->CLEL_R_X65Y695)
+	INT_X34Y663->INT_X65Y694 (CLEM_X34Y663->CLEL_R_X65Y694)
+	INT_X34Y662->INT_X65Y693 (CLEM_X34Y662->CLEL_R_X65Y693)
+WEST
+	INT_X34Y316->INT_X49Y363 (CLEM_X34Y316->CLEL_R_X49Y363)
+	INT_X64Y436->INT_X79Y451 (CLEM_X64Y436->CLEL_R_X79Y451)
+	INT_X32Y324->INT_X47Y339 (BRAM_X32Y320->CLEL_R_X47Y339)
+	INT_X32Y323->INT_X47Y338 (BRAM_X32Y320->CLEL_R_X47Y338)
+	INT_X32Y322->INT_X47Y337 (BRAM_X32Y320->CLEL_R_X47Y337)
+SHORT Congestion bounded by tiles (Lower Left Tile -> Upper Right Tile):
+NORTH
+	INT_X50Y321->INT_X57Y400 (LAG_LAG_X49Y321->CLEL_R_X57Y400)
+	INT_X40Y359->INT_X55Y374 (CLEM_X40Y359->CLEL_R_X55Y374)
+	INT_X40Y358->INT_X55Y373 (CLEM_X40Y358->CLEL_R_X55Y373)
+	INT_X43Y356->INT_X58Y371 (URAM_URAM_DELAY_FT_X42Y345->CLEL_R_X58Y371)
+	INT_X43Y355->INT_X58Y370 (URAM_URAM_DELAY_FT_X42Y345->CLEL_R_X58Y370)
+SOUTH
+	INT_X25Y546->INT_X40Y561 (CLEM_X25Y546->CLEL_R_X40Y561)
+	INT_X25Y545->INT_X40Y560 (CLEM_X25Y545->CLEL_R_X40Y560)
+	INT_X26Y547->INT_X41Y562 (URAM_URAM_FT_X25Y540->CLEL_R_X41Y562)
+	INT_X26Y546->INT_X41Y561 (URAM_URAM_FT_X25Y540->CLEL_R_X41Y561)
+EAST
+	INT_X27Y547->INT_X50Y586 (CLEM_X27Y547->CLEL_R_X50Y586)
+	INT_X32Y561->INT_X47Y576 (BRAM_X32Y560->CLEL_R_X47Y576)
+	INT_X32Y560->INT_X47Y575 (BRAM_X32Y560->CLEL_R_X47Y575)
+	INT_X32Y559->INT_X47Y574 (BRAM_X32Y555->CLEL_R_X47Y574)
+	INT_X32Y558->INT_X47Y573 (BRAM_X32Y555->CLEL_R_X47Y573)
+WEST
+	INT_X51Y449->INT_X82Y480 (CLEM_X51Y449->CLEL_R_X82Y480)
+	INT_X50Y462->INT_X65Y477 (CLEM_X50Y462->CLEL_R_X65Y477)
+	INT_X50Y461->INT_X65Y476 (CLEM_X50Y461->CLEL_R_X65Y476)
+	INT_X50Y460->INT_X65Y475 (CLEM_X50Y460->CLEL_R_X65Y475)
+	INT_X51Y465->INT_X66Y480 (CLEM_X51Y465->CLEL_R_X66Y480)
+
+INFO: [Route 35-448] Estimated Global/Short routing congestion is level 5 (32x32). Congestion levels of 5 and greater can reduce routability and impact timing closure.
+
+INFO: [Route 35-581] Estimated Timing congestion is level 7 (128x128). Congestion levels of 5 and greater may impact timing closure.
+
+Phase 5 Rip-up And Reroute
+
+Phase 5.1 Global Iteration 0
+ Number of Nodes with overlaps = 882053
+ Number of Nodes with overlaps = 277392
+ Number of Nodes with overlaps = 104902
+ Number of Nodes with overlaps = 49025
+ Number of Nodes with overlaps = 27244
+ Number of Nodes with overlaps = 17341
+ Number of Nodes with overlaps = 12570
+ Number of Nodes with overlaps = 9790
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-1.383 | TNS=-1208.901| WHS=N/A    | THS=N/A    |
+
+WARNING: [Route 35-447] Congestion is preventing the router from routing all nets. The router will prioritize the successful completion of routing all nets over timing optimizations.
+Phase 5.1 Global Iteration 0 | Checksum: 334e47051
+
+Time (s): cpu = 09:40:45 ; elapsed = 02:40:34 . Memory (MB): peak = 27953.137 ; gain = 2161.016 ; free physical = 64953 ; free virtual = 439946
+
+Phase 5.2 Global Iteration 1
+ Number of Nodes with overlaps = 783820
+ Number of Nodes with overlaps = 493468
+ Number of Nodes with overlaps = 257473
+ Number of Nodes with overlaps = 140697
+ Number of Nodes with overlaps = 80555

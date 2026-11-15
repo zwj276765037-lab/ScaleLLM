@@ -1,0 +1,38 @@
+{
+  "schema": "scalellm_dsp_ddr_health_v1",
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "attention_input",
+      "channel": 0,
+      "local_address": 1448083456,
+      "bytes": 196608,
+      "write_bytes": 196608,
+      "read_bytes": 196608,
+      "expected_sha256": "4d26b8a3af3b47566bdb6d0f35d2458f3f1bd219612cd6850d0c9fe6a04e104c",
+      "readback_sha256": "4d26b8a3af3b47566bdb6d0f35d2458f3f1bd219612cd6850d0c9fe6a04e104c",
+      "byte_exact": true,
+      "status": "PASS"
+    },
+    {
+      "name": "mlp_input",
+      "channel": 1,
+      "local_address": 310378496,
+      "bytes": 196608,
+      "write_bytes": 196608,
+      "read_bytes": 196608,
+      "expected_sha256": "0d6f099031c4abdc6a0e21eb95860a33f8c2617a6e0c311004a36392dc170e83",
+      "readback_sha256": "0d6f099031c4abdc6a0e21eb95860a33f8c2617a6e0c311004a36392dc170e83",
+      "byte_exact": true,
+      "status": "PASS"
+    }
+  ],
+  "transport_timeout_ms": 5000,
+  "final_csr": {
+    "STATUS": 0,
+    "ADMISSION_ERROR": 0,
+    "DONE_ERROR": 0
+  },
+  "seconds": 0.10899999993853271,
+  "session_closed": true
+}

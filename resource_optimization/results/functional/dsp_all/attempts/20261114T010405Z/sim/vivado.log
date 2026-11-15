@@ -1,0 +1,130 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Sat Nov 14 09:04:49 2026
+# Process ID         : 2946140
+# Current directory  : /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/sim
+# Command line       : vivado -mode batch -source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/sim_netlist.tcl -log /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/sim/vivado.log -journal /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/sim/vivado.jou -tclargs /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/sim /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/synth/post_synth_funcsim.v /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/mlp_sc_post_synth_tb.sv
+# Log file           : /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/sim/vivado.log
+# Journal file       : /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/sim/vivado.jou
+# Running On         : user
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.4 LTS
+# Processor Detail   : Intel(R) Xeon(R) Gold 6248R CPU @ 3.00GHz
+# CPU Frequency      : 1200.121 MHz
+# CPU Physical cores : 48
+# CPU Logical cores  : 96
+# Host memory        : 540583 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 549173 MB
+# Available Virtual  : 483345 MB
+#-----------------------------------------------------------
+Sourcing tcl script '/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/scripts/Vivado_init.tcl'
+vivado-mcp server ready on port 10000
+source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/sim_netlist.tcl
+# set_param general.maxThreads 4
+# set run_dir [file normalize [lindex $argv 0]]
+# set netlist [file normalize [lindex $argv 1]]
+# set tb [file normalize [lindex $argv 2]]
+# foreach source [list $netlist $tb] {
+#     if {![file isfile $source]} {error "Missing simulation source: $source"}
+# }
+# puts "LEAF_NETLIST_SIM_IDENTITY netlist=$netlist tb=$tb tool=[version -short]"
+LEAF_NETLIST_SIM_IDENTITY netlist=/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/synth/post_synth_funcsim.v tb=/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/mlp_sc_post_synth_tb.sv tool=2025.2
+# create_project mlp_sc_post_synth_sim [file join $run_dir project] -part xcvu9p-flga2104-2L-e
+# add_files -fileset sim_1 [list $netlist $tb]
+# set_property top mlp_sc_recover2_tb [get_filesets sim_1]
+# set_property xsim.simulate.runtime 0ns [get_filesets sim_1]
+# update_compile_order -fileset sim_1
+# launch_simulation -simset sim_1 -mode behavioral
+Command: launch_simulation  -simset sim_1 -mode behavioral
+INFO: [Vivado 12-25911] Executing simulation for 'XSim' simulator
+INFO: [Project 1-5737] Running on host user (64) - Ubuntu 24.04.4 LTS
+INFO: [Vivado 12-28535] Process started - Sat Nov 14 09:04:58 2026
+
+INFO: [Vivado 12-12493] Simulation top is 'mlp_sc_recover2_tb'
+INFO: [Vivado 12-5682] Launching behavioral simulation in '/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/sim/project/mlp_sc_post_synth_sim.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from '/home/user/EDA-202/vivado/vivado_2025.2/2025.2/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'mlp_sc_recover2_tb' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in '/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/sim/project/mlp_sc_post_synth_sim.sim/sim_1/behav/xsim'
+xvlog --incr --relax -L uvm -prj mlp_sc_recover2_tb_vlog.prj
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/synth/post_synth_funcsim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module hap_a8w4_scalecode_recover2_lut
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/mlp_sc_post_synth_tb.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mlp_sc_recover2_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/sim/project/mlp_sc_post_synth_sim.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'glbl' [/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/sim/project/mlp_sc_post_synth_sim.sim/sim_1/behav/xsim/glbl.v:6]
+Waiting for jobs to finish...
+No pending jobs, compilation finished.
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in '/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/sim/project/mlp_sc_post_synth_sim.sim/sim_1/behav/xsim'
+xelab --incr --debug typical --relax --mt 4 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot mlp_sc_recover2_tb_behav xil_defaultlib.mlp_sc_recover2_tb xil_defaultlib.glbl -log elaborate.log
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: /home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/bin/unwrapped/lnx64.o/xelab --incr --debug typical --relax --mt 4 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot mlp_sc_recover2_tb_behav xil_defaultlib.mlp_sc_recover2_tb xil_defaultlib.glbl -log elaborate.log 
+Using 4 slave threads.
+WARNING: [XSIM 43-3431] One or more environment variables have been detected which affect the operation of the C compiler. These are typically not set in standard installations and are not tested by AMD, however they may be appropriate for your system, so the flow will attempt to continue.  If errors occur, try running xelab with the "-mt off -v 1" switches to see more information from the C compiler. The following environment variables have been detected:
+    LIBRARY_PATH
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module unisims_ver.LUT6(INIT=64'b010001000000010001...
+Compiling module unisims_ver.x_lut2_mux4
+Compiling module unisims_ver.LUT2(INIT=4'b1011)
+Compiling module unisims_ver.x_lut3_mux8
+Compiling module unisims_ver.LUT3
+Compiling module unisims_ver.FDRE_default
+Compiling module unisims_ver.DSP48E2(ALUMODEREG=0,BCASCREG=0,...
+Compiling module unisims_ver.LUT4
+Compiling module unisims_ver.LUT5(INIT=32'b01010001010101010)
+Compiling module unisims_ver.x_lut1_mux2
+Compiling module unisims_ver.LUT1(INIT=2'b01)
+Compiling module xil_defaultlib.hap_a8w4_scalecode_recover2_lut
+Compiling module xil_defaultlib.mlp_sc_recover2_tb
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot mlp_sc_recover2_tb_behav
+execute_script: Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 1648.426 ; gain = 0.000 ; free physical = 56544 ; free virtual = 460404
+INFO: [USF-XSim-69] 'elaborate' step finished in '5' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in '/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/sim/project/mlp_sc_post_synth_sim.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "mlp_sc_recover2_tb_behav -key {Behavioral:sim_1:Functional:mlp_sc_recover2_tb} -tclbatch {mlp_sc_recover2_tb.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source mlp_sc_recover2_tb.tcl
+## set curr_wave [current_wave_config]
+## if { [string length $curr_wave] == 0 } {
+##   if { [llength [get_objects]] > 0} {
+##     add_wave /
+##     set_property needs_save false [current_wave_config]
+##   } else {
+##      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+##   }
+## }
+## run 0ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'mlp_sc_recover2_tb_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 0ns
+launch_simulation: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1684.617 ; gain = 45.062 ; free physical = 56530 ; free virtual = 460390
+# run all
+SIM_STATS cycles=137372 directed=567 sweep=131072 random=4096 accepted_each=135747 emitted_each=135741 canceled_each=6 max_ii1=131072 latency_checks=394917 input_stall_cycles=1351 output_hold_cycles=1499 reset_edges=24 clear_edges=3 seed=6d2b79f5
+HARDWARE_AGENT_SIM_PASS mlp_sc_post_synth_candidate
+$finish called at time : 1373717 ns : File "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/mlp_sc_post_synth_tb.sv" Line 468
+run: Time (s): cpu = 00:00:09 ; elapsed = 00:00:16 . Memory (MB): peak = 1684.617 ; gain = 0.000 ; free physical = 52570 ; free virtual = 456490
+# close_sim
+INFO: xsimkernel Simulation Memory Usage: 288400 KB (Peak: 341312 KB), Simulation CPU Usage: 16870 ms
+INFO: [Simtcl 6-16] Simulation closed
+# close_project
+INFO: [Common 17-206] Exiting Vivado at Sat Nov 14 09:05:24 2026...

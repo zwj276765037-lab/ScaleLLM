@@ -15,6 +15,9 @@ PROJECT = 'ScaleLLM_Final_Decode16_80MHz'
 BIT_NAME = PROJECT + '.bit'
 BIT_SHA256 = '96df1a5c1bf4174921bc02ccd88df4066dece3d62b491acb3106bb90ac0ffc85'
 BIT_SIZE = 80159263
+OPTIMIZED_ROOT = 'resource_optimization'
+OPTIMIZED_BIT = OPTIMIZED_ROOT + '/hardware/bitstream/' + BIT_NAME
+OPTIMIZED_BIT_SHA256 = '5d78519aa10695be564f668d5a41a0e5554e282c31d39f648534a7dc01ab72f7'
 MANIFEST = 'RELEASE_MANIFEST.json'
 SKIP_PARTS = {'.git', '__pycache__', '.pytest_cache', '.Xil', '.venv'}
 LOCAL_ROOTS = {'build', 'dist', 'runs', 'outputs', 'models', 'artifacts', 'release-check'}
@@ -54,7 +57,7 @@ def check_file(root: Path, name: str) -> Path:
     rel = PurePosixPath(name)
     if (set(rel.parts) & SKIP_PARTS or rel.parts[0] in LOCAL_ROOTS
             or path.suffix.lower() in FORBIDDEN_SUFFIXES or path.name.startswith('.env')
-            or (path.suffix == '.bit' and name != 'bitstream/' + BIT_NAME)):
+            or (path.suffix == '.bit' and name not in {'bitstream/' + BIT_NAME, OPTIMIZED_BIT})):
         raise ValueError(f'Excluded data type selected: {name}')
     return path
 
@@ -80,6 +83,21 @@ def check_sources(root: Path, names: set[str]) -> None:
     bit = root / name
     if bit.stat().st_size != BIT_SIZE or sha256(bit) != BIT_SHA256:
         raise ValueError('Released bitstream differs from the board-tested identity')
+    optimized_manifest = OPTIMIZED_ROOT + '/manifest.json'
+    if optimized_manifest in names or OPTIMIZED_BIT in names:
+        if optimized_manifest not in names or OPTIMIZED_BIT not in names:
+            raise ValueError('Optimized version manifest/bitstream must be selected together')
+        version = json.loads((root / optimized_manifest).read_text())
+        for relative, entry in version['files'].items():
+            name = OPTIMIZED_ROOT + '/' + safe_relative(relative)
+            if name not in names:
+                raise ValueError('Optimized version dependency omitted: ' + name)
+            path = check_file(root, name)
+            if path.stat().st_size != entry['bytes'] or sha256(path) != entry['sha256']:
+                raise ValueError('Optimized version identity mismatch: ' + name)
+        bit = root / OPTIMIZED_BIT
+        if bit.stat().st_size != BIT_SIZE or sha256(bit) != OPTIMIZED_BIT_SHA256:
+            raise ValueError('Optimized bitstream differs from the board-tested identity')
 
 
 def selected_files(config: dict, root: Path | None = None) -> dict[str, Path]:

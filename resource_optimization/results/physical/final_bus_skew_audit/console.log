@@ -1,0 +1,85 @@
+
+****** Vivado v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Nov 14 21:47:56 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+Sourcing tcl script '/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/scripts/Vivado_init.tcl'
+vivado-mcp server ready on port 10001
+source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/bus_skew_audit.tcl -notrace
+Command: open_checkpoint /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/route/routed.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.04 . Memory (MB): peak = 1567.074 ; gain = 0.000 ; free physical = 56567 ; free virtual = 433794
+INFO: [Device 21-403] Loading part xcvu9p-flga2104-2L-e
+Netlist sorting complete. Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 5245.312 ; gain = 69.477 ; free physical = 53088 ; free virtual = 430318
+INFO: [Netlist 29-17] Analyzing 64630 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 40 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Constraints 18-550] Could not create 'DRIVE' constraint because net 'scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'DRIVE' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'SLEW' constraint because net 'scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'SLEW' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/sys_clk_in' is not directly connected to top level port. 'IBUF_LOW_PWR' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'DRIVE' constraint because net 'scalellm_final_decode16_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'DRIVE' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'SLEW' constraint because net 'scalellm_final_decode16_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'SLEW' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'scalellm_final_decode16_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/sys_clk_in' is not directly connected to top level port. 'IBUF_LOW_PWR' is ignored for synthesis but preserved for implementation.
+Read ShapeDB Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 7578.047 ; gain = 250.047 ; free physical = 50802 ; free virtual = 428033
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Power 33-23] Power model is not available for xiphy_riu_or
+INFO: [Power 33-23] Power model is not available for genVref.u_hpio_vref
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 22176.719 ; gain = 0.000 ; free physical = 36614 ; free virtual = 413850
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 22176.719 ; gain = 0.000 ; free physical = 36614 ; free virtual = 413850
+Read PlaceDB: Time (s): cpu = 00:00:59 ; elapsed = 00:01:00 . Memory (MB): peak = 22515.375 ; gain = 338.656 ; free physical = 36276 ; free virtual = 413514
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 22515.375 ; gain = 0.000 ; free physical = 36276 ; free virtual = 413514
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:44 ; elapsed = 00:00:13 . Memory (MB): peak = 22639.367 ; gain = 123.992 ; free physical = 36107 ; free virtual = 413344
+Read Physdb Files: Time (s): cpu = 00:01:45 ; elapsed = 00:01:15 . Memory (MB): peak = 22639.367 ; gain = 462.648 ; free physical = 36106 ; free virtual = 413344
+Restored from archive | CPU: 186.000000 secs | Memory: 2320.698570 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:01:47 ; elapsed = 00:01:17 . Memory (MB): peak = 22639.367 ; gain = 462.648 ; free physical = 36107 ; free virtual = 413344
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/ip'.
+Netlist sorting complete. Time (s): cpu = 00:00:00.45 ; elapsed = 00:00:00.49 . Memory (MB): peak = 22639.367 ; gain = 0.000 ; free physical = 36015 ; free virtual = 413357
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 9736 instances were transformed.
+  DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 6 instances
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 2311 instances
+  DSP48E2 => DSP48E2 (inverted pins: OPMODE[5], OPMODE[4], RSTA, RSTB) (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 3072 instances
+  DSP48E2 => DSP48E2 (inverted pins: RSTA, RSTM, RSTP) (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 192 instances
+  DSP48E2 => DSP48E2 (inverted pins: RSTP) (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 192 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 1 instance 
+  IBUFDS => IBUFDS (DIFFINBUF, IBUFCTRL): 2 instances
+  IOBUFDS => IOBUFDS (DIFFINBUF, IBUFCTRL, INV, OBUFT(x2)): 16 instances
+  IOBUFE3 => IOBUFE3 (IBUFCTRL, INBUF, OBUFT_DCIEN): 144 instances
+  LUT6_2 => LUT6_2 (LUT5, LUT6): 62 instances
+  OBUFDS => OBUFDS_DUAL_BUF (INV, OBUF(x2)): 2 instances
+  RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 2 instances
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 38 instances
+  RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 9 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 453 instances
+  RAM32M16 => RAM32M16 (RAMD32(x14), RAMS32(x2)): 3054 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 50 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 4 instances
+  RAM64M8 => RAM64M8 (RAMD64E(x8)): 110 instances
+  RAM64X1D => RAM64X1D (RAMD64E(x2)): 16 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2025.2 (64-bit) build 6299465
+open_checkpoint: Time (s): cpu = 00:25:32 ; elapsed = 00:08:09 . Memory (MB): peak = 22639.402 ; gain = 21072.328 ; free physical = 36024 ; free virtual = 413366
+report_route_status: Time (s): cpu = 00:05:11 ; elapsed = 00:01:25 . Memory (MB): peak = 23374.211 ; gain = 734.809 ; free physical = 32704 ; free virtual = 410196
+report_route_status: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 23374.211 ; gain = 0.000 ; free physical = 32771 ; free virtual = 410267
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 32 CPUs
+report_bus_skew: Time (s): cpu = 00:19:04 ; elapsed = 00:01:46 . Memory (MB): peak = 23758.211 ; gain = 384.000 ; free physical = 34714 ; free virtual = 412405
+close_design: Time (s): cpu = 00:00:35 ; elapsed = 00:00:41 . Memory (MB): peak = 23758.211 ; gain = 0.000 ; free physical = 34308 ; free virtual = 411898
+FINAL_BUS_SKEW_AUDIT_CAPTURED
+INFO: [Common 17-206] Exiting Vivado at Sat Nov 14 22:01:20 2026...

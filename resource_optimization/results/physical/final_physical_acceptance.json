@@ -1,0 +1,149 @@
+{
+  "status": "PASS",
+  "candidate": "dsp_all",
+  "source_checkpoint": "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/route/routed.dcp",
+  "source_checkpoint_sha256": "3780de3ab72a506a63ee1d59ecea6c7d26e1f2f29ceb7aa5be2ee81acb867259",
+  "route_gate": "PASS",
+  "additional_hold_repair": "NOT_REQUIRED",
+  "bus_skew": {
+    "constraints": 94,
+    "minimum_slack_ns": 3.103,
+    "violations": 0,
+    "command_groups": [
+      {
+        "id": 85,
+        "position": 512,
+        "requirement_ns": 10.0,
+        "actual_ns": 1.42,
+        "slack_ns": 8.58
+      },
+      {
+        "id": 86,
+        "position": 514,
+        "requirement_ns": 10.0,
+        "actual_ns": 0.993,
+        "slack_ns": 9.007
+      },
+      {
+        "id": 87,
+        "position": 516,
+        "requirement_ns": 10.0,
+        "actual_ns": 1.357,
+        "slack_ns": 8.643
+      },
+      {
+        "id": 88,
+        "position": 518,
+        "requirement_ns": 10.0,
+        "actual_ns": 1.342,
+        "slack_ns": 8.658
+      }
+    ],
+    "endpoint_coverage": [
+      {
+        "pin": "scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command0_cdc/dest_hsdata_ff_reg[14]/D",
+        "pin_match_count": 1,
+        "cell_match_count": 1,
+        "classification": "FDRE_SHARED_SIGNAL_DRIVER_COVERED_BY_FINAL_BUS_SKEW",
+        "driver": "scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command0_cdc/src_hsdata_ff_reg[16]",
+        "constraint_id": 86,
+        "constraint_slack_ns": 9.007
+      },
+      {
+        "pin": "scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command0_cdc/dest_hsdata_ff_reg[16]/D",
+        "pin_match_count": 1,
+        "cell_match_count": 1,
+        "classification": "FDRE_SHARED_SIGNAL_DRIVER_COVERED_BY_FINAL_BUS_SKEW",
+        "driver": "scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command0_cdc/src_hsdata_ff_reg[16]",
+        "constraint_id": 86,
+        "constraint_slack_ns": 9.007
+      },
+      {
+        "pin": "scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command1_cdc/dest_hsdata_ff_reg[14]/D",
+        "pin_match_count": 1,
+        "cell_match_count": 1,
+        "classification": "FDRE_SHARED_SIGNAL_DRIVER_COVERED_BY_FINAL_BUS_SKEW",
+        "driver": "scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command1_cdc/src_hsdata_ff_reg[16]",
+        "constraint_id": 85,
+        "constraint_slack_ns": 8.58
+      },
+      {
+        "pin": "scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command1_cdc/dest_hsdata_ff_reg[16]/D",
+        "pin_match_count": 1,
+        "cell_match_count": 1,
+        "classification": "FDRE_SHARED_SIGNAL_DRIVER_COVERED_BY_FINAL_BUS_SKEW",
+        "driver": "scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command1_cdc/src_hsdata_ff_reg[16]",
+        "constraint_id": 85,
+        "constraint_slack_ns": 8.58
+      },
+      {
+        "pin": "scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command0_cdc/dest_hsdata_ff_reg[16]/D",
+        "pin_match_count": 1,
+        "cell_match_count": 1,
+        "classification": "FDRE_SHARED_SIGNAL_DRIVER_COVERED_BY_FINAL_BUS_SKEW",
+        "driver": "scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command0_cdc/src_hsdata_ff_reg[17]",
+        "constraint_id": 88,
+        "constraint_slack_ns": 8.658
+      },
+      {
+        "pin": "scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command0_cdc/dest_hsdata_ff_reg[17]/D",
+        "pin_match_count": 1,
+        "cell_match_count": 1,
+        "classification": "FDRE_SHARED_SIGNAL_DRIVER_COVERED_BY_FINAL_BUS_SKEW",
+        "driver": "scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command0_cdc/src_hsdata_ff_reg[17]",
+        "constraint_id": 88,
+        "constraint_slack_ns": 8.658
+      },
+      {
+        "pin": "scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command1_cdc/dest_hsdata_ff_reg[15]/D",
+        "pin_match_count": 1,
+        "cell_match_count": 1,
+        "classification": "FDRE_SHARED_SIGNAL_DRIVER_COVERED_BY_FINAL_BUS_SKEW",
+        "driver": "scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command1_cdc/src_hsdata_ff_reg[17]",
+        "constraint_id": 87,
+        "constraint_slack_ns": 8.643
+      },
+      {
+        "pin": "scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command1_cdc/dest_hsdata_ff_reg[16]/D",
+        "pin_match_count": 1,
+        "cell_match_count": 1,
+        "classification": "FDRE_SHARED_SIGNAL_DRIVER_COVERED_BY_FINAL_BUS_SKEW",
+        "driver": "scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command1_cdc/src_hsdata_ff_reg[17]",
+        "constraint_id": 87,
+        "constraint_slack_ns": 8.643
+      },
+      {
+        "pin": "scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command1_cdc/dest_hsdata_ff_reg[17]/D",
+        "pin_match_count": 1,
+        "cell_match_count": 1,
+        "classification": "FDRE_SHARED_SIGNAL_DRIVER_COVERED_BY_FINAL_BUS_SKEW",
+        "driver": "scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command1_cdc/src_hsdata_ff_reg[17]",
+        "constraint_id": 87,
+        "constraint_slack_ns": 8.643
+      }
+    ]
+  },
+  "check_timing_existing_reset_interface_warnings": {
+    "no_input_delay": [
+      "pcie_perstn"
+    ],
+    "no_output_delay": [
+      "ddr4_sdram_c1_reset_n",
+      "ddr4_sdram_c2_reset_n"
+    ],
+    "internal_unconstrained_endpoints": 0,
+    "no_clock": 0
+  },
+  "evidence": {
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/route/gate.txt": "c26de83abdc9496cd1301470918ec39ecca1cf389ef0ae1c6504da1800d1c431",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/route/timing_acceptance.rpt": "30316e5d7a02e1c029377a42d63800c28b5cc1a417768a180bc6986e8f53d5c2",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/route/route_status.rpt": "073bc9fe7d8eb71a7d94657bdc3a83efd2dfc21174260f249effac6fc44a184b",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/route/drc_acceptance.rpt": "dc3dd916f2739693822ab646126191ae8dae833f76c73b7a6525d6b648084d78",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/route/check_timing.rpt": "8c4bf0a74c69f367863e9d0148efe02c5b98a94535e6a1d50f6f4c00c66ab5d8",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/final_bus_skew_audit/result.json": "da896d0cbc24490d44fc509d325ed1903e3c7b544cfe9e9d5ee84a64c208c254",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/final_bus_skew_audit/bus_skew.rpt": "f643adb0d905c3c19fe841394b67cffbe089ddd1e167edbad43a3f709fc3e272",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/final_bus_skew_audit/endpoint_identity.tsv": "d6fb4b0222203c180e7fee93eecc8cdd390f2d4d63584728b2f17e9ebdd695fe",
+    "/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/final_bus_skew_audit/loaded_identity.txt": "764ec1fd885cdf754718d0d50ea310162b6708bba93e440beb3ee630a4930075"
+  },
+  "next_action": "bitstream"
+}

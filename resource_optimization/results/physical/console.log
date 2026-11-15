@@ -1,0 +1,652 @@
+
+****** Vivado v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Nov 14 19:02:52 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+Sourcing tcl script '/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/scripts/Vivado_init.tcl'
+vivado-mcp server ready on port 10000
+source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/resume_all_backup.tcl -notrace
+NATIVE_PHASE=placement_report
+Command: open_checkpoint /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/runs/dsp_all/place/reports/phys_opt_design.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 1568.570 ; gain = 0.000 ; free physical = 90639 ; free virtual = 465658
+INFO: [Device 21-403] Loading part xcvu9p-flga2104-2L-e
+Netlist sorting complete. Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 5245.160 ; gain = 70.477 ; free physical = 87124 ; free virtual = 462144
+INFO: [Netlist 29-17] Analyzing 64630 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 39 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+WARNING: [Constraints 18-550] Could not create 'DRIVE' constraint because net 'scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'DRIVE' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'SLEW' constraint because net 'scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'SLEW' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/sys_clk_in' is not directly connected to top level port. 'IBUF_LOW_PWR' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'DRIVE' constraint because net 'scalellm_final_decode16_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'DRIVE' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'SLEW' constraint because net 'scalellm_final_decode16_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/cal_RESET_n[0]' is not directly connected to top level port. 'SLEW' is ignored for synthesis but preserved for implementation.
+WARNING: [Constraints 18-550] Could not create 'IBUF_LOW_PWR' constraint because net 'scalellm_final_decode16_bd_i/ddr4_1/inst/u_ddr4_mem_intfc/u_mig_ddr4_phy/sys_clk_in' is not directly connected to top level port. 'IBUF_LOW_PWR' is ignored for synthesis but preserved for implementation.
+Read ShapeDB Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 7584.934 ; gain = 265.719 ; free physical = 84826 ; free virtual = 459846
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Power 33-23] Power model is not available for xiphy_riu_or
+INFO: [Power 33-23] Power model is not available for genVref.u_hpio_vref
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 22196.332 ; gain = 0.000 ; free physical = 70664 ; free virtual = 445685
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 22196.332 ; gain = 0.000 ; free physical = 70665 ; free virtual = 445686
+Read PlaceDB: Time (s): cpu = 00:00:54 ; elapsed = 00:00:57 . Memory (MB): peak = 22592.645 ; gain = 396.312 ; free physical = 70309 ; free virtual = 445330
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 22592.645 ; gain = 0.000 ; free physical = 70309 ; free virtual = 445330
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:00.24 ; elapsed = 00:00:00.18 . Memory (MB): peak = 22592.645 ; gain = 0.000 ; free physical = 70313 ; free virtual = 445335
+Read Physdb Files: Time (s): cpu = 00:00:57 ; elapsed = 00:00:59 . Memory (MB): peak = 22592.645 ; gain = 396.312 ; free physical = 70304 ; free virtual = 445325
+Restored from archive | CPU: 60.360000 secs | Memory: 1669.474121 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:58 ; elapsed = 00:01:00 . Memory (MB): peak = 22592.645 ; gain = 396.312 ; free physical = 70307 ; free virtual = 445328
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/user/EDA-202/vivado/vivado_2025.2/2025.2/data/ip'.
+Netlist sorting complete. Time (s): cpu = 00:00:00.46 ; elapsed = 00:00:00.49 . Memory (MB): peak = 22592.645 ; gain = 0.000 ; free physical = 70192 ; free virtual = 445317
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 9739 instances were transformed.
+  BUFG => BUFGCE: 1 instance 
+  BUFG => BUFGCE (inverted pins: I): 2 instances
+  DSP48E1 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 6 instances
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 2311 instances
+  DSP48E2 => DSP48E2 (inverted pins: OPMODE[5], OPMODE[4], RSTA, RSTB) (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 3072 instances
+  DSP48E2 => DSP48E2 (inverted pins: RSTA, RSTM, RSTP) (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 192 instances
+  DSP48E2 => DSP48E2 (inverted pins: RSTP) (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 192 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 1 instance 
+  IBUFDS => IBUFDS (DIFFINBUF, IBUFCTRL): 2 instances
+  IOBUFDS => IOBUFDS (DIFFINBUF, IBUFCTRL, INV, OBUFT(x2)): 16 instances
+  IOBUFE3 => IOBUFE3 (IBUFCTRL, INBUF, OBUFT_DCIEN): 144 instances
+  LUT6_2 => LUT6_2 (LUT5, LUT6): 62 instances
+  OBUFDS => OBUFDS_DUAL_BUF (INV, OBUF(x2)): 2 instances
+  RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 2 instances
+  RAM16X1D => RAM32X1D (RAMD32(x2)): 38 instances
+  RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 9 instances
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 453 instances
+  RAM32M16 => RAM32M16 (RAMD32(x14), RAMS32(x2)): 3054 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 50 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 4 instances
+  RAM64M8 => RAM64M8 (RAMD64E(x8)): 110 instances
+  RAM64X1D => RAM64X1D (RAMD64E(x2)): 16 instances
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2025.2 (64-bit) build 6299465
+open_checkpoint: Time (s): cpu = 00:30:07 ; elapsed = 00:07:54 . Memory (MB): peak = 22592.680 ; gain = 21024.109 ; free physical = 70205 ; free virtual = 445330
+LOADED_IDENTITY_PASS TOP=scalellm_final_decode16_bd_wrapper NAME=checkpoint_phys_opt_design PART=xcvu9p-flga2104-2L-e
+NATIVE_PHASE=selection_wait
+NATIVE_PHASE=route
+LOADED_IDENTITY_PASS TOP=scalellm_final_decode16_bd_wrapper NAME=checkpoint_phys_opt_design PART=xcvu9p-flga2104-2L-e
+Command: route_design -directive Default
+Attempting to get a license for feature 'Implementation' and/or device 'xcvu9p'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcvu9p'
+
+
+Starting Routing Task
+INFO: [Route 35-270] Using Router directive 'Default'.
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 32 CPUs
+
+Phase 1 Build RT Design
+Checksum: PlaceDB: 6fb53b72 ConstDB: 0 ShapeSum: c3f7e1d6 RouteDB: 76ff6f96
+Nodegraph reading from file.  Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 22592.680 ; gain = 0.000 ; free physical = 70216 ; free virtual = 445342
+Post Restoration Checksum: NetGraph: fa6234a | NumContArr: 2cd6b814 | Constraints: a944f8a2 | Timing: c2a8fa9d
+Phase 1 Build RT Design | Checksum: 1a86ace9d
+
+Time (s): cpu = 00:15:18 ; elapsed = 00:01:59 . Memory (MB): peak = 22592.680 ; gain = 0.000 ; free physical = 70200 ; free virtual = 445326
+
+Phase 2 Router Initialization
+
+Phase 2.1 Fix Topology Constraints
+Phase 2.1 Fix Topology Constraints | Checksum: 1a86ace9d
+
+Time (s): cpu = 00:15:41 ; elapsed = 00:02:02 . Memory (MB): peak = 22592.680 ; gain = 0.000 ; free physical = 70198 ; free virtual = 445324
+
+Phase 2.2 Pre Route Cleanup
+Phase 2.2 Pre Route Cleanup | Checksum: 1a86ace9d
+
+Time (s): cpu = 00:15:57 ; elapsed = 00:02:04 . Memory (MB): peak = 22592.680 ; gain = 0.000 ; free physical = 70195 ; free virtual = 445320
+
+Phase 2.3 Global Clock Net Routing
+ Number of Nodes with overlaps = 0
+Phase 2.3 Global Clock Net Routing | Checksum: 23ac6873c
+
+Time (s): cpu = 00:17:42 ; elapsed = 00:02:45 . Memory (MB): peak = 22692.816 ; gain = 100.137 ; free physical = 70101 ; free virtual = 445223
+
+Phase 2.4 Update Timing
+Phase 2.4 Update Timing | Checksum: 1d239cd67
+
+Time (s): cpu = 00:40:45 ; elapsed = 00:07:42 . Memory (MB): peak = 22700.816 ; gain = 108.137 ; free physical = 69842 ; free virtual = 444982
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.171  | TNS=0.000  | WHS=-0.423 | THS=-934.864|
+
+
+Phase 2.5 Update Timing for Bus Skew
+
+Phase 2.5.1 Update Timing
+Phase 2.5.1 Update Timing | Checksum: 141d9fa0d
+
+Time (s): cpu = 01:31:44 ; elapsed = 00:12:10 . Memory (MB): peak = 26113.145 ; gain = 3520.465 ; free physical = 66788 ; free virtual = 441930
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.171  | TNS=0.000  | WHS=-0.626 | THS=-1551.098|
+
+WARNING: [Route 35-462] Failed to populate 2 paths in bus skew group (internal name : grp_84). These paths are:
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command1_cdc/dest_hsdata_ff_reg[16]/D
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command1_cdc/dest_hsdata_ff_reg[14]/D
+
+WARNING: [Route 35-462] Failed to populate 2 paths in bus skew group (internal name : grp_85). These paths are:
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command0_cdc/dest_hsdata_ff_reg[16]/D
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_a/u_weight_frontend/u_command0_cdc/dest_hsdata_ff_reg[14]/D
+
+WARNING: [Route 35-462] Failed to populate 3 paths in bus skew group (internal name : grp_86). These paths are:
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command1_cdc/dest_hsdata_ff_reg[16]/D
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command1_cdc/dest_hsdata_ff_reg[17]/D
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command1_cdc/dest_hsdata_ff_reg[15]/D
+
+WARNING: [Route 35-462] Failed to populate 2 paths in bus skew group (internal name : grp_87). These paths are:
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command0_cdc/dest_hsdata_ff_reg[17]/D
+	scalellm_final_decode16_bd_i/core/inst/u_core/u_m/u_compute/u_gu/u_w4_frontend/u_command0_cdc/dest_hsdata_ff_reg[16]/D
+
+Phase 2.5 Update Timing for Bus Skew | Checksum: 16cbdf2af
+
+Time (s): cpu = 01:31:51 ; elapsed = 00:12:12 . Memory (MB): peak = 26113.145 ; gain = 3520.465 ; free physical = 66793 ; free virtual = 441934
+
+Phase 2.6 Soft Constraint Pins - Fast Budgeting
+Phase 2.6 Soft Constraint Pins - Fast Budgeting | Checksum: 16cbdf2af
+
+Time (s): cpu = 01:32:41 ; elapsed = 00:12:21 . Memory (MB): peak = 26113.145 ; gain = 3520.465 ; free physical = 66788 ; free virtual = 441930
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 2.91296e-05 %
+  Global Horizontal Routing Utilization  = 0.00013436 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 1624651
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 1468131
+  Number of Partially Routed Nets     = 156520
+  Number of Node Overlaps             = 0
+
+Phase 2 Router Initialization | Checksum: 1e2e1b056
+
+Time (s): cpu = 01:33:54 ; elapsed = 00:12:38 . Memory (MB): peak = 26113.145 ; gain = 3520.465 ; free physical = 66762 ; free virtual = 441903
+
+Phase 3 Global Routing
+Phase 3 Global Routing | Checksum: 1e2e1b056
+
+Time (s): cpu = 01:33:58 ; elapsed = 00:12:39 . Memory (MB): peak = 26113.145 ; gain = 3520.465 ; free physical = 66764 ; free virtual = 441906
+
+Phase 4 Initial Routing
+
+Phase 4.1 Initial Net Routing Pass
+Phase 4.1 Initial Net Routing Pass | Checksum: 1a0688a6b
+
+Time (s): cpu = 01:51:01 ; elapsed = 00:15:40 . Memory (MB): peak = 26113.145 ; gain = 3520.465 ; free physical = 66832 ; free virtual = 441975
+Phase 4 Initial Routing | Checksum: 23c2516d7
+
+Time (s): cpu = 01:52:21 ; elapsed = 00:15:46 . Memory (MB): peak = 26113.145 ; gain = 3520.465 ; free physical = 66835 ; free virtual = 441977
+
+INFO: [Route 35-449] Initial Estimated Congestion
+ ________________________________________________________________________
+|           | Global Congestion | Long Congestion   | Short Congestion  |
+|           |___________________|___________________|___________________|
+| Direction | Size   | % Tiles  | Size   | % Tiles  | Size   | % Tiles  |
+|___________|________|__________|________|__________|________|__________|
+|      NORTH|   32x32|      2.18|   64x64|     10.31|     4x4|      1.00|
+|___________|________|__________|________|__________|________|__________|
+|      SOUTH|   32x32|      4.27| 128x128|     16.90|     8x8|      1.19|
+|___________|________|__________|________|__________|________|__________|
+|       EAST|     8x8|      0.94|   32x32|      3.25|     8x8|      2.26|
+|___________|________|__________|________|__________|________|__________|
+|       WEST|     8x8|      1.17|   32x32|      3.91|     8x8|      2.57|
+|___________|________|__________|________|__________|________|__________|
+Congestion Report
+GLOBAL Congestion bounded by tiles (Lower Left Tile -> Upper Right Tile):
+NORTH
+	INT_X52Y222->INT_X67Y253 (CLEM_X52Y222->CLEL_R_X67Y253)
+	INT_X49Y231->INT_X64Y246 (CLEM_X49Y231->DSP_X64Y245)
+	INT_X50Y228->INT_X65Y243 (CLEM_X50Y228->CLEL_R_X65Y243)
+	INT_X50Y236->INT_X65Y251 (CLEM_X50Y236->CLEL_R_X65Y251)
+	INT_X50Y235->INT_X65Y250 (CLEM_X50Y235->CLEL_R_X65Y250)
+SOUTH
+	INT_X1Y164->INT_X24Y227 (CLEM_X1Y164->CLEL_R_X24Y227)
+	INT_X48Y99->INT_X63Y114 (CLEM_X48Y99->CLEL_R_X63Y114)
+	INT_X48Y98->INT_X63Y113 (CLEM_X48Y98->CLEL_R_X63Y113)
+	INT_X48Y97->INT_X63Y112 (CLEM_X48Y97->CLEL_R_X63Y112)
+	INT_X48Y96->INT_X63Y111 (CLEM_X48Y96->CLEL_R_X63Y111)
+LONG Congestion bounded by tiles (Lower Left Tile -> Upper Right Tile):
+NORTH
+	INT_X0Y194->INT_X63Y257 (GTY_L_X0Y180->CLEL_R_X63Y257)
+	INT_X0Y193->INT_X63Y256 (GTY_L_X0Y180->CLEL_R_X63Y256)
+	INT_X0Y192->INT_X63Y255 (GTY_L_X0Y180->CLEL_R_X63Y255)
+	INT_X0Y191->INT_X63Y254 (GTY_L_X0Y180->CLEL_R_X63Y254)
+SOUTH
+	INT_X0Y26->INT_X95Y249 (GTY_L_X0Y0->CLEL_R_X95Y249)
+	INT_X0Y132->INT_X63Y195 (GTY_L_X0Y120->CLEL_R_X63Y195)
+	INT_X0Y68->INT_X63Y131 (GTY_L_X0Y60->CLEL_R_X63Y131)
+	INT_X0Y131->INT_X63Y194 (GTY_L_X0Y120->CLEL_R_X63Y194)
+	INT_X0Y67->INT_X63Y130 (GTY_L_X0Y60->CLEL_R_X63Y130)
+EAST
+	INT_X48Y458->INT_X79Y489 (CLEM_X48Y458->CLEL_R_X79Y489)
+	INT_X64Y452->INT_X79Y467 (CLEM_X64Y452->CLEL_R_X79Y467)
+	INT_X64Y451->INT_X79Y466 (CLEM_X64Y451->CLEL_R_X79Y466)
+	INT_X64Y450->INT_X79Y465 (CLEM_X64Y450->CLEL_R_X79Y465)
+	INT_X64Y449->INT_X79Y464 (CLEM_X64Y449->CLEL_R_X79Y464)
+WEST
+	INT_X22Y256->INT_X53Y287 (LAG_LAG_X21Y256->CLEL_R_X53Y287)
+	INT_X16Y436->INT_X31Y451 (CLEM_X16Y436->CLEL_R_X31Y451)
+	INT_X32Y260->INT_X47Y275 (BRAM_X32Y260->CLEL_R_X47Y275)
+	INT_X32Y20->INT_X47Y35 (BRAM_X32Y20->CLEL_R_X47Y35)
+	INT_X16Y435->INT_X31Y450 (CLEM_X16Y435->CLEL_R_X31Y450)
+
+INFO: [Route 35-448] Estimated Global/Short routing congestion is level 5 (32x32). Congestion levels of 5 and greater can reduce routability and impact timing closure.
+
+INFO: [Route 35-581] Estimated Timing congestion is level 7 (128x128). Congestion levels of 5 and greater may impact timing closure.
+INFO: [Route 35-580] Design has 1 pins with tight setup and hold constraints.
+
+The top 5 pins with tight setup and hold constraints:
+
++=============================+=============================+==========================================================================================================================================================================+
+| Launch Setup Clock          | Launch Hold Clock           | Pin                                                                                                                                                                      |
++=============================+=============================+==========================================================================================================================================================================+
+| GTYE4_CHANNEL_TXOUTCLK[3]_1 | GTYE4_CHANNEL_TXOUTCLK[3]_1 | scalellm_final_decode16_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_pcie_4_0_pipe_inst/pcie_4_0_e4_inst/MIRXCOMPLETIONRAMREADDATA0[26] |
++-----------------------------+-----------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+File with complete list of pins: tight_setup_hold_pins.txt
+
+
+Phase 5 Rip-up And Reroute
+
+Phase 5.1 Global Iteration 0
+ Number of Nodes with overlaps = 483408
+ Number of Nodes with overlaps = 71401
+ Number of Nodes with overlaps = 10958
+ Number of Nodes with overlaps = 2329
+ Number of Nodes with overlaps = 703
+ Number of Nodes with overlaps = 289
+ Number of Nodes with overlaps = 123
+ Number of Nodes with overlaps = 60
+ Number of Nodes with overlaps = 34
+ Number of Nodes with overlaps = 18
+ Number of Nodes with overlaps = 9
+ Number of Nodes with overlaps = 9
+ Number of Nodes with overlaps = 6
+ Number of Nodes with overlaps = 5
+ Number of Nodes with overlaps = 4
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 1
+INFO: [Route 35-443] CLB routing congestion detected. Several CLBs have high routing utilization, which can impact timing closure. Congested CLBs and Nets are dumped in: iter_100_CongestedCLBsAndNets.txt
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 1
+INFO: [Route 35-443] CLB routing congestion detected. Several CLBs have high routing utilization, which can impact timing closure. Congested CLBs and Nets are dumped in: iter_120_CongestedCLBsAndNets.txt
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-0.313 | TNS=-8.697 | WHS=-0.294 | THS=-274.964|
+
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-0.313 | TNS=-8.697 | WHS=-0.423 | THS=-132.212|
+
+Phase 5.1 Global Iteration 0 | Checksum: 1f59f99c2
+
+Time (s): cpu = 06:04:02 ; elapsed = 01:14:54 . Memory (MB): peak = 27119.230 ; gain = 4526.551 ; free physical = 65730 ; free virtual = 440876
+
+Phase 5.2 Global Iteration 1
+ Number of Nodes with overlaps = 1255
+ Number of Nodes with overlaps = 94
+ Number of Nodes with overlaps = 22
+ Number of Nodes with overlaps = 3
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=-0.007 | TNS=-0.007 | WHS=N/A    | THS=N/A    |
+
+Phase 5.2 Global Iteration 1 | Checksum: 15e8b8f35
+
+Time (s): cpu = 06:32:42 ; elapsed = 01:20:10 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65689 ; free virtual = 440828
+
+Phase 5.3 Global Iteration 2
+ Number of Nodes with overlaps = 449
+ Number of Nodes with overlaps = 55
+ Number of Nodes with overlaps = 7
+ Number of Nodes with overlaps = 5
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.006  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 5.3 Global Iteration 2 | Checksum: 1e3d5b2db
+
+Time (s): cpu = 06:42:08 ; elapsed = 01:23:25 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65693 ; free virtual = 440835
+Phase 5 Rip-up And Reroute | Checksum: 1e3d5b2db
+
+Time (s): cpu = 06:42:15 ; elapsed = 01:23:26 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65695 ; free virtual = 440836
+
+Phase 6 Delay and Skew Optimization
+
+Phase 6.1 Delay CleanUp
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.006  | TNS=0.000  | WHS=-0.282 | THS=-4.452 |
+
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.006  | TNS=0.000  | WHS=-0.282 | THS=-4.452 |
+
+Phase 6.1 Delay CleanUp | Checksum: 2c6f18577
+
+Time (s): cpu = 07:01:56 ; elapsed = 01:25:01 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65638 ; free virtual = 440780
+
+Phase 6.2 Clock Skew Optimization
+Phase 6.2 Clock Skew Optimization | Checksum: 2c6f18577
+
+Time (s): cpu = 07:02:03 ; elapsed = 01:25:01 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65638 ; free virtual = 440780
+Phase 6 Delay and Skew Optimization | Checksum: 2c6f18577
+
+Time (s): cpu = 07:02:09 ; elapsed = 01:25:01 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65638 ; free virtual = 440779
+
+Phase 7 Post Hold Fix
+
+Phase 7.1 Hold Fix Iter
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.006  | TNS=0.000  | WHS=-0.282 | THS=-4.452 |
+
+
+Phase 7.1.1 Lut RouteThru Assignment for hold
+Phase 7.1.1 Lut RouteThru Assignment for hold | Checksum: 1500f163d
+
+Time (s): cpu = 07:19:15 ; elapsed = 01:26:33 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65659 ; free virtual = 440801
+Phase 7.1 Hold Fix Iter | Checksum: 1500f163d
+
+Time (s): cpu = 07:19:22 ; elapsed = 01:26:33 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65649 ; free virtual = 440791
+
+Phase 7.2 Additional Hold Fix
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.006  | TNS=0.000  | WHS=-0.282 | THS=-3.893 |
+
+Phase 7.2 Additional Hold Fix | Checksum: 162cb4886
+
+Time (s): cpu = 07:36:52 ; elapsed = 01:28:05 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65601 ; free virtual = 440743
+
+Phase 7.3 Non Free Resource Hold Fix Iter
+ Number of Nodes with overlaps = 16
+ Number of Nodes with overlaps = 0
+Phase 7.3 Non Free Resource Hold Fix Iter | Checksum: 1a2916205
+
+Time (s): cpu = 07:56:20 ; elapsed = 01:30:11 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65665 ; free virtual = 440808
+Phase 7 Post Hold Fix | Checksum: 1a2916205
+
+Time (s): cpu = 07:56:26 ; elapsed = 01:30:11 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65666 ; free virtual = 440809
+
+Phase 8 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 37.0954 %
+  Global Horizontal Routing Utilization  = 35.1647 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 8 Route finalize | Checksum: 1a2916205
+
+Time (s): cpu = 07:58:16 ; elapsed = 01:30:18 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65655 ; free virtual = 440798
+
+Phase 9 Verifying routed nets
+
+ Verification completed successfully
+Phase 9 Verifying routed nets | Checksum: 1a2916205
+
+Time (s): cpu = 07:58:26 ; elapsed = 01:30:22 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65662 ; free virtual = 440805
+
+Phase 10 Depositing Routes
+INFO: [Route 35-467] Router swapped GT pin scalellm_final_decode16_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[31].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[0].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y28/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_final_decode16_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[31].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[1].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y29/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_final_decode16_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[31].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[2].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y30/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_final_decode16_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[31].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[3].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y31/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_final_decode16_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[32].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[0].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y32/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_final_decode16_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[32].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[1].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y33/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_final_decode16_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[32].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[2].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y34/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_final_decode16_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_channel_container[32].gen_enabled_channel.gtye4_channel_wrapper_inst/channel_inst/gtye4_channel_gen.gen_gtye4_channel_inst[3].GTYE4_CHANNEL_PRIM_INST/GTREFCLK0 to physical pin GTYE4_CHANNEL_X1Y35/NORTHREFCLK1
+INFO: [Route 35-467] Router swapped GT pin scalellm_final_decode16_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_common.gen_common_container[31].gen_enabled_common.gtye4_common_wrapper_inst/common_inst/gtye4_common_gen.GTYE4_COMMON_PRIM_INST/GTREFCLK00 to physical pin GTYE4_COMMON_X1Y7/COM0_REFCLKOUT3
+INFO: [Route 35-467] Router swapped GT pin scalellm_final_decode16_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_common.gen_common_container[31].gen_enabled_common.gtye4_common_wrapper_inst/common_inst/gtye4_common_gen.GTYE4_COMMON_PRIM_INST/GTREFCLK01 to physical pin GTYE4_COMMON_X1Y7/COM2_REFCLKOUT3
+INFO: [Route 35-467] Router swapped GT pin scalellm_final_decode16_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_common.gen_common_container[32].gen_enabled_common.gtye4_common_wrapper_inst/common_inst/gtye4_common_gen.GTYE4_COMMON_PRIM_INST/GTREFCLK00 to physical pin GTYE4_COMMON_X1Y8/COM0_REFCLKOUT3
+INFO: [Route 35-467] Router swapped GT pin scalellm_final_decode16_bd_i/xdma_0/inst/pcie4_ip_i/inst/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_top_i/diablo_gt.diablo_gt_phy_wrapper/gt_wizard.gtwizard_top_i/scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_i/inst/gen_gtwizard_gtye4_top.scalellm_final_decode16_bd_xdma_0_0_pcie4_ip_gt_gtwizard_gtye4_inst/gen_gtwizard_gtye4.gen_common.gen_common_container[32].gen_enabled_common.gtye4_common_wrapper_inst/common_inst/gtye4_common_gen.GTYE4_COMMON_PRIM_INST/GTREFCLK01 to physical pin GTYE4_COMMON_X1Y8/COM2_REFCLKOUT3
+Phase 10 Depositing Routes | Checksum: 1a2916205
+
+Time (s): cpu = 08:01:01 ; elapsed = 01:31:41 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65659 ; free virtual = 440802
+
+Phase 11 Resolve XTalk
+Phase 11 Resolve XTalk | Checksum: 320b2a935
+
+Time (s): cpu = 08:01:11 ; elapsed = 01:31:44 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65672 ; free virtual = 440815
+
+Phase 12 Post Process Routing
+Common:
+   
+SLR0
+
+Initial Estimated Congestion
+ ________________________________________________________________________
+|           | Global Congestion | Long Congestion   | Short Congestion  |
+|           |___________________|___________________|___________________|
+| Direction | Size   | % Tiles  | Size   | % Tiles  | Size   | % Tiles  |
+|___________|________|__________|________|__________|________|__________|
+|      NORTH|   32x32|      3.91|   64x64|     16.68|     4x4|      0.90|
+|___________|________|__________|________|__________|________|__________|
+|      SOUTH|   32x32|      9.26| 128x128|     34.85|     4x4|      1.17|
+|___________|________|__________|________|__________|________|__________|
+|       EAST|     4x4|      0.40|     8x8|      1.98|     4x4|      1.27|
+|___________|________|__________|________|__________|________|__________|
+|       WEST|     4x4|      1.78|   32x32|      7.42|     8x8|      2.15|
+|___________|________|__________|________|__________|________|__________|
+
+SLR1
+
+Initial Estimated Congestion
+ ________________________________________________________________________
+|           | Global Congestion | Long Congestion   | Short Congestion  |
+|           |___________________|___________________|___________________|
+| Direction | Size   | % Tiles  | Size   | % Tiles  | Size   | % Tiles  |
+|___________|________|__________|________|__________|________|__________|
+|      NORTH|     8x8|      2.48|   32x32|     11.55|     4x4|      1.89|
+|___________|________|__________|________|__________|________|__________|
+|      SOUTH|     8x8|      2.94|   32x32|      9.53|     8x8|      2.13|
+|___________|________|__________|________|__________|________|__________|
+|       EAST|     8x8|      2.01|   32x32|      5.14|     8x8|      4.32|
+|___________|________|__________|________|__________|________|__________|
+|       WEST|     8x8|      1.65|   16x16|      3.78|     8x8|      4.44|
+|___________|________|__________|________|__________|________|__________|
+
+SLR2
+
+Initial Estimated Congestion
+ ________________________________________________________________________
+|           | Global Congestion | Long Congestion   | Short Congestion  |
+|           |___________________|___________________|___________________|
+| Direction | Size   | % Tiles  | Size   | % Tiles  | Size   | % Tiles  |
+|___________|________|__________|________|__________|________|__________|
+|      NORTH|     2x2|      0.17|     8x8|      2.70|     2x2|      0.21|
+|___________|________|__________|________|__________|________|__________|
+|      SOUTH|     4x4|      0.65|   16x16|      6.28|     4x4|      0.27|
+|___________|________|__________|________|__________|________|__________|
+|       EAST|     4x4|      0.47|   16x16|      2.67|     4x4|      1.27|
+|___________|________|__________|________|__________|________|__________|
+|       WEST|     2x2|      0.09|     2x2|      0.54|     4x4|      1.24|
+|___________|________|__________|________|__________|________|__________|
+
+
+Phase 12 Post Process Routing | Checksum: 320b2a935
+
+Time (s): cpu = 08:02:24 ; elapsed = 01:31:56 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65672 ; free virtual = 440815
+
+Phase 13 Post Router Timing
+
+Phase 13.1 Update Timing
+Phase 13.1 Update Timing | Checksum: 320b2a935
+
+Time (s): cpu = 08:19:52 ; elapsed = 01:33:21 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65633 ; free virtual = 440772
+INFO: [Route 35-57] Estimated Timing Summary | WNS=0.006  | TNS=0.000  | WHS=-0.282 | THS=-3.893 |
+
+WARNING: [Route 35-328] Router estimated timing not met.
+Resolution: For a complete and accurate timing signoff, report_timing_summary must be run after route_design. Alternatively, route_design can be run with the -timing_summary option to enable a complete timing signoff at the end of route_design.
+Phase 13 Post Router Timing | Checksum: 320b2a935
+
+Time (s): cpu = 08:19:58 ; elapsed = 01:33:21 . Memory (MB): peak = 27186.715 ; gain = 4594.035 ; free physical = 65634 ; free virtual = 440773
+Found atleast 1 candidate net for laguna hold fix
+Time taken to check if laguna hold fix is required (in secs): 2.75
+
+Phase 14 Physical Synthesis in Router
+
+Phase 14.1 Physical Synthesis Initialization
+INFO: [Place 30-3164] Check ILP status : ILP-based clock placer is skipped.
+INFO: [Physopt 32-668] Current Timing Summary | WNS=0.009 | TNS=0.000 | WHS=-0.277 | THS=-3.831 |
+Phase 14.1 Physical Synthesis Initialization | Checksum: 320b2a935
+
+Time (s): cpu = 09:12:27 ; elapsed = 01:40:41 . Memory (MB): peak = 29828.219 ; gain = 7235.539 ; free physical = 63098 ; free virtual = 438242
+
+Phase 14.2 SLL Register Hold Fix Optimization
+INFO: [Physopt 32-668] Current Timing Summary | WNS=0.009 | TNS=0.000 | WHS=-0.277 | THS=-3.831 |
+INFO: [Physopt 32-913] Selecting 14 candidate nets for crossing SLR optimization.
+WARNING: [Place 30-1995] Horizontal BUFCE_ROW programmable delay is capped at 3 for clock net scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0 due to BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements
+Netlist sorting complete. Time (s): cpu = 00:00:00.45 ; elapsed = 00:00:00.53 . Memory (MB): peak = 29828.219 ; gain = 0.000 ; free physical = 63195 ; free virtual = 438339
+WARNING: [Place 30-1995] Horizontal BUFCE_ROW programmable delay is capped at 3 for clock net scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0 due to BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements
+Netlist sorting complete. Time (s): cpu = 00:00:00.45 ; elapsed = 00:00:00.49 . Memory (MB): peak = 29828.219 ; gain = 0.000 ; free physical = 63200 ; free virtual = 438397
+WARNING: [Place 30-1995] Horizontal BUFCE_ROW programmable delay is capped at 3 for clock net scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0 due to BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements
+Netlist sorting complete. Time (s): cpu = 00:00:00.44 ; elapsed = 00:00:00.48 . Memory (MB): peak = 30012.812 ; gain = 0.000 ; free physical = 62727 ; free virtual = 437924
+INFO: [Physopt 32-913] Selecting 6 candidate nets for crossing SLR optimization.
+WARNING: [Place 30-1995] Horizontal BUFCE_ROW programmable delay is capped at 3 for clock net scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0 due to BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements
+Netlist sorting complete. Time (s): cpu = 00:00:00.41 ; elapsed = 00:00:00.41 . Memory (MB): peak = 30012.812 ; gain = 0.000 ; free physical = 62658 ; free virtual = 437856
+INFO: [Physopt 32-767] Processed net scalellm_final_decode16_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_master/common.laguna_m_ready_d_reg_0. Re-placed instance scalellm_final_decode16_bd_i/d0_mig_slice/inst/ar15.ar_multi/triple_slr.fwd.slr_middle/common.laguna_s_ready_i_reg
+INFO: [Physopt 32-767] Processed net scalellm_final_decode16_bd_i/d0_mig_slice/inst/r15.r_multi/triple_slr.resp.slr_master/Q[104]. Re-placed instance scalellm_final_decode16_bd_i/d0_mig_slice/inst/r15.r_multi/triple_slr.resp.slr_middle/common.pipe[2].laguna_m_payload_i_reg[104]
+INFO: [Physopt 32-767] Processed net scalellm_final_decode16_bd_i/d0_mig_slice/inst/r15.r_multi/triple_slr.resp.slr_master/Q[133]. Re-placed instance scalellm_final_decode16_bd_i/d0_mig_slice/inst/r15.r_multi/triple_slr.resp.slr_middle/common.pipe[2].laguna_m_payload_i_reg[133]
+INFO: [Physopt 32-767] Processed net scalellm_final_decode16_bd_i/d0_mig_slice/inst/r15.r_multi/triple_slr.resp.slr_master/Q[152]. Re-placed instance scalellm_final_decode16_bd_i/d0_mig_slice/inst/r15.r_multi/triple_slr.resp.slr_middle/common.pipe[2].laguna_m_payload_i_reg[152]
+WARNING: [Place 30-1995] Horizontal BUFCE_ROW programmable delay is capped at 3 for clock net scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0 due to BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements
+Netlist sorting complete. Time (s): cpu = 00:00:00.42 ; elapsed = 00:00:00.42 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 62489 ; free virtual = 437688
+INFO: [Physopt 32-767] Processed net scalellm_final_decode16_bd_i/d0_mig_slice/inst/r15.r_multi/triple_slr.resp.slr_master/Q[166]. Re-placed instance scalellm_final_decode16_bd_i/d0_mig_slice/inst/r15.r_multi/triple_slr.resp.slr_middle/common.pipe[2].laguna_m_payload_i_reg[166]
+WARNING: [Place 30-1995] Horizontal BUFCE_ROW programmable delay is capped at 3 for clock net scalellm_final_decode16_bd_i/ddr4_0/inst/u_ddr4_infrastructure/u_bufg_divClk_0 due to BITSLICE_CONTROL_PLL_RIU MAX_SKEW requirements
+Netlist sorting complete. Time (s): cpu = 00:00:00.42 ; elapsed = 00:00:00.41 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 62431 ; free virtual = 437654
+INFO: [Physopt 32-767] Processed net scalellm_final_decode16_bd_i/d0_mig_slice/inst/r15.r_multi/triple_slr.resp.slr_master/Q[1]. Re-placed instance scalellm_final_decode16_bd_i/d0_mig_slice/inst/r15.r_multi/triple_slr.resp.slr_middle/common.pipe[2].laguna_m_payload_i_reg[1]
+INFO: [Physopt 32-775] End 1 Pass. Optimized 14 nets or cells. Created 0 new cell, deleted 0 existing cell and moved 14 existing cells
+INFO: [Physopt 32-668] Current Timing Summary | WNS=0.009 | TNS=0.000 | WHS=0.008 | THS=0.000 |
+Netlist sorting complete. Time (s): cpu = 00:00:00.48 ; elapsed = 00:00:00.59 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 62337 ; free virtual = 437615
+Phase 14.2 SLL Register Hold Fix Optimization | Checksum: 269388df7
+
+Time (s): cpu = 14:47:33 ; elapsed = 02:06:54 . Memory (MB): peak = 30238.836 ; gain = 7646.156 ; free physical = 62337 ; free virtual = 437615
+
+Phase 14.3 Critical Path Optimization
+INFO: [Physopt 32-668] Current Timing Summary | WNS=0.009 | TNS=0.000 | WHS=0.008 | THS=0.000 |
+INFO: [Physopt 32-668] Current Timing Summary | WNS=0.009 | TNS=0.000 | WHS=0.008 | THS=0.000 |
+Netlist sorting complete. Time (s): cpu = 00:00:00.43 ; elapsed = 00:00:00.43 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 62343 ; free virtual = 437632
+Phase 14.3 Critical Path Optimization | Checksum: 269388df7
+
+Time (s): cpu = 15:00:22 ; elapsed = 02:07:19 . Memory (MB): peak = 30238.836 ; gain = 7646.156 ; free physical = 62340 ; free virtual = 437629
+Netlist sorting complete. Time (s): cpu = 00:00:00.41 ; elapsed = 00:00:00.41 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 62346 ; free virtual = 437648
+INFO: [Physopt 32-669] Post Physical Optimization Timing Summary | WNS=0.009 | TNS=0.000 | WHS=0.008 | THS=0.000 |
+Netlist sorting complete. Time (s): cpu = 00:00:00.41 ; elapsed = 00:00:00.4 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 62343 ; free virtual = 437645
+Phase 14 Physical Synthesis in Router | Checksum: 269388df7
+
+Time (s): cpu = 15:01:09 ; elapsed = 02:07:50 . Memory (MB): peak = 30238.836 ; gain = 7646.156 ; free physical = 62342 ; free virtual = 437645
+Total Elapsed time in route_design: 7668.03 secs
+
+Phase 15 Post-Route Event Processing
+Phase 15 Post-Route Event Processing | Checksum: 20277eb75
+
+Time (s): cpu = 15:01:44 ; elapsed = 02:07:56 . Memory (MB): peak = 30238.836 ; gain = 7646.156 ; free physical = 62339 ; free virtual = 437645
+INFO: [Route 35-16] Router Completed Successfully
+Ending Routing Task | Checksum: 20277eb75
+
+Time (s): cpu = 15:02:47 ; elapsed = 02:08:01 . Memory (MB): peak = 30238.836 ; gain = 7646.156 ; free physical = 62340 ; free virtual = 437649
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+67 Infos, 17 Warnings, 0 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 15:03:03 ; elapsed = 02:08:17 . Memory (MB): peak = 30238.836 ; gain = 7646.156 ; free physical = 62339 ; free virtual = 437654
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:11 ; elapsed = 00:00:02 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 62170 ; free virtual = 437615
+Wrote PlaceDB: Time (s): cpu = 00:03:08 ; elapsed = 00:01:13 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 59933 ; free virtual = 437552
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 59933 ; free virtual = 437552
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:01:38 ; elapsed = 00:01:02 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 59627 ; free virtual = 437590
+Wrote Netlist Cache: Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 59418 ; free virtual = 437587
+Wrote Device Cache: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 59410 ; free virtual = 437582
+Write Physdb Complete: Time (s): cpu = 00:04:49 ; elapsed = 00:02:18 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 59411 ; free virtual = 437583
+INFO: [Common 17-1381] The checkpoint '/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/route/routed.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:05:35 ; elapsed = 00:03:08 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 61646 ; free virtual = 437580
+LOADED_IDENTITY_PASS TOP=scalellm_final_decode16_bd_wrapper NAME=checkpoint_phys_opt_design PART=xcvu9p-flga2104-2L-e
+report_utilization: Time (s): cpu = 00:01:20 ; elapsed = 00:01:24 . Memory (MB): peak = 30238.836 ; gain = 0.000 ; free physical = 61103 ; free virtual = 437564
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 32 CPUs
+WARNING: [Timing 38-436] There are set_bus_skew constraint(s) in this design. Please run report_bus_skew to ensure that bus skew requirements are met.
+report_timing_summary: Time (s): cpu = 00:30:29 ; elapsed = 00:05:10 . Memory (MB): peak = 30721.617 ; gain = 482.781 ; free physical = 57043 ; free virtual = 434214
+check_timing: Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 30721.617 ; gain = 0.000 ; free physical = 57176 ; free virtual = 434349
+Command: report_drc -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/route/drc.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 32 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/route/drc.rpt.
+report_drc completed successfully
+report_drc: Time (s): cpu = 00:13:38 ; elapsed = 00:03:05 . Memory (MB): peak = 30729.617 ; gain = 8.000 ; free physical = 57120 ; free virtual = 434307
+report_utilization: Time (s): cpu = 00:02:54 ; elapsed = 00:02:59 . Memory (MB): peak = 30729.617 ; gain = 0.000 ; free physical = 57141 ; free virtual = 434334
+report_utilization: Time (s): cpu = 00:02:22 ; elapsed = 00:02:25 . Memory (MB): peak = 30729.617 ; gain = 0.000 ; free physical = 57101 ; free virtual = 434300
+report_design_analysis: Time (s): cpu = 00:01:25 ; elapsed = 00:01:26 . Memory (MB): peak = 30889.695 ; gain = 160.078 ; free physical = 57075 ; free virtual = 434278
+report_high_fanout_nets: Time (s): cpu = 00:00:46 ; elapsed = 00:00:49 . Memory (MB): peak = 30889.695 ; gain = 0.000 ; free physical = 57086 ; free virtual = 434289
+LOADED_IDENTITY_PASS TOP=scalellm_final_decode16_bd_wrapper NAME=checkpoint_phys_opt_design PART=xcvu9p-flga2104-2L-e
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 32 CPUs
+WARNING: [Timing 38-436] There are set_bus_skew constraint(s) in this design. Please run report_bus_skew to ensure that bus skew requirements are met.
+report_timing_summary: Time (s): cpu = 00:07:06 ; elapsed = 00:03:15 . Memory (MB): peak = 30889.695 ; gain = 0.000 ; free physical = 57076 ; free virtual = 434288
+report_route_status: Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 30889.695 ; gain = 0.000 ; free physical = 57070 ; free virtual = 434282
+report_route_status: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 30889.695 ; gain = 0.000 ; free physical = 57087 ; free virtual = 434300
+report_route_status: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 30889.695 ; gain = 0.000 ; free physical = 57087 ; free virtual = 434301
+Command: report_drc -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/route/drc_acceptance.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 32 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/route/drc_acceptance.rpt.
+report_drc completed successfully
+report_drc: Time (s): cpu = 00:09:14 ; elapsed = 00:02:57 . Memory (MB): peak = 30889.695 ; gain = 0.000 ; free physical = 57080 ; free virtual = 434306
+NATIVE_PHASE=route_review
+NATIVE_PHASE=bitstream
+LOADED_IDENTITY_PASS TOP=scalellm_final_decode16_bd_wrapper NAME=checkpoint_phys_opt_design PART=xcvu9p-flga2104-2L-e
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2L, Temperature grade: E, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 32 CPUs
+WARNING: [Timing 38-436] There are set_bus_skew constraint(s) in this design. Please run report_bus_skew to ensure that bus skew requirements are met.
+report_timing_summary: Time (s): cpu = 00:07:16 ; elapsed = 00:03:21 . Memory (MB): peak = 30889.695 ; gain = 0.000 ; free physical = 56337 ; free virtual = 434297
+report_route_status: Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 30889.695 ; gain = 0.000 ; free physical = 56355 ; free virtual = 434314
+report_route_status: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 30889.695 ; gain = 0.000 ; free physical = 56333 ; free virtual = 434293
+report_route_status: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 30889.695 ; gain = 0.000 ; free physical = 56341 ; free virtual = 434301
+Command: report_drc -file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/bitstream/drc_acceptance.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 32 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/bitstream/drc_acceptance.rpt.
+report_drc completed successfully
+report_drc: Time (s): cpu = 00:10:01 ; elapsed = 00:03:37 . Memory (MB): peak = 30889.695 ; gain = 0.000 ; free physical = 56313 ; free virtual = 434289
+Command: write_bitstream /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/bitstream/ScaleLLM_Final_Decode16_80MHz.bit
+Attempting to get a license for feature 'Implementation' and/or device 'xcvu9p'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcvu9p'
+Running DRC as a precondition to command write_bitstream
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 32 threads
+INFO: [Vivado 12-3199] DRC finished with 0 Errors
+INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
+Integrating Hard IP ELF/MEM with the PDI.
+INFO: [Designutils 20-2272] Running write_bitstream with 8 threads.
+Loading data files...
+Loading site data...
+Loading route data...
+Processing options...
+Creating bitmap...
+Creating bitstream...
+Writing bitstream /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/native_resume/backup_all_001/dsp_all/bitstream/ScaleLLM_Final_Decode16_80MHz.bit...
+INFO: [Vivado 12-1842] Bitgen Completed Successfully.
+INFO: [Common 17-83] Releasing license: Implementation
+92 Infos, 20 Warnings, 0 Critical Warnings and 0 Errors encountered.
+write_bitstream completed successfully
+write_bitstream: Time (s): cpu = 00:15:42 ; elapsed = 00:02:42 . Memory (MB): peak = 30897.695 ; gain = 8.000 ; free physical = 56201 ; free virtual = 434255
+NATIVE_PHASE=complete
+close_design: Time (s): cpu = 00:00:38 ; elapsed = 00:00:45 . Memory (MB): peak = 30897.695 ; gain = 0.000 ; free physical = 56229 ; free virtual = 434285
+NATIVE_RESUME_BITSTREAM_PASS
+INFO: [Common 17-206] Exiting Vivado at Sat Nov 14 22:17:51 2026...

@@ -1,0 +1,257 @@
+
+****** Vivado v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Sat Nov 14 09:04:07 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+Sourcing tcl script '/home/user/EDA-202/vivado/vivado_2025.2/2025.2/Vivado/scripts/Vivado_init.tcl'
+vivado-mcp server ready on port 10000
+source /home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/synth_leaf.tcl
+# set_param general.maxThreads 4
+# set run_dir [file normalize [lindex $argv 0]]
+# set source [file normalize [lindex $argv 1]]
+# set top hap_a8w4_scalecode_recover2_lut
+# set part xcvu9p-flga2104-2L-e
+# if {![file isfile $source]} {error "Missing candidate source: $source"}
+# puts "LEAF_SYNTH_IDENTITY source=$source top=$top part=$part tool=[version -short]"
+LEAF_SYNTH_IDENTITY source=/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/runs/dsp_all/source/project/hardware/rtl/mlp/hap_a8w4_scalecode_recover2_lut.sv top=hap_a8w4_scalecode_recover2_lut part=xcvu9p-flga2104-2L-e tool=2025.2
+# create_project -in_memory -part $part
+# read_verilog -sv $source
+# synth_design -top $top -part $part -mode out_of_context -flatten_hierarchy none
+Command: synth_design -top hap_a8w4_scalecode_recover2_lut -part xcvu9p-flga2104-2L-e -mode out_of_context -flatten_hierarchy none
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcvu9p'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcvu9p'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 2945608
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2125.008 ; gain = 485.809 ; free physical = 56846 ; free virtual = 460702
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'hap_a8w4_scalecode_recover2_lut' [/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/runs/dsp_all/source/project/hardware/rtl/mlp/hap_a8w4_scalecode_recover2_lut.sv:7]
+INFO: [Synth 8-6155] done synthesizing module 'hap_a8w4_scalecode_recover2_lut' (0#1) [/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/runs/dsp_all/source/project/hardware/rtl/mlp/hap_a8w4_scalecode_recover2_lut.sv:7]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2209.977 ; gain = 570.777 ; free physical = 56654 ; free virtual = 460511
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2227.789 ; gain = 588.590 ; free physical = 56589 ; free virtual = 460446
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcvu9p-flga2104-2L-e
+INFO: [Device 21-403] Loading part xcvu9p-flga2104-2L-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2236.695 ; gain = 597.496 ; free physical = 56597 ; free virtual = 460454
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2236.695 ; gain = 597.496 ; free physical = 56589 ; free virtual = 460446
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	               17 Bit    Registers := 2     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   2 Input    1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 6840 (col length:120)
+BRAMs: 4320 (col length: RAMB18 360 RAMB36 180)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+DSP Report: Generating DSP s0_code_product0_u16_r_reg, operation Mode is: (A*B)'.
+DSP Report: register s0_code_product0_u16_r_reg is absorbed into DSP s0_code_product0_u16_r_reg.
+DSP Report: operator s0_code_product0_u16_r0 is absorbed into DSP s0_code_product0_u16_r_reg.
+DSP Report: Generating DSP raw0_s33_reg, operation Mode is: (A2*B)'.
+DSP Report: register s0_dot0_s17_r_reg is absorbed into DSP raw0_s33_reg.
+DSP Report: register raw0_s33_reg is absorbed into DSP raw0_s33_reg.
+DSP Report: register s1_raw0_s33_r_reg is absorbed into DSP raw0_s33_reg.
+DSP Report: operator s1_raw0_s33_r0 is absorbed into DSP raw0_s33_reg.
+DSP Report: Generating DSP s0_code_product1_u16_r_reg, operation Mode is: (A*B)'.
+DSP Report: register s0_code_product1_u16_r_reg is absorbed into DSP s0_code_product1_u16_r_reg.
+DSP Report: operator s0_code_product1_u16_r0 is absorbed into DSP s0_code_product1_u16_r_reg.
+DSP Report: Generating DSP raw1_s33_reg, operation Mode is: (A2*B)'.
+DSP Report: register s0_dot1_s17_r_reg is absorbed into DSP raw1_s33_reg.
+DSP Report: register raw1_s33_reg is absorbed into DSP raw1_s33_reg.
+DSP Report: register s1_raw1_s33_r_reg is absorbed into DSP raw1_s33_reg.
+DSP Report: operator s1_raw1_s33_r0 is absorbed into DSP raw1_s33_reg.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 3095.750 ; gain = 1456.551 ; free physical = 55276 ; free virtual = 459133
+---------------------------------------------------------------------------------
+ Sort Area is  raw0_s33_reg_2 : 0 0 : 2347 2347 : Used 1 time 100
+ Sort Area is  raw1_s33_reg_5 : 0 0 : 2347 2347 : Used 1 time 100
+ Sort Area is  s0_code_product0_u16_r_reg_0 : 0 0 : 470 470 : Used 1 time 100
+ Sort Area is  s0_code_product1_u16_r_reg_4 : 0 0 : 470 470 : Used 1 time 100
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++--------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name                     | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++--------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|hap_a8w4_scalecode_recover2_lut | (A*B)'      | 8      | 8      | -      | -      | 16     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|hap_a8w4_scalecode_recover2_lut | (A2*B)'     | 17     | 17     | -      | -      | 34     | 1    | 0    | -    | -    | -     | 1    | 1    | 
+|hap_a8w4_scalecode_recover2_lut | (A*B)'      | 8      | 8      | -      | -      | 16     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|hap_a8w4_scalecode_recover2_lut | (A2*B)'     | 17     | 17     | -      | -      | 34     | 1    | 0    | -    | -    | -     | 1    | 1    | 
++--------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 3101.688 ; gain = 1462.488 ; free physical = 55276 ; free virtual = 459133
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 3107.625 ; gain = 1468.426 ; free physical = 55276 ; free virtual = 459133
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 3277.438 ; gain = 1638.238 ; free physical = 55025 ; free virtual = 458883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 3277.438 ; gain = 1638.238 ; free physical = 55025 ; free virtual = 458883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 3277.438 ; gain = 1638.238 ; free physical = 55025 ; free virtual = 458883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++--------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name                     | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++--------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|hap_a8w4_scalecode_recover2_lut | (A*B)'      | 8      | 8      | -      | -      | 16     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|hap_a8w4_scalecode_recover2_lut | ((A'*B)')'  | 30     | 16     | -      | -      | 33     | 1    | 0    | -    | -    | -     | 1    | 1    | 
+|hap_a8w4_scalecode_recover2_lut | (A*B)'      | 8      | 8      | -      | -      | 16     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|hap_a8w4_scalecode_recover2_lut | ((A'*B)')'  | 30     | 16     | -      | -      | 33     | 1    | 0    | -    | -    | -     | 1    | 1    | 
++--------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+----------------+------+
+|      |Cell            |Count |
++------+----------------+------+
+|1     |DSP_ALU         |     4|
+|2     |DSP_A_B_DATA    |     4|
+|3     |DSP_C_DATA      |     4|
+|4     |DSP_MULTIPLIER  |     4|
+|5     |DSP_M_DATA      |     4|
+|6     |DSP_OUTPUT      |     4|
+|7     |DSP_PREADD      |     4|
+|8     |DSP_PREADD_DATA |     4|
+|9     |LUT1            |     1|
+|10    |LUT2            |     1|
+|11    |LUT3            |     2|
+|12    |LUT4            |     4|
+|13    |LUT5            |     1|
+|14    |LUT6            |     1|
+|15    |FDRE            |     3|
++------+----------------+------+
+
+Report Instance Areas: 
++------+-----------------------------+-------------------------------------+------+
+|      |Instance                     |Module                               |Cells |
++------+-----------------------------+-------------------------------------+------+
+|1     |top                          |                                     |    45|
+|2     |  s0_code_product0_u16_r_reg |s0_code_product1_u16_r_reg_funnel__1 |     8|
+|3     |  raw0_s33_reg               |raw1_s33_reg_funnel__1               |     8|
+|4     |  s0_code_product1_u16_r_reg |s0_code_product1_u16_r_reg_funnel    |     8|
+|5     |  raw1_s33_reg               |raw1_s33_reg_funnel                  |     8|
++------+-----------------------------+-------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 3277.438 ; gain = 1638.238 ; free physical = 55025 ; free virtual = 458883
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 3277.438 ; gain = 1638.238 ; free physical = 55025 ; free virtual = 458883
+Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 3277.445 ; gain = 1638.238 ; free physical = 55025 ; free virtual = 458883
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3292.312 ; gain = 0.000 ; free physical = 55129 ; free virtual = 458987
+INFO: [Netlist 29-17] Analyzing 4 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3424.852 ; gain = 0.000 ; free physical = 55020 ; free virtual = 458878
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 4 instances were transformed.
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 4 instances
+
+Synth Design complete | Checksum: dde35428
+INFO: [Common 17-83] Releasing license: Synthesis
+15 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:28 ; elapsed = 00:00:26 . Memory (MB): peak = 3424.887 ; gain = 1785.723 ; free physical = 55021 ; free virtual = 458879
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2527.130; main = 2506.271; forked = 257.279
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4184.391; main = 3424.855; forked = 995.762
+# report_utilization -file [file join $run_dir utilization_synth.rpt]
+# set dsps [get_cells -hierarchical -quiet -filter {REF_NAME == DSP48E2}]
+# set inventory [open [file join $run_dir dsp_inventory.tsv] w]
+# puts $inventory "cell\tref_name\tuse_mult\tareg\tbreg\tadreg\tdreg\tmreg\tpreg"
+# foreach dsp [lsort $dsps] {
+#     set fields [list [get_property NAME $dsp] [get_property REF_NAME $dsp]]
+#     foreach property {USE_MULT AREG BREG ADREG DREG MREG PREG} {
+#         set value ""
+#         catch {set value [get_property $property $dsp]}
+#         lappend fields $value
+#     }
+#     puts $inventory [join $fields "\t"]
+# }
+# close $inventory
+# write_checkpoint -force [file join $run_dir post_synth.dcp]
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3560.434 ; gain = 0.000 ; free physical = 54875 ; free virtual = 458734
+INFO: [Common 17-1381] The checkpoint '/home/user/EDA-202/zhuowenjun/Workspace/ScaleLLM/0_Hardware_supplementation_experiment/experiment/mlp_scalecode_dsp_board/functional/dsp_all/attempts/20261114T010405Z/synth/post_synth.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 3560.434 ; gain = 135.547 ; free physical = 54868 ; free virtual = 458728
+# write_verilog -force -mode funcsim [file join $run_dir post_synth_funcsim.v]
+# puts "LEAF_POST_SYNTH_EXPORT_PASS dsp48e2_count=[llength $dsps]"
+LEAF_POST_SYNTH_EXPORT_PASS dsp48e2_count=4
+# close_project
+INFO: [Common 17-206] Exiting Vivado at Sat Nov 14 09:04:46 2026...
