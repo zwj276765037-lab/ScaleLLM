@@ -1,5 +1,7 @@
 # Power evidence: repeated seven-rail telemetry and historical records
 
+This document preserves the historical `96df…` image measurements. For the all-DSP branch’s November 15 experiment and the portable reproduction procedure, see the [current power report](../resource_optimization/power_retest/REPORT.md) and [power deployment guide](../resource_optimization/deployment/power/README.md).
+
 The latest measurement is the **2026-11-02 KV128, active16 seven-rail retest**, using the unchanged released Decode16/80 MHz image. Idle, repeated Attention, repeated MLP and a complete 32-layer decode step were each measured three times. The complete step includes CPU operators, LM head and token commit. The electrical boundary is seven specified **regulator outputs**, not whole-board input power.
 
 | Latest workload, n=3 | Seven-rail mean ± sample SD / W | Supported time scope |

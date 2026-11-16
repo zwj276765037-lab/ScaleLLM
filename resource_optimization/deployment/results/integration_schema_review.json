@@ -1,0 +1,190 @@
+{
+  "schema": "scalellm_portable_power_integration_schema_review_v1",
+  "reviewed_utc": "2026-11-16T01:10:07.842976+00:00",
+  "status": "STATIC_SCHEMA_REVIEW_PASS_LIVE_NOT_RUN",
+  "scope": "Readonly comparison of benchmark_capture.py/final.run.py outputs with portable_source.py, plus power README command variables and timing rules",
+  "reviewed_files": {
+    "resource_optimization/deployment/benchmark_capture.py": {
+      "bytes": 11510,
+      "sha256": "17330733999608754c45ef8590fa026a9c99d50e1b346618bbaac10843a4ef2c"
+    },
+    "deploy/final/run.py": {
+      "bytes": 20357,
+      "sha256": "c2f03e8a09dfe651b6ce9b271dae8a81c5106ec9db85427b7e31dc11bfb6a5d4"
+    },
+    "deploy/final/common.py": {
+      "bytes": 10471,
+      "sha256": "59491e5b4807ba275271ddf9e389ae96cc9e007a9c42b28520627fe0772e8049"
+    },
+    "resource_optimization/deployment/power/portable_source.py": {
+      "bytes": 14531,
+      "sha256": "6bb979fff5cf8b706c9a80d3d0a772b4a172849613cee645cff590089572022c"
+    },
+    "resource_optimization/deployment/power/portable_live.py": {
+      "bytes": 4762,
+      "sha256": "d27c87626c7c155f2c8710ce081565543461c3d94b97471794ecb41aa514142d"
+    },
+    "resource_optimization/deployment/power/run_power.ps1": {
+      "bytes": 19166,
+      "sha256": "a78e3bf8720430cd6b67266cb1308708a530ca9f5fcf736382530b05c9553dd0"
+    },
+    "resource_optimization/deployment/power/pilot.py": {
+      "bytes": 6661,
+      "sha256": "2ce3be033235b8798a311dfd287bf85c90d191a070ec2330ee4e2a4a60e02032"
+    },
+    "resource_optimization/deployment/power/kv128_sevenrail_windows.py": {
+      "bytes": 59369,
+      "sha256": "74d1805e5685ce11fd9c51edeb7334b6aaaa0b467d0d3d85789c6f282b7ea001"
+    },
+    "resource_optimization/deployment/power/README.md": {
+      "bytes": 9006,
+      "sha256": "61ff274c2af43a5965a6d875d2a8ba4441a699dfc784671583807051cf5a527d"
+    }
+  },
+  "issues": [
+    {
+      "id": "windows_reference_path_separators",
+      "severity": "BLOCKING",
+      "status": "RESOLVED",
+      "observed_problem": "str(relative_path) produced Windows backslash source_references keys while the verifier requires public POSIX path keys",
+      "fixed_by": "root",
+      "fix_location": {
+        "file": "resource_optimization/deployment/benchmark_capture.py",
+        "line": 64
+      },
+      "fix_observed": "path.relative_to(ROOT.parent).as_posix() now emits the same two public reference keys on Windows and Linux"
+    },
+    {
+      "id": "readme_command_variable_initialization",
+      "severity": "BLOCKING_FOR_COPY_EXECUTION",
+      "status": "RESOLVED",
+      "observed_problem": "Offline command used undefined $benchmark/$programReceipt and the pilot command first used $pilot before its setup block",
+      "fixed_by": "root",
+      "fix_locations": [
+        {
+          "file": "resource_optimization/deployment/power/README.md",
+          "line": 20
+        },
+        {
+          "file": "resource_optimization/deployment/power/README.md",
+          "line": 29
+        },
+        {
+          "file": "resource_optimization/deployment/power/README.md",
+          "line": 55
+        },
+        {
+          "file": "resource_optimization/deployment/power/README.md",
+          "line": 81
+        }
+      ],
+      "fix_observed": "README resolves actual config paths and initializes repo/python/benchmark/programReceipt/pilot/capture/derived before commands, gives the selected inspection path, and creates the analysis directory"
+    }
+  ],
+  "schema_checks": [
+    {
+      "name": "root_files",
+      "status": "PASS",
+      "details": "Producer and consumer agree on run.json, requests.json, benchmark_source.json, benchmark_commands.jsonl, benchmark_capture.json, captures/"
+    },
+    {
+      "name": "benchmark_source_identity",
+      "status": "PASS",
+      "producer": "deploy/final/run.py:123",
+      "consumer": "resource_optimization/deployment/power/portable_source.py:110",
+      "details": "Profile, execution policy, original/request/runtime/artifact/host manifest hashes use the same field names; source runtime manifest must be frozen before the live benchmark"
+    },
+    {
+      "name": "step_emitted_json_keys",
+      "status": "PASS",
+      "producer": "deploy/final/run.py:203",
+      "consumer": "resource_optimization/deployment/power/portable_source.py:150",
+      "details": "runtime.step emits integer slot keys; JSON serialization and readback convert them to string keys 0..15, matching expected_emitted[str(slot)] and final replay conversion"
+    },
+    {
+      "name": "host_state_snapshots",
+      "status": "PASS",
+      "producer": "resource_optimization/deployment/benchmark_capture.py:148",
+      "consumer": "resource_optimization/deployment/power/portable_source.py:164",
+      "details": "dataclasses.asdict plus JSON converts prompt tuples to lists consistently. before_step(127) matches run.steps[126].slots. after_step(127) matches run.steps[127].slots"
+    },
+    {
+      "name": "target_set_and_filenames",
+      "status": "PASS",
+      "target_count": 12,
+      "producer": "resource_optimization/deployment/benchmark_capture.py:105",
+      "consumer": "resource_optimization/deployment/power/portable_source.py:167",
+      "details": "Both use positions 32/128, Attention L0/8/16/24/31 and MLP L0. Files are cmd_NNNN_input.bin, descriptor.bin, output.bin and Attention kv_before.bin/rope.bin, each basename with bytes/sha256. Expected sizes are input196608, descriptor256, KV8388608, RoPE8192, published output sizes"
+    },
+    {
+      "name": "command_ack_journal",
+      "status": "PASS",
+      "producer": "resource_optimization/deployment/benchmark_capture.py:125",
+      "consumer": "resource_optimization/deployment/power/portable_source.py:193",
+      "details": "ACK hook summary fields command_id/descriptor_words/input_sha256/output_sha256/begin_monotonic_ns/completed_monotonic_ns/completion_receipt/acknowledged match; receipt is copied from the same backend.receipts used by run.json"
+    },
+    {
+      "name": "final_snapshot",
+      "status": "PASS",
+      "producer": "resource_optimization/deployment/benchmark_capture.py:164",
+      "consumer": "resource_optimization/deployment/power/portable_source.py:220",
+      "details": "Final snapshot is exposed as benchmark_capture.snapshot with file=kv_snapshot.bin under captures, bytes268435456, sha256, layers[32], generated_from_this_run, reference_match. Both use fa610d68fab6045573a355313f78808c93b7273dbf1edc2e8f61bc3ea1ad81c8"
+    },
+    {
+      "name": "program_receipt_wrapper",
+      "status": "PASS",
+      "producer": "deploy/final/common.py:194",
+      "consumer": "resource_optimization/deployment/power/portable_source.py:125",
+      "details": "run.programming_receipt wraps path/sha256/receipt/relationship. Inner receipt uses successful all-dsp schema, native returncode0, volatile_sram=true and host_identity. Offline checks retain original Windows host/boot; live power calls current read_program_receipt for same host/boot"
+    },
+    {
+      "name": "pilot_D_G_rule",
+      "status": "PASS",
+      "producer": "resource_optimization/deployment/power/pilot.py:82",
+      "consumer": "resource_optimization/deployment/power/kv128_sevenrail_windows.py:379",
+      "details": "Raw sweep.start_ticks nearest-rank p95 gives D=ceil_10ms(max(100ms,1.25*p95)); freeze, launcher and analyzer all use G=3D. Historical150/450ms is labeled historical"
+    },
+    {
+      "name": "cumulative_wall_limit",
+      "status": "PASS",
+      "producer": "resource_optimization/deployment/power/run_power.ps1:95",
+      "details": "Formal sampler MaxSeconds=0 and MaxSweeps=0, fixed_wall_time_termination=false, workload has no cumulative deadline. Pilot duration, per-window acquisition duration, operation/command/ready/heartbeat/close timeouts retain their stated scopes"
+    },
+    {
+      "name": "readme_required_variables",
+      "status": "PASS",
+      "location": "resource_optimization/deployment/power/README.md:20",
+      "details": "All required command variables now have setup assignments or a selected-inspection assignment before their dependent step; relative paths follow the config directory"
+    }
+  ],
+  "reference_identity_checks": {
+    "docs/evidence/kv128_chat16/results/tokens.json": {
+      "sha256": "1def7959d5e8058aa729060770e40efc4e47c9a3e64e70777624b72c78648090",
+      "status": "PASS"
+    },
+    "resource_optimization/results/board/replay/report.json": {
+      "sha256": "3061e8b6302720538c7955f8e412b9fa1a15b0014e3ec7ff2163006369d50f7a",
+      "status": "PASS"
+    }
+  },
+  "open_schema_or_documentation_blockers": [],
+  "remaining_verification": [
+    {
+      "name": "Windows_native_argument_round_trip_and_launcher_execution",
+      "status": "NOT_RUN_IN_THIS_REVIEW"
+    },
+    {
+      "name": "fresh_live_128_step_benchmark_and_fa610_full_snapshot",
+      "status": "NOT_RUN_IN_THIS_REVIEW"
+    },
+    {
+      "name": "fresh_source_verify_against_actual_board_generated_files",
+      "status": "NOT_RUN_IN_THIS_REVIEW"
+    },
+    {
+      "name": "PowerTool_inspect_restore_pilot_and_12_window_capture",
+      "status": "NOT_RUN_IN_THIS_REVIEW"
+    }
+  ],
+  "execution_scope": "Local source and serialization checks; Dell and board operations remain with the sole native operator"
+}

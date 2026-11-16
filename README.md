@@ -6,7 +6,7 @@
 
 VCU118 / XCVU9P &nbsp; · &nbsp; Decode16 &nbsp; · &nbsp; 80 MHz &nbsp; · &nbsp; All-DSP ScaleCode recovery
 
-[Latest results](#latest-published-evidence) &nbsp;·&nbsp; [Power retest](#seven-rail-power-retest) &nbsp;·&nbsp; [Hardware resources](#hardware-resources) &nbsp;·&nbsp; [DSP optimization](#scalecode-dsp-optimization) &nbsp;·&nbsp; [FPGA performance](#fpga-performance) &nbsp;·&nbsp; [Board validation](#board-validation) &nbsp;·&nbsp; [Experimental platform](#experimental-platform) &nbsp;·&nbsp; [16 requests & outputs](#16-requests--their-recorded-outputs) &nbsp;·&nbsp; [Download & verify](#data--reproduction)
+[Deploy & reproduce](resource_optimization/deployment/README.md) &nbsp;·&nbsp; [Latest results](#latest-published-evidence) &nbsp;·&nbsp; [Power retest](#seven-rail-power-retest) &nbsp;·&nbsp; [Hardware resources](#hardware-resources) &nbsp;·&nbsp; [DSP optimization](#scalecode-dsp-optimization) &nbsp;·&nbsp; [FPGA performance](#fpga-performance) &nbsp;·&nbsp; [Board validation](#board-validation) &nbsp;·&nbsp; [Experimental platform](#experimental-platform) &nbsp;·&nbsp; [16 requests & outputs](#16-requests--their-recorded-outputs) &nbsp;·&nbsp; [Download & verify](#data--reproduction)
 
 </div>
 
@@ -18,9 +18,11 @@ The **`Resource_optimization`** branch publishes the all-DSP ScaleCode recovery 
 
 [Version guide](resource_optimization/README.md) · [Tested bitstream](resource_optimization/hardware/bitstream/ScaleLLM_Final_Decode16_80MHz.bit) · [106 frozen source inputs](resource_optimization/hardware/source/) · [Complete evidence release](https://github.com/zwj276765037-lab/ScaleLLM/releases/tag/resource-optimization-20261115)
 
+The [deployment guide](resource_optimization/deployment/README.md) now covers the default all-DSP entry, exact model revision/export, fixed driver source, the KV128 command and portable power workflow. Fresh model export and independent Windows environment checks are recorded separately from the original board measurements. The new entry points have not undergone another complete board run; see [qualification status](resource_optimization/deployment/source/results.md).
+
 ## Latest published evidence
 
-README updated **2026-11-15 (Asia/Shanghai)**. Hardware and measurements for this version are under **`resource_optimization/`**.
+README updated **2026-11-16 (Asia/Shanghai)**. Hardware and measurements for this version are under **`resource_optimization/`**.
 
 | Evidence | Latest result | Scope |
 | --- | --- | --- |
@@ -212,7 +214,7 @@ This version's [bitstream](resource_optimization/hardware/bitstream/ScaleLLM_Fin
 
 The board evidence establishes regression equivalence to the sealed reference, including complete token outputs, selected operator outputs and the hardware submission/completion/ACK chain. An independent complete-model mathematical oracle remains **NOT_ESTABLISHED**. The new seven-rail power retest is PARTIAL_WITH_LIMITS, with 3/12 windows fully covered and all other full-window means left null. A complete 128-step model run remains unperformed on this image.
 
-The root `project/hardware`, `bitstream` and `deploy` directories retain the historical **`96df1a5c…`** image and its identity checks. Use **`resource_optimization/`** for the new hardware, programming entry and results. Historical KV128 performance, power reports and layout imagery keep their earlier measurement scope.
+The public **`deploy/scalellm.py` now defaults to the all-DSP image**. Follow the [deployment and reproduction guide](resource_optimization/deployment/README.md) for pinned dependencies, fresh model export, programming, ordinary inference, the fixed-active16 KV128 benchmark and seven-rail power. [Qualification results](resource_optimization/deployment/source/results.md) distinguish completed checks from pending live validation. The root `project/hardware` and `bitstream` retain the historical **`96df1a5c…`** version, selectable only with the explicit `legacy` profile. Historical measurements and layout imagery keep their earlier scope.
 
 The raw evidence preserves failed attempts and original receipts. The build-time bitstream receipt says `board_programming=NOT_RUN`; the later board closure records the actual November 15 PASS. Model weights, vendor tools, licenses and installed drivers are external dependencies. As-run build scripts preserve original machine paths; adapting them does not guarantee identical placement or bitstream bytes.
 

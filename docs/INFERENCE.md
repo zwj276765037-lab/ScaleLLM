@@ -4,8 +4,11 @@
 [DEPLOYMENT.md](DEPLOYMENT.md) to export licensed model assets, prepare text,
 program the exact bitstream and run on a local Windows XDMA host.
 
-The public runtime behavior below is distinct from the latest
-[fixed-active16 KV128 benchmark](evidence/kv128_chat16/README.md). The earlier
+The ordinary `run` behavior below is distinct from the historical
+[fixed-active16 KV128 benchmark](evidence/kv128_chat16/README.md), which used the
+legacy image. `Resource_optimization` now provides an explicit `benchmark-kv128`
+command for the all-DSP image; its commands and current qualification are in
+[the deployment guide](../resource_optimization/deployment/README.md). The earlier
 16×32-token baseline used normal per-request retirement; the newer experiment
 retained all sixteen requests through position 127 with an isolated host
 wrapper. Neither experiment changed the released FPGA image or numerical path.
@@ -41,7 +44,7 @@ Decoding uses the existing deterministic greedy top-1 calculation. Equal logits
 prefer the lower token ID. The model and generation configuration supply the
 original EOS IDs (`128001`, `128008`, `128009` for the verified checkpoint).
 A generated EOS immediately finishes that slot in the public runtime;
-otherwise it finishes at its requested length limit. The public CLI has no
+otherwise it finishes at its requested length limit. The ordinary `run` command has no
 switch to ignore EOS or force a minimum output length. The model's sampling
 defaults are not substituted for this greedy path.
 
@@ -52,7 +55,7 @@ processing and produce 110–113 new tokens per slot, 1,784 in total; the actual
 trajectories contain no EOS. Every slot reached position 128 after position 127
 completed all 32 layers, CPU Down, final LM head and token/position commit.
 This is a fixed-length benchmark, not 128 generated tokens per request or a
-change to the portable CLI policy. The original 32-token request files remain
+change to the ordinary `run` policy. The original 32-token request files remain
 the normal deployment examples.
 
 Attention weights and metadata for all 32 layers remain resident in DDR0. GU

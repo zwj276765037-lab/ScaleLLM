@@ -1,0 +1,37 @@
+{
+  "schema": "scalellm_export_to_runtime_source_delta_v1",
+  "changes": [
+    {
+      "file": "deploy/final/common.py",
+      "export_snapshot_sha256": "b225d995f19183a1487fd84132e1fe32ab9af5f627cc01cb4d66fdac860f8215",
+      "candidate_sha256": "59491e5b4807ba275271ddf9e389ae96cc9e007a9c42b28520627fe0772e8049"
+    },
+    {
+      "file": "deploy/final/run.py",
+      "export_snapshot_sha256": "3c7b40d4b769d1f912fbe2dc1dca6a76aa85a629b791d582478c2d97e058d441",
+      "candidate_sha256": "c2f03e8a09dfe651b6ce9b271dae8a81c5106ec9db85427b7e31dc11bfb6a5d4"
+    },
+    {
+      "file": "deploy/requirements-windows-py312.lock",
+      "export_snapshot_sha256": "9f93bde5fbd3d7c9eee3af6aeb4150bd176b333c3074a66038b35d33dea278d2",
+      "candidate_sha256": "6131edfcb04324ae47474ee7fbf9a0c693d85bc24b95192be990920be7f4c9f2"
+    },
+    {
+      "file": "deploy/scalellm.py",
+      "export_snapshot_sha256": "e53e8f980524283df753255d49490da274fc811ec3a42ab7dd3af384bd73fd2a",
+      "candidate_sha256": "e95db4a15e3487ddc77845f8f03e9688431f7cf70018c866ad01c21bf7236d21"
+    },
+    {
+      "file": "deploy/vendor_manifest.json",
+      "export_snapshot_sha256": "e0148aa80be3d85f80f1a8b1bbdebde0ce384ec74a5acd5c36c63522fa652d64",
+      "candidate_sha256": "7e5fcd8ee69c35155df7b63af89c68eba039b458f86daf52dc7fdbde916350dd"
+    },
+    {
+      "file": "resource_optimization/deployment/benchmark_capture.py",
+      "export_snapshot_sha256": "18ec6fe11c1d7056b17cba2e81f9ebf0c543a219bf3e82d5e3e80f0ef3ca75d2",
+      "candidate_sha256": "17330733999608754c45ef8590fa026a9c99d50e1b346618bbaac10843a4ef2c"
+    }
+  ],
+  "full_export_rerun_required_for_numeric_change": false,
+  "explanation": "Changes are programming host/boot provenance, output-close failure accounting, Windows dependency closure, platform-independent capture reference keys and their manifest. Exporter, quantization, layout, host math and FPGA runtime numerical sources remain byte-identical."
+}

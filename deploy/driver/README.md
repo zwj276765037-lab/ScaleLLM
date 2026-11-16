@@ -1,16 +1,42 @@
 # Windows XDMA polling 驱动依赖
 
-本目录只发布本项目的最小修复 patch、观察到的基线 SHA 和源准备器；**不发布 AMD/Xilinx 全量驱动源码、SYS/CAT、证书或私钥**。原源码包含 Xilinx 专有声明，使用者必须自行从 AMD 获得相应材料和许可。
+本目录发布本项目的修复 patch、固定来源与已测源码 SHA、源准备器。原源码包含 Xilinx 专有声明，使用者须自行取得适用的 AMD/Xilinx 源码许可。第三方镜像提供可核对的源码内容，其许可权利仍由使用者自行取得。
 
 ## 上游来源与可复现缺口
 
 AMD [XAPP1338](https://docs.amd.com/r/en-US/xapp1338-fast-partial-reconfiguration-pci-express/Connect-to-PCIe-Host-and-Partially-Reconfigure-the-FPGA) 指向 [AR65444](https://adaptivesupport.amd.com/s/article/65444?language=en_US) 获取 Windows/Linux XDMA reference driver。现场源带 Xilinx 2019 copyright/revision；相邻原 SYS 与安装原包逐字节相同。
 
-**尚未建立该现场源对应的官方下载 archive SHA 或公共 Git commit。** 包名 `xdma_driver_win_2020_5` 只是现场标签，不能代替官方下载身份。公共 dma_ip_drivers 仓库的 Linux XDMA 不能直接当 Windows 源。本目录记录的是 20 个观察到的 C/H 文件及 4 个构建输入的 SHA，不声称它们都是 AMD 原始未改文件。另有原 `POLL_MODE=1` 适配已显式列出。
+AMD 官方下载 archive 的身份仍为 **UNVERIFIED**。现场标签 `xdma_driver_win_2020_5` 的内容现已通过下述固定第三方镜像、明确的前置适配与逐文件 SHA 核对。`observed_base_hashes.json` 保存 20 个观察到的 C/H 文件及 4 个构建输入，已单列通道计数、注册表上限和 INX 单 MSI/单通道适配。
 
-如果重新下载的材料与 `observed_base_hashes.json` 不匹配，准备器会 fail closed；须审查具体源差异再移植补丁，不可盲目应用或把未知源码当经过测试的版本。这是当前从零部署仍存在的人工依赖，不是一键完整复现承诺。
+## 固定第三方镜像的准备入口
 
-## 准备一个独立源码副本
+固定来源为 `yiyaowen/xdma_driver_win` 的 commit `1aca897096ff16e1bf17aab837a270036b3539f3`。下载 ZIP 为 **111711 B**，SHA256 为 `12b0fd6faa04a50c49e0fbc35a90fd40666dd01e50529e5a2e38f39fda1541a0`。该来源的身份是第三方镜像，AMD 官方 archive 身份继续单列为 UNVERIFIED。[固定 commit](https://github.com/yiyaowen/xdma_driver_win/tree/1aca897096ff16e1bf17aab837a270036b3539f3)，[固定 ZIP](https://codeload.github.com/yiyaowen/xdma_driver_win/zip/1aca897096ff16e1bf17aab837a270036b3539f3)。
+
+将自行取得的 ZIP 放在本机后执行以下命令。
+
+```powershell
+python deploy\driver\prepare_public_source.py inspect --archive 'E:\source\xdma-1aca897.zip'
+python deploy\driver\prepare_public_source.py prepare `
+  --archive 'E:\source\xdma-1aca897.zip' --output 'E:\build\xdma-gu-polling'
+```
+
+`public_source_manifest.json` 固定整个 ZIP、24 个原始输入、两份 patch 和最终 21 个输出的字节数/SHA。准备器先在内存完成全部核对，再在新目录生成源码。现有输出目录和任意不匹配的输入会报错退出。获取路径固定到上述 commit。
+
+规范化包含三个构建输入的 UTF-8 BOM 移除、CRLF→LF，以及 `sys/XDMA.inx` 的末尾 LF。`public_mirror_to_observed.patch` 随后重现现场既有的三项适配。
+
+- `libxdma/interrupt.c` 保存实际检测到的 H2C/C2H 数量，零值请求采用检测值，并验证显式上限。
+- `sys/driver.c` 读取 `USER_IRQ_MAX`、`H2C_CHANNEL_MAX`、`C2H_CHANNEL_MAX`，为缺失值提供明确默认值。
+- `sys/XDMA.inx` 设置单 MSI vector、一个 user IRQ、一个 H2C、一个 C2H 和 `POLL_MODE=1`。
+
+上述结果与全部 24 个 observed 基线 SHA 一致，再应用 `user_irq_polling.patch`。最终 17 个 C/H 和 4 个构建输入与 Dell 已测 `candidate_on` 的源字节一致，厂商许可 header 保留。`source_preparation.json` 保存此内容验收回执。新主机上的编译、签名、加载资格仍由后续部署验证建立。
+
+准备器回归测试使用本项目的合成源夹具。
+
+```powershell
+python -m unittest discover -s deploy\driver -p 'test_*.py' -v
+```
+
+## 已持有观察基线时的准备入口
 
 ```powershell
 python deploy\driver\prepare_source.py inspect --source 'E:\AMD-source\xdma'
@@ -19,7 +45,7 @@ python deploy\driver\prepare_source.py prepare --source 'E:\AMD-source\xdma' --o
 
 输入目录必须含 `libxdma/`、`sys/`、`inc/`。脚本不改输入，不安装/下载/签名；只复制已核源/构建输入并应用精确上下文 patch。允许 CRLF→LF；对于原 INX 唯一 `POLL_MODE` 行，只在副本将 0→1 并核基线。标准接口 GUID `74c7e4a9-6d5d-4a70-bc0d-20691dff9e9d` 与 DEV9018 已存在于观察基线，不需要本地私有 GUID。
 
-最小修复：编译开关默认 off；开关 on 且实际 PCI ID 为 `10EE:9018` 时，在任何 IRQ enable 前固定 per-device allowed mask `0xFFFFFFFE`。所有 5 个 user IRQ W1S 路径、shared/MSI-X ISR/DPC、公开 enable API 统一遵守，禁用 user0 的 API 明确返回不支持；其他 user bit、非9018和默认构建保持行为。DMA IRQ/engine/power policy/应用 ABI 不改。INX 仅匹配 9018，候选版本 `11.38.8.506`，DMA `POLL_MODE=1`。
+IRQ 策略补丁相对 observed 基线的编译开关默认 off。开关 on 且实际 PCI ID 为 `10EE:9018` 时，在任何 IRQ enable 前固定 per-device allowed mask `0xFFFFFFFE`。所有 5 个 user IRQ W1S 路径、shared/MSI-X ISR/DPC、公开 enable API 统一遵守，禁用 user0 的 API 明确返回不支持；其他 user bit、非9018和默认构建保持行为。该 IRQ 策略补丁保留 observed 基线的 DMA IRQ/engine/power policy/应用 ABI。INX 仅匹配 9018，候选版本 `11.38.8.506`，DMA `POLL_MODE=1`。
 
 这是为当前以轮询 DONE/error 的应用准备的包，event0 通知不可用；应用仍必须轮询 error/reset_required。不能仅在运行时写 mask 当永久修复，DPC/enable 生命周期可能恢复它。
 

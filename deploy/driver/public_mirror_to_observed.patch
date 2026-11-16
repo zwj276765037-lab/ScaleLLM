@@ -1,0 +1,157 @@
+--- a/libxdma/interrupt.c
++++ b/libxdma/interrupt.c
+@@ -608,19 +608,26 @@
+     xdma->h2cChannelMax = *h2cChannelMax;
+     xdma->c2hChannelMax = *c2hChannelMax;
+ 
+-    CountChannels(xdma, h2cChannelMax, c2hChannelMax);
+-    TraceVerbose(DBG_INIT, "Found h2c channels=%u, c2h channels=%u", *h2cChannelMax, *c2hChannelMax);
++    ULONG detectedH2cChannelMax = 0;
++    ULONG detectedC2hChannelMax = 0;
++    CountChannels(xdma, &detectedH2cChannelMax, &detectedC2hChannelMax);
++    TraceVerbose(DBG_INIT, "Found h2c channels=%u, c2h channels=%u",
++                 detectedH2cChannelMax, detectedC2hChannelMax);
+ 
+     if (xdma->userMax == 0 || xdma->userMax > XDMA_MAX_USER_IRQ)
+         xdma->userMax = XDMA_MAX_USER_IRQ;
+-    if (xdma->h2cChannelMax == 0 || xdma->h2cChannelMax > XDMA_MAX_NUM_CHANNELS)
++    if (xdma->h2cChannelMax == 0)
++        xdma->h2cChannelMax = detectedH2cChannelMax;
++    else if (xdma->h2cChannelMax > XDMA_MAX_NUM_CHANNELS)
+         xdma->h2cChannelMax = XDMA_MAX_NUM_CHANNELS;
+-    if (xdma->c2hChannelMax == 0 || xdma->c2hChannelMax > XDMA_MAX_NUM_CHANNELS)
++    if (xdma->c2hChannelMax == 0)
++        xdma->c2hChannelMax = detectedC2hChannelMax;
++    else if (xdma->c2hChannelMax > XDMA_MAX_NUM_CHANNELS)
+         xdma->c2hChannelMax = XDMA_MAX_NUM_CHANNELS;
+ 
+-    if (xdma->h2cChannelMax > *h2cChannelMax)
++    if (xdma->h2cChannelMax > detectedH2cChannelMax)
+         return STATUS_INVALID_PARAMETER;
+-    if (xdma->c2hChannelMax > *c2hChannelMax)
++    if (xdma->c2hChannelMax > detectedC2hChannelMax)
+         return STATUS_INVALID_PARAMETER;
+ 
+     status = GetNumMsixVectors(xdma->wdfDevice, &numMsixVectors);
+@@ -698,4 +705,3 @@
+     xdma->interruptRegs->userIntEnableW1C = BIT_N(eventId);
+     return STATUS_SUCCESS;
+ }
+-
+--- a/sys/driver.c
++++ b/sys/driver.c
+@@ -96,34 +96,39 @@
+ 
+ const char * const dateTimeStr = "Built " __DATE__ ", " __TIME__ ".";
+ 
+-// Get the driver parameter for POLL_MODE from the Windows registry 
+-static NTSTATUS GetPollModeParameter(IN PULONG pollMode) {
++static NTSTATUS GetDriverUlongParameter(IN PCWSTR parameterName,
++                                        IN ULONG defaultValue,
++                                        OUT PULONG value) {
+     WDFDRIVER driver = WdfGetDriver();
+     WDFKEY key;
+     NTSTATUS status = WdfDriverOpenParametersRegistryKey(driver, STANDARD_RIGHTS_ALL,
+                                                          WDF_NO_OBJECT_ATTRIBUTES, &key);
+-    ULONG tracepollmode;
+-    
++
+     if (!NT_SUCCESS(status)) {
+         TraceError(DBG_INIT, "WdfDriverOpenParametersRegistryKey failed: %!STATUS!", status);
+-        WdfRegistryClose(key);
+-        return status;
+-    }
+-
+-    DECLARE_CONST_UNICODE_STRING(valueName, L"POLL_MODE");
+-
+-    status = WdfRegistryQueryULong(key, &valueName, pollMode);
+-    if (!NT_SUCCESS(status)) {
+-        TraceError(DBG_INIT, "WdfRegistryQueryULong failed: %!STATUS!", status);
+-        WdfRegistryClose(key);
+-        return status;
+-    }
+-
+-    tracepollmode = *pollMode;
+-    TraceVerbose(DBG_INIT, "pollMode=%u", tracepollmode);
++        return status;
++    }
++
++    UNICODE_STRING valueName;
++    RtlInitUnicodeString(&valueName, parameterName);
++
++    status = WdfRegistryQueryULong(key, &valueName, value);
++    if (!NT_SUCCESS(status)) {
++        *value = defaultValue;
++        TraceWarning(DBG_INIT, "Using default %wZ=%u after query failed: %!STATUS!",
++                     &valueName, defaultValue, status);
++        status = STATUS_SUCCESS;
++    }
++
++    TraceVerbose(DBG_INIT, "%wZ=%u", &valueName, *value);
+ 
+     WdfRegistryClose(key);
+     return status;
++}
++
++// Get the driver parameter for POLL_MODE from the Windows registry 
++static NTSTATUS GetPollModeParameter(IN PULONG pollMode) {
++    return GetDriverUlongParameter(L"POLL_MODE", 0, pollMode);
+ }
+ 
+ // main entry point - Called when driver is installed
+@@ -275,8 +280,24 @@
+     ULONG h2cChannelMax = 0;
+     ULONG c2hChannelMax = 0;
+ 
+-    NTSTATUS status = XDMA_DeviceOpen(device, xdma, &userMax, &h2cChannelMax, &c2hChannelMax,
+-                                      Resources, ResourcesTranslated);
++    NTSTATUS status = GetDriverUlongParameter(L"USER_IRQ_MAX", 0, &userMax);
++    if (!NT_SUCCESS(status)) {
++        TraceError(DBG_INIT, "Get USER_IRQ_MAX failed: %!STATUS!", status);
++        return status;
++    }
++    status = GetDriverUlongParameter(L"H2C_CHANNEL_MAX", 0, &h2cChannelMax);
++    if (!NT_SUCCESS(status)) {
++        TraceError(DBG_INIT, "Get H2C_CHANNEL_MAX failed: %!STATUS!", status);
++        return status;
++    }
++    status = GetDriverUlongParameter(L"C2H_CHANNEL_MAX", 0, &c2hChannelMax);
++    if (!NT_SUCCESS(status)) {
++        TraceError(DBG_INIT, "Get C2H_CHANNEL_MAX failed: %!STATUS!", status);
++        return status;
++    }
++
++    status = XDMA_DeviceOpen(device, xdma, &userMax, &h2cChannelMax, &c2hChannelMax,
++                             Resources, ResourcesTranslated);
+     if (!NT_SUCCESS(status)) {
+         TraceError(DBG_INIT, "XDMA_DeviceOpen failed: %!STATUS!", status);
+         return status;
+--- a/sys/XDMA.inx
++++ b/sys/XDMA.inx
+@@ -146,12 +146,12 @@
+ [XDMA_Inst.NT.HW]
+ AddReg = XDMA.EnableMSI
+ 
+-; 24 Interrupt resources are required - 16 for user events and 8 for dma channels
++; DEV_9018 /tmp bitstream profile: 1 user IRQ, 1 H2C, 1 C2H, single MSI vector.
+ [XDMA.EnableMSI]
+ HKR,"Interrupt Management",,0x00000010
+ HKR,"Interrupt Management\MessageSignaledInterruptProperties",,0x00000010
+ HKR,"Interrupt Management\MessageSignaledInterruptProperties",MSISupported,0x00010001,1
+-HKR,"Interrupt Management\MessageSignaledInterruptProperties",MessageNumberLimit,0x00010001,32
++HKR,"Interrupt Management\MessageSignaledInterruptProperties",MessageNumberLimit,0x00010001,1
+ 
+ 
+ [XDMA_Inst.NT.Services]
+@@ -166,7 +166,10 @@
+ AddReg         = XDMA_Inst.NT.Services.AddReg  ;Commented out for installer use, For debug include in build
+ 
+ [XDMA_Inst.NT.Services.AddReg]
+-HKR,Parameters,"POLL_MODE",0x00010001,0 ; set to 1 for hardware polling, default is 0 (interrupts)
++HKR,Parameters,"POLL_MODE",0x00010001,1 ; set to 1 for hardware polling, default is 0 (interrupts)
++HKR,Parameters,"USER_IRQ_MAX",0x00010001,1
++HKR,Parameters,"H2C_CHANNEL_MAX",0x00010001,1
++HKR,Parameters,"C2H_CHANNEL_MAX",0x00010001,1
+ 
+ 
+ ; ====================== WDF Coinstaller installation =========================

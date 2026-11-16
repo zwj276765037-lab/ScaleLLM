@@ -30,6 +30,9 @@ class DeploymentTests(unittest.TestCase):
         self.assertEqual({row['max_new_tokens'] for row in requests}, {32})
         self.assertEqual(max(len(row['prompt_token_ids']) for row in requests), 19)
         self.assertEqual(Path(config['bitstream']).name, 'ScaleLLM_Final_Decode16_80MHz.bit')
+        self.assertEqual(config['deployment_profile'], 'all-dsp')
+        self.assertIn('resource_optimization/hardware/bitstream', config['bitstream'])
+        self.assertIsNone(config['wall_seconds'])
         with tempfile.TemporaryDirectory(prefix='final config with spaces ') as folder:
             path = Path(folder) / 'config.json'
             source = json.loads((ROOT / 'deploy/config.example.json').read_text())
@@ -95,7 +98,7 @@ class DeploymentTests(unittest.TestCase):
                            '--target', 'target with spaces', '--device', 'xcvu9p_0', '--dry-run'])
         command = json.loads(output.getvalue())['command']
         self.assertIn('target with spaces', command)
-        self.assertEqual(command[-1], '/tmp/final image.bit')
+        self.assertEqual(command[-2:], ['/tmp/final image.bit', 'all-dsp'])
         launch.assert_not_called()
 
     def test_run_dispatch_with_external_power_log(self):
@@ -106,7 +109,8 @@ class DeploymentTests(unittest.TestCase):
         arguments = run.call_args.args[0]
         self.assertEqual(arguments[arguments.index('--result') + 1], '/tmp/final output')
         self.assertEqual(arguments[arguments.index('--power-log') + 1], '/tmp/sampler log.csv')
-        self.assertEqual(run.call_args.kwargs['config']['wall_seconds'], 7200)
+        self.assertIsNone(run.call_args.kwargs['config']['wall_seconds'])
+        self.assertNotIn('--wall-seconds', arguments)
 
     def test_bounded_exact_bf16_conversion(self):
         import numpy as np

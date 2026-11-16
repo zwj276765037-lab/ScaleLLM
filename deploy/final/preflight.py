@@ -8,7 +8,8 @@ from pathlib import Path
 import platform
 import sys
 
-from .common import CHECKPOINT_SHA, DEPENDENCIES, bootstrap, read_requests, sha, source_check
+from .common import (CHECKPOINT_SHA, DEFAULT_PROFILE, DEPENDENCIES, bootstrap,
+                     check_bit, profile_identity, read_requests, sha, source_check)
 
 
 def driver_identity(expected=None):
@@ -38,6 +39,12 @@ def inspect_device(session):
 
 def preflight(config, *, models=False, device=False, requests_path=None):
     checked = source_check()
+    profile = profile_identity(config.get('deployment_profile', DEFAULT_PROFILE))
+    bit = Path(config['bitstream'])
+    bit_check = 'MISSING'
+    if bit.is_file():
+        check_bit(bit, profile['name'])
+        bit_check = 'SIZE_SHA256_PASS'
     if sys.version_info < (3, 10) or sys.maxsize <= 2**32:
         raise RuntimeError('64-bit CPython 3.10+ required; tested with 3.12')
     try:
@@ -59,6 +66,8 @@ def preflight(config, *, models=False, device=False, requests_path=None):
                   source_files_verified=checked, imports='PASS', abi=IDS,
                   requests=len(requests), device_opened=False, device_writes=False,
                   gpu_used=False, model_hashes='NOT_RUN')
+    report.update(deployment_profile=profile, bitstream_file=bit_check,
+                  resident_image_identity='ABI checks identify the interface; programming receipt records the selected image')
     if models:
         import host_math
         from host.scalellm_mlp_gu_only_artifacts import GuOnlyArtifactManifest

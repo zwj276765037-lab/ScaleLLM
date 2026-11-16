@@ -35,19 +35,21 @@ def inspect(source):
     return {'verdict':'OBSERVED_BASE_MATCH' if all(x['match'] for x in checks.values()) else 'SOURCE_REVIEW_REQUIRED','official_archive_identity':'UNVERIFIED','files':checks,'normalization':'CRLF→LF; explicit INX POLL_MODE0→1 only'}
 
 
-def apply_unified(root,patch):
+def apply_unified_texts(files, patch):
+    """Apply the project's exact-context patches to an in-memory text mapping."""
+    updated = dict(files)
     lines=patch.splitlines(keepends=True);i=0
     while i<len(lines):
         if not lines[i].startswith('--- a/'):raise ValueError('Invalid patch file header')
         rel=lines[i][6:].strip();i+=1
         if not lines[i].startswith('+++ b/') or lines[i][6:].strip()!=rel:raise ValueError('Mismatched patch paths')
-        i+=1;path=(root/rel).resolve();path.relative_to(root.resolve())
-        original=path.read_text().splitlines(keepends=True) if path.exists() else [];result=[];position=0
+        i+=1
+        original=updated.get(rel, '').splitlines(keepends=True);result=[];position=0
         while i<len(lines) and lines[i].startswith('@@ '):
             match=re.fullmatch(r'@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@[^\n]*\n?',lines[i])
             if not match:raise ValueError('Invalid hunk header')
             start=int(match[1]);old_count=int(match[2] or 1);new_count=int(match[4] or 1);target=max(start-1,0)
-            if target<position:raise ValueError('Overlapping patch hunks')
+            if target<position or target>len(original):raise ValueError('Invalid patch hunk position')
             result+=original[position:target];position=target;i+=1;removed=added=0
             while i<len(lines) and not lines[i].startswith(('@@ ','--- a/')):
                 line=lines[i];i+=1
@@ -57,7 +59,24 @@ def apply_unified(root,patch):
                     position+=1;removed+=1
                 if line[0] in ' +':result.append(line[1:]);added+=1
             if (removed,added)!=(old_count,new_count):raise ValueError('Patch count mismatch: '+rel)
-        result+=original[position:];path.parent.mkdir(parents=True,exist_ok=True);path.write_text(''.join(result),newline='\n')
+        result+=original[position:];updated[rel]=''.join(result)
+    return updated
+
+
+def apply_unified(root,patch):
+    paths = {}
+    for line in patch.splitlines():
+        if line.startswith('--- a/'):
+            relative = line[6:].strip()
+            path = (root / relative).resolve()
+            path.relative_to(root.resolve())
+            paths[relative] = path
+    originals = {relative: path.read_text() if path.exists() else ''
+                 for relative, path in paths.items()}
+    for relative, value in apply_unified_texts(originals, patch).items():
+        path = paths[relative]
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(value, newline='\n')
 
 
 def main():

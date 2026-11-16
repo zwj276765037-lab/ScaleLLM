@@ -1,5 +1,7 @@
 # Experiment index and current evidence
 
+This index preserves experiments on the historical `96df…` image. The all-DSP `Resource_optimization` version has a separate [hardware and results guide](../resource_optimization/README.md) and [deployment qualification](../resource_optimization/deployment/source/results.md).
+
 Updated 2026-11-02 (Asia/Shanghai). The newest board evidence is the KV128 seven-rail PMBus retest with twelve windows on 2026-11-02; the independent double-buffer RTL validation is a separate experiment from the same date. Earlier board and sealed-RTL comparisons retain their 2026-11-01 UTC identities. Publication does not constitute a hardware build.
 
 Board results and sealed baselines refer to the released VCU118/XCVU9P Decode16 implementation, core 80 MHz, DDR user interface 200 MHz and Vivado 2025.2. The explicitly identified double-buffer candidate changes an independent RTL copy's buffering/scheduling only and has not been synthesized or deployed. Release bitstream SHA-256:

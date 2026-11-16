@@ -5,10 +5,12 @@
   "observed_label": "2019 Xilinx Windows reference source; adjacent binary matched installed original",
   "source_file_count": 20,
   "known_preexisting_adaptations": [
-    "sys/XDMA.inx DMA POLL_MODE=1 (not proven official default); helper explicitly normalizes 0 to 1 in a new copy",
-    "Standard GUID 74c7e4a9-6d5d-4a70-bc0d-20691dff9e9d and DEV9018 already present; no custom GUID required"
+    "libxdma/interrupt.c preserves detected H2C/C2H counts when the requested maximum is zero and checks explicit maxima against detected hardware.",
+    "sys/driver.c reads USER_IRQ_MAX, H2C_CHANNEL_MAX and C2H_CHANNEL_MAX with explicit defaults through a shared registry-value helper.",
+    "sys/XDMA.inx sets one MSI vector, USER_IRQ_MAX=1, H2C_CHANNEL_MAX=1, C2H_CHANNEL_MAX=1 and POLL_MODE=1.",
+    "Standard GUID 74c7e4a9-6d5d-4a70-bc0d-20691dff9e9d and DEV9018 are present in the fixed mirror; no private GUID is required."
   ],
-  "reproducibility_limit": "Exact public downloadable archive/commit corresponding to this observed base was not established. A different download must be source-reviewed; this checker will not silently apply to an unknown base.",
+  "reproducibility_limit": "AMD official archive identity remains unverified. The fixed third-party mirror plus explicit normalization and the published bridge reproduces these observed file hashes; the separate IRQ policy patch reproduces the tested final source closure. Users obtain applicable vendor licenses separately.",
   "files": {
     "exe/desciptor_bypass/descriptor_bypass.c": {
       "sha256": "202071d3f92bede892d17dc8aa293bdeaa7966007cadea24782bd58fc3a696ca",
@@ -130,5 +132,6 @@
       "lf_sha256": "a8071c3f9849f6103924746e5cac13e6dc0f8c779d0315b7e72ecdc17387d149",
       "bytes": 20820
     }
-  }
+  },
+  "public_content_recipe": "public_source_manifest.json"
 }

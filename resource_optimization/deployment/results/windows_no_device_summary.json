@@ -1,0 +1,126 @@
+{
+  "schema": "scalellm_windows_no_device_qualification_v1",
+  "status": "PASS_NO_DEVICE_SCOPE",
+  "source_package_files": 837,
+  "source_package_manifest_sha256": "0eb38c84e79163a0e3fd682daee6667769148bcc45f987477b769051912a1bcd",
+  "runtime_source_manifest_sha256": "7e5fcd8ee69c35155df7b63af89c68eba039b458f86daf52dc7fdbde916350dd",
+  "python": "3.12.10 AMD64; independently prepared official PSF runtime and new venv",
+  "locked_dependencies": 18,
+  "fresh_asset_files": 335,
+  "fresh_asset_bytes": 8809987578,
+  "raw_records": {
+    "venv_install_001": {
+      "state": "COMPLETE",
+      "native_exitcode": 0,
+      "stdout_sha256": "807783b8492d0c4ad29891eef6ff53f36aaddd70c5dafa8e26fb54fc83a7a2dd",
+      "receipt_sha256": "e91cd10e2c0eef753a7a16876f60352c9d8ac54b661378300ab04b7c3f47c5ea"
+    },
+    "public_validation_001": {
+      "state": "FAIL",
+      "native_exitcode": 1,
+      "stdout_sha256": "5043a675b735e14321523616b04f2d6f9801fd5a93a3a8c3aaec04413ad2ad83",
+      "receipt_sha256": "0f649a65d41c5551565b573094de64cb16f5f246872ae86e89e5018cba1523fa"
+    },
+    "public_validation_002": {
+      "state": "FAIL",
+      "native_exitcode": 1,
+      "stdout_sha256": "f197951edeeb494983cbe601227791b87189b7a57516d64583ba1f11101ab385",
+      "receipt_sha256": "118341171120a69d73d8fd900ea785ceceb84fe6d1dce39e6915263d2cb73837"
+    },
+    "windows_no_device_final_001": {
+      "state": "COMPLETE",
+      "native_exitcode": 0,
+      "stdout_sha256": "4d09e9ca21dae35d865ae32b9eccbbc93d9fb39edb7f721a8db916576e0f1e9f",
+      "receipt_sha256": "acc060df2a782a90d3f852da22cedb52b7242d51091bacedcf06e04d2699a967"
+    }
+  },
+  "native_checks": {
+    "create_venv": {
+      "native_exitcode": 0,
+      "source_record": "venv_install_001"
+    },
+    "install_locked_wheels": {
+      "native_exitcode": 0,
+      "source_record": "venv_install_001"
+    },
+    "pip_check": {
+      "native_exitcode": 0,
+      "source_record": "venv_install_001"
+    },
+    "venv_dependency_probe": {
+      "native_exitcode": 0,
+      "source_record": "venv_install_001"
+    },
+    "extract_public_source": {
+      "native_exitcode": 0,
+      "source_record": "public_validation_001"
+    },
+    "verify_package": {
+      "native_exitcode": 0,
+      "source_record": "public_validation_002"
+    },
+    "verify_publication": {
+      "native_exitcode": 0,
+      "source_record": "public_validation_002"
+    },
+    "verify_fresh_assets": {
+      "native_exitcode": 0,
+      "source_record": "public_validation_001"
+    },
+    "dry_run": {
+      "native_exitcode": 0,
+      "source_record": "public_validation_002"
+    },
+    "preflight_models": {
+      "native_exitcode": 0,
+      "source_record": "public_validation_002"
+    },
+    "prepare_messages": {
+      "native_exitcode": 0,
+      "source_record": "public_validation_002"
+    },
+    "portable_power_windows_paths": {
+      "native_exitcode": 1,
+      "source_record": "public_validation_002"
+    },
+    "native_power_paths_fixed": {
+      "native_exitcode": 0,
+      "source_record": "windows_no_device_final_001"
+    },
+    "final_verify_package": {
+      "native_exitcode": 0,
+      "source_record": "windows_no_device_final_001"
+    },
+    "benchmark_plan_only": {
+      "native_exitcode": 0,
+      "source_record": "windows_no_device_final_001"
+    }
+  },
+  "powershell_parse": [
+    {
+      "status": "PASS",
+      "sha256": "2d248d05ec1670c92ec07e3af3c1a0e7d2e06c59d96ead9cef7018bb5e16b978",
+      "file": "kv128_sevenrail_sampler.ps1"
+    },
+    {
+      "status": "PASS",
+      "sha256": "a78e3bf8720430cd6b67266cb1308708a530ca9f5fcf736382530b05c9553dd0",
+      "file": "run_power.ps1"
+    }
+  ],
+  "original_16_prompt_tokens": "EXACT_PASS",
+  "windows_argument_roundtrip": "2 tests PASS; six exact arguments including spaces, Unicode, quotes, terminal backslashes and empty string",
+  "fixed_test_sha256": "8a77f85e79fd3f984c7b9a881e099cdf464623c5ed32f8b1c9f858fc12ae75de",
+  "failures_preserved": {
+    "public_validation_001": "Extra -I verification option omitted script directory; corrected test launch uses documented invocation.",
+    "public_validation_002": "PowerShell 5.1 fixture wrapped decoded JSON array into a single nested Object[]. Fixed direct assignment; unchanged six-value equality assertion passed."
+  },
+  "device_handles_opened": false,
+  "board_lease_acquired": false,
+  "new_programming": "NOT_RUN",
+  "ordinary_board_inference": "NOT_RUN",
+  "complete_128_step_benchmark": "NOT_RUN",
+  "power_windows": "NOT_RUN",
+  "driver_build_install": "NOT_RUN",
+  "scope": "Read-only source/model checks, dependency installation in a new directory, text preparation and plan checks. Existing installed driver and vendor tools remain external dependencies."
+}

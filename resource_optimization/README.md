@@ -6,7 +6,7 @@ This is the **2026-11-15 board-validated `dsp_all` version** for VCU118 / XCVU9P
 5d78519aa10695be564f668d5a41a0e5554e282c31d39f648534a7dc01ab72f7
 ```
 
-Use the hardware and evidence in this directory for this version. The repository-root `project/hardware`, `bitstream` and `deploy` paths retain the historical `96df1a5c…` release and its identity checks. Its previous KV128 and power measurements retain that earlier image identity.
+Use the hardware and evidence in this directory for this version. The public `deploy/scalellm.py` entry now defaults to this all-DSP image; follow the [deployment and reproduction guide](deployment/README.md). The repository-root `project/hardware` and `bitstream` retain the historical `96df1a5c…` release; it requires the explicit `legacy` deployment profile. Historical KV128 and power measurements retain their earlier image identity.
 
 [Download the tested bitstream](hardware/bitstream/ScaleLLM_Final_Decode16_80MHz.bit) · [Frozen source](hardware/source/) · [Resource CSV](results/resources.csv) · [Machine-readable results](results/summary.json) · [Exact generated tokens](results/board/inference/outputs.json) · [Large artifacts](#complete-raw-evidence-and-routed-checkpoint)
 
@@ -112,7 +112,7 @@ The check validates every version-directory file, the 106 frozen source inputs a
 vivado -mode batch -source resource_optimization/hardware/program/program_sram.tcl -tclargs localhost:3121 EXACT_TARGET xcvu9p_0 FULL_PATH_TO_NEW_BIT
 ```
 
-Use the bit under `resource_optimization/hardware/bitstream/`. The Tcl verifies its exact size/SHA and requires the explicit target and unique XCVU9P. Programming is volatile SRAM only. Perform the documented post-program identity and DDR checks before inference. The archived board runtime is the Dell as-run version; only its whole-run wall termination was removed. The root portable deployment wrapper has separate historical validation and still binds the old image.
+Use the bit under `resource_optimization/hardware/bitstream/`. The Tcl verifies its exact size/SHA and requires the explicit target and unique XCVU9P. Programming is volatile SRAM only. Perform the documented post-program identity and DDR checks before inference. The archived board runtime is the Dell as-run version; only its whole-run wall termination was removed. The root portable deployment wrapper now selects this image by default. Its new independent-directory qualification is tracked in [deployment stage results](deployment/source/results.md).
 
 ## Complete raw evidence and routed checkpoint
 

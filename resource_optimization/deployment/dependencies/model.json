@@ -1,0 +1,89 @@
+{
+  "schema": "scalellm_external_model_identity_v1",
+  "status": "CONTENT_IDENTITY_PINNED",
+  "repository": "meta-llama/Llama-3.1-8B-Instruct",
+  "revision": "07eb05b21d191a58c577b4a45982fe0c049d0693",
+  "model_page": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct/tree/07eb05b21d191a58c577b4a45982fe0c049d0693",
+  "metadata_url": "https://huggingface.co/api/models/meta-llama/Llama-3.1-8B-Instruct/revision/07eb05b21d191a58c577b4a45982fe0c049d0693?blobs=true",
+  "access": "MANUAL_META_LICENSE_AUTHORIZATION",
+  "model_id_in_exporter": "meta-llama/Llama-3.1-8B-Instruct",
+  "checkpoint_sha256": "8a09c60f3256779c16925f8209c9399ba4a1ee0406caf65bd2637ffd99287d6d",
+  "required_files": [
+    {
+      "path": "config.json",
+      "bytes": 855,
+      "sha256": "29e4c210b0d6ac178b16b2a255a568bdb23b581e50ca1ef6a6d071dd85704e6e"
+    },
+    {
+      "path": "model.safetensors.index.json",
+      "bytes": 23950,
+      "sha256": "146776fce3f6db1103aa6f249e65ee5544c5923ce6f971b092eee79aa6e5d37b"
+    },
+    {
+      "path": "tokenizer.json",
+      "bytes": 9085657,
+      "sha256": "79e3e522635f3171300913bb421464a87de6222182a0570b9b2ccba2a964b2b4"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "bytes": 50870,
+      "sha256": "24e8a6dc2547164b7002e3125f10b415105644fcf02bf9ad8b674c87b1eaaed6"
+    },
+    {
+      "path": "special_tokens_map.json",
+      "bytes": 296,
+      "sha256": "6f38c73729248f6c127296386e3cdde96e254636cc58b4169d3fd32328d9a8ec"
+    },
+    {
+      "path": "model-00001-of-00004.safetensors",
+      "bytes": 4976698672,
+      "sha256": "2b1879f356aed350030bb40eb45ad362c89d9891096f79a3ab323d3ba5607668"
+    },
+    {
+      "path": "model-00002-of-00004.safetensors",
+      "bytes": 4999802720,
+      "sha256": "09d433f650646834a83c580877bd60c6d1f88f7755305c12576b5c7058f9af15"
+    },
+    {
+      "path": "model-00003-of-00004.safetensors",
+      "bytes": 4915916176,
+      "sha256": "fc1cdddd6bfa91128d6e94ee73d0ce62bfcdb7af29e978ddcab30c66ae9ea7fa"
+    },
+    {
+      "path": "model-00004-of-00004.safetensors",
+      "bytes": 1168138808,
+      "sha256": "92ecfe1a2414458b4821ac8c13cf8cb70aed66b5eea8dc5ad9eeb4ff309d6d7b"
+    }
+  ],
+  "additional_required_generation_config": {
+    "path": "generation_config.json",
+    "bytes": 184,
+    "sha256": "189fb0c0d7fd8a527db217c0a60a0e013f0394cd8800f9697a666a9e75e5f7fd",
+    "eos_matches_model_config": true,
+    "included_in_checkpoint_aggregate": false
+  },
+  "verification": {
+    "all_local_checkpoint_input_bytes_rehashed": true,
+    "weight_identities_match_official_lfs_sha256_and_size": true,
+    "control_file_identities_match_official_git_blobs_and_size": true,
+    "public_control_bytes_compared_at_fixed_mirror_revision": true,
+    "direct_official_weight_download_performed": false,
+    "full_model_export_performed_by_this_audit": false
+  },
+  "recorded_equivalent_download_mirror": {
+    "repository": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+    "revision": "d10aef7999a2b5ba950ab3974312feeedbfe0b77",
+    "required_control_bytes_and_weight_lfs_ids_match": true,
+    "source_kind": "THIRD_PARTY_MIRROR"
+  },
+  "current_official_main": {
+    "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+    "strict_checkpoint_compatible": false,
+    "different_required_file": "tokenizer_config.json",
+    "tested_bytes": 50870,
+    "current_main_bytes": 55351
+  },
+  "identity_algorithm": "SHA256 of compact sorted-key ASCII JSON {model_id, files:[{path,size,sha256}]} in exporter input order",
+  "weights_redistributed": false,
+  "private_local_paths_included": false
+}
